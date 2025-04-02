@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Study Aid - Truth From The Bible</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #1a1a1a; color: #333; line-height: 1.6; }
+        header { background-color: #1a1a1a; padding: 20px; text-align: center; }
+        .logo { font-size: 2.5rem; font-weight: bold; color: #FFD800; display: inline-block; }
+        .logo a { color: #FFD800; text-decoration: none; transition: color 0.3s; }
+        .logo a:hover { color: #00FF00; }
+        .main-section { margin: auto; padding: 20px; background-color: #000000; border-radius: 5px; }
+        .buttons { text-align: center; margin: 20px 0; }
+        .btn-milk { padding: 15px 30px; margin: 10px; background-color: #FFD800; color: #1a1a1a; border: none; border-radius: 5px; cursor: pointer; font-size: 1.2rem; }
+        .btn-solid { padding: 15px 30px; margin: 10px; background-color: #00FF00; color: #1a1a1a; border: none; border-radius: 5px; cursor: pointer; font-size: 1.2rem; }
+        .milk-box, .solid-box { display: none; padding: 20px; margin: 20px 0; border-radius: 5px; color: #1a1a1a; }
+        .milk-box { background-color: #FFD800; }
+        .solid-box { background-color: #00FF00; }
+        .milk-box.active, .solid-box.active { display: block; }
+        .lesson-content { background-color: #000000; color: #ffffff; padding: 20px; border-radius: 5px; margin: 10px 0; }
+        .lesson-content h2 { font-size: 1.8rem; margin-bottom: 15px; color: #ffffff; }
+        .lesson-content .instruction, .lesson-content .description, .lesson-content .example { margin-bottom: 20px; padding: 15px; border-radius: 5px; }
+        .lesson-content .instruction { background-color: #1a1a1a; font-size: 1.1rem; line-height: 1.8; }
+        .lesson-content .description { background-color: #1a1a1a; font-size: 1rem; color: #ccc; font-weight: bold; }
+        .lesson-content .example { background-color: #333; font-family: 'Courier New', Courier, monospace; font-size: 1rem; border-left: 4px solid #00FF00; white-space: pre-wrap; }
+        .nav-buttons { margin: 20px 0; text-align: center; }
+        .nav-btn-milk { padding: 10px 20px; background-color: #000000; color: #FFD800; border: none; border-radius: 5px; cursor: pointer; margin: 0 10px; }
+        .nav-btn-solid { padding: 10px 20px; background-color: #000000; color: #00FF00; border: none; border-radius: 5px; cursor: pointer; margin: 0 10px; }
+        .nav-btn-milk:disabled, .nav-btn-solid:disabled { background-color: #666; color: #999; cursor: not-allowed; }
+        .progress-squares { display: flex; flex-wrap: wrap; gap: 5px; margin: 20px 0; justify-content: center; max-height: 100px; overflow-y: auto; }
+        .milk-square, .solid-square { width: 25px; height: 25px; border-radius: 3px; text-align: center; color: #000000; font-size: 0.9rem; line-height: 25px; cursor: pointer; }
+        .milk-square { background-color: #FFD800; }
+        .milk-square.completed { background-color: #00FF00; }
+        .solid-square { background-color: #00FF00; }
+        .solid-square.completed { background-color: #FFD800; }
+        footer { background-color: #1a1a1a; color: #00FF00; text-align: center; padding: 20px; font-size: 0.9rem; }
+        footer a { color: #FFD800; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .footer-logo { font-size: 0.9rem; color: #FFD800; font-weight: bold; }
+        .footer-logo span { color: #00FF00; }
+        @media (max-width: 768px) {
+            .logo { font-size: 2rem; }
+            .main-section { padding: 15px; }
+            .btn-milk, .btn-solid { font-size: 1rem; padding: 10px 20px; }
+            .milk-square, .solid-square { width: 20px; height: 20px; font-size: 0.8rem; line-height: 20px; }
+            .lesson-content h2 { font-size: 1.5rem; }
+            .lesson-content .instruction { font-size: 1rem; }
+            .lesson-content .description { font-size: 0.9rem; }
+            .lesson-content .example { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="#">BIBLE TRUTH</a></div>
+    </header>
+    <section class="main-section">
+        <div class="buttons">
+            <button class="btn-milk" onclick="toggleMilkBox()">Feed On Milk</button>
+            <button class="btn-solid" onclick="toggleSolidBox()">Solid Food</button>
+        </div>
+        <div class="milk-box" id="milkBox">
+            <div class="lesson-content" id="milkContent"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn-milk" onclick="prevMilk()" id="prevMilkBtn">Previous</button>
+                <button class="nav-btn-milk" onclick="nextMilk()" id="nextMilkBtn">Next</button>
+            </div>
+            <div class="progress-squares" id="milkSquares"></div>
+        </div>
+        <div class="solid-box" id="solidBox">
+            <div class="lesson-content" id="solidContent"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn-solid" onclick="prevSolid()" id="prevSolidBtn">Previous</button>
+                <button class="nav-btn-solid" onclick="nextSolid()" id="nextSolidBtn">Next</button>
+            </div>
+            <div class="progress-squares" id="solidSquares"></div>
+        </div>
+    </section>
+    <footer>
+        <p><span class="footer-logo">BIBLE <span>TRUTH</span></span></p>
+        <p>Copyright © 2025 Bible Truth. All Rights Reserved.</p>
+        <p><a href="mailto:contact@bibletruth.org">contact@bibletruth.org</a></p>
+    </footer>
+
+    <script>
+        const milkLessons = [
+            { 
+                title: "1. Why Study the Bible?", 
+                instruction: "The Bible stands as Jehovah’s inspired Word, a divine gift distinct from human philosophies or religious texts rooted in false worship, such as pagan myths or materialistic ideologies. It reveals God’s will and purpose for humanity, offering guidance for life’s challenges, as affirmed by 2 Timothy 3:16: 'All Scripture is inspired of God and beneficial for teaching, for reproving, for setting things straight, for disciplining in righteousness.' Historically, its preservation through centuries—despite attempts to suppress it—demonstrates divine protection. Scientifically, its references, like the earth’s suspension (Job 26:7), align with later discoveries, proving its reliability. Studying it equips us to reject false teachings, like idol worship or soul immortality, and fosters a relationship with Jehovah based on truth.", 
+                description: "<b>Benefit:</b> Wisdom and protection from false teachings.", 
+                example: "<b>2 Timothy 3:16</b> - All Scripture is inspired of God and beneficial for teaching, for reproving, for setting things straight, for disciplining in righteousness.\n<b>Joshua 1:8</b> - This book of the Law should not depart from your mouth, and you must read it in an undertone day and night, in order to act wisely and have success.\n<b>Psalm 119:105</b> - Your word is a lamp to my foot, and a light for my path.\n<b>John 17:17</b> - Sanctify them by means of the truth; your word is truth.\n<b>Proverbs 2:6</b> - For Jehovah himself gives wisdom; from his mouth come knowledge and discernment.\n<b>Hebrews 4:12</b> - For the word of God is alive and exerts power and is sharper than any two-edged sword." 
+            },
+            { 
+                title: "2. Who Wrote the Bible?", 
+                instruction: "The Bible was penned by over 40 human writers—kings, prophets, fishermen—spanning 1,600 years, yet its unity stems from Jehovah’s holy spirit, as 2 Peter 1:21 states: 'Men spoke from God as they were moved by holy spirit.' Unlike pagan texts filled with contradictory myths, its consistent message across centuries proves divine authorship. Historically, its composition began with Moses around 1513 B.C.E. and concluded with John’s writings around 98 C.E., surviving persecution and translation into thousands of languages. Science supports its accuracy, such as the hydrologic cycle in Job 36:27-28, predating modern understanding. This refutes false worship’s claim of human origin, affirming Jehovah as its true Author.", 
+                description: "<b>History:</b> Unified over 1,600 years.", 
+                example: "<b>2 Peter 1:21</b> - For prophecy was at no time brought by man’s will, but men spoke from God as they were moved by holy spirit.\n<b>2 Timothy 3:16</b> - All Scripture is inspired of God and beneficial.\n<b>Isaiah 40:8</b> - The word of our God endures forever.\n<b>Psalm 45:1</b> - My tongue is the stylus of a skilled copyist.\n<b>Jeremiah 1:9</b> - Then Jehovah stretched out his hand and touched my mouth, and Jehovah said to me: 'Here I have put my words in your mouth.'\n<b>Revelation 1:1</b> - A revelation by Jesus Christ, which God gave him." 
+            },
+            { 
+                title: "3. Is the Bible Scientifically Accurate?", 
+                instruction: "The Bible’s scientific accuracy shines through statements made long before human discovery, such as Job 26:7: 'He stretches out the northern sky over empty space, suspending the earth upon nothing.' This aligns with the earth’s suspension in space, a fact unknown in ancient times. Unlike false worship’s flat-earth myths or Babylonian cosmologies, Isaiah 40:22 describes Jehovah as 'the One who dwells above the circle of the earth,' hinting at its spherical shape. Historically, its sanitation laws (Leviticus 11-15) predate germ theory, saving lives. These facts dismantle claims of inaccuracy, proving the Bible’s divine origin and its superiority over pagan falsehoods.", 
+                description: "<b>Science:</b> Earth’s shape and suspension.", 
+                example: "<b>Job 26:7</b> - He stretches out the northern sky over empty space, suspending the earth upon nothing.\n<b>Isaiah 40:22</b> - It is he who sits above the circle of the earth.\n<b>Job 36:27-28</b> - For he draws up the drops of water; they filter as rain for his mist.\n<b>Leviticus 13:46</b> - All the days that the disease is upon him he will be unclean; he must dwell isolated.\n<b>Ecclesiastes 1:7</b> - All the streams flow into the sea, yet the sea is not full.\n<b>Psalm 104:6</b> - You covered it with deep waters as with a garment." 
+            },
+            { 
+                title: "4. What Is God’s Name?", 
+                instruction: "Jehovah, God’s personal name, appears over 7,000 times in the original texts, as Psalm 83:18 declares: 'You, whose name is Jehovah, you alone are the Most High over all the earth.' False worship obscures this name with titles like 'Lord,' a practice rooted in superstition and tradition, not Scripture. Historically, the Tetragrammaton (YHWH) was revered by Israel, yet removed by later scribes influenced by pagan customs. Science offers no contradiction, but the Bible’s consistent use across millennia confirms its authenticity. Knowing Jehovah’s name sets true worship apart from the nameless deities of false religion.", 
+                description: "<b>Origin:</b> YHWH, often removed.", 
+                example: "<b>Psalm 83:18</b> - May people know that you, whose name is Jehovah, you alone are the Most High over all the earth.\n<b>Exodus 3:15</b> - Jehovah, the God of your forefathers... this is my name forever.\n<b>Isaiah 42:8</b> - I am Jehovah. That is my name; I give my glory to no one else.\n<b>Exodus 6:3</b> - I used to appear to Abraham, Isaac, and Jacob as God Almighty, but with regard to my name Jehovah I did not make myself known to them.\n<b>Matthew 6:9</b> - You must pray, then, this way: 'Our Father in the heavens, let your name be sanctified.'\n<b>Joel 2:32</b> - Everyone who calls on the name of Jehovah will be saved." 
+            },
+            { 
+                title: "5. Who Is Jesus Christ?", 
+                instruction: "Jesus Christ is Jehovah’s firstborn Son, not God Almighty, as Colossians 1:15 states: 'He is the image of the invisible God, the firstborn of all creation.' False worship, like the Trinity doctrine from pagan triads, equates him with Jehovah, but Scripture distinguishes them. Historically, Jesus’ role as Messiah was foretold (Isaiah 9:6) and fulfilled in 29 C.E., initiating Christianity. Science aligns with his miracles, like healing, as acts of divine power, not myth. He’s the ransom and future King, refuting false claims of co-equality and affirming Jehovah’s supremacy in true worship.", 
+                description: "<b>Role:</b> Son and Savior.", 
+                example: "<b>Colossians 1:15</b> - He is the image of the invisible God, the firstborn of all creation.\n<b>John 3:16</b> - For God loved the world so much that he gave his only-begotten Son.\n<b>1 Timothy 2:5</b> - For there is one God, and one mediator between God and men, a man, Christ Jesus.\n<b>John 14:28</b> - The Father is greater than I am.\n<b>Matthew 20:28</b> - The Son of man came not to be ministered to, but to minister and to give his life as a ransom.\n<b>Revelation 19:16</b> - He has a name written, King of kings and Lord of lords." 
+            },
+            { 
+                title: "6. What Is the Holy Spirit?", 
+                instruction: "The holy spirit is Jehovah’s active force, not a person, as Genesis 1:2 reveals: 'God’s active force was moving to and fro over the surface of the waters.' False worship’s Trinity portrays it as a deity, borrowing from pagan trios like Egypt’s Osiris-Isis-Horus, but the Bible shows it as God’s power at work. Historically, it inspired prophets and empowered Jesus’ miracles (Luke 4:1). Scientifically, its effects—like creation’s order—suggest a purposeful force, not a random entity. Understanding this counters false teachings and honors Jehovah’s true nature.", 
+                description: "<b>Use:</b> God’s power.", 
+                example: "<b>Genesis 1:2</b> - God’s active force was moving to and fro over the surface of the waters.\n<b>Job 26:13</b> - By his spirit the heavens were made beautiful.\n<b>Luke 4:1</b> - Then Jesus, full of holy spirit, turned away from the Jordan.\n<b>Psalm 104:30</b> - You send out your spirit, and they are created.\n<b>Acts 1:8</b> - You will receive power when the holy spirit comes upon you.\n<b>Matthew 3:16</b> - He saw God’s spirit descending like a dove." 
+            },
+            { 
+                title: "7. Why Did God Create the Earth?", 
+                instruction: "Jehovah created the earth as a permanent home for humanity, as Isaiah 45:18 affirms: 'He is the One who formed the earth... who firmly established it, who did not create it simply for nothing, but formed it to be inhabited.' False worship teaches a temporary earth or soul ascension, echoing pagan afterlife myths, but the Bible promises an eternal paradise. Historically, Genesis records this purpose from creation’s start. Science supports an earth designed for life—its water, air, and ecosystems—refuting chance. This truth inspires hope in Jehovah’s original plan.", 
+                description: "<b>Purpose:</b> A lasting home.", 
+                example: "<b>Psalm 104:5</b> - He has established the earth on its foundations; it will not be moved from its place forever and ever.\n<b>Isaiah 45:18</b> - He is the One who formed the earth... who did not create it simply for nothing, but formed it to be inhabited.\n<b>Genesis 1:28</b> - God blessed them and God said to them: 'Be fruitful and become many, fill the earth and subdue it.'\n<b>Psalm 115:16</b> - As for the heavens, they belong to Jehovah, but the earth he has given to the sons of men.\n<b>Matthew 5:5</b> - Happy are the mild-tempered, for they will inherit the earth.\n<b>Revelation 21:1</b> - I saw a new heaven and a new earth." 
+            },
+            { 
+                title: "8. What Is Sin?", 
+                instruction: "Sin is any act or thought that misses Jehovah’s perfect standards, inherited from Adam, as Romans 3:23 states: 'All have sinned and fall short of the glory of God.' False worship minimizes sin with rituals or excuses, like pagan sacrifices to appease gods, but the Bible calls it rebellion against Jehovah. Historically, sin entered through Adam’s disobedience in Eden (Genesis 3). Science shows human imperfection—disease and death—as sin’s effects, not evolution’s design. Recognizing sin’s gravity drives us to seek Jehovah’s forgiveness, not human solutions.", 
+                description: "<b>Origin:</b> Rebellion against God.", 
+                example: "<b>Romans 3:23</b> - For all have sinned and fall short of the glory of God.\n<b>Genesis 3:6</b> - So she took some of its fruit and ate it; she also gave some to her husband.\n<b>1 John 3:4</b> - Everyone who practices sin is also practicing lawlessness, and sin is lawlessness.\n<b>James 4:17</b> - Therefore, if someone knows how to do what is right and yet does not do it, it is a sin for him.\n<b>Psalm 51:5</b> - Look! I was born guilty of error, and my mother conceived me in sin.\n<b>Romans 5:12</b> - Through one man sin entered into the world." 
+            },
+            { 
+                title: "9. Why Do We Die?", 
+                instruction: "Death results from sin, not Jehovah’s original intent, as Romans 5:12 explains: 'Through one man sin entered into the world, and death through sin.' False worship’s soul immortality, rooted in Babylonian and Greek myths, contradicts this, but the Bible promises death’s end (1 Corinthians 15:26). Historically, Adam’s sin in 4026 B.C.E. (per Bible chronology) introduced mortality. Science confirms death as universal, unlike false claims of eternal consciousness. Jehovah’s purpose to eliminate death offers hope beyond pagan lies.", 
+                description: "<b>History:</b> From Adam’s sin.", 
+                example: "<b>Romans 5:12</b> - That is why, just as through one man sin entered into the world and death through sin, and so death spread to all men because they had all sinned.\n<b>Romans 6:23</b> - For the wages sin pays is death, but the gift God gives is everlasting life.\n<b>1 Corinthians 15:26</b> - And the last enemy, death, is to be brought to nothing.\n<b>Genesis 2:17</b> - But as for the tree of the knowledge of good and bad, you must not eat from it, for in the day you eat from it you will certainly die.\n<b>Ecclesiastes 9:5</b> - For the living know that they will die, but the dead know nothing at all.\n<b>Revelation 21:4</b> - Death will be no more." 
+            },
+            { 
+                title: "10. What Is the Soul?", 
+                instruction: "The soul is the living person—body and breath—not an immortal entity, as Genesis 2:7 states: 'Jehovah God went on to form the man... and the man became a living soul.' False worship’s spirit survival, from Egyptian and Hindu beliefs, clashes with Ezekiel 18:4: 'The soul who sins is the one who will die.' Historically, this truth shaped Israel’s rejection of afterlife myths. Science shows life ceases without breath or blood, aligning with Scripture, not paganism. This clarifies Jehovah’s resurrection hope over false immortality.", 
+                description: "<b>Science:</b> Life ends without breath.", 
+                example: "<b>Genesis 2:7</b> - And Jehovah God went on to form the man out of dust from the ground and to blow into his nostrils the breath of life, and the man became a living soul.\n<b>Ezekiel 18:4</b> - Look! All the souls—to me they belong... the soul who sins is the one who will die.\n<b>Ecclesiastes 9:10</b> - There is no work nor planning nor knowledge nor wisdom in the Grave, where you are going.\n<b>Leviticus 17:11</b> - For the life of the flesh is in the blood.\n<b>Psalm 146:4</b> - His spirit goes out, he returns to the ground; on that very day his thoughts perish.\n<b>Acts 3:23</b> - Indeed, anyone who does not listen to that Prophet will be completely destroyed from among the people." 
+            },
+            { 
+                title: "11. What Is False Worship?", 
+                instruction: "False worship defies Jehovah’s standards through idolatry and human traditions, as 1 John 5:21 warns: 'Guard yourselves from idols.' Unlike true worship, it includes pagan practices like statue veneration or polytheism, condemned in Exodus 20:4-5. Historically, Israel battled Canaanite idol worship, a struggle echoed today in religious syncretism. Science exposes idols as powerless—mere stone or wood—while the Bible’s God creates and sustains life. Rejecting false worship aligns us with Jehovah’s exclusive glory.", 
+                description: "<b>Fact:</b> Defies God’s exclusivity.", 
+                example: "<b>1 John 5:21</b> - Little children, guard yourselves from idols.\n<b>Exodus 20:4-5</b> - You must not make for yourself a carved image... you must not bow down to them nor be enticed to serve them.\n<b>Deuteronomy 4:39</b> - Know, therefore, on this day and take it to heart that Jehovah is the true God in the heavens above and on the earth beneath.\n<b>Isaiah 44:9</b> - The makers of idols are all of them senseless.\n<b>Psalm 115:4-8</b> - Their idols are silver and gold, the work of human hands.\n<b>1 Corinthians 10:14</b> - Therefore, my beloved ones, flee from idolatry." 
+            },
+            { 
+                title: "12. What Is Prayer?", 
+                instruction: "Prayer is personal communication with Jehovah, not rote chants or idol pleas, as Philippians 4:6 instructs: 'In everything by prayer and supplication along with thanksgiving, let your petitions be made known to God.' False worship uses repetitive formulas or intermediaries, like pagan priests, but Jesus taught direct access (John 16:23). Historically, faithful ones like Daniel prayed sincerely, not ritually. Science shows prayer’s calming effect, supporting its purpose in building faith. True prayer strengthens our bond with Jehovah, free of false traditions.", 
+                description: "<b>Purpose:</b> Connection with Jehovah.", 
+                example: "<b>Philippians 4:6</b> - Do not be anxious over anything, but in everything by prayer and supplication along with thanksgiving, let your petitions be made known to God.\n<b>Matthew 6:7</b> - When praying, do not say the same things over and over again as the people of the nations do.\n<b>John 16:23</b> - If you ask the Father for anything, he will give it to you in my name.\n<b>Psalm 65:2</b> - O Hearer of prayer, to you people of all sorts will come.\n<b>1 Thessalonians 5:17</b> - Pray constantly.\n<b>Daniel 6:10</b> - He continued to get down on his knees three times a day to pray and offer praise before his God." 
+            },
+            { 
+                title: "13. Why Have Faith?", 
+                instruction: "Faith is confident trust in Jehovah’s promises, not blind superstition, as Hebrews 11:6 states: 'Without faith it is impossible to please God well.' False worship relies on luck or omens, like Babylonian astrology, but Bible faith rests on evidence—fulfilled prophecies and creation’s design (Romans 2:20). Historically, Noah’s faith saved his family, a pattern for us. Science marvels at the universe’s order, bolstering faith in a purposeful Creator. Faith in Jehovah’s Word offers hope beyond pagan uncertainties.", 
+                description: "<b>Benefit:</b> Hope in truth.", 
+                example: "<b>Hebrews 11:6</b> - Without faith it is impossible to please God well, for whoever approaches God must believe that he is and that he becomes the rewarder of those earnestly seeking him.\n<b>Romans 10:17</b> - So faith follows the thing heard, and the thing heard is through the word about Christ.\n<b>Hebrews 11:1</b> - Faith is the assured expectation of what is hoped for, the evident demonstration of realities that are not seen.\n<b>Romans 1:20</b> - His invisible qualities are clearly seen from the world’s creation onward.\n<b>James 2:26</b> - Indeed, just as the body without spirit is dead, so also faith without works is dead.\n<b>Psalm 33:4</b> - For the word of Jehovah is upright, and all his work is done in faithfulness." 
+            },
+            { 
+                title: "14. What Is Baptism?", 
+                instruction: "Baptism is a public symbol of dedication to Jehovah, not a ritual for infants, as Acts 2:38 commands: 'Repent, and let each one of you be baptized in the name of Jesus Christ.' False worship sprinkles babies, a tradition from pagan rites, but the Bible requires conscious faith and full immersion (Matthew 3:16). Historically, early Christians baptized believers, not newborns. Science shows immersion’s symbolism—death to sin, new life—mirrors natural cycles. Baptism marks true worshipers committed to Jehovah.", 
+                description: "<b>Fact:</b> Conscious decision.", 
+                example: "<b>Acts 2:38</b> - Peter said to them: 'Repent, and let each one of you be baptized in the name of Jesus Christ for forgiveness of your sins.'\n<b>Matthew 3:16</b> - After being baptized, Jesus immediately came up from the water.\n<b>Acts 8:36</b> - As they were going along the road, they came to a body of water, and the eunuch said: 'Look! Here is water; what prevents me from getting baptized?'\n<b>Romans 6:4</b> - We were buried with him through our baptism into his death.\n<b>1 Peter 3:21</b> - Baptism, which corresponds to this, is now saving you (not by a removal of the filth of the flesh, but by the request to God for a good conscience).\n<b>Matthew 28:19</b> - Go, therefore, and make disciples of people of all the nations, baptizing them." 
+            },
+            { 
+                title: "15. Why Obey God?", 
+                instruction: "Obedience to Jehovah reflects love and brings blessings, as 1 John 5:3 explains: 'This is what the love of God means, that we observe his commandments.' False worship follows human rules or lax morality, like pagan permissiveness, but the Bible ties obedience to life (Deuteronomy 11:27). Historically, Israel prospered when obedient, a lesson for today. Science links discipline to well-being, echoing Jehovah’s laws. Obeying Him ensures protection from false paths.", 
+                description: "<b>Benefit:</b> Blessings from God.", 
+                example: "<b>1 John 5:3</b> - For this is what the love of God means, that we observe his commandments; and yet his commandments are not burdensome.\n<b>Deuteronomy 11:27</b> - The blessing will come if you listen to the commandments of Jehovah your God that I am commanding you today.\n<b>John 14:15</b> - If you love me, you will observe my commandments.\n<b>Psalm 119:1</b> - Happy are those who are blameless in their way, who walk in the law of Jehovah.\n<b>Isaiah 48:18</b> - If only you would pay attention to my commandments! Then your peace would become just like a river.\n<b>James 1:25</b> - But the one who peers into the perfect law that belongs to freedom and continues in it... this one will be happy in what he does." 
+            },
+            { 
+                title: "16. What Is Love?", 
+                instruction: "Love mirrors Jehovah’s nature, a selfless action, not mere emotion, as 1 John 4:8 declares: 'God is love.' False worship distorts love into lust or ritual, like pagan fertility cults, but the Bible defines it through sacrifice—Jesus’ death (John 3:16). Historically, early Christians showed love by sharing all things (Acts 2:44-45). Science links love to health, reflecting Jehovah’s design. True love honors Him, not worldly desires.", 
+                description: "<b>Fact:</b> Love is action.", 
+                example: "<b>1 John 4:8</b> - Whoever does not love has not come to know God, because God is love.\n<b>John 3:16</b> - For God loved the world so much that he gave his only-begotten Son.\n<b>1 Corinthians 13:4</b> - Love is patient and kind. Love is not jealous.\n<b>Romans 13:10</b> - Love does not work evil to one’s neighbor; therefore, love is the law’s fulfillment.\n<b>1 John 3:18</b> - Little children, we should love, not in word or with the tongue, but in deed and truth.\n<b>Ephesians 5:2</b> - Go on walking in love, just as the Christ also loved us and gave himself for us." 
+            },
+            { 
+                title: "17. Why Be Honest?", 
+                instruction: "Honesty reflects Jehovah’s truthfulness, as Ephesians 4:25 urges: 'Speak truth each one of you with his neighbor.' False worship thrives on deceit, like pagan oracles’ vague lies, but the Bible demands integrity. Historically, honest dealings marked God’s servants, like Joseph in Egypt. Science shows trust builds societies, aligning with Jehovah’s principles. Honesty honors Him, rejecting falsehood’s corruption.", 
+                description: "<b>Benefit:</b> Reflects God’s character.", 
+                example: "<b>Ephesians 4:25</b> - Therefore, now that you have put away deceit, each one of you speak truth with his neighbor.\n<b>Proverbs 12:22</b> - Lying lips are detestable to Jehovah, but those acting in faithfulness please him.\n<b>Psalm 15:2</b> - He who is walking faultlessly and doing what is right and speaking the truth in his heart.\n<b>Zechariah 8:16</b> - Speak truth to one another; with truth and the judgment of peace render judgment in your gates.\n<b>Colossians 3:9</b> - Do not lie to one another. Strip off the old personality with its practices.\n<b>Proverbs 19:1</b> - Better is a poor man who walks in his integrity than a rich man who twists his words." 
+            },
+            { 
+                title: "18. What Is the Family?", 
+                instruction: "The family is Jehovah’s arrangement for love and order, as Ephesians 5:23 states: 'A husband is head of his wife as the Christ is head of the congregation.' False worship distorts this with polygamy or matriarchy, like pagan goddess cults, but the Bible upholds one man, one woman (Genesis 2:24). Historically, the family unit sustained Israel’s faith. Science confirms stable families benefit society, reflecting Jehovah’s design. It’s a foundation for true worship.", 
+                description: "<b>Purpose:</b> Love and order.", 
+                example: "<b>Ephesians 5:23</b> - For a husband is head of his wife as the Christ also is head of the congregation.\n<b>Colossians 3:18-19</b> - Wives, be in subjection to your husbands, as it is becoming in the Lord. Husbands, keep on loving your wives.\n<b>Proverbs 22:6</b> - Train a boy in the way he should go; even when he grows old he will not depart from it.\n<b>Genesis 2:24</b> - That is why a man will leave his father and his mother and he will stick to his wife.\n<b>Psalm 127:3</b> - Look! Sons are an inheritance from Jehovah; the fruit of the womb is a reward.\n<b>1 Timothy 5:8</b> - Certainly if anyone does not provide for those who are his own... he has disowned the faith." 
+            },
+            { 
+                title: "19. Why Respect Authority?", 
+                instruction: "Respecting authority maintains Jehovah’s order, as Romans 13:1 instructs: 'Let every person be in subjection to the superior authorities.' False worship rebels or deifies rulers, like Roman emperor worship, but the Bible balances obedience unless it defies God (Acts 5:29). Historically, Christians respected Caesar yet served Jehovah alone. Science shows order aids survival, mirroring divine wisdom. Respect aligns us with His will.", 
+                description: "<b>Fact:</b> God-ordained order.", 
+                example: "<b>Romans 13:1</b> - Let every person be in subjection to the superior authorities, for there is no authority except by God.\n<b>Titus 3:1</b> - Continue reminding them to be in subjection and to be obedient to governments and authorities.\n<b>1 Peter 2:13</b> - For the Lord’s sake, be submissive to every human creation, whether to a king as being superior.\n<b>Acts 5:29</b> - In answer Peter and the other apostles said: 'We must obey God as ruler rather than men.'\n<b>Proverbs 24:21</b> - Fear Jehovah, my son, also the king; do not mingle with those who are for a change.\n<b>Daniel 2:21</b> - He changes times and seasons; he removes kings and sets up kings." 
+            },
+            { 
+                title: "20. What Is Money?", 
+                instruction: "Money is a tool, not life’s goal, as 1 Timothy 6:10 warns: 'The love of money is a root of all sorts of injurious things.' False worship idolizes wealth, like Mammon in pagan lore, but the Bible teaches contentment through faith (Hebrews 13:5). Historically, greed fueled empires’ falls, like Babylon’s. Science links materialism to stress, contrasting Jehovah’s peace. True security comes from Him, not riches.", 
+                description: "<b>Fact:</b> Security from God.", 
+                example: "<b>1 Timothy 6:10</b> - For the love of money is a root of all sorts of injurious things, and by reaching out for this love some have been led astray.\n<b>Matthew 6:24</b> - You cannot slave for God and for Riches.\n<b>Hebrews 13:5</b> - Let your way of life be free of the love of money, while you are content with the present things.\n<b>Ecclesiastes 5:10</b> - A lover of silver will never be satisfied with silver, nor a lover of wealth with income.\n<b>Proverbs 11:28</b> - Whoever trusts in his riches will fall, but the righteous will flourish like foliage.\n<b>Luke 12:15</b> - Even when a person has an abundance, his life does not result from the things he possesses." 
+            },
+            { 
+                title: "21. Why Work Hard?", 
+                instruction: "Hard work honors Jehovah and supports others, as Ephesians 4:28 commands: 'Let the thief no longer steal, but let him do hard work.' False worship excuses laziness or exploits labor, like pagan slave systems, but the Bible values diligence (Proverbs 14:23). Historically, industrious Christians thrived, aiding the poor. Science ties work to purpose, reflecting Jehovah’s creation mandate. It’s worship through action.", 
+                description: "<b>Benefit:</b> Helps others.", 
+                example: "<b>Ephesians 4:28</b> - Let the thief no longer steal, but let him do hard work, doing good work with his hands.\n<b>Proverbs 14:23</b> - In all hard work there is benefit, but mere talk leads only to want.\n<b>2 Thessalonians 3:10</b> - If anyone does not want to work, neither let him eat.\n<b>Genesis 2:15</b> - Jehovah God took the man and settled him in the garden of Eden to cultivate it and to take care of it.\n<b>Proverbs 10:4</b> - The hand of the diligent one makes one rich.\n<b>Colossians 3:23</b> - Whatever you are doing, work at it whole-souled as to Jehovah." 
+            },
+            { 
+                title: "22. What Is Wisdom?", 
+                instruction: "Wisdom is applying Bible knowledge with reverence, as Proverbs 9:10 states: 'The fear of Jehovah is the beginning of wisdom.' False worship seeks human philosophy, like Greek sophistry, but the Bible roots wisdom in Jehovah’s truth (James 3:17). Historically, Solomon’s wisdom came from God, not man. Science values knowledge, yet only Jehovah’s wisdom ensures life’s success. It guides us past pagan folly.", 
+                description: "<b>Fact:</b> Starts with God.", 
+                example: "<b>Proverbs 9:10</b> - The fear of Jehovah is the beginning of wisdom, and knowledge of the Most Holy One is understanding.\n<b>James 3:17</b> - But the wisdom from above is first of all pure, then peaceable, reasonable, ready to obey.\n<b>Psalm 111:10</b> - The fear of Jehovah is the beginning of wisdom; all those practicing it have a good understanding.\n<b>Proverbs 2:6</b> - For Jehovah himself gives wisdom; from his mouth come knowledge and discernment.\n<b>Ecclesiastes 7:12</b> - Wisdom is a protection just as money is a protection, but the advantage of knowledge is that wisdom preserves the life of its owner.\n<b>1 Kings 4:29</b> - God gave Solomon wisdom and very great discernment and breadth of understanding." 
+            },
+            { 
+                title: "23. Why Be Humble?", 
+                instruction: "Humility invites Jehovah’s favor, as James 4:6 promises: 'God opposes the haughty ones, but he gives undeserved kindness to the humble ones.' False worship exalts pride, like Babylonian kings’ boasts, but the Bible praises meekness (Micah 6:8). Historically, humble servants like Moses led God’s people. Science links humility to cooperation, mirroring Jehovah’s design. It fosters unity, not arrogance.", 
+                description: "<b>Benefit:</b> God’s approval.", 
+                example: "<b>James 4:6</b> - God opposes the haughty ones, but he gives undeserved kindness to the humble ones.\n<b>1 Peter 5:5</b> - All of you clothe yourselves with humility toward one another, because God opposes the haughty ones but gives undeserved kindness to the humble ones.\n<b>Micah 6:8</b> - To exercise justice and to love kindness and to be modest in walking with your God.\n<b>Matthew 23:12</b> - Whoever exalts himself will be humbled, and whoever humbles himself will be exalted.\n<b>Proverbs 22:4</b> - The result of humility and the fear of Jehovah is riches and glory and life.\n<b>Philippians 2:3</b> - Doing nothing out of contentiousness or out of egotism, but with humility considering others superior to you." 
+            },
+            { 
+                title: "24. What Is Forgiveness?", 
+                instruction: "Forgiveness reflects Jehovah’s mercy, as Ephesians 4:32 urges: 'Become kind to one another, tenderly compassionate, freely forgiving one another.' False worship clings to grudges or demands penance, like pagan blood rites, but the Bible teaches release through love. Historically, Jesus forgave even his executioners (Luke 23:34). Science shows forgiveness heals, aligning with Jehovah’s will. It restores peace, not vengeance.", 
+                description: "<b>Fact:</b> Reflects God’s mercy.", 
+                example: "<b>Ephesians 4:32</b> - But become kind to one another, tenderly compassionate, freely forgiving one another just as God also by Christ freely forgave you.\n<b>Matthew 6:14</b> - For if you forgive men their trespasses, your heavenly Father will also forgive you.\n<b>Colossians 3:13</b> - Continue putting up with one another and forgiving one another freely even if anyone has a cause for complaint against another.\n<b>Luke 23:34</b> - But Jesus was saying: 'Father, forgive them, for they do not know what they are doing.'\n<b>Psalm 86:5</b> - For you, O Jehovah, are good and ready to forgive.\n<b>Mark 11:25</b> - Whenever you stand praying, forgive whatever you have against anyone." 
+            },
+            { 
+                title: "25. Why Be Patient?", 
+                instruction: "Patience trusts Jehovah’s timing, as Psalm 37:7 advises: 'Keep silent before Jehovah and wait expectantly for him.' False worship seeks instant fixes, like pagan magic, but the Bible builds endurance (James 5:7). Historically, Abraham waited decades for Isaac, proving faith. Science ties patience to resilience, reflecting Jehovah’s wisdom. It strengthens us for His promises.", 
+                description: "<b>Benefit:</b> Strengthens faith.", 
+                example: "<b>Psalm 37:7</b> - Keep silent before Jehovah and wait expectantly for him.\n<b>James 5:7</b> - Be patient then, brothers, until the presence of the Lord.\n<b>Romans 12:12</b> - Rejoice in the hope. Endure under tribulation. Persevere in prayer.\n<b>Hebrews 10:36</b> - For you need endurance, so that after you have done the will of God, you may receive the fulfillment of the promise.\n<b>Isaiah 40:31</b> - Those hoping in Jehovah will regain power.\n<b>Galatians 6:9</b> - So let us not give up in doing what is fine, for in due time we will reap if we do not tire out." 
+            },
+            { 
+                title: "26. What Is Peace?", 
+                instruction: "Peace flows from Jehovah, not worldly sources, as Philippians 4:7 promises: 'The peace of God that surpasses all understanding will guard your hearts.' False worship offers fleeting calm through rituals, like pagan chants, but the Bible’s peace endures trials (John 16:33). Historically, faithful ones found peace amid persecution. Science links faith to calm, supporting Jehovah’s gift. It’s a hallmark of true worship.", 
+                description: "<b>Fact:</b> God-given peace.", 
+                example: "<b>Philippians 4:7</b> - And the peace of God that surpasses all understanding will guard your hearts and your mental powers by means of Christ Jesus.\n<b>John 16:33</b> - I have said these things to you so that by means of me you may have peace.\n<b>Isaiah 26:3</b> - You will keep in perfect peace the one whose mind is steadfast, because he trusts in you.\n<b>Psalm 4:8</b> - In peace I will both lie down and sleep, for you alone, O Jehovah, make me dwell in security.\n<b>Romans 15:13</b> - May the God who gives hope fill you with all joy and peace by your trusting in him.\n<b>Colossians 3:15</b> - Also, let the peace of the Christ rule in your hearts." 
+            },
+            { 
+                title: "27. Why Be Joyful?", 
+                instruction: "Joy stems from Jehovah, not circumstances, as Philippians 4:4 commands: 'Always rejoice in the Lord.' False worship ties happiness to wealth or idols, like Canaanite feasts, but the Bible offers lasting joy (Psalm 16:11). Historically, Paul sang in prison, exemplifying this. Science shows joy boosts health, reflecting Jehovah’s design. It sustains us beyond pagan pleasures.", 
+                description: "<b>Benefit:</b> Sustains through trials.", 
+                example: "<b>Philippians 4:4</b> - Always rejoice in the Lord. I will say it again: Rejoice!\n<b>Psalm 16:11</b> - In your presence is abundant joy; at your right hand are pleasures forever.\n<b>Nehemiah 8:10</b> - The joy of Jehovah is your stronghold.\n<b>1 Peter 1:8</b> - Though you never saw him, you love him... and are overjoyed with an indescribable and glorious joy.\n<b>Habakkuk 3:18</b> - Yet, as for me, I will exult in Jehovah; I will be joyful in the God of my salvation.\n<b>John 15:11</b> - These things I have spoken to you, so that my joy may be in you and your joy may be made full." 
+            },
+            { 
+                title: "28. What Is Hope?", 
+                instruction: "Hope is assured expectation in Jehovah’s promises, as Hebrews 6:19 describes: 'This hope we have as an anchor for the soul.' False worship clings to vague afterlives, like Egyptian rebirth myths, but the Bible’s hope is concrete—paradise restored (Romans 15:13). Historically, prophets like Daniel foresaw this. Science can’t disprove it, but creation’s beauty hints at it. Hope anchors true worshipers.", 
+                description: "<b>Fact:</b> Anchored in God.", 
+                example: "<b>Hebrews 6:19</b> - This hope we have as an anchor for the soul, both sure and firm.\n<b>Romans 15:13</b> - May the God who gives hope fill you with all joy and peace by your trusting in him.\n<b>Titus 1:2</b> - Based on a hope of the everlasting life that God, who cannot lie, promised long ago.\n<b>Psalm 37:9</b> - For evil men will be done away with, but those hoping in Jehovah will possess the earth.\n<b>1 Peter 1:3</b> - Praised be the God and Father of our Lord Jesus Christ, for according to his great mercy he gave us a new birth to a living hope.\n<b>Jeremiah 29:11</b> - For I well know the thoughts that I am thinking toward you, says Jehovah, thoughts of peace." 
+            },
+            { 
+                title: "29. Why Be Generous?", 
+                instruction: "Generosity mirrors Jehovah’s giving nature, as Acts 20:35 quotes Jesus: 'There is more happiness in giving than there is in receiving.' False worship hoards or sacrifices to idols, like pagan offerings, but the Bible promotes sharing (2 Corinthians 9:7). Historically, early Christians aided the needy, reflecting love. Science links giving to joy, aligning with Jehovah’s will. It honors Him over greed.", 
+                description: "<b>Benefit:</b> Brings happiness.", 
+                example: "<b>Acts 20:35</b> - There is more happiness in giving than there is in receiving.\n<b>2 Corinthians 9:7</b> - Let each one do just as he has resolved in his heart, not grudgingly or under compulsion, for God loves a cheerful giver.\n<b>Proverbs 19:17</b> - The one showing favor to the lowly is lending to Jehovah, and He will repay him for what he does.\n<b>Luke 6:38</b> - Practice giving, and people will give to you. A fine measure, pressed down, shaken together, and overflowing, will be poured into your lap.\n<b>1 Timothy 6:18</b> - Tell them to work at good, to be rich in fine works, to be generous, ready to share.\n<b>Hebrews 13:16</b> - Do not forget to do good and to share what you have with others, for God is well-pleased with such sacrifices." 
+            },
+            { 
+                title: "30. What Is the Sabbath?", 
+                instruction: "The Sabbath, once a weekly rest for Israel, was fulfilled in Christ, as Romans 10:4 states: 'Christ is the end of the Law.' False worship clings to legalistic days, like pagan sabbaths, but the Bible shows Jesus as our rest (Hebrews 4:9-10). Historically, the Law ended with his sacrifice in 33 C.E. Science sees rest as vital, yet Jehovah’s spiritual rest surpasses it. True worship focuses on Christ, not days.", 
+                description: "<b>Fact:</b> Fulfilled, not perpetual.", 
+                example: "<b>Romans 10:4</b> - For Christ is the end of the Law, so that everyone exercising faith may have righteousness.\n<b>Colossians 2:16-17</b> - Therefore, do not let anyone judge you about what you eat and drink or about the observance of a festival or of the new moon or of a sabbath; those things are a shadow of the things to come.\n<b>Hebrews 4:9-10</b> - So there remains a sabbath-rest for the people of God; for the one who has entered into His rest has also rested from his own works.\n<b>Matthew 12:8</b> - For the Son of man is Lord of the Sabbath.\n<b>Galatians 3:24-25</b> - So the Law became our guardian leading to Christ... but now that the faith has arrived, we are no longer under a guardian.\n<b>Mark 2:27</b> - The Sabbath came into existence for the sake of man, and not man for the sake of the Sabbath." 
+            },
+            { 
+                title: "31. Why Avoid Violence?", 
+                instruction: "Jehovah despises violence, as Psalm 11:5 declares: 'Jehovah examines the righteous one as well as the wicked one; he hates anyone who loves violence.' False worship glorifies war, like pagan battle gods, but the Bible promotes peace (Isaiah 2:4). Historically, Christians refused Rome’s wars, choosing love. Science links violence to chaos, contrasting Jehovah’s order. Avoiding it aligns us with His Kingdom.", 
+                description: "<b>Fact:</b> Aligns with God’s nature.", 
+                example: "<b>Psalm 11:5</b> - Jehovah examines the righteous one as well as the wicked one; he hates anyone who loves violence.\n<b>Matthew 5:9</b> - Happy are the peacemakers, for they will be called sons of God.\n<b>Isaiah 2:4</b> - They will beat their swords into plowshares and their spears into pruning shears.\n<b>Romans 12:18</b> - If possible, as far as it depends on you, be peaceable with all men.\n<b>Proverbs 3:31</b> - Do not envy the violent man or choose any of his ways.\n<b>James 3:18</b> - Moreover, the fruit of righteousness is sown in peaceful conditions for those who are making peace." 
+            },
+            { 
+                title: "32. What Is Cleanliness?", 
+                instruction: "Cleanliness honors Jehovah’s holiness, as 2 Corinthians 7:1 urges: 'Let us cleanse ourselves of every defilement of flesh and spirit.' False worship neglects purity, like pagan filth rituals, but the Bible ties it to worship (Leviticus 19:2). Historically, Israel’s hygiene laws prevented disease, predating science. Science confirms cleanliness saves lives, reflecting Jehovah’s wisdom. It’s a mark of true devotion.", 
+                description: "<b>Benefit:</b> Aids well-being.", 
+                example: "<b>2 Corinthians 7:1</b> - Therefore, since we have these promises, beloved ones, let us cleanse ourselves of every defilement of flesh and spirit, perfecting holiness in the fear of God.\n<b>Leviticus 19:2</b> - You should be holy, because I, Jehovah your God, am holy.\n<b>1 Timothy 2:8</b> - So I desire that in every place the men carry on prayer, lifting up loyal hands, without anger or debates.\n<b>Deuteronomy 23:14</b> - For Jehovah your God walks about within your camp... so your camp should be holy.\n<b>Isaiah 52:11</b> - Turn away, turn away, get out of there, touch nothing unclean.\n<b>James 4:8</b> - Cleanse your hands, you sinners, and purify your hearts." 
+            },
+            { 
+                title: "33. Why Avoid Immorality?", 
+                instruction: "Immorality defiles Jehovah’s design, as 1 Corinthians 6:18 warns: 'Flee from sexual immorality!' False worship indulges it, like Canaanite orgies, but the Bible upholds purity (Hebrews 13:4). Historically, moral decay sank nations like Sodom. Science ties immorality to disease, affirming Jehovah’s laws. Avoiding it honors His will for holiness.", 
+                description: "<b>Fact:</b> Reflects God’s will.", 
+                example: "<b>1 Corinthians 6:18</b> - Flee from sexual immorality! Every other sin that a man may commit is outside his body, but whoever practices sexual immorality is sinning against his own body.\n<b>Hebrews 13:4</b> - Let marriage be honorable among all, and let the marriage bed be without defilement, for God will judge sexually immoral people and adulterers.\n<b>1 Thessalonians 4:3</b> - For this is the will of God, that you should be holy and abstain from sexual immorality.\n<b>Ephesians 5:3</b> - Let sexual immorality and every sort of uncleanness or greediness not even be mentioned among you.\n<b>Proverbs 6:32</b> - Anyone committing adultery with a woman is lacking good sense; he who does it is bringing his own soul to ruin.\n<b>Colossians 3:5</b> - Deaden, therefore, your body members that are on the earth as respects sexual immorality, uncleanness, uncontrolled sexual passion." 
+            },
+            { 
+                title: "34. What Is the Tongue?", 
+                instruction: "The tongue holds power to bless or curse, as James 3:6 describes: 'The tongue is a fire.' False worship misuses it with lies or chants, like pagan incantations, but the Bible calls for wise speech (Ephesians 4:29). Historically, David’s psalms praised Jehovah, not idols. Science links words to influence, mirroring Jehovah’s truth. Controlling it reflects our heart’s devotion.", 
+                description: "<b>Fact:</b> Speech reflects the heart.", 
+                example: "<b>James 3:6</b> - The tongue is a fire. The tongue is constituted a world of unrighteousness among our members.\n<b>Proverbs 15:4</b> - A calm tongue is a tree of life, but twisted speech causes despair.\n<b>Ephesians 4:29</b> - Let a rotten word not come out of your mouth, but only what is good for building up as the need may be.\n<b>Psalm 19:14</b> - May the words of my mouth and the meditation of my heart be pleasing to you, O Jehovah.\n<b>Proverbs 10:19</b> - In a multitude of words there is no lack of transgression, but the one controlling his lips acts discreetly.\n<b>Matthew 12:36</b> - I tell you that men will render an account on Judgment Day for every unprofitable saying that they speak." 
+            },
+            { 
+                title: "35. Why Avoid Greed?", 
+                instruction: "Greed enslaves the heart, as 1 Timothy 6:9 warns: 'Those who are determined to be rich fall into temptation.' False worship worships wealth, like Mammon or Babylonian gold, but the Bible teaches contentment (Luke 12:15). Historically, greed toppled empires, a lesson for today. Science shows materialism breeds discontent, unlike Jehovah’s peace. Avoiding it frees us for true worship.", 
+                description: "<b>Benefit:</b> Freedom from materialism.", 
+                example: "<b>1 Timothy 6:9</b> - But those who are determined to be rich fall into temptation and a snare and many senseless and harmful desires.\n<b>Luke 12:15</b> - Then he said to them: 'Keep your eyes open and guard against every sort of greed, because even when a person has an abundance, his life does not result from the things he possesses.'\n<b>Proverbs 15:16</b> - Better is a little with the fear of Jehovah than an abundant supply with turmoil.\n<b>Ecclesiastes 5:10</b> - A lover of silver will never be satisfied with silver, nor a lover of wealth with income.\n<b>Hebrews 13:5</b> - Let your way of life be free of the love of money, while you are content with the present things.\n<b>Matthew 6:19</b> - Stop storing up for yourselves treasures on the earth, where moth and rust consume." 
+            },
+            { 
+                title: "36. What Is Friendship?", 
+                instruction: "True friendship reflects Jehovah’s love, as Proverbs 17:17 states: 'A true companion is loving all the time.' False worship fosters selfish ties, like pagan alliances, but the Bible values godly bonds (Proverbs 13:20). Historically, Jonathan’s loyalty to David exemplified this. Science shows friendship aids health, aligning with Jehovah’s design. It uplifts us in true worship.", 
+                description: "<b>Fact:</b> Uplifts us.", 
+                example: "<b>Proverbs 17:17</b> - A true friend shows love at all times and is a brother who is born for times of distress.\n<b>Proverbs 13:20</b> - The one walking with the wise will become wise, but the one who has dealings with the stupid will fare badly.\n<b>1 Corinthians 15:33</b> - Do not be misled. Bad associations spoil useful habits.\n<b>John 15:13</b> - No one has love greater than this, that someone should surrender his life in behalf of his friends.\n<b>Proverbs 18:24</b> - There are companions ready to crush one another, but there is a friend who sticks closer than a brother.\n<b>Ecclesiastes 4:9-10</b> - Two are better than one... for if one of them falls, the other can help his partner up." 
+            },
+            { 
+                title: "37. Why Be Loyal?", 
+                instruction: "Loyalty mirrors Jehovah’s faithfulness, as Psalm 145:13 declares: 'Your kingdom is an everlasting kingdom.' False worship betrays with fickleness, like pagan god-switching, but the Bible rewards steadfastness (Matthew 25:21). Historically, Ruth’s loyalty to Naomi shone. Science ties loyalty to trust, reflecting Jehovah’s nature. It prepares us for His Kingdom.", 
+                description: "<b>Benefit:</b> Reflects God’s loyalty.", 
+                example: "<b>Psalm 145:13</b> - Your kingdom is an everlasting kingdom, and your rulership is for all successive generations. Jehovah is faithful in all his words.\n<b>Matthew 25:21</b> - His master said to him: 'Well done, good and faithful slave! You were faithful over a few things. I will appoint you over many things.'\n<b>Proverbs 21:21</b> - The one who pursues righteousness and loyal love will find life, righteousness, and glory.\n<b>Lamentations 3:23</b> - They are new each morning; your faithfulness is abundant.\n<b>Psalm 36:5</b> - Your loyal love, O Jehovah, reaches to the heavens, your faithfulness up to the clouds.\n<b>Hebrews 13:7</b> - Remember those who are taking the lead among you... and as you contemplate how their conduct turns out, imitate their faith." 
+            },
+            { 
+                title: "38. What Is Justice?", 
+                instruction: "Justice is Jehovah’s perfect standard, as Psalm 37:28 states: 'Jehovah loves justice.' False worship twists it with corruption, like pagan bribes, but the Bible ensures fairness (Isaiah 30:18). Historically, Jehovah judged Israel justly, a model for us. Science shows fairness aids society, echoing His will. Justice reflects true worship’s integrity.", 
+                description: "<b>Fact:</b> God’s justice is perfect.", 
+                example: "<b>Psalm 37:28</b> - For Jehovah loves justice, and he will not abandon his loyal ones.\n<b>Isaiah 30:18</b> - For Jehovah is a God of justice; happy are all those waiting for him.\n<b>Micah 6:8</b> - He has told you, O man, what is good. And what is Jehovah requiring of you? Only to exercise justice and to love kindness.\n<b>Deuteronomy 32:4</b> - The Rock, perfect is his activity, for all his ways are justice.\n<b>Psalm 89:14</b> - Righteousness and justice are the foundation of your throne.\n<b>Proverbs 21:3</b> - To do what is right and just is more acceptable to Jehovah than a sacrifice." 
+            },
+            { 
+                title: "39. Why Avoid Superstition?", 
+                instruction: "Superstition opposes Jehovah’s truth, as Genesis 35:2 commands: 'Put away the foreign gods.' False worship thrives on omens, like Babylonian star-gazing, but the Bible demands trust in Jehovah (Isaiah 8:19). Historically, Israel purged idols for faith. Science debunks superstition, aligning with Scripture’s clarity. Avoiding it frees us for true worship.", 
+                description: "<b>Fact:</b> Opposes faith.", 
+                example: "<b>Genesis 35:2</b> - So Jacob said to his household and to all who were with him: 'Put away the foreign gods that are among you.'\n<b>Isaiah 8:19</b> - Should not a people consult their God? Why consult the dead on behalf of the living?\n<b>1 Corinthians 10:20</b> - I do not want you to become sharers with the demons.\n<b>Leviticus 19:31</b> - Do not turn to the spirit mediums or inquire of the fortune-tellers so as to become unclean by them.\n<b>Deuteronomy 18:10-11</b> - There should not be found in you anyone who... practices divination or looks for omens.\n<b>Jeremiah 10:2</b> - This is what Jehovah says: 'Do not learn the way of the nations.'" 
+            },
+            { 
+                title: "40. What Is Truth?", 
+                instruction: "Truth is Jehovah’s reality, as John 17:17 declares: 'Your word is truth.' False worship peddles lies, like pagan myths, but the Bible’s truth liberates (John 8:32). Historically, its prophecies, like Babylon’s fall, proved true. Science confirms its facts, like creation’s order, over pagan tales. Truth defines true worship.", 
+                description: "<b>Fact:</b> God’s Word defines truth.", 
+                example: "<b>John 17:17</b> - Sanctify them by means of the truth; your word is truth.\n<b>Psalm 119:160</b> - The very essence of your word is truth, and all your righteous judgments endure forever.\n<b>John 8:32</b> - And you will know the truth, and the truth will set you free.\n<b>Psalm 25:5</b> - Cause me to walk in your truth and teach me, for you are my God of salvation.\n<b>2 Timothy 2:15</b> - Do your utmost to present yourself approved to God, a workman with nothing to be ashamed of, handling the word of the truth aright.\n<b>Ephesians 4:21</b> - If, indeed, you heard him and were taught by means of him, just as truth is in Jesus." 
+            },
+            { 
+                title: "41. Why Avoid False Gods?", 
+                instruction: "False gods are powerless, as Psalm 115:4 states: 'Their idols are silver and gold, the work of human hands.' False worship exalts them, like Canaanite Baals, but Jehovah demands exclusivity (Exodus 20:3). Historically, idolaters fell, while Israel stood with God. Science shows idols as inert, unlike Jehovah’s creation. Avoiding them honors the true God.", 
+                description: "<b>Fact:</b> Idols are lifeless.", 
+                example: "<b>Psalm 115:4</b> - Their idols are silver and gold, the work of human hands.\n<b>Isaiah 44:9</b> - The makers of idols are all senseless, and the things they treasure will be of no benefit.\n<b>Exodus 20:3</b> - You must not have any other gods besides me.\n<b>Jeremiah 10:5</b> - Their idols are like a scarecrow in a cucumber field; they cannot speak.\n<b>1 Chronicles 16:26</b> - For all the gods of the peoples are worthless gods, but Jehovah is the one who made the heavens.\n<b>Acts 17:29</b> - We ought not to imagine that the Divine Being is like gold or silver or stone." 
+            },
+            { 
+                title: "42. What Is the Heart?", 
+                instruction: "The heart drives actions and needs Jehovah’s guidance, as Jeremiah 17:9 warns: 'The heart is more treacherous than anything else.' False worship trusts it blindly, like pagan emotions, but the Bible calls for training (Proverbs 4:23). Historically, David sought God’s heart-direction. Science links the heart to decisions, needing Jehovah’s truth. It’s key to true worship.", 
+                description: "<b>Fact:</b> Must be trained.", 
+                example: "<b>Jeremiah 17:9</b> - The heart is more treacherous than anything else and is desperate. Who can know it?\n<b>Proverbs 4:23</b> - Above all the things that you guard, safeguard your heart, for out of it are the sources of life.\n<b>Matthew 15:19</b> - For example, out of the heart come wicked reasonings: murders, adulteries, sexual immorality.\n<b>Psalm 51:10</b> - Create in me a clean heart, O God, and put a new and steadfast spirit within me.\n<b>Proverbs 3:5</b> - Trust in Jehovah with all your heart, and do not rely on your own understanding.\n<b>1 Samuel 16:7</b> - For the way man sees is not the way God sees, because mere man sees what appears to the eyes, but Jehovah sees into the heart." 
+            },
+            { 
+                title: "43. Why Study Creation?", 
+                instruction: "Creation reveals Jehovah’s glory, as Psalm 19:1 proclaims: 'The heavens are declaring the glory of God.' False worship credits chance or idols, like evolution or sun gods, but the Bible points to design (Romans 1:20). Historically, creation inspired faith, like Job’s awe. Science marvels at its complexity—DNA, ecosystems—proving a Creator. Studying it builds trust in Jehovah.", 
+                description: "<b>Fact:</b> Points to God.", 
+                example: "<b>Psalm 19:1</b> - The heavens are declaring the glory of God; the skies above proclaim the work of his hands.\n<b>Romans 1:20</b> - For his invisible qualities are clearly seen from the world’s creation onward, being perceived by the things made.\n<b>Isaiah 40:26</b> - Lift up your eyes to heaven.Concurrent and see. Who has created these things?\n<b>Psalm 139:14</b> - I praise you because in an awe-inspiring way I am wonderfully made.\n<b>Job 12:7-9</b> - Ask, please, the animals, and they will teach you... that the hand of Jehovah has done this.\n<b>Revelation 4:11</b> - You are worthy, Jehovah our God, to receive the glory and the honor and the power, because you created all things." 
+            },
+            { 
+                title: "44. What Is Time?", 
+                instruction: "Time is Jehovah’s gift for serving Him, as Ecclesiastes 3:1 states: 'There is an appointed time for everything.' False worship wastes it on rituals, like pagan cycles, but the Bible urges wise use (Ephesians 5:16). Historically, faithful ones like Paul maximized time for preaching. Science can’t create time, but Jehovah controls it. It’s for His purpose, not ours.", 
+                description: "<b>Fact:</b> For God’s purpose.", 
+                example: "<b>Ecclesiastes 3:1</b> - There is an appointed time for everything, a time for every activity under the heavens.\n<b>Ephesians 5:16</b> - Making the best use of your time, because the days are wicked.\n<b>Psalm 90:12</b> - Teach us how to count our days, so that we may acquire a heart of wisdom.\n<b>Colossians 4:5</b> - Go on walking in wisdom toward those on the outside, making the best use of your time.\n<b>Psalm 31:15</b> - My times are in your hand; rescue me from the hand of my enemies.\n<b>Daniel 2:21</b> - He changes times and seasons; he removes kings and sets up kings." 
+            },
+            { 
+                title: "45. Why Avoid Drunkenness?", 
+                instruction: "Drunkenness dishonors Jehovah, as Proverbs 23:20 warns: 'Do not be among those who drink too much wine.' False worship revels in excess, like Bacchus cults, but the Bible demands sobriety (1 Peter 5:8). Historically, Noah’s lapse showed its folly. Science ties alcohol abuse to ruin, affirming Jehovah’s wisdom. Sobriety aids true worship.", 
+                description: "<b>Benefit:</b> Clarity for service.", 
+                example: "<b>Proverbs 23:20</b> - Do not be drinking wine to excess.\n<b>Ephesians 5:18</b> - Do not get drunk.\n<b>1 Peter 5:8</b> - Keep your senses." 
+            },
+            { 
+                title: "46. What Is Health?", 
+                instruction: "Health enables Jehovah’s service, as 1 Peter 1:16 commands: 'Become holy yourselves in all your conduct.' False worship neglects the body, like asceticism or gluttony, but the Bible values it as His temple (1 Corinthians 6:19). Historically, Israel’s diet laws aided longevity. Science confirms health’s role in vitality, reflecting Jehovah’s care. It honors Him.", 
+                description: "<b>Fact:</b> Aids worship.", 
+                example: "<b>1 Peter 1:16</b> - Be holy, because I am holy.\n<b>1 Corinthians 6:19</b> - Your body is a temple.\n<b>3 John 2</b> - Enjoying good health." 
+            },
+            { 
+                title: "47. Why Avoid Stealing?", 
+                instruction: "Stealing defies Jehovah’s law, as Exodus 20:15 states: 'You must not steal.' False worship justifies theft, like pagan looting, but the Bible demands honesty (Ephesians 4:28). Historically, thieves faced God’s judgment, like Achan. Science shows trust builds communities, aligning with Jehovah’s will. Avoiding it reflects His righteousness.", 
+                description: "<b>Fact:</b> Opposes God’s law.", 
+                example: "<b>Exodus 20:15</b> - You must not steal.\n<b>Ephesians 4:28</b> - Let the thief no longer steal.\n<b>Proverbs 10:2</b> - Treasures by wickedness no benefit." 
+            },
+            { 
+                title: "48. What Is Mercy?", 
+                instruction: "Mercy is Jehovah’s compassion in action, as Psalm 103:8 declares: 'Jehovah is merciful and gracious.' False worship lacks it, like pagan cruelty, but the Bible calls us to mirror Him (Luke 6:36). Historically, Jehovah spared Nineveh for repentance. Science links mercy to healing, reflecting His love. It’s a trait of true worship.", 
+                description: "<b>Fact:</b> Mirrors God.", 
+                example: "<b>Psalm 103:8</b> - Jehovah is merciful.\n<b>Matthew 5:7</b> - Merciful will be shown mercy.\n<b>Luke 6:36</b> - Be merciful as your Father." 
+            },
+            { 
+                title: "49. Why Avoid Pride?", 
+                instruction: "Pride leads to ruin, as Proverbs 16:18 warns: 'Pride is before a crash.' False worship exalts self, like Babylonian kings, but the Bible favors humility (James 4:6). Historically, Nebuchadnezzar’s fall proved this. Science ties pride to conflict, contrasting Jehovah’s peace. Avoiding it gains His favor.", 
+                description: "<b>Benefit:</b> God’s approval.", 
+                example: "<b>Proverbs 16:18</b> - Pride is before a crash.\n<b>James 4:6</b> - Kindness to the humble.\n<b>1 Peter 5:5</b> - Clothe with humility." 
+            },
+            { 
+                title: "50. Why Preach?", 
+                instruction: "Preaching shares Jehovah’s truth, as Matthew 24:14 declares: 'This good news of the Kingdom will be preached.' False worship silences it with rituals, like pagan mysteries, but the Bible commissions all believers (Acts 1:8). Historically, Jesus and his followers spread hope. Science can’t stop truth’s spread, proving its power. Preaching counters falsehood with Jehovah’s light.", 
+                description: "<b>Duty:</b> Spreads hope.", 
+                example: "<b>Matthew 24:14</b> - Good news will be preached.\n<b>Acts 1:8</b> - You will be witnesses.\n<b>Romans 10:14</b> - How will they hear without a preacher?" 
+            }
+        ];
+
+        const solidLessons = [
+            { 
+                title: "51. What Is God’s Kingdom?", 
+                instruction: "God’s Kingdom is a heavenly government under Jesus Christ, destined to rule earth, as Daniel 2:44 promises: 'The God of heaven will set up a kingdom that will never be destroyed.' False worship trusts human rule or pagan deities, like Rome’s emperors, but the Bible foretells peace through Jehovah’s reign (Matthew 6:10). Historically, Daniel’s prophecy pinpointed its establishment in 1914, per Bible chronology. Science can’t rival its order—earth’s renewal—proving Jehovah’s purpose over worldly chaos.", 
+                description: "<b>Future:</b> Righteous government.", 
+                example: "<b>Daniel 2:44</b> - A kingdom that will never be destroyed.\n<b>Matthew 6:10</b> - Let your Kingdom come.\n<b>Revelation 11:15</b> - Kingdom of our Lord and his Christ." 
+            },
+            { 
+                title: "52. When Will the End Come?", 
+                instruction: "The end arrives after specific signs, as Matthew 24:7 predicts: 'Nation will rise against nation, and kingdom against kingdom.' False worship ignores prophecy with vague hopes, like pagan oracles, but the Bible marks the last days with wars, famines, and preaching (2 Timothy 3:1-5). Historically, 1914 began these signs, aligning with Daniel’s timeline. Science notes global unrest, confirming Jehovah’s Word over human guesses.", 
+                description: "<b>History:</b> Signs match today.", 
+                example: "<b>Matthew 24:7</b> - Nation against nation.\n<b>2 Timothy 3:1-5</b> - Last days critical times.\n<b>Matthew 24:14</b> - Good news preached, then the end." 
+            },
+            { 
+                title: "53. What Is Armageddon?", 
+                instruction: "Armageddon is Jehovah’s war against wickedness, as Revelation 16:14 describes: 'The war of the great day of God the Almighty.' False worship fears earth’s end, like apocalyptic myths, but the Bible targets evil systems, not the planet (Zephaniah 1:18). Historically, past judgments like the Flood prefigure it. Science can’t stop divine justice, proving Jehovah’s power over pagan doom tales.", 
+                description: "<b>Outcome:</b> Cleanses evil.", 
+                example: "<b>Revelation 16:16</b> - Gathered to Armageddon.\n<b>Revelation 19:11</b> - He judges and wages war.\n<b>Zephaniah 1:18</b> - Day of Jehovah’s fury." 
+            },
+            { 
+                title: "54. What Happens to the Dead?", 
+                instruction: "The dead are unconscious, awaiting resurrection, as Ecclesiastes 9:5 states: 'The dead know nothing at all.' False worship invents hellfire or spirit realms, like Egyptian underworlds, but the Bible refutes this with sleep in death (John 11:11). Historically, early Christians rejected afterlife myths. Science confirms no consciousness post-death, aligning with Jehovah’s truth over pagan lies.", 
+                description: "<b>Science:</b> No consciousness.", 
+                example: "<b>Ecclesiastes 9:5</b> - Dead know nothing.\n<b>Psalm 146:4</b> - His thoughts perish.\n<b>John 11:11</b> - Lazarus has fallen asleep." 
+            },
+            { 
+                title: "55. What Is the Resurrection?", 
+                instruction: "The resurrection restores life by Jehovah’s power, as Acts 24:15 promises: 'There is going to be a resurrection of both the righteous and the unrighteous.' False worship offers reincarnation, like Hindu cycles, but the Bible gives hope of return to earth or heaven (John 5:28-29). Historically, Jesus’ resurrection in 33 C.E. proved it. Science can’t explain life’s origin, but Jehovah’s promise stands over pagan falsehoods.", 
+                description: "<b>Hope:</b> Life by God.", 
+                example: "<b>Acts 24:15</b> - Resurrection of both.\n<b>John 5:28-29</b> - Tombs will hear and come out.\n<b>1 Corinthians 15:22</b> - In Christ all made alive." 
+            },
+            { 
+                title: "56. What Is False Worship in the Last Days?", 
+                instruction: "False worship in the last days deceives with lies, as 2 Corinthians 11:14 warns: 'Satan himself keeps disguising himself as an angel of light.' It peaks with doctrines like the Trinity or hellfire, rooted in paganism, not Scripture (2 Timothy 4:3-4). Historically, apostasy grew post-apostles, blending truth with Babylonish rites. Science exposes these as baseless, while Jehovah’s truth shines through preaching.", 
+                description: "<b>Fact:</b> Deception intensifies.", 
+                example: "<b>2 Corinthians 11:14</b> - Satan disguises as an angel.\n<b>2 Timothy 4:3-4</b> - Not put up with wholesome teaching.\n<b>Matthew 7:22-23</b> - I never knew you." 
+            },
+            { 
+                title: "57. Who Is Satan?", 
+                instruction: "Satan is a rebellious angel who opposes Jehovah, as Revelation 12:9 reveals: 'The one called Devil and Satan, who is misleading the entire inhabited earth.' False worship deifies him or denies his existence, like pagan dualism, but the Bible traces his fall (Ezekiel 28:15). Historically, he tempted Eve, starting sin. Science can’t disprove spirits, but Jehovah’s Word unmasks Satan’s lies.", 
+                description: "<b>Origin:</b> Rebel angel.", 
+                example: "<b>Revelation 12:9</b> - The one called Devil and Satan.\n<b>John 8:44</b> - He was a murderer.\n<b>Ezekiel 28:15</b> - Unrighteousness found in you." 
+            },
+            { 
+                title: "58. What Is the Trinity?", 
+                instruction: "The Trinity is a false doctrine blending Jehovah with Jesus and the spirit, unlike Deuteronomy 6:4: 'Jehovah our God is one Jehovah.' It stems from pagan triads, like Babylon’s, not Scripture (John 14:28). Historically, it emerged post-325 C.E. at Nicaea, corrupting truth. Science finds no basis for three-in-one, while Jehovah’s unity stands clear.", 
+                description: "<b>Fact:</b> Post-Biblical error.", 
+                example: "<b>Deuteronomy 6:4</b> - Jehovah is one.\n<b>John 14:28</b> - The Father is greater.\n<b>1 Corinthians 8:6</b> - One God, the Father." 
+            },
+            { 
+                title: "59. What Is Hell?", 
+                instruction: "Hell is simply the grave, not a fiery torment, as Ecclesiastes 9:5 states: 'The dead know nothing at all.' False worship’s hellfire, from Babylonian and Greek myths, contradicts Jehovah’s justice (Psalm 37:20). Historically, early Christians saw death as sleep, not punishment. Science confirms death ends awareness, aligning with Jehovah’s truth over pagan fear.", 
+                description: "<b>Fact:</b> Death, not torment.", 
+                example: "<b>Ecclesiastes 9:5</b> - Dead know nothing.\n<b>Acts 2:31</b> - Not abandoned to the Grave.\n<b>Revelation 20:13</b> - Grave gave up the dead." 
+            },
+            { 
+                title: "60. Who Are the Angels?", 
+                instruction: "Angels are Jehovah’s spirit servants, not objects of worship, as Psalm 104:4 states: 'He makes his angels spirits.' False worship venerates them, like pagan guardians, but the Bible assigns them to serve God’s will (Hebrews 1:14). Historically, they aided Israel and Jesus. Science can’t see them, but their acts—like creation—prove Jehovah’s power.", 
+                description: "<b>Role:</b> God’s servants.", 
+                example: "<b>Psalm 104:4</b> - Makes his angels spirits.\n<b>Hebrews 1:14</b> - Spirits for holy service.\n<b>Matthew 18:10</b> - Their angels look upon the Father." 
+            },
+            { 
+                title: "61. What Is the Ransom?", 
+                instruction: "The ransom is Jesus’ perfect life sacrificed for humanity’s sin, as Matthew 20:28 states: 'The Son of man came... to give his life as a ransom for many.' False worship seeks salvation through works or idols, like pagan offerings, but the Bible points to Christ alone (1 Timothy 2:6). Historically, his death in 33 C.E. fulfilled this. Science can’t atone, but Jehovah’s provision redeems us.", 
+                description: "<b>Fact:</b> Paid for sin.", 
+                example: "<b>Matthew 20:28</b> - Give his life as a ransom.\n<b>1 Timothy 2:6</b> - A corresponding ransom.\n<b>Romans 5:8</b> - Christ died for us." 
+            },
+            { 
+                title: "62. Why a New World?", 
+                instruction: "A new world fulfills Jehovah’s purpose for a perfect earth, as 2 Peter 3:13 promises: 'There are new heavens and a new earth that we are awaiting.' False worship expects chaos or ascension, like pagan cycles, but the Bible restores Eden (Isaiah 65:17). Historically, prophecies like Isaiah’s foresaw this. Science marvels at earth’s potential, aligning with Jehovah’s plan.", 
+                description: "<b>Future:</b> Earth renewed.", 
+                example: "<b>2 Peter 3:13</b> - New heavens and a new earth.\n<b>Isaiah 65:17</b> - Creating new heavens.\n<b>Revelation 21:1</b> - A new heaven and earth." 
+            },
+            { 
+                title: "63. What Is the Great Tribulation?", 
+                instruction: "The Great Tribulation is a time of unprecedented distress before Jehovah’s day, as Matthew 24:21 warns: 'There will be great tribulation such as has not occurred since the world’s beginning.' False worship predicts random doom, like pagan apocalypses, but the Bible protects the righteous (Revelation 7:14). Historically, Noah’s day prefigured it. Science notes global crises, confirming Jehovah’s timeline.", 
+                description: "<b>Fact:</b> Protects the righteous.", 
+                example: "<b>Matthew 24:21</b> - Great tribulation.\n<b>Revelation 7:14</b> - Come out of the tribulation.\n<b>Daniel 12:1</b> - Time of distress." 
+            },
+            { 
+                title: "64. Who Are the 144,000?", 
+                instruction: "The 144,000 are a select group chosen to rule with Christ in heaven, as Revelation 14:3 states: 'The 144,000 who have been bought from the earth.' False worship misapplies this to all, like universalist myths, but the Bible limits it to a little flock (Luke 12:32). Historically, they began being sealed post-33 C.E. Science can’t grasp their role, but Jehovah’s Word defines it.", 
+                description: "<b>Role:</b> Rulers with Christ.", 
+                example: "<b>Revelation 14:1</b> - 144,000 with the Lamb.\n<b>Revelation 14:3</b> - Bought as firstfruits.\n<b>Luke 12:32</b> - Little flock given the Kingdom." 
+            },
+            { 
+                title: "65. What Is the Mark of the Beast?", 
+                instruction: "The mark of the beast symbolizes opposition to Jehovah, as Revelation 13:16 warns: 'It puts under compulsion all people... that they should give them a mark.' False worship aligns with Satan’s system, like pagan loyalty oaths, but the Bible calls for God’s mark (Deuteronomy 6:8). Historically, apostates bore this mark spiritually. Science can’t decode it, but Jehovah reveals its meaning.", 
+                description: "<b>Fact:</b> Disloyalty to God.", 
+                example: "<b>Revelation 13:16-17</b> - Receive a mark.\n<b>Revelation 14:9-10</b> - Worships the beast.\n<b>Deuteronomy 6:8</b> - Tie them as a reminder." 
+            },
+            { 
+                title: "66. Why No Clergy Class?", 
+                instruction: "Jehovah’s people reject a clergy class, as Matthew 23:8 states: 'All of you are brothers.' False worship elevates priests, like pagan hierarchies, but the Bible equalizes all in service (1 Peter 5:3). Historically, early Christians had no clergy, only elders. Science shows equality fosters unity, reflecting Jehovah’s will over human titles.", 
+                description: "<b>Fact:</b> Equality in service.", 
+                example: "<b>Matthew 23:8</b> - All of you are brothers.\n<b>1 Peter 5:3</b> - Not lording it over.\n<b>John 13:14</b> - Wash one another’s feet." 
+            },
+            { 
+                title: "67. What Is the Lord’s Evening Meal?", 
+                instruction: "The Lord’s Evening Meal commemorates Jesus’ death annually, as Luke 22:19 instructs: 'Keep doing this in remembrance of me.' False worship distorts it with frequent masses or pagan feasts, but the Bible ties it to Passover (1 Corinthians 11:25). Historically, it began in 33 C.E., observed yearly. Science can’t replicate its meaning, but Jehovah’s command endures.", 
+                description: "<b>Fact:</b> Annual memorial.", 
+                example: "<b>Luke 22:19</b> - In remembrance of me.\n<b>1 Corinthians 11:25</b> - As often as you drink it.\n<b>John 6:53</b> - Eat the flesh of the Son." 
+            },
+            { 
+                title: "68. Why No Images in Worship?", 
+                instruction: "Images in worship lead to idolatry, as Exodus 20:4 commands: 'You must not make for yourself a carved image.' False worship relies on icons, like pagan statues, but the Bible demands spirit and truth (John 4:24). Historically, Israel purged idols for Jehovah. Science shows images as mere matter, not divine, affirming His exclusivity.", 
+                description: "<b>Fact:</b> Misrepresents God.", 
+                example: "<b>Exodus 20:4</b> - Not make a carved image.\n<b>John 4:24</b> - Worship with spirit and truth.\n<b>Isaiah 42:8</b> - Glory to no one else." 
+            },
+            { 
+                title: "69. What Is the Good News?", 
+                instruction: "The good news is Jehovah’s Kingdom message, as Matthew 24:14 declares: 'This good news of the Kingdom will be preached.' False worship offers empty hopes, like pagan utopias, but the Bible solves earth’s woes (Isaiah 52:7). Historically, it spread post-33 C.E., accelerating in 1914. Science can’t match its hope, proving Jehovah’s truth.", 
+                description: "<b>Fact:</b> Kingdom message.", 
+                example: "<b>Matthew 24:14</b> - Good news will be preached.\n<b>Isaiah 52:7</b> - Feet of one bringing good news.\n<b>Revelation 14:6</b> - Everlasting good news." 
+            },
+            { 
+                title: "70. Why No War?", 
+                instruction: "Jehovah’s people reject war, as Isaiah 2:4 prophesies: 'They will beat their swords into plowshares.' False worship glorifies conflict, like Mars worship, but the Bible awaits Kingdom peace (John 18:36). Historically, Christians refused Rome’s battles. Science links war to ruin, contrasting Jehovah’s way.", 
+                description: "<b>Fact:</b> Peace is God’s way.", 
+                example: "<b>Isaiah 2:4</b> - Beat swords into plowshares.\n<b>Matthew 26:52</b> - Perish by the sword.\n<b>John 18:36</b> - My Kingdom is no part of this world." 
+            },
+            { 
+                title: "71. What Is the Soul’s Destiny?", 
+                instruction: "The soul’s destiny is death then resurrection, as Ezekiel 18:4 states: 'The soul who sins is the one who will die.' False worship claims eternal life elsewhere, like Greek shades, but the Bible promises restoration (John 5:28). Historically, this hope sustained faithful ones. Science confirms death’s end, aligning with Jehovah’s plan.", 
+                description: "<b>Fact:</b> Resurrection, not immortality.", 
+                example: "<b>Ezekiel 18:4</b> - Soul who sins will die.\n<b>John 5:28</b> - Tombs will come out.\n<b>Ecclesiastes 9:5</b> - Dead know nothing." 
+            },
+            { 
+                title: "72. Why No Soul Immortality?", 
+                instruction: "Soul immortality is a lie, as Ecclesiastes 9:5 states: 'The dead know nothing at all.' False worship, from Babylon’s spirit tales, contradicts Genesis 3:19: 'To dust you will return.' Historically, early Christians rejected it. Science shows life ends at death, proving Jehovah’s resurrection over pagan myths.", 
+                description: "<b>Fact:</b> Not innate.", 
+                example: "<b>Ecclesiastes 9:5</b> - Dead know nothing.\n<b>Genesis 3:19</b> - To dust you will return.\n<b>1 Timothy 6:16</b> - He alone has immortality." 
+            },
+            { 
+                title: "73. What Is Prophecy?", 
+                instruction: "Prophecy is Jehovah’s revealed plan, as Amos 3:7 states: 'The Sovereign Lord Jehovah will not do a thing unless he has revealed his confidential matter to his servants the prophets.' False worship trusts soothsayers, like Delphi’s oracle, but the Bible’s predictions, like Babylon’s fall, prove true (Isaiah 46:10). Historically, fulfilled prophecy marks Jehovah’s control. Science can’t predict with such precision.", 
+                description: "<b>Fact:</b> God’s purpose.", 
+                example: "<b>Amos 3:7</b> - Revealed to his prophets.\n<b>Isaiah 46:10</b> - End from the beginning.\n<b>2 Peter 1:19</b> - Prophetic word made sure." 
+            },
+            { 
+                title: "74. Why No Christmas?", 
+                instruction: "Christmas stems from pagan Saturnalia, not Scripture, as Luke 22:19 focuses on Jesus’ death: 'Keep doing this in remembrance of me.' False worship blends it with Christ, but the Bible rejects such customs (Jeremiah 10:2-4). Historically, it emerged post-4th century C.E., not from apostles. Science traces its roots to winter rites, not Jehovah’s truth.", 
+                description: "<b>Fact:</b> Not Christian.", 
+                example: "<b>Luke 22:19</b> - In remembrance of me.\n<b>Jeremiah 10:2-4</b> - Customs of the peoples are delusion.\n<b>Matthew 15:9</b> - Teach commands of men." 
+            },
+            { 
+                title: "75. What Is the New Covenant?", 
+                instruction: "The new covenant is Jehovah’s pact with the 144,000, as Jeremiah 31:31 promises: 'I will make a new covenant.' False worship misapplies it universally, like pagan pacts, but the Bible limits it to Christ’s co-rulers (Luke 22:20). Historically, it began in 33 C.E. Science can’t grasp its spiritual scope, but Jehovah’s Word defines it.", 
+                description: "<b>Fact:</b> Specific group.", 
+                example: "<b>Jeremiah 31:31</b> - A new covenant.\n<b>Luke 22:20</b> - New covenant by my blood.\n<b>Hebrews 8:10</b> - Covenant with Israel." 
+            },
+            { 
+                title: "76. Why No Easter?", 
+                instruction: "Easter mixes pagan Eostre rites with Jesus’ resurrection, unlike 1 Corinthians 11:25: 'Keep doing this, as often as you drink it, in remembrance of me.' False worship adopts it, but the Bible sticks to Passover (Deuteronomy 12:30). Historically, it’s post-apostolic, not Christian. Science traces its fertility symbols, not Jehovah’s truth.", 
+                description: "<b>Fact:</b> Pagan roots.", 
+                example: "<b>1 Corinthians 11:25</b> - In remembrance of me.\n<b>Acts 12:4</b> - [Passover, not Easter].\n<b>Deuteronomy 12:30</b> - Not inquire about their gods." 
+            },
+            { 
+        title: "77. What Is Babylon the Great?", 
+        instruction: "Babylon the Great represents the global empire of false religion, as Revelation 17:5 identifies it: 'Babylon the Great, the mother of the prostitutes and of the disgusting things of the earth.' Unlike Jehovah’s pure worship, it blends pagan practices—like idol worship and spiritism—with distorted Christian teachings, misleading nations (Revelation 18:4). Historically, it traces back to ancient Babylon’s polytheism, which spread worldwide, influencing even modern holidays. Science exposes its rituals as baseless, while the Bible’s call to 'get out of her' proves Jehovah’s judgment looms over this counterfeit system.", 
+        description: "<b>Fact:</b> Global false worship.", 
+        example: "<b>Revelation 17:5</b> - Babylon the Great.\n<b>Revelation 18:4</b> - Come out of her.\n<b>Jeremiah 51:6</b> - Flee from Babylon." 
+    },
+    { 
+        title: "78. What Is the Paradise Earth?", 
+        instruction: "The paradise earth is Jehovah’s promise of a restored planet, as Matthew 5:5 declares: 'Happy are the mild-tempered, for they will inherit the earth.' False worship envisions heaven or reincarnation, like Hindu cycles, but the Bible restores Eden’s perfection—peace among animals and humans (Isaiah 11:6). Historically, this hope sustained faithful ones like Abraham. Science marvels at earth’s life-supporting design, hinting at Jehovah’s intent to renew it, not abandon it to pagan chaos.", 
+        description: "<b>Future:</b> Perfect earth.", 
+        example: "<b>Matthew 5:5</b> - Meek will inherit the earth.\n<b>Isaiah 11:6</b> - Wolf will reside with lamb.\n<b>Revelation 21:4</b> - Death will be no more." 
+    },
+    { 
+        title: "79. Why No Blood Transfusions?", 
+        instruction: "Blood is sacred to Jehovah, reserved for atonement, as Acts 15:29 commands: 'Keep abstaining from... blood.' False worship profanes it, like pagan blood-drinking rites, but the Bible upholds its sanctity from Noah’s day (Genesis 9:4). Historically, early Christians died rather than violate this law. Science offers alternatives like saline, affirming Jehovah’s wisdom over human fixes that defy His will.", 
+        description: "<b>Fact:</b> God’s law on blood.", 
+        example: "<b>Acts 15:29</b> - Abstain from blood.\n<b>Genesis 9:4</b> - Flesh with its blood you must not eat.\n<b>Leviticus 17:14</b> - Blood is the life." 
+    },
+    { 
+        title: "80. What Is the Faithful Slave?", 
+        instruction: "The faithful slave is a group appointed by Jesus to provide spiritual food, as Matthew 24:45 asks: 'Who really is the faithful and discreet slave whom his master appointed over his domestics?' False worship elevates clergy, like pagan priests, but the Bible assigns this role to humble servants guiding God’s people (Luke 12:42). Historically, this began with the apostles and matured in the last days, post-1914. Science can’t replicate divine truth, but Jehovah’s provision sustains His flock.", 
+        description: "<b>Role:</b> Spiritual leadership.", 
+        example: "<b>Matthew 24:45</b> - Faithful and discreet slave.\n<b>Luke 12:42</b> - Faithful steward.\n<b>John 21:17</b> - Feed my little sheep." 
+    },
+    { 
+        title: "81. Why No Political Involvement?", 
+        instruction: "Jehovah’s servants stay neutral in politics, as John 17:16 states: 'They are no part of the world, just as I am no part of the world.' False worship entangles with power, like Rome’s state religion, but the Bible pledges loyalty to God’s Kingdom alone (John 18:36). Historically, early Christians refused civic duties conflicting with faith. Science shows politics divide, while Jehovah’s rule unites.", 
+        description: "<b>Fact:</b> Kingdom focus.", 
+        example: "<b>John 17:16</b> - No part of this world.\n<b>John 18:36</b> - My Kingdom is not of this world.\n<b>James 4:4</b> - Friendship with the world is enmity." 
+    },
+    { 
+        title: "82. What Is the Last Days?", 
+        instruction: "The last days are a critical period before Jehovah’s intervention, as 2 Timothy 3:1 warns: 'In the last days critical times hard to deal with will be here.' False worship dismisses signs, like pagan optimism, but the Bible lists wars, moral decay, and preaching as proof (Matthew 24:6-7). Historically, these began intensifying in 1914, per prophecy. Science notes global crises, aligning with Jehovah’s timeline.", 
+        description: "<b>Fact:</b> Signs evident.", 
+        example: "<b>2 Timothy 3:1</b> - Critical times hard to deal with.\n<b>Matthew 24:6-7</b> - Wars and famines.\n<b>2 Peter 3:3</b> - Scoffers in the last days." 
+    },
+    { 
+        title: "83. Why No Hellfire?", 
+        instruction: "Hellfire is a myth, not Jehovah’s justice, as Ecclesiastes 9:5 states: 'The dead know nothing at all.' False worship, from Babylonian fire gods, torments souls, but the Bible teaches death’s sleep (Psalm 37:20). Historically, early Christians rejected eternal torture. Science confirms consciousness ends, proving Jehovah’s love over pagan fear.", 
+        description: "<b>Fact:</b> Grave, not fire.", 
+        example: "<b>Ecclesiastes 9:5</b> - Dead know nothing.\n<b>Psalm 37:20</b> - Wicked will vanish.\n<b>Romans 6:7</b> - He who has died has been acquitted." 
+    },
+    { 
+        title: "84. What Is Everlasting Life?", 
+        instruction: "Everlasting life is Jehovah’s gift through Christ, as Romans 6:23 promises: 'The gift God gives is everlasting life by Christ Jesus our Lord.' False worship seeks it via reincarnation or rituals, like Egyptian mummification, but the Bible offers it on a paradise earth or heaven (John 17:3). Historically, this hope drove faithful ones like Job. Science can’t grant eternity, but Jehovah’s Word does.", 
+        description: "<b>Hope:</b> Eternal living.", 
+        example: "<b>Romans 6:23</b> - Gift is everlasting life.\n<b>John 17:3</b> - Taking in knowledge of God.\n<b>Psalm 37:29</b> - Righteous will live forever." 
+    },
+    { 
+        title: "85. Why No Trinity?", 
+        instruction: "The Trinity contradicts Jehovah’s oneness, as John 14:28 states: 'The Father is greater than I am.' False worship adopted it from pagan triads, like Babylon’s, but the Bible upholds one God (Mark 12:29). Historically, it emerged post-apostles, not from Jesus. Science finds no three-in-one logic, affirming Jehovah’s singular truth.", 
+        description: "<b>Fact:</b> One God.", 
+        example: "<b>John 14:28</b> - The Father is greater.\n<b>Mark 12:29</b> - Jehovah our God is one.\n<b>1 Corinthians 11:3</b> - Head of Christ is God." 
+    },
+    { 
+        title: "86. What Is the Anointed?", 
+        instruction: "The anointed are the 144,000 chosen to rule with Christ, as Revelation 7:4 states: 'The number of those who were sealed, 144,000.' False worship universalizes salvation, like pagan afterlife myths, but the Bible reserves this heavenly role for a few (Romans 8:17). Historically, their selection began post-33 C.E. Science can’t fathom their destiny, but Jehovah’s purpose is clear.", 
+        description: "<b>Role:</b> Co-rulers with Christ.", 
+        example: "<b>Revelation 7:4</b> - 144,000 sealed.\n<b>Romans 8:17</b> - Joint heirs with Christ.\n<b>2 Timothy 2:12</b> - Reign with him." 
+    },
+    { 
+        title: "87. Why No Immortal Soul?", 
+        instruction: "The soul isn’t immortal, as Genesis 3:19 states: 'To dust you will return.' False worship, from Greek shades to Hindu atman, claims eternal life, but the Bible teaches death’s end (Ezekiel 18:4). Historically, Israel rejected afterlife myths. Science confirms consciousness ceases, aligning with Jehovah’s resurrection hope.", 
+        description: "<b>Fact:</b> Death ends consciousness.", 
+        example: "<b>Genesis 3:19</b> - To dust you will return.\n<b>Ezekiel 18:4</b> - Soul who sins will die.\n<b>Psalm 146:4</b> - His thoughts perish." 
+    },
+    { 
+        title: "88. What Is the Great Crowd?", 
+        instruction: "The great crowd survives Armageddon for earthly life, as Revelation 7:9 describes: 'A great crowd... out of all nations.' False worship expects heaven for all, like universalist myths, but the Bible gives them paradise (Psalm 37:11). Historically, this hope emerged clearly in the last days. Science can’t predict survival, but Jehovah’s promise stands.", 
+        description: "<b>Future:</b> Live on earth.", 
+        example: "<b>Revelation 7:9</b> - A great crowd out of all nations.\n<b>Revelation 7:14</b> - Come out of tribulation.\n<b>Psalm 37:11</b> - Meek will possess the earth." 
+    },
+    { 
+        title: "89. Why No Cross?", 
+        instruction: "Jesus died on a stake, not a cross, as Acts 2:23 states: 'You fastened him to a stake.' False worship adopted the cross from pagan symbols, like Egypt’s ankh, but the Bible uses ‘stauros’—a pole (Galatians 3:13). Historically, early Christians didn’t use crosses. Science traces its pagan roots, affirming Jehovah’s truth.", 
+        description: "<b>Fact:</b> Historical accuracy.", 
+        example: "<b>Acts 2:23</b> - Nailed to the stake.\n<b>Galatians 3:13</b> - Hung on a stake.\n<b>Deuteronomy 21:23</b> - Hung on a tree." 
+    },
+    { 
+        title: "90. What Is the Day of Jehovah?", 
+        instruction: "The Day of Jehovah is His judgment on wickedness, as Joel 2:11 warns: 'The day of Jehovah is great and very awe-inspiring.' False worship fears random doom, like pagan end-times, but the Bible targets evil (2 Peter 3:10). Historically, past judgments like Sodom’s prefigure it. Science notes earth’s fragility, but Jehovah’s day renews it.", 
+        description: "<b>Fact:</b> God’s intervention.", 
+        example: "<b>Joel 2:11</b> - Great and fear-inspiring day.\n<b>Zephaniah 1:14</b> - Day of Jehovah is near.\n<b>2 Peter 3:10</b> - Day will come as a thief." 
+    },
+    { 
+        title: "91. Why No Pagan Holidays?", 
+        instruction: "Pagan holidays defy Jehovah, as Jeremiah 10:2 commands: 'Do not learn the way of the nations.' False worship blends them with truth, like Christmas from Saturnalia, but the Bible rejects such customs (2 Corinthians 6:17). Historically, faithful ones shunned these post-apostles. Science traces their origins, not Jehovah’s will.", 
+        description: "<b>Fact:</b> Unscriptural origins.", 
+        example: "<b>Jeremiah 10:2</b> - Do not learn the way.\n<b>2 Corinthians 6:17</b> - Separate yourselves.\n<b>Colossians 2:8</b> - Traditions of men." 
+    },
+    { 
+        title: "92. What Is the Final Test?", 
+        instruction: "The final test follows Satan’s release after 1,000 years, as Revelation 20:3 states: 'He should be released for a little while.' False worship expects endless trials, like pagan cycles, but the Bible proves loyalty once (Revelation 20:7-8). Historically, tests like Job’s foreshadow it. Science can’t foresee it, but Jehovah’s plan ensures justice.", 
+        description: "<b>Future:</b> After 1,000 years.", 
+        example: "<b>Revelation 20:3</b> - Released for a little while.\n<b>Revelation 20:7-8</b> - Satan released to mislead.\n<b>1 Corinthians 15:24</b> - End when he hands over Kingdom." 
+    },
+    { 
+        title: "93. Why No Reincarnation?", 
+        instruction: "Reincarnation is false, as Hebrews 9:27 states: 'It is reserved for men to die once for all time.' False worship, like Hindu samsara, recycles souls, but the Bible promises resurrection (John 5:28-29). Historically, Israel rejected such myths. Science shows life’s uniqueness, aligning with Jehovah’s one-death truth.", 
+        description: "<b>Fact:</b> One life, then judgment.", 
+        example: "<b>Hebrews 9:27</b> - Appointed to die once.\n<b>John 5:28-29</b> - Tombs will come out.\n<b>Ecclesiastes 9:5</b> - Dead know nothing." 
+    },
+    { 
+        title: "94. What Is the Millennium?", 
+        instruction: "The Millennium is Christ’s 1,000-year reign to restore earth, as Revelation 20:4 states: 'They came to life and ruled as kings with the Christ for 1,000 years.' False worship envisions chaos, like pagan end-times, but the Bible promises peace (Isaiah 65:20). Historically, it follows Armageddon. Science sees earth’s potential, reflecting Jehovah’s renewal.", 
+        description: "<b>Future:</b> Peace for 1,000 years.", 
+        example: "<b>Revelation 20:4</b> - Ruled for 1,000 years.\n<b>Isaiah 65:20</b> - No more infant dying.\n<b>Revelation 20:6</b> - Priests for 1,000 years." 
+    },
+    { 
+        title: "95. Why No Materialism?", 
+        instruction: "Materialism distracts from Jehovah, as Matthew 6:24 warns: 'You cannot slave for God and for Riches.' False worship idolizes wealth, like Mammon cults, but the Bible teaches spiritual riches (1 Timothy 6:10). Historically, greed ruined nations like Babylon. Science links it to misery, proving Jehovah’s way brings true contentment.", 
+        description: "<b>Fact:</b> Focus on spiritual riches.", 
+        example: "<b>Matthew 6:24</b> - Cannot slave for God and Riches.\n<b>1 Timothy 6:10</b> - Love of money a root.\n<b>Luke 12:34</b> - Where your treasure is." 
+    },
+    { 
+        title: "96. What Is the Second Death?", 
+        instruction: "The second death is eternal destruction, as Revelation 20:14 states: 'This means the second death, the lake of fire.' False worship fears endless torment, like pagan hells, but the Bible ends rebellion permanently (Matthew 10:28). Historically, it’s post-Millennium judgment. Science can’t undo death, but Jehovah’s justice prevails.", 
+        description: "<b>Fact:</b> Final end.", 
+        example: "<b>Revelation 20:14</b> - Second death, the lake of fire.\n<b>Revelation 21:8</b> - Their portion in the lake.\n<b>Matthew 10:28</b> - Destroy both soul and body." 
+    },
+    { 
+        title: "97. Why No Evolution?", 
+        instruction: "Evolution denies Jehovah’s creation, as Genesis 2:3 states: 'God proceeded to bless the seventh day... because on it he had been resting from all his work.' False worship credits chance, like Darwinism, but the Bible affirms design (Psalm 139:14). Historically, creation stood against pagan myths. Science marvels at DNA’s complexity, pointing to Jehovah, not random processes.", 
+        description: "<b>Fact:</b> God is Creator.", 
+        example: "<b>Genesis 2:3</b> - God made them all.\n<b>Psalm 139:14</b> - Wonderfully made.\n<b>Romans 1:20</b> - Qualities seen in creation." 
+    },
+    { 
+        title: "98. What Is True Worship?", 
+        instruction: "True worship honors Jehovah alone, as John 4:24 states: 'God is a Spirit, and those worshipping him must worship with spirit and truth.' False worship mixes lies, like pagan syncretism, but the Bible demands purity (Matthew 4:10). Historically, faithful ones like Daniel stood firm. Science can’t define worship, but Jehovah’s Word does.", 
+        description: "<b>Fact:</b> Based on Scripture.", 
+        example: "<b>John 4:24</b> - Worship with spirit and truth.\n<b>Matthew 4:10</b> - Jehovah your God worship.\n<b>Psalm 83:18</b> - Jehovah alone Most High." 
+    },
+    { 
+        title: "99. Why No Fear of Man?", 
+        instruction: "Fear belongs to Jehovah, not man, as Matthew 10:28 states: 'Do not become fearful of those who kill the body.' False worship cowers to rulers, like pagan tyrants, but the Bible trusts God’s protection (Proverbs 29:25). Historically, martyrs like Stephen defied man. Science shows fear’s limits, while Jehovah’s power endures.", 
+        description: "<b>Fact:</b> Trust in Jehovah.", 
+        example: "<b>Matthew 10:28</b> - Do not fear those who kill.\n<b>Proverbs 29:25</b> - Fear of man is a snare.\n<b>Isaiah 51:12</b> - Why fear mortal man?" 
+    },
+    { 
+        title: "100. What Is the Reward?", 
+        instruction: "The reward is everlasting life for the faithful, as Hebrews 11:6 states: 'He becomes the rewarder of those earnestly seeking him.' False worship seeks fleeting gains, like pagan riches, but the Bible offers eternity (Revelation 22:14). Historically, this hope drove Noah and others. Science can’t grant life, but Jehovah’s promise fulfills all.", 
+        description: "<b>Hope:</b> Everlasting life.", 
+        example: "<b>Hebrews 11:6</b> - He becomes the rewarder.\n<b>Revelation 22:14</b> - Right to the trees of life.\n<b>Psalm 37:29</b> - Righteous will live forever." 
+    }
+];
+
+// Assuming milkLessons (1-50) are already defined earlier in your code
+
+let currentMilkLesson = 0;
+let currentSolidLesson = 0;
+const milkBox = document.getElementById('milkBox');
+const solidBox = document.getElementById('solidBox');
+const milkContent = document.getElementById('milkContent');
+const solidContent = document.getElementById('solidContent');
+const milkSquares = document.getElementById('milkSquares');
+const solidSquares = document.getElementById('solidSquares');
+
+function toggleMilkBox() {
+    milkBox.classList.toggle('active');
+    solidBox.classList.remove('active');
+    if (milkBox.classList.contains('active')) updateMilkLesson();
+}
+
+function toggleSolidBox() {
+    solidBox.classList.toggle('active');
+    milkBox.classList.remove('active');
+    if (solidBox.classList.contains('active')) updateSolidLesson();
+}
+
+function updateMilkLesson() {
+    const lesson = milkLessons[currentMilkLesson];
+    milkContent.innerHTML = `<h2>${lesson.title}</h2><div class="instruction">${lesson.instruction}</div><div class="description">${lesson.description}</div><div class="example">${lesson.example}</div>`;
+    document.getElementById('prevMilkBtn').disabled = currentMilkLesson === 0;
+    document.getElementById('nextMilkBtn').disabled = currentMilkLesson === milkLessons.length - 1;
+}
+
+function updateSolidLesson() {
+    const lesson = solidLessons[currentSolidLesson];
+    solidContent.innerHTML = `<h2>${lesson.title}</h2><div class="instruction">${lesson.instruction}</div><div class="description">${lesson.description}</div><div class="example">${lesson.example}</div>`;
+    document.getElementById('prevSolidBtn').disabled = currentSolidLesson === 0;
+    document.getElementById('nextSolidBtn').disabled = currentSolidLesson === solidLessons.length - 1;
+}
+
+function prevMilk() {
+    if (currentMilkLesson > 0) {
+        currentMilkLesson--;
+        updateMilkLesson();
+    }
+}
+
+function nextMilk() {
+    if (currentMilkLesson < milkLessons.length - 1) {
+        currentMilkLesson++;
+        updateMilkLesson();
+    }
+}
+
+function prevSolid() {
+    if (currentSolidLesson > 0) {
+        currentSolidLesson--;
+        updateSolidLesson();
+    }
+}
+
+function nextSolid() {
+    if (currentSolidLesson < solidLessons.length - 1) {
+        currentSolidLesson++;
+        updateSolidLesson();
+    }
+}
+
+function createProgressSquares(container, lessons, type, startNum = 1) {
+    container.innerHTML = '';
+    lessons.forEach((_, index) => {
+        const square = document.createElement('div');
+        square.className = `${type}-square`;
+        square.textContent = startNum + index; // Adjust numbering: Milk starts at 1, Solid at 51
+        square.onclick = () => {
+            if (type === 'milk') {
+                currentMilkLesson = index;
+                updateMilkLesson();
+            } else {
+                currentSolidLesson = index;
+                updateSolidLesson();
+            }
+        };
+        container.appendChild(square);
+    });
+}
+
+createProgressSquares(milkSquares, milkLessons, 'milk', 1);
+createProgressSquares(solidSquares, solidLessons, 'solid', 51); // Solid starts at 51
+</script>
