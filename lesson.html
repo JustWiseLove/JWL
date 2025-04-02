@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Guide</title>
+    <title>Bible Study Aid - Truth From The Bible</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
         body { background-color: #1a1a1a; color: #333; line-height: 1.6; }
@@ -58,29 +58,30 @@
     </header>
     <section class="main-section">
         <div class="buttons">
-            <button class="btn-milk" onclick="toggleMilkBox()">Feed On Milk</button>
-            <button class="btn-solid" onclick="toggleSolidBox()">Solid Food</button>
+            <button class="btn-milk">Feed On Milk</button>
+            <button class="btn-solid">Solid Food</button>
         </div>
         <div class="milk-box" id="milkBox">
             <div class="lesson-content" id="milkContent"></div>
             <div class="nav-buttons">
-                <button class="nav-btn-milk" onclick="prevMilk()" id="prevMilkBtn">Previous</button>
-                <button class="nav-btn-milk" onclick="nextMilk()" id="nextMilkBtn">Next</button>
+                <button class="nav-btn-milk" id="prevMilkBtn">Previous</button>
+                <button class="nav-btn-milk" id="nextMilkBtn">Next</button>
             </div>
             <div class="progress-squares" id="milkSquares"></div>
         </div>
         <div class="solid-box" id="solidBox">
             <div class="lesson-content" id="solidContent"></div>
             <div class="nav-buttons">
-                <button class="nav-btn-solid" onclick="prevSolid()" id="prevSolidBtn">Previous</button>
-                <button class="nav-btn-solid" onclick="nextSolid()" id="nextSolidBtn">Next</button>
+                <button class="nav-btn-solid" id="prevSolidBtn">Previous</button>
+                <button class="nav-btn-solid" id="nextSolidBtn">Next</button>
             </div>
             <div class="progress-squares" id="solidSquares"></div>
         </div>
     </section>
     <footer>
-        <p><span class="footer-logo">Study<span>Guide</span></span></p>
-        <p>Copyright © 2025 JustWiseLove. All Rights Reserved.</p>
+        <p><span class="footer-logo">BIBLE <span>TRUTH</span></span></p>
+        <p>Copyright © 2025 Bible Truth. All Rights Reserved.</p>
+        <p><a href="mailto:contact@bibletruth.org">contact@bibletruth.org</a></p>
     </footer>
 
     <script>
@@ -688,110 +689,110 @@
             description: "<b>Purpose:</b> Eternal life.", 
             example: "<b>Revelation 22:12</b> - Look! I am coming quickly, and the reward I give is with me, to repay each one according to his work.\n<b>Matthew 5:12</b> - Rejoice and leap for joy, for your reward is great in the heavens.\n<b>Psalm 19:11</b> - In keeping them there is a large reward.\n<b>Hebrews 11:6</b> - He becomes the rewarder of those earnestly seeking him.\n<b>Colossians 3:24</b> - For you know that it is from Jehovah you will receive the due reward of the inheritance.\n<b>Isaiah 40:10</b> - Look! The Sovereign Lord Jehovah will come... his reward is with him." 
         }
-    ];
+        ];
 
-    let currentMilkLesson = 0;
-    let currentSolidLesson = 0;
-    let milkCompleted = new Set(JSON.parse(localStorage.getItem('milkCompleted')) || []);
-    let solidCompleted = new Set(JSON.parse(localStorage.getItem('solidCompleted')) || []);
+        let currentMilkLesson = 0;
+        let currentSolidLesson = 0;
+        let milkCompleted = new Set(JSON.parse(localStorage.getItem('milkCompleted')) || []);
+        let solidCompleted = new Set(JSON.parse(localStorage.getItem('solidCompleted')) || []);
 
-    const milkBox = document.querySelector('.milk-box');
-    const solidBox = document.querySelector('.solid-box');
-    const milkContent = document.querySelector('#milk-lesson-content');
-    const solidContent = document.querySelector('#solid-lesson-content');
-    const milkProgress = document.querySelector('#milk-progress');
-    const solidProgress = document.querySelector('#solid-progress');
+        const milkBox = document.querySelector('#milkBox');
+        const solidBox = document.querySelector('#solidBox');
+        const milkContent = document.querySelector('#milkContent');
+        const solidContent = document.querySelector('#solidContent');
+        const milkProgress = document.querySelector('#milkSquares');
+        const solidProgress = document.querySelector('#solidSquares');
 
-    function displayLesson(contentElement, lessons, index) {
-        const lesson = lessons[index];
-        contentElement.innerHTML = `
-            <h2>${lesson.title}</h2>
-            <div class="instruction">${lesson.instruction}</div>
-            <div class="description">${lesson.description}</div>
-            <div class="example">${lesson.example}</div>
-        `;
-    }
+        function displayLesson(contentElement, lessons, index) {
+            const lesson = lessons[index];
+            contentElement.innerHTML = `
+                <h2>${lesson.title}</h2>
+                <div class="instruction">${lesson.instruction}</div>
+                <div class="description">${lesson.description}</div>
+                <div class="example">${lesson.example}</div>
+            `;
+        }
 
-    function updateProgress(container, lessons, completedSet, squareClass, completedClass) {
-        container.innerHTML = '';
-        lessons.forEach((_, i) => {
-            const square = document.createElement('div');
-            square.className = squareClass;
-            square.textContent = i + 1;
-            if (completedSet.has(i)) square.classList.add(completedClass);
-            square.addEventListener('click', () => {
-                if (squareClass.includes('milk')) {
-                    currentMilkLesson = i;
-                    updateMilkLesson();
-                } else {
-                    currentSolidLesson = i;
-                    updateSolidLesson();
-                }
+        function updateProgress(container, lessons, completedSet, squareClass, completedClass) {
+            container.innerHTML = '';
+            lessons.forEach((_, i) => {
+                const square = document.createElement('div');
+                square.className = squareClass;
+                square.textContent = i + 1;
+                if (completedSet.has(i)) square.classList.add(completedClass);
+                square.addEventListener('click', () => {
+                    if (squareClass.includes('milk')) {
+                        currentMilkLesson = i;
+                        updateMilkLesson();
+                    } else {
+                        currentSolidLesson = i;
+                        updateSolidLesson();
+                    }
+                });
+                container.appendChild(square);
             });
-            container.appendChild(square);
+        }
+
+        function updateMilkLesson() {
+            displayLesson(milkContent, milkLessons, currentMilkLesson);
+            document.querySelector('#prevMilkBtn').disabled = currentMilkLesson === 0;
+            document.querySelector('#nextMilkBtn').disabled = currentMilkLesson === milkLessons.length - 1;
+            milkCompleted.add(currentMilkLesson);
+            localStorage.setItem('milkCompleted', JSON.stringify([...milkCompleted]));
+            updateProgress(milkProgress, milkLessons, milkCompleted, 'milk-square', 'completed');
+        }
+
+        function updateSolidLesson() {
+            displayLesson(solidContent, solidLessons, currentSolidLesson);
+            document.querySelector('#prevSolidBtn').disabled = currentSolidLesson === 0;
+            document.querySelector('#nextSolidBtn').disabled = currentSolidLesson === solidLessons.length - 1;
+            solidCompleted.add(currentSolidLesson);
+            localStorage.setItem('solidCompleted', JSON.stringify([...solidCompleted]));
+            updateProgress(solidProgress, solidLessons, solidCompleted, 'solid-square', 'completed');
+        }
+
+        document.querySelector('.btn-milk').addEventListener('click', () => {
+            milkBox.classList.add('active');
+            solidBox.classList.remove('active');
+            updateMilkLesson();
         });
-    }
 
-    function updateMilkLesson() {
-        displayLesson(milkContent, milkLessons, currentMilkLesson);
-        document.querySelector('#milk-prev').disabled = currentMilkLesson === 0;
-        document.querySelector('#milk-next').disabled = currentMilkLesson === milkLessons.length - 1;
-        milkCompleted.add(currentMilkLesson);
-        localStorage.setItem('milkCompleted', JSON.stringify([...milkCompleted]));
+        document.querySelector('.btn-solid').addEventListener('click', () => {
+            solidBox.classList.add('active');
+            milkBox.classList.remove('active');
+            updateSolidLesson();
+        });
+
+        document.querySelector('#prevMilkBtn').addEventListener('click', () => {
+            if (currentMilkLesson > 0) {
+                currentMilkLesson--;
+                updateMilkLesson();
+            }
+        });
+
+        document.querySelector('#nextMilkBtn').addEventListener('click', () => {
+            if (currentMilkLesson < milkLessons.length - 1) {
+                currentMilkLesson++;
+                updateMilkLesson();
+            }
+        });
+
+        document.querySelector('#prevSolidBtn').addEventListener('click', () => {
+            if (currentSolidLesson > 0) {
+                currentSolidLesson--;
+                updateSolidLesson();
+            }
+        });
+
+        document.querySelector('#nextSolidBtn').addEventListener('click', () => {
+            if (currentSolidLesson < solidLessons.length - 1) {
+                currentSolidLesson++;
+                updateSolidLesson();
+            }
+        });
+
         updateProgress(milkProgress, milkLessons, milkCompleted, 'milk-square', 'completed');
-    }
-
-    function updateSolidLesson() {
-        displayLesson(solidContent, solidLessons, currentSolidLesson);
-        document.querySelector('#solid-prev').disabled = currentSolidLesson === 0;
-        document.querySelector('#solid-next').disabled = currentSolidLesson === solidLessons.length - 1;
-        solidCompleted.add(currentSolidLesson);
-        localStorage.setItem('solidCompleted', JSON.stringify([...solidCompleted]));
         updateProgress(solidProgress, solidLessons, solidCompleted, 'solid-square', 'completed');
-    }
-
-    document.querySelector('.btn-milk').addEventListener('click', () => {
-        milkBox.classList.add('active');
-        solidBox.classList.remove('active');
-        updateMilkLesson();
-    });
-
-    document.querySelector('.btn-solid').addEventListener('click', () => {
-        solidBox.classList.add('active');
-        milkBox.classList.remove('active');
-        updateSolidLesson();
-    });
-
-    document.querySelector('#milk-prev').addEventListener('click', () => {
-        if (currentMilkLesson > 0) {
-            currentMilkLesson--;
-            updateMilkLesson();
-        }
-    });
-
-    document.querySelector('#milk-next').addEventListener('click', () => {
-        if (currentMilkLesson < milkLessons.length - 1) {
-            currentMilkLesson++;
-            updateMilkLesson();
-        }
-    });
-
-    document.querySelector('#solid-prev').addEventListener('click', () => {
-        if (currentSolidLesson > 0) {
-            currentSolidLesson--;
-            updateSolidLesson();
-        }
-    });
-
-    document.querySelector('#solid-next').addEventListener('click', () => {
-        if (currentSolidLesson < solidLessons.length - 1) {
-            currentSolidLesson++;
-            updateSolidLesson();
-        }
-    });
-
-    updateProgress(milkProgress, milkLessons, milkCompleted, 'milk-square', 'completed');
-    updateProgress(solidProgress, solidLessons, solidCompleted, 'solid-square', 'completed');
-</script>
+    </script>
 </body>
 </html>
