@@ -1,0 +1,212 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333333;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e6e6e6;
+}
+
+/* Header Styles */
+header {
+    background-color: #000000;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    color: #ffd800;
+    font-size: 2rem;
+}
+
+.mode-toggle {
+    padding: 0.5rem 1rem;
+    background-color: #ffd800;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #000000;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.mode-toggle:hover {
+    background-color: #e6c200;
+}
+
+/* Main Content */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+    gap: 2rem;
+}
+
+.featured-section {
+    grid-column: 1 / -1; /* Full width for featured items */
+    display: flex;
+    justify-content: center;
+}
+
+/* Featured Scripture Styles */
+.featured-scripture {
+    background-color: #f0fff0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+body.dark-mode .featured-scripture {
+    background-color: #333333;
+}
+
+.featured-scripture p {
+    font-style: italic;
+    color: #555555;
+    font-size: 1.2rem;
+}
+
+body.dark-mode .featured-scripture p {
+    color: #cccccc;
+}
+
+/* Card Styles */
+.card {
+    background-color: #f0fff0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+body.dark-mode .card {
+    background-color: #333333;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.card.featured {
+    max-width: 600px;
+    border: 2px solid #ffd800;
+}
+
+.card-header {
+    background-color: #00cc00;
+    color: #000000;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.card.featured .card-header {
+    background-color: #ffd800;
+    color: #000000;
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: none;
+}
+
+details[open] .card-content {
+    display: block;
+}
+
+.card-content p {
+    color: #333333;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+body.dark-mode .card-content p {
+    color: #e6e6e6;
+}
+
+.card-content .scripture {
+    font-style: italic;
+    color: #555555;
+    font-size: 0.95rem;
+    margin: 1rem 0;
+    text-align: center;
+    background-color: #e6ffe6;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+body.dark-mode .card-content .scripture {
+    color: #cccccc;
+    background-color: #404040;
+}
+
+.card-content a {
+    color: #00cc00;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.card-content a:hover {
+    color: #ffd800;
+}
+
+/* Remove Details Arrows */
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary {
+    list-style: none;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #ffd800;
+    color: #000000;
+    margin-top: 2rem;
+}
+
+body.dark-mode footer {
+    background-color: #ffd800;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr; /* 1 column on phones */
+    }
+}
