@@ -19,6 +19,61 @@ body.dark-mode {
     color: #e6e6e6;
 }
 
+/* Buttons Header Section */
+.buttons-header {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #1a1a1a; /* Matches dark mode */
+}
+
+body.light-mode .buttons-header {
+    background-color: #ffffff; /* Matches light mode */
+}
+
+.buttons-header h2 {
+    font-size: 1.8rem;
+    color: #ffd800; /* Gold color for "Bible Truth" */
+    margin-bottom: 1rem;
+}
+
+/* Button Styles */
+.buttons {
+    text-align: center;
+    margin: 0; /* Override any previous margin */
+}
+
+.btn-study {
+    background-color: #00cc00; /* Green for Study Guide */
+    color: #1a1a1a;
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.btn-topic {
+    background-color: #ffd800; /* Gold for Topic Index */
+    color: #1a1a1a;
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.btn-study:hover, .btn-topic:hover {
+    transform: scale(1.05);
+}
+
 /* Header Styles */
 header {
     background-color: #000000;
@@ -31,15 +86,10 @@ header {
     z-index: 1000;
 }
 
-.logo {
-    font-family: 'Audiowide', monospace;
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
 header h1 {
     color: #ffd800;
     font-size: 2rem;
+    font-family: 'Audiowide', sans-serif; /* Apply Audiowide font */
 }
 
 header h1 a {
@@ -204,42 +254,6 @@ details summary {
     list-style: none;
 }
 
-.buttons { 
-    text-align: center; 
-    margin: 25px 0; 
-}
-
-.buttons h3 { 
-    font-size: 1.3rem; 
-    color: #00FF00; 
-    margin-bottom: 15px; 
-}
-
-.btn-topic, .btn-study { 
-padding: 12px 25px; 
- margin: 10px; 
-border: none; 
-border-radius: 5px; 
-cursor: pointer; 
-font-size: 1.1rem; 
-text-decoration: none; 
-display: inline-block; 
-transition: tra[...]
-
-.btn-topic { 
-background-color: #FFD800; 
-color: #1a1a1a; 
-}
-    
-.btn-study { 
-background-color: #00FF00; 
-color: #1a1a1a; 
-}
-    
-.btn-topic:hover, .btn-study:hover { 
-transform: scale(1.05); 
-}
-
 /* Footer */
 footer {
     text-align: center;
@@ -264,6 +278,4 @@ body.dark-mode footer {
     .container {
         grid-template-columns: 1fr; /* 1 column on phones */
     }
-
-    
 }
