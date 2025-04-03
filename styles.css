@@ -30,6 +30,12 @@ header {
     z-index: 1000;
 }
 
+.logo {
+    font-family: 'Audiowide', monospace;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
 header h1 {
     color: #ffd800;
     font-size: 2rem;
