@@ -35,21 +35,16 @@ header h1 {
     font-size: 2rem;
 }
 
-    h1 a {
+header h1 a {
     color: #ffd800; /* Sets the link color to gold */
-    text-decoration: none; /* Optional: Removes the underline from the link */
+    text-decoration: none; /* Removes the underline from the link */
 }
 
-h1 a:visited {
-    color: #ffd800; /* Keeps it gold after being visited */
-}
-
-h1 a:hover {
-    color: #ffd800; /* Keeps it gold when hovered over */
-}
-
-h1 a:active {
-    color: #ffd800; /* Keeps it gold when clicked */
+header h1 a:link,
+header h1 a:visited,
+header h1 a:hover,
+header h1 a:active {
+    color: #ffd800; /* Keeps it gold in all states */
 }
 
 .mode-toggle {
