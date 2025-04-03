@@ -4,66 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just Wise Love</title>
-    <link rel="stylesheet" href="Audiowide-Regular.ttf">
-    <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Browser tab favicon -->
-    <link rel="apple-touch-icon" href="apple-touch-icon.png"> <!-- iOS home screen icon -->
-    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png"> <!-- Android home screen icon -->
     <link rel="stylesheet" href="styles.css">
-    <!--<style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Autowide', sans-serif; }
-        body { background-color: #000000; color: #ffffff; line-height: 1.6; }
-        header { background-color: #000000; padding: 20px; text-align: center; }
-        .logo {
-         font-family: 'Audiowide', monospace;
-         font-size: 2.5rem;
-         font-weight: bold;
-}
-        .logo a { text-decoration: none; }
-        .main-section { margin: 20px auto; max-width: 800px; padding: 4px; background-color: #000000; border-radius: 10px; }
-        .article { padding: 15px; text-align: center; }
-        .article h1 { font-size: 2rem; color: #FFD800; text-align: center; margin-bottom: 20px; }
-        .article h2 { font-size: 1.5rem; color: #00FF00; margin: 20px 0 10px; text-align: center; }
-        .article p { font-size: 1rem; color: #ddd; margin-bottom: 15px; padding: 0 10px; text-align: left; }
-        .scripture { margin: 15px auto; padding: 15px; background-color: #1a1a1a; border-radius: 8px; font-size: 1rem; border-left: 4px solid #FFD800; max-width: 600px; text-align: left; }
-        .scripture cite { display: block; margin-top: 10px; color: #00FF00; font-style: normal; }
-        .buttons { text-align: center; margin: 25px 0; }
-        .buttons h3 { font-size: 1.3rem; color: #00FF00; margin-bottom: 15px; }
-        .btn-topic, .btn-study { padding: 12px 25px; margin: 10px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1rem; text-decoration: none; display: inline-block; transition: tra[...]
-        .btn-topic { background-color: #FFD800; color: #1a1a1a; }
-        .btn-study { background-color: #00FF00; color: #1a1a1a; }
-        .btn-topic:hover, .btn-study:hover { transform: scale(1.05); }
-        footer { background-color: #1a1a1a; color: #00FF00; text-align: center; padding: 15px; font-size: 0.9rem; }
-        footer a { color: #FFD800; text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-        .footer-logo { font-size: 0.9rem; font-weight: bold; }
-        .footer-logo .trus, .footer-logo .ruth { color: #FFD800; }
-        .footer-logo .tnt { color: #00FF00; }
-        @media (max-width: 768px) {
-            .logo { font-size: 2rem; }
-            .main-section { padding: 4px; margin: 10px; }
-            .article h1 { font-size: 1.5rem; }
-            .article h2 { font-size: 1.2rem; }
-            .article p { font-size: 0.9rem; }
-            .btn-topic, .btn-study { font-size: 1rem; padding: 10px 20px; }
-            .scripture { font-size: 0.9rem; max-width: 90%; }
-            .buttons h3 { font-size: 1.1rem; }
+    <!-- Link to Audiowide font (assuming it's locally hosted) -->
+    <style>
+        @font-face {
+            font-family: 'Audiowide';
+            src: url('Audiowide-Regular.ttf') format('truetype');
         }
-    </style>-->
+    </style>
 </head>
-<body>
-    <header>
-        <div class="logo"><a href="">JWL</a></div>
-    </header>
-    <section class="main-section">
+<body class="dark-mode">
+    <div class="buttons-header">
+        <h2>Bible Truth</h2>
         <div class="buttons">
-            <h3>Search For Truth</h3>
-            <a href="study.html" class="btn-study">Study Guide</a>
-            <a href="topic.html" class="btn-topic">Topic Index</a>
+            <button class="btn-study">Study Guide</button>
+            <button class="btn-topic">Topic Index</button>
         </div>
-    </section>
+    </div>
+
+    <header>
+        <h1><a href="home.html">JWL</a></h1>
+        <button class="mode-toggle" onclick="toggleMode()">Toggle Light Mode</button>
+    </header>
+
+    <div class="container">
+        <!-- Featured Scripture -->
+        <div class="featured-section">
+            <div class="featured-scripture">
+                <p>James 3:17 "But the wisdom from above is first of all pure, then peaceable, reasonable, ready to obey, full of mercy and good fruits, impartial, not hypocritical."</p>
+            </div>
+        </div>
+
+        <!-- Featured Article: Jehovah’s Wisdom vs Satan’s World -->
+        <div class="featured-section">
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jehovah’s Wisdom vs Satan’s World</summary>
+                    <div class="card-content">
+                        <p>The Bible reveals two paths: one led by Jehovah’s wisdom, promising lasting peace and life, and another ruled by Satan’s world, dangling fleeting pleasures that end in ruin. The choice shapes our future.</p>
+                        
+                        <p><strong>Satan’s Temptations</strong>: In Eden, Satan lured Eve with the promise of instant knowledge and power (Genesis 3:1-6). The fruit looked good, and the appeal was immediate—be like God now. But the result was shame, pain, and death, a pattern that repeats. Today, his world pushes materialism—chasing wealth and status feels thrilling until emptiness sets in (1 John 2:16). Pursuing illicit desires might spark excitement, but broken relationships and guilt follow (Proverbs 5:3-4).</p>
+                        
+                        <p><strong>Jehovah’s Way</strong>: Contrast that with Jehovah’s counsel. He told Adam and Eve to obey and live forever in paradise (Genesis 2:16-17). Disobedience swapped that for a cursed ground, but obedience could have built an eternal legacy. The Bible says choosing Jehovah’s wisdom brings “good fruits” (James 3:17)—peace now and a future in a restored earth (Psalm 37:11). It’s not always easy; resisting temptation takes effort, but the reward outlasts any quick thrill.</p>
+                        
+                        <p><strong>The Israelites’ Test</strong>: When the Israelites left Egypt, Satan’s influence surfaced fast. They craved the food and comforts of slavery over the journey to the Promised Land (Numbers 11:4-6). The golden calf offered a moment’s celebration (Exodus 32:6), but Jehovah’s judgment swiftly killed thousands (Exodus 32:28). Later, faithful ones like Joshua and Caleb endured hardship yet entered a land flowing with milk and honey (Joshua 14:6-9). Short-term ease faded; long-term faith prospered.</p>
+                        
+                        <p><strong>Modern Traps</strong>: Satan’s world still seduces. Gambling or greed promises quick riches, but Proverbs 13:11 warns wealth from hasty means dwindles, while steady work endures. Immorality tempts with instant gratification, yet 1 Corinthians 6:18 says fleeing it protects body and soul for a clean conscience and lasting joy. Drugs or excess might numb pain briefly, but Ecclesiastes 7:7 notes oppression drives madness, while Jehovah heals (Psalm 147:3).</p>
+                        
+                        <p><strong>The Ultimate Contrast</strong>: Satan challenged Jehovah’s rule, offering humans independence (Job 1:9-11). His system delivers chaos—wars, injustice, and death (Revelation 12:9). Jehovah’s wisdom, though, builds toward a kingdom where “no resident will say: ‘I am sick’” (Isaiah 33:24). The Bible promises Satan’s world ends in destruction (1 John 2:17), but those choosing Jehovah gain everlasting life (John 17:3). One path sparkles briefly and fades; the other shines forever.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p><span class="footer-logo"><span class="trus">Just</span><span class="tnt">Wise</span><span class="ruth">Love</span></span></p>
-        <p>Copyright © 2025 JustWiseLove. All Rights Reserved.</p>
+        <p>© 2025 Walk Wise. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+            const button = document.querySelector('.mode-toggle');
+            button.textContent = document.body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        }
+    </script>
 </body>
 </html>
