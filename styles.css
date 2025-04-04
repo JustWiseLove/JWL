@@ -1,364 +1,453 @@
-/* Font Face Definition - Ensures Audiowide font is available (optional if using Google Fonts) */
+/* ========================================================================= */
+/* Font and Reset Styles */
+/* ========================================================================= */
+
+/* Font Face Definition - Uncomment if using a local Audiowide font file instead of Google Fonts */
 /* @font-face {
     font-family: 'Audiowide';
     src: url('Audiowide-Regular.ttf') format('truetype');
 } */
 
-/* Reset and Base Styles */
+/* Reset default margins, padding, and set box-sizing globally */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* Default font fallback */
 }
 
+/* ========================================================================= */
+/* Body and Theme Styles */
+/* ========================================================================= */
+
+/* Base body styles for light mode */
 body {
-    background-color: #ffffff;
-    color: #333333;
-    line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
+    background-color: #ffffff; /* White background in light mode */
+    color: #333333; /* Dark gray text in light mode */
+    line-height: 1.6; /* Improved readability with line spacing */
+    transition: background-color 0.3s, color 0.3s; /* Smooth theme transition */
 }
 
+/* Dark mode overrides for body */
 body.dark-mode {
-    background-color: #1a1a1a;
-    color: #e6e6e6;
+    background-color: #1a1a1a; /* Dark gray background in dark mode */
+    color: #e6e6e6; /* Light gray text in dark mode */
 }
 
+/* ========================================================================= */
 /* Header Styles */
+/* ========================================================================= */
+
+/* Header layout and styling */
 header {
-    background-color: #000000;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background-color: #000000; /* Black background */
+    padding: 1rem; /* Inner spacing */
+    display: flex; /* Flexbox for layout */
+    justify-content: space-between; /* Space out logo and button */
+    align-items: center; /* Vertically center items */
+    position: sticky; /* Sticks to top on scroll */
+    top: 0; /* Aligns to top of viewport */
+    z-index: 1000; /* Ensures header stays above other content */
 }
 
+/* Logo (h1) styling */
 header h1 {
-    color: #ffd800;
-    font-size: 2rem;
-    font-family: 'Audiowide', sans-serif; /* Applies Audiowide font to JWL logo */
+    color: #ffd800; /* Gold color for JWL logo */
+    font-size: 2rem; /* Larger font size */
+    font-family: 'Audiowide', sans-serif; /* Audiowide font for branding */
 }
 
+/* Logo link styling */
 header h1 a {
-    color: #ffd800; /* Sets the link color to gold */
-    text-decoration: none; /* Removes the underline from the link */
+    color: #ffd800; /* Gold color for link */
+    text-decoration: none; /* Removes underline */
 }
 
+/* Ensure link color remains gold in all states */
 header h1 a:link,
 header h1 a:visited,
 header h1 a:hover,
 header h1 a:active {
-    color: #ffd800; /* Keeps it gold in all states */
+    color: #ffd800; /* Consistent gold color */
 }
 
+/* Mode toggle button styling */
 .mode-toggle {
-    padding: 0.5rem 1rem;
-    background-color: #ffd800;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #000000;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    padding: 0.5rem 1rem; /* Vertical and horizontal padding */
+    background-color: #ffd800; /* Gold background */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Hand cursor on hover */
+    color: #000000; /* Black text */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s; /* Smooth background change on hover */
 }
 
+/* Hover effect for mode toggle button */
 .mode-toggle:hover {
-    background-color: #e6c200;
+    background-color: #e6c200; /* Darker gold on hover */
 }
 
-/* Main Content */
+/* ========================================================================= */
+/* Main Content Container */
+/* ========================================================================= */
+
+/* Container for featured sections */
 .container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
-    gap: 2rem;
+    max-width: 1200px; /* Limits width for readability */
+    margin: 2rem auto; /* Centers with top/bottom spacing */
+    padding: 0 1rem; /* Side padding */
+    display: grid; /* Grid layout */
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns on desktop */
+    gap: 2rem; /* Space between grid items */
 }
 
+/* Full-width featured section */
 .featured-section {
-    grid-column: 1 / -1; /* Full width for featured items */
-    display: flex;
-    justify-content: center;
+    grid-column: 1 / -1; /* Spans all columns */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Centers content horizontally */
 }
 
+/* ========================================================================= */
 /* Featured Scripture Styles */
+/* ========================================================================= */
+
+/* Styling for featured scripture blocks */
 .featured-scripture {
-    background-color: #f0fff0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 1.5rem;
-    text-align: center;
-    max-width: 600px;
-    width: 100%;
+    background-color: #f0fff0; /* Light green background in light mode */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+    padding: 1.5rem; /* Inner spacing */
+    text-align: center; /* Centered text */
+    max-width: 600px; /* Limits width */
+    width: 100%; /* Full width up to max */
 }
 
+/* Dark mode override for featured scripture */
 body.dark-mode .featured-scripture {
-    background-color: #333333;
+    background-color: #333333; /* Dark gray in dark mode */
 }
 
+/* Scripture paragraph styling */
 .featured-scripture p {
-    font-style: italic;
-    color: #555555;
-    font-size: 1.2rem;
+    font-style: italic; /* Italicized text */
+    color: #555555; /* Medium gray in light mode */
+    font-size: 1.2rem; /* Slightly larger text */
 }
 
+/* Dark mode override for scripture text */
 body.dark-mode .featured-scripture p {
-    color: #cccccc;
+    color: #cccccc; /* Light gray in dark mode */
 }
 
+/* ========================================================================= */
 /* Card Styles */
+/* ========================================================================= */
+
+/* Base card styling */
 .card {
-    background-color: #f0fff0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 100%;
+    background-color: #f0fff0; /* Light green background in light mode */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+    overflow: hidden; /* Prevents content overflow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+    width: 100%; /* Full width of parent */
 }
 
+/* Dark mode override for cards */
 body.dark-mode .card {
-    background-color: #333333;
+    background-color: #333333; /* Dark gray in dark mode */
 }
 
+/* Card hover effect */
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transform: translateY(-5px); /* Slight lift */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Enhanced shadow */
 }
 
+/* Featured card specific styling */
 .card.featured {
-    max-width: 600px;
-    border: 2px solid #ffd800;
+    max-width: 600px; /* Limits width */
+    border: 2px solid #ffd800; /* Gold border */
 }
 
+/* Card header styling */
 .card-header {
-    background-color: #00cc00;
-    color: #000000;
-    padding: 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
+    background-color: #00cc00; /* Green background */
+    color: #000000; /* Black text */
+    padding: 1rem; /* Inner spacing */
+    font-size: 1.5rem; /* Larger text */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Centered text */
+    cursor: pointer; /* Hand cursor for clickable area */
 }
 
+/* Featured card header override */
 .card.featured .card-header {
-    background-color: #ffd800;
-    color: #000000;
+    background-color: #ffd800; /* Gold background */
+    color: #000000; /* Black text */
 }
 
+/* Card content area */
 .card-content {
-    padding: 1.5rem;
-    display: none;
+    padding: 1.5rem; /* Inner spacing */
+    display: none; /* Hidden by default */
 }
 
+/* Show content when details are open */
 details[open] .card-content {
-    display: block;
+    display: block; /* Visible when expanded */
 }
 
+/* Card content paragraphs */
 .card-content p {
-    color: #333333;
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    color: #333333; /* Dark gray in light mode */
+    font-size: 1rem; /* Standard text size */
+    margin-bottom: 1rem; /* Spacing below */
 }
 
+/* Dark mode override for card content text */
 body.dark-mode .card-content p {
-    color: #e6e6e6;
+    color: #e6e6e6; /* Light gray in dark mode */
 }
 
+/* Scripture styling within cards */
 .card-content .scripture {
-    font-style: italic;
-    color: #555555;
-    font-size: 0.95rem;
-    margin: 1rem 0;
-    text-align: center;
-    background-color: #e6ffe6;
-    padding: 0.5rem;
-    border-radius: 4px;
+    font-style: italic; /* Italicized text */
+    color: #555555; /* Medium gray in light mode */
+    font-size: 0.95rem; /* Slightly smaller text */
+    margin: 1rem 0; /* Vertical spacing */
+    text-align: center; /* Centered text */
+    background-color: #e6ffe6; /* Light green background */
+    padding: 0.5rem; /* Inner padding */
+    border-radius: 4px; /* Rounded corners */
 }
 
+/* Dark mode override for scripture in cards */
 body.dark-mode .card-content .scripture {
-    color: #cccccc;
-    background-color: #404040;
+    color: #cccccc; /* Light gray text */
+    background-color: #404040; /* Darker gray background */
 }
 
+/* Links within card content */
 .card-content a {
-    color: #00cc00;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
+    color: #00cc00; /* Green link color */
+    text-decoration: none; /* No underline */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color change */
 }
 
+/* Hover effect for links in cards */
 .card-content a:hover {
-    color: #ffd800;
+    color: #ffd800; /* Gold on hover */
 }
 
-/* Remove Details Arrows */
+/* ========================================================================= */
+/* Details Element Customization */
+/* ========================================================================= */
+
+/* Remove default arrow in Webkit browsers */
 details summary::-webkit-details-marker {
-    display: none;
+    display: none; /* Hides arrow */
 }
 
+/* Remove default list style for summary */
 details summary {
-    list-style: none;
+    list-style: none; /* Ensures no marker */
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #ffd800;
-    color: #000000;
-    margin-top: 2rem;
-}
+/* ========================================================================= */
+/* Article Styles */
+/* ========================================================================= */
 
-body.dark-mode footer {
-    background-color: #ffd800;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-    .container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
-    }
-}
-
-@media (max-width: 600px) {
-    .container {
-        grid-template-columns: 1fr; /* 1 column on phones */
-    }
-}
-
-/* Article Styles - Decorates the main content directly in the body */
+/* Main article container */
 .article {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    max-width: 1200px; /* Limits width */
+    margin: 2rem auto; /* Centers with spacing */
+    padding: 0 1rem; /* Side padding */
 }
 
+/* Article main heading */
 .article h1 {
-    font-size: 2.5rem;
-    color: #ffd800; /* Gold color for main title */
-    text-align: center;
-    margin-bottom: 2rem;
+    font-size: 2.5rem; /* Large title */
+    color: #ffd800; /* Gold color */
+    text-align: center; /* Centered */
+    margin-bottom: 2rem; /* Spacing below */
 }
 
+/* Article subheadings */
 .article h2 {
-    font-size: 1.8rem;
- Glance color for section headers */
-    margin: 1.5rem 0 1rem;
+    font-size: 1.8rem; /* Slightly smaller than h1 */
+    color: #00cc00; /* Green color (corrected from "Glance color") */
+    margin: 1.5rem 0 1rem; /* Vertical spacing */
 }
 
+/* Article paragraphs */
 .article p {
-    color: #333333; /* Text color in light mode */
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    color: #333333; /* Dark gray in light mode */
+    font-size: 1rem; /* Standard size */
+    margin-bottom: 1rem; /* Spacing below */
 }
 
+/* Dark mode override for article paragraphs */
 body.dark-mode .article p {
-    color: #e6e6e6; /* Text color in dark mode */
+    color: #e6e6e6; /* Light gray in dark mode */
 }
 
-/* Scripture styling reused from card-content for consistency */
+/* Scripture styling in articles (consistent with cards) */
 .article .scripture {
-    font-style: italic;
-    color: #555555; /* Scripture text color in light mode */
-    font-size: 0.95rem;
-    margin: 1rem 0;
-    text-align: center;
-    background-color: #e6ffe6; /* Light green background in light mode */
-    padding: 0.5rem;
-    border-radius: 4px;
+    font-style: italic; /* Italicized */
+    color: #555555; /* Medium gray in light mode */
+    font-size: 0.95rem; /* Slightly smaller */
+    margin: 1rem 0; /* Vertical spacing */
+    text-align: center; /* Centered */
+    background-color: #e6ffe6; /* Light green background */
+    padding: 0.5rem; /* Inner padding */
+    border-radius: 4px; /* Rounded corners */
 }
 
+/* Dark mode override for article scripture */
 body.dark-mode .article .scripture {
-    color: #cccccc; /* Scripture text color in dark mode */
-    background-color: #404040; /* Dark gray background in dark mode */
+    color: #cccccc; /* Light gray text */
+    background-color: #404040; /* Dark gray background */
 }
 
-/* Button Section Styles - Above footer navigation buttons */
+/* ========================================================================= */
+/* Button Section Styles */
+/* ========================================================================= */
+
+/* Button section container */
 .button-section {
-    text-align: center;
-    padding: 1rem 0;
-    background-color: #1a1a1a; /* Matches dark mode background */
+    text-align: center; /* Centers buttons */
+    padding: 1rem 0; /* Vertical padding */
+    background-color: #1a1a1a; /* Dark gray (matches dark mode) */
 }
 
+/* Light mode override for button section */
 body.light-mode .button-section {
-    background-color: #ffffff; /* Matches light mode background */
+    background-color: #ffffff; /* White background */
 }
 
+/* Button section heading */
 .button-section h2 {
-    font-size: 1.8rem;
-    color: #ffd800; /* Gold color for "Bible Truth" */
-    margin-bottom: 1rem;
+    font-size: 1.8rem; /* Large text */
+    color: #ffd800; /* Gold color */
+    margin-bottom: 1rem; /* Spacing below */
 }
 
+/* Study Guide button */
 .btn-study {
-    background-color: #00cc00; /* Green background for Study Guide button */
-    color: #1a1a1a;
-    padding: 12px 25px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    text-decoration: none;
-    display: inline-block;
-    transition: transform 0.3s; /* Hover effect transition */
+    background-color: #00cc00; /* Green background */
+    color: #1a1a1a; /* Dark gray text */
+    padding: 12px 25px; /* Vertical and horizontal padding */
+    margin: 10px; /* Spacing around */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Hand cursor */
+    font-size: 1.1rem; /* Slightly larger text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Inline with block properties */
+    transition: transform 0.3s; /* Smooth scale effect */
 }
 
+/* Topic Index button */
 .btn-topic {
-    background-color: #ffd800; /* Gold background for Topic Index button */
-    color: #1a1a1a;
-    padding: 12px 25px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    text-decoration: none;
-    display: inline-block;
-    transition: transform 0.3s; /* Hover effect transition */
+    background-color: #ffd800; /* Gold background */
+    color: #1a1a1a; /* Dark gray text */
+    padding: 12px 25px; /* Vertical and horizontal padding */
+    margin: 10px; /* Spacing around */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Hand cursor */
+    font-size: 1.1rem; /* Slightly larger text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Inline with block properties */
+    transition: transform 0.3s; /* Smooth scale effect */
 }
 
-.btn-study:hover, .btn-topic:hover {
-    transform: scale(1.05); /* Slight scale increase on hover */
+/* Hover effect for both buttons */
+.btn-study:hover,
+.btn-topic:hover {
+    transform: scale(1.05); /* Slight enlargement */
 }
 
-/* Global H2 Centering - Ensures all h2 elements are centered */
-h2 {
-    text-align: center; /* Centers all h2 elements site-wide */
-}
-
-/* Global P Centering - Ensures all p elements are centered */
-p {
-    text-align: center; /* Centers all p elements site-wide */
-}
-
-/* Button Link Styles - Fixes blue underline and ensures consistent colors */
+/* Button link styling for Study Guide */
 .btn-study a {
-    color: #1a1a1a; /* Matches button text color */
-    text-decoration: none; /* Removes underline */
+    color: #1a1a1a; /* Dark gray text */
+    text-decoration: none; /* No underline */
 }
 
+/* Ensure Study Guide link color consistency */
 .btn-study a:link,
 .btn-study a:visited,
 .btn-study a:hover,
 .btn-study a:active {
-    color: #1a1a1a; /* Keeps text color consistent in all states */
-    text-decoration: none; /* Ensures no underline in any state */
+    color: #1a1a1a; /* Consistent dark gray */
+    text-decoration: none; /* No underline in any state */
 }
 
+/* Button link styling for Topic Index */
 .btn-topic a {
-    color: #1a1a1a; /* Matches button text color */
-    text-decoration: none; /* Removes underline */
+    color: #1a1a1a; /* Dark gray text */
+    text-decoration: none; /* No underline */
 }
 
+/* Ensure Topic Index link color consistency */
 .btn-topic a:link,
 .btn-topic a:visited,
 .btn-topic a:hover,
 .btn-topic a:active {
-    color: #1a1a1a; /* Keeps text color consistent in all states */
-    text-decoration: none; /* Ensures no underline in any state */
+    color: #1a1a1a; /* Consistent dark gray */
+    text-decoration: none; /* No underline in any state */
+}
+
+/* ========================================================================= */
+/* Footer Styles */
+/* ========================================================================= */
+
+/* Footer styling */
+footer {
+    text-align: center; /* Centered text */
+    padding: 1rem; /* Inner padding */
+    background-color: #ffd800; /* Gold background */
+    color: #000000; /* Black text */
+    margin-top: 2rem; /* Spacing above */
+}
+
+/* Dark mode retains same footer styling (no override needed) */
+body.dark-mode footer {
+    background-color: #ffd800; /* Gold background persists */
+}
+
+/* ========================================================================= */
+/* Global Text Alignment */
+/* ========================================================================= */
+
+/* Center all h2 elements site-wide */
+h2 {
+    text-align: center; /* Consistent centering */
+}
+
+/* Center all p elements site-wide */
+p {
+    text-align: center; /* Consistent centering */
+}
+
+/* ========================================================================= */
+/* Responsive Design */
+/* ========================================================================= */
+
+/* Tablet layout (2 columns) */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    }
+}
+
+/* Mobile layout (1 column) */
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr; /* Single column */
+    }
 }
