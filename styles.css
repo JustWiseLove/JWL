@@ -147,7 +147,7 @@ body.dark-mode .featured-scripture p {
 
 /* Base card styling */
 .card {
-    background-color: #f0fff0; /* Light green background in light mode */
+    background-color: #00cc00; /* Light green background in light mode */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
     overflow: hidden; /* Prevents content overflow */
