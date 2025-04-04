@@ -222,3 +222,106 @@ body.dark-mode footer {
         grid-template-columns: 1fr; /* 1 column on phones */
     }
 }
+
+/* Article Styles - Decorates the main content directly in the body */
+.article {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.article h1 {
+    font-size: 2.5rem;
+    color: #ffd800; /* Gold color for main title */
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.article h2 {
+    font-size: 1.8rem;
+    color: #00cc00; /* Green color for section headers */
+    margin: 1.5rem 0 1rem;
+}
+
+.article p {
+    color: #333333; /* Text color in light mode */
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+body.dark-mode .article p {
+    color: #e6e6e6; /* Text color in dark mode */
+}
+
+/* Scripture styling reused from card-content for consistency */
+.article .scripture {
+    font-style: italic;
+    color: #555555; /* Scripture text color in light mode */
+    font-size: 0.95rem;
+    margin: 1rem 0;
+    text-align: center;
+    background-color: #e6ffe6; /* Light green background in light mode */
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+body.dark-mode .article .scripture {
+    color: #cccccc; /* Scripture text color in dark mode */
+    background-color: #404040; /* Dark gray background in dark mode */
+}
+
+/* Button Section Styles - Above footer navigation buttons */
+.button-section {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #1a1a1a; /* Matches dark mode background */
+}
+
+body.light-mode .button-section {
+    background-color: #ffffff; /* Matches light mode background */
+}
+
+.button-section h2 {
+    font-size: 1.8rem;
+    color: #ffd800; /* Gold color for "Bible Truth" */
+    margin-bottom: 1rem;
+}
+
+.btn-study {
+    background-color: #00cc00; /* Green background for Study Guide button */
+    color: #1a1a1a;
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s; /* Hover effect transition */
+}
+
+.btn-topic {
+    background-color: #ffd800; /* Gold background for Topic Index button */
+    color: #1a1a1a;
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s; /* Hover effect transition */
+}
+
+.btn-study:hover, .btn-topic:hover {
+    transform: scale(1.05); /* Slight scale increase on hover */
+}
+
+/* Final Note: Audiowide font added to header h1 for consistency */
+header h1 {
+    color: #ffd800;
+    font-size: 2rem;
+    font-family: 'Audiowide', sans-serif; /* Applies Audiowide font to JWL logo */
+}
