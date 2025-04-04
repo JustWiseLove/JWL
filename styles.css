@@ -1,3 +1,9 @@
+/* Font Face Definition - Ensures Audiowide font is available */
+@font-face {
+    font-family: 'Audiowide';
+    src: url('Audiowide-Regular.ttf') format('truetype');
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -33,6 +39,7 @@ header {
 header h1 {
     color: #ffd800;
     font-size: 2rem;
+    font-family: 'Audiowide', sans-serif; /* Applies Audiowide font to JWL logo */
 }
 
 header h1 a {
@@ -319,9 +326,7 @@ body.light-mode .button-section {
     transform: scale(1.05); /* Slight scale increase on hover */
 }
 
-/* Final Note: Audiowide font added to header h1 for consistency */
-header h1 {
-    color: #ffd800;
-    font-size: 2rem;
-    font-family: 'Audiowide', sans-serif; /* Applies Audiowide font to JWL logo */
+/* Global H2 Centering - Ensures all h2 elements are centered */
+h2 {
+    text-align: center; /* Centers all h2 elements site-wide */
 }
