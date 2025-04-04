@@ -320,7 +320,6 @@ body.dark-mode .article .scripture {
 /* Button section container */
 .button-section {
     text-align: center; /* Centers buttons */
-    padding: 1rem 0; /* Vertical padding */
     background-color: #1a1a1a; /* Dark gray (matches dark mode) */
 }
 
