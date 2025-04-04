@@ -279,7 +279,7 @@ details summary {
 /* Article subheadings */
 .article h2 {
     font-size: 1.8rem; /* Slightly smaller than h1 */
-    color: #00cc00; /* Green color (corrected from "Glance color") */
+    color: #00cc00; /* Green color */
     margin: 1.5rem 0 1rem; /* Vertical spacing */
 }
 
@@ -320,6 +320,7 @@ body.dark-mode .article .scripture {
 /* Button section container */
 .button-section {
     text-align: center; /* Centers buttons */
+    padding: 0.5rem 0; /* Reduced vertical padding for less space above/below */
     background-color: #1a1a1a; /* Dark gray (matches dark mode) */
 }
 
