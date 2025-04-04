@@ -1,8 +1,8 @@
-/* Font Face Definition - Ensures Audiowide font is available */
-@font-face {
+/* Font Face Definition - Ensures Audiowide font is available (optional if using Google Fonts) */
+/* @font-face {
     font-family: 'Audiowide';
     src: url('Audiowide-Regular.ttf') format('truetype');
-}
+} */
 
 /* Reset and Base Styles */
 * {
@@ -246,7 +246,7 @@ body.dark-mode footer {
 
 .article h2 {
     font-size: 1.8rem;
-    color: #00cc00; /* Green color for section headers */
+ Glance color for section headers */
     margin: 1.5rem 0 1rem;
 }
 
@@ -329,4 +329,36 @@ body.light-mode .button-section {
 /* Global H2 Centering - Ensures all h2 elements are centered */
 h2 {
     text-align: center; /* Centers all h2 elements site-wide */
+}
+
+/* Global P Centering - Ensures all p elements are centered */
+p {
+    text-align: center; /* Centers all p elements site-wide */
+}
+
+/* Button Link Styles - Fixes blue underline and ensures consistent colors */
+.btn-study a {
+    color: #1a1a1a; /* Matches button text color */
+    text-decoration: none; /* Removes underline */
+}
+
+.btn-study a:link,
+.btn-study a:visited,
+.btn-study a:hover,
+.btn-study a:active {
+    color: #1a1a1a; /* Keeps text color consistent in all states */
+    text-decoration: none; /* Ensures no underline in any state */
+}
+
+.btn-topic a {
+    color: #1a1a1a; /* Matches button text color */
+    text-decoration: none; /* Removes underline */
+}
+
+.btn-topic a:link,
+.btn-topic a:visited,
+.btn-topic a:hover,
+.btn-topic a:active {
+    color: #1a1a1a; /* Keeps text color consistent in all states */
+    text-decoration: none; /* Ensures no underline in any state */
 }
