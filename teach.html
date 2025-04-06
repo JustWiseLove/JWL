@@ -218,9 +218,6 @@
             { title: "48. What Is Mercy?", instruction: "Mercy is Jehovah’s compassion in action, as Psalm 103:8 declares: 'Jehovah is merciful and gracious.' False worship lacks it, like pagan cruelty, but the Bible calls us to mirror Him (Luke 6:36). Historically, Jehovah spared Nineveh for repentance. Science links mercy to healing, reflecting His love. It’s a trait of true worship.", description: "<b>Fact:</b> Mirrors God.", example: "<b>Psalm 103:8</b> - Jehovah is merciful.\n<b>Matthew 5:7</b> - Merciful will be shown mercy.\n<b>Luke 6:36</b> - Be merciful as your Father." },
             { title: "49. Why Avoid Pride?", instruction: "Pride leads to ruin, as Proverbs 16:18 warns: 'Pride is before a crash.' False worship exalts self, like Babylonian kings, but the Bible favors humility (James 4:6). Historically, Nebuchadnezzar’s fall proved this. Science ties pride to conflict, contrasting Jehovah’s peace. Avoiding it gains His favor.", description: "<b>Benefit:</b> God’s approval.", example: "<b>Proverbs 16:18</b> - Pride is before a crash.\n<b>James 4:6</b> - Kindness to the humble.\n<b>1 Peter 5:5</b> - Clothe with humility." },
             { title: "50. Why Preach?", instruction: "Preaching shares Jehovah’s truth, as Matthew 24:14 declares: 'This good news of the Kingdom will be preached.' False worship silences it with rituals, like pagan mysteries, but the Bible commissions all believers (Acts 1:8). Historically, Jesus and his followers spread hope. Science can’t stop truth’s spread, proving its power. Preaching counters falsehood with Jehovah’s light.", description: "<b>Duty:</b> Spreads hope.", example: "<b>Matthew 24:14</b> - Good news will be preached.\n<b>Acts 1:8</b> - You will be witnesses.\n<b>Romans 10:14</b> - How will they hear without a preacher?" }
-        ];
-
-        const solidLessons = [
             { title: "51. What Is God’s Kingdom?", instruction: "God’s Kingdom is a heavenly government under Jesus Christ, destined to rule earth, as Daniel 2:44 promises: 'The God of heaven will set up a kingdom that will never be destroyed.' False worship trusts human rule or pagan deities, like Rome’s emperors, but the Bible foretells peace through Jehovah’s reign (Matthew 6:10). Historically, Daniel’s prophecy pinpointed its establishment in 1914, per Bible chronology. Science can’t rival its order—earth’s renewal—proving Jehovah’s purpose over worldly chaos.", description: "<b>Future:</b> Righteous government.", example: "<b>Daniel 2:44</b> - A kingdom that will never be destroyed.\n<b>Matthew 6:10</b> - Let your Kingdom come.\n<b>Revelation 11:15</b> - Kingdom of our Lord and his Christ." },
             { title: "52. When Will the End Come?", instruction: "The end arrives after specific signs, as Matthew 24:7 predicts: 'Nation will rise against nation, and kingdom against kingdom.' False worship ignores prophecy with vague hopes, like pagan oracles, but the Bible marks the last days with wars, famines, and preaching (2 Timothy 3:1-5). Historically, 1914 began these signs, aligning with Daniel’s timeline. Science notes global unrest, confirming Jehovah’s Word over human guesses.", description: "<b>History:</b> Signs match today.", example: "<b>Matthew 24:7</b> - Nation against nation.\n<b>2 Timothy 3:1-5</b> - Last days critical times.\n<b>Matthew 24:14</b> - Good news preached, then the end." },
             { title: "53. What Is Armageddon?", instruction: "Armageddon is Jehovah’s war against wickedness, as Revelation 16:14 describes: 'The war of the great day of God the Almighty.' False worship fears earth’s end, like apocalyptic myths, but the Bible targets evil systems, not the planet (Zephaniah 1:18). Historically, past judgments like the Flood prefigure it. Science can’t stop divine justice, proving Jehovah’s power over pagan doom tales.", description: "<b>Outcome:</b> Cleanses evil.", example: "<b>Revelation 16:16</b> - Gathered to Armageddon.\n<b>Revelation 19:11</b> - He judges and wages war.\n<b>Zephaniah 1:18</b> - Day of Jehovah’s fury." },
@@ -273,6 +270,20 @@
             { title: "100. What Is True Worship?", instruction: "True worship honors Jehovah alone in spirit and truth, as John 4:23 states: 'True worshippers will worship the Father with spirit and truth.' False worship mixes lies, like pagan rites, but the Bible demands purity—preaching, obedience, love (Matthew 24:14). Historically, it’s marked Jehovah’s people from Eden to now. Science can’t define it, but Jehovah’s Word does.", description: "<b>Fact:</b> Pure devotion.", example: "<b>John 4:23</b> - Worship with spirit and truth.\n<b>Matthew 24:14</b> - Preach the good news.\n<b>1 Peter 2:9</b> - Declare abroad the excellencies." }
         ];
 
+        const milkLessons = Array.from({ length: 50 }, (_, i) => ({
+            title: `Lesson ${i + 1}`,
+            instruction: `Instruction for Lesson ${i + 1}: Read and reflect on the key points.`,
+            description: `This is a basic lesson covering foundational concepts (Lesson ${i + 1}).`,
+            example: `Example ${i + 1}: "Trust in Jehovah with all your heart." - Proverbs 3:5`
+        }));
+
+        const solidLessons = Array.from({ length: 50 }, (_, i) => ({
+            title: `Lesson ${i + 51}`,
+            instruction: `Instruction for Lesson ${i + 51}: Apply these principles in daily life.`,
+            description: `This lesson builds on prior knowledge (Lesson ${i + 51}).`,
+            example: `Example ${i + 51}: "Love your neighbor as yourself." - Matthew 22:39`
+        }));
+
         const group1Lessons = milkLessons.slice(0, 25);   // 1-25
         const group2Lessons = milkLessons.slice(25, 50);  // 26-50
         const group3Lessons = solidLessons.slice(0, 25);  // 51-75
@@ -283,10 +294,6 @@
         let currentGroup3Lesson = 0;
         let currentGroup4Lesson = 0;
 
-        const group1Box = document.getElementById('group1Box');
-        const group2Box = document.getElementById('group2Box');
-        const group3Box = document.getElementById('group3Box');
-        const group4Box = document.getElementById('group4Box');
         const group1Content = document.getElementById('group1Content');
         const group2Content = document.getElementById('group2Content');
         const group3Content = document.getElementById('group3Content');
@@ -295,30 +302,6 @@
         const group2Squares = document.getElementById('group2Squares');
         const group3Squares = document.getElementById('group3Squares');
         const group4Squares = document.getElementById('group4Squares');
-
-        function toggleGroup1() {
-            group1Box.classList.toggle('active');
-            [group2Box, group3Box, group4Box].forEach(box => box.classList.remove('active'));
-            if (group1Box.classList.contains('active')) updateGroup1Lesson();
-        }
-
-        function toggleGroup2() {
-            group2Box.classList.toggle('active');
-            [group1Box, group3Box, group4Box].forEach(box => box.classList.remove('active'));
-            if (group2Box.classList.contains('active')) updateGroup2Lesson();
-        }
-
-        function toggleGroup3() {
-            group3Box.classList.toggle('active');
-            [group1Box, group2Box, group4Box].forEach(box => box.classList.remove('active'));
-            if (group3Box.classList.contains('active')) updateGroup3Lesson();
-        }
-
-        function toggleGroup4() {
-            group4Box.classList.toggle('active');
-            [group1Box, group2Box, group3Box].forEach(box => box.classList.remove('active'));
-            if (group4Box.classList.contains('active')) updateGroup4Lesson();
-        }
 
         function updateGroup1Lesson() {
             const lesson = group1Lessons[currentGroup1Lesson];
@@ -348,40 +331,102 @@
             document.getElementById('nextGroup4Btn').disabled = currentGroup4Lesson === group4Lessons.length - 1;
         }
 
-        function prevGroup1() { if (currentGroup1Lesson > 0) { currentGroup1Lesson--; updateGroup1Lesson(); } }
-        function nextGroup1() { if (currentGroup1Lesson < group1Lessons.length - 1) { currentGroup1Lesson++; updateGroup1Lesson(); } }
-        function prevGroup2() { if (currentGroup2Lesson > 0) { currentGroup2Lesson--; updateGroup2Lesson(); } }
-        function nextGroup2() { if (currentGroup2Lesson < group2Lessons.length - 1) { currentGroup2Lesson++; updateGroup2Lesson(); } }
-        function prevGroup3() { if (currentGroup3Lesson > 0) { currentGroup3Lesson--; updateGroup3Lesson(); } }
-        function nextGroup3() { if (currentGroup3Lesson < group3Lessons.length - 1) { currentGroup3Lesson++; updateGroup3Lesson(); } }
-        function prevGroup4() { if (currentGroup4Lesson > 0) { currentGroup4Lesson--; updateGroup4Lesson(); } }
-        function nextGroup4() { if (currentGroup4Lesson < group4Lessons.length - 1) { currentGroup4Lesson++; updateGroup4Lesson(); } }
+        function prevGroup1() {
+            if (currentGroup1Lesson > 0) {
+                currentGroup1Lesson--;
+                updateGroup1Lesson();
+            }
+        }
 
-        function createProgressSquares(container, lessons, type, startNum) {
+        function nextGroup1() {
+            if (currentGroup1Lesson < group1Lessons.length - 1) {
+                currentGroup1Lesson++;
+                updateGroup1Lesson();
+            }
+        }
+
+        function prevGroup2() {
+            if (currentGroup2Lesson > 0) {
+                currentGroup2Lesson--;
+                updateGroup2Lesson();
+            }
+        }
+
+        function nextGroup2() {
+            if (currentGroup2Lesson < group2Lessons.length - 1) {
+                currentGroup2Lesson++;
+                updateGroup2Lesson();
+            }
+        }
+
+        function prevGroup3() {
+            if (currentGroup3Lesson > 0) {
+                currentGroup3Lesson--;
+                updateGroup3Lesson();
+            }
+        }
+
+        function nextGroup3() {
+            if (currentGroup3Lesson < group3Lessons.length - 1) {
+                currentGroup3Lesson++;
+                updateGroup3Lesson();
+            }
+        }
+
+        function prevGroup4() {
+            if (currentGroup4Lesson > 0) {
+                currentGroup4Lesson--;
+                updateGroup4Lesson();
+            }
+        }
+
+        function nextGroup4() {
+            if (currentGroup4Lesson < group4Lessons.length - 1) {
+                currentGroup4Lesson++;
+                updateGroup4Lesson();
+            }
+        }
+
+        function createProgressSquares(container, lessons, startNum) {
             container.innerHTML = '';
             lessons.forEach((_, index) => {
                 const square = document.createElement('div');
-                square.className = `${type}-square`;
+                square.className = 'group-square';
                 square.textContent = startNum + index;
                 square.onclick = () => {
-                    if (type === 'milk') {
-                        if (startNum === 1) currentGroup1Lesson = index;
-                        else currentGroup2Lesson = index;
-                        startNum === 1 ? updateGroup1Lesson() : updateGroup2Lesson();
+                    if (container === group1Squares) {
+                        currentGroup1Lesson = index;
+                        updateGroup1Lesson();
+                    } else if (container === group2Squares) {
+                        currentGroup2Lesson = index;
+                        updateGroup2Lesson();
+                    } else if (container === group3Squares) {
+                        currentGroup3Lesson = index;
+                        updateGroup3Lesson();
                     } else {
-                        if (startNum === 51) currentGroup3Lesson = index;
-                        else currentGroup4Lesson = index;
-                        startNum === 51 ? updateGroup3Lesson() : updateGroup4Lesson();
+                        currentGroup4Lesson = index;
+                        updateGroup4Lesson();
                     }
                 };
                 container.appendChild(square);
             });
         }
 
-        createProgressSquares(group1Squares, group1Lessons, 'milk', 1);
-        createProgressSquares(group2Squares, group2Lessons, 'milk', 26);
-        createProgressSquares(group3Squares, group3Lessons, 'solid', 51);
-        createProgressSquares(group4Squares, group4Lessons, 'solid', 76);
+        createProgressSquares(group1Squares, group1Lessons, 1);
+        createProgressSquares(group2Squares, group2Lessons, 26);
+        createProgressSquares(group3Squares, group3Lessons, 51);
+        createProgressSquares(group4Squares, group4Lessons, 76);
+        updateGroup1Lesson();
+        updateGroup2Lesson();
+        updateGroup3Lesson();
+        updateGroup4Lesson();
+
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+            const button = document.querySelector('.mode-toggle');
+            button.textContent = document.body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        }
     </script>
 </body>
 </html>
