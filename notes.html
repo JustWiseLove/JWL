@@ -212,7 +212,12 @@
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             container.innerHTML = '';
             
-            articlesToShow.forEach(article => {
+            // Sort articles alphabetically by title
+            const sortedArticles = [...articlesToShow].sort((a, b) => 
+                a.title.localeCompare(b.title)
+            );
+            
+            sortedArticles.forEach(article => {
                 const isOpen = openArticles.has(article.id);
                 const articleDiv = document.createElement('div');
                 articleDiv.className = 'article';
