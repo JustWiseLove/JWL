@@ -115,7 +115,7 @@ header h1 a:active {
 
 /* Styling for featured scripture blocks */
 .featured-scripture {
-    background-color: #f0fff0; /* Light green background in light mode */
+    background-color: #ffe868; /* Light green background in light mode */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
     padding: 1.5rem; /* Inner spacing */
@@ -147,7 +147,7 @@ body.dark-mode .featured-scripture p {
 
 /* Base card styling */
 .card {
-    background-color: #00cc00; /* Light green background in light mode */
+    background-color: #ffe868; /* Light green background in light mode */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
     overflow: hidden; /* Prevents content overflow */
@@ -219,7 +219,7 @@ body.dark-mode .card-content p {
     font-size: 0.95rem; /* Slightly smaller text */
     margin: 1rem 0; /* Vertical spacing */
     text-align: center; /* Centered text */
-    background-color: #e6ffe6; /* Light green background */
+    background-color: #ffe868; /* Light green background */
     padding: 0.5rem; /* Inner padding */
     border-radius: 4px; /* Rounded corners */
 }
@@ -232,7 +232,7 @@ body.dark-mode .card-content .scripture {
 
 /* Links within card content */
 .card-content a {
-    color: #00cc00; /* Green link color */
+    color: #FFD800; /* Green link color */
     text-decoration: none; /* No underline */
     font-weight: bold; /* Bold text */
     transition: color 0.3s; /* Smooth color change */
@@ -279,7 +279,7 @@ details summary {
 /* Article subheadings */
 .article h2 {
     font-size: 1.8rem; /* Slightly smaller than h1 */
-    color: #00cc00; /* Green color */
+    color: #FFD800; /* Green color */
     margin: 1.5rem 0 1rem; /* Vertical spacing */
 }
 
@@ -302,7 +302,7 @@ body.dark-mode .article p {
     font-size: 0.95rem; /* Slightly smaller */
     margin: 1rem 0; /* Vertical spacing */
     text-align: center; /* Centered */
-    background-color: #e6ffe6; /* Light green background */
+    background-color: #ffe868; /* Light green background */
     padding: 0.5rem; /* Inner padding */
     border-radius: 4px; /* Rounded corners */
 }
@@ -338,7 +338,7 @@ body.light-mode .button-section {
 
 /* Study Guide button */
 .btn-study {
-    background-color: #00cc00; /* Green background */
+    background-color: #FFD800; /* Green background */
     color: #1a1a1a; /* Dark gray text */
     padding: 12px 25px; /* Vertical and horizontal padding */
     margin: 10px; /* Spacing around */
