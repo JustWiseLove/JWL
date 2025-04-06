@@ -11,7 +11,6 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
     <style>
-        /* Additional styles specific to the notes app */
         .input-section {
             max-width: 1200px;
             margin: 2rem auto;
@@ -46,10 +45,13 @@
             border-radius: 3px;
         }
         body.dark-mode .highlight {
-            color: #000000; /* Black text in dark mode */
+            color: #000000;
         }
         .article {
             position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow at bottom */
+            padding-bottom: 1rem; /* Extra padding to avoid content overlap with shadow */
+            margin-bottom: 2rem; /* Ensure space between articles */
         }
         .article-footer {
             display: flex;
@@ -57,16 +59,21 @@
             align-items: center;
             margin-top: 1rem;
         }
-        .edit-link {
+        .edit-link, .open-link {
             cursor: pointer;
             color: #00cc00;
             text-decoration: underline;
         }
-        body.dark-mode .edit-link {
+        body.dark-mode .edit-link,
+        body.dark-mode .open-link {
             color: #00cc00;
         }
-        .edit-link:hover {
+        .edit-link:hover,
+        .open-link:hover {
             color: #ffd800;
+        }
+        .notes-preview {
+            overflow: hidden;
         }
     </style>
 </head>
@@ -95,6 +102,7 @@
     <script>
         let articles = JSON.parse(localStorage.getItem('articles')) || [];
         let editingArticleId = null;
+        let openArticles = new Set();
         displayArticles(articles);
 
         function toggleMode() {
@@ -151,10 +159,52 @@
             }
         }
 
+        function toggleArticle(id) {
+            if (openArticles.has(id)) {
+                openArticles.delete(id);
+            } else {
+                openArticles.add(id);
+            }
+            displayArticles(articles);
+        }
+
         function highlightText(text, searchTerm) {
             if (!searchTerm) return text;
             const regex = new RegExp(`(${searchTerm})`, 'gi');
             return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        function formatNotes(notes) {
+            return notes.replace(/\n/g, '<br>');
+        }
+
+        function getPreviewText(notes, searchTerm, isOpen) {
+            const maxPreviewLength = 85;
+            const contextLength = 30;
+
+            let formattedNotes = formatNotes(notes);
+
+            if (isOpen) {
+                return highlightText(formattedNotes, searchTerm);
+            }
+
+            if (searchTerm) {
+                const lowerNotes = notes.toLowerCase();
+                const lowerSearch = searchTerm.toLowerCase();
+                const index = lowerNotes.indexOf(lowerSearch);
+                if (index !== -1) {
+                    const start = Math.max(0, index - contextLength);
+                    const end = Math.min(notes.length, index + searchTerm.length + contextLength);
+                    let preview = notes.substring(start, end);
+                    if (start > 0) preview = '...' + preview;
+                    if (end < notes.length) preview += '...';
+                    return highlightText(formatNotes(preview), searchTerm);
+                }
+            }
+
+            return notes.length > maxPreviewLength 
+                ? highlightText(formatNotes(notes.substring(0, maxPreviewLength)) + '...', searchTerm) 
+                : highlightText(formattedNotes, searchTerm);
         }
 
         function displayArticles(articlesToShow) {
@@ -163,18 +213,22 @@
             container.innerHTML = '';
             
             articlesToShow.forEach(article => {
+                const isOpen = openArticles.has(article.id);
                 const articleDiv = document.createElement('div');
                 articleDiv.className = 'article';
                 const highlightedTitle = highlightText(article.title, searchTerm);
-                const highlightedNotes = highlightText(article.notes, searchTerm);
-               
+                const previewNotes = getPreviewText(article.notes, searchTerm, isOpen);
+                const showOpenLink = article.notes.length > 85 || (searchTerm && !isOpen);
 
- articleDiv.innerHTML = `
+                articleDiv.innerHTML = `
                     <h2>${highlightedTitle}</h2>
-                    <p>${highlightedNotes}</p>
+                    <p class="notes-preview">${previewNotes}</p>
                     <div class="article-footer">
                         <small>Created: ${article.date}</small>
-                        <span class="edit-link" onclick="editArticle(${article.id})">Edit</span>
+                        <div>
+                            ${showOpenLink ? `<span class="open-link" onclick="toggleArticle(${article.id})">${isOpen ? 'Close' : 'Open'}</span>` : ''}
+                            <span class="edit-link" onclick="editArticle(${article.id})">Edit</span>
+                        </div>
                     </div>
                 `;
                 container.appendChild(articleDiv);
