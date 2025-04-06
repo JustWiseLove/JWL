@@ -3,251 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Just Wise Love</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts link for Audiowide -->
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"> <!-- Moved up, Audiowide import -->
+    <title>JustWiseLove</title>
     <style>
-        .input-section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #1a1a1a; color: #ffffff; line-height: 1.6; }
+        header { background-color: #1a1a1a; padding: 20px; text-align: center; }
+        .logo {
+            font-family: 'Audiowide', sans-serif !important; /* Force Audiowide with !important */
+            font-size: 30px;
+            font-weight: bold;
+            color: #FFD800;
         }
-        input, textarea {
-            width: 100%;
-            margin: 10px 0;
-            padding: 8px;
-            border: 1px solid #333333;
-            border-radius: 4px;
-            background-color: #ffffff;
-            color: #333333;
-        }
-        body.dark-mode input,
-        body.dark-mode textarea {
-            background-color: #333333;
-            color: #e6e6e6;
-            border-color: #e6e6e6;
-        }
-        .search-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        #searchInput {
-            width: 100%;
-        }
-        .highlight {
-            background-color: gold;
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
-        body.dark-mode .highlight {
-            color: #000000;
-        }
-        .article {
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow at bottom */
-            padding-bottom: 1rem; /* Extra padding to avoid content overlap with shadow */
-            margin-bottom: 2rem; /* Ensure space between articles */
-        }
-        .article-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-        }
-        .edit-link, .open-link {
-            cursor: pointer;
-            color: #00cc00;
-            text-decoration: underline;
-        }
-        body.dark-mode .edit-link,
-        body.dark-mode .open-link {
-            color: #00cc00;
-        }
-        .edit-link:hover,
-        .open-link:hover {
-            color: #ffd800;
-        }
-        .notes-preview {
-            overflow: hidden;
+        .logo a { text-decoration: none; color: inherit; }
+        .logo a:hover { color: #00FF00; }
+        .main-section { margin: 20px auto; max-width: 800px; padding: 4px; background-color: #000000; border-radius: 10px; }
+        .article { padding: 15px; text-align: center; }
+        .article h1 { font-size: 2rem; color: #FFD800; text-align: center; margin-bottom: 20px; }
+        .article h2 { font-size: 1.5rem; color: #00FF00; margin: 20px 0 10px; text-align: center; }
+        .article p { font-size: 1rem; color: #ddd; margin-bottom: 15px; padding: 0 10px; text-align: left; }
+        .scripture { margin: 15px auto; padding: 15px; background-color: #1a1a1a; border-radius: 8px; font-size: 1rem; border-left: 4px solid #FFD800; max-width: 600px; text-align: left; }
+        .scripture cite { display: block; margin-top: 10px; color: #00FF00; font-style: normal; }
+        .buttons { text-align: center; margin: 25px 0; }
+        .buttons h3 { font-size: 1.3rem; color: #00FF00; margin-bottom: 15px; }
+        .btn-reason, .btn-lesson { padding: 12px 25px; margin: 10px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1rem; text-decoration: none; display: inline-block; transition: transform 0.2s; }
+        .btn-reason { background-color: #FFD800; color: #1a1a1a; }
+        .btn-lesson { background-color: #00FF00; color: #1a1a1a; }
+        .btn-reason:hover, .btn-lesson:hover { transform: scale(1.05); }
+        footer { background-color: #1a1a1a; color: #00FF00; text-align: center; padding: 15px; font-size: 0.9rem; }
+        footer a { color: #FFD800; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .footer-logo { font-size: 0.9rem; font-weight: bold; }
+        .footer-logo .trus, .footer-logo .ruth { color: #FFD800; }
+        .footer-logo .tnt { color: #00FF00; }
+        @media (max-width: 768px) {
+            .logo { font-size: 1.5rem; }
+            .main-section { padding: 4px; margin: 10px; }
+            .article h1 { font-size: 1.5rem; }
+            .article h2 { font-size: 1.2rem; }
+            .article p { font-size: 0.9rem; }
+            .btn-reason, .btn-lesson { font-size: 1rem; padding: 10px 20px; }
+            .scripture { font-size: 0.9rem; max-width: 90%; }
+            .buttons h3 { font-size: 1.1rem; }
         }
     </style>
 </head>
-<body class="dark-mode">
+<body>
     <header>
-        <h1><a href="home.html">NOTES</a></h1>
-        <button class="mode-toggle" onclick="toggleMode()">Toggle Light Mode</button>
+        <div class="logo"><a href="home.html">JWL</a></div>
     </header>
+    <section class="main-section">
+        <div class="article">
+            <h1>Buy Truth and Never Sell It</h1>
+            
+            <h2>Truth Is Priceless</h2>
+            <p>Proverbs 23:23 urges us to "buy truth and never sell it." Truth from Jehovah is a treasure worth more than gold. It’s not a casual suggestion—it’s a command to seek what lasts. This truth isn’t found in human ideas or shifting opinions. It’s hidden in God’s Word, waiting for those who dig deep. Crave real answers? Hunt for it now, because it unlocks everlasting life.</p>
+            <div class="scripture">
+                “Buy truth and do not sell it—wisdom and discipline and understanding.” 
+                <cite>—Proverbs 23:23</cite>
+            </div>
 
-    <div class="input-section">
-        <input type="text" id="titleInput" placeholder="Enter article title">
-        <textarea id="notesInput" rows="10" placeholder="Enter your notes"></textarea>
-        <button id="saveBtn" class="btn-study" onclick="saveOrUpdateArticle()">Save Article</button>
-    </div>
-    
-    <div class="search-section">
-        <input type="text" id="searchInput" placeholder="Search articles..." onkeyup="searchArticles()">
-    </div>
-    
-    <div id="articlesContainer"></div>
+            <h2>The Source of Truth</h2>
+            <p>Jehovah is the God of truth. His Word, the Bible, is where we find it. Jesus said, “Your word is truth” (John 17:17). Unlike the world’s lies that fade, Jehovah’s truth endures forever. It’s not cheap—it costs effort, time, and humility to uncover. But once you grasp it, no price is too high. Search for it like hidden treasure, because it leads to life.</p>
+            <div class="scripture">
+                “Sanctify them by means of the truth; your word is truth.” 
+                <cite>—John 17:17</cite>
+            </div>
 
+            <h2>Digging for Treasure</h2>
+            <p>Finding truth takes work. Proverbs 2:4-5 says to seek it “as for hidden treasures.” That means studying the Bible, not just skimming it. Jehovah reveals his purpose—his Kingdom, the end of suffering, a paradise earth—to those who search. The world offers distractions, but they’re worthless compared to this. Dig in now; the reward is knowing Jehovah and his Son.</p>
+            <div class="scripture">
+                “If you search for it as for silver, and you seek it as for hidden treasures, then you will understand the fear of Jehovah, and you will find the knowledge of God.” 
+                <cite>—Proverbs 2:4-5</cite>
+            </div>
+
+            <h2>Never Sell It</h2>
+            <p>Once you have Jehovah’s truth, hold it tight. The world tempts us to trade it for money, approval, or ease. But Jesus warned, “What will a man give in exchange for his life?” (Matthew 16:26). Truth is your lifeline to God’s promises—don’t let it go. It’s the foundation for living with purpose now and forever.</p>
+            <div class="scripture">
+                “For what will it benefit a man if he gains the whole world but loses his own life? Or what will a man give in exchange for his life?” 
+                <cite>—Matthew 16:26</cite>
+            </div>
+
+            <h2>The Reward of Truth</h2>
+            <p>Truth isn’t just knowledge—it’s power. It frees you from lies and fear. It shows the way to everlasting life. Jesus said, “This means everlasting life, their taking in knowledge of you, the only true God, and of the one whom you sent, Jesus Christ” (John 17:3). Buy it now. Study. Pray. Act. Jehovah’s truth is the treasure that never fails.</p>
+            <div class="scripture">
+                “This means everlasting life, their taking in knowledge of you, the only true God, and of the one whom you sent, Jesus Christ.” 
+                <cite>—John 17:3</cite>
+            </div>
+        </div>
+        <div class="buttons">
+            <h3>Treasure:</h3>
+            <a href="search.html" class="btn-lesson">Questions</a>
+            <a href="study.html" class="btn-reason">Study Guide</a>
+            <a href="topic.html" class="btn-reason">Topic Index</a>
+            <a href="truth.html" class="btn-lesson">Advanced</a>
+        </div>
+    </section>
     <footer>
-        <p>© 2025 Just Wise Love. All rights reserved.</p>
+        <p><span class="footer-logo"><span class="trus">Just</span><span class="tnt">Wise</span><span class="ruth">Love</span></span></p>
+        <p>Copyright © 2025 JustWiseLove. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        let articles = JSON.parse(localStorage.getItem('articles')) || [];
-        let editingArticleId = null;
-        let openArticles = new Set();
-        displayArticles(articles);
-
-        function toggleMode() {
-            document.body.classList.toggle('dark-mode');
-            const modeButton = document.querySelector('.mode-toggle');
-            modeButton.textContent = document.body.classList.contains('dark-mode') 
-                ? 'Toggle Light Mode' 
-                : 'Toggle Dark Mode';
-        }
-
-        function saveOrUpdateArticle() {
-            const title = document.getElementById('titleInput').value;
-            const notes = document.getElementById('notesInput').value;
-            const saveBtn = document.getElementById('saveBtn');
-            
-            if (title && notes) {
-                if (editingArticleId) {
-                    const articleIndex = articles.findIndex(a => a.id === editingArticleId);
-                    articles[articleIndex] = {
-                        ...articles[articleIndex],
-                        title: title,
-                        notes: notes,
-                        date: new Date().toLocaleString()
-                    };
-                    editingArticleId = null;
-                    saveBtn.textContent = 'Save Article';
-                    saveBtn.style.backgroundColor = '#00cc00';
-                } else {
-                    const article = {
-                        id: Date.now(),
-                        title: title,
-                        notes: notes,
-                        date: new Date().toLocaleString()
-                    };
-                    articles.push(article);
-                }
-                
-                localStorage.setItem('articles', JSON.stringify(articles));
-                document.getElementById('titleInput').value = '';
-                document.getElementById('notesInput').value = '';
-                displayArticles(articles);
-            }
-        }
-
-        function editArticle(id) {
-            const article = articles.find(a => a.id === id);
-            if (article) {
-                document.getElementById('titleInput').value = article.title;
-                document.getElementById('notesInput').value = article.notes;
-                editingArticleId = id;
-                const saveBtn = document.getElementById('saveBtn');
-                saveBtn.textContent = 'Update Article';
-                saveBtn.style.backgroundColor = '#FFA500';
-            }
-        }
-
-        function toggleArticle(id) {
-            if (openArticles.has(id)) {
-                openArticles.delete(id);
-            } else {
-                openArticles.add(id);
-            }
-            displayArticles(articles);
-        }
-
-        function highlightText(text, searchTerm) {
-            if (!searchTerm) return text;
-            const regex = new RegExp(`(${searchTerm})`, 'gi');
-            return text.replace(regex, '<span class="highlight">$1</span>');
-        }
-
-        function formatNotes(notes) {
-            return notes.replace(/\n/g, '<br>');
-        }
-
-        function getPreviewText(notes, searchTerm, isOpen) {
-            const maxPreviewLength = 85;
-            const contextLength = 30;
-
-            let formattedNotes = formatNotes(notes);
-
-            if (isOpen) {
-                return highlightText(formattedNotes, searchTerm);
-            }
-
-            if (searchTerm) {
-                const lowerNotes = notes.toLowerCase();
-                const lowerSearch = searchTerm.toLowerCase();
-                const index = lowerNotes.indexOf(lowerSearch);
-                if (index !== -1) {
-                    const start = Math.max(0, index - contextLength);
-                    const end = Math.min(notes.length, index + searchTerm.length + contextLength);
-                    let preview = notes.substring(start, end);
-                    if (start > 0) preview = '...' + preview;
-                    if (end < notes.length) preview += '...';
-                    return highlightText(formatNotes(preview), searchTerm);
-                }
-            }
-
-            return notes.length > maxPreviewLength 
-                ? highlightText(formatNotes(notes.substring(0, maxPreviewLength)) + '...', searchTerm) 
-                : highlightText(formattedNotes, searchTerm);
-        }
-
-        function displayArticles(articlesToShow) {
-            const container = document.getElementById('articlesContainer');
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            container.innerHTML = '';
-            
-            // Sort articles alphabetically by title
-            const sortedArticles = [...articlesToShow].sort((a, b) => 
-                a.title.localeCompare(b.title)
-            );
-            
-            sortedArticles.forEach(article => {
-                const isOpen = openArticles.has(article.id);
-                const articleDiv = document.createElement('div');
-                articleDiv.className = 'article';
-                const highlightedTitle = highlightText(article.title, searchTerm);
-                const previewNotes = getPreviewText(article.notes, searchTerm, isOpen);
-                const showOpenLink = article.notes.length > 85 || (searchTerm && !isOpen);
-
-                articleDiv.innerHTML = `
-                    <h2>${highlightedTitle}</h2>
-                    <p class="notes-preview">${previewNotes}</p>
-                    <div class="article-footer">
-                        <small>Created: ${article.date}</small>
-                        <div>
-                            ${showOpenLink ? `<span class="open-link" onclick="toggleArticle(${article.id})">${isOpen ? 'Close' : 'Open'}</span>` : ''}
-                            <span class="edit-link" onclick="editArticle(${article.id})">Edit</span>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(articleDiv);
-            });
-        }
-
-        function searchArticles() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filteredArticles = articles.filter(article => 
-                article.title.toLowerCase().includes(searchTerm) || 
-                article.notes.toLowerCase().includes(searchTerm)
-            );
-            displayArticles(filteredArticles);
-        }
-    </script>
 </body>
 </html>
