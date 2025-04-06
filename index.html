@@ -9,15 +9,13 @@
         body { background-color: #1a1a1a; color: #ffffff; line-height: 1.6; }
         header { background-color: #1a1a1a; padding: 20px; text-align: center; }
         .logo {
-         font-family: 'Monoton', monospace;
-         font-size: 2.5rem;
-         font-weight: bold;
-}
-        .logo a { text-decoration: none; }
-        .logo .just, .logo .love { color: #FFD800; }
-        .logo .wise { color: #00FF00; }
-        .logo a:hover .just, .logo a:hover .love { color: #00FF00; }
-        .logo a:hover .wise { color: #FFD800; }
+            font-family: 'Audiowide', sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            color: #FFD800;
+        }
+        .logo a { text-decoration: none; color: inherit; }
+        .logo a:hover { color: #00FF00; }
         .main-section { margin: 20px auto; max-width: 800px; padding: 4px; background-color: #000000; border-radius: 10px; }
         .article { padding: 15px; text-align: center; }
         .article h1 { font-size: 2rem; color: #FFD800; text-align: center; margin-bottom: 20px; }
@@ -38,7 +36,7 @@
         .footer-logo .trus, .footer-logo .ruth { color: #FFD800; }
         .footer-logo .tnt { color: #00FF00; }
         @media (max-width: 768px) {
-            .logo { font-size: 2rem; }
+            .logo { font-size: 1.5rem; }
             .main-section { padding: 4px; margin: 10px; }
             .article h1 { font-size: 1.5rem; }
             .article h2 { font-size: 1.2rem; }
@@ -48,10 +46,11 @@
             .buttons h3 { font-size: 1.1rem; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="logo"><a href="home.html"><span class="just">Just </span><span class="wise">Wise </span><span class="love">Love</span></a></div>
+        <div class="logo"><a href="home.html">JWL</a></div>
     </header>
     <section class="main-section">
         <div class="article">
