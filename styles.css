@@ -152,7 +152,7 @@ body.dark-mode .featured-scripture p {
 
 /* Base card styling */
 .card {
-    background-color: #ffe868; /* Ligh gold background in light mode */
+    background-color: #ffe868; /* Light gold background in light mode */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
     overflow: hidden; /* Prevents content overflow */
@@ -455,4 +455,59 @@ p {
     .container {
         grid-template-columns: 1fr; /* Single column */
     }
+}
+
+/* ========================================================================= */
+/* Additional Styles for Lesson Header (From HTML) */
+/* ========================================================================= */
+
+.lesson-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.lesson-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+    color: #333333;
+}
+
+body.dark-mode .lesson-title {
+    color: #e6e6e6;
+}
+
+/* ========================================================================= */
+/* Numbered Navigation Squares (From HTML) */
+/* ========================================================================= */
+
+.numbered-navigation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.numbered-navigation a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fff;
+    color: #1a1a1a;
+    border: 2px solid #ffd800;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.numbered-navigation a:hover {
+    background-color: #ffd800;
+    color: #1a1a1a;
 }
