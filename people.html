@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People of the Bible - Just Wise Love</title>
+    <!-- Google Fonts link for Audiowide -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            background-color: #fff;
+            color: #1a1a1a;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #000; /* Updated header background to black */
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Audiowide', sans-serif;
+            font-size: 24px;
+        }
+
+        header h1 a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .mode-toggle {
+            padding: 10px 20px;
+            background-color: #ffd700;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .featured-section {
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: #ffd700;
+            color: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card-header {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .card-content {
+            padding: 20px;
+            background-color: #fff;
+            color: #1a1a1a;
+            border-radius: 5px;
+        }
+
+        /* Lesson Header and Buttons Layout */
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .lesson-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        /* Gold Buttons for Last and Next */
+        .gold-button {
+            background-color: #ffd700;
+            color: #1a1a1a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .gold-button:hover {
+            background-color: #e6c200;
+        }
+
+        .lesson-section {
+            margin-bottom: 15px;
+        }
+
+        .fact {
+            font-style: italic;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        /* Numbered Navigation Squares */
+        .numbered-navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .numbered-navigation a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #fff;
+            color: #1a1a1a;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .numbered-navigation a:hover {
+            background-color: #ffd700;
+            color: #1a1a1a;
+        }
+
+        .article {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .scripture {
+            font-style: italic;
+            color: #ffd700;
+        }
+
+        .button-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-study, .btn-topic {
+            padding: 10px 20px;
+            background-color: #ffd700;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #FFD800; /* Updated footer background to gold */
+            color: #000; /* Updated footer text to black */
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <h1><a href="notes.html">JWL</a></h1>
+        <button class="mode-toggle" onclick="toggleMode()">Toggle Light Mode</button>
+    </header>
+
+    <div class="container">
+        <div class="featured-section">
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">People of the Bible</summary>
+                    <div class="card-content" id="lesson-content">
+                        <!-- Lesson 1 -->
+                        <div id="lesson-1" class="lesson">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>1. Jehovah - The Almighty God, Creator of all things, who revealed Himself as the one true God to His people (Genesis 1:1; Exodus 3:14). He is the source of all life and the one who establishes covenants with humanity (Psalm 83:18).</p>
+                        </div>
+                        <!-- Lesson 2 -->
+                        <div id="lesson-2" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>2. Jesus Christ - The Son of God, sent to earth to redeem humanity through His sacrificial death (John 3:16; Matthew 16:16). He is the appointed King of God’s Kingdom and the mediator between God and man (1 Timothy 2:5).</p>
+                        </div>
+                        <!-- Lesson 3 -->
+                        <div id="lesson-3" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>3. Moses - The leader chosen by God to deliver the Israelites from Egypt and receive the Law at Mount Sinai (Exodus 3:10; Deuteronomy 34:10). He is a mediator of the covenant between God and Israel (Exodus 20:1-17).</p>
+                        </div>
+                        <!-- Lesson 4 -->
+                        <div id="lesson-4" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>4. Abraham - The father of many nations, known for his faith in God’s promise to make his descendants a great nation (Genesis 12:1-3; Hebrews 11:8). God made a covenant with him, promising the land of Canaan (Genesis 17:8).</p>
+                        </div>
+                        <!-- Lesson 5 -->
+                        <div id="lesson-5" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>5. David - A king after God’s own heart, who ruled Israel and was an ancestor of Jesus (1 Samuel 16:13; Acts 13:22). He wrote many Psalms and established Jerusalem as the center of worship (2 Samuel 5:9).</p>
+                        </div>
+                        <!-- Lesson 6 -->
+                        <div id="lesson-6" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>6. Noah - A righteous man who built the ark as God commanded, preserving his family and animals during the Flood (Genesis 6:9; Hebrews 11:7). God made a covenant with him, symbolized by the rainbow (Genesis 9:13).</p>
+                        </div>
+                        <!-- Lesson 7 -->
+                        <div id="lesson-7" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>7. Paul - An apostle who spread the good news to the Gentiles, writing many letters in the New Testament (Acts 9:15; Romans 1:1). He endured great hardships to preach Christ (2 Corinthians 11:23-27).</p>
+                        </div>
+                        <!-- Lesson 8 -->
+                        <div id="lesson-8" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>8. Peter - A disciple of Jesus, known as the "rock" on which Christ would build His church (Matthew 16:18; John 21:15-17). He was a leader among the apostles and preached at Pentecost (Acts 2:14).</p>
+                        </div>
+                        <!-- Lesson 9 -->
+                        <div id="lesson-9" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>9. Solomon - David’s son, known for his wisdom and building the first temple in Jerusalem (1 Kings 3:12; 1 Kings 6:1). He wrote Proverbs, Ecclesiastes, and Song of Solomon (Proverbs 1:1).</p>
+                        </div>
+                        <!-- Lesson 10 -->
+                        <div id="lesson-10" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>10. Isaiah - A prophet who foretold the coming of the Messiah and God’s Kingdom (Isaiah 7:14; Isaiah 9:6-7). His prophecies encouraged Judah during times of distress (Isaiah 1:1).</p>
+                        </div>
+                        <!-- Lesson 11 -->
+                        <div id="lesson-11" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>11. John the Baptist - The forerunner of Jesus, who prepared the way by preaching repentance and baptizing (Matthew 3:1-3; Luke 1:17). He baptized Jesus in the Jordan River (Matthew 3:13-16).</p>
+                        </div>
+                        <!-- Lesson 12 -->
+                        <div id="lesson-12" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>12. Mary (Mother of Jesus) - The virgin chosen to give birth to Jesus, showing great faith and humility (Luke 1:30-38; Matthew 1:18). She was present at the crucifixion (John 19:25).</p>
+                        </div>
+                        <!-- Lesson 13 -->
+                        <div id="lesson-13" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>13. Joseph (Jesus’ Earthly Father) - The carpenter who accepted Mary and raised Jesus as his own, protecting the family as God directed (Matthew 1:20-24; Luke 2:16). He took them to Egypt to escape Herod (Matthew 2:13-14).</p>
+                        </div>
+                        <!-- Lesson 14 -->
+                        <div id="lesson-14" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>14. Adam - The first man created by God, who lived in Eden but fell into sin, bringing death to humanity (Genesis 2:7; Genesis 3:17-19). His disobedience affected all his descendants (Romans 5:12).</p>
+                        </div>
+                        <!-- Lesson 15 -->
+                        <div id="lesson-15" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>15. Eve - The first woman, created as a companion for Adam, who was deceived by the serpent and ate the forbidden fruit (Genesis 2:22; Genesis 3:6). She is the mother of all living (Genesis 3:20).</p>
+                        </div>
+                        <!-- Lesson 16 -->
+                        <div id="lesson-16" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>16. Daniel - A prophet who served in Babylon, known for his faithfulness and interpreting dreams (Daniel 2:19-23; Daniel 6:10). He survived the lions’ den through God’s protection (Daniel 6:22).</p>
+                        </div>
+                        <!-- Lesson 17 -->
+                        <div id="lesson-17" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>17. Elijah - A prophet who challenged the prophets of Baal and demonstrated God’s power on Mount Carmel (1 Kings 18:36-39). He was taken to heaven in a whirlwind (2 Kings 2:11).</p>
+                        </div>
+                        <!-- Lesson 18 -->
+                        <div id="lesson-18" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>18. Elisha - Elijah’s successor, who performed miracles and served as a prophet in Israel (2 Kings 2:9-12; 2 Kings 4:32-35). He received a double portion of Elijah’s spirit (2 Kings 2:9).</p>
+                        </div>
+                        <!-- Lesson 19 -->
+                        <div id="lesson-19" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>19. John (the Apostle) - A disciple of Jesus who wrote the Gospel of John, three epistles, and Revelation (John 13:23; Revelation 1:1). He was exiled to Patmos (Revelation 1:9).</p>
+                        </div>
+                        <!-- Lesson 20 -->
+                        <div id="lesson-20" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>20. Jeremiah - A prophet who warned Judah of its impending destruction and wrote the book of Lamentations (Jeremiah 1:5; Lamentations 1:1). He faced much opposition (Jeremiah 20:7-9).</p>
+                        </div>
+                        <!-- Lesson 21 -->
+                        <div id="lesson-21" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>21. Joshua - Moses’ successor who led the Israelites into the Promised Land, conquering Jericho (Joshua 1:1-3; Joshua 6:20). He was a faithful servant of God (Joshua 24:15).</p>
+                        </div>
+                        <!-- Lesson 22 -->
+                        <div id="lesson-22" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>22. Samuel - A prophet and judge who anointed Saul and David as kings of Israel (1 Samuel 3:20; 1 Samuel 16:13). He served as a priest and seer (1 Samuel 9:9).</p>
+                        </div>
+                        <!-- Lesson 23 -->
+                        <div id="lesson-23" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>23. Isaac - Abraham’s son, the child of promise through whom God’s covenant continued (Genesis 21:1-3; Genesis 26:4). He was nearly sacrificed by Abraham (Genesis 22:9-12).</p>
+                        </div>
+                        <!-- Lesson 24 -->
+                        <div id="lesson-24" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>24. Jacob - Isaac’s son, who became Israel and fathered the twelve tribes (Genesis 32:28; Genesis 35:10). He wrestled with an angel and received a blessing (Genesis 32:24-29).</p>
+                        </div>
+                        <!-- Lesson 25 -->
+                        <div id="lesson-25" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>25. Joseph (Son of Jacob) - Sold into slavery but became a ruler in Egypt, saving his family during a famine (Genesis 37:28; Genesis 41:41). He forgave his brothers (Genesis 50:20).</p>
+                        </div>
+                        <!-- Lesson 26 -->
+                        <div id="lesson-26" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class l="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>26. Esther - A Jewish queen who risked her life to save her people from genocide in Persia (Esther 4:14; Esther 7:3-4). Her courage led to their deliverance (Esther 8:17).</p>
+                        </div>
+                        <!-- Lesson 27 -->
+                        <div id="lesson-27" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>27. Ruth - A Moabite who showed loyalty to her mother-in-law Naomi and became an ancestor of David (Ruth 1:16; Ruth 4:17). Her story highlights faithfulness (Ruth 2:11).</p>
+                        </div>
+                        <!-- Lesson 28 -->
+                        <div id="lesson-28" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>28. Deborah - A prophetess and judge who led Israel to victory against the Canaanites (Judges 4:4; Judges 4:14). She was a wise and courageous leader (Judges 5:7).</p>
+                        </div>
+                        <!-- Lesson 29 -->
+                        <div id="lesson-29" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>29. Gideon - A judge who led a small army to defeat the Midianites with God’s help (Judges 6:11-14; Judges 7:7). He initially doubted but grew in faith (Judges 6:36-40).</p>
+                        </div>
+                        <!-- Lesson 30 -->
+                        <div id="lesson-30" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>30. Samson - A judge with great strength who fought the Philistines but struggled with personal weaknesses (Judges 13:5; Judges 16:17). He died while destroying a Philistine temple (Judges 16:30).</p>
+                        </div>
+                        <!-- Lesson 31 -->
+                        <div id="lesson-31" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>31. Job - A righteous man who endured immense suffering but remained faithful to God (Job 1:1; Job 1:21). God restored his fortunes after his trials (Job 42:10).</p>
+                        </div>
+                        <!-- Lesson 32 -->
+                        <div id="lesson-32" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>32. Nehemiah - A governor who led the rebuilding of Jerusalem’s walls despite opposition (Nehemiah 2:17; Nehemiah 6:15). He also restored worship practices (Nehemiah 8:8).</p>
+                        </div>
+                        <!-- Lesson 33 -->
+                        <div id="lesson-33" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>33. Ezra - A priest and scribe who led a return to Jerusalem and taught the Law to the people (Ezra 7:10; Ezra 9:4). He helped restore proper worship (Ezra 10:11).</p>
+                        </div>
+                        <!-- Lesson 34 -->
+                        <div id="lesson-34" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>34. Ezekiel - A prophet who received visions of God’s glory and warned Judah of its destruction (Ezekiel 1:1; Ezekiel 3:17). He spoke of future restoration (Ezekiel 36:24).</p>
+                        </div>
+                        <!-- Lesson 35 -->
+                        <div id="lesson-35" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>35. Hosea - A prophet who symbolized God’s love for Israel by marrying an unfaithful woman (Hosea 1:2; Hosea 3:1). He called Israel to repentance (Hosea 14:1).</p>
+                        </div>
+                        <!-- Lesson 36 -->
+                        <div id="lesson-36" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>36. Jonah - A prophet who fled from God’s command but eventually preached to Nineveh, leading to their repentance (Jonah 1:1-3; Jonah 3:10). He was swallowed by a great fish (Jonah 1:17).</p>
+                        </div>
+                        <!-- Lesson 37 -->
+                        <div id="lesson-37" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>37. Aaron - Moses’ brother, who served as the first high priest of Israel (Exodus 4:14; Exodus 28:1). He made the golden calf but later repented (Exodus 32:4).</p>
+                        </div>
+                        <!-- Lesson 38 -->
+                        <div id="lesson-38" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>38. Miriam - Moses’ sister, who helped save him as a baby and later led the women in worship (Exodus 2:4-7; Exodus 15:20). She was punished for challenging Moses (Numbers 12:10).</p>
+                        </div>
+                        <!-- Lesson 39 -->
+                        <div id="lesson-39" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>39. Caleb - A faithful spy who believed God’s promise about the Promised Land (Numbers 13:30; Joshua 14:6-12). He inherited Hebron for his faithfulness (Joshua 14:14).</p>
+                        </div>
+                        <!-- Lesson 40 -->
+                        <div id="lesson-40" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>40. Rahab - A Canaanite woman who hid Israelite spies and was spared during Jericho’s fall (Joshua 2:1-3; Joshua 6:25). She became an ancestor of Jesus (Matthew 1:5).</p>
+                        </div>
+                        <!-- Lesson 41 -->
+                        <div id="lesson-41" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>41. Boaz - A kinsman-redeemer who married Ruth and became an ancestor of David (Ruth 2:1; Ruth 4:13). He showed kindness and generosity (Ruth 2:10).</p>
+                        </div>
+                        <!-- Lesson 42 -->
+                        <div id="lesson-42" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>42. Hezekiah - A king of Judah who trusted God and led a religious reform (2 Kings 18:5; 2 Chronicles 29:2). God extended his life by 15 years (2 Kings 20:6).</p>
+                        </div>
+                        <!-- Lesson 43 -->
+                        <div id="lesson-43" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>43. Josiah - A king of Judah who discovered the Law and led a revival of true worship (2 Kings 22:8; 2 Kings 23:25). He destroyed idols and restored the Passover (2 Kings 23:21).</p>
+                        </div>
+                        <!-- Lesson 44 -->
+                        <div id="lesson-44" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>44. Timothy - A young disciple mentored by Paul, who became a leader in the early church (1 Timothy 1:2; Acts 16:1). Paul wrote two letters to him (2 Timothy 1:5).</p>
+                        </div>
+                        <!-- Lesson 45 -->
+                        <div id="lesson-45" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>45. Barnabas - A companion of Paul who encouraged early Christians and supported missionary work (Acts 4:36; Acts 13:2). He helped reconcile Paul and the church (Acts 9:27).</p>
+                        </div>
+                        <!-- Lesson 46 -->
+                        <div id="lesson-46" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>46. Luke - A physician and companion of Paul who wrote the Gospel of Luke and Acts (Colossians 4:14; Luke 1:1-4). He recorded early church history (Acts 1:1).</p>
+                        </div>
+                        <!-- Lesson 47 -->
+                        <div id="lesson-47" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>47. Matthew - A tax collector turned disciple of Jesus, who wrote the Gospel of Matthew (Matthew 9:9; Matthew 10:3). His gospel focuses on Jesus as the Messiah (Matthew 1:1).</p>
+                        </div>
+                        <!-- Lesson 48 -->
+                        <div id="lesson-48" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>48. Mark - A companion of Peter and Paul, who wrote the Gospel of Mark (Acts 12:12; Mark 1:1). His gospel emphasizes Jesus’ actions (Mark 10:45).</p>
+                        </div>
+                        <!-- Lesson 49 -->
+                        <div id="lesson-49" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>49. James (Son of Zebedee) - A disciple of Jesus and brother of John, who was martyred for his faith (Matthew 4:21; Acts 12:2). He witnessed Jesus’ transfiguration (Mark 9:2).</p>
+                        </div>
+                        <!-- Lesson 50 -->
+                        <div id="lesson-50" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>50. Andrew - Peter’s brother and a disciple of Jesus, who brought others to Christ (John 1:40-42; Matthew 4:18). He was a fisherman by trade (Mark 1:16).</p>
+                        </div>
+                        <!-- Lesson 51 -->
+                        <div id="lesson-51" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>51. Philip - A disciple of Jesus who brought Nathanael to Him and was involved in the feeding of the 5,000 (John 1:43-45; John 6:5-7). He later preached in Samaria (Acts 8:5).</p>
+                        </div>
+                        <!-- Lesson 52 -->
+                        <div id="lesson-52" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>52. Thomas - A disciple known for doubting Jesus’ resurrection until he saw Him (John 20:24-29). He later declared Jesus as Lord and God (John 20:28).</p>
+                        </div>
+                        <!-- Lesson 53 -->
+                        <div id="lesson-53" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>53. Nathanael (Bartholomew) - A disciple whom Jesus called a true Israelite without deceit (John 1:47; Matthew 10:3). He witnessed Jesus’ miracles (John 21:2).</p>
+                        </div>
+                        <!-- Lesson 54 -->
+                        <div id="lesson-54" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>54. Judas Iscariot - The disciple who betrayed Jesus for 30 pieces of silver and later hanged himself (Matthew 26:14-16; Matthew 27:5). He was replaced by Matthias (Acts 1:26).</p>
+                        </div>
+                        <!-- Lesson 55 -->
+                        <div id="lesson-55" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>55. Mary Magdalene - A follower of Jesus who was freed from demons and witnessed His crucifixion and resurrection (Luke 8:2; John 20:1-18). She announced His resurrection to the disciples (John 20:18).</p>
+                        </div>
+                        <!-- Lesson 56 -->
+                        <div id="lesson-56" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>56. Martha - A friend of Jesus who served Him but was corrected for being overly anxious (Luke 10:40-41; John 11:1). She expressed faith in Jesus’ power (John 11:21-22).</p>
+                        </div>
+                        <!-- Lesson 57 -->
+                        <div id="lesson-57" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>57. Lazarus - Martha and Mary’s brother, whom Jesus raised from the dead (John 11:1; John 11:43-44). His resurrection strengthened many people’s faith (John 12:10-11).</p>
+                        </div>
+                        <!-- Lesson 58 -->
+                        <div id="lesson-58" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>58. Stephen - The first Christian martyr, who was stoned for his bold testimony about Jesus (Acts 6:8; Acts 7:59-60). His death marked the beginning of persecution (Acts 8:1).</p>
+                        </div>
+                        <!-- Lesson 59 -->
+                        <div id="lesson-59" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>59. Silas - A companion of Paul who joined him on missionary journeys and was imprisoned with him (Acts 15:40; Acts 16:25). He helped strengthen early churches (Acts 16:40).</p>
+                        </div>
+                        <!-- Lesson 60 -->
+                        <div id="lesson-60" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>60. Priscilla - A woman who, with her husband Aquila, taught Apollos and hosted a church in their home (Acts 18:2; Acts 18:26). She supported Paul’s ministry (Romans 16:3).</p>
+                        </div>
+                        <!-- Lesson 61 -->
+                        <div id="lesson-61" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>61. Aquila - Priscilla’s husband, who worked with Paul as a tentmaker and supported early Christian communities (Acts 18:2-3; Romans 16:3). He traveled with Paul (Acts 18:18).</p>
+                        </div>
+                        <!-- Lesson 62 -->
+                        <div id="lesson-62" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>62. Apollos - An eloquent preacher who was taught by Priscilla and Aquila and became a powerful teacher (Acts 18:24-26; 1 Corinthians 3:6). He ministered in Corinth (Acts 19:1).</p>
+                        </div>
+                        <!-- Lesson 63 -->
+                        <div id="lesson-63" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>63. Titus - A companion of Paul who served as a leader in the church at Crete (Titus 1:4-5; 2 Corinthians 8:23). Paul wrote a letter to him (Titus 1:1).</p>
+                        </div>
+                        <!-- Lesson 64 -->
+                        <div id="lesson-64" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>64. Philemon - A Christian who owned a slave named Onesimus, whom Paul encouraged him to forgive (Philemon 1:1; Philemon 1:10-16). Paul wrote a letter to him (Philemon 1:1).</p>
+                        </div>
+                        <!-- Lesson 65 -->
+                        <div id="lesson-65" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>65. Onesimus - A runaway slave who became a Christian and was reconciled to his master Philemon through Paul (Philemon 1:10; Colossians 4:9). He served Paul in prison (Philemon 1:13).</p>
+                        </div>
+                        <!-- Lesson 66 -->
+                        <div id="lesson-66" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>66. Lydia - A seller of purple goods who became a Christian and hosted Paul in Philippi (Acts 16:14-15; Acts 16:40). She was the first European convert (Acts 16:14).</p>
+                        </div>
+                        <!-- Lesson 67 -->
+                        <div id="lesson-67" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>67. Cornelius - A Roman centurion who became the first Gentile convert, receiving the holy spirit (Acts 10:1; Acts 10:44-45). His conversion opened the door for Gentiles (Acts 10:34-35).</p>
+                        </div>
+                        <!-- Lesson 68 -->
+                        <div id="lesson-68" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>68. Ananias (of Damascus) - A disciple who restored Paul’s sight after his conversion (Acts 9:10-18). He was initially hesitant but obeyed God (Acts 9:13-14).</p>
+                        </div>
+                        <!-- Lesson 69 -->
+                        <div id="lesson-69" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>69. Dorcas (Tabitha) - A disciple known for her good works, whom Peter raised from the dead (Acts 9:36; Acts 9:40). Her restoration brought many to faith (Acts 9:42).</p>
+                        </div>
+                        <!-- Lesson 70 -->
+                        <div id="lesson-70" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>70. Eutychus - A young man who fell asleep and died during Paul’s sermon but was revived (Acts 20:9-10). His restoration encouraged the believers (Acts 20:12).</p>
+                        </div>
+                        <!-- Lesson 71 -->
+                        <div id="lesson-71" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>71. Felix - A Roman governor who heard Paul’s defense but kept him imprisoned to please the Jews (Acts 24:22-27). He was fearful but did not act (Acts 24:25).</p>
+                        </div>
+                        <!-- Lesson 72 -->
+                        <div id="lesson-72" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>72. Festus - A governor who succeeded Felix and heard Paul’s case, sending him to Caesar (Acts 25:1; Acts 25:12). He found no fault in Paul (Acts 25:25).</p>
+                        </div>
+                        <!-- Lesson 73 -->
+                        <div id="lesson-73" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>73. Agrippa - A king who heard Paul’s defense and acknowledged his innocence (Acts 26:1; Acts 26:31-32). He was almost persuaded to become a Christian (Acts 26:28).</p>
+                        </div>
+                        <!-- Lesson 74 -->
+                        <div id="lesson-74" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>74. Nicodemus - A Pharisee who visited Jesus at night and later helped bury Him (John 3:1-2; John 19:39). He defended Jesus before the Sanhedrin (John 7:50-51).</p>
+                        </div>
+                        <!-- Lesson 75 -->
+                        <div id="lesson-75" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>75. Joseph of Arimathea - A secret disciple who provided a tomb for Jesus’ burial (Matthew 27:57-60; John 19:38). He boldly asked Pilate for Jesus’ body (Mark 15:43).</p>
+                        </div>
+                        <!-- Lesson 76 -->
+                        <div id="lesson-76" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>76. Zacchaeus - A tax collector who climbed a tree to see Jesus and repented after meeting Him (Luke 19:2-5; Luke 19:8). Jesus dined at his house (Luke 19:7).</p>
+                        </div>
+                        <!-- Lesson 77 -->
+                        <div id="lesson-77" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>77. Bartimaeus - A blind man healed by Jesus, who called out to Him in faith (Mark 10:46-52). His healing demonstrated Jesus’ compassion (Mark 10:52).</p>
+                        </div>
+                        <!-- Lesson 78 -->
+                        <div id="lesson-78" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>78. Jairus - A synagogue leader whose daughter Jesus raised from the dead (Mark 5:22-23; Mark 5:41-42). His faith in Jesus was rewarded (Mark 5:36).</p>
+                        </div>
+                        <!-- Lesson 79 -->
+                        <div id="lesson-79" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>79. Joanna - A woman who supported Jesus’ ministry and witnessed His resurrection (Luke 8:3; Luke 24:10). She was among the women at the tomb (Luke 24:1).</p>
+                        </div>
+                        <!-- Lesson 80 -->
+                        <div id="lesson-80" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="gold-button" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">BIBLE FIGURES</h2>
+                                <button class="gold-button" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>80. Salome - A follower of Jesus who witnessed His crucifixion and visited His tomb (Mark 15:40; Mark 16:1). She supported His ministry (Mark 15:41).</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <div class="numbered-navigation">
+        <a href="#" onclick="showLesson(1)">1</a>
+        <a href="#" onclick="showLesson(2)">2</a>
+        <a href="#" onclick="showLesson(3)">3</a>
+        <a href="#" onclick="showLesson(4)">4</a>
+        <a href="#" onclick="showLesson(5)">5</a>
+        <a href="#" onclick="showLesson(6)">6</a>
+        <a href="#" onclick="showLesson(7)">7</a>
+        <a href="#" onclick="showLesson(8)">8</a>
+        <a href="#" onclick="showLesson(9)">9</a>
+        <a href="#" onclick="showLesson(10)">10</a>
+        <a href="#" onclick="showLesson(11)">11</a>
+        <a href="#" onclick="showLesson(12)">12</a>
+        <a href="#" onclick="showLesson(13)">13</a>
+        <a href="#" onclick="showLesson(14)">14</a>
+        <a href="#" onclick="showLesson(15)">15</a>
+        <a href="#" onclick="showLesson(16)">16</a>
+        <a href="#" onclick="showLesson(17)">17</a>
+        <a href="#" onclick="showLesson(18)">18</a>
+        <a href="#" onclick="showLesson(19)">19</a>
+        <a href="#" onclick="showLesson(20)">20</a>
+        <a href="#" onclick="showLesson(21)">21</a>
+        <a href="#" onclick="showLesson(22)">22</a>
+        <a href="#" onclick="showLesson(23)">23</a>
+        <a href="#" onclick="showLesson(24)">24</a>
+        <a href="#" onclick="showLesson(25)">25</a>
+        <a href="#" onclick="showLesson(26)">26</a>
+        <a href="#" onclick="showLesson(27)">27</a>
+        <a href="#" onclick="showLesson(28)">28</a>
+        <a href="#" onclick="showLesson(29)">29</a>
+        <a href="#" onclick="showLesson(30)">30</a>
+        <a href="#" onclick="showLesson(31)">31</a>
+        <a href="#" onclick="showLesson(32)">32</a>
+        <a href="#" onclick="showLesson(33)">33</a>
+        <a href="#" onclick="showLesson(34)">34</a>
+        <a href="#" onclick="showLesson(35)">35</a>
+        <a href="#" onclick="showLesson(36)">36</a>
+        <a href="#" onclick="showLesson(37)">37</a>
+        <a href="#" onclick="showLesson(38)">38</a>
+        <a href="#" onclick="showLesson(39)">39</a>
+        <a href="#" onclick="showLesson(40)">40</a>
+        <a href="#" onclick="showLesson(41)">41</a>
+        <a href="#" onclick="showLesson(42)">42</a>
+        <a href="#" onclick="showLesson(43)">43</a>
+        <a href="#" onclick="showLesson(44)">44</a>
+        <a href="#" onclick="showLesson(45)">45</a>
+        <a href="#" onclick="showLesson(46)">46</a>
+        <a href="#" onclick="showLesson(47)">47</a>
+        <a href="#" onclick="showLesson(48)">48</a>
+        <a href="#" onclick="showLesson(49)">49</a>
+        <a href="#" onclick="showLesson(50)">50</a>
+        <a href="#" onclick="showLesson(51)">51</a>
+        <a href="#" onclick="showLesson(52)">52</a>
+        <a href="#" onclick="showLesson(53)">53</a>
+        <a href="#" onclick="showLesson(54)">54</a>
+        <a href="#" onclick="showLesson(55)">55</a>
+        <a href="#" onclick="showLesson(56)">56</a>
+        <a href="#" onclick="showLesson(57)">57</a>
+        <a href="#" onclick="showLesson(58)">58</a>
+        <a href="#" onclick="showLesson(59)">59</a>
+        <a href="#" onclick="showLesson(60)">60</a>
+        <a href="#" onclick="showLesson(61)">61</a>
+        <a href="#" onclick="showLesson(62)">62</a>
+        <a href="#" onclick="showLesson(63)">63</a>
+        <a href="#" onclick="showLesson(64)">64</a>
+        <a href="#" onclick="showLesson(65)">65</a>
+        <a href="#" onclick="showLesson(66)">66</a>
+        <a href="#" onclick="showLesson(67)">67</a>
+        <a href="#" onclick="showLesson(68)">68</a>
+        <a href="#" onclick="showLesson(69)">69</a>
+        <a href="#" onclick="showLesson(70)">70</a>
+        <a href="#" onclick="showLesson(71)">71</a>
+        <a href="#" onclick="showLesson(72)">72</a>
+        <a href="#" onclick="showLesson(73)">73</a>
+        <a href="#" onclick="showLesson(74)">74</a>
+        <a href="#" onclick="showLesson(75)">75</a>
+        <a href="#" onclick="showLesson(76)">76</a>
+        <a href="#" onclick="showLesson(77)">77</a>
+        <a href="#" onclick="showLesson(78)">78</a>
+        <a href="#" onclick="showLesson(79)">79</a>
+        <a href="#" onclick="showLesson(80)">80</a>
+    </div>
+
+    <div class="article">
+        <p class="scripture">Proverbs 23:23 "Buy truth and never sell it"</p>
+        <p>Crave real answers? Hunt for Jehovah’s truth—it’s the treasure that unlocks everlasting life. Dig in now!</p>
+    </div>
+
+    <div class="button-section">
+        <div class="buttons">
+            <a href="search.html" class="btn-study">Questions</a>
+            <a href="study.html" class="btn-study">Study Guide</a>
+            <a href="topic.html" class="btn-topic">Topic Index</a>
+            <a href="truth.html" class="btn-topic">Advanced</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Just Wise Love. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let currentLesson = 1;
+        const totalLessons = 80;
+
+        function showLesson(lessonNumber) {
+            for (let i = 1; i <= totalLessons; i++) {
+                document.getElementById(`lesson-${i}`).style.display = 'none';
+            }
+            document.getElementById(`lesson-${lessonNumber}`).style.display = 'block';
+            currentLesson = lessonNumber;
+            const details = document.querySelector('details');
+            details.open = true;
+        }
+
+        function showNextLesson() {
+            if (currentLesson < totalLessons) {
+                currentLesson++;
+                showLesson(currentLesson);
+            }
+        }
+
+        function showPreviousLesson() {
+            if (currentLesson > 1) {
+                currentLesson--;
+                showLesson(currentLesson);
+            }
+        }
+
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+            const button = document.querySelector('.mode-toggle');
+            button.textContent = document.body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        }
+
+        window.onload = function() {
+            showLesson(1);
+        };
+    </script>
+</body>
+</html>
