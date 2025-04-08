@@ -20,9 +20,36 @@
         body.dark-mode .scripture {
             color: #d3d3d3;
         }
-        body.light-mode .card {
-            background-color: #ffd800;
-        }
+    /* Existing styles remain unchanged */
+
+    /* Add light mode overrides for better text visibility */
+    body.light-mode {
+        color: #1a1a1a; /* Darker text color for light mode */
+    }
+
+    body.light-mode .card-content p {
+        color: #1a1a1a; /* Darker text for card content */
+    }
+
+    body.light-mode .scripture {
+        color: #2a2a2a; /* Slightly lighter but still dark enough for scripture */
+        background-color: #fff5b3; /* Slightly darker gold for better contrast */
+    }
+
+    body.light-mode .lesson-title {
+        color: #1a1a1a; /* Darker color for lesson titles */
+    }
+
+    /* Fix container background in light mode */
+    body.light-mode .container {
+        background-color: #ffd800; /* Ensure gold background */
+        color: #1a1a1a; /* Darker text */
+    }
+
+    /* Adjust button section background in light mode */
+    body.light-mode .button-section {
+        background-color: #f5f5f5; /* Light gray for contrast with gold buttons */
+    }
         /* Style for the grid of 100 boxes */
         .lesson-grid {
             display: grid;
@@ -86,7 +113,7 @@
         /* Ensure the container and card are styled appropriately */
         .container {
             padding: 20px;
-            background-color: #ffd800;
+            background-color: #1a1a1a;
             color: #ffffff;
         }
         .card {
