@@ -3,1318 +3,1228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>People of the Bible - Just Wise Love</title>
+    <title>People of the Bible</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts link for Audiowide -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
-    <style>
-        /* CSS-2 Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background-color: #ffffff;
-            color: #333333;
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        body.dark-mode {
-            background-color: #1a1a1a;
-            color: #e6e6e6;
-        }
-        header {
-            background-color: #000000;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        h1, h1 a {
-            font-family: "Audiowide", sans-serif;
-        }
-        header h1 {
-            color: #ffd800;
-            font-size: 2rem;
-        }
-        header h1 a {
-            color: #ffd800;
-            text-decoration: none;
-        }
-        header h1 a:link, header h1 a:visited, header h1 a:hover, header h1 a:active {
-            color: #ffd800;
-        }
-        .mode-toggle {
-            padding: 0.5rem 1rem;
-            background-color: #ffd800;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            color: #000000;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .mode-toggle:hover {
-            background-color: #e6c200;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        .featured-section {
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: center;
-        }
-        .featured-scripture {
-            background-color: #ffe868;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            text-align: center;
-            max-width: 600px;
-            width: 100%;
-        }
-        body.dark-mode .featured-scripture {
-            background-color: #333333;
-        }
-        .featured-scripture p {
-            font-style: italic;
-            color: #555555;
-            font-size: 1.2rem;
-        }
-        body.dark-mode .featured-scripture p {
-            color: #cccccc;
-        }
-        .card {
-            background-color: #ffe868;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
-        }
-        body.dark-mode .card {
-            background-color: #333333;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .card.featured {
-            max-width: 600px;
-            border: 2px solid #ffd800;
-        }
-        .card-header {
-            background-color: #FFD800;
-            color: #000000;
-            padding: 1rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-        }
-        .card.featured .card-header {
-            background-color: #ffd800;
-            color: #000000;
-        }
-        .card-content {
-            padding: 1.5rem;
-            display: none;
-        }
-        details[open] .card-content {
-            display: block;
-        }
-        .card-content p {
-            color: #333333;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        body.dark-mode .card-content p {
-            color: #e6e6e6;
-        }
-        .card-content .scripture {
-            font-style: italic;
-            color: #555555;
-            font-size: 0.95rem;
-            margin: 1rem 0;
-            text-align: center;
-            background-color: #ffe868;
-            padding: 0.5rem;
-            border-radius: 4px;
-        }
-        body.dark-mode .card-content .scripture {
-            color: #cccccc;
-            background-color: #404040;
-        }
-        .card-content a {
-            color: #FFD800;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        .card-content a:hover {
-            color: #ffd800;
-        }
-        details summary::-webkit-details-marker {
-            display: none;
-        }
-        details summary {
-            list-style: none;
-        }
-        .article {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .article h1 {
-            font-size: 2.5rem;
-            color: #ffd800;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .article h2 {
-            font-size: 1.8rem;
-            color: #FFD800;
-            margin: 1.5rem 0 1rem;
-        }
-        .article p {
-            color: #333333;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        body.dark-mode .article p {
-            color: #e6e6e6;
-        }
-        .article .scripture {
-            font-style: italic;
-            color: #555555;
-            font-size: 0.95rem;
-            margin: 1rem 0;
-            text-align: center;
-            background-color: #ffe868;
-            padding: 0.5rem;
-            border-radius: 4px;
-        }
-        body.dark-mode .article .scripture {
-            color: #cccccc;
-            background-color: #404040;
-        }
-        .button-section {
-            text-align: center;
-            padding: 0.5rem 0;
-            background-color: #1a1a1a;
-        }
-        body.light-mode .button-section {
-            background-color: #ffffff;
-        }
-        .button-section h2 {
-            font-size: 1.8rem;
-            color: #ffd800;
-            margin-bottom: 1rem;
-        }
-        .btn-study {
-            background-color: #FFD800;
-            color: #1a1a1a;
-            padding: 12px 25px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        .btn-topic {
-            background-color: #ffd800;
-            color: #1a1a1a;
-            padding: 12px 25px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        .btn-study:hover, .btn-topic:hover {
-            transform: scale(1.05);
-        }
-        .btn-study a {
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-        .btn-study a:link, .btn-study a:visited, .btn-study a:hover, .btn-study a:active {
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-        .btn-topic a {
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-        .btn-topic a:link, .btn-topic a:visited, .btn-topic a:hover, .btn-topic a:active {
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #ffd800;
-            color: #000000;
-            margin-top: 2rem;
-        }
-        body.dark-mode footer {
-            background-color: #ffd800;
-        }
-        h2 {
-            text-align: center;
-        }
-        p {
-            text-align: center;
-        }
-        @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 600px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-        }
-        /* Additional Styles for Lesson Header */
-        .lesson-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .lesson-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            text-align: center;
-            flex-grow: 1;
-            color: #333333;
-        }
-        body.dark-mode .lesson-title {
-            color: #e6e6e6;
-        }
-        /* Numbered Navigation Squares */
-        .numbered-navigation {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .numbered-navigation a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            background-color: #fff;
-            color: #1a1a1a;
-            border: 2px solid #ffd800;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .numbered-navigation a:hover {
-            background-color: #ffd800;
-            color: #1a1a1a;
-        }
-    </style>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Browser tab favicon -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png"> <!-- iOS home screen icon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png"> <!-- Android home screen icon -->
 </head>
-<body>
+<body class="dark-mode">
     <header>
-        <h1><a href="notes.html">JWL</a></h1>
-        <button class="mode-toggle" onclick="toggleMode()">Toggle Dark Mode</button>
+        <h1><a href="home.html">PEOPLE OF THE BIBLE</a></h1>
+        <button class="mode-toggle" onclick="toggleMode()">Toggle Light Mode</button>
     </header>
 
     <div class="container">
+        <!-- Featured Section: People of the Bible -->
         <div class="featured-section">
             <div class="card featured">
                 <details>
-                    <summary class="card-header">People of the Bible</summary>
-                    <div class="card-content" id="lesson-content">
-                        <!-- Lesson 1: Jehovah -->
-                        <div id="lesson-1" class="lesson">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>1. Jehovah - The Almighty God, the Creator of all things, known by his personal name revealed to Moses. He is the Sovereign of the universe, establishing covenants with humanity and promising everlasting life through his Kingdom. His name, represented by YHWH in Hebrew, appears over 6,800 times in the original Bible texts.</p>
-                            <p class="scripture">"In the beginning God created the heavens and the earth." - Genesis 1:1 (NWT 2013)</p>
-                            <p class="scripture">"That men may know that you, whose name is Jehovah, you alone are the Most High over all the earth." - Psalm 83:18 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 2: Jesus Christ -->
-                        <div id="lesson-2" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>2. Jesus Christ - The Son of God, the firstborn of all creation, who became human to ransom mankind from sin and death. As the appointed King of God’s Kingdom, he mediates the new covenant and will destroy wickedness at Armageddon, fulfilling God’s purpose for earth.</p>
-                            <p class="scripture">"For God loved the world so much that he gave his only-begotten Son, so that everyone exercising faith in him might not be destroyed but have everlasting life." - John 3:16 (NWT 2013)</p>
-                            <p class="scripture">"There is one God, and one mediator between God and men, a man, Christ Jesus." - 1 Timothy 2:5 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 3: Adam -->
-                        <div id="lesson-3" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>3. Adam - The first human, created perfect from dust by Jehovah in Eden. His disobedience introduced sin and death to all his descendants, necessitating God’s redemptive plan through Jesus. He lived 930 years, fathering many sons and daughters.</p>
-                            <p class="scripture">"Jehovah God went on to form the man out of dust from the ground and to blow into his nostrils the breath of life, and the man became a living person." - Genesis 2:7 (NWT 2013)</p>
-                            <p class="scripture">"Through one man sin entered into the world and death through sin, and so death spread to all men because they had all sinned." - Romans 5:12 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 4: Eve -->
-                        <div id="lesson-4" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>4. Eve - The first woman, created from Adam’s rib as his complement. Deceived by the serpent, she ate the forbidden fruit, leading to sin’s entry into the world. She became the mother of all living humans, bearing children in pain as foretold.</p>
-                            <p class="scripture">"Jehovah God then built the rib that he had taken from the man into a woman, and he brought her to the man." - Genesis 2:22 (NWT 2013)</p>
-                            <p class="scripture">"And Adam named his wife Eve, because she was to become the mother of everyone living." - Genesis 3:20 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 5: Noah -->
-                        <div id="lesson-5" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>5. Noah - A righteous man who found favor with Jehovah amidst a wicked generation. He built the ark as directed, preserving his family and animals through the Flood. Jehovah made a covenant with him, symbolized by the rainbow, promising no future global flood.</p>
-                            <p class="scripture">"Noah was a righteous man. He proved himself faultless among his contemporaries. Noah walked with the true God." - Genesis 6:9 (NWT 2013)</p>
-                            <p class="scripture">"My rainbow I have established in the cloud, and it will serve as a sign of the covenant between me and the earth." - Genesis 9:13 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 6: Abraham -->
-                        <div id="lesson-6" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>6. Abraham - Originally Abram, he became the “father of a multitude” through faith in Jehovah’s promise. Leaving Ur, he journeyed to Canaan, where God established a covenant promising land and a seed through whom all nations would be blessed, ultimately fulfilled in Christ. His faith was tested when he offered Isaac, proving his loyalty.</p>
-                            <p class="scripture">"Jehovah said to Abram: 'Go out from your land and from your relatives and from the house of your father to the land that I will show you.'" - Genesis 12:1 (NWT 2013)</p>
-                            <p class="scripture">"By faith Abraham, when he was called, obeyed by going out to a place he was to receive as an inheritance; he went out, although not knowing where he was going." - Hebrews 11:8 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 7: Moses -->
-                        <div id="lesson-7" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>7. Moses - Raised in Pharaoh’s court, he became Jehovah’s chosen deliverer of Israel from Egypt. He received the Law on Mount Sinai, mediating the covenant between God and Israel. His meekness and miracles, like parting the Red Sea, highlighted his role in God’s purpose, prefiguring Jesus as a greater prophet.</p>
-                            <p class="scripture">"So Jehovah said to Moses: 'See, I have made you like God to Pharaoh, and Aaron your brother will be your prophet.'" - Exodus 7:1 (NWT 2013)</p>
-                            <p class="scripture">"Then Jehovah said to Moses: 'Go in to Pharaoh and say to him, “This is what Jehovah says: ‘Send my people away so that they may serve me.’”'" - Exodus 9:1 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 8: David -->
-                        <div id="lesson-8" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>8. David - A shepherd who became Israel’s second king, described as a man after God’s heart. He defeated Goliath, established Jerusalem as a worship center, and received the promise of an everlasting kingdom through his lineage, fulfilled in Jesus. He wrote many Psalms expressing faith.</p>
-                            <p class="scripture">"Then Jehovah said to Samuel: 'Rise, anoint him, for this is the one!' So Samuel took the horn of oil and anointed him in the presence of his brothers." - 1 Samuel 16:12-13 (NWT 2013)</p>
-                            <p class="scripture">"Jehovah has sworn to David; he will not go back on his word: 'One of your offspring I will place on your throne.'" - Psalm 132:11 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 9: Solomon -->
-                        <div id="lesson-9" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>9. Solomon - David’s son, renowned for wisdom granted by Jehovah. He built the first temple in Jerusalem, a center for true worship, and wrote Proverbs, Ecclesiastes, and Song of Solomon. His reign was peaceful, but later idolatry marred his record.</p>
-                            <p class="scripture">"So Jehovah gave Solomon wisdom, as he had promised him, and there was peace between Hiram and Solomon, and the two of them made a covenant." - 1 Kings 5:12 (NWT 2013)</p>
-                            <p class="scripture">"The proverbs of Solomon, David’s son, the king of Israel." - Proverbs 1:1 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 10: Isaiah -->
-                        <div id="lesson-10" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>10. Isaiah - A prophet who foretold the Messiah’s coming and God’s Kingdom. His book offers comfort and warnings to Judah, predicting captivity and restoration. His prophecies, like the virgin birth and the “Prince of Peace,” point to Jesus as the fulfillment of God’s purpose.</p>
-                            <p class="scripture">"Therefore Jehovah himself will give you a sign: Look! The young woman will become pregnant and will give birth to a son, and she will name him Immanuel." - Isaiah 7:14 (NWT 2013)</p>
-                            <p class="scripture">"For a child has been born to us, a son has been given to us; and the rulership will rest on his shoulder. His name will be called Wonderful Counselor, Mighty God, Eternal Father, Prince of Peace." - Isaiah 9:6 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 11: Paul -->
-                        <div id="lesson-11" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>11. Paul - Formerly Saul, a persecutor turned apostle to the nations. After his conversion on the road to Damascus, he spread the good news widely, writing 14 New Testament letters. His endurance through trials exemplified faith in Christ’s resurrection hope.</p>
-                            <p class="scripture">"But he said to me: 'Get up and go into Damascus, and there you will be told about everything it is appointed for you to do.'" - Acts 22:10 (NWT 2013)</p>
-                            <p class="scripture">"For this reason I, Paul, the prisoner of Christ Jesus in behalf of you, the people of the nations—" - Ephesians 3:1 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 12: Peter -->
-                        <div id="lesson-12" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>12. Peter - A fisherman called by Jesus to be an apostle, nicknamed “the rock.” He preached at Pentecost, opening the way for Jews and Gentiles to enter God’s Kingdom. Despite denying Jesus, he was restored and led the early Christian congregation.</p>
-                            <p class="scripture">"In reply Simon Peter said: 'You are the Christ, the Son of the living God.' ... Jesus said to him: 'I say to you, You are Peter, and on this rock I will build my congregation.'" - Matthew 16:16-18 (NWT 2013)</p>
-                            <p class="scripture">"Then Peter stood up with the Eleven and raised his voice and said to them: 'Men of Judea and all you inhabitants of Jerusalem, let this be known to you and listen carefully to my words.'" - Acts 2:14 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 13: Mary (Mother of Jesus) -->
-                        <div id="lesson-13" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>13. Mary - The virgin chosen to bear Jesus, the Messiah. Her humble faith shone when she accepted God’s will despite risks. Present at Jesus’ crucifixion and among early Christians, she exemplifies submission to Jehovah’s purpose.</p>
-                            <p class="scripture">"Then Mary said to the angel: 'How will this be, since I am not having sexual relations with a man?' ... Mary said: 'Look! Jehovah’s slave girl! May it happen to me according to your declaration.'" - Luke 1:34, 38 (NWT 2013)</p>
-                            <p class="scripture">"Now by the torture stake of Jesus stood his mother and his mother’s sister, Mary the wife of Clopas, and Mary Magdalene." - John 19:25 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 14: Joseph (Jesus’ Earthly Father) -->
-                        <div id="lesson-14" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>14. Joseph - A carpenter and righteous man who accepted Mary’s divine pregnancy. He protected Jesus by fleeing to Egypt and raised him in Nazareth, fulfilling his role in the Messianic line as a descendant of David.</p>
-                            <p class="scripture">"But after he had thought these things over, look! Jehovah’s angel appeared to him in a dream, saying: 'Joseph, son of David, do not be afraid to take Mary your wife home, for what has been conceived in her is by holy spirit.'" - Matthew 1:20 (NWT 2013)</p>
-                            <p class="scripture">"So he got up and took the young child and the child’s mother by night and withdrew to Egypt." - Matthew 2:14 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 15: John the Baptist -->
-                        <div id="lesson-15" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>15. John the Baptist - Jesus’ cousin, sent to prepare the way for the Messiah by preaching repentance and baptizing. He baptized Jesus, confirming his role as God’s Lamb. His boldness led to martyrdom under Herod.</p>
-                            <p class="scripture">"In those days John the Baptist came preaching in the wilderness of Judea, saying: 'Repent, for the Kingdom of the heavens has drawn near.'" - Matthew 3:1-2 (NWT 2013)</p>
-                            <p class="scripture">"The next day he saw Jesus coming toward him, and he said: 'See, the Lamb of God who takes away the sin of the world!'" - John 1:29 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 16: Isaac -->
-                        <div id="lesson-16" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>16. Isaac - Abraham’s son, born miraculously to Sarah in her old age as the child of promise. Nearly sacrificed by Abraham, his life foreshadowed Jesus’ ransom. He inherited the covenant and fathered Jacob and Esau.</p>
-                            <p class="scripture">"Sarah became pregnant and bore a son to Abraham in his old age at the appointed time God had promised him." - Genesis 21:2 (NWT 2013)</p>
-                            <p class="scripture">"By faith Abraham, when he was tested, as good as offered up Isaac—the man who had gladly received the promises attempted to offer up his only-begotten son." - Hebrews 11:17 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 17: Jacob -->
-                        <div id="lesson-17" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>17. Jacob - Isaac’s son, renamed Israel after wrestling with an angel. Father of the 12 tribes, he received the covenant promise. His life of trials and blessings shows Jehovah’s discipline and favor toward his servants.</p>
-                            <p class="scripture">"So he said to him: 'What is your name?' To this he said: 'Jacob.' Then he said: 'Your name will no longer be Jacob but Israel, for you have contended with God and with men and you have at last prevailed.'" - Genesis 32:27-28 (NWT 2013)</p>
-                            <p class="scripture">"And God went on to say to him: 'I am God Almighty. Be fruitful and become many. Nations and a congregation of nations will come from you, and kings will descend from you.'" - Genesis 35:11 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 18: Joseph (Son of Jacob) -->
-                        <div id="lesson-18" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>18. Joseph - Jacob’s favored son, sold into slavery but rose to power in Egypt. His preservation of Israel during famine fulfilled Jehovah’s purpose. His forgiveness of his brothers reflects God’s mercy.</p>
-                            <p class="scripture">"Then Joseph said to his brothers: 'Come close to me, please.' So they came close. He said: 'I am Joseph your brother, whom you sold into Egypt.'" - Genesis 45:4 (NWT 2013)</p>
-                            <p class="scripture">"As for you, you meant evil against me, but God meant it for good in order to do as it is this day, to save many people alive." - Genesis 50:20 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 19: Aaron -->
-                        <div id="lesson-19" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>19. Aaron - Moses’ older brother, appointed as Israel’s first high priest. He spoke for Moses before Pharaoh and led worship, though he faltered by making the golden calf. His priesthood prefigured Jesus’ greater role.</p>
-                            <p class="scripture">"Jehovah then said to Moses: 'See, I have made you like God to Pharaoh, and Aaron your brother will be your prophet.'" - Exodus 7:1 (NWT 2013)</p>
-                            <p class="scripture">"Then Jehovah’s anger blazed against Aaron, and he said: 'What did this people do to you that you have brought a great sin upon them?'" - Exodus 32:21 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 20: Joshua -->
-                        <div id="lesson-20" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>20. Joshua - Moses’ successor, who led Israel into the Promised Land. His faith in Jehovah enabled victories like Jericho’s fall. He urged Israel to serve God, exemplifying leadership in true worship.</p>
-                            <p class="scripture">"After Moses, the servant of Jehovah, died, Jehovah said to Joshua the son of Nun, Moses’ attendant: 'Moses my servant is dead. Now get up, cross the Jordan, you and all this people, into the land that I am giving to them, to the Israelites.'" - Joshua 1:1-2 (NWT 2013)</p>
-                            <p class="scripture">"As for me and my household, we will serve Jehovah." - Joshua 24:15 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 21: Samuel -->
-                        <div id="lesson-21" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>21. Samuel - A prophet, priest, and judge dedicated to Jehovah from birth. He anointed Saul and David as kings, guiding Israel during a transition from judges to monarchy. His faithfulness contrasts with Eli’s corrupt sons.</p>
-                            <p class="scripture">"Then Jehovah called: 'Samuel!' He answered: 'Here I am!'" - 1 Samuel 3:4 (NWT 2013)</p>
-                            <p class="scripture">"Then Samuel took the horn of oil and anointed him in the presence of his brothers, and the spirit of Jehovah began to empower David from that day forward." - 1 Samuel 16:13 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 22: Elijah -->
-                        <div id="lesson-22" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>22. Elijah - A prophet who boldly opposed Baal worship, proving Jehovah’s power on Mount Carmel. He raised a widow’s son and was taken to heaven in a whirlwind, foreshadowing his role in prophecy fulfilled by John the Baptist.</p>
-                            <p class="scripture">"Then Elijah said to the people: 'I am the only prophet of Jehovah left, but the prophets of Baal are 450 men.'" - 1 Kings 18:22 (NWT 2013)</p>
-                            <p class="scripture">"As they continued walking and talking, look! a fiery war chariot and fiery horses, and they separated the two of them, and Elijah went up to the heavens in a whirlwind." - 2 Kings 2:11 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 23: Elisha -->
-                        <div id="lesson-23" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>23. Elisha - Elijah’s successor, who received a double portion of his spirit. He performed miracles, like healing Naaman and raising a boy, showing Jehovah’s power. His ministry strengthened faith in Israel during apostasy.</p>
-                            <p class="scripture">"When Elisha said: 'Please, let a double portion of your spirit be upon me,' he replied: 'You have asked a difficult thing. If you see me when I am taken from you, it will happen to you.'" - 2 Kings 2:9-10 (NWT 2013)</p>
-                            <p class="scripture">"Then he went in and called to the boy four times: 'My son, my son, my son, my son!' Finally, the boy sneezed seven times and opened his eyes." - 2 Kings 4:35 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 24: Daniel -->
-                        <div id="lesson-24" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>24. Daniel - A prophet exiled to Babylon, known for faithfulness and interpreting dreams, like Nebuchadnezzar’s. His survival in the lions’ den and visions of God’s Kingdom highlight Jehovah’s protection and purpose for the last days.</p>
-                            <p class="scripture">"Daniel was brought in before the king. The king asked Daniel: 'Are you the Daniel of the exiles of Judah, whom my father the king brought from Judah?'" - Daniel 5:13 (NWT 2013)</p>
-                            <p class="scripture">"But Daniel resolved in his heart that he would not defile himself with the king’s delicacies or with the wine he drank." - Daniel 1:8 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 25: Jeremiah -->
-                        <div id="lesson-25" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>25. Jeremiah - Called as a prophet before birth, he warned Judah of destruction for unfaithfulness. Facing opposition, he wrote Lamentations and foretold restoration, reflecting Jehovah’s justice and mercy.</p>
-                            <p class="scripture">"Before I formed you in the womb I knew you, and before you were born I sanctified you. I made you a prophet to the nations." - Jeremiah 1:5 (NWT 2013)</p>
-                            <p class="scripture">"This is what Jehovah says: 'Cursed is the man who puts his trust in mere humans, who relies on human strength and whose heart turns away from Jehovah.'" - Jeremiah 17:5 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 26: John (the Apostle) -->
-                        <div id="lesson-26" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>26. John - A beloved Apostle who wrote the Gospel of John, three epistles, and Revelation. Exiled to Patmos, he recorded visions of Christ’s reign, emphasizing love and endurance in the Christian congregation.</p>
-                            <p class="scripture">"So Jesus said to the Twelve: 'You do not want to go also, do you?' Simon Peter answered him: 'Lord, whom will we go away to? You have sayings of everlasting life.'" - John 6:67-68 (NWT 2013)</p>
-                            <p class="scripture">"The revelation by Jesus Christ, which God gave him, to show his slaves the things that must shortly take place." - Revelation 1:1 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 27: Esther -->
-                        <div id="lesson-27" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>27. Esther - A Jewish orphan who became queen of Persia, risking her life to save her people from Haman’s genocide plot. Her courage and faith in Jehovah led to deliverance, celebrated at Purim.</p>
-                            <p class="scripture">"For if you remain silent at this time, relief and deliverance will come to the Jews from another place, but you and your father’s house will perish. Who knows whether it was for a time like this that you attained a royal position?" - Esther 4:14 (NWT 2013)</p>
-                            <p class="scripture">"Then Esther said: 'If it pleases the king, let the king and Haman come today to the banquet that I have prepared for him.'" - Esther 5:4 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 28: Ruth -->
-                        <div id="lesson-28" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>28. Ruth - A Moabite widow who showed loyalty to Naomi and Jehovah, becoming an ancestor of David and Jesus. Her choice to stay with Naomi led to her marriage to Boaz, fulfilling God’s purpose.</p>
-                            <p class="scripture">"But Ruth said: 'Do not urge me to leave you, to turn back from following you. For where you go, I will go, and where you spend the night, I will spend the night. Your people will be my people, and your God my God.'" - Ruth 1:16 (NWT 2013)</p>
-                            <p class="scripture">"So Boaz took Ruth, and she became his wife. He had sexual relations with her, and Jehovah let her conceive, and she gave birth to a son." - Ruth 4:13 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 29: Deborah -->
-                        <div id="lesson-29" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>29. Deborah - A prophetess and judge who led Israel to victory over the Canaanites with Barak. Her song of praise and wise leadership under Jehovah’s direction inspired faith during a time of oppression.</p>
-                            <p class="scripture">"Now Deborah, a prophetess, the wife of Lappidoth, was judging Israel at that time." - Judges 4:4 (NWT 2013)</p>
-                            <p class="scripture">"Then Deborah said to Barak: 'Get up, for this is the day that Jehovah will give Sisera into your hand. Is Jehovah not going before you?'" - Judges 4:14 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 30: Gideon -->
-                        <div id="lesson-30" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>30. Gideon - A judge who, despite initial doubt, led 300 men to defeat the Midianites with Jehovah’s help. His fleece test and victory with trumpets and torches show reliance on God’s strength over human might.</p>
-                            <p class="scripture">"Then Jehovah’s angel appeared to him and said: 'Jehovah is with you, you mighty warrior.'" - Judges 6:12 (NWT 2013)</p>
-                            <p class="scripture">"Jehovah said to Gideon: 'With the 300 men who lapped, I will save you, and I will give Midian into your hand.'" - Judges 7:7 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 31: Samson -->
-                        <div id="lesson-31" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>31. Samson - A Nazirite judge with supernatural strength from Jehovah. He fought the Philistines but fell to temptation with Delilah. His final act destroyed a temple, killing many enemies, showing God’s power despite human weakness.</p>
-                            <p class="scripture">"Then the angel of Jehovah said to her: 'Look! You are barren and childless, but you will conceive and give birth to a son.'" - Judges 13:3 (NWT 2013)</p>
-                            <p class="scripture">"Then Samson called to Jehovah and said: 'Sovereign Lord Jehovah, please remember me and strengthen me just this once, O God, so that I may take vengeance on the Philistines.'" - Judges 16:28 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 32: Job -->
-                        <div id="lesson-32" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>32. Job - A righteous man who endured Satan’s trials—loss of wealth, children, and health—yet remained faithful to Jehovah. His restoration after proving integrity answers the issue of why the righteous suffer.</p>
-                            <p class="scripture">"There was a man in the land of Uz whose name was Job. That man was blameless and upright, fearing God and shunning what is bad." - Job 1:1 (NWT 2013)</p>
-                            <p class="scripture">"So Jehovah blessed the latter part of Job’s life more than the beginning, and Job came to have 14,000 sheep, 6,000 camels, 1,000 pairs of cattle, and 1,000 female donkeys." - Job 42:12 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 33: Nehemiah -->
-                        <div id="lesson-33" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>33. Nehemiah - A cupbearer to Persia’s king who led the rebuilding of Jerusalem’s walls. Facing opposition, he restored true worship, showing zeal for Jehovah’s name and house in the post-exilic period.</p>
-                            <p class="scripture">"Then I said to them: 'You see the trouble we are in—Jerusalem lies in ruins and its gates have been burned with fire. Come, let us rebuild the wall of Jerusalem so that we may no longer be a reproach.'" - Nehemiah 2:17 (NWT 2013)</p>
-                            <p class="scripture">"So we kept building the wall, and the entire wall was joined together up to half its height, for the people were determined to work." - Nehemiah 4:6 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 34: Ezra -->
-                        <div id="lesson-34" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>34. Ezra - A priest and scribe who returned to Jerusalem to teach the Law. His reforms ended mixed marriages and restored worship, preparing the Jews for the Messiah’s coming under Jehovah’s guidance.</p>
-                            <p class="scripture">"Ezra himself had prepared his heart to consult the Law of Jehovah and to observe it and to teach its regulations and judgments in Israel." - Ezra 7:10 (NWT 2013)</p>
-                            <p class="scripture">"Then Ezra said: 'This day is holy to Jehovah your God. Do not mourn or weep.' For all the people were weeping as they heard the words of the Law." - Nehemiah 8:9 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 35: Ezekiel -->
-                        <div id="lesson-35" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>35. Ezekiel - A priest and prophet in Babylon who saw visions of Jehovah’s glory. He warned of Jerusalem’s fall and foretold restoration, including the resurrection, symbolizing God’s ability to revive His people.</p>
-                            <p class="scripture">"The hand of Jehovah came upon me, and by his spirit Jehovah took me and set me down in the middle of the valley plain, and it was full of bones." - Ezekiel 37:1 (NWT 2013)</p>
-                            <p class="scripture">"This is what the Sovereign Lord Jehovah says: 'Look! I will open your graves and raise you up from your graves, O my people, and bring you to the land of Israel.'" - Ezekiel 37:12 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 36: Hosea -->
-                        <div id="lesson-36" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>36. Hosea - A prophet whose marriage to unfaithful Gomer symbolized Jehovah’s love for wayward Israel. He called for repentance, promising restoration, reflecting God’s mercy despite disobedience.</p>
-                            <p class="scripture">"Jehovah said to Hosea: 'Go, take for yourself a woman of prostitution and children of prostitution, because the land is committing outright prostitution, turning away from Jehovah.'" - Hosea 1:2 (NWT 2013)</p>
-                            <p class="scripture">"Come back, O Israel, to Jehovah your God, for you have stumbled because of your error." - Hosea 14:1 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 37: Jonah -->
-                        <div id="lesson-37" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>37. Jonah - A prophet who fled from preaching to Nineveh but was swallowed by a fish. After repenting, he warned Nineveh, leading to their repentance, showing Jehovah’s mercy extends to all nations.</p>
-                            <p class="scripture">"Then the word of Jehovah came to Jonah, saying: 'Get up, go to Nineveh the great city, and proclaim against her that their wickedness has come up before me.'" - Jonah 1:1-2 (NWT 2013)</p>
-                            <p class="scripture">"When God saw what they did, how they turned back from their evil ways, God reconsidered the calamity that he said he would bring on them, and he did not bring it." - Jonah 3:10 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 38: Miriam -->
-                        <div id="lesson-38" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>38. Miriam - Moses’ sister who watched over him as a baby and led women in song after the Red Sea crossing. Her later criticism of Moses led to leprosy, showing Jehovah’s discipline for rebellion.</p>
-                            <p class="scripture">"Then Miriam the prophetess, Aaron’s sister, took a tambourine in her hand, and all the women followed her with tambourines and dances." - Exodus 15:20 (NWT 2013)</p>
-                            <p class="scripture">"Jehovah suddenly said to Moses and Aaron and Miriam: 'Go out, the three of you, to the tent of meeting.' So the three of them went out." - Numbers 12:4 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 39: Caleb -->
-                        <div id="lesson-39" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>39. Caleb - A faithful spy who, with Joshua, trusted Jehovah’s promise about Canaan. At 85, he claimed Hebron, exemplifying enduring faith and courage rewarded by God.</p>
-                            <p class="scripture">"But my servant Caleb, because a different spirit was with him and he kept following after me wholeheartedly, I will bring him into the land where he went, and his offspring will take possession of it." - Numbers 14:24 (NWT 2013)</p>
-                            <p class="scripture">"Then Joshua blessed him and gave Hebron to Caleb the son of Jephunneh as an inheritance." - Joshua 14:13 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 40: Rahab -->
-                        <div id="lesson-40" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>40. Rahab - A Canaanite prostitute who hid Israelite spies in Jericho, showing faith in Jehovah. Spared during the city’s fall, she became an ancestor of Jesus, proving God accepts all who turn to Him.</p>
-                            <p class="scripture">"Then Joshua the son of Nun secretly sent two men out from Shittim as spies, saying: 'Go, inspect the land and Jericho.' So they went and came to the house of a prostitute named Rahab and stayed there." - Joshua 2:1 (NWT 2013)</p>
-                            <p class="scripture">"By faith Rahab the prostitute did not perish with those who acted disobediently, because she received the spies in a peaceable way." - Hebrews 11:31 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 41: Boaz -->
-                        <div id="lesson-41" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>41. Boaz - A wealthy Israelite who acted as Ruth’s kinsman-redeemer. His kindness and obedience to Jehovah’s Law made him an ancestor of David and Jesus, fulfilling God’s purpose.</p>
-                            <p class="scripture">"Then Boaz said to Ruth: 'Listen, my daughter. Do not go to glean in another field, and do not go away from here. Keep close to my young women.'" - Ruth 2:8 (NWT 2013)</p>
-                            <p class="scripture">"So Boaz took Ruth, and she became his wife. He had sexual relations with her, and Jehovah let her conceive, and she gave birth to a son." - Ruth 4:13 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 42: Hezekiah -->
-                        <div id="lesson-42" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>42. Hezekiah - A faithful king of Judah who removed idolatry and trusted Jehovah during Sennacherib’s siege. His prayer for deliverance and extended life (15 years) show God’s response to righteousness.</p>
-                            <p class="scripture">"He kept doing what was right in Jehovah’s eyes, just as David his forefather had done." - 2 Kings 18:3 (NWT 2013)</p>
-                            ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<p class="scripture">"Then Hezekiah prayed to Jehovah: 'O Jehovah, please remember how I have walked before you faithfully and with a whole heart, and I have done what is good in your eyes.' And Hezekiah wept profusely." - 2 Kings 20:3 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 43: Josiah -->
-                        <div id="lesson-43" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>43. Josiah - A young king of Judah who led a major reform after finding the Law book. He destroyed idols, restored the temple, and celebrated a great Passover, showing zeal for Jehovah’s worship before Judah’s fall.</p>
-                            <p class="scripture">"He did what was right in Jehovah’s eyes and walked in all the ways of David his forefather; he did not deviate to the right or to the left." - 2 Kings 22:2 (NWT 2013)</p>
-                            <p class="scripture">"Then the king stood by the pillar and made a covenant before Jehovah, to follow Jehovah and to keep his commandments, his reminders, and his statutes with all his heart and with all his soul." - 2 Kings 23:3 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 44: Mordecai -->
-                        <div id="lesson-44" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>44. Mordecai - Esther’s cousin who raised her and uncovered a plot against the king. He guided Esther to save the Jews from Haman’s decree, showing loyalty to Jehovah and His people, honored by the king.</p>
-                            <p class="scripture">"Now there was a Jew in Shushan the citadel whose name was Mordecai, the son of Jair, the son of Shimei, the son of Kish, a Benjaminite." - Esther 2:5 (NWT 2013)</p>
-                            <p class="scripture">"Then Mordecai said to reply to Esther: 'Do not imagine in your heart that the king’s house will be a refuge for you more than for all the other Jews.'" - Esther 4:13 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 45: Abigail -->
-                        <div id="lesson-45" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>45. Abigail - Nabal’s wise wife who prevented David from bloodshed by offering provisions. After Nabal’s death, she became David’s wife, exemplifying discernment and peace-making in service to Jehovah’s anointed.</p>
-                            <p class="scripture">"The woman was discerning and beautiful, but the man was harsh and bad in his practices; his name was Nabal, and his wife’s name was Abigail." - 1 Samuel 25:3 (NWT 2013)</p>
-                            <p class="scripture">"Then Abigail quickly took 200 loaves of bread, two large jars of wine, five dressed sheep, five seah measures of roasted grain, 100 cakes of raisins, and 200 cakes of figs and loaded them on donkeys." - 1 Samuel 25:18 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 46: Hannah -->
-                        <div id="lesson-46" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>46. Hannah - Samuel’s mother, who prayed fervently for a child and dedicated him to Jehovah’s service. Her song of gratitude reflects deep faith and submission to God’s will, inspiring trust in prayer.</p>
-                            <p class="scripture">"Hannah was praying in her heart, and her lips were quivering, but her voice was not heard. So Eli thought she was drunk." - 1 Samuel 1:13 (NWT 2013)</p>
-                            <p class="scripture">"Then Hannah said: 'My heart rejoices in Jehovah; my horn is exalted in Jehovah. My mouth is opened wide against my enemies, for I rejoice in your salvation.'" - 1 Samuel 2:1 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 47: Eli -->
-                        <div id="lesson-47" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>47. Eli - A high priest who raised Samuel but failed to discipline his corrupt sons, Hophni and Phinehas. His negligence led to the loss of the ark and his family’s priesthood, showing the consequences of neglecting Jehovah’s standards.</p>
-                            <p class="scripture">"Now Eli was very old, and he had heard about all that his sons were doing to all Israel and how they would lie down with the women who served at the entrance of the tent of meeting." - 1 Samuel 2:22 (NWT 2013)</p>
-                            <p class="scripture">"Then a man of God came to Eli and said to him: 'This is what Jehovah says: “Did I not reveal myself to the house of your forefather when they were in Egypt as slaves to the house of Pharaoh?”'" - 1 Samuel 2:27 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 48: Saul -->
-                        <div id="lesson-48" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>48. Saul - Israel’s first king, anointed by Samuel. Initially humble, he later disobeyed Jehovah, offering unauthorized sacrifices and sparing Amalekites. His rejection led to David’s rise, showing the cost of pride and disobedience.</p>
-                            <p class="scripture">"Then Samuel took a flask of oil and poured it out on his head and kissed him and said: 'Is it not because Jehovah has anointed you as a leader over his inheritance?'" - 1 Samuel 10:1 (NWT 2013)</p>
-                            <p class="scripture">"Samuel then said to Saul: 'You have acted foolishly. You have not kept the commandment of Jehovah your God that he commanded you.'" - 1 Samuel 13:13 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 49: Jonathan -->
-                        <div id="lesson-49" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>49. Jonathan - Saul’s son and David’s loyal friend, who risked his life to protect David from Saul’s jealousy. His faith in Jehovah and selflessness made him a model of true friendship and submission to God’s will.</p>
-                            <p class="scripture">"Jonathan then said to the young man carrying his weapons: 'Come, let us cross over to the outpost of these uncircumcised men. Perhaps Jehovah will act for us, for nothing can hinder Jehovah from saving, whether by many or by few.'" - 1 Samuel 14:6 (NWT 2013)</p>
-                            <p class="scripture">"Jonathan, Saul’s son, now went to David at Horesh, and he helped him find strength in God." - 1 Samuel 23:16 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 50: Absalom -->
-                        <div id="lesson-50" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>50. Absalom - David’s son who rebelled, seeking the throne by deceit. His conspiracy led to a civil war, ending in his death despite David’s love for him, illustrating the consequences of pride and disloyalty to Jehovah’s anointed.</p>
-                            <p class="scripture">"In all Israel, there was no man as highly praised for his handsome appearance as Absalom. From the sole of his foot to the crown of his head, there was no flaw in him." - 2 Samuel 14:25 (NWT 2013)</p>
-                            <p class="scripture">"Then Absalom said to Ahithophel: 'Give your advice. What should we do?'" - 2 Samuel 16:20 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 51: Bathsheba -->
-                        <div id="lesson-51" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>51. Bathsheba - Uriah’s wife, whom David took in adultery, leading to Uriah’s death. After repentance, she became Solomon’s mother, part of the Messianic line, showing Jehovah’s mercy despite human failure.</p>
-                            <p class="scripture">"Then David sent messengers to take her. So she came to him, and he lay down with her. (She had just purified herself from her uncleanness.) Afterward, she returned to her house." - 2 Samuel 11:4 (NWT 2013)</p>
-                            <p class="scripture">"Then Nathan said to David: 'You are the man! This is what Jehovah the God of Israel says: “I anointed you as king over Israel, and I rescued you from the hand of Saul.”'" - 2 Samuel 12:7 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 52: Nathan -->
-                        <div id="lesson-52" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>52. Nathan - A prophet who courageously confronted David about his sin with Bathsheba. He also confirmed God’s covenant with David, ensuring Solomon’s succession, showing loyalty to Jehovah’s purpose.</p>
-                            <p class="scripture">"Then Jehovah sent Nathan to David. He came in to him and said: 'There were two men in a certain city, one rich and the other poor.'" - 2 Samuel 12:1 (NWT 2013)</p>
-                            <p class="scripture">"Then Nathan said to David: 'You are the man! This is what Jehovah the God of Israel says: “I anointed you as king over Israel, and I rescued you from the hand of Saul.”'" - 2 Samuel 12:7 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 53: Ahab -->
-                        <div id="lesson-53" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>53. Ahab - A wicked king of Israel who, with Jezebel, promoted Baal worship. His coveting of Naboth’s vineyard led to murder and divine judgment, fulfilled by his death in battle, showing Jehovah’s justice.</p>
-                            <p class="scripture">"No one else sold himself to do what was bad in the eyes of Jehovah as Ahab did, because his wife Jezebel incited him." - 1 Kings 21:25 (NWT 2013)</p>
-                            <p class="scripture">"Then a man drew a bow at random and struck the king of Israel between the joints of his armor. So he said to the charioteer: 'Turn around and take me out of the battle, for I have been badly wounded.'" - 1 Kings 22:34 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 54: Jezebel -->
-                        <div id="lesson-54" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>54. Jezebel - Ahab’s wife, a Sidonian princess who led Israel into Baal worship. Her murder of Naboth and persecution of prophets like Elijah led to her gruesome death, fulfilling prophecy and Jehovah’s judgment.</p>
-                            <p class="scripture">"When Jezebel was killing Jehovah’s prophets, Obadiah took 100 prophets and hid them 50 to a cave and kept supplying them with bread and water." - 1 Kings 18:4 (NWT 2013)</p>
-                            <p class="scripture">"When they went to bury her, they found nothing but her skull, her feet, and the palms of her hands." - 2 Kings 9:35 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 55: Naaman -->
-                        <div id="lesson-55" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>55. Naaman - A Syrian army chief healed of leprosy by Elisha after washing in the Jordan. His faith in Jehovah grew, showing God’s power extends to foreigners who seek Him.</p>
-                            <p class="scripture">"Now Naaman, the army chief of the king of Syria, was a prominent man before his lord and was held in high esteem, for through him Jehovah had given victory to Syria. But the man was a leper." - 2 Kings 5:1 (NWT 2013)</p>
-                            <p class="scripture">"So he went down and dipped himself seven times in the Jordan, according to the word of the man of the true God, and his flesh was restored like the flesh of a small boy, and he became clean." - 2 Kings 5:14 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 56: Shadrach, Meshach, and Abednego -->
-                        <div id="lesson-56" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>56. Shadrach, Meshach, and Abednego - Daniel’s companions who refused to worship Nebuchadnezzar’s image. Miraculously saved from the fiery furnace, they proved Jehovah’s power and protection for those who remain faithful.</p>
-                            <p class="scripture">"Shadrach, Meshach, and Abednego answered the king: 'O Nebuchadnezzar, we have no need to answer you in this matter.'" - Daniel 3:16 (NWT 2013)</p>
-                            <p class="scripture">"Look! I see four men walking about free in the midst of the fire, and they are unharmed, and the fourth one looks like a son of the gods." - Daniel 3:25 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 57: Nebuchadnezzar -->
-                        <div id="lesson-57" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>57. Nebuchadnezzar - Babylon’s king who conquered Judah. Humbled by Jehovah through a seven-year madness, he acknowledged God’s sovereignty after Daniel interpreted his dreams, showing Jehovah rules over all kings.</p>
-                            <p class="scripture">"Nebuchadnezzar the king, to all the peoples, nations, and languages who dwell in all the earth: May your peace abound!" - Daniel 4:1 (NWT 2013)</p>
-                            <p class="scripture">"Now I, Nebuchadnezzar, am praising and exalting and glorifying the King of the heavens, because all his works are truth and his ways are justice, and because he is able to humiliate those who are walking in pride." - Daniel 4:37 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 58: Darius -->
-                        <div id="lesson-58" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>58. Darius - A Medo-Persian king who, tricked into decreeing Daniel’s death, saw him saved from the lions’ den. He then honored Jehovah, decreeing that all fear Daniel’s God, showing divine protection.</p>
-                            <p class="scripture">"Then King Darius wrote to all the peoples, nations, and languages dwelling in all the earth: 'May your peace abound!'" - Daniel 6:25 (NWT 2013)</p>
-                            <p class="scripture">"I am issuing an order that in every dominion of my kingdom, people are to tremble in fear before the God of Daniel. For he is the living God and he endures forever." - Daniel 6:26 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 59: Cyrus -->
-                        <div id="lesson-59" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>59. Cyrus - Persia’s king, used by Jehovah to free the Jews from Babylon, fulfilling Isaiah’s prophecy. He decreed the temple’s rebuilding, showing God’s control over nations to accomplish His purpose.</p>
-                            <p class="scripture">"This is what Cyrus king of Persia says: 'Jehovah the God of the heavens has given me all the kingdoms of the earth, and he has commissioned me to build him a house in Jerusalem, which is in Judah.'" - Ezra 1:2 (NWT 2013)</p>
-                            <p class="scripture">"Who has raised up from the east the one whom righteousness calls to its service? He hands nations over to him and subdues kings." - Isaiah 41:2 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 60: Zerubbabel -->
-                        <div id="lesson-60" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>60. Zerubbabel - A governor of Judah who led the first group of exiles back to Jerusalem. He rebuilt the temple despite opposition, fulfilling Jehovah’s promise through Haggai and Zechariah, an ancestor of Christ.</p>
-                            <p class="scripture">"Then Zerubbabel the son of Shealtiel and Jeshua the son of Jehozadak rose up and started to rebuild the house of God that is in Jerusalem; and the prophets of God were with them, supporting them." - Ezra 5:2 (NWT 2013)</p>
-                            <p class="scripture">"The hands of Zerubbabel have laid the foundation of this house, and his own hands will finish it." - Zechariah 4:9 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 61: Haggai -->
-                        <div id="lesson-61" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>61. Haggai - A prophet who urged the returned exiles to rebuild the temple. His messages motivated Zerubbabel and the people to prioritize Jehovah’s worship, promising greater glory for the new temple.</p>
-                            <p class="scripture">"In the second year of King Darius, in the sixth month, on the first day of the month, the word of Jehovah came through Haggai the prophet to Zerubbabel the son of Shealtiel, the governor of Judah." - Haggai 1:1 (NWT 2013)</p>
-                            <p class="scripture">"This is what Jehovah of armies says: 'Set your heart on your ways.'" - Haggai 1:7 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 62: Zechariah -->
-                        <div id="lesson-62" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>62. Zechariah - A prophet who, with Haggai, encouraged temple rebuilding. His visions of the Messiah as King and Priest gave hope to the Jews, pointing to Jesus’ role in Jehovah’s purpose.</p>
-                            <p class="scripture">"In the eighth month, in the second year of Darius, the word of Jehovah came to the prophet Zechariah son of Berechiah son of Iddo, saying:" - Zechariah 1:1 (NWT 2013)</p>
-                            <p class="scripture">"Shout for joy, O daughter of Zion; for I am coming, and I will reside in your midst,” declares Jehovah." - Zechariah 2:10 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 63: Malachi -->
-                        <div id="lesson-63" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>63. Malachi - The last Hebrew prophet, who rebuked Israel for corrupt worship after the temple’s rebuilding. He foretold a messenger preparing for the Messiah, fulfilled by John the Baptist, closing the Hebrew Scriptures.</p>
-                            <p class="scripture">"A pronouncement: The word of Jehovah to Israel through Malachi." - Malachi 1:1 (NWT 2013)</p>
-                            <p class="scripture">"Look! I am sending my messenger, and he will clear up a way before me. And suddenly the true Lord, whom you are seeking, will come to his temple." - Malachi 3:1 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 64: Matthew -->
-                        <div id="lesson-64" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>64. Matthew - A tax collector turned apostle who wrote the Gospel of Matthew. His account emphasizes Jesus as the Messianic King, fulfilling prophecy, and provides the Sermon on the Mount, a cornerstone of Christian teaching.</p>
-                            <p class="scripture">"As Jesus went on from there, he saw a man named Matthew sitting at the tax office, and he said to him: 'Be my follower.' At that he got up and followed him." - Matthew 9:9 (NWT 2013)</p>
-                            <p class="scripture">"All of this actually came about to fulfill what was spoken by Jehovah through his prophet, saying:" - Matthew 1:22 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 65: Mark -->
-                        <div id="lesson-65" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>65. Mark - A young Christian, possibly the “John Mark” of Acts, who wrote the Gospel of Mark. His account, likely influenced by Peter, focuses on Jesus’ actions, presenting Him as a powerful servant of Jehovah.</p>
-                            <p class="scripture">"The beginning of the good news about Jesus Christ, the Son of God:" - Mark 1:1 (NWT 2013)</p>
-                            <p class="scripture">"And he said to them: 'Go into all the world and preach the good news to all creation.'" - Mark 16:15 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 66: Luke -->
-                        <div id="lesson-66" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>66. Luke - A physician and companion of Paul who wrote the Gospel of Luke and Acts. His detailed accounts highlight Jesus’ compassion and the spread of Christianity, emphasizing Jehovah’s purpose for all nations.</p>
-                            <p class="scripture">"Seeing that many have undertaken to compile an account of the facts that are given full credence among us," - Luke 1:1 (NWT 2013)</p>
-                            <p class="scripture">"But you will receive power when the holy spirit comes upon you, and you will be witnesses of me in Jerusalem, in all Judea and Samaria, and to the most distant part of the earth." - Acts 1:8 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 67: Judas Iscariot -->
-                        <div id="lesson-67" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>67. Judas Iscariot - The apostle who betrayed Jesus for 30 pieces of silver, fulfilling prophecy. His remorse led to suicide, a warning of the consequences of greed and disloyalty to Jehovah’s Son.</p>
-                            <p class="scripture">"Then one of the Twelve, the one called Judas Iscariot, went to the chief priests and said: 'What will you give me to betray him to you?' They stipulated to him 30 silver pieces." - Matthew 26:14-15 (NWT 2013)</p>
-                            <p class="scripture">"Then Judas, who betrayed him, seeing that he had been condemned, felt remorse and brought the 30 silver pieces back to the chief priests and elders." - Matthew 27:3 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 68: Thomas -->
-                        <div id="lesson-68" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>68. Thomas - An apostle called “Doubting Thomas” for initially questioning Jesus’ resurrection. After seeing Jesus, he declared faith, showing that Jehovah strengthens those who seek evidence with an honest heart.</p>
-                            <p class="scripture">"But Thomas, one of the Twelve, who was called The Twin, was not with them when Jesus came." - John 20:24 (NWT 2013)</p>
-                            <p class="scripture">"Then he said to Thomas: 'Put your finger here, and see my hands, and take your hand and stick it into my side, and stop doubting but believe.'" - John 20:27 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 69: Mary Magdalene -->
-                        <div id="lesson-69" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>69. Mary Magdalene - A faithful follower of Jesus, healed of seven demons. She witnessed His crucifixion and resurrection, being the first to see the risen Christ, showing her devotion to Jehovah’s Son.</p>
-                            <p class="scripture">"Mary Magdalene and the other Mary were there, sitting opposite the grave." - Matthew 27:61 (NWT 2013)</p>
-                            <p class="scripture">"After he rose early on the first day of the week, he appeared first to Mary Magdalene, from whom he had expelled seven demons." - Mark 16:9 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 70: Martha -->
-                        <div id="lesson-70" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>70. Martha - Lazarus’ sister, known for hospitality but corrected by Jesus for being overly anxious. Her faith in the resurrection was affirmed when Jesus raised Lazarus, showing trust in Jehovah’s power.</p>
-                            <p class="scripture">"But Martha was distracted with all the preparations to be made, so she stepped up and said: 'Lord, does it not matter to you that my sister has left me alone to serve?'" - Luke 10:40 (NWT 2013)</p>
-                            <p class="scripture">"Martha said to him: 'I know he will rise in the resurrection on the last day.'" - John 11:24 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 71: Lazarus -->
-                        <div id="lesson-71" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>71. Lazarus - Martha and Mary’s brother, whom Jesus raised from the dead after four days. His resurrection strengthened faith in Jesus as the resurrection and the life, a preview of Jehovah’s future promise.</p>
-                            <p class="scripture">"So Jesus, after groaning again within himself, came to the tomb. It was, in fact, a cave, and a stone was lying against it." - John 11:38 (NWT 2013)</p>
-                            <p class="scripture">"When he had said this, he cried out with a loud voice: 'Lazarus, come out!' The man who had been dead came out with his feet and hands bound with wrappings." - John 11:43-44 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 72: Nicodemus -->
-                        <div id="lesson-72" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>72. Nicodemus - A Pharisee who visited Jesus at night, learning about being born again. He later defended Jesus and helped bury Him, showing growing faith in Jehovah’s Son despite opposition.</p>
-                            <p class="scripture">"Now there was a man of the Pharisees named Nicodemus, a ruler of the Jews." - John 3:1 (NWT 2013)</p>
-                            <p class="scripture">"After this, Joseph of Arimathea, who was a disciple of Jesus but a secret one because of his fear of the Jews, asked Pilate if he could take away the body of Jesus." - John 19:38 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 73: Joseph of Arimathea -->
-                        <div id="lesson-73" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>73. Joseph of Arimathea - A rich Sanhedrin member and secret disciple who boldly asked Pilate for Jesus’ body. He provided his tomb for Jesus’ burial, fulfilling prophecy and showing devotion to Jehovah’s Son.</p>
-                            <p class="scripture">"Now when evening had come, a rich man from Arimathea named Joseph, who had also become a disciple of Jesus, arrived." - Matthew 27:57 (NWT 2013)</p>
-                            <p class="scripture">"This man went to Pilate and asked for the body of Jesus. Then Pilate ordered it to be given over." - Luke 23:52 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 74: Pilate -->
-                        <div id="lesson-74" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>74. Pilate - The Roman governor who sentenced Jesus to death despite finding no fault in Him. His yielding to the crowd fulfilled prophecy but showed the weakness of compromising with truth under pressure.</p>
-                            <p class="scripture">"Pilate said to him: 'What is truth?' After saying this, he went out again to the Jews and said to them: 'I find no fault in him.'" - John 18:38 (NWT 2013)</p>
-                            <p class="scripture">"When Pilate saw that he was getting nowhere but, rather, an uproar was starting, he took water and washed his hands before the crowd, saying: 'I am innocent of the blood of this man. You yourselves must see to it.'" - Matthew 27:24 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 75: Herod the Great -->
-                        <div id="lesson-75" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>75. Herod the Great - The king who ordered the slaughter of Bethlehem’s infants, fearing the newborn “king” Jesus. His cruelty and paranoia contrast with Jehovah’s protection of the Messiah, fulfilling prophecy.</p>
-                            <p class="scripture">"When Herod saw that he had been outwitted by the astrologers, he became greatly enraged, and he sent out and had all the boys in Bethlehem and in all its districts killed, from two years of age and under." - Matthew 2:16 (NWT 2013)</p>
-                            <p class="scripture">"Then what was spoken through Jeremiah the prophet was fulfilled, saying: 'A voice was heard in Ramah, weeping and much wailing; it was Rachel weeping for her children, and she was unwilling to take comfort, because they are no more.'" - Matthew 2:17-18 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 76: Herod Antipas -->
-                        <div id="lesson-76" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>76. Herod Antipas - The tetrarch who beheaded John the Baptist at Herodias’ request. He mocked Jesus during His trial, showing disregard for Jehovah’s Son and the truth, leading to his eventual exile.</p>
-                            <p class="scripture">"But Herod the tetrarch, being reproved by him about Herodias, his brother’s wife, and about all the wicked deeds that Herod had done," - Luke 3:19 (NWT 2013)</p>
-                            <p class="scripture">"When Herod saw Jesus, he was overjoyed, for he had long wanted to see him because he had heard about him and was hoping to see some sign performed by him." - Luke 23:8 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 77: Caiaphas -->
-                        <div id="lesson-77" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>77. Caiaphas - The high priest who plotted Jesus’ death, fearing His influence. He presided over Jesus’ trial, fulfilling his own prophecy that one man should die for the people, though rejecting Jehovah’s Son.</p>
-                            <p class="scripture">"But one of them, Caiaphas, who was high priest that year, said to them: 'You do not know anything at all,'" - John 11:49 (NWT 2013)</p>
-                            <p class="scripture">"Then the high priest tore his garments and said: 'He has blasphemed! What further need do we have of witnesses? See! Now you have heard the blasphemy.'" - Matthew 26:65 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 78: Ananias (High Priest) -->
-                        <div id="lesson-78" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>78. Ananias - A high priest who persecuted early Christians, ordering Paul to be struck during his trial. His corruption and violence against God’s servants led to his assassination, showing Jehovah’s judgment.</p>
-                            <p class="scripture">"At this the high priest Ananias ordered those standing by him to strike him on the mouth." - Acts 23:2 (NWT 2013)</p>
-                            <p class="scripture">"Then Paul said to him: 'God is going to strike you, you whitewashed wall. Do you sit to judge me according to the Law and yet, in violation of the Law, order me to be struck?'" - Acts 23:3 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 79: Barnabas -->
-                        <div id="lesson-79" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>79. Barnabas - A Levite who sold his land to support early Christians, nicknamed “Son of Comfort.” He encouraged Paul and Mark, traveling to preach, exemplifying generosity and support for Jehovah’s work.</p>
-                            <p class="scripture">"So Joseph, who was also called Barnabas by the apostles (which means, when translated, Son of Comfort), a Levite, a native of Cyprus," - Acts 4:36 (NWT 2013)</p>
-                            <p class="scripture">"When he arrived and saw the undeserved kindness of God, he rejoiced and began encouraging them all to continue in the Lord with a resolute heart." - Acts 11:23 (NWT 2013)</p>
-                        </div>
-                        <!-- Lesson 80: Timothy -->
-                        <div id="lesson-80" class="lesson" style="display: none;">
-                            <div class="lesson-header">
-                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
-                                <h2 class="lesson-title">BIBLE FIGURES</h2>
-                                <button class="btn-study" onclick="showNextLesson()">Next</button>
-                            </div>
-                            <p>80. Timothy - A young Christian mentored by Paul, known for genuine faith from childhood. He served as an elder and missionary, receiving two of Paul’s letters, exemplifying youthful devotion to Jehovah’s service.</p>
-                            <p class="scripture">"Paul arrived at Derbe and also at Lystra. And a disciple named Timothy was there, the son of a believing Jewish woman but of a Greek father," - Acts 16:1 (NWT 2013)</p>
-                            <p class="scripture">"To Timothy, a beloved son: May you have undeserved kindness, mercy, and peace from God the Father and Christ Jesus our Lord." - 2 Timothy 1:2 (NWT 2013)</p>
-                        </div>
-
-                        <!-- Numbered Navigation Squares -->
-                        <div class="numbered-navigation">
-                            <a href="#" onclick="showLesson(1)">1</a>
-                            <a href="#" onclick="showLesson(2)">2</a>
-                            <a href="#" onclick="showLesson(3)">3</a>
-                            <a href="#" onclick="showLesson(4)">4</a>
-                            <a href="#" onclick="showLesson(5)">5</a>
-                            <a href="#" onclick="showLesson(6)">6</a>
-                            <a href="#" onclick="showLesson(7)">7</a>
-                            <a href="#" onclick="showLesson(8)">8</a>
-                            <a href="#" onclick="showLesson(9)">9</a>
-                            <a href="#" onclick="showLesson(10)">10</a>
-                            <a href="#" onclick="showLesson(11)">11</a>
-                            <a href="#" onclick="showLesson(12)">12</a>
-                            <a href="#" onclick="showLesson(13)">13</a>
-                            <a href="#" onclick="showLesson(14)">14</a>
-                            <a href="#" onclick="showLesson(15)">15</a>
-                            <a href="#" onclick="showLesson(16)">16</a>
-                            <a href="#" onclick="showLesson(17)">17</a>
-                            <a href="#" onclick="showLesson(18)">18</a>
-                            <a href="#" onclick="showLesson(19)">19</a>
-                            <a href="#" onclick="showLesson(20)">20</a>
-                            <a href="#" onclick="showLesson(21)">21</a>
-                            <a href="#" onclick="showLesson(22)">22</a>
-                            <a href="#" onclick="showLesson(23)">23</a>
-                            <a href="#" onclick="showLesson(24)">24</a>
-                            <a href="#" onclick="showLesson(25)">25</a>
-                            <a href="#" onclick="showLesson(26)">26</a>
-                            <a href="#" onclick="showLesson(27)">27</a>
-                            <a href="#" onclick="showLesson(28)">28</a>
-                            <a href="#" onclick="showLesson(29)">29</a>
-                            <a href="#" onclick="showLesson(30)">30</a>
-                            <a href="#" onclick="showLesson(31)">31</a>
-                            <a href="#" onclick="showLesson(32)">32</a>
-                            <a href="#" onclick="showLesson(33)">33</a>
-                            <a href="#" onclick="showLesson(34)">34</a>
-                            <a href="#" onclick="showLesson(35)">35</a>
-                            <a href="#" onclick="showLesson(36)">36</a>
-                            <a href="#" onclick="showLesson(37)">37</a>
-                            <a href="#" onclick="showLesson(38)">38</a>
-                            <a href="#" onclick="showLesson(39)">39</a>
-                            <a href="#" onclick="showLesson(40)">40</a>
-                            <a href="#" onclick="showLesson(41)">41</a>
-                            <a href="#" onclick="showLesson(42)">42</a>
-                            <a href="#" onclick="showLesson(43)">43</a>
-                            <a href="#" onclick="showLesson(44)">44</a>
-                            <a href="#" onclick="showLesson(45)">45</a>
-                            <a href="#" onclick="showLesson(46)">46</a>
-                            <a href="#" onclick="showLesson(47)">47</a>
-                            <a href="#" onclick="showLesson(48)">48</a>
-                            <a href="#" onclick="showLesson(49)">49</a>
-                            <a href="#" onclick="showLesson(50)">50</a>
-                            <a href="#" onclick="showLesson(51)">51</a>
-                            <a href="#" onclick="showLesson(52)">52</a>
-                            <a href="#" onclick="showLesson(53)">53</a>
-                            <a href="#" onclick="showLesson(54)">54</a>
-                            <a href="#" onclick="showLesson(55)">55</a>
-                            <a href="#" onclick="showLesson(56)">56</a>
-                            <a href="#" onclick="showLesson(57)">57</a>
-                            <a href="#" onclick="showLesson(58)">58</a>
-                            <a href="#" onclick="showLesson(59)">59</a>
-                            <a href="#" onclick="showLesson(60)">60</a>
-                            <a href="#" onclick="showLesson(61)">61</a>
-                            <a href="#" onclick="showLesson(62)">62</a>
-                            <a href="#" onclick="showLesson(63)">63</a>
-                            <a href="#" onclick="showLesson(64)">64</a>
-                            <a href="#" onclick="showLesson(65)">65</a>
-                            <a href="#" onclick="showLesson(66)">66</a>
-                            <a href="#" onclick="showLesson(67)">67</a>
-                            <a href="#" onclick="showLesson(68)">68</a>
-                            <a href="#" onclick="showLesson(69)">69</a>
-                            <a href="#" onclick="showLesson(70)">70</a>
-                            <a href="#" onclick="showLesson(71)">71</a>
-                            <a href="#" onclick="showLesson(72)">72</a>
-                            <a href="#" onclick="showLesson(73)">73</a>
-                            <a href="#" onclick="showLesson(74)">74</a>
-                            <a href="#" onclick="showLesson(75)">75</a>
-                            <a href="#" onclick="showLesson(76)">76</a>
-                            <a href="#" onclick="showLesson(77)">77</a>
-                            <a href="#" onclick="showLesson(78)">78</a>
-                            <a href="#" onclick="showLesson(79)">79</a>
-                            <a href="#" onclick="showLesson(80)">80</a>
-                        </div>
+                    <summary class="card-header">Adam</summary>
+                    <div class="card-content">
+                        <p>Adam was the first human created by Jehovah, formed from the dust of the ground and given life through God’s spirit. Placed in the Garden of Eden with his wife, Eve, he was tasked with cultivating the earth and naming the animals. His decision to disobey Jehovah by eating from the forbidden tree introduced sin and death to humanity, affecting all his descendants. Despite this, his creation highlights Jehovah’s purpose to fill the earth with perfect humans living in harmony with Him (Genesis 1:26-28; 2:7-9, 15-17; 3:6-19).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Eve</summary>
+                    <div class="card-content">
+                        <p>Eve, the first woman, was created as a complement to Adam from one of his ribs, demonstrating Jehovah’s design for marriage. She lived in Eden until she was deceived by the serpent, leading her to eat the forbidden fruit and share it with Adam. Her actions resulted in expulsion from paradise and the introduction of suffering, including pain in childbirth. Eve’s experience teaches the consequences of disobedience and the importance of trusting Jehovah’s guidance (Genesis 2:18-22; 3:1-6, 16-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Cain</summary>
+                    <div class="card-content">
+                        <p>Cain, the firstborn son of Adam and Eve, was a farmer who offered produce to Jehovah. His jealousy and anger grew when Jehovah favored his brother Abel’s offering over his own, leading him to murder Abel. Jehovah punished Cain by banishing him, yet showed mercy by protecting him with a mark. Cain’s life illustrates the dangers of unchecked emotions and the need for self-control (Genesis 4:3-16).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Abel</summary>
+                    <div class="card-content">
+                        <p>Abel, the second son of Adam and Eve, was a shepherd whose offering of the firstlings of his flock pleased Jehovah, showing his faith and righteousness. His murder by Cain made him the first martyr, and his blood “cried out” to God, symbolizing the need for justice. Abel’s example highlights the value of heartfelt worship and faithfulness, even under persecution (Genesis 4:2-10; Hebrews 11:4).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Seth</summary>
+                    <div class="card-content">
+                        <p>Seth, the third son of Adam and Eve, was born after Abel’s death and became the ancestor of a godly line leading to Noah. His birth brought comfort to his parents, and his descendants included those who “began to call on the name of Jehovah.” Seth’s life underscores Jehovah’s provision to continue His purpose despite setbacks (Genesis 4:25-26; 5:3-8).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Enoch</summary>
+                    <div class="card-content">
+                        <p>Enoch, a descendant of Seth, was a righteous man who “walked with God” in a wicked pre-Flood world. Known for prophesying about Jehovah’s judgment against the ungodly, he did not experience a normal death—Jehovah “took him” at age 365. Enoch’s faith and courage to speak truth make him a model of loyalty (Genesis 5:21-24; Jude 14-15).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Methuselah</summary>
+                    <div class="card-content">
+                        <p>Methuselah, Enoch’s son, lived 969 years, the longest lifespan recorded in the Bible, dying just before the Flood. His name, possibly meaning “when he dies, it will come,” may hint at the timing of the deluge. As part of the faithful line from Seth, Methuselah’s long life reflects Jehovah’s patience before executing judgment (Genesis 5:25-27).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Lamech</summary>
+                    <div class="card-content">
+                        <p>Lamech, Methuselah’s son and Noah’s father, lived in a violent pre-Flood era. He expressed hope in his son Noah, believing he would bring relief from the cursed ground. Though little is known of his personal deeds, Lamech’s naming of Noah shows faith in Jehovah’s promise of better times (Genesis 5:28-31).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Noah</summary>
+                    <div class="card-content">
+                        <p>Noah, a righteous man, found favor with Jehovah amidst a corrupt world. He built the ark as God directed, preserving his family and animals through the global Flood. His obedience and preaching of righteousness demonstrate unwavering faith and trust in Jehovah’s salvation, making him a key figure in human survival (Genesis 6:8-9, 13-22; 7:1-5; 2 Peter 2:5).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Shem</summary>
+                    <div class="card-content">
+                        <p>Shem, one of Noah’s three sons, survived the Flood and became an ancestor of the Semitic peoples, including Abraham. He received a blessing from Noah for his respectful actions after the Flood, contrasting with his brother Ham’s dishonor. Shem’s loyalty to Jehovah helped preserve true worship in his lineage (Genesis 9:18-27; 11:10-11).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Ham</summary>
+                    <div class="card-content">
+                        <p>Ham, Noah’s son, fathered nations like Canaan after the Flood. His disrespectful act of exposing Noah’s nakedness led to a curse on his son Canaan, not Ham himself. This event teaches the importance of honoring parents and the consequences of irreverence (Genesis 9:20-25).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Japheth</summary>
+                    <div class="card-content">
+                        <p>Japheth, another of Noah’s sons, joined Shem in covering their father’s nakedness, earning a blessing of prosperity and expansion for his descendants. His actions reflect respect and humility, contributing to the post-Flood repopulation of the earth (Genesis 9:23-27).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Nimrod</summary>
+                    <div class="card-content">
+                        <p>Nimrod, a descendant of Ham, was a mighty hunter and ruler who opposed Jehovah by founding cities like Babel. His leadership in building the Tower of Babel led to God confusing human languages, scattering mankind. Nimrod’s rebellion warns against pride and defiance of Jehovah’s sovereignty (Genesis 10:8-12; 11:1-9).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Terah</summary>
+                    <div class="card-content">
+                        <p>Terah, father of Abraham, lived in Ur of the Chaldeans and later moved toward Canaan, settling in Haran. Though he worshipped false gods, his journey with Abraham suggests openness to change. Terah’s life marks the transition to Abraham’s pivotal role in Jehovah’s purpose (Genesis 11:27-32).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Abraham</summary>
+                    <div class="card-content">
+                        <p>Abraham, originally Abram, was called by Jehovah to leave Ur and become the father of a great nation. His faith led him to obey, even offering his son Isaac as a sacrifice when tested. Jehovah made a covenant with him, promising land and blessings, fulfilled through Christ. Abraham’s trust and obedience make him the “father of all those having faith” (Genesis 12:1-4; 15:5-6; 22:1-18; Romans 4:11-12).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Sarah</summary>
+                    <div class="card-content">
+                        <p>Sarah, Abraham’s wife, was barren until Jehovah miraculously enabled her to bear Isaac in old age. Initially doubtful, she grew in faith, supporting Abraham’s calling. Her role as Isaac’s mother fulfilled Jehovah’s promise, showing His power to overcome human limitations (Genesis 17:15-19; 21:1-7; Hebrews 11:11).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Lot</summary>
+                    <div class="card-content">
+                        <p>Lot, Abraham’s nephew, chose to live near Sodom, a wicked city. Despite its influence, he remained righteous, and Jehovah rescued him and his daughters from Sodom’s destruction. Lot’s choices highlight the need to separate from bad associations, though his hesitation shows human weakness (Genesis 13:5-13; 19:15-26; 2 Peter 2:7-8).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Hagar</summary>
+                    <div class="card-content">
+                        <p>Hagar, Sarah’s Egyptian servant, bore Abraham’s son Ishmael when Sarah was barren. Mistreated by Sarah, she fled but returned after Jehovah’s angel reassured her of His care. Hagar’s experience reveals Jehovah’s compassion for the lowly and His oversight of all (Genesis 16:1-13; 21:9-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Ishmael</summary>
+                    <div class="card-content">
+                        <p>Ishmael, son of Abraham and Hagar, became the father of a great nation as Jehovah promised. Though not the covenant heir, he received blessings and protection. His life illustrates that Jehovah remembers all His promises, even to those outside the primary line (Genesis 16:10-12; 21:17-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Isaac</summary>
+                    <div class="card-content">
+                        <p>Isaac, the promised son of Abraham and Sarah, was born through Jehovah’s miracle. His near-sacrifice tested Abraham’s faith, and his survival confirmed Jehovah’s provision. Isaac’s quiet, faithful life continued the covenant line, showing trust in God’s direction (Genesis 21:1-3; 22:1-14; 26:1-5).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Rebekah</summary>
+                    <div class="card-content">
+                        <p>Rebekah, Isaac’s wife, was chosen through prayerful guidance to join Abraham’s family. Her courage to leave home and her kindness at the well reflect faith and generosity. She bore Esau and Jacob, playing a key role in Jehovah’s purpose through her sons (Genesis 24:15-67; 25:21-26).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Esau</summary>
+                    <div class="card-content">
+                        <p>Esau, Isaac’s firstborn, was a hunter who sold his birthright to Jacob for a meal, showing a lack of appreciation for spiritual things. He later sought to reclaim his blessing but lost it due to his impulsive nature. Esau’s choices warn against despising sacred privileges (Genesis 25:29-34; 27:30-40; Hebrews 12:16-17).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jacob</summary>
+                    <div class="card-content">
+                        <p>Jacob, Isaac’s younger son, secured the birthright and blessing through persistence and faith. Renamed Israel by Jehovah, he fathered the 12 tribes, enduring trials like Laban’s deceit and wrestling with an angel. Jacob’s transformation teaches reliance on Jehovah’s guidance (Genesis 25:26; 27:18-29; 32:24-30; 35:9-15).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Laban</summary>
+                    <div class="card-content">
+                        <p>Laban, Rebekah’s brother, was Jacob’s uncle and father-in-law. His deceitful switch of Leah for Rachel tested Jacob’s patience, yet he prospered under Jehovah’s blessing. Laban’s greed contrasts with Jacob’s faith, showing that Jehovah thwarts selfish schemes (Genesis 29:15-30; 31:6-9).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Leah</summary>
+                    <div class="card-content">
+                        <p>Leah, Jacob’s first wife, was unloved compared to Rachel but bore six sons, including Judah, an ancestor of Jesus. Jehovah saw her plight and blessed her with children, showing His care for the overlooked. Leah’s perseverance reflects trust in Jehovah despite personal hardship (Genesis 29:31-35; 30:17-21).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Rachel</summary>
+                    <div class="card-content">
+                        <p>Rachel, Jacob’s beloved wife, was barren for years but eventually bore Joseph and Benjamin, dying during Benjamin’s birth. Her beauty and Jacob’s devotion to her highlight human love, while her struggle with infertility shows Jehovah’s timing in fulfilling His purpose through her sons (Genesis 29:17-18; 30:22-24; 35:16-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Reuben</summary>
+                    <div class="card-content">
+                        <p>Reuben, Jacob’s firstborn son by Leah, lost his birthright due to sleeping with his father’s concubine, showing disrespect. Yet, he tried to save Joseph from his brothers’ plot, revealing a conflicted character. Reuben’s life warns against instability and the consequences of moral failure (Genesis 35:22; 37:21-22; 49:3-4).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Simeon</summary>
+                    <div class="card-content">
+                        <p>Simeon, Jacob’s second son by Leah, joined Levi in avenging their sister Dinah by massacring Shechem’s men, an act of excessive violence. Jacob cursed their anger in his deathbed blessing. Simeon’s impulsiveness teaches the need for self-control and submission to Jehovah’s justice (Genesis 34:25-31; 49:5-7).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Levi</summary>
+                    <div class="card-content">
+                        <p>Levi, Jacob’s third son by Leah, acted with Simeon to kill the Shechemites, showing fierce loyalty but poor judgment. His tribe later became priests after proving zealous for Jehovah at Sinai. Levi’s story shows how Jehovah can redirect flawed traits for His service (Genesis 34:25-31; 49:5-7; Exodus 32:26-29).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Judah</summary>
+                    <div class="card-content">
+                        <p>Judah, Jacob’s fourth son by Leah, suggested selling Joseph into slavery but later showed growth by offering himself for Benjamin. His tribe became the royal line leading to Jesus. Judah’s transformation highlights Jehovah’s mercy and the power of repentance (Genesis 37:26-27; 44:18-34; 49:8-10).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Joseph</summary>
+                    <div class="card-content">
+                        <p>Joseph, Jacob’s favored son by Rachel, was sold into slavery by his brothers but rose to power in Egypt through Jehovah’s blessing. His forgiveness of his brothers and provision during famine fulfilled God’s plan to preserve Israel. Joseph’s faith and resilience teach trust in Jehovah’s purpose despite trials (Genesis 37:3-28; 41:39-43; 50:19-21).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Benjamin</summary>
+                    <div class="card-content">
+                        <p>Benjamin, Jacob’s youngest son by Rachel, was deeply loved by his father after Joseph’s presumed death. His brothers’ protection of him in Egypt showed their changed hearts. Benjamin’s tribe later produced Saul, Israel’s first king, reflecting his quiet but significant role in God’s purpose (Genesis 35:18; 44:20-34; 49:27).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Dinah</summary>
+                    <div class="card-content">
+                        <p>Dinah, Jacob’s daughter by Leah, was violated by Shechem, prompting her brothers Simeon and Levi to take revenge. Her story, though brief, underscores the protective instincts of family and the consequences of sin in a fallen world (Genesis 34:1-7, 25-31).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Potiphar</summary>
+                    <div class="card-content">
+                        <p>Potiphar, an Egyptian official, bought Joseph as a slave and made him overseer of his house due to Jehovah’s blessing. His wife’s false accusation led to Joseph’s imprisonment. Potiphar’s role shows how Jehovah uses even unbelievers to advance His purpose (Genesis 39:1-6, 19-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Potiphar’s Wife</summary>
+                    <div class="card-content">
+                        <p>Potiphar’s wife tried to seduce Joseph and, when rejected, falsely accused him of assault, leading to his imprisonment. Her actions contrast with Joseph’s integrity, illustrating the dangers of immorality and deceit in opposing Jehovah’s servants (Genesis 39:7-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Pharaoh (of Joseph’s Time)</summary>
+                    <div class="card-content">
+                        <p>This Pharaoh, ruler during Joseph’s rise, appointed him second-in-command after Joseph interpreted his dreams, saving Egypt from famine. His trust in Joseph shows how Jehovah can move secular rulers to fulfill His will, preserving Jacob’s family (Genesis 41:14-46; 47:13-26).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Manasseh</summary>
+                    <div class="card-content">
+                        <p>Manasseh, Joseph’s firstborn son by his Egyptian wife Asenath, was blessed by Jacob, though his younger brother Ephraim received greater prominence. His name, meaning “one who makes me forget,” reflected Joseph’s overcoming of past pain. Manasseh’s tribe became part of Israel, showing Jehovah’s inclusion (Genesis 41:50-51; 48:13-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Ephraim</summary>
+                    <div class="card-content">
+                        <p>Ephraim, Joseph’s second son, received Jacob’s greater blessing over Manasseh, symbolizing Jehovah’s choice over human tradition. His tribe grew prominent in Israel, often representing the northern kingdom. Ephraim’s rise teaches that Jehovah exalts whom He wills (Genesis 41:52; 48:13-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Job</summary>
+                    <div class="card-content">
+                        <p>Job, a righteous man from Uz, endured severe trials from Satan, losing wealth, children, and health, yet remained faithful to Jehovah. His restoration after proving his integrity under test shows that loyalty to God brings blessings, even through suffering (Job 1:1-22; 2:7-10; 42:10-17).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Moses</summary>
+                    <div class="card-content">
+                        <p>Moses, raised as an Egyptian prince, was chosen by Jehovah to lead Israel out of slavery. He received the Law at Sinai and mediated the covenant, despite personal doubts. His meekness and obedience made him a key figure in revealing Jehovah’s name and purpose (Exodus 2:1-15; 3:1-15; 19:3-6; Numbers 12:3).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Aaron</summary>
+                    <div class="card-content">
+                        <p>Aaron, Moses’ brother, served as his spokesman and became Israel’s first high priest. Though he faltered by making the golden calf, his role in the priesthood showed Jehovah’s mercy and the importance of sacred service (Exodus 4:14-16; 32:1-6; Leviticus 8:1-12).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Miriam</summary>
+                    <div class="card-content">
+                        <p>Miriam, Moses’ sister, watched over him as a baby and later led Israel in song after the Red Sea crossing. Her criticism of Moses led to punishment with leprosy, teaching humility and respect for Jehovah’s appointed ones (Exodus 2:4-8; 15:20-21; Numbers 12:1-15).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Pharaoh (of the Exodus)</summary>
+                    <div class="card-content">
+                        <p>This Pharaoh oppressed Israel and defied Jehovah’s command to let them go, hardening his heart despite ten plagues. His destruction in the Red Sea proved Jehovah’s supremacy over all powers, human or divine (Exodus 5:1-2; 7:14–14:28).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jethro</summary>
+                    <div class="card-content">
+                        <p>Jethro, Moses’ father-in-law and a Midianite priest, sheltered Moses and later advised him to delegate leadership tasks. His wisdom and support show how Jehovah can use outsiders to aid His servants (Exodus 2:16-21; 18:13-27).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Zipporah</summary>
+                    <div class="card-content">
+                        <p>Zipporah, Moses’ wife and Jethro’s daughter, circumcised their son to save Moses from Jehovah’s anger, showing quick thinking and faith. Her role highlights the importance of obedience to God’s commands (Exodus 2:21-22; 4:24-26).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Korah</summary>
+                    <div class="card-content">
+                        <p>Korah, a Levite, rebelled against Moses’ authority, seeking the priesthood for himself. Jehovah destroyed him and his followers by opening the earth, showing the danger of challenging God’s appointed arrangement (Numbers 16:1-35).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Balaam</summary>
+                    <div class="card-content">
+                        <p>Balaam, a non-Israelite prophet, was hired to curse Israel but blessed them instead when Jehovah intervened, even using a donkey to rebuke him. His greed later led to sin, warning against compromising integrity for gain (Numbers 22:5-35; 31:16).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Joshua</summary>
+                    <div class="card-content">
+                        <p>Joshua, Moses’ assistant, led Israel into Canaan, conquering Jericho by faith in Jehovah’s power. His courage and obedience fulfilled God’s promise of the land, making him a model of leadership under divine guidance (Joshua 1:1-9; 6:1-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Caleb</summary>
+                    <div class="card-content">
+                        <p>Caleb, a faithful spy, trusted Jehovah’s promise of Canaan despite the majority’s fear. At 85, he claimed his inheritance, showing enduring faith and boldness in serving God (Numbers 13:6, 30; 14:6-9; Joshua 14:6-14).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Rahab</summary>
+                    <div class="card-content">
+                        <p>Rahab, a Canaanite prostitute, hid Israel’s spies in Jericho, trusting in Jehovah’s power. Her faith saved her family during the city’s fall, and she joined Israel, becoming an ancestor of Jesus (Joshua 2:1-21; 6:22-25; Matthew 1:5).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Achan</summary>
+                    <div class="card-content">
+                        <p>Achan stole devoted items after Jericho’s fall, causing Israel’s defeat at Ai. His confession and execution with his family show the seriousness of disobedience and its impact on the congregation (Joshua 7:1-26).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Deborah</summary>
+                    <div class="card-content">
+                        <p>Deborah, a prophetess and judge, led Israel to victory over Canaanite oppression with Barak. Her faith and leadership inspired courage, showing Jehovah’s use of women in His purpose (Judges 4:4-16; 5:1-7).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Barak</summary>
+                    <div class="card-content">
+                        <p>Barak, a military leader, defeated Sisera’s army under Deborah’s guidance, though his hesitation cost him full honor. His obedience, despite reluctance, shows the value of acting on faith in Jehovah’s direction (Judges 4:6-22).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Gideon</summary>
+                    <div class="card-content">
+                        <p>Gideon, a hesitant judge, led 300 men to defeat Midian with Jehovah’s help, using trumpets and jars. His initial doubt turned to bold faith, teaching reliance on God’s strength over human might (Judges 6:11-16; 7:7-22).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Abimelech</summary>
+                    <div class="card-content">
+                        <p>Abimelech, Gideon’s son, seized power by murdering his brothers, ruling as a wicked king. His death by a millstone fulfilled a curse, showing Jehovah’s judgment on ambition and violence (Judges 9:1-6, 50-57).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jephthah</summary>
+                    <div class="card-content">
+                        <p>Jephthah, an outcast turned judge, delivered Israel from Ammon but made a rash vow, possibly costing his daughter’s life. His faith and leadership, despite flaws, highlight Jehovah’s use of imperfect servants (Judges 11:1-11, 29-40).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Samson</summary>
+                    <div class="card-content">
+                        <p>Samson, a Nazirite with superhuman strength, judged Israel and fought the Philistines. His weakness for women led to betrayal by Delilah, but his final act of faith destroyed his enemies, showing Jehovah’s power through repentance (Judges 13:5; 16:4-30).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Delilah</summary>
+                    <div class="card-content">
+                        <p>Delilah, a Philistine woman, betrayed Samson for money by discovering his strength’s source—his hair. Her deceit led to his capture, illustrating the peril of disloyalty and the consequences of tempting God’s servants (Judges 16:4-21).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Ruth</summary>
+                    <div class="card-content">
+                        <p>Ruth, a Moabitess, showed loyalty to her mother-in-law Naomi and faith in Jehovah, leaving her homeland for Israel. Her marriage to Boaz made her an ancestor of David and Jesus, proving God’s acceptance of faithful foreigners (Ruth 1:16-17; 4:13-17).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Naomi</summary>
+                    <div class="card-content">
+                        <p>Naomi, an Israelite widow, returned to Bethlehem with Ruth after losing her husband and sons. Her guidance led to Ruth’s redemption by Boaz, showing Jehovah’s care for the bereaved through faithful companionship (Ruth 1:1-18; 4:14-17).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Boaz</summary>
+                    <div class="card-content">
+                        <p>Boaz, a wealthy Israelite, redeemed Ruth as a kinsman, marrying her and preserving Naomi’s family line. His kindness and obedience to Jehovah’s law made him a forefather of Jesus, exemplifying generosity and faith (Ruth 2:10-12; 4:9-10, 13).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Eli</summary>
+                    <div class="card-content">
+                        <p>Eli, a high priest, raised Samuel but failed to discipline his wicked sons, leading to God’s judgment on his house. His partial faithfulness contrasts with his neglect, warning against compromising sacred duties (1 Samuel 1:9; 2:12-17; 3:11-14).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Hannah</summary>
+                    <div class="card-content">
+                        <p>Hannah, barren and distressed, prayed fervently for a son, vowing to dedicate him to Jehovah. Her son Samuel’s birth and her song of praise show the power of heartfelt prayer and gratitude to God (1 Samuel 1:10-20; 2:1-10).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Samuel</summary>
+                    <div class="card-content">
+                        <p>Samuel, a prophet and judge, served Jehovah from childhood, delivering His messages and anointing Israel’s first kings. His faithfulness amid a corrupt priesthood highlights the importance of listening to God’s voice (1 Samuel 3:1-19; 7:3-6; 16:1-13).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Saul</summary>
+                    <div class="card-content">
+                        <p>Saul, Israel’s first king, started humbly but disobeyed Jehovah by sparing Agag and offering unauthorized sacrifices. His rejection by God teaches the cost of pride and partial obedience (1 Samuel 9:1-2; 13:8-14; 15:22-23).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jonathan</summary>
+                    <div class="card-content">
+                        <p>Jonathan, Saul’s son, showed courage in battle and deep loyalty to David, despite his father’s enmity. His friendship with David exemplifies selflessness and trust in Jehovah’s purpose over personal gain (1 Samuel 14:6-14; 18:1-4; 20:41-42).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">David</summary>
+                    <div class="card-content">
+                        <p>David, a shepherd anointed as king, defeated Goliath and ruled Israel with faith, though not without sin (e.g., Bathsheba). His psalms and covenant with Jehovah for an everlasting kingdom point to Jesus, showing repentance and devotion (1 Samuel 16:11-13; 17:45-50; 2 Samuel 7:12-16).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Goliath</summary>
+                    <div class="card-content">
+                        <p>Goliath, a Philistine giant, defied Israel’s army until David killed him with a sling. His defeat by a youth trusting in Jehovah proved that God’s power overcomes human might (1 Samuel 17:4-11, 45-51).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Michal</summary>
+                    <div class="card-content">
+                        <p>Michal, Saul’s daughter and David’s wife, saved him from her father but later despised him for dancing before Jehovah. Her childlessness reflects the cost of lacking faith and respect (1 Samuel 19:11-17; 2 Samuel 6:16-23).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Abigail</summary>
+                    <div class="card-content">
+                        <p>Abigail, Nabal’s wise wife, prevented David from bloodshed by humbly offering provisions. After Nabal’s death, she married David, showing discernment and peace-making as qualities Jehovah values (1 Samuel 25:14-35, 39-42).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Nabal</summary>
+                    <div class="card-content">
+                        <p>Nabal, a wealthy but foolish man, insulted David, nearly bringing disaster on his house. His sudden death after Abigail’s intervention shows Jehovah’s judgment on arrogance and ingratitude (1 Samuel 25:2-11, 36-38).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Bathsheba</summary>
+                    <div class="card-content">
+                        <p>Bathsheba, Uriah’s wife, became David’s after he sinned by arranging Uriah’s death. Their son Solomon succeeded David, showing Jehovah’s mercy in using flawed situations for His purpose (2 Samuel 11:2-27; 12:24-25).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Uriah</summary>
+                    <div class="card-content">
+                        <p>Uriah, a loyal Hittite soldier, refused to sleep with Bathsheba during war, honoring duty. David’s order for his death highlights Uriah’s integrity, contrasting with David’s sin (2 Samuel 11:6-17).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Nathan</summary>
+                    <div class="card-content">
+                        <p>Nathan, a prophet, boldly rebuked David for his sin with Bathsheba and conveyed Jehovah’s covenant for an everlasting kingdom. His courage and faithfulness made him a key messenger of God’s will (2 Samuel 12:1-14; 7:4-17).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Solomon</summary>
+                    <div class="card-content">
+                        <p>Solomon, David’s son, ruled Israel with wisdom from Jehovah, building the temple. His later idolatry with foreign wives led to division, teaching that wisdom must be paired with exclusive devotion (1 Kings 3:5-12; 6:1-2; 11:1-11).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Rehoboam</summary>
+                    <div class="card-content">
+                        <p>Rehoboam, Solomon’s son, rejected wise counsel, causing Israel’s split into two kingdoms. His harsh rule fulfilled Jehovah’s word, showing the consequences of pride and poor leadership (1 Kings 12:1-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jeroboam</summary>
+                    <div class="card-content">
+                        <p>Jeroboam, an official under Solomon, became king of northern Israel but led it into idolatry with golden calves. His rebellion against Jehovah’s worship brought lasting judgment, warning against false religion (1 Kings 11:26-40; 12:26-33).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Elijah</summary>
+                    <div class="card-content">
+                        <p>Elijah, a prophet, confronted Ahab’s idolatry, proving Jehovah’s power on Mount Carmel. His miracles and ascension in a whirlwind mark him as a bold defender of true worship (1 Kings 17:1; 18:21-40; 2 Kings 2:11).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Ahab</summary>
+                    <div class="card-content">
+                        <p>Ahab, a wicked king of Israel, married Jezebel and promoted Baal worship, defying Elijah. His death in battle fulfilled Jehovah’s judgment, showing the end of opposing God (1 Kings 16:30-33; 22:34-38).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jezebel</summary>
+                    <div class="card-content">
+                        <p>Jezebel, Ahab’s wife, persecuted Jehovah’s prophets and pushed Baal worship. Her gruesome death by dogs fulfilled prophecy, symbolizing the fate of those who corrupt true worship (1 Kings 16:31; 21:5-23; 2 Kings 9:30-37).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Elisha</summary>
+                    <div class="card-content">
+                        <p>Elisha, Elijah’s successor, performed miracles like raising a child and healing Naaman, doubling Elijah’s works. His ministry strengthened faith in Jehovah during apostasy (2 Kings 2:9-15; 4:32-37; 5:10-14).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Naaman</summary>
+                    <div class="card-content">
+                        <p>Naaman, a Syrian commander, was healed of leprosy by washing in the Jordan at Elisha’s command. His faith in Jehovah despite initial pride shows God’s mercy to foreigners (2 Kings 5:1-15).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jehu</summary>
+                    <div class="card-content">
+                        <p>Jehu, anointed king, destroyed Ahab’s house and Baal worship as Jehovah directed, but his incomplete reform led to judgment. His zeal teaches partial obedience is insufficient (2 Kings 9:6-10; 10:18-31).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Athaliah</summary>
+                    <div class="card-content">
+                        <p>Athaliah, Jezebel’s daughter, usurped Judah’s throne, killing royal heirs except Joash. Her overthrow restored David’s line, showing Jehovah’s protection of His covenant (2 Kings 11:1-16).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Joash</summary>
+                    <div class="card-content">
+                        <p>Joash, hidden as a child from Athaliah, became Judah’s king and repaired the temple. His later idolatry brought judgment, teaching that faithfulness must endure (2 Kings 11:2-21; 12:4-7, 19-20).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Hezekiah</summary>
+                    <div class="card-content">
+                        <p>Hezekiah, a righteous king of Judah, destroyed idols and trusted Jehovah during Sennacherib’s siege, praying for deliverance. His reforms and God’s rescue show the blessings of true worship (2 Kings 18:3-7; 19:15-35).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Sennacherib</summary>
+                    <div class="card-content">
+                        <p>Sennacherib, Assyria’s king, besieged Jerusalem, mocking Jehovah. His army’s destruction by an angel proved God’s power over arrogant rulers (2 Kings 18:13-19; 19:35-37).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Manasseh (King)</summary>
+                    <div class="card-content">
+                        <p>Manasseh, Hezekiah’s son, led Judah into idolatry worse than the Canaanites. His late repentance after captivity shows Jehovah’s mercy to the contrite, though his sins had lasting effects (2 Kings 21:1-16; 2 Chronicles 33:12-16).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Josiah</summary>
+                    <div class="card-content">
+                        <p>Josiah, a young king, restored true worship in Judah after finding the Law book, purging idols. His zeal delayed judgment, showing the impact of heartfelt reform (2 Kings 22:1-11; 23:4-25).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jehoiakim</summary>
+                    <div class="card-content">
+                        <p>Jehoiakim, Josiah’s son, ruled wickedly, burning Jeremiah’s scroll and oppressing Judah. His rebellion hastened Babylon’s conquest, showing the fate of defying Jehovah’s word (2 Kings 23:36-37; Jeremiah 36:22-31).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Nebuchadnezzar</summary>
+                    <div class="card-content">
+                        <p>Nebuchadnezzar, Babylon’s king, conquered Judah as Jehovah’s instrument, later humbled by madness for pride. His acknowledgment of Jehovah’s sovereignty shows God’s rule over nations (2 Kings 25:1-7; Daniel 4:30-37).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jeremiah</summary>
+                    <div class="card-content">
+                        <p>Jeremiah, a prophet, warned Judah of Babylon’s coming judgment, enduring persecution for his faithfulness. His tears and courage reflect Jehovah’s patience and justice (Jeremiah 1:5-10; 20:7-9; 38:6-13).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Zedekiah</summary>
+                    <div class="card-content">
+                        <p>Zedekiah, Judah’s last king, rebelled against Babylon despite Jeremiah’s warnings, leading to Jerusalem’s fall. His blinding and captivity fulfilled prophecy, showing the cost of ignoring Jehovah (2 Kings 24:18-20; 25:6-7).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Daniel</summary>
+                    <div class="card-content">
+                        <p>Daniel, exiled to Babylon, served kings faithfully while refusing to compromise worship, surviving the lions’ den. His visions of God’s Kingdom reveal Jehovah’s ultimate purpose (Daniel 1:8-17; 6:10-23; 7:13-14).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Shadrach</summary>
+                    <div class="card-content">
+                        <p>Shadrach, with Meshach and Abednego, refused to bow to Nebuchadnezzar’s image, surviving the fiery furnace. His faith proves Jehovah’s protection of those loyal to Him (Daniel 3:16-28).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Meshach</summary>
+                    <div class="card-content">
+                        <p>Meshach, alongside Shadrach and Abednego, defied idolatry and was delivered from the furnace, showing that Jehovah honors united faith under trial (Daniel 3:16-28).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Abednego</summary>
+                    <div class="card-content">
+                        <p>Abednego, with his companions, trusted Jehovah over human threats, emerging unharmed from the furnace. His stand exemplifies courage in exclusive devotion (Daniel 3:16-28).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Ezekiel</summary>
+                    <div class="card-content">
+                        <p>Ezekiel, a priest in exile, prophesied Jerusalem’s fall and future restoration, using vivid signs. His obedience under hardship shows Jehovah’s use of faithful messengers (Ezekiel 1:1-3; 3:4-11; 37:1-14).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Cyrus</summary>
+                    <div class="card-content">
+                        <p>Cyrus, Persia’s king, freed the Jews from Babylon as Jehovah foretold, decreeing the temple’s rebuilding. His role as God’s “anointed” shows Jehovah’s control over rulers (Isaiah 44:28; 45:1; Ezra 1:1-4).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Ezra</summary>
+                    <div class="card-content">
+                        <p>Ezra, a priest and scribe, led exiles back to Jerusalem, teaching the Law and purifying worship. His zeal for Jehovah’s standards restored Israel’s spiritual life (Ezra 7:6-10; 10:1-11).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Nehemiah</summary>
+                    <div class="card-content">
+                        <p>Nehemiah, a cupbearer turned governor, rebuilt Jerusalem’s walls despite opposition, praying for strength. His leadership and faith revived Judah’s hope (Nehemiah 1:4-11; 2:17-20; 6:15-16).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Esther</summary>
+                    <div class="card-content">
+                        <p>Esther, a Jewish queen in Persia, risked her life to save her people from Haman’s plot, trusting Jehovah. Her courage and humility show God’s deliverance through unlikely means (Esther 2:7-17; 4:14-16; 7:3-6).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Mordecai</summary>
+                    <div class="card-content">
+                        <p>Mordecai, Esther’s cousin, refused to bow to Haman, guiding Esther to act. His faith and loyalty led to the Jews’ salvation, showing Jehovah’s care for His people (Esther 2:5-7; 3:2-6; 10:3).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Haman</summary>
+                    <div class="card-content">
+                        <p>Haman, a Persian official, plotted to destroy the Jews out of pride, but his gallows hanged him instead. His downfall proves Jehovah thwarts evil against His servants (Esther 3:1-15; 7:9-10).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Ahasuerus</summary>
+                    <div class="card-content">
+                        <p>Ahasuerus, Persia’s king, unknowingly aided Jehovah’s purpose by favoring Esther and Mordecai over Haman. His rule shows how God uses secular powers for His will (Esther 1:1; 7:1-10).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jobab</summary>
+                    <div class="card-content">
+                        <p>Jobab, possibly Job, was a king in Edom whose reign aligns with patriarchal times. If Job, his endurance of trials and restoration reflect Jehovah’s justice and mercy (Genesis 36:33-34; Job 1:1; 42:10-17).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Zechariah (Post-Exile)</summary>
+                    <div class="card-content">
+                        <p>Zechariah, a post-exile prophet, encouraged temple rebuilding with visions of Jehovah’s Kingdom. His prophecies point to Jesus as the cornerstone, urging hope in God’s promises (Zechariah 1:1-6; 6:12-13; 9:9).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Haggai</summary>
+                    <div class="card-content">
+                        <p>Haggai, a prophet, urged exiles to rebuild the temple, promising Jehovah’s blessing. His short, direct messages spurred action, showing the priority of worship (Haggai 1:1-8; 2:6-9).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Malachi</summary>
+                    <div class="card-content">
+                        <p>Malachi, the last Hebrew prophet, rebuked Israel’s unfaithful priests and foretold a messenger for Jehovah’s day. His words bridge to John the Baptist, emphasizing pure worship (Malachi 1:6-11; 3:1-4).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">John the Baptist</summary>
+                    <div class="card-content">
+                        <p>John, born to Zechariah and Elizabeth, prepared the way for Jesus by baptizing and preaching repentance. His bold stand against Herod led to martyrdom, fulfilling his role as Jehovah’s forerunner (Matthew 3:1-11; 14:3-10; Luke 1:13-17).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Zechariah (Priest)</summary>
+                    <div class="card-content">
+                        <p>Zechariah, a priest, doubted Gabriel’s promise of a son, John, and was struck mute until the birth. His restored speech praised Jehovah, showing faith refined by discipline (Luke 1:5-20, 62-64).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Elizabeth</summary>
+                    <div class="card-content">
+                        <p>Elizabeth, John’s mother, bore him in old age by Jehovah’s miracle, praising God with Mary. Her faith and humility highlight the joy of serving Jehovah (Luke 1:5-7, 24-25, 41-45).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Mary</summary>
+                    <div class="card-content">
+                        <p>Mary, Jesus’ mother, accepted her role as God’s servant despite the stigma, bearing the Messiah. Her song of praise reflects deep faith and submission to Jehovah’s will (Luke 1:26-38, 46-55).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Joseph (Husband of Mary)</summary>
+                    <div class="card-content">
+                        <p>Joseph, Mary’s husband, accepted her divine pregnancy after angelic reassurance, protecting Jesus. His obedience and righteousness show quiet trust in Jehovah (Matthew 1:18-25; 2:13-15).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Herod the Great</summary>
+                    <div class="card-content">
+                        <p>Herod, Judea’s king, sought to kill Jesus, slaughtering Bethlehem’s infants. His cruelty and death show Jehovah’s triumph over those opposing His purpose (Matthew 2:1-18).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Jesus</summary>
+                    <div class="card-content">
+                        <p>Jesus, Jehovah’s Son, was sent to earth as the Messiah, teaching God’s Kingdom and dying as a ransom. His perfect life and resurrection fulfill Jehovah’s purpose, offering salvation to all (Matthew 1:21; 20:28; John 1:1-14; 3:16).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Simeon</summary>
+                    <div class="card-content">
+                        <p>Simeon, an aged man, blessed baby Jesus in the temple, seeing Jehovah’s salvation. His faith and patience show the reward of waiting on God (Luke 2:25-35).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Anna</summary>
+                    <div class="card-content">
+                        <p>Anna, an elderly prophetess, praised Jehovah upon seeing Jesus, sharing the good news. Her devotion and hope inspire lifelong service to God (Luke 2:36-38).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Peter</summary>
+                    <div class="card-content">
+                        <p>Peter, a fisherman turned apostle, boldly preached Jesus despite flaws like denying him. His restoration and leadership show Jehovah’s mercy and use of imperfect servants (Matthew 16:18-19; Luke 22:31-34; Acts 2:14-41).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Andrew</summary>
+                    <div class="card-content">
+                        <p>Andrew, Peter’s brother, brought him to Jesus and shared the boy’s loaves and fish. His quiet faith and evangelism highlight the value of small acts for Jehovah (John 1:40-42; 6:8-9).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">James (Son of Zebedee)</summary>
+                    <div class="card-content">
+                        <p>James, an Apostle and John’s brother, was among Jesus’ inner circle and the first Apostle martyred. His zeal and sacrifice show the cost of following Christ (Matthew 4:21-22; Acts 12:1-2).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">John (Apostle)</summary>
+                    <div class="card-content">
+                        <p>John, the beloved Apostle, wrote five Bible books, emphasizing love and Jesus’ divinity. His long life and visions on Patmos reveal Jehovah’s purpose (John 13:23; 21:20-24; Revelation 1:1-9).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Philip (Apostle)</summary>
+                    <div class="card-content">
+                        <p>Philip, an Apostle, brought Nathanael to Jesus and asked to see the Father, growing in understanding. His outreach shows the call to share truth (John 1:43-46; 14:8-9).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Bartholomew</summary>
+                    <div class="card-content">
+                        <p>Bartholomew, likely Nathanael, was an Apostle Jesus called sincere. His faith under the fig tree shows Jehovah knows the heart (John 1:47-51; Matthew 10:3).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Thomas</summary>
+                    <div class="card-content">
+                        <p>Thomas, an Apostle, doubted Jesus’ resurrection until seeing proof, then declared him Lord. His journey from doubt to faith encourages honest seeking (John 20:24-29).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Matthew</summary>
+                    <div class="card-content">
+                        <p>Matthew, a tax collector turned Apostle, wrote a Gospel for Jews, leaving wealth for Jesus. His change shows Jehovah’s call transforms lives (Matthew 9:9-13; 10:3).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">James (Son of Alphaeus)</summary>
+                    <div class="card-content">
+                        <p>James, an Apostle distinct from Zebedee’s son, served quietly among the Twelve. His inclusion shows Jehovah values all faithful servants, even the less prominent (Matthew 10:3).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Thaddaeus</summary>
+                    <div class="card-content">
+                        <p>Thaddaeus, also called Judas son of James, asked Jesus about revealing himself. His role as an Apostle reflects humble service in spreading the good news (John 14:22; Matthew 10:3).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Simon the Zealot</summary>
+                    <div class="card-content">
+                        <p>Simon, an Apostle called the Zealot, likely had a revolutionary past but followed Jesus peacefully. His transformation shows Jehovah redirects zeal for His purpose (Matthew 10:4).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Judas Iscariot</summary>
+                    <div class="card-content">
+                        <p>Judas, an Apostle, betrayed Jesus for 30 silver pieces, fulfilling prophecy but choosing greed over loyalty. His suicide warns against unfaithfulness (Matthew 26:14-16; 27:3-5; John 13:26-30).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Mary Magdalene</summary>
+                    <div class="card-content">
+                        <p>Mary Magdalene, freed from demons by Jesus, supported his ministry and witnessed his resurrection. Her devotion shows gratitude and faith in action (Luke 8:1-3; John 20:1-18).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Martha</summary>
+                    <div class="card-content">
+                        <p>Martha, Lazarus’ sister, welcomed Jesus but worried about serving, learning to focus on spiritual needs. Her faith grew, affirming Jesus as the resurrection (John 11:20-27; Luke 10:38-42).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Lazarus</summary>
+                    <div class="card-content">
+                        <p>Lazarus, Martha and Mary’s brother, was raised from death by Jesus, proving his power over the grave. His resurrection drew many to faith, showing Jehovah’s purpose for life (John 11:1-44).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Nicodemus</summary>
+                    <div class="card-content">
+                        <p>Nicodemus, a Pharisee, sought Jesus secretly and later helped bury him, showing cautious but growing faith. His talk with Jesus about rebirth teaches spiritual renewal (John 3:1-10; 19:39-40).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Joseph of Arimathea</summary>
+                    <div class="card-content">
+                        <p>Joseph, a rich disciple, boldly gave Jesus his tomb, fulfilling prophecy. His courage despite risk shows faith in action (Matthew 27:57-60; Isaiah 53:9).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Caiaphas</summary>
+                    <div class="card-content">
+                        <p>Caiaphas, high priest, plotted Jesus’ death, unwittingly prophesying its benefit for many. His hypocrisy shows how Jehovah uses even enemies for His will (John 11:49-53; 18:13-14).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Pontius Pilate</summary>
+                    <div class="card-content">
+                        <p>Pilate, Judea’s governor, sentenced Jesus to death despite finding no fault, yielding to pressure. His weakness fulfilled Jehovah’s purpose for the ransom (Matthew 27:11-26; John 19:4-16).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Herod Antipas</summary>
+                    <div class="card-content">
+                        <p>Herod Antipas, tetrarch, beheaded John the Baptist and mocked Jesus at his trial. His cruelty and rejection of truth led to exile, showing judgment on the unrepentant (Luke 3:19-20; 23:7-11).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Barabbas</summary>
+                    <div class="card-content">
+                        <p>Barabbas, a criminal, was freed instead of Jesus by the crowd’s choice. His release contrasts with Jesus’ sacrifice, illustrating the ransom’s substitutionary nature (Matthew 27:16-26).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Matthias</summary>
+                    <div class="card-content">
+                        <p>Matthias, chosen by lot to replace Judas as an Apostle, witnessed Jesus’ ministry and resurrection. His selection shows Jehovah’s guidance in His congregation (Acts 1:23-26).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Stephen</summary>
+                    <div class="card-content">
+                        <p>Stephen, a deacon, boldly preached Christ and was stoned, becoming the first Christian martyr. His vision of Jesus at God’s right hand shows faith unto death (Acts 6:5-15; 7:54-60).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Philip (Evangelist)</summary>
+                    <div class="card-content">
+                        <p>Philip, a deacon, preached to Samaritans and an Ethiopian, baptizing many. His zeal and miraculous guidance spread the good news beyond Jews (Acts 8:5-13, 26-40).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Saul (Paul)</summary>
+                    <div class="card-content">
+                        <p>Saul, later Paul, persecuted Christians until Jesus called him on the Damascus road. His missionary work and writings spread the gospel, showing Jehovah’s mercy to sinners (Acts 9:1-19; 13:9; Galatians 1:13-17).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Barnabas</summary>
+                    <div class="card-content">
+                        <p>Barnabas, a Levite, sold land to aid Christians and partnered with Paul in preaching. His encouragement and generosity built up the early congregation (Acts 4:36-37; 11:22-26).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Cornelius</summary>
+                    <div class="card-content">
+                        <p>Cornelius, a Roman centurion, was the first Gentile baptized after Peter’s vision, showing Jehovah’s acceptance of all nations (Acts 10:1-48).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Timothy</summary>
+                    <div class="card-content">
+                        <p>Timothy, Paul’s young companion, served faithfully despite timidity, leading congregations. His training by a godly mother and grandmother shows the value of upbringing (Acts 16:1-3; 2 Timothy 1:5; 3:14-15).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Titus</summary>
+                    <div class="card-content">
+                        <p>Titus, a Gentile Christian, worked with Paul to strengthen congregations, notably in Crete. His role in organizing elders and handling disputes reflects Jehovah’s use of capable servants to maintain unity and truth (2 Corinthians 8:6, 16-17; Titus 1:4-5).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Priscilla</summary>
+                    <div class="card-content">
+                        <p>Priscilla, with her husband Aquila, supported Paul’s ministry and taught Apollos the truth more accurately. Her hospitality and knowledge show how women contribute to Jehovah’s work in spreading the good news (Acts 18:2-3, 18-26; Romans 16:3-4).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Aquila</summary>
+                    <div class="card-content">
+                        <p>Aquila, a Jewish tentmaker, partnered with his wife Priscilla in aiding Paul and teaching others. Their teamwork and willingness to risk their lives for the gospel exemplify Christian love and service (Acts 18:2-3, 18-26; Romans 16:3-4).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Apollos</summary>
+                    <div class="card-content">
+                        <p>Apollos, an eloquent Alexandrian Jew, preached about Jesus with zeal but learned greater accuracy from Priscilla and Aquila. His humility and powerful teaching strengthened early Christians, showing the value of accepting correction (Acts 18:24-28; 1 Corinthians 3:5-6).</p>
+                    </div>
+                </details>
+            </div>
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Lydia</summary>
+                    <div class="card-content">
+                        <p>Lydia, a seller of purple from Thyatira, became the first European convert after hearing Paul. Her hospitality opened her home to the congregation, demonstrating how faith leads to generous support of Jehovah’s work (Acts 16:13-15, 40).</p>
                     </div>
                 </details>
             </div>
@@ -1322,56 +1232,16 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Just Wise Love. All rights reserved.</p>
+        <p>© 2025 People of the Bible. All rights reserved.</p>
     </footer>
 
     <script>
-        // Dark Mode Toggle
         function toggleMode() {
             document.body.classList.toggle('dark-mode');
             document.body.classList.toggle('light-mode');
-            const modeToggle = document.querySelector('.mode-toggle');
-            if (document.body.classList.contains('dark-mode')) {
-                modeToggle.textContent = 'Toggle Light Mode';
-            } else {
-                modeToggle.textContent = 'Toggle Dark Mode';
-            }
+            const button = document.querySelector('.mode-toggle');
+            button.textContent = document.body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
         }
-
-        // Lesson Navigation
-        let currentLesson = 1;
-        const totalLessons = 80;
-
-        function showLesson(lessonNumber) {
-            // Hide all lessons
-            for (let i = 1; i <= totalLessons; i++) {
-                document.getElementById(`lesson-${i}`).style.display = 'none';
-            }
-            // Show the selected lesson
-            document.getElementById(`lesson-${lessonNumber}`).style.display = 'block';
-            currentLesson = lessonNumber;
-            window.scrollTo(0, 0); // Scroll to top
-        }
-
-        function showNextLesson() {
-            if (currentLesson < totalLessons) {
-                showLesson(currentLesson + 1);
-            }
-        }
-
-        function showPreviousLesson() {
-            if (currentLesson > 1) {
-                showLesson(currentLesson - 1);
-            }
-        }
-
-        // Initialize the page with the first lesson
-        document.addEventListener('DOMContentLoaded', () => {
-            showLesson(1);
-            if (!document.body.classList.contains('dark-mode')) {
-                document.body.classList.add('light-mode');
-            }
-        });
     </script>
 </body>
 </html>
