@@ -10,17 +10,45 @@
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body.dark-mode {
-            background-color: #1a1a1a;
-            color: #ffffff;
-        }
-        body.dark-mode .card {
-            background-color: #2a2a2a;
-            color: #ffffff
-        }
-        body.dark-mode .scripture {
-            color: #d3d3d3;
-        }
+        /* Default styles for light mode (when dark-mode class is not applied) */
+body {
+    background-color: #ffffff; /* White background for light mode */
+    color: #000000; /* Black text for light mode */
+}
+
+/* Styles for the container and card in light mode */
+.container {
+    padding: 20px;
+    background-color: #ffd700; /* Yellow background for the container */
+    color: #000000; /* Black text in the container for light mode */
+}
+
+.card {
+    background-color: #f0f0f0; /* Light gray background for the card */
+    padding: 20px;
+    border-radius: 5px;
+    color: #000000; /* Black text in the card for light mode */
+}
+
+.scripture {
+    font-style: italic;
+    color: #333333; /* Slightly lighter gray for scripture text in light mode */
+}
+
+/* Dark mode styles (already in your code, but included for clarity) */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+body.dark-mode .card {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+body.dark-mode .scripture {
+    color: #d3d3d3;
+}
         /* Style for the grid of 100 boxes */
         .lesson-grid {
             display: grid;
