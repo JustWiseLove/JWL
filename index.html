@@ -7,7 +7,7 @@
     <title>Just Wise Love</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { background-color: #FFD800; color: #ffffff; line-height: 1.6; }
+        body { background-color: #FFD800; color: #ffffff; line-height: 1.6; padding-bottom: 60px; /* Space for fixed nav */ }
         header { background-color: #FFD800; color: #000000; padding: 5px; text-align: center; }
         .logo { 
             font-size: 36px; 
@@ -26,23 +26,39 @@
         .article p { font-size: 1rem; color: #ddd; margin-bottom: 15px; padding: 0 10px; text-align: left; }
         .scripture { margin: 15px auto; padding: 15px; background-color: #1a1a1a; border-radius: 8px; font-size: 1rem; border-left: 4px solid #FFD800; max-width: 600px; text-align: left; }
         .scripture cite { display: block; margin-top: 10px; color: #FFD800; font-style: normal; }
-        .buttons { text-align: center; margin: 25px 0; }
-        .buttons h3 { font-size: 1.3rem; color: #FFD800; margin-bottom: 15px; }
-        .btn-reason, .btn-lesson { padding: 12px 25px; margin: 10px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1rem; text-decoration: none; display: inline-block; transition: transform 0.2s; }
-        .btn-reason { background-color: #FFD800; color: #1a1a1a; }
-        .btn-lesson { background-color: #FFD800; color: #1a1a1a; }
-        .btn-reason:hover, .btn-lesson:hover { transform: scale(1.05); }
+        details { margin: 20px 0; }
+        summary { font-size: 1.8rem; color: #FFD800; cursor: pointer; padding: 10px; text-align: center; }
+        summary:hover { color: #00FF00; }
+        nav { 
+            position: fixed; 
+            bottom: 0; 
+            width: 100%; 
+            background-color: #1a1a1a; 
+            padding: 10px 0; 
+            text-align: center; 
+            border-top: 2px solid #FFD800; 
+        }
+        nav a { 
+            color: #FFD800; 
+            text-decoration: none; 
+            padding: 10px 20px; 
+            font-size: 1.1rem; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+        nav a:hover { 
+            background-color: #FFD800; 
+            color: #1a1a1a; 
+        }
         footer { background-color: #FFD800; color: #000000; text-align: center; padding: 15px; font-size: 0.9rem; }
-        .footer-logo { font-size: 0.9rem; font-weight: bold; }
         @media (max-width: 768px) {
             .logo { font-size: 4rem; }
             .main-section { padding: 4px; margin: 10px; }
             .article h1 { font-size: 1.5rem; }
             .article h2 { font-size: 1.2rem; }
             .article p { font-size: 0.9rem; }
-            .btn-reason, .btn-lesson { font-size: 1rem; padding: 10px 20px; }
             .scripture { font-size: 0.9rem; max-width: 90%; }
-            .buttons h3 { font-size: 1.1rem; }
+            summary { font-size: 1.5rem; }
+            nav a { font-size: 0.9rem; padding: 8px 15px; }
         }
     </style>
 </head>
@@ -53,54 +69,140 @@
         </div>
     </header>
     <section class="main-section">
-        <div class="article">
-            <h1>Buy Truth and Never Sell It</h1>
-            
-            <h2>Truth Is Priceless</h2>
-            <p>Proverbs 23:23 urges us to "buy truth and never sell it." Truth from Jehovah is a treasure worth more than gold. It’s not a casual suggestion—it’s a command to seek what lasts. This truth isn’t found in human ideas or shifting opinions. It’s hidden in God’s Word, waiting for those who dig deep. Crave real answers? Hunt for it now, because it unlocks everlasting life.</p>
-            <div class="scripture">
-                “Buy truth and do not sell it—wisdom and discipline and understanding.” 
-                <cite>—Proverbs 23:23</cite>
-            </div>
+        <details>
+            <summary>Can Truth Be Found?</summary>
+            <div class="article">
+                <h1>Can Truth Be Found?</h1>
+                
+                <h2>Your Word Is Truth</h2>
+                <p>In a world filled with lies and confusion, can we really find truth? Yes, we can—because Jehovah, the God of truth, has given us his Word, the Bible. Jesus prayed to his Father, saying, “Your word is truth” (John 17:17). The Bible is not a collection of human opinions; it is Jehovah’s inspired message, reliable and factual. Through it, we learn about his purpose for us—a future of peace and life on a paradise earth.</p>
+                <div class="scripture">
+                    “Sanctify them by means of the truth; your word is truth.” 
+                    <cite>—John 17:17</cite>
+                </div>
 
-            <h2>The Source of Truth</h2>
-            <p>Jehovah is the God of truth. His Word, the Bible, is where we find it. Jesus said, “Your word is truth” (John 17:17). Unlike the world’s lies that fade, Jehovah’s truth endures forever. It’s not cheap—it costs effort, time, and humility to uncover. But once you grasp it, no price is too high. Search for it like hidden treasure, because it leads to life.</p>
-            <div class="scripture">
-                “Sanctify them by means of the truth; your word is truth.” 
-                <cite>—John 17:17</cite>
-            </div>
+                <h2>Jesus Is the Truth</h2>
+                <p>Jesus Christ, Jehovah’s Son, lived and spoke the truth. He boldly declared, “I am the way and the truth and the life” (John 14:6). Jesus didn’t just teach truth—he embodied it. His life showed us how to please Jehovah, and his teachings guide us to everlasting life. By following Jesus’ example and trusting his sacrifice, we draw closer to the God who sent him.</p>
+                <div class="scripture">
+                    “Jesus said to him: ‘I am the way and the truth and the life. No one comes to the Father except through me.’” 
+                    <cite>—John 14:6</cite>
+                </div>
 
-            <h2>Digging for Treasure</h2>
-            <p>Finding truth takes work. Proverbs 2:4-5 says to seek it “as for hidden treasures.” That means studying the Bible, not just skimming it. Jehovah reveals his purpose—his Kingdom, the end of suffering, a paradise earth—to those who search. The world offers distractions, but they’re worthless compared to this. Dig in now; the reward is knowing Jehovah and his Son.</p>
-            <div class="scripture">
-                “If you search for it as for silver, and you seek it as for hidden treasures, then you will understand the fear of Jehovah, and you will find the knowledge of God.” 
-                <cite>—Proverbs 2:4-5</cite>
-            </div>
+                <h2>Worship the Father in Truth</h2>
+                <p>Jehovah deserves our worship, but it must be based on truth. Jesus explained, “The true worshippers will worship the Father with spirit and truth” (John 4:23). This means rejecting false beliefs and traditions, like the Trinity or the immortality of the soul, and embracing what the Bible really teaches. True worshippers unite worldwide, honoring Jehovah as the only true God.</p>
+                <div class="scripture">
+                    “Nevertheless, the hour is coming, and it is now, when the true worshippers will worship the Father with spirit and truth, for indeed, the Father is looking for ones like these to worship him.” 
+                    <cite>—John 4:23</cite>
+                </div>
 
-            <h2>Never Sell It</h2>
-            <p>Once you have Jehovah’s truth, hold it tight. The world tempts us to trade it for money, approval, or ease. But Jesus warned, “What will a man give in exchange for his life?” (Matthew 16:26). Truth is your lifeline to God’s promises—don’t let it go. It’s the foundation for living with purpose now and forever.</p>
-            <div class="scripture">
-                “For what will it benefit a man if he gains the whole world but loses his own life? Or what will a man give in exchange for his life?” 
-                <cite>—Matthew 16:26</cite>
-            </div>
+                <h2>Searching for Truth</h2>
+                <p>Finding truth sets us free—but it takes effort. Jesus promised, “You will know the truth, and the truth will set you free” (John 8:32). This freedom comes from understanding Jehovah’s Word, not just hearing it. The Bible answers life’s big questions—like why suffering exists and how it will end. Search for truth with an open heart, and Jehovah will reveal it.</p>
+                <div class="scripture">
+                    “And you will know the truth, and the truth will set you free.” 
+                    <cite>—John 8:32</cite>
+                </div>
 
-            <h2>The Reward of Truth</h2>
-            <p>Truth isn’t just knowledge—it’s power. It frees you from lies and fear. It shows the way to everlasting life. Jesus said, “This means everlasting life, their taking in knowledge of you, the only true God, and of the one whom you sent, Jesus Christ” (John 17:3). Buy it now. Study. Pray. Act. Jehovah’s truth is the treasure that never fails.</p>
-            <div class="scripture">
-                “This means everlasting life, their taking in knowledge of you, the only true God, and of the one whom you sent, Jesus Christ.” 
-                <cite>—John 17:3</cite>
+                <h2>A Foundation for Life</h2>
+                <p>Truth is the starting point for a meaningful life. The Bible says, “Your word is a lamp to my foot, and a light to my roadway” (Psalm 119:105). It guides us through a dark world, showing the path to Jehovah. Begin with truth, and it opens the door to living in harmony with God’s will.</p>
+                <div class="scripture">
+                    “Your word is a lamp to my foot, and a light to my roadway.” 
+                    <cite>—Psalm 119:105</cite>
+                </div>
             </div>
-        </div>
-        <div class="buttons">
-            <h1>Scripture Resources</h1>
-            <a href="quest.html" class="btn-reason">Quest</a>     
-            <a href="study.html" class="btn-lesson">Study</a>
-            <a href="topic.html" class="btn-reason">Topic</a>
-            <a href="truth.html" class="btn-lesson">Truth</a>
-            <a href="guide.html" class="btn-reason">Guide</a>
-            <a href="teach.html" class="btn-lesson">Teach</a>
-        </div>
+        </details>
+
+        <details>
+            <summary>Living the Truth</summary>
+            <div class="article">
+                <h1>Living the Truth</h1>
+                
+                <h2>Truth in Action</h2>
+                <p>Once we find truth, we must live it. The Bible says, “The one who does the truth comes to the light” (John 3:21). This means our actions—how we treat others, speak, and work—must reflect Jehovah’s standards. Living truthfully proves our love for God and draws us closer to him.</p>
+                <div class="scripture">
+                    “But the one who does the truth comes to the light, so that his works may be made evident as having been done in harmony with God.” 
+                    <cite>—John 3:21</cite>
+                </div>
+
+                <h2>Integrity Matters</h2>
+                <p>Living the truth requires integrity. Psalm 26:1 says, “Judge me, O Jehovah, for I have walked in my integrity.” Even when it’s hard—like refusing to lie or cheat—we stay loyal to Jehovah’s principles. This builds a reputation as his faithful servants.</p>
+                <div class="scripture">
+                    “Judge me, O Jehovah, for I have walked in my integrity; in Jehovah I have trusted without wavering.” 
+                    <cite>—Psalm 26:1</cite>
+                </div>
+
+                <h2>Speaking Truth</h2>
+                <p>Our words must align with truth. Ephesians 4:25 urges us to “speak truth with his neighbor.” This means avoiding gossip, exaggeration, or deceit, even in small things. Honest speech honors Jehovah and strengthens our relationships.</p>
+                <div class="scripture">
+                    “Therefore, now that you have put away deceit, each one of you speak truth with his neighbor, because we are members belonging to one another.” 
+                    <cite>—Ephesians 4:25</cite>
+                </div>
+
+                <h2>Endurance Through Trials</h2>
+                <p>Living the truth isn’t always easy. Jesus warned, “In the world you will have tribulation” (John 16:33). But by holding to Jehovah’s truth, we gain courage to face opposition or hardship, knowing he supports us through every trial.</p>
+                <div class="scripture">
+                    “In the world you will have tribulation, but take courage! I have conquered the world.” 
+                    <cite>—John 16:33</cite>
+                </div>
+
+                <h2>A Life of Purpose</h2>
+                <p>Living the truth gives life meaning. Colossians 1:10 encourages us to “go on walking worthily of Jehovah.” Every step in truth—whether in family life, work, or worship—brings us joy and prepares us to value it forever.</p>
+                <div class="scripture">
+                    “So that you may go on walking worthily of Jehovah in order to please him fully as you continue bearing fruit in every good work and increasing in the accurate knowledge of God.” 
+                    <cite>—Colossians 1:10</cite>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Buy Truth and Never Sell It</summary>
+            <div class="article">
+                <h1>Buy Truth and Never Sell It</h1>
+                
+                <h2>Truth Is Priceless</h2>
+                <p>Proverbs 23:23 urges us to "buy truth and never sell it." Truth from Jehovah is a treasure worth more than gold. It’s not a casual suggestion—it’s a command to seek what lasts. This truth isn’t found in human ideas or shifting opinions. It’s hidden in God’s Word, waiting for those who dig deep. Crave real answers? Hunt for it now, because it unlocks everlasting life.</p>
+                <div class="scripture">
+                    “Buy truth and do not sell it—wisdom and discipline and understanding.” 
+                    <cite>—Proverbs 23:23</cite>
+                </div>
+
+                <h2>The Source of Truth</h2>
+                <p>Jehovah is the God of truth. His Word, the Bible, is where we find it. Jesus said, “Your word is truth” (John 17:17). Unlike the world’s lies that fade, Jehovah’s truth endures forever. It’s not cheap—it costs effort, time, and humility to uncover. But once you grasp it, no price is too high. Search for it like hidden treasure, because it leads to life.</p>
+                <div class="scripture">
+                    “Sanctify them by means of the truth; your word is truth.” 
+                    <cite>—John 17:17</cite>
+                </div>
+
+                <h2>Digging for Treasure</h2>
+                <p>Finding truth takes work. Proverbs 2:4-5 says to seek it “as for hidden treasures.” That means studying the Bible, not just skimming it. Jehovah reveals his purpose—his Kingdom, the end of suffering, a paradise earth—to those who search. The world offers distractions, but they’re worthless compared to this. Dig in now; the reward is knowing Jehovah and his Son.</p>
+                <div class="scripture">
+                    “If you search for it as for silver, and you seek it as for hidden treasures, then you will understand the fear of Jehovah, and you will find the knowledge of God.” 
+                    <cite>—Proverbs 2:4-5</cite>
+                </div>
+
+                <h2>Never Sell It</h2>
+                <p>Once you have Jehovah’s truth, hold it tight. The world tempts us to trade it for money, approval, or ease. But Jesus warned, “What will a man give in exchange for his life?” (Matthew 16:26). Truth is your lifeline to God’s promises—don’t let it go. It’s the foundation for living with purpose now and forever.</p>
+                <div class="scripture">
+                    “For what will it benefit a man if he gains the whole world but loses his own life? Or what will a man give in exchange for his life?” 
+                    <cite>—Matthew 16:26</cite>
+                </div>
+
+                <h2>The Reward of Truth</h2>
+                <p>Truth isn’t just knowledge—it’s power. It frees you from lies and fear. It shows the way to everlasting life. Jesus said, “This means everlasting life, their taking in knowledge of you, the only true God, and of the one whom you sent, Jesus Christ” (John 17:3). Buy it now. Study. Pray. Act. Jehovah’s truth is the treasure that never fails.</p>
+                <div class="scripture">
+                    “This means everlasting life, their taking in knowledge of you, the only true God, and of the one whom you sent, Jesus Christ.” 
+                    <cite>—John 17:3</cite>
+                </div>
+            </div>
+        </details>
     </section>
+    <nav>
+        <a href="quest.html">Quest</a>
+        <a href="topic.html">Topic</a>
+        <a href="study.html">Study</a>
+        <a href="truth.html">Truth</a>
+        <a href="guide.html">Guide</a>
+        <a href="teach.html">Teach</a>
+    </nav>
     <footer>
         <p>Copyright © 2025 Just Wise Love. All Rights Reserved.</p>
     </footer>
