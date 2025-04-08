@@ -23,7 +23,7 @@
         /* Style for the grid of 100 boxes */
         .lesson-grid {
             display: grid;
-            grid-template-columns: repeat(10, 1fr); /* 10 columns */
+            grid-template-columns: repeat(10, 1fr); /* 10 columns for larger screens */
             gap: 5px; /* Space between boxes */
             padding: 20px;
             max-width: 600px; /* Adjust as needed */
@@ -41,6 +41,31 @@
         }
         .lesson-box:hover {
             background-color: #555; /* Slightly lighter on hover */
+        }
+        /* Media query for screens smaller than 600px (typical mobile devices) */
+        @media (max-width: 600px) {
+            .lesson-grid {
+                grid-template-columns: repeat(5, 1fr); /* Reduce to 5 columns */
+                gap: 3px; /* Slightly smaller gap */
+                padding: 10px; /* Reduce padding */
+                max-width: 100%; /* Use full width */
+            }
+            .lesson-box {
+                padding: 8px; /* Smaller padding for boxes */
+                font-size: 12px; /* Smaller font size */
+            }
+        }
+        /* Media query for very small screens (e.g., < 400px) */
+        @media (max-width: 400px) {
+            .lesson-grid {
+                grid-template-columns: repeat(4, 1fr); /* Reduce to 4 columns */
+                gap: 2px; /* Even smaller gap */
+                padding: 5px; /* Minimal padding */
+            }
+            .lesson-box {
+                padding: 6px; /* Even smaller padding */
+                font-size: 10px; /* Smaller font size */
+            }
         }
         /* Style for buttons */
         .btn-study, .mode-toggle {
