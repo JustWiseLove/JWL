@@ -3,136 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide - Just Wise Love</title>
+    <title>Teach - Just Wise Love</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css"> <!-- Ensure this file includes dark mode styles -->
     <style>
-        /* Light Mode Base Styles */
-        body {
-            background-color: #ffffff; /* White background */
-            color: #333333; /* Dark gray text for readability */
-            font-family: Arial, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .container {
-            padding: 20px;
-            background-color: #f5f5f5; /* Light gray container */
-            color: #333333;
-        }
-        .card {
-            background-color: #ffffff; /* White card */
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        }
-        .scripture {
-            font-style: italic;
-            color: #555555; /* Medium gray for scripture */
-        }
-        .lesson-box {
-            background-color: #f0f0f0; /* Light gray boxes */
-            border: 2px solid #ffd700; /* Yellow border */
-            color: #333333; /* Dark text */
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-        .lesson-box:hover {
-            background-color: #e0e0e0; /* Darker gray on hover */
-        }
-        .btn-study, .mode-toggle {
-            background-color: #ffd700; /* Yellow buttons */
-            color: #000000; /* Black text */
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        .btn-study:hover, .mode-toggle:hover {
-            background-color: #e6c200; /* Darker yellow on hover */
-        }
-
-        /* Dark Mode Overrides */
+        /* Temporary inline CSS to ensure dark mode works if styles.css is unavailable */
         body.dark-mode {
-            background-color: #1a1a1a;
-            color: #ffffff;
-        }
-        body.dark-mode .container {
             background-color: #1a1a1a;
             color: #ffffff;
         }
         body.dark-mode .card {
             background-color: #2a2a2a;
-            box-shadow: none; /* Remove shadow in dark mode */
         }
         body.dark-mode .scripture {
-            color: #d3d3d3; /* Light gray for scripture */
-        }
-        body.dark-mode .lesson-box {
-            background-color: #1a1a1a;
-            color: #ffffff;
-        }
-        body.dark-mode .lesson-box:hover {
-            background-color: #555555; /* Lighter gray on hover */
-        }
-
-        /* Grid Layout */
-        .lesson-grid {
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 5px;
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .lesson-grid {
-                grid-template-columns: repeat(5, 1fr);
-                gap: 3px;
-                padding: 10px;
-                max-width: 100%;
-            }
-            .lesson-box {
-                padding: 8px;
-                font-size: 12px;
-            }
-        }
-        @media (max-width: 400px) {
-            .lesson-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 2px;
-                padding: 5px;
-            }
-            .lesson-box {
-                padding: 6px;
-                font-size: 10px;
-            }
-        }
-
-        /* Additional Styles */
-        .lesson-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .lesson-title {
-            margin: 0;
+            color: #d3d3d3;
         }
     </style>
 </head>
-<body class="dark-mode"> <!-- Starts without dark-mode class for Light Mode -->
+<body class="dark-mode">
     <header>
-        <h1><a href="home.html">GUIDE</a></h1>
-        <button class="mode-toggle" onclick="toggleMode()">Toggle Dark Mode</button>
+        <h1><a href="home.html">TEACH</a></h1>
+        <button class="mode-toggle" onclick="toggleMode()">Toggle Light Mode</button>
     </header>
 
     <div class="container">
@@ -1547,12 +1441,111 @@
         </div>
     </div>
     
-    <div class="lesson-grid">
-        <script>
-            for (let i = 1; i <= 100; i++) {
-                document.write(`<div class="lesson-box" onclick="goToLesson(${i})">${i}</div>`);
-            }
-        </script>
+    <div class="numbered-navigation">
+        <a href="#" onclick="showLesson(1)">1</a>
+        <a href="#" onclick="showLesson(2)">2</a>
+        <a href="#" onclick="showLesson(3)">3</a>
+        <a href="#" onclick="showLesson(4)">4</a>
+        <a href="#" onclick="showLesson(5)">5</a>
+        <a href="#" onclick="showLesson(6)">6</a>
+        <a href="#" onclick="showLesson(7)">7</a>
+        <a href="#" onclick="showLesson(8)">8</a>
+        <a href="#" onclick="showLesson(9)">9</a>
+        <a href="#" onclick="showLesson(10)">10</a>
+        <a href="#" onclick="showLesson(11)">11</a>
+        <a href="#" onclick="showLesson(12)">12</a>
+        <a href="#" onclick="showLesson(13)">13</a>
+        <a href="#" onclick="showLesson(14)">14</a>
+        <a href="#" onclick="showLesson(15)">15</a>
+        <a href="#" onclick="showLesson(16)">16</a>
+        <a href="#" onclick="showLesson(17)">17</a>
+        <a href="#" onclick="showLesson(18)">18</a>
+        <a href="#" onclick="showLesson(19)">19</a>
+        <a href="#" onclick="showLesson(20)">20</a>
+        <a href="#" onclick="showLesson(21)">21</a>
+        <a href="#" onclick="showLesson(22)">22</a>
+        <a href="#" onclick="showLesson(23)">23</a>
+        <a href="#" onclick="showLesson(24)">24</a>
+        <a href="#" onclick="showLesson(25)">25</a>
+        <a href="#" onclick="showLesson(26)">26</a>
+        <a href="#" onclick="showLesson(27)">27</a>
+        <a href="#" onclick="showLesson(28)">28</a>
+        <a href="#" onclick="showLesson(29)">29</a>
+        <a href="#" onclick="showLesson(30)">30</a>
+        <a href="#" onclick="showLesson(31)">31</a>
+        <a href="#" onclick="showLesson(32)">32</a>
+        <a href="#" onclick="showLesson(33)">33</a>
+        <a href="#" onclick="showLesson(34)">34</a>
+        <a href="#" onclick="showLesson(35)">35</a>
+        <a href="#" onclick="showLesson(36)">36</a>
+        <a href="#" onclick="showLesson(37)">37</a>
+        <a href="#" onclick="showLesson(38)">38</a>
+        <a href="#" onclick="showLesson(39)">39</a>
+        <a href="#" onclick="showLesson(40)">40</a>
+        <a href="#" onclick="showLesson(41)">41</a>
+        <a href="#" onclick="showLesson(42)">42</a>
+        <a href="#" onclick="showLesson(43)">43</a>
+        <a href="#" onclick="showLesson(44)">44</a>
+        <a href="#" onclick="showLesson(45)">45</a>
+        <a href="#" onclick="showLesson(46)">46</a>
+        <a href="#" onclick="showLesson(47)">47</a>
+        <a href="#" onclick="showLesson(48)">48</a>
+        <a href="#" onclick="showLesson(49)">49</a>
+        <a href="#" onclick="showLesson(50)">50</a>
+        <a href="#" onclick="showLesson(51)">51</a>
+        <a href="#" onclick="showLesson(52)">52</a>
+        <a href="#" onclick="showLesson(53)">53</a>
+        <a href="#" onclick="showLesson(54)">54</a>
+        <a href="#" onclick="showLesson(55)">55</a>
+        <a href="#" onclick="showLesson(56)">56</a>
+        <a href="#" onclick="showLesson(57)">57</a>
+        <a href="#" onclick="showLesson(58)">58</a>
+        <a href="#" onclick="showLesson(59)">59</a>
+        <a href="#" onclick="showLesson(60)">60</a>
+        <a href="#" onclick="showLesson(61)">61</a>
+        <a href="#" onclick="showLesson(62)">62</a>
+        <a href="#" onclick="showLesson(63)">63</a>
+        <a href="#" onclick="showLesson(64)">64</a>
+        <a href="#" onclick="showLesson(65)">65</a>
+        <a href="#" onclick="showLesson(66)">66</a>
+        <a href="#" onclick="showLesson(67)">67</a>
+        <a href="#" onclick="showLesson(68)">68</a>
+        <a href="#" onclick="showLesson(69)">69</a>
+        <a href="#" onclick="showLesson(70)">70</a>
+        <a href="#" onclick="showLesson(71)">71</a>
+        <a href="#" onclick="showLesson(72)">72</a>   
+        <a href="#" onclick="showLesson(73)">73</a>
+        <a href="#" onclick="showLesson(74)">74</a>
+        <a href="#" onclick="showLesson(75)">75</a>
+        <a href="#" onclick="showLesson(76)">76</a>
+        <a href="#" onclick="showLesson(77)">77</a>
+        <a href="#" onclick="showLesson(78)">78</a>
+        <a href="#" onclick="showLesson(79)">79</a>
+        <a href="#" onclick="showLesson(80)">80</a>
+        <a href="#" onclick="showLesson(81)">81</a>
+        <a href="#" onclick="showLesson(82)">82</a>
+        <a href="#" onclick="showLesson(83)">83</a>
+        <a href="#" onclick="showLesson(84)">84</a>
+        <a href="#" onclick="showLesson(85)">85</a>
+        <a href="#" onclick="showLesson(86)">86</a>
+        <a href="#" onclick="showLesson(87)">87</a>
+        <a href="#" onclick="showLesson(88)">88</a>
+        <a href="#" onclick="showLesson(89)">89</a>
+        <a href="#" onclick="showLesson(90)">90</a>
+        <a href="#" onclick="showLesson(91)">91</a>
+        <a href="#" onclick="showLesson(92)">92</a>
+        <a href="#" onclick="showLesson(93)">93</a>
+        <a href="#" onclick="showLesson(94)">94</a>
+        <a href="#" onclick="showLesson(95)">95</a>
+        <a href="#" onclick="showLesson(96)">96</a>
+        <a href="#" onclick="showLesson(97)">97</a>
+        <a href="#" onclick="showLesson(98)">98</a>
+        <a href="#" onclick="showLesson(99)">99</a>
+        <a href="#" onclick="showLesson(100)">100</a>       
+    </div>
+
+    <div class="article">
+        <p class="scripture">"I planted, Apollos watered, but God kept making it grow, so that neither is the one who plants anything nor is the one who waters, but God who makes it grow." - 1 Corinthians 3:6, 7</p>
     </div>
 
     <footer>
@@ -1563,29 +1556,28 @@
         let currentLesson = 1;
         const totalLessons = 100;
 
+        function showLesson(lessonNumber) {
+            for (let i = 1; i <= totalLessons; i++) {
+                document.getElementById(`lesson-${i}`).style.display = 'none';
+            }
+            document.getElementById(`lesson-${lessonNumber}`).style.display = 'block';
+            currentLesson = lessonNumber;
+            const details = document.querySelector('details');
+            details.open = true; // Opens details when a lesson is selected
+        }
+
         function showNextLesson() {
             if (currentLesson < totalLessons) {
-                document.getElementById(`lesson-${currentLesson}`).style.display = 'none';
                 currentLesson++;
-                document.getElementById(`lesson-${currentLesson}`).style.display = 'block';
-                document.querySelector('details').open = true;
+                showLesson(currentLesson);
             }
         }
 
         function showPreviousLesson() {
             if (currentLesson > 1) {
-                document.getElementById(`lesson-${currentLesson}`).style.display = 'none';
                 currentLesson--;
-                document.getElementById(`lesson-${currentLesson}`).style.display = 'block';
-                document.querySelector('details').open = true;
+                showLesson(currentLesson);
             }
-        }
-
-        function goToLesson(lessonNumber) {
-            document.getElementById(`lesson-${currentLesson}`).style.display = 'none';
-            currentLesson = lessonNumber;
-            document.getElementById(`lesson-${currentLesson}`).style.display = 'block';
-            document.querySelector('details').open = true;
         }
 
         function toggleMode() {
@@ -1593,6 +1585,12 @@
             const button = document.querySelector('.mode-toggle');
             button.textContent = document.body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
         }
+
+        window.onload = function() {
+            showLesson(1);
+            const details = document.querySelector('details');
+            details.open = false; // Ensures details starts closed
+        };
     </script>
 </body>
 </html>
