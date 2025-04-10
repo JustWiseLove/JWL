@@ -1,108 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>JWL - Watchtower</title>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      color: #333;
+      background-color: #ffeb00;
+      color: #000;
     }
-    .header {
-      background-color: #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-    }
+
     .container {
-      background-color: #333;
-      color: lightgray;
-      max-width: 600px;
-      margin: 30px auto;
+      max-width: 700px;
+      margin: 0 auto;
       padding: 20px;
-      border-radius: 12px;
     }
-    .article-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+
+    .logo {
+      font-family: 'Audiowide', cursive;
+      font-size: 48px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .article {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      padding: 10px;
+      color: #ccc;
+    }
+
+    .accordion {
+      background-color: transparent;
+      color: #ccc;
       cursor: pointer;
-      padding: 12px 16px;
-      background-color: #444;
-      border: none;
+      padding: 18px;
       width: 100%;
       text-align: left;
       font-size: 18px;
-      color: lightgray;
-      margin-bottom: 8px;
-      border-radius: 6px;
+      border: none;
+      outline: none;
     }
-    .article-content {
+
+    .accordion:hover {
+      color: #fff;
+    }
+
+    .panel {
+      padding: 0 18px;
       display: none;
-      background-color: #222;
-      color: white;
-      padding: 15px;
-      margin-bottom: 12px;
-      border-radius: 6px;
+      overflow: hidden;
     }
-    .subheading {
-      font-weight: bold;
-      margin-top: 15px;
-      margin-bottom: 6px;
+
+    .panel h2, .panel h3 {
       color: #ccc;
     }
-  </style>
-  <script>
-    function toggleArticle(id) {
-      const content = document.getElementById(id);
-      content.style.display = content.style.display === "block" ? "none" : "block";
+
+    .panel p {
+      margin-bottom: 16px;
     }
-  </script>
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-
-  <div class="header">Give Glory to Jehovah</div>
-
   <div class="container">
-    <p><strong>Scripture:</strong> “Give Jehovah the glory due his name.” — <em>Psalm 96:8</em></p>
-    <p><strong>FOCUS:</strong> Learning how we can give Jehovah the glory he deserves.</p>
+    <h1 class="logo">JWL</h1>
 
-    <button class="article-btn" onclick="toggleArticle('article1')">▶ False Worship Begins</button>
-    <div class="article-content" id="article1">
-      <div class="subheading">What Does It Mean to Give Jehovah Glory?</div>
-      <div class="subheading">What Motivates Us to Give Jehovah Glory?</div>
-      <div class="subheading">How Can We Give Jehovah the Glory He Deserves?</div>
-      <div class="subheading">How Will Jehovah Glorify His Name in the Near Future?</div>
+    <div class="article">
+      <button class="accordion">► Give Glory to Jehovah</button>
+      <div class="panel">
+        <h2>Study Article 1</h2>
+        <p><strong>Scripture:</strong> “Give to Jehovah the glory belonging to his name.” — Psalm 96:8</p>
+        <p><strong>FOCUS:</strong> We will see how we can glorify Jehovah and why we must avoid doing anything that would bring reproach on his name.</p>
+
+        <h3>1. What does it mean to glorify Jehovah?</h3>
+        <p>To glorify Jehovah means to reflect his qualities in our speech and conduct, giving honor to his holy name. As Jesus said in John 17:4: “I have glorified you on the earth, having finished the work you gave me to do.” Like Jesus, we honor Jehovah by obeying His commands and promoting His name.</p>
+
+        <h3>2. How did Jesus give glory to his Father?</h3>
+        <p>Jesus glorified Jehovah by making His name known and reflecting His qualities perfectly. He stated: “I have made your name manifest to the men you gave me out of the world.” — John 17:6.</p>
+
+        <h3>3. How can we imitate Jesus in giving glory to Jehovah?</h3>
+        <p>We imitate Jesus by actively participating in the ministry, obeying Jehovah’s commands, and conducting ourselves in a holy manner. 1 Peter 2:12 encourages: “Maintain your conduct fine among the nations, so that... they may glorify God.”</p>
+
+        <h3>4. What can damage Jehovah’s reputation?</h3>
+        <p>When someone who claims to serve Jehovah lives hypocritically, it brings reproach. Romans 2:24 warns: “The name of God is being blasphemed among the nations because of you.”</p>
+
+        <h3>5. Why is Jehovah’s name so important?</h3>
+        <p>Jehovah’s name represents who He is — His reputation and purpose. Psalm 83:18 says: “You, whose name is Jehovah, you alone are the Most High.” His name is key to true worship.</p>
+
+        <h3>6. How does our behavior reflect on Jehovah’s name?</h3>
+        <p>Our conduct can either glorify or disgrace God’s name. Titus 2:10 says we should “adorn the teaching of our Savior, God,” meaning our lives should make God’s standards appealing.</p>
+
+        <h3>7. How can young ones give glory to Jehovah?</h3>
+        <p>Young ones give glory to Jehovah by showing respect for His standards, even when under peer pressure. Proverbs 27:11 says: “Be wise, my son, and make my heart rejoice, so that I can make a reply to him who taunts me.”</p>
+
+        <h3>8. What role does prayer play in glorifying Jehovah?</h3>
+        <p>Through prayer, we acknowledge Jehovah’s position and show reliance on Him. Philippians 4:6 says: “In everything by prayer... let your petitions be made known to God.”</p>
+
+        <h3>9. Why should we be determined to avoid bringing reproach on Jehovah’s name?</h3>
+        <p>Because we represent Him, our actions impact how others view Jehovah. 2 Corinthians 6:3 states: “We are giving no cause for stumbling, so that our ministry might not be criticized.”</p>
+
+        <h3>10. What blessings come from glorifying Jehovah?</h3>
+        <p>Those who glorify Jehovah enjoy His approval, peace of mind, and hope for everlasting life. John 12:26 promises: “If anyone ministers to me, the Father will honor him.”</p>
+      </div>
     </div>
 
-    <button class="article-btn" onclick="toggleArticle('article2')">▶ Today’s False Practices</button>
-    <div class="article-content" id="article2">
-      <!-- Future article content goes here -->
-    </div>
-
-    <button class="article-btn" onclick="toggleArticle('article3')">▶ Testing Other Religions</button>
-    <div class="article-content" id="article3"></div>
-
-    <button class="article-btn" onclick="toggleArticle('article4')">▶ Satan’s Lies Are Exposed</button>
-    <div class="article-content" id="article4"></div>
-
-    <button class="article-btn" onclick="toggleArticle('article5')">▶ Bible Accuracy Shines</button>
-    <div class="article-content" id="article5"></div>
-
-    <button class="article-btn" onclick="toggleArticle('article6')">▶ Jehovah’s Kingdom Comes</button>
-    <div class="article-content" id="article6"></div>
-
-    <button class="article-btn" onclick="toggleArticle('article7')">▶ Follow Jesus’ Example</button>
-    <div class="article-content" id="article7"></div>
-
-    <button class="article-btn" onclick="toggleArticle('article8')">▶ Only One True Faith</button>
-    <div class="article-content" id="article8"></div>
+    <footer>
+      <p>Copyright © 2025 Just Wise Love. All Rights Reserved.</p>
+    </footer>
   </div>
 
+  <script>
+    const acc = document.querySelector(".accordion");
+    const panel = document.querySelector(".panel");
+
+    acc.addEventListener("click", function () {
+      this.classList.toggle("active");
+      panel.style.display = panel.style.display === "block" ? "none" : "block";
+    });
+  </script>
 </body>
 </html>
