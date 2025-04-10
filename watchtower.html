@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JWL - Watchtower</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      color: #333;
+    }
+    .header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .container {
+      background-color: #333;
+      color: lightgray;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .article-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 12px 16px;
+      background-color: #444;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-size: 18px;
+      color: lightgray;
+      margin-bottom: 8px;
+      border-radius: 6px;
+    }
+    .article-content {
+      display: none;
+      background-color: #222;
+      color: white;
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+    }
+    .subheading {
+      font-weight: bold;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      color: #ccc;
+    }
+  </style>
+  <script>
+    function toggleArticle(id) {
+      const content = document.getElementById(id);
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</head>
+<body>
+
+  <div class="header">Give Glory to Jehovah</div>
+
+  <div class="container">
+    <p><strong>Scripture:</strong> “Give Jehovah the glory due his name.” — <em>Psalm 96:8</em></p>
+    <p><strong>FOCUS:</strong> Learning how we can give Jehovah the glory he deserves.</p>
+
+    <button class="article-btn" onclick="toggleArticle('article1')">▶ False Worship Begins</button>
+    <div class="article-content" id="article1">
+      <div class="subheading">What Does It Mean to Give Jehovah Glory?</div>
+      <div class="subheading">What Motivates Us to Give Jehovah Glory?</div>
+      <div class="subheading">How Can We Give Jehovah the Glory He Deserves?</div>
+      <div class="subheading">How Will Jehovah Glorify His Name in the Near Future?</div>
+    </div>
+
+    <button class="article-btn" onclick="toggleArticle('article2')">▶ Today’s False Practices</button>
+    <div class="article-content" id="article2">
+      <!-- Future article content goes here -->
+    </div>
+
+    <button class="article-btn" onclick="toggleArticle('article3')">▶ Testing Other Religions</button>
+    <div class="article-content" id="article3"></div>
+
+    <button class="article-btn" onclick="toggleArticle('article4')">▶ Satan’s Lies Are Exposed</button>
+    <div class="article-content" id="article4"></div>
+
+    <button class="article-btn" onclick="toggleArticle('article5')">▶ Bible Accuracy Shines</button>
+    <div class="article-content" id="article5"></div>
+
+    <button class="article-btn" onclick="toggleArticle('article6')">▶ Jehovah’s Kingdom Comes</button>
+    <div class="article-content" id="article6"></div>
+
+    <button class="article-btn" onclick="toggleArticle('article7')">▶ Follow Jesus’ Example</button>
+    <div class="article-content" id="article7"></div>
+
+    <button class="article-btn" onclick="toggleArticle('article8')">▶ Only One True Faith</button>
+    <div class="article-content" id="article8"></div>
+  </div>
+
+</body>
+</html>
