@@ -27,6 +27,9 @@
             width: 100%;
             max-width: 600px; /* Similar width to the screenshot */
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Logo styling */
@@ -34,7 +37,6 @@
             font-family: 'Audiowide', sans-serif;
             font-size: 24px;
             color: #000000; /* Black color for JWL */
-            text-align: center;
             margin-bottom: 20px;
         }
 
@@ -46,7 +48,12 @@
             align-items: center;
         }
 
-        /* Article title styling (collapsible) */
+        /* Article container */
+        .article-box {
+            width: 100%;
+        }
+
+        /* Article title styling */
         .article-title {
             font-size: 24px;
             font-weight: bold;
@@ -54,43 +61,18 @@
             text-align: center;
             cursor: pointer;
             padding: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            user-select: none; /* Prevent text selection on click */
-            margin-bottom: 20px;
-        }
-
-        /* Arrow icon for the title (rotates when active) */
-        .article-title::after {
-            content: '\25BC'; /* Down arrow */
-            font-size: 16px;
-            margin-left: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        /* Rotate arrow when the section is expanded */
-        .article-title.active::after {
-            transform: rotate(180deg);
+            margin-bottom: 10px;
         }
 
         /* Article content styling */
         .article-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            display: none; /* Hidden by default */
+            padding: 0 10px;
         }
 
-        /* Show content when the checkbox is checked */
-        #toggle-content-2:checked ~ .article-content,
-        #toggle-content-1:checked ~ .article-content {
-            max-height: 2000px; /* Adjust based on content length */
-        }
-
-        /* Hide the checkbox */
-        #toggle-content-2,
-        #toggle-content-1 {
-            display: none;
+        /* Show content when the 'active' class is added */
+        .article-content.active {
+            display: block;
         }
 
         /* Yeartext styling */
@@ -133,6 +115,14 @@
             margin-left: 20px;
             margin-top: 5px;
         }
+
+        /* Copyright styling */
+        .copyright {
+            font-size: 12px;
+            color: #999999; /* Light gray for the copyright text */
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -142,423 +132,430 @@
             <div class="logo">JWL</div>
         </div>
 
-        <!-- Article 2: Husbands, Honor Your Wife -->
-        <!-- Hidden checkbox to control the collapse/expand -->
-        <input type="checkbox" id="toggle-content-2">
-        <!-- Title that acts as the trigger -->
-        <label for="toggle-content-2" class="article-title">Husbands, Honor Your Wife</label>
-        <!-- Collapsible content -->
-        <div class="article-content">
-            <div class="yeartext">
-                “You husbands, . . . assign them honor.”—1 PET. 3:7.
+        <!-- Article Box -->
+        <div class="article-box">
+            <!-- Article 2: Husbands, Honor Your Wife -->
+            <div class="article-title" onclick="toggleArticle(this)">Husbands, Honor Your Wife</div>
+            <div class="article-content">
+                <div class="yeartext">
+                    “You husbands, . . . assign them honor.”—1 PET. 3:7.
+                </div>
+
+                <div class="focus">
+                    FOCUS<br>
+                    How a husband can honor his wife in word and action.
+                </div>
+
+                <div class="question">
+                    1. What is one reason why Jehovah created the marriage arrangement?
+                </div>
+                <div class="answer">
+                    Jehovah created marriage to bring joy, as He is the happy God and wants us to enjoy life through a close bond of love and respect. (Prov. 5:18)
+                </div>
+                <div class="scripture">
+                    Proverbs 5:18: “Let your water source be blessed, and rejoice with the wife of your youth.”
+                </div>
+
+                <div class="question">
+                    2. What is the state of many marriages today?
+                </div>
+                <div class="answer">
+                    Many marriages today are unhappy because couples forget their wedding promises, with husbands often abusing their wives physically, verbally, or emotionally, or viewing pornography.
+                </div>
+
+                <div class="question">
+                    3. What factors can contribute to a husband’s abusive behavior?
+                </div>
+                <div class="answer">
+                    Factors include being raised by a violent father, cultural ideas that a man must use force, lack of emotional control, a warped view from pornography, and intensified issues from the COVID-19 pandemic.
+                </div>
+
+                <div class="question">
+                    4. What do Christian husbands need to guard against, and why?
+                </div>
+                <div class="answer">
+                    Christian husbands must guard against adopting improper views of women, as thoughts lead to actions, and worldly thinking can influence them to abuse their wives. (Rom. 12:2)
+                </div>
+                <div class="scripture">
+                    Romans 12:2: “Stop being molded by this system of things, but be transformed by making your mind over, so that you may prove to yourselves the good and acceptable and perfect will of God.”
+                </div>
+
+                <div class="question">
+                    5. According to 1 Peter 3:7, how should a husband treat his wife?
+                </div>
+                <div class="answer">
+                    A husband should honor his wife, treating her with kindness and love, as honoring her respects Jehovah’s command. (1 Pet. 3:7)
+                </div>
+                <div class="scripture">
+                    1 Peter 3:7: “You husbands, in the same way, continue dwelling with them according to knowledge. Assign them honor as to a weaker vessel, the feminine one, since they are also heirs with you of the undeserved favor of life, in order that your prayers may not be hindered.”
+                </div>
+
+                <div class="question">
+                    6. How does Jehovah feel about men who physically abuse their wife?
+                </div>
+                <div class="answer">
+                    Jehovah hates violence and condemns husbands who abuse their wives, as it affects their relationship with Him, possibly hindering their prayers. (Col. 3:19)
+                </div>
+                <div class="scripture">
+                    Colossians 3:19: “You husbands, keep on loving your wives and do not be bitterly angry with them.”
+                </div>
+
+                <div class="question">
+                    7. According to Ephesians 4:31, 32, what type of speech must husbands avoid?
+                </div>
+                <div class="answer">
+                    Husbands must avoid angry, hurtful speech like screaming and abusive words, as Jehovah hates such speech and it damages their marriage and relationship with Him. (Eph. 4:31)
+                </div>
+                <div class="scripture">
+                    Ephesians 4:31: “Let all malicious bitterness and anger and wrath and screaming and abusive speech be taken away from you along with all badness.”
+                </div>
+
+                <div class="question">
+                    8. How does Jehovah feel about pornography, and why?
+                </div>
+                <div class="answer">
+                    Jehovah hates pornography because it damages a husband’s relationship with Him and degrades his wife, as Jesus said a man who looks lustfully commits adultery in his heart. (Matt. 5:28)
+                </div>
+                <div class="scripture">
+                    Matthew 5:28: “But I say to you that everyone who keeps on looking at a woman so as to have a passion for her has already committed adultery with her in his heart.”
+                </div>
+
+                <div class="question">
+                    9. Why does Jehovah hate it when a husband is sexually demeaning toward his wife?
+                </div>
+                <div class="answer">
+                    Jehovah hates sexually demeaning behavior because it’s cold and thoughtless, and He expects husbands to love, cherish, and respect their wife’s feelings. (Eph. 5:28)
+                </div>
+                <div class="scripture">
+                    Ephesians 5:28: “In this way husbands should love their wives as their own bodies. A man who loves his wife loves himself.”
+                </div>
+
+                <div class="question">
+                    10. How can husbands benefit from Jesus’ example?
+                </div>
+                <div class="answer">
+                    Husbands can overcome abusive behavior by imitating Jesus, who treated his disciples with kindness and dignity, serving as a model for loving their wives. (Eph. 5:25)
+                </div>
+                <div class="scripture">
+                    Ephesians 5:25: “Husbands, continue loving your wives, just as the Christ also loved the congregation and gave himself up for it.”
+                </div>
+
+                <div class="question">
+                    11. How did Jesus treat his apostles?
+                </div>
+                <div class="answer">
+                    Jesus treated his apostles kindly, never harshly, humbly serving them and showing mildness and restraint, even as their Master. (Matt. 11:29)
+                </div>
+                <div class="scripture">
+                    Matthew 11:29: “Take my yoke upon you and learn from me, for I am mild-tempered and lowly in heart, and you will find refreshment for yourselves.”
+                </div>
+
+                <div class="question">
+                    12. How did Jesus speak to others?
+                </div>
+                <div class="answer">
+                    Jesus spoke to comfort and refresh others, never harshly, even remaining silent when provoked rather than insulting in return. (1 Pet. 2:23)
+                </div>
+                <div class="scripture">
+                    1 Peter 2:23: “When he was being insulted, he did not insult in return; when he was suffering, he did not threaten, but he entrusted himself to the One who judges righteously.”
+                </div>
+
+                <div class="question">
+                    13. As stated at Matthew 19:4-6, how can a husband “stick to his wife”?
+                </div>
+                <div class="answer">
+                    A husband can “stick to his wife” by being loyal, as if glued to her, rejecting pornography and not looking lustfully at other women. (Matt. 19:5; Job 31:1)
+                </div>
+                <div class="scripture">
+                    Matthew 19:5: “And said, ‘For this reason a man will leave his father and his mother and will stick to his wife, and the two will be one flesh’?”<br>
+                    Job 31:1: “I have made a covenant with my eyes. So how could I show improper attention to a virgin?”
+                </div>
+
+                <div class="question">
+                    14. What steps should an abusive husband take to repair his relationship with Jehovah and with his wife?
+                </div>
+                <div class="answer">
+                    An abusive husband should: recognize his problem, stop the abuse, apologize to his wife and Jehovah, seek forgiveness, pray for help, hate violence, seek elders’ help, and plan to avoid such behavior. (Prov. 28:13; Jas. 5:14)
+                </div>
+                <div class="scripture">
+                    Proverbs 28:13: “The one covering over his transgressions will not succeed, but whoever confesses and abandons them will be shown mercy.”<br>
+                    James 5:14: “Is there anyone sick among you? Let him call the elders of the congregation to him, and let them pray over him, applying oil to him in the name of Jehovah.”
+                </div>
+
+                <div class="question">
+                    15. How can a husband show affection for his wife?
+                </div>
+                <div class="answer">
+                    A husband can show affection through small acts like holding her hand, giving a warm embrace, or sending a loving message, strengthening their marriage. (1 John 3:18)
+                </div>
+                <div class="scripture">
+                    1 John 3:18: “Little children, we should love, not in word or with the tongue, but in deed and truth.”
+                </div>
+
+                <div class="question">
+                    16. Why should a husband praise his wife?
+                </div>
+                <div class="answer">
+                    A husband should praise his wife to build her up, making her feel secure, loved, and honored for her support. (Prov. 31:28)
+                </div>
+                <div class="scripture">
+                    Proverbs 31:28: “Her children rise up and declare her happy; her husband praises her.”
+                </div>
+
+                <div class="question">
+                    17. How can a husband show respect for his wife?
+                </div>
+                <div class="answer">
+                    A husband shows respect by valuing his wife as a priceless gift, treating her kindly, and not pressuring her into demeaning sexual acts. (Prov. 18:22)
+                </div>
+                <div class="scripture">
+                    Proverbs 18:22: “The one who finds a good wife has found something good, and he receives Jehovah’s favor.”
+                </div>
+
+                <div class="question">
+                    18. What should husbands be determined to do?
+                </div>
+                <div class="answer">
+                    Husbands should be determined to honor their wife by avoiding dishonorable conduct and being kind, respectful, and affectionate, protecting their relationship with Jehovah. (Ps. 25:14)
+                </div>
+                <div class="scripture">
+                    Psalm 25:14: “The confidential talk of Jehovah is with those who fear him, and he makes his covenant known to them.”
+                </div>
+
+                <div class="question">
+                    HOW CAN A HUSBAND APPLY THE COUNSEL FOUND AT . . .<br>
+                    Colossians 3:19?
+                </div>
+                <div class="answer">
+                    A husband can apply this by loving his wife and not being bitterly angry, avoiding physical or verbal abuse. (Col. 3:19)
+                </div>
+                <div class="scripture">
+                    Colossians 3:19: “You husbands, keep on loving your wives and do not be bitterly angry with them.”
+                </div>
+
+                <div class="question">
+                    HOW CAN A HUSBAND APPLY THE COUNSEL FOUND AT . . .<br>
+                    Ephesians 4:31, 32?
+                </div>
+                <div class="answer">
+                    A husband can apply this by avoiding abusive speech and being kind and compassionate, speaking respectfully to his wife. (Eph. 4:31-32)
+                </div>
+                <div class="scripture">
+                    Ephesians 4:31-32: “Let all malicious bitterness and anger and wrath and screaming and abusive speech be taken away from you along with all badness. But become kind to one another, tenderly compassionate, freely forgiving one another just as God also by Christ freely forgave you.”
+                </div>
+
+                <div class="question">
+                    HOW CAN A HUSBAND APPLY THE COUNSEL FOUND AT . . .<br>
+                    Matthew 19:4-6?
+                </div>
+                <div class="answer">
+                    A husband can apply this by sticking to his wife, being loyal, and rejecting pornography, strengthening their marital bond. (Matt. 19:5)
+                </div>
+                <div class="scripture">
+                    Matthew 19:5: “And said, ‘For this reason a man will leave his father and his mother and will stick to his wife, and the two will be one flesh’?”
+                </div>
             </div>
 
-            <div class="focus">
-                FOCUS<br>
-                How a husband can honor his wife in word and action.
-            </div>
+            <!-- Article 1: Give Glory to Jehovah -->
+            <div class="article-title" onclick="toggleArticle(this)">Give Glory to Jehovah</div>
+            <div class="article-content">
+                <div class="yeartext">
+                    OUR YEARTEXT FOR 2025: “Give Jehovah the glory due his name.”—PS. 96:8.
+                </div>
 
-            <div class="question">
-                1. What is one reason why Jehovah created the marriage arrangement?
-            </div>
-            <div class="answer">
-                Jehovah created marriage to bring joy, as He is the happy God and wants us to enjoy life through a close bond of love and respect. (Prov. 5:18)
-            </div>
-            <div class="scripture">
-                Proverbs 5:18: “Let your water source be blessed, and rejoice with the wife of your youth.”
-            </div>
+                <div class="focus">
+                    FOCUS<br>
+                    Learning how we can give Jehovah the glory he deserves.
+                </div>
 
-            <div class="question">
-                2. What is the state of many marriages today?
-            </div>
-            <div class="answer">
-                Many marriages today are unhappy because couples forget their wedding promises, with husbands often abusing their wives physically, verbally, or emotionally, or viewing pornography.
-            </div>
+                <div class="question">
+                    1. Many today focus on what?
+                </div>
+                <div class="answer">
+                    Many today focus on themselves, being self-absorbed, such as drawing attention to their accomplishments on social media instead of giving glory to Jehovah.
+                </div>
 
-            <div class="question">
-                3. What factors can contribute to a husband’s abusive behavior?
-            </div>
-            <div class="answer">
-                Factors include being raised by a violent father, cultural ideas that a man must use force, lack of emotional control, a warped view from pornography, and intensified issues from the COVID-19 pandemic.
-            </div>
+                <div class="question">
+                    2. How did Jehovah reveal his glory at Mount Sinai?
+                </div>
+                <div class="answer">
+                    Jehovah revealed his glory at Mount Sinai with a powerful display: a dark cloud, earthquake, lightning, thunder, and a loud horn, impressing the Israelites. (Ex. 19:16-18)
+                </div>
+                <div class="scripture">
+                    Exodus 19:16-18: “On the third day when it was morning, there were thunders and lightnings, and a heavy cloud on the mountain, and a very loud sound of a horn, so that all the people in the camp trembled. Moses now brought the people out of the camp to meet the true God, and they took their place at the base of the mountain. Mount Sinai was smoking all over, because Jehovah had come down on it in fire; and its smoke was rising like the smoke of a kiln, and the whole mountain was trembling greatly.”
+                </div>
 
-            <div class="question">
-                4. What do Christian husbands need to guard against, and why?
-            </div>
-            <div class="answer">
-                Christian husbands must guard against adopting improper views of women, as thoughts lead to actions, and worldly thinking can influence them to abuse their wives. (Rom. 12:2)
-            </div>
-            <div class="scripture">
-                Romans 12:2: “Stop being molded by this system of things, but be transformed by making your mind over, so that you may prove to yourselves the good and acceptable and perfect will of God.”
-            </div>
+                <div class="question">
+                    3. What does it mean to give Jehovah glory?
+                </div>
+                <div class="answer">
+                    To give Jehovah glory means telling others about His power and qualities and giving Him credit for our accomplishments, as King David did by praising Jehovah’s greatness. (1 Chron. 29:11)
+                </div>
+                <div class="scripture">
+                    1 Chronicles 29:11: “Yours, O Jehovah, are the greatness and the mightiness and the beauty and the splendor and the majesty, for everything in the heavens and on the earth is yours. Yours is the kingdom, O Jehovah, the one exalting yourself as head over all.”
+                </div>
 
-            <div class="question">
-                5. According to 1 Peter 3:7, how should a husband treat his wife?
-            </div>
-            <div class="answer">
-                A husband should honor his wife, treating her with kindness and love, as honoring her respects Jehovah’s command. (1 Pet. 3:7)
-            </div>
-            <div class="scripture">
-                1 Peter 3:7: “You husbands, in the same way, continue dwelling with them according to knowledge. Assign them honor as to a weaker vessel, the feminine one, since they are also heirs with you of the undeserved favor of life, in order that your prayers may not be hindered.”
-            </div>
+                <div class="question">
+                    4. How did Jesus give glory to Jehovah?
+                </div>
+                <div class="answer">
+                    Jesus gave glory to Jehovah by acknowledging Him as the Source of his miracles and by compassionately healing others, like a woman bent double for 18 years, who then glorified God. (Luke 13:12-13)
+                </div>
+                <div class="scripture">
+                    Luke 13:12-13: “When Jesus saw her, he called her to him and said: ‘Woman, you are released from your weakness.’ And he laid his hands on her, and instantly she straightened up and began glorifying God.”
+                </div>
 
-            <div class="question">
-                6. How does Jehovah feel about men who physically abuse their wife?
-            </div>
-            <div class="answer">
-                Jehovah hates violence and condemns husbands who abuse their wives, as it affects their relationship with Him, possibly hindering their prayers. (Col. 3:19)
-            </div>
-            <div class="scripture">
-                Colossians 3:19: “You husbands, keep on loving your wives and do not be bitterly angry with them.”
-            </div>
+                <div class="question">
+                    5. What reasons do we have to respect Jehovah?
+                </div>
+                <div class="answer">
+                    We respect Jehovah because He is almighty, wise, the Source of life, loyal, successful, and keeps His promises, as Jeremiah said, there is no one like Him. (Jer. 10:6)
+                </div>
+                <div class="scripture">
+                    Jeremiah 10:6: “There is none like you, O Jehovah. You are great, and your name is great in mightiness.”
+                </div>
 
-            <div class="question">
-                7. According to Ephesians 4:31, 32, what type of speech must husbands avoid?
-            </div>
-            <div class="answer">
-                Husbands must avoid angry, hurtful speech like screaming and abusive words, as Jehovah hates such speech and it damages their marriage and relationship with Him. (Eph. 4:31)
-            </div>
-            <div class="scripture">
-                Ephesians 4:31: “Let all malicious bitterness and anger and wrath and screaming and abusive speech be taken away from you along with all badness.”
-            </div>
+                <div class="question">
+                    6. Why do we love Jehovah?
+                </div>
+                <div class="answer">
+                    We love Jehovah for His mercy, compassion, empathy, approachability, and humility, as He feels our hurt, draws us close, and lifts the lowly. (Ps. 103:13)
+                </div>
+                <div class="scripture">
+                    Psalm 103:13: “As a father shows mercy to his sons, Jehovah has shown mercy to those who fear him.”
+                </div>
 
-            <div class="question">
-                8. How does Jehovah feel about pornography, and why?
-            </div>
-            <div class="answer">
-                Jehovah hates pornography because it damages a husband’s relationship with Him and degrades his wife, as Jesus said a man who looks lustfully commits adultery in his heart. (Matt. 5:28)
-            </div>
-            <div class="scripture">
-                Matthew 5:28: “But I say to you that everyone who keeps on looking at a woman so as to have a passion for her has already committed adultery with her in his heart.”
-            </div>
+                <div class="question">
+                    7. What special opportunity do we have?
+                </div>
+                <div class="answer">
+                    We have the opportunity to set the record straight about Jehovah, countering Satan’s lies that blind people, and help others know the true God. (Isa. 43:10)
+                </div>
+                <div class="scripture">
+                    Isaiah 43:10: “‘You are my witnesses,’ declares Jehovah, ‘yes, my servant whom I have chosen, so that you may know and have faith in me and understand that I am the same One. Before me no God was formed, and after me there has been none.’”
+                </div>
 
-            <div class="question">
-                9. Why does Jehovah hate it when a husband is sexually demeaning toward his wife?
-            </div>
-            <div class="answer">
-                Jehovah hates sexually demeaning behavior because it’s cold and thoughtless, and He expects husbands to love, cherish, and respect their wife’s feelings. (Eph. 5:28)
-            </div>
-            <div class="scripture">
-                Ephesians 5:28: “In this way husbands should love their wives as their own bodies. A man who loves his wife loves himself.”
-            </div>
+                <div class="question">
+                    8. What is one way we can glorify Jehovah?
+                </div>
+                <div class="answer">
+                    We can glorify Jehovah by speaking about Him—singing, praising His name, proclaiming His salvation, and declaring His glory, as faithful Jews and Christians did. (Ps. 96:1-3)
+                </div>
+                <div class="scripture">
+                    Psalm 96:1-3: “Sing to Jehovah a new song; sing to Jehovah, all the earth! Sing to Jehovah, praise his name; proclaim his salvation day after day. Declare his glory among the nations, his marvelous works among all the peoples.”
+                </div>
 
-            <div class="question">
-                10. How can husbands benefit from Jesus’ example?
-            </div>
-            <div class="answer">
-                Husbands can overcome abusive behavior by imitating Jesus, who treated his disciples with kindness and dignity, serving as a model for loving their wives. (Eph. 5:25)
-            </div>
-            <div class="scripture">
-                Ephesians 5:25: “Husbands, continue loving your wives, just as the Christ also loved the congregation and gave himself up for it.”
-            </div>
+                <div class="question">
+                    9-10. What do you learn from Angelena’s experience?
+                </div>
+                <div class="answer">
+                    Angelena’s experience teaches us to courageously defend Jehovah’s reputation. At work, she tactfully countered a colleague’s mockery with a slideshow of her joy as a Witness, softening his attitude. (1 Pet. 3:15)
+                </div>
+                <div class="scripture">
+                    1 Peter 3:15: “But sanctify the Christ as Lord in your hearts, always ready to make a defense before everyone who demands of you a reason for the hope you have, but doing so with a mild temper and deep respect.”
+                </div>
 
-            <div class="question">
-                11. How did Jesus treat his apostles?
-            </div>
-            <div class="answer">
-                Jesus treated his apostles kindly, never harshly, humbly serving them and showing mildness and restraint, even as their Master. (Matt. 11:29)
-            </div>
-            <div class="scripture">
-                Matthew 11:29: “Take my yoke upon you and learn from me, for I am mild-tempered and lowly in heart, and you will find refreshment for yourselves.”
-            </div>
+                <div class="question">
+                    11. How have true worshippers throughout history followed the principle found at Psalm 96:8?
+                </div>
+                <div class="answer">
+                    True worshippers have glorified Jehovah with their valuable things, like the Israelites contributing to the temple, disciples supporting Jesus, and Christians giving relief aid, as we do today with donations. (Prov. 3:9)
+                </div>
+                <div class="scripture">
+                    Proverbs 3:9: “Honor Jehovah with your valuable things, with the firstfruits of all your produce.”
+                </div>
 
-            <div class="question">
-                12. How did Jesus speak to others?
-            </div>
-            <div class="answer">
-                Jesus spoke to comfort and refresh others, never harshly, even remaining silent when provoked rather than insulting in return. (1 Pet. 2:23)
-            </div>
-            <div class="scripture">
-                1 Peter 2:23: “When he was being insulted, he did not insult in return; when he was suffering, he did not threaten, but he entrusted himself to the One who judges righteously.”
-            </div>
+                <div class="question">
+                    12. How can our donations bring glory to Jehovah?
+                </div>
+                <div class="answer">
+                    Donations bring glory to Jehovah by supporting His work, as seen with Prisca in Zimbabwe, whose faith during a drought led neighbors to learn about Jehovah after she received relief supplies.
+                </div>
 
-            <div class="question">
-                13. As stated at Matthew 19:4-6, how can a husband “stick to his wife”?
-            </div>
-            <div class="answer">
-                A husband can “stick to his wife” by being loyal, as if glued to her, rejecting pornography and not looking lustfully at other women. (Matt. 19:5; Job 31:1)
-            </div>
-            <div class="scripture">
-                Matthew 19:5: “And said, ‘For this reason a man will leave his father and his mother and will stick to his wife, and the two will be one flesh’?”<br>
-                Job 31:1: “I have made a covenant with my eyes. So how could I show improper attention to a virgin?”
-            </div>
+                <div class="question">
+                    13. How can our conduct bring glory to Jehovah?
+                </div>
+                <div class="answer">
+                    Our conduct brings glory to Jehovah by reflecting His qualities, stripping off the old personality, and adopting the new personality of clean attitudes and actions. (Col. 3:9-10)
+                </div>
+                <div class="scripture">
+                    Colossians 3:9-10: “Do not lie to one another. Strip off the old personality with its practices, and clothe yourselves with the new personality, which through accurate knowledge is being made new according to the image of the One who created it.”
+                </div>
 
-            <div class="question">
-                14. What steps should an abusive husband take to repair his relationship with Jehovah and with his wife?
-            </div>
-            <div class="answer">
-                An abusive husband should: recognize his problem, stop the abuse, apologize to his wife and Jehovah, seek forgiveness, pray for help, hate violence, seek elders’ help, and plan to avoid such behavior. (Prov. 28:13; Jas. 5:14)
-            </div>
-            <div class="scripture">
-                Proverbs 28:13: “The one covering over his transgressions will not succeed, but whoever confesses and abandons them will be shown mercy.”<br>
-                James 5:14: “Is there anyone sick among you? Let him call the elders of the congregation to him, and let them pray over him, applying oil to him in the name of Jehovah.”
-            </div>
+                <div class="question">
+                    14. What do you learn from Jack’s experience?
+                </div>
+                <div class="answer">
+                    Jack’s experience shows that our conduct can glorify Jehovah. A violent man, Jack changed through a Bible study, qualified for baptism, and impressed prison guards, leading another inmate to worship Jehovah. (1 Pet. 2:12)
+                </div>
+                <div class="scripture">
+                    1 Peter 2:12: “Maintain your conduct fine among the nations, so that when they accuse you of being wrongdoers, they may be eyewitnesses of your fine works and, as a result, glorify God in the day of his inspection.”
+                </div>
 
-            <div class="question">
-                15. How can a husband show affection for his wife?
-            </div>
-            <div class="answer">
-                A husband can show affection through small acts like holding her hand, giving a warm embrace, or sending a loving message, strengthening their marriage. (1 John 3:18)
-            </div>
-            <div class="scripture">
-                1 John 3:18: “Little children, we should love, not in word or with the tongue, but in deed and truth.”
-            </div>
+                <div class="question">
+                    15. How will Jehovah completely glorify his name in the near future?
+                </div>
+                <div class="answer">
+                    Jehovah will glorify His name by executing judgment on Babylon the Great, destroying Satan’s system at Armageddon, and saving those who love Him, until His glory fills the earth. (Hab. 2:14)
+                </div>
+                <div class="scripture">
+                    Habakkuk 2:14: “For the earth will be filled with the knowledge of the glory of Jehovah as the waters cover the sea.”
+                </div>
 
-            <div class="question">
-                16. Why should a husband praise his wife?
-            </div>
-            <div class="answer">
-                A husband should praise his wife to build her up, making her feel secure, loved, and honored for her support. (Prov. 31:28)
-            </div>
-            <div class="scripture">
-                Proverbs 31:28: “Her children rise up and declare her happy; her husband praises her.”
-            </div>
+                <div class="question">
+                    16. What are you determined to do?
+                </div>
+                <div class="answer">
+                    I am determined to glorify Jehovah at every opportunity until everyone alive gives Him the glory due His name, as emphasized by the 2025 yeartext.
+                </div>
 
-            <div class="question">
-                17. How can a husband show respect for his wife?
-            </div>
-            <div class="answer">
-                A husband shows respect by valuing his wife as a priceless gift, treating her kindly, and not pressuring her into demeaning sexual acts. (Prov. 18:22)
-            </div>
-            <div class="scripture">
-                Proverbs 18:22: “The one who finds a good wife has found something good, and he receives Jehovah’s favor.”
-            </div>
+                <div class="question">
+                    HOW WOULD YOU ANSWER?<br>
+                    What does it mean to give Jehovah glory?
+                </div>
+                <div class="answer">
+                    It means telling others about Jehovah’s power and qualities and giving Him credit for our accomplishments, as David did. (1 Chron. 29:11)
+                </div>
+                <div class="scripture">
+                    1 Chronicles 29:11: “Yours, O Jehovah, are the greatness and the mightiness and the beauty and the splendor and the majesty, for everything in the heavens and on the earth is yours. Yours is the kingdom, O Jehovah, the one exalting yourself as head over all.”
+                </div>
 
-            <div class="question">
-                18. What should husbands be determined to do?
-            </div>
-            <div class="answer">
-                Husbands should be determined to honor their wife by avoiding dishonorable conduct and being kind, respectful, and affectionate, protecting their relationship with Jehovah. (Ps. 25:14)
-            </div>
-            <div class="scripture">
-                Psalm 25:14: “The confidential talk of Jehovah is with those who fear him, and he makes his covenant known to them.”
-            </div>
+                <div class="question">
+                    HOW WOULD YOU ANSWER?<br>
+                    What motivates us to give Jehovah glory?
+                </div>
+                <div class="answer">
+                    We are motivated by respect for Jehovah’s might, wisdom, and loyalty, and by love for His mercy, empathy, and humility. (Ps. 103:13)
+                </div>
+                <div class="scripture">
+                    Psalm 103:13: “As a father shows mercy to his sons, Jehovah has shown mercy to those who fear him.”
+                </div>
 
-            <div class="question">
-                HOW CAN A HUSBAND APPLY THE COUNSEL FOUND AT . . .<br>
-                Colossians 3:19?
-            </div>
-            <div class="answer">
-                A husband can apply this by loving his wife and not being bitterly angry, avoiding physical or verbal abuse. (Col. 3:19)
-            </div>
-            <div class="scripture">
-                Colossians 3:19: “You husbands, keep on loving your wives and do not be bitterly angry with them.”
-            </div>
-
-            <div class="question">
-                HOW CAN A HUSBAND APPLY THE COUNSEL FOUND AT . . .<br>
-                Ephesians 4:31, 32?
-            </div>
-            <div class="answer">
-                A husband can apply this by avoiding abusive speech and being kind and compassionate, speaking respectfully to his wife. (Eph. 4:31-32)
-            </div>
-            <div class="scripture">
-                Ephesians 4:31-32: “Let all malicious bitterness and anger and wrath and screaming and abusive speech be taken away from you along with all badness. But become kind to one another, tenderly compassionate, freely forgiving one another just as God also by Christ freely forgave you.”
-            </div>
-
-            <div class="question">
-                HOW CAN A HUSBAND APPLY THE COUNSEL FOUND AT . . .<br>
-                Matthew 19:4-6?
-            </div>
-            <div class="answer">
-                A husband can apply this by sticking to his wife, being loyal, and rejecting pornography, strengthening their marital bond. (Matt. 19:5)
-            </div>
-            <div class="scripture">
-                Matthew 19:5: “And said, ‘For this reason a man will leave his father and his mother and will stick to his wife, and the two will be one flesh’?”
+                <div class="question">
+                    HOW WOULD YOU ANSWER?<br>
+                    How can we give Jehovah the glory he deserves?
+                </div>
+                <div class="answer">
+                    We can glorify Jehovah by speaking about Him, using our valuable things like donations, and reflecting His qualities in our conduct. (Ps. 96:1-3; Col. 3:9-10)
+                </div>
+                <div class="scripture">
+                    Psalm 96:1-3: “Sing to Jehovah a new song; sing to Jehovah, all the earth! Sing to Jehovah, praise his name; proclaim his salvation day after day. Declare his glory among the nations, his marvelous works among all the peoples.”<br>
+                    Colossians 3:9-10: “Do not lie to one another. Strip off the old personality with its practices, and clothe yourselves with the new personality, which through accurate knowledge is being made new according to the image of the One who created it.”
+                </div>
             </div>
         </div>
 
-        <!-- Article 1: Give Glory to Jehovah (Previous Article) -->
-        <!-- Hidden checkbox to control the collapse/expand -->
-        <input type="checkbox" id="toggle-content-1">
-        <!-- Title that acts as the trigger -->
-        <label for="toggle-content-1" class="article-title">Give Glory to Jehovah</label>
-        <!-- Collapsible content -->
-        <div class="article-content">
-            <div class="yeartext">
-                OUR YEARTEXT FOR 2025: “Give Jehovah the glory due his name.”—PS. 96:8.
-            </div>
-
-            <div class="focus">
-                FOCUS<br>
-                Learning how we can give Jehovah the glory he deserves.
-            </div>
-
-            <div class="question">
-                1. Many today focus on what?
-            </div>
-            <div class="answer">
-                Many today focus on themselves, being self-absorbed, such as drawing attention to their accomplishments on social media instead of giving glory to Jehovah.
-            </div>
-
-            <div class="question">
-                2. How did Jehovah reveal his glory at Mount Sinai?
-            </div>
-            <div class="answer">
-                Jehovah revealed his glory at Mount Sinai with a powerful display: a dark cloud, earthquake, lightning, thunder, and a loud horn, impressing the Israelites. (Ex. 19:16-18)
-            </div>
-            <div class="scripture">
-                Exodus 19:16-18: “On the third day when it was morning, there were thunders and lightnings, and a heavy cloud on the mountain, and a very loud sound of a horn, so that all the people in the camp trembled. Moses now brought the people out of the camp to meet the true God, and they took their place at the base of the mountain. Mount Sinai was smoking all over, because Jehovah had come down on it in fire; and its smoke was rising like the smoke of a kiln, and the whole mountain was trembling greatly.”
-            </div>
-
-            <div class="question">
-                3. What does it mean to give Jehovah glory?
-            </div>
-            <div class="answer">
-                To give Jehovah glory means telling others about His power and qualities and giving Him credit for our accomplishments, as King David did by praising Jehovah’s greatness. (1 Chron. 29:11)
-            </div>
-            <div class="scripture">
-                1 Chronicles 29:11: “Yours, O Jehovah, are the greatness and the mightiness and the beauty and the splendor and the majesty, for everything in the heavens and on the earth is yours. Yours is the kingdom, O Jehovah, the one exalting yourself as head over all.”
-            </div>
-
-            <div class="question">
-                4. How did Jesus give glory to Jehovah?
-            </div>
-            <div class="answer">
-                Jesus gave glory to Jehovah by acknowledging Him as the Source of his miracles and by compassionately healing others, like a woman bent double for 18 years, who then glorified God. (Luke 13:12-13)
-            </div>
-            <div class="scripture">
-                Luke 13:12-13: “When Jesus saw her, he called her to him and said: ‘Woman, you are released from your weakness.’ And he laid his hands on her, and instantly she straightened up and began glorifying God.”
-            </div>
-
-            <div class="question">
-                5. What reasons do we have to respect Jehovah?
-            </div>
-            <div class="answer">
-                We respect Jehovah because He is almighty, wise, the Source of life, loyal, successful, and keeps His promises, as Jeremiah said, there is no one like Him. (Jer. 10:6)
-            </div>
-            <div class="scripture">
-                Jeremiah 10:6: “There is none like you, O Jehovah. You are great, and your name is great in mightiness.”
-            </div>
-
-            <div class="question">
-                6. Why do we love Jehovah?
-            </div>
-            <div class="answer">
-                We love Jehovah for His mercy, compassion, empathy, approachability, and humility, as He feels our hurt, draws us close, and lifts the lowly. (Ps. 103:13)
-            </div>
-            <div class="scripture">
-                Psalm 103:13: “As a father shows mercy to his sons, Jehovah has shown mercy to those who fear him.”
-            </div>
-
-            <div class="question">
-                7. What special opportunity do we have?
-            </div>
-            <div class="answer">
-                We have the opportunity to set the record straight about Jehovah, countering Satan’s lies that blind people, and help others know the true God. (Isa. 43:10)
-            </div>
-            <div class="scripture">
-                Isaiah 43:10: “‘You are my witnesses,’ declares Jehovah, ‘yes, my servant whom I have chosen, so that you may know and have faith in me and understand that I am the same One. Before me no God was formed, and after me there has been none.’”
-            </div>
-
-            <div class="question">
-                8. What is one way we can glorify Jehovah?
-            </div>
-            <div class="answer">
-                We can glorify Jehovah by speaking about Him—singing, praising His name, proclaiming His salvation, and declaring His glory, as faithful Jews and Christians did. (Ps. 96:1-3)
-            </div>
-            <div class="scripture">
-                Psalm 96:1-3: “Sing to Jehovah a new song; sing to Jehovah, all the earth! Sing to Jehovah, praise his name; proclaim his salvation day after day. Declare his glory among the nations, his marvelous works among all the peoples.”
-            </div>
-
-            <div class="question">
-                9-10. What do you learn from Angelena’s experience?
-            </div>
-            <div class="answer">
-                Angelena’s experience teaches us to courageously defend Jehovah’s reputation. At work, she tactfully countered a colleague’s mockery with a slideshow of her joy as a Witness, softening his attitude. (1 Pet. 3:15)
-            </div>
-            <div class="scripture">
-                1 Peter 3:15: “But sanctify the Christ as Lord in your hearts, always ready to make a defense before everyone who demands of you a reason for the hope you have, but doing so with a mild temper and deep respect.”
-            </div>
-
-            <div class="question">
-                11. How have true worshippers throughout history followed the principle found at Psalm 96:8?
-            </div>
-            <div class="answer">
-                True worshippers have glorified Jehovah with their valuable things, like the Israelites contributing to the temple, disciples supporting Jesus, and Christians giving relief aid, as we do today with donations. (Prov. 3:9)
-            </div>
-            <div class="scripture">
-                Proverbs 3:9: “Honor Jehovah with your valuable things, with the firstfruits of all your produce.”
-            </div>
-
-            <div class="question">
-                12. How can our donations bring glory to Jehovah?
-            </div>
-            <div class="answer">
-                Donations bring glory to Jehovah by supporting His work, as seen with Prisca in Zimbabwe, whose faith during a drought led neighbors to learn about Jehovah after she received relief supplies.
-            </div>
-
-            <div class="question">
-                13. How can our conduct bring glory to Jehovah?
-            </div>
-            <div class="answer">
-                Our conduct brings glory to Jehovah by reflecting His qualities, stripping off the old personality, and adopting the new personality of clean attitudes and actions. (Col. 3:9-10)
-            </div>
-            <div class="scripture">
-                Colossians 3:9-10: “Do not lie to one another. Strip off the old personality with its practices, and clothe yourselves with the new personality, which through accurate knowledge is being made new according to the image of the One who created it.”
-            </div>
-
-            <div class="question">
-                14. What do you learn from Jack’s experience?
-            </div>
-            <div class="answer">
-                Jack’s experience shows that our conduct can glorify Jehovah. A violent man, Jack changed through a Bible study, qualified for baptism, and impressed prison guards, leading another inmate to worship Jehovah. (1 Pet. 2:12)
-            </div>
-            <div class="scripture">
-                1 Peter 2:12: “Maintain your conduct fine among the nations, so that when they accuse you of being wrongdoers, they may be eyewitnesses of your fine works and, as a result, glorify God in the day of his inspection.”
-            </div>
-
-            <div class="question">
-                15. How will Jehovah completely glorify his name in the near future?
-            </div>
-            <div class="answer">
-                Jehovah will glorify His name by executing judgment on Babylon the Great, destroying Satan’s system at Armageddon, and saving those who love Him, until His glory fills the earth. (Hab. 2:14)
-            </div>
-            <div class="scripture">
-                Habakkuk 2:14: “For the earth will be filled with the knowledge of the glory of Jehovah as the waters cover the sea.”
-            </div>
-
-            <div class="question">
-                16. What are you determined to do?
-            </div>
-            <div class="answer">
-                I am determined to glorify Jehovah at every opportunity until everyone alive gives Him the glory due His name, as emphasized by the 2025 yeartext.
-            </div>
-
-            <div class="question">
-                HOW WOULD YOU ANSWER?<br>
-                What does it mean to give Jehovah glory?
-            </div>
-            <div class="answer">
-                It means telling others about Jehovah’s power and qualities and giving Him credit for our accomplishments, as David did. (1 Chron. 29:11)
-            </div>
-            <div class="scripture">
-                1 Chronicles 29:11: “Yours, O Jehovah, are the greatness and the mightiness and the beauty and the splendor and the majesty, for everything in the heavens and on the earth is yours. Yours is the kingdom, O Jehovah, the one exalting yourself as head over all.”
-            </div>
-
-            <div class="question">
-                HOW WOULD YOU ANSWER?<br>
-                What motivates us to give Jehovah glory?
-            </div>
-            <div class="answer">
-                We are motivated by respect for Jehovah’s might, wisdom, and loyalty, and by love for His mercy, empathy, and humility. (Ps. 103:13)
-            </div>
-            <div class="scripture">
-                Psalm 103:13: “As a father shows mercy to his sons, Jehovah has shown mercy to those who fear him.”
-            </div>
-
-            <div class="question">
-                HOW WOULD YOU ANSWER?<br>
-                How can we give Jehovah the glory he deserves?
-            </div>
-            <div class="answer">
-                We can glorify Jehovah by speaking about Him, using our valuable things like donations, and reflecting His qualities in our conduct. (Ps. 96:1-3; Col. 3:9-10)
-            </div>
-            <div class="scripture">
-                Psalm 96:1-3: “Sing to Jehovah a new song; sing to Jehovah, all the earth! Sing to Jehovah, praise his name; proclaim his salvation day after day. Declare his glory among the nations, his marvelous works among all the peoples.”<br>
-                Colossians 3:9-10: “Do not lie to one another. Strip off the old personality with its practices, and clothe yourselves with the new personality, which through accurate knowledge is being made new according to the image of the One who created it.”
-            </div>
+        <!-- Copyright -->
+        <div class="copyright">
+            Copyright © 2025 Just Wise Love. All Rights Reserved.
         </div>
     </div>
+
+    <script>
+        function toggleArticle(element) {
+            const content = element.nextElementSibling; // Get the article content div
+            content.classList.toggle('active'); // Toggle the 'active' class to show/hide
+        }
+    </script>
 </body>
 </html>
