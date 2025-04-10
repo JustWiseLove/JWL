@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensure the Google Fonts link is correct -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <title>Just Wise Love</title>
     <style>
@@ -14,7 +15,7 @@
             font-weight: bold; 
         }
         .logo a { 
-            font-family: 'Audiowide', sans-serif; 
+            font-family: 'Audiowide', cursive, sans-serif; /* Added fallback fonts */
             text-decoration: none; 
             color: #000000; 
         }
@@ -23,8 +24,23 @@
         .article { padding: 15px; text-align: center; }
         .article h2 { font-size: 1.5rem; color: #ffffff; margin: 20px 0 10px; text-align: center; }
         .article p { font-size: 1rem; color: #cccccc; margin-bottom: 15px; padding: 0 10px; text-align: left; }
-        .scripture { margin: 15px auto; padding: 15px; background-color: #333333; border-radius: 8px; font-size: 1rem; border-left: 4px solid #ffffff; max-width: 600px; text-align: left; }
-        .scripture cite { display: block; margin-top: 10px; color: #ffffff; font-style: normal; }
+        .scripture { 
+            margin: 15px auto; 
+            padding: 15px; 
+            background-color: #333333; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            border-left: 4px solid #ffffff; 
+            max-width: 600px; 
+            text-align: left; 
+            color: #ffffff; /* Ensure scripture text is white for contrast */
+        }
+        .scripture cite { 
+            display: block; 
+            margin-top: 10px; 
+            color: #ffffff; 
+            font-style: normal; 
+        }
         details { margin: 5px 0; }
         summary { font-size: 1.5rem; color: #ffffff; cursor: pointer; padding: 2px; text-align: center; }
         summary:hover { color: #cccccc; } /* Light gray for hover */
@@ -63,7 +79,7 @@
 <body>
     <header>
         <div class="logo">
-            <aĀhref="notes.html">JWL</a>
+            <a href="notes.html">JWL</a>
         </div>
     </header>
     <section class="main-section">
@@ -115,7 +131,7 @@
                     <cite>—Matthew 15:9</cite>
                 </div>
                 <h2>Halloween and Spiritism</h2>
-                <p>Halleon derives from Samhain, a Celtic dead-honoring festival banned as spiritism (Deuteronomy 18:10-12), with costumes and turnips from 900 CE Ireland, later tied to All Saints’ Day (835 CE). Leviticus 19:31 forbids spirit contact, yet trick-or-treating upholds this pagan rite.</p>
+                <p>Halloween derives from Samhain, a Celtic dead-honoring festival banned as spiritism (Deuteronomy 18:10-12), with costumes and turnips from 900 CE Ireland, later tied to All Saints’ Day (835 CE). Leviticus 19:31 forbids spirit contact, yet trick-or-treating upholds this pagan rite.</p>
                 <div class="scripture">
                     “There should not be found in you anyone who... consults the dead.” 
                     <cite>—Deuteronomy 18:10-11</cite>
@@ -133,7 +149,7 @@
                     <cite>—Matthew 21:13</cite>
                 </div>
                 <h2>Fate and Astrology</h2>
-                <p>Fate via astrology claims a fixed destiny, unlike Jehovah’s free will offer—“choose life” (Deuteronomy 30:19), “choose whom you serve” (Joshua 24:15)—with Babylonians (2000 BCE) mapping stars, debunk skulls showing no celestial sway. Horoscopes mislead, denying choice.</p>
+                <p>Fate via astrology claims a fixed destiny, unlike Jehovah’s free will offer—“choose life” (Deuteronomy 30:19), “choose whom you serve” (Joshua 24:15)—with Babylonians (2000 BCE) mapping stars, debunked by science showing no celestial sway. Horoscopes mislead, denying choice.</p>
                 <div class="scripture">
                     “I have put life and death before you... choose life.” 
                     <cite>—Deuteronomy 30:19</cite>
@@ -227,7 +243,7 @@
               </div>
         </details>
 
-                <!-- Article 5: Bible Accuracy Shines -->
+        <!-- Article 5: Bible Accuracy Shines -->
         <details>
             <summary>Bible Accuracy Shines</summary>
             <div class="article">
