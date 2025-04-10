@@ -27,7 +27,7 @@
         /* Header */
         header {
             text-align: center;
-            padding: 20px;
+            padding: 15px; /* Reduced padding */
             background-color: #ffffff; /* Light Mode header */
         }
 
@@ -52,8 +52,8 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
+            margin: 15px auto; /* Reduced margin */
+            padding: 10px; /* Reduced padding */
         }
 
         body.dark-mode .container {
@@ -66,14 +66,28 @@
             font-weight: bold;
             text-align: center;
             cursor: pointer;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 5px; /* Reduced padding */
+            margin-bottom: 5px; /* Reduced margin */
+            border-bottom: 1px solid #e0e0e0; /* Subtle break between titles */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for separation */
+        }
+
+        body.dark-mode .article-title {
+            border-bottom: 1px solid #666666; /* Dark Mode border */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Dark Mode shadow */
+        }
+
+        /* Smaller font size for article titles on mobile */
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 18px; /* Smaller font on mobile */
+            }
         }
 
         /* Article content */
         .article-content {
             display: none; /* Hidden by default */
-            padding: 0 10px;
+            padding: 0 5px; /* Reduced padding */
         }
 
         .article-content.active {
@@ -89,18 +103,18 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 15px; /* Reduced padding */
         }
 
         .dark-mode-btn {
-            padding: 10px 20px;
+            padding: 8px 16px; /* Reduced padding */
             font-size: 16px;
             cursor: pointer;
             background-color: #666666;
             color: #ffffff;
             border: none;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* Reduced margin */
         }
 
         .dark-mode-btn:hover {
