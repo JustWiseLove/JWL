@@ -3,299 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes - Just Wise Love</title>
+    <title>Truth - Just Wise Love</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts link for Audiowide -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
-    <style>
-        .input-section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        input, textarea {
-            width: 100%;
-            margin: 10px 0;
-            padding: 8px;
-            border: 1px solid #333333;
-            border-radius: 4px;
-            background-color: #ffffff;
-            color: #333333;
-        }
-        body.dark-mode input,
-        body.dark-mode textarea {
-            background-color: #333333;
-            color: #cccccc;
-            border-color: #cccccc;
-        }
-        .search-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        #searchInput {
-            width: 100%;
-        }
-        .highlight {
-            background-color: #cccccc; /* Light gray instead of gold */
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
-        body.dark-mode .highlight {
-            color: #333333; /* Dark gray for contrast */
-        }
-        .article {
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-        }
-        .article h2 {
-            color: #000000; /* Black for article titles */
-        }
-        body.dark-mode .article h2 {
-            color: #ffffff; /* White for dark mode */
-        }
-        .article .notes-preview {
-            color: #333333; /* Dark gray for article text */
-        }
-        body.dark-mode .article .notes-preview {
-            color: #cccccc; /* Light gray for dark mode */
-        }
-        .article-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-        }
-        .edit-link, .open-link {
-            cursor: pointer;
-            color: #666666; /* Medium gray instead of gold */
-            text-decoration: underline;
-        }
-        body.dark-mode .edit-link,
-        body.dark-mode .open-link {
-            color: #cccccc; /* Light gray for dark mode */
-        }
-        .edit-link:hover,
-        .open-link:hover {
-            color: #333333; /* Dark gray on hover */
-        }
-        .notes-preview {
-            overflow: hidden;
-        }
-        .order-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .order-input {
-            width: 60px;
-            padding: 5px;
-        }
-        /* Override for Save Article button to ensure black background and white text */
-        .btn-study#saveBtn {
-            background-color: #d3d3d3; /* Light gray background */
-            color: #000000; /* Black text */
-        }
-        body.dark-mode .btn-study#saveBtn {
-            background-color: #d3d3d3; /* Light gray for dark mode */
-            color: #000000; /* Blavk text for dark mode */
-        }
-    </style>
 </head>
 <body class="dark-mode">
     <header>
-        <h1><a href="index.html">NOTES</a></h1>
+        <h1><a href="index.html">TRUTH</a></h1>
         <button class="mode-toggle" onclick="toggleMode()">Toggle Light Mode</button>
     </header>
 
-    <div class="input-section">
-        <input type="text" id="titleInput" placeholder="Enter article title">
-        <input type="number" id="orderInput" placeholder="Enter article order" min="0" step="1">
-        <textarea id="notesInput" rows="10" placeholder="Enter your notes"></textarea>
-        <button id="saveBtn" class="btn-study" onclick="saveOrUpdateArticle()">Save Article</button>
+    <div class="container">
+        <!-- Navigation Menu -->
+        <nav class="topic-nav">
+            <ul>
+                <li><a href="#jehovah">Jehovah</a></li>
+                <li><a href="#creation">Creation</a></li>
+                <li><a href="#true-worship">True Worship</a></li>
+                <li><a href="#false-worship">False Worship</a></li>
+                <li><a href="#kingdom">The Kingdom</a></li>
+                <li><li><a href="#memorial">The Memorial</a></li>
+                <li><a href="#family">Family</a></li>
+                <li><a href="#paradise">Paradise</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Jehovah Section -->
+            <section id="jehovah" class="topic-section">
+                <div class="topic-header">
+                    <h2>Jehovah</h2>
+                    <p class="subtitle">The Sacred Name of the Creator</p>
+                </div>
+                <div class="topic-content">
+                    <div class="highlight-box">
+                        <h3>Why the Name Matters</h3>
+                        <p>Jehovah’s name, appearing over 7,000 times in Scripture, is the key to true worship. Meaning “He Causes to Become,” it reveals His role as the dynamic Creator. “I am Jehovah; that is my name” (Isaiah 42:8).</p>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h4>Revelation to Moses</h4>
+                            <p>In 1513 BCE, Jehovah told Moses, “This is my name forever” (Exodus 3:15), tying His identity to His promise of a paradise earth.</p>
+                        </div>
+                        <div class="content-card">
+                            <h4>Jesus’ Teaching</h4>
+                            <p>Jesus prayed, “Let your name be sanctified” (Matthew 6:9), and said, “I have made your name known” (John 17:26), showing its importance for salvation.</p>
+                        </div>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Historical Suppression</h3>
+                        <p>Satan’s efforts to erase Jehovah’s name began at Babel (2269 BCE) and continued with Jewish scribes replacing YHWH with “Lord” around 300 BCE. Yet, finds like the Dead Sea Scrolls (200 BCE) confirm its use.</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Fate vs. Free Will</h3>
+                        <p>Satan’s lie of fate, rooted in Babylonian astrology (2000 BCE), denies choice. Jehovah offers free will: “Choose life so that you may live” (Deuteronomy 30:19). Nineveh’s repentance (830 BCE) proves His mercy.</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Satan’s Lies</h3>
+                        <p>From Eden’s “You will not die” (Genesis 3:4) to evolution and hellfire, Satan blinds humanity. Jehovah’s truth frees: “You will know the truth” (John 8:32).</p>
+                    </div>
+                    <blockquote class="scripture">“You will call me and pray to me, and I will listen to you.” —Jeremiah 29:12</blockquote>
+                </div>
+            </section>
+
+            <!-- Creation Section -->
+            <section id="creation" class="topic-section">
+                <div class="topic-header">
+                    <h2>Creation</h2>
+                    <p class="subtitle">The Work of Jehovah’s Hands</p>
+                </div>
+                <div class="topic-content">
+                    <div class="highlight-box">
+                        <h3>A Purposeful Design</h3>
+                        <p>Jehovah created through Jesus, “the firstborn of all creation” (Colossians 1:15). The earth’s tilt, magnetic field, and water cycle show it was “formed to be inhabited” (Isaiah 45:18).</p>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h4>Cambrian Explosion</h4>
+                            <p>Complex life appeared suddenly 540 million years ago, with no evolutionary precursors, supporting divine creation over Darwin’s theory.</p>
+                        </div>
+                        <div class="content-card">
+                            <h4>Human Genome</h4>
+                            <p>With 3 billion DNA base pairs, its complexity defies chance, pointing to Jehovah’s wisdom: “You have made all of them in wisdom” (Psalm 104:24).</p>
+                        </div>
+                    </div>
+                    <div class="subtopic">
+                        <h3>The Flood</h3>
+                        <p>In 2370 BCE, Jehovah’s global flood destroyed a corrupt world. Fossils in the Karoo Formation and flood legends worldwide confirm this cataclysm.</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Animal Creation</h3>
+                        <p>Animals were made “according to their kinds” (Genesis 1:25). Features like the eagle’s eye and bat’s echolocation show irreducible complexity, not gradual evolution.</p>
+                    </div>
+                    <blockquote class="scripture">“In the beginning God created the heavens and the earth.” —Genesis 1:1</blockquote>
+                </div>
+            </section>
+
+            <!-- True Worship Section -->
+            <section id="true-worship" class="topic-section">
+                <div class="topic-header">
+                    <h2>True Worship</h2>
+                    <p class="subtitle">Serving Jehovah with Spirit and Truth</p>
+                </div>
+                <div class="topic-content">
+                    <div class="highlight-box">
+                        <h3>A Way of Life</h3>
+                        <p>True worship means doing Jehovah’s will: “Not everyone saying ‘Lord, Lord,’ will enter the Kingdom” (Matthew 7:21). It’s “taking in knowledge” of Him (John 17:3).</p>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h4>Persecution’s Endurance</h4>
+                            <p>In 64 CE, Nero tortured Christians, yet they rejoiced, “counted worthy to be dishonored” (Acts 5:41), spreading the good news further.</p>
+                        </div>
+                        <div class="content-card">
+                            <h4>Global Mission</h4>
+                            <p>Jehovah’s people preach worldwide: “This good news of the Kingdom will be preached in all the earth” (Matthew 24:14).</p>
+                        </div>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Good News</h3>
+                        <p>The Kingdom’s message promises a paradise: “The righteous will possess the earth” (Psalm 37:29). It’s been preached since Jesus’ day (Luke 8:1).</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Baptism</h3>
+                        <p>A public dedication, baptism is for adults who choose Jehovah: “Go, make disciples, baptizing them” (Matthew 28:19), not infants as false religions teach.</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Neutrality</h3>
+                        <p>True worshipers avoid politics and wars: “My Kingdom is no part of this world” (John 18:36), a stand that mirrors Daniel’s loyalty (Daniel 6:10-16).</p>
+                    </div>
+                    <blockquote class="scripture">“You must worship Jehovah your God with spirit and truth.” —John 4:24</blockquote>
+                </div>
+            </section>
+
+            <!-- False Worship Section -->
+            <section id="false-worship" class="topic-section">
+                <div class="topic-header">
+                    <h2>False Worship</h2>
+                    <p class="subtitle">Satan’s Counterfeit Religion</p>
+                </div>
+                <div class="topic-content">
+                    <div class="highlight-box">
+                        <h3>Babylon the Great</h3>
+                        <p>False worship, “Babylon the Great” (Revelation 17:5), began at Babel (2269 BCE) and will fall: “Get out of her, my people” (Revelation 18:4).</p>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h4>Pagan Origins</h4>
+                            <p>Christmas stems from Saturnalia (217 BCE), and Easter from Eostre’s fertility rites (8th century CE), both rejected by Jehovah: “Do not learn the way of the nations” (Jeremiah 10:2).</p>
+                        </div>
+                        <div class="content-card">
+                            <h4>Clergy System</h4>
+                            <p>Titles like “Reverend” mimic pagan hierarchies. Jesus said, “You are all brothers” (Matthew 23:8), making all worshipers equal.</p>
+                        </div>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Trinity Lie</h3>
+                        <p>Formalized in 325 CE, the Trinity echoes Babylonian triads (2000 BCE). Jehovah says, “I am one Jehovah” (Deuteronomy 6:4); Jesus is “the firstborn” (Colossians 1:15).</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Spiritism</h3>
+                        <p>Contacting the dead is demonic: “There should not be found in you anyone who inquires of the dead” (Deuteronomy 18:11). The dead “know nothing” (Ecclesiastes 9:5).</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Reincarnation</h3>
+                        <p>Hinduism’s cycle (1200 BCE) denies Jehovah’s resurrection: “There is going to be a resurrection” (Acts 24:15), not endless lives.</p>
+                    </div>
+                    <blockquote class="scripture">“Their idols are silver and gold, the work of human hands.” —Psalm 115:4</blockquote>
+                </div>
+            </section>
+
+            <!-- The Kingdom Section -->
+            <section id="kingdom" class="topic-section">
+                <div class="topic-header">
+                    <h2>The Kingdom</h2>
+                    <p class="subtitle">Jehovah’s Government for Earth</p>
+                </div>
+                <div class="topic-content">
+                    <div class="highlight-box">
+                        <h3>A Real Government</h3>
+                        <p>Jesus rules since 1914: “The God of heaven will set up a kingdom” (Daniel 2:44). It will end human rule and bring paradise.</p>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h4>1914’s Signs</h4>
+                            <p>World War I, famines, and earthquakes mark “the last days” (Matthew 24:7), confirming Christ’s enthronement after 2,520 years from 607 BCE.</p>
+                        </div>
+                        <div class="content-card">
+                            <h4>Armageddon</h4>
+                            <p>Jehovah’s war will end wickedness: “The kings of the earth are gathered” but defeated (Revelation 19:19-21), ushering in peace.</p>
+                        </div>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Prophetic Evidence</h3>
+                        <p>Daniel’s statue (Daniel 2:31-44) and Ezekiel’s “overturning” (Ezekiel 21:27) pinpoint 1914, when empires fell, signaling God’s Kingdom.</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Last Days</h3>
+                        <p>Since 1914, “critical times” (2 Timothy 3:1) like wars and immorality show the end nears: “The great day of Jehovah is near” (Zephaniah 1:14).</p>
+                    </div>
+                    <blockquote class="scripture">“Your Kingdom is an everlasting kingdom.” —Psalm 145:13</blockquote>
+                </div>
+            </section>
+
+            <!-- The Memorial Section -->
+            <section id="memorial" class="topic-section">
+                <div class="topic-header">
+                    <h2>The Memorial</h2>
+                    <p class="subtitle">Honoring Jesus’ Sacrifice</p>
+                </div>
+                <div class="topic-content">
+                    <div class="highlight-box">
+                        <h3>A Sacred Observance</h3>
+                        <p>Held on Nisan 14, the Memorial recalls Jesus’ death: “Keep doing this in remembrance of me” (Luke 22:19), the “Lamb of God” (John 1:29).</p>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h4>New Covenant</h4>
+                            <p>Jesus’ blood seals the covenant: “This cup means the new covenant” (Luke 22:20), offering forgiveness and life.</p>
+                        </div>
+                        <div class="content-card">
+                            <h4>Jesus’ Role</h4>
+                            <p>As “the firstborn of all creation” (Colossians 1:15), Jesus is “the way and the truth” (John 14:6), mediator to Jehovah.</p>
+                        </div>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Significance</h3>
+                        <p>The Memorial fulfills the Passover: “Christ our Passover lamb has been sacrificed” (1 Corinthians 5:7), a ransom for many.</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Mediator</h3>
+                        <p>Jesus bridges man to God: “One mediator between God and men” (1 Timothy 2:5), uniting all through his sacrifice.</p>
+                    </div>
+                    <blockquote class="scripture">“This cup means the new covenant by virtue of my blood.” —1 Corinthians 11:25</blockquote>
+                </div>
+            </section>
+
+            <!-- Family Section -->
+            <section id="family" class="topic-section">
+                <div class="topic-header">
+                    <h2>Family</h2>
+                    <p class="subtitle">Jehovah’s Design for Unity</p>
+                </div>
+                <div class="topic-content">
+                    <div class="highlight-box">
+                        <h3>A Sacred Bond</h3>
+                        <p>Marriage is Jehovah’s plan: “They will become one flesh” (Genesis 2:24). Families teach His ways: “Train up a boy” (Proverbs 22:6).</p>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h4>Roles Defined</h4>
+                            <p>Husbands lead lovingly, wives support, children honor: “Love your wives as Christ loved” (Ephesians 5:25).</p>
+                        </div>
+                        <div class="content-card">
+                            <h4>Morality Upheld</h4>
+                            <p>Jehovah demands holiness: “You must be holy” (1 Peter 1:16). Sodom’s fall (1918 BCE) warns against immorality.</p>
+                        </div>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Conscience</h3>
+                        <p>The conscience guides morally: “Their conscience is bearing witness” (Romans 2:15). Training it ensures “love out of a clean heart” (1 Timothy 1:5).</p>
+                    </div>
+                    <blockquote class="scripture">“Love your wife as yourself.” —Ephesians 5:33</blockquote>
+                </div>
+            </section>
+
+            <!-- Paradise Section -->
+            <section id="paradise" class="topic-section">
+                <div class="topic-header">
+                    <h2>Paradise</h2>
+                    <p class="subtitle">Jehovah’s Promise Restored</p>
+                </div>
+                <div class="topic-content">
+                    <div class="highlight-box">
+                        <h3>An Earthly Hope</h3>
+                        <p>Paradise restores Eden: “The righteous will live forever on it” (Psalm 37:29). Jesus’ ransom reverses Adam’s curse (1 Peter 1:18-19).</p>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h4>Salvation Earned</h4>
+                            <p>Faith and works save: “The one who endures to the end will be saved” (Matthew 24:13), for the meek, not heaven-bound.</p>
+                        </div>
+                        <div class="content-card">
+                            <h4>Judgment Day</h4>
+                            <p>Jehovah judges justly: “Vengeance is mine” (Deuteronomy 32:35). Armageddon ends evil, sparing the righteous (Zephaniah 2:3).</p>
+                        </div>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Resurrection</h3>
+                        <p>The dead rise: “All those in the tombs will come out” (John 5:28-29), judged by deeds, not an afterlife (Revelation 20:12-13).</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Death’s Truth</h3>
+                        <p>Death is sleep, not afterlife: “The dead know nothing” (Ecclesiastes 9:5). Jehovah promises resurrection, not myths (Hosea 13:14).</p>
+                    </div>
+                    <div class="subtopic">
+                        <h3>Hell Exposed</h3>
+                        <p>Hell is the grave, not torment: “Sheol is silence” (Ecclesiastes 9:10). Satan’s lie collapses before Jehovah’s love (1 John 4:8).</p>
+                    </div>
+                    <blockquote class="scripture">“The righteous will possess the earth, and they will live forever on it.” —Psalm 37:29</blockquote>
+                </div>
+            </section>
+        </main>
+
+        <!-- Closing Quote -->
+        <div class="article">
+            <blockquote class="scripture">“Ponder over these things; be absorbed in them, so that your advancement may be plainly seen by all people.” —1 Timothy 4:15-16</blockquote>
+        </div>
     </div>
-    
-    <div class="search-section">
-        <input type="text" id="searchInput" placeholder="Search articles..." onkeyup="searchArticles()">
-    </div>
-    
-    <div id="articlesContainer"></div>
 
     <footer>
         <p>© 2025 Just Wise Love. All rights reserved.</p>
     </footer>
 
     <script>
-        let articles = JSON.parse(localStorage.getItem('articles')) || [];
-        let editingArticleId = null;
-        let openArticles = new Set();
-        displayArticles(articles);
-
         function toggleMode() {
             document.body.classList.toggle('dark-mode');
-            const modeButton = document.querySelector('.mode-toggle');
-            modeButton.textContent = document.body.classList.contains('dark-mode') 
-                ? 'Toggle Light Mode' 
-                : 'Toggle Dark Mode';
-        }
-
-        function saveOrUpdateArticle() {
-            const title = document.getElementById('titleInput').value;
-            const notes = document.getElementById('notesInput').value;
-            const order = parseInt(document.getElementById('orderInput').value) || 0;
-            const saveBtn = document.getElementById('saveBtn');
-            
-            if (title && notes) {
-                if (editingArticleId) {
-                    const articleIndex = articles.findIndex(a => a.id === editingArticleId);
-                    articles[articleIndex] = {
-                        ...articles[articleIndex],
-                        title: title,
-                        notes: notes,
-                        order: order,
-                        date: new Date().toLocaleString()
-                    };
-                    editingArticleId = null;
-                    saveBtn.textContent = 'Save Article';
-                    saveBtn.style.backgroundColor = '#d3d3d3'; /* Light gray instead of gold */
-                } else {
-                    const article = {
-                        id: Date.now(),
-                        title: title,
-                        notes: notes,
-                        order: order,
-                        date: new Date().toLocaleString()
-                    };
-                    articles.push(article);
-                }
-                
-                localStorage.setItem('articles', JSON.stringify(articles));
-                document.getElementById('titleInput').value = '';
-                document.getElementById('orderInput').value = '';
-                document.getElementById('notesInput').value = '';
-                displayArticles(articles);
-            }
-        }
-
-        function editArticle(id) {
-            const article = articles.find(a => a.id === id);
-            if (article) {
-                document.getElementById('titleInput').value = article.title;
-                document.getElementById('orderInput').value = article.order;
-                document.getElementById('notesInput').value = article.notes;
-                editingArticleId = id;
-                const saveBtn = document.getElementById('saveBtn');
-                saveBtn.textContent = 'Update Article';
-                saveBtn.style.backgroundColor = '#d3d3d3'; /* Light gray instead of gold */
-            }
-        }
-
-        function updateOrder(id, newOrder) {
-            const articleIndex = articles.findIndex(a => a.id === id);
-            if (articleIndex !== -1) {
-                articles[articleIndex].order = parseInt(newOrder) || 0;
-                localStorage.setItem('articles', JSON.stringify(articles));
-                displayArticles(articles);
-            }
-        }
-
-        function toggleArticle(id) {
-            if (openArticles.has(id)) {
-                openArticles.delete(id);
-            } else {
-                openArticles.add(id);
-            }
-            displayArticles(articles);
-        }
-
-        function highlightText(text, searchTerm) {
-            if (!searchTerm) return text;
-            const regex = new RegExp(`(${searchTerm})`, 'gi');
-            return text.replace(regex, '<span class="highlight">$1</span>');
-        }
-
-        function formatNotes(notes) {
-            return notes.replace(/\n/g, '<br>');
-        }
-
-        function getPreviewText(notes, searchTerm, isOpen) {
-            const maxPreviewLength = 85;
-            const contextLength = 30;
-
-            let formattedNotes = formatNotes(notes);
-
-            if (isOpen) {
-                return highlightText(formattedNotes, searchTerm);
-            }
-
-            if (searchTerm) {
-                const lowerNotes = notes.toLowerCase();
-                const lowerSearch = searchTerm.toLowerCase();
-                const index = lowerNotes.indexOf(lowerSearch);
-                if (index !== -1) {
-                    const start = Math.max(0, index - contextLength);
-                    const end = Math.min(notes.length, index + searchTerm.length + contextLength);
-                    let preview = notes.substring(start, end);
-                    if (start > 0) preview = '...' + preview;
-                    if (end < notes.length) preview += '...';
-                    return highlightText(formatNotes(preview), searchTerm);
-                }
-            }
-
-            return notes.length > maxPreviewLength 
-                ? highlightText(formatNotes(notes.substring(0, maxPreviewLength)) + '...', searchTerm) 
-                : highlightText(formattedNotes, searchTerm);
-        }
-
-        function displayArticles(articlesToShow) {
-            const container = document.getElementById('articlesContainer');
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            container.innerHTML = '';
-            
-            const sortedArticles = [...articlesToShow].sort((a, b) => {
-                if (a.order === b.order) {
-                    return a.title.localeCompare(b.title);
-                }
-                return a.order - b.order;
-            });
-            
-            sortedArticles.forEach(article => {
-                const isOpen = openArticles.has(article.id);
-                const articleDiv = document.createElement('div');
-                articleDiv.className = 'article';
-                const highlightedTitle = highlightText(article.title, searchTerm);
-                const previewNotes = getPreviewText(article.notes, searchTerm, isOpen);
-                const showOpenLink = article.notes.length > 85 || (searchTerm && !isOpen);
-
-                articleDiv.innerHTML = `
-                    <h2>${highlightedTitle}</h2>
-                    <p class="notes-preview">${previewNotes}</p>
-                    <div class="article-footer">
-                        <small>Created: ${article.date}</small>
-                        <div class="order-controls">
-                            <input type="number" class="order-input" value="${article.order || 0}" 
-                                onchange="updateOrder(${article.id}, this.value)">
-                            ${showOpenLink ? `<span class="open-link" onclick="toggleArticle(${article.id})">${isOpen ? 'Close' : 'Open'}</span>` : ''}
-                            <span class="edit-link" onclick="editArticle(${article.id})">Edit</span>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(articleDiv);
-            });
-        }
-
-        function searchArticles() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filteredArticles = articles.filter(article => 
-                article.title.toLowerCase().includes(searchTerm) || 
-                article.notes.toLowerCase().includes(searchTerm)
-            );
-            displayArticles(filteredArticles);
+            document.body.classList.toggle('light-mode');
+            const button = document.querySelector('.mode-toggle');
+            button.textContent = document.body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
         }
     </script>
 </body>
