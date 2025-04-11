@@ -284,8 +284,15 @@ details summary {
 /* Article subheadings */
 .article h2 {
     font-size: 1.8rem; /* Slightly smaller than h1 */
-    color: #ffffff; /* White color */
+    color: #ffffff; /* White color (already set, reinforced for clarity) */
     margin: 1.5rem 0 1rem; /* Vertical spacing */
+}
+
+/* Add H3 styling for articles */
+.article h3 {
+    font-size: 1.4rem; /* Smaller than H2 */
+    color: #ffffff; /* White color */
+    margin: 1rem 0; /* Vertical spacing */
 }
 
 /* Article paragraphs */
@@ -429,9 +436,16 @@ body.dark-mode footer {
 /* Global Text Alignment */
 /* ========================================================================= */
 
-/* Center all h2 elements site-wide */
+/* Center all h2 elements site-wide and set to white */
 h2 {
     text-align: center; /* Consistent centering */
+    color: #ffffff; /* White color */
+}
+
+/* Add H3 styling to ensure white color */
+h3 {
+    text-align: center; /* Consistent centering, if desired */
+    color: #ffffff; /* White color */
 }
 
 /* Center all p elements site-wide */
