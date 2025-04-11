@@ -473,11 +473,11 @@ p {
     font-weight: bold;
     text-align: center;
     flex-grow: 1;
-    color: #333333;
+    color: #ffffff;
 }
 
 body.dark-mode .lesson-title {
-    color: #fffffg;
+    color: #ffffff;
 }
 
 /* ========================================================================= */
