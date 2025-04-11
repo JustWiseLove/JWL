@@ -295,6 +295,13 @@ details summary {
     margin: 1rem 0; /* Vertical spacing */
 }
 
+/* Add H4 styling for articles */
+.article h4 {
+    font-size: 1rem; /* Smaller than H2 */
+    color: #ffffff; /* White color */
+    margin: .5rem 0; /* Vertical spacing */
+}
+
 /* Article paragraphs */
 .article p {
     color: #cccccc; /* Light gray text */
@@ -444,6 +451,12 @@ h2 {
 
 /* Add H3 styling to ensure white color */
 h3 {
+    text-align: center; /* Consistent centering, if desired */
+    color: #ffffff; /* White color */
+}
+
+/* Add H4 styling to ensure white color */
+h4 {
     text-align: center; /* Consistent centering, if desired */
     color: #ffffff; /* White color */
 }
