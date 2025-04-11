@@ -422,7 +422,7 @@ footer {
 
 /* Dark mode retains same footer styling */
 body.dark-mode footer {
-    background-color: #333333; /* Dark gray background */
+    background-color: #ffffff; /* Dark gray background */
 }
 
 /* ========================================================================= */
@@ -477,7 +477,7 @@ p {
 }
 
 body.dark-mode .lesson-title {
-    color: #cccccc;
+    color: #fffffg;
 }
 
 /* ========================================================================= */
