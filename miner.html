@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth Miner</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #gameCanvas {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Canvas scaling for mobile
+        function resizeCanvas() {
+            canvas.width = window.innerWidth * devicePixelRatio;
+            canvas.height = window.innerHeight * devicePixelRatio;
+            canvas.style.width = window.innerWidth + 'px';
+            canvas.style.height = window.innerHeight + 'px';
+            ctx.scale(devicePixelRatio, devicePixelRatio);
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Game dimensions
+        const PATH_WIDTH = window.innerWidth * 0.15;
+        const WORKER_SIZE = PATH_WIDTH * 0.5;
+        const TRIANGLE_SIZE = WORKER_SIZE * 0.3;
+        const BIN_SIZE = PATH_WIDTH * 0.7;
+        const PATH_COLOR = '#777777';
+        const WORKER_COLOR = '#000000';
+        const BIN_COLOR = '#000000';
+        const TRIANGLE_COLOR = '#FFFFFF';
+        const MINE_Y = window.innerHeight * 0.85;
+        const SHAFT_X = window.innerWidth * 0.15;
+        const CART_Y = window.innerHeight * 0.15;
+        const MINE_START_X = window.innerWidth * 0.85;
+        const MINE_END_X = SHAFT_X;
+        const SHAFT_START_Y = MINE_Y;
+        const SHAFT_END_Y = CART_Y;
+        const CART_START_X = SHAFT_X;
+        const CART_END_X = window.innerWidth * 0.85;
+
+        // Game state
+        let truthCount = 0;
+        let workers = {
+            mine: {
+                x: MINE_START_X,
+                y: MINE_Y,
+                speed: 2,
+                level: 1,
+                hasTruth: false,
+                movingToBin: false,
+                waiting: true,
+                triangles: 0
+            },
+            shaft: {
+                x: SHAFT_X,
+                y: SHAFT_START_Y,
+                speed: 2,
+                level: 1,
+                hasTruth: false,
+                movingToBin: false,
+                waiting: true,
+                triangles: 0
+            },
+            cart: {
+                x: CART_START_X,
+                y: CART_Y,
+                speed: 2,
+                level: 1,
+                hasTruth: false,
+                movingToBin: false,
+                waiting: true,
+                triangles: 0
+            }
+        };
+        let bins = {
+            mine: { x: MINE_END_X, y: MINE_Y, triangles: 3 },
+            shaft: { x: SHAFT_X, y: SHAFT_END_Y, triangles: 0 },
+            cart: { x: CART_END_X, y: CART_Y, triangles: 0 }
+        };
+
+        // Upgrade buttons
+        const buttons = [
+            { name: 'Cart', worker: 'cart', x: window.innerWidth * 0.85, y: window.innerHeight * 0.25, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
+            { name: 'Shaft', worker: 'shaft', x: window.innerWidth * 0.85, y: window.innerHeight * 0.45, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
+            { name: 'Mine', worker: 'mine', x: window.innerWidth * 0.85, y: window.innerHeight * 0.65, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 }
+        ];
+
+        // Draw diamond (worker)
+        function drawDiamond(x, y, size, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x, y - size);
+            ctx.lineTo(x + size, y);
+            ctx.lineTo(x, y + size);
+            ctx.lineTo(x - size, y);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Draw triangle (Truth rock)
+        function drawTriangle(x, y, size, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x, y - size);
+            ctx.lineTo(x + size * 0.866, y + size * 0.5);
+            ctx.lineTo(x - size * 0.866, y + size * 0.5);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Draw worker with Truth triangles
+        function drawWorker(worker) {
+            drawDiamond(worker.x, worker.y, WORKER_SIZE, WORKER_COLOR);
+            if (worker.hasTruth) {
+                drawTriangle(worker.x, worker.y - WORKER_SIZE * 0.5, TRIANGLE_SIZE, TRIANGLE_COLOR);
+                drawTriangle(worker.x - WORKER_SIZE * 0.5, worker.y, TRIANGLE_SIZE, TRIANGLE_COLOR);
+                drawTriangle(worker.x + WORKER_SIZE * 0.5, worker.y, TRIANGLE_SIZE, TRIANGLE_COLOR);
+            }
+        }
+
+        // Draw bin with triangles
+        function drawBin(bin) {
+            ctx.fillStyle = BIN_COLOR;
+            ctx.fillRect(bin.x - BIN_SIZE / 2, bin.y - BIN_SIZE / 2, BIN_SIZE, BIN_SIZE);
+            if (bin.triangles > 0) {
+                drawTriangle(bin.x, bin.y - BIN_SIZE * 0.3, TRIANGLE_SIZE, TRIANGLE_COLOR);
+                drawTriangle(bin.x - BIN_SIZE * 0.3, bin.y, TRIANGLE_SIZE, TRIANGLE_COLOR);
+                drawTriangle(bin.x + BIN_SIZE * 0.3, bin.y, TRIANGLE_SIZE, TRIANGLE_COLOR);
+            }
+        }
+
+        // Draw paths
+        function drawPaths() {
+            ctx.fillStyle = PATH_COLOR;
+            ctx.fillRect(0, MINE_Y - PATH_WIDTH / 2, window.innerWidth, PATH_WIDTH);
+            ctx.fillRect(SHAFT_X - PATH_WIDTH / 2, 0, PATH_WIDTH, window.innerHeight);
+            ctx.fillRect(0, CART_Y - PATH_WIDTH / 2, window.innerWidth, PATH_WIDTH);
+        }
+
+        // Draw Truth counter
+        function drawCounter() {
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = `${window.innerWidth * 0.05}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`Truth: ${truthCount}`, window.innerWidth * 0.5, window.innerHeight * 0.5);
+        }
+
+        // Draw upgrade buttons
+        function drawButtons() {
+            buttons.forEach(button => {
+                ctx.fillStyle = '#555555';
+                ctx.fillRect(button.x, button.y, button.width, button.height);
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = `${window.innerWidth * 0.03}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                const cost = workers[button.worker].level * 10;
+                ctx.fillText(`${button.name} (${cost})`, button.x + button.width / 2, button.y + button.height / 2);
+            });
+        }
+
+        // Update worker movement
+        function updateWorker(worker, startX, startY, endX, endY, binFrom, binTo, nextWorker) {
+            if (worker.waiting) {
+                // Only start moving if triangles are available (or Mine worker generates them)
+                if ((binFrom.triangles > 0 && !worker.hasTruth) || (worker === workers.mine && !worker.hasTruth)) {
+                    worker.waiting = false;
+                    worker.movingToBin = true;
+                    if (worker === workers.mine) {
+                        worker.hasTruth = true;
+                        worker.triangles = 3;
+                    } else {
+                        binFrom.triangles = 0;
+                        worker.hasTruth = true;
+                        worker.triangles = 3;
+                    }
+                }
+            } else if (worker.movingToBin) {
+                if (worker === workers.mine || worker === workers.cart) {
+                    let dx = endX - worker.x;
+                    worker.x += Math.sign(dx) * worker.speed;
+                    if (Math.abs(dx) < worker.speed) {
+                        worker.x = endX;
+                        worker.movingToBin = false;
+                        worker.hasTruth = false;
+                        worker.triangles = 0;
+                        binTo.triangles = 3;
+                        if (worker === workers.cart) {
+                            truthCount += 3;
+                            binTo.triangles = 0; // Cart bin doesn't hold triangles
+                        }
+                    }
+                } else { // Shaft (vertical)
+                    let dy = endY - worker.y;
+                    worker.y += Math.sign(dy) * worker.speed;
+                    if (Math.abs(dy) < worker.speed) {
+                        worker.y = endY;
+                        worker.movingToBin = false;
+                        worker.hasTruth = false;
+                        worker.triangles = 0;
+                        binTo.triangles = 3;
+                    }
+                }
+            } else { // Returning to start
+                if (worker === workers.mine || worker === workers.cart) {
+                    let dx = startX - worker.x;
+                    worker.x += Math.sign(dx) * worker.speed;
+                    if (Math.abs(dx) < worker.speed) {
+                        worker.x = startX;
+                        worker.waiting = true;
+                    }
+                } else {
+                    let dy = startY - worker.y;
+                    worker.y += Math.sign(dy) * worker.speed;
+                    if (Math.abs(dy) < worker.speed) {
+                        worker.y = startY;
+                        worker.waiting = true;
+                    }
+                }
+            }
+        }
+
+        // Handle upgrade clicks
+        function handleClick(x, y) {
+            buttons.forEach(button => {
+                if (x >= button.x && x <= button.x + button.width && y >= button.y && y <= button.y + button.height) {
+                    const cost = workers[button.worker].level * 10;
+                    if (truthCount >= cost) {
+                        truthCount -= cost;
+                        workers[button.worker].level++;
+                        workers[button.worker].speed += 1;
+                    }
+                }
+            });
+        }
+
+        // Touch input
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            const x = (touch.clientX - rect.left) / (rect.width / window.innerWidth);
+            const y = (touch.clientY - rect.top) / (rect.height / window.innerHeight);
+            handleClick(x, y);
+        });
+
+        // Game loop
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPaths();
+            drawBin(bins.mine);
+            drawBin(bins.shaft);
+            drawBin(bins.cart);
+            drawWorker(workers.mine);
+            drawWorker(workers.shaft);
+            drawWorker(workers.cart);
+            drawCounter();
+            drawButtons();
+
+            updateWorker(workers.mine, MINE_START_X, MINE_Y, MINE_END_X, MINE_Y, bins.mine, bins.mine, workers.shaft);
+            updateWorker(workers.shaft, SHAFT_X, SHAFT_START_Y, SHAFT_X, SHAFT_END_Y, bins.mine, bins.shaft, workers.cart);
+            updateWorker(workers.cart, CART_START_X, CART_Y, CART_END_X, CART_Y, bins.shaft, bins.cart, null);
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>
