@@ -28,8 +28,8 @@
         body.dark-mode input,
         body.dark-mode textarea {
             background-color: #333333;
-            color: #e6e6e6;
-            border-color: #e6e6e6;
+            color: #cccccc;
+            border-color: #cccccc;
         }
         .search-section {
             max-width: 1200px;
@@ -40,18 +40,30 @@
             width: 100%;
         }
         .highlight {
-            background-color: gold;
+            background-color: #cccccc; /* Light gray instead of gold */
             padding: 2px 4px;
             border-radius: 3px;
         }
         body.dark-mode .highlight {
-            color: #000000;
+            color: #333333; /* Dark gray for contrast */
         }
         .article {
             position: relative;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding-bottom: 1rem;
             margin-bottom: 2rem;
+        }
+        .article h2 {
+            color: #000000; /* Black for article titles */
+        }
+        body.dark-mode .article h2 {
+            color: #ffffff; /* White for dark mode */
+        }
+        .article .notes-preview {
+            color: #333333; /* Dark gray for article text */
+        }
+        body.dark-mode .article .notes-preview {
+            color: #cccccc; /* Light gray for dark mode */
         }
         .article-footer {
             display: flex;
@@ -61,16 +73,16 @@
         }
         .edit-link, .open-link {
             cursor: pointer;
-            color: #FFD800;
+            color: #666666; /* Medium gray instead of gold */
             text-decoration: underline;
         }
         body.dark-mode .edit-link,
         body.dark-mode .open-link {
-            color: #FFD800;
+            color: #cccccc; /* Light gray for dark mode */
         }
         .edit-link:hover,
         .open-link:hover {
-            color: #ffd800;
+            color: #333333; /* Dark gray on hover */
         }
         .notes-preview {
             overflow: hidden;
@@ -83,6 +95,15 @@
         .order-input {
             width: 60px;
             padding: 5px;
+        }
+        /* Override for Save Article button to ensure black background and white text */
+        .btn-study#saveBtn {
+            background-color: #000000; /* Black background */
+            color: #ffffff; /* White text */
+        }
+        body.dark-mode .btn-study#saveBtn {
+            background-color: #ffffff; /* White for dark mode */
+            color: #000000; /* Black text for dark mode */
         }
     </style>
 </head>
