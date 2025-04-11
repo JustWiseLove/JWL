@@ -173,7 +173,7 @@ body.dark-mode .card {
 
 /* Featured card specific styling */
 .card.featured {
-    max-width: 600px; /* Limits width */
+    max-width: 1000px; /* Limits width */
     border: 2px solid #ffffff; /* White border */
 }
 
