@@ -102,8 +102,8 @@
             color: #ffffff; /* White text */
         }
         body.dark-mode .btn-study#saveBtn {
-            background-color: #ffffff; /* White for dark mode */
-            color: #000000; /* Black text for dark mode */
+            background-color: #333333; /* Dark gray for dark mode */
+            color: #cccccc; /* Light gray text for dark mode */
         }
     </style>
 </head>
@@ -162,7 +162,7 @@
                     };
                     editingArticleId = null;
                     saveBtn.textContent = 'Save Article';
-                    saveBtn.style.backgroundColor = '#FFD800';
+                    saveBtn.style.backgroundColor = '#000000'; /* Black instead of gold */
                 } else {
                     const article = {
                         id: Date.now(),
@@ -191,7 +191,7 @@
                 editingArticleId = id;
                 const saveBtn = document.getElementById('saveBtn');
                 saveBtn.textContent = 'Update Article';
-                saveBtn.style.backgroundColor = '#ffe868';
+                saveBtn.style.backgroundColor = '#000000'; /* Black instead of gold */
             }
         }
 
