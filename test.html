@@ -40,18 +40,30 @@
             width: 100%;
         }
         .highlight {
-            background-color: #cccccc;
+            background-color: #cccccc; /* Light gray instead of gold */
             padding: 2px 4px;
             border-radius: 3px;
         }
         body.dark-mode .highlight {
-            color: #333333;
+            color: #333333; /* Dark gray for contrast */
         }
         .article {
             position: relative;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding-bottom: 1rem;
             margin-bottom: 2rem;
+        }
+        .article h2 {
+            color: #000000; /* Black for article titles */
+        }
+        body.dark-mode .article h2 {
+            color: #ffffff; /* White for dark mode */
+        }
+        .article .notes-preview {
+            color: #333333; /* Dark gray for article text */
+        }
+        body.dark-mode .article .notes-preview {
+            color: #cccccc; /* Light gray for dark mode */
         }
         .article-footer {
             display: flex;
@@ -61,16 +73,16 @@
         }
         .edit-link, .open-link {
             cursor: pointer;
-            color: #666666;
+            color: #666666; /* Medium gray instead of gold */
             text-decoration: underline;
         }
         body.dark-mode .edit-link,
         body.dark-mode .open-link {
-            color: #cccccc;
+            color: #cccccc; /* Light gray for dark mode */
         }
         .edit-link:hover,
         .open-link:hover {
-            color: #333333;
+            color: #333333; /* Dark gray on hover */
         }
         .notes-preview {
             overflow: hidden;
@@ -83,6 +95,15 @@
         .order-input {
             width: 60px;
             padding: 5px;
+        }
+        /* Override for Save Article button to ensure black background and white text */
+        .btn-study#saveBtn {
+            background-color: #000000; /* Black background */
+            color: #ffffff; /* White text */
+        }
+        body.dark-mode .btn-study#saveBtn {
+            background-color: #333333; /* Dark gray for dark mode */
+            color: #cccccc; /* Light gray text for dark mode */
         }
     </style>
 </head>
@@ -141,7 +162,7 @@
                     };
                     editingArticleId = null;
                     saveBtn.textContent = 'Save Article';
-                    saveBtn.style.backgroundColor = '#ffffff';
+                    saveBtn.style.backgroundColor = '#FFD800';
                 } else {
                     const article = {
                         id: Date.now(),
@@ -170,7 +191,7 @@
                 editingArticleId = id;
                 const saveBtn = document.getElementById('saveBtn');
                 saveBtn.textContent = 'Update Article';
-                saveBtn.style.backgroundColor = '#cccccc';
+                saveBtn.style.backgroundColor = '#ffe868';
             }
         }
 
