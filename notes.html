@@ -98,12 +98,12 @@
         }
         /* Override for Save Article button to ensure black background and white text */
         .btn-study#saveBtn {
-            background-color: #000000; /* Black background */
-            color: #ffffff; /* White text */
+            background-color: #d3d3d3; /* Light gray background */
+            color: #000000; /* Black text */
         }
         body.dark-mode .btn-study#saveBtn {
-            background-color: #ffffff; /* White for dark mode */
-            color: #000000; /* Black text for dark mode */
+            background-color: #d3d3d3; /* Light gray for dark mode */
+            color: #000000; /* Blavk text for dark mode */
         }
     </style>
 </head>
@@ -116,7 +116,7 @@
     <div class="input-section">
         <input type="text" id="titleInput" placeholder="Enter article title">
         <input type="number" id="orderInput" placeholder="Enter article order" min="0" step="1">
-        <textarea id="notesInput" rows="10" placeholder="Enter your notes"></textarea>
+        <textarea id="notesInput" rows="15" placeholder="Enter your notes"></textarea>
         <button id="saveBtn" class="btn-study" onclick="saveOrUpdateArticle()">Save Article</button>
     </div>
     
@@ -162,7 +162,7 @@
                     };
                     editingArticleId = null;
                     saveBtn.textContent = 'Save Article';
-                    saveBtn.style.backgroundColor = '#FFD800';
+                    saveBtn.style.backgroundColor = '#d3d3d3'; /* Light gray instead of gold */
                 } else {
                     const article = {
                         id: Date.now(),
@@ -191,7 +191,7 @@
                 editingArticleId = id;
                 const saveBtn = document.getElementById('saveBtn');
                 saveBtn.textContent = 'Update Article';
-                saveBtn.style.backgroundColor = '#ffe868';
+                saveBtn.style.backgroundColor = '#d3d3d3'; /* Light gray instead of gold */
             }
         }
 
