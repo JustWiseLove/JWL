@@ -3,170 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truth - Just Wise Love</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Future Events - Just Wise Love</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline CSS for dark mode fallback */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        body.dark-mode .card {
+            background-color: #2a2a2a;
+        }
+        body.dark-mode .scripture {
+            color: #d3d3d3;
+        }
+    </style>
 </head>
 <body class="dark-mode">
     <header>
-        <h1><a href="index.html">TRUTH</a></h1>
+        <h1><a href="index.html">FUTURE EVENTS</a></h1>
         <button class="mode-toggle" onclick="toggleMode()">Toggle Light Mode</button>
     </header>
 
     <div class="container">
-        <!-- Navigation Menu -->
-        <nav class="topic-nav">
-            <ul>
-                <li><a href="#jehovah">Jehovah</a></li>
-                <li><a href="#creation">Creation</a></li>
-                <li><a href="#true-worship">True Worship</a></li>
-                <li><a href="#false-worship">False Worship</a></li>
-                <li><a href="#kingdom">The Kingdom</a></li>
-                <li><a href="#memorial">The Memorial</a></li>
-                <li><a href="#family">Family</a></li>
-                <li><a href="#paradise">Paradise</a></li>
-            </ul>
-        </nav>
+        <div class="featured-section">
+            <div class="card featured">
+                <details>
+                    <summary class="card-header">Future Events</summary>
+                    <div class="card-content" id="lesson-content">
+                        <!-- Lesson 1: The Lamb and the Seven Seals -->
+                        <div id="lesson-1" class="lesson">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">THE LAMB AND THE SEVEN SEALS</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <h3>What the Lamb and the Seven Seals Represent</h3>
+                            <p>In the book of Revelation, the Lamb represents Jesus Christ, who is central to God’s purpose of bringing salvation and establishing God’s Kingdom. The Lamb is called so because of Jesus’ sacrifice as a perfect ransom to pay for the sins of humanity. His role is to open the seven seals on the scroll, unveiling God’s judgments upon the world.</p>
+                            <p class="scripture">"But one of the elders said to me: 'Do not weep! Look! The Lion that is of the tribe of Judah, the root of David, has conquered so as to open the scroll and its seven seals.' And I saw a Lamb standing, as though it had been slaughtered, having seven horns and seven eyes, which are the seven spirits of God sent out into all the earth." - Revelation 5:5-6</p>
+                            <h3>The Role of the Lamb</h3>
+                            <p>The Lamb (Jesus Christ) is the only one worthy to open the seals because of his perfect obedience and sacrificial death. Without his sacrifice, no one could be reconciled to God or receive salvation. As the Lamb, Jesus unveils God’s judgments on the world by opening each seal, revealing what will take place in the last days.</p>
+                            <p class="scripture">"And I saw in the right hand of the one seated on the throne a scroll, written on the inside and on the outside, sealed with seven seals. And I saw a mighty angel proclaiming with a loud voice: 'Who is worthy to open the scroll and break its seals?'" - Revelation 5:1-2</p>
+                            <h3>The Seven Seals and Their Significance</h3>
+                            <p>The Seven Seals represent the unfolding of God’s judgment on the world. Each seal reveals a significant event that will take place as God’s Kingdom approaches, culminating in the final battle at Armageddon. These seals, opened by Jesus Christ, reveal various aspects of the tribulation that precede God’s Kingdom replacing human rule.</p>
+                            <h4>The First Seal: The White Horse (Christ’s Kingdom Proclamation)</h4>
+                            <p>The first seal represents the spreading of Christ’s Kingdom message. This is not a military conquest, but a spiritual conquest through the preaching of the good news. Christ’s rule is established in the hearts of individuals worldwide.</p>
+                            <p class="scripture">"Now I saw when the Lamb opened one of the seals, and I heard one of the four living creatures saying with a voice like thunder: 'Come!' And I looked, and behold, a white horse. And the one who sat on it had a bow, and a crown was given to him, and he went out conquering and to conquer." - Revelation 6:1-2</p>
+                            <h4>The Second Seal: The Red Horse (War)</h4>
+                            <p>The second seal reveals war and violence. This represents the conflicts and instability that will erupt as part of the last days, demonstrating the growing turmoil in the world.</p>
+                            <p class="scripture">"When he opened the second seal, I heard the second living creature saying, 'Come!' And another horse, fiery red, went out. And to its rider was given the power to take peace from the earth, and that people should slay one another; and a large sword was given to him." - Revelation 6:3-4</p>
+                            <h4>The Third Seal: The Black Horse (Famine)</h4>
+                            <p>The third seal represents famine and economic hardship, a consequence of the wars and the collapse of political and economic systems. Scarcity will grow, affecting the availability of food and resources.</p>
+                            <p class="scripture">"When he opened the third seal, I heard the third living creature say, 'Come!' And I looked, and behold, a black horse, and he who sat on it had a pair of scales in his hand. And I heard a voice in the midst of the four living creatures saying, 'A quart of wheat for a denarius, and three quarts of barley for a denarius, and do not harm the oil and the wine!'" - Revelation 6:5-6</p>
+                            <h4>The Fourth Seal: The Pale Horse (Death)</h4>
+                            <p>The fourth seal symbolizes death as a result of war, famine, and disease. The rider on the pale horse, named Death, and Hades follow, representing widespread death and destruction that will take place.</p>
+                            <p class="scripture">"When he opened the fourth seal, I heard the voice of the fourth living creature saying, 'Come!' And I looked, and behold, a pale horse, and the name of him who sat on it was Death, and Hades followed with him. And authority was given to them over a fourth of the earth, to kill with sword, with hunger, with death, and by the beasts of the earth." - Revelation 6:7-8</p>
+                            <h4>The Fifth Seal: The Souls Under the Altar (Martyrdom)</h4>
+                            <p>The fifth seal represents the martyrdom of faithful servants of God who suffer persecution for their stand for the truth. These martyrs cry out for justice, asking God how long they will have to wait before the wicked are punished.</p>
+                            <p class="scripture">"When he opened the fifth seal, I saw under the altar the souls of those who had been slain for the word of God and for the testimony which they held. And they cried with a loud voice, saying, 'How long, O Lord, holy and true, until You judge and avenge our blood on those who dwell on the earth?'" - Revelation 6:9-10</p>
+                            <h4>The Sixth Seal: The Great Earthquake (Cosmic Disturbances)</h4>
+                            <p>The sixth seal heralds a great earthquake and cosmic upheavals, including signs in the heavens and a shaking of the earth. These natural disasters will be a clear sign that God’s judgment is near.</p>
+                            <p class="scripture">"I looked when he opened the sixth seal, and behold, there was a great earthquake; and the sun became black as sackcloth of hair, and the moon became like blood. And the stars of heaven fell to the earth, as a fig tree drops its late figs when it is shaken by a mighty wind." - Revelation 6:12-14</p>
+                            <h4>The Seventh Seal: Silence in Heaven (Preparation for the Final Judgment)</h4>
+                            <p>The seventh seal opens with silence in heaven for about half an hour. This silence marks the solemn preparation for the final judgment, and it sets the stage for the seven trumpets, which announce the final stages of God’s judgment.</p>
+                            <p class="scripture">"And when he opened the seventh seal, there was silence in heaven for about half an hour." - Revelation 8:1</p>
+                            <h3>The Meaning of the Seven Seals</h3>
+                            <p>The Seven Seals are not events happening all at once but represent a series of prophetic signs leading to the establishment of God’s Kingdom. They outline the major tribulations that will unfold, such as war, famine, and death, followed by the persecution of God’s people. The final seal introduces cosmic disturbances, preparing the world for the final battle at Armageddon.</p>
+                            <p class="scripture">"And when he opened the seventh seal, there was silence in heaven for about half an hour." - Revelation 8:1</p>
+                            <h3>What’s Next?</h3>
+                            <p>Now that we’ve explored the Seven Seals and the role of the Lamb in unveiling them, we can dive deeper into the first four seals. These seals reveal the tribulations leading up to the end of this world system. Let’s now explore the Four Horsemen and their role in these prophecies.</p>
+                        </div>
 
-        <!-- Main Content -->
-        <main>
-            <!-- Jehovah Section -->
-            <section id="jehovah" class="topic-section">
-                <div class="topic-header">
-                    <h2>Jehovah</h2>
-                    <p class="subtitle">The Sacred Name of the Creator</p>
-                </div>
-                <div class="topic-content">
-                    <div class="highlight-box">
-                        <p>Jehovah’s name stands as the most significant and sacred identifier in all of Scripture, appearing over 7,000 times in the original Hebrew and Greek texts, a frequency that highlights its unparalleled importance to true worship and understanding the Creator. This divine name, represented by the Hebrew Tetragrammaton (YHWH), translates to “He Causes to Become,” a meaning that encapsulates Jehovah’s role as the purposeful and dynamic Creator who brings His will into reality. The Bible emphatically states, “I am Jehovah; that is my name; I give my glory to no one else, nor my praise to carved images” (Isaiah 42:8), making it clear that Jehovah alone is worthy of exclusive devotion and that He refuses to share His unique identity with any false god or idol.</p>
-                    </div>
-                    <div class="content-grid">
-                        <div class="content-card">
-                            <p>This name was first revealed to Moses around 1513 BCE at the burning bush, a dramatic encounter where Jehovah declared, “This is my name forever, and this is how I am to be remembered from generation to generation” (Exodus 3:15). That revelation was not just a label but a promise tied to His eternal purpose—to transform the earth into a paradise populated by perfect humans, as He originally commanded Adam and Eve, saying, “Be fruitful and become many and fill the earth and subdue it” (Genesis 1:28).</p>
+                        <!-- Lesson 2: The Four Horsemen -->
+                        <div id="lesson-2" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">THE FOUR HORSEMEN</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>The Four Horsemen are a vivid and powerful symbol in the book of Revelation. They represent a series of catastrophic events that will occur during the last days, as part of God’s judgment upon the world. Each horseman is described riding a different-colored horse, each bringing different types of destruction to the earth.</p>
+                            <h3>The First Horseman: The White Horse</h3>
+                            <p>The first horseman rides a white horse, symbolizing conquest and the spread of Christ’s message. The rider holds a bow and is given a crown, symbolizing victory. This event is not a military conquest but a spiritual one, as the message of God’s Kingdom is proclaimed to the world.</p>
+                            <p class="scripture">"Now I saw when the Lamb opened one of the seals, and I heard one of the four living creatures saying with a voice like thunder: 'Come!' And I looked, and behold, a white horse. And the one who sat on it had a bow, and a crown was given to him, and he went out conquering and to conquer." - Revelation 6:1-2</p>
+                            <h3>The Second Horseman: The Red Horse</h3>
+                            <p>The second horseman rides a red horse, symbolizing war and bloodshed. This rider is given a great sword, representing the violence and conflicts that will spread across the world. War will be a major feature of the last days, leading to widespread destruction and suffering.</p>
+                            <p class="scripture">"When he opened the second seal, I heard the second living creature saying, 'Come!' And another horse came out, a fiery red one. Its rider was granted the power to take peace from the earth, and to make people slay each other. He was given a large sword." - Revelation 6:3-4</p>
+                            <h3>The Third Horseman: The Black Horse</h3>
+                            <p>The third horseman rides a black horse, symbolizing famine and economic hardship. The rider holds a pair of scales, symbolizing the need to ration food due to scarcity. This represents the worldwide economic instability that will accompany the wars and upheavals of the last days.</p>
+                            <p class="scripture">"When he opened the third seal, I heard the third living creature say, 'Come!' And I looked, and behold, a black horse, and its rider had a pair of scales in his hand. And I heard a voice in the midst of the four living creatures saying, 'A quart of wheat for a denarius, and three quarts of barley for a denarius; but do not harm the oil and the wine!'" - Revelation 6:5-6</p>
+                            <h3>The Fourth Horseman: The Pale Horse</h3>
+                            <p>The fourth horseman rides a pale horse, symbolizing death and destruction. The rider is named Death, and Hades follows him, symbolizing the vast number of people who will die as a result of war, famine, and disease during this time. The pale horse represents the devastating consequences of the other horsemen.</p>
+                            <p class="scripture">"When he opened the fourth seal, I heard the voice of the fourth living creature saying, 'Come!' So I looked, and behold, a pale horse. And the name of him who sat on it was Death, and Hades followed with him. And power was given to them over a fourth of the earth, to kill with sword, with hunger, with death, and by the beasts of the earth." - Revelation 6:7-8</p>
+                            <h3>The Meaning of the Four Horsemen</h3>
+                            <p>The Four Horsemen represent the tribulations that will occur as the world nears its end. These events, including spiritual conquest, war, famine, and death, will set the stage for the final judgment. They show the severity and scope of the problems that humanity will face, as God’s Kingdom prepares to take its place and bring lasting peace.</p>
+                            <p>Each of these four horsemen heralds a particular aspect of God’s judgment, each leading to greater unrest and destruction. However, these events also point to the coming Kingdom of God, which will ultimately bring an end to all this suffering.</p>
+                            <h3>What’s Next?</h3>
+                            <p>Now, as the Four Horsemen lead up to the final climactic events, the next prophecy we will explore reveals the terrifying vision of the Scarlet-Colored Beast, a symbol of the political and religious powers that oppose God’s Kingdom. Stay tuned as we dig into this powerful prophecy in the next section.</p>
                         </div>
-                        <div class="content-card">
-                            <p>Jesus, Jehovah’s obedient Son, reinforced the sanctity of this name by teaching his followers to pray, “Our Father in the heavens, let your name be sanctified” (Matthew 6:9), and by affirming, “I have made your name known to them and will make it known, so that the love with which you loved me may be in them” (John 17:26). These statements underscore that knowing and honoring Jehovah’s name is not optional but essential to having a genuine relationship with Him and receiving His blessings.</p>
-                        </div>
-                    </div>
-                    <div class="content-block">
-                        <p>Despite its importance, Satan, the great enemy of Jehovah, has waged a relentless campaign to erase this name from human awareness, a battle that traces back to Nimrod’s rebellion at Babel around 2269 BCE. At that time, rebellious humans gathered to build a tower and declared, “Come, let us build a city for ourselves and a tower with its top in the heavens, and let us make a celebrated name for ourselves” (Genesis 11:4), an act of defiance against Jehovah’s authority that sought to elevate human pride over divine rule. This event set the stage for Satan’s ongoing efforts to obscure Jehovah’s identity, a strategy that gained traction centuries later when Jewish scribes, around 300 BCE, began avoiding pronouncing the divine name out of superstition, substituting it with titles like “Adonai” (Lord). This practice carried over into many Bible translations, where “LORD” in all capital letters replaced Jehovah’s name, a move that dilutes His personal identity and fosters confusion about who the true God is. Yet, Jehovah’s mighty acts throughout history shout His name louder than any human effort can silence it. For instance, around 1473 BCE, He parted the Red Sea, where “the waters were split apart” (Exodus 14:21), and then drowned Pharaoh’s pursuing army, as “the waters returned and covered the chariots and the horsemen” (Exodus 14:27-28), proving that no power can stand against the One whose name is above all. Similarly, when Jehovah brought down the walls of Jericho around the same period, “the wall fell flat” (Joshua 6:20) at His command, a physical demonstration of His sovereignty that echoes the declaration, “Jehovah is the true God; he is the living God and the King forever” (Jeremiah 10:10). These events serve as undeniable evidence that Jehovah’s name represents His active presence and unmatched power in the universe.</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>Historical Suppression</h3>
-                        <p>The suppression of Jehovah’s name didn’t stop with ancient superstitions; it intensified as false religion grew in the early centuries of the Common Era, particularly by the third century CE, when apostate Christians began adopting pagan practices and titles that further distanced them from the true God. During this period, the influence of Greek philosophy and Roman traditions crept into the emerging church, leading to a deliberate effort to replace Jehovah’s name with generic terms like “God” or “Lord,” a shift that aligned with the blending of Christian teachings with pagan beliefs. However, Jehovah promised that this erasure would not last forever, as He foretold through the prophet Isaiah, “My people will know my name; therefore in that day they will know that I am the one speaking—here I am” (Isaiah 52:6). This prophecy is being fulfilled today as the truth about His name is restored, supported by historical evidence such as the Dead Sea Scrolls, discovered in 1947 but dated to around 200 BCE, which contain numerous instances of the Tetragrammaton in its original Hebrew form. These ancient manuscripts refute claims that Jehovah’s name is irrelevant or outdated, proving that it was cherished and used by His faithful servants long before false traditions took hold. Moreover, archaeological finds like the Moabite Stone, from around 840 BCE, mention “YHWH,” further confirming that Jehovah’s name was known and revered in ancient times, even among neighboring nations. This historical record stands as a testament to Jehovah’s enduring identity and His determination to be known by His people, just as He promised, “You will call me and come and pray to me, and I will listen to you” (Jeremiah 29:12).</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>Fate vs. Free Will</h3>
-                        <p>One of Satan’s most insidious lies, propagated through ancient Babylonian astrology around 2000 BCE, is the concept of fate—an unchangeable destiny that strips humans of choice and accountability, locking them into a predetermined path they cannot escape. This belief, which spread through cultures like the Babylonians and later the Greeks, suggested that the stars or gods dictated every event, leaving no room for personal decision or divine mercy. In stark contrast, Jehovah’s Word dismantles this falsehood by affirming the gift of free will, as He told the Israelites, “See, I have set before you today life and good, and death and bad... therefore choose life so that you and your offspring may live” (Deuteronomy 30:19-20). This command makes it clear that humans are not puppets controlled by fate but beings created with the ability to choose their course, a freedom that reflects Jehovah’s justice and love. A powerful example of this principle is seen in His dealings with Nineveh around 830 BCE, when He sent Jonah to warn that wicked city of impending destruction, saying, “Only forty days more, and Nineveh will be overthrown” (Jonah 3:4). Yet, when the Ninevites repented, “God saw their works—that they had turned back from their evil ways—and he felt regret over the calamity that he had spoken of bringing on them, and he did not bring it” (Jonah 3:10). This dramatic turnaround proves that Jehovah responds to human choices, not a fixed destiny, and that He delights in mercy when people turn to Him, as He says, “I take no pleasure in the death of the wicked, but rather that the wicked one should turn back from his way and live” (Ezekiel 33:11). Thus, the lie of fate is exposed as a tool of Satan to rob humans of hope, while Jehovah’s truth offers freedom and life through the exercise of free will in harmony with His will.</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>Satan’s Lies</h3>
-                        <p>Satan, “the father of the lie” (John 8:44), began deceiving humanity in Eden with “You positively will not die” (Genesis 3:4), a falsehood that birthed every distortion of Jehovah’s truth, blinding billions, for “the whole world is lying in the power of the wicked one” (1 John 5:19). After the apostles’ death, he infiltrated the Christian congregation, as Paul warned, “Savage wolves will come in among you and will not spare the flock” (Acts 20:29-30), twisting pure worship into a mix of paganism and lies by the second century CE. His deceptions—holidays like Christmas, doctrines like hellfire, and theories like evolution—enslave minds, as “the god of this system of things has blinded the minds of the unbelievers” (2 Corinthians 4:4). Jehovah exposed this when He struck Ananias and Sapphira dead for lying, “You have lied, not to men, but to God” (Acts 5:4-5), showing His hatred for falsehood.</p>
-                        <p>From Babel’s tower around 2269 BCE, where “Jehovah scattered them” (Genesis 11:9), to Rome’s pagan revival under Julian in 361 CE, Satan has opposed Jehovah’s purpose, yet his lies crumble under scrutiny. Evolution lacks fossils of transitional forms—apes to humans remain unproven—and no science validates an afterlife, only “dust you are and to dust you will return” (Genesis 3:19). Jehovah’s truth prevails, as “you will know the truth, and the truth will set you free” (John 8:32), and His judgment looms, for “the Devil who was misleading them was hurled into the lake of fire” (Revelation 20:10).</p>
-                    </div>
-                    <blockquote class="scripture">“You will call me and come and pray to me, and I will listen to you.” —Jeremiah 29:12</blockquote>
-                </div>
-            </section>
 
-            <!-- Creation Section -->
-            <section id="creation" class="topic-section">
-                <div class="topic-header">
-                    <h2>Creation</h2>
-                    <p class="subtitle">The Work of Jehovah’s Hands</p>
-                </div>
-                <div class="topic-content">
-                    <div class="highlight-box">
-                        <p>Jehovah is the supreme Creator of all things, and He brought the universe into existence through His firstborn Son, Jesus, whom the Bible describes as “the firstborn of all creation” (Colossians 1:15) and “the beginning of the creation by God” (Revelation 3:14). This act of creation unfolded over six creative days, not literal 24-hour periods but vast epochs during which Jehovah prepared the earth step-by-step for human habitation, culminating in His command to Adam and Eve, “Be fruitful and become many and fill the earth and subdue it” (Genesis 1:28).</p>
-                    </div>
-                    <div class="content-grid">
-                        <div class="content-card">
-                            <p>The Bible opens with the majestic declaration, “In the beginning God created the heavens and the earth” (Genesis 1:1), a statement that establishes Jehovah as the sole source of all life and matter, a truth echoed by the psalmist who marveled, “How many your works are, O Jehovah! You have made all of them in wisdom” (Psalm 104:24).</p>
+                        <!-- Lesson 3: The Scarlet-Colored Beast -->
+                        <div id="lesson-3" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">THE SCARLET-COLORED BEAST</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>In the book of Revelation, the scarlet-colored beast is a key symbol used to represent political systems and their involvement in persecuting God’s people. This beast is described as having seven heads and ten horns, and it is ridden by a woman, symbolizing a corrupt religious-political alliance.</p>
+                            <h3>What Does the Scarlet-Colored Beast Represent?</h3>
+                            <p>The scarlet-colored beast symbolizes an end-time political system that is empowered by Satan and opposed to God’s Kingdom. It represents a world system of political powers that, under Satan’s influence, seek to suppress true worship and work in alliance with false religion. The seven heads of the beast represent seven world powers that have dominated history, while the ten horns represent ten kings or rulers who share authority with this beast.</p>
+                            <p class="scripture">"And he carried me away in the spirit into a wilderness, and I saw a woman sitting on a scarlet-colored beast, that was full of blasphemous names, and it had seven heads and ten horns." - Revelation 17:3</p>
+                            <h3>The Seven Heads</h3>
+                            <p>The seven heads of the beast represent seven world powers, each of which had a significant impact on God’s people. Historically, these powers are typically identified as Egypt, Assyria, Babylon, Medo-Persia, Greece, Rome, and the Anglo-American dual world power. Each of these powers played a role in oppressing Jehovah’s people, culminating in the modern political alliances that continue to challenge God’s Kingdom today.</p>
+                            <p class="scripture">"This calls for a mind with wisdom: The seven heads are seven mountains, on which the woman sits." - Revelation 17:9</p>
+                            <h3>The Ten Horns</h3>
+                            <p>The ten horns of the beast represent ten kings or rulers who will give their power to the beast in the final days. These rulers are symbolic of governments or coalitions that will unite in opposition to God’s Kingdom. This alliance will be part of the global political system that persecutes God’s people during the final years of this world system.</p>
+                            <p class="scripture">"And the ten horns that you saw are ten kings who have not yet received a kingdom, but they are to receive authority as kings one hour with the beast." - Revelation 17:12</p>
+                            <h3>The Woman on the Beast</h3>
+                            <p>The woman who rides the scarlet-colored beast represents false religion, specifically the world empire of false religion known as “Babylon the Great.” She is described as a harlot, symbolizing how false religion has become corrupt and has aligned itself with political powers to persecute true worshipers.</p>
+                            <p class="scripture">"The woman was dressed in purple and scarlet, and was glittering with gold, precious stones and pearls. She had a golden cup in her hand, filled with abominable things and the filth of her adulteries." - Revelation 17:4</p>
+                            <h3>The Beast’s Destruction</h3>
+                            <p>Despite its temporary power, the scarlet-colored beast and the false religious system that rides it will be destroyed by God’s Kingdom. In the final battle of Armageddon, God’s judgment will be poured out on this corrupt system, and it will be replaced by the establishment of God’s everlasting Kingdom.</p>
+                            <p class="scripture">"The ten horns you saw… will hate the prostitute. They will bring her to ruin and leave her naked; they will eat her flesh and burn her with fire." - Revelation 17:16-17</p>
+                            <h3>What’s Next?</h3>
+                            <p>Now that we’ve examined the Scarlet-Colored Beast and its significance, it’s time to explore the deeper meaning of the seven kings and the eighth king—who are represented by the beast’s seven heads. What do these heads and their sequence of world powers truly mean for us today? How do they fit into the timeline of prophecy? Stay tuned as we dig deeper into the Seven Kings and the Eighth King in the next article.</p>
                         </div>
-                        <div class="content-card">
-                            <p>Scientific evidence supports this divine act, such as the sudden appearance of complex life forms during the Cambrian Explosion around 540 million years ago, a geological event where fully formed creatures like trilobites emerged without any evolutionary precursors, contradicting the gradual development claimed by Darwin’s theory. Furthermore, the human genome, with its 3 billion base pairs of DNA in each cell, stands as a masterpiece of design, a molecular code so intricate that it defies the notion of random chance, pointing instead to a purposeful intelligence behind it—Jehovah, who “stretched out the heavens by himself” (Isaiah 44:24).</p>
-                        </div>
-                    </div>
-                    <div class="content-block">
-                        <p>The earth itself bears witness to Jehovah’s thoughtful creation, designed with precision to sustain life in ways that random processes could never achieve. Its 23.5-degree axial tilt ensures the seasons, allowing crops to grow and ecosystems to thrive, while its magnetic field shields it from deadly solar radiation, and its water cycle provides the fresh water essential for all living things. As the Bible states, “He did not create it simply for nothing, but he formed it to be inhabited” (Isaiah 45:18), a purpose that evolution cannot explain. Satan, however, has promoted the lie of evolution to blind humanity to Jehovah’s handiwork, claiming life arose by chance over millions of years. Yet, the fossil record lacks transitional forms—there are no half-fish, half-reptile creatures or other “missing links” to bridge species, a gap that evolutionists struggle to fill. Even radiometric dating, often cited to support an ancient earth, falters under scrutiny; for example, volcanic rocks formed at Mount St. Helens in 1980 were tested and dated as millions of years old, exposing the method’s unreliability. Jehovah’s creation stands firm against such falsehoods, as He declares, “The heavens are declaring the glory of God; the skies above proclaim the work of his hands” (Psalm 19:1), inviting all to see His wisdom in the world around them.</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>The Flood</h3>
-                        <p>Around 2370 BCE, Jehovah executed a global flood that reshaped the earth and wiped out a corrupt, violent civilization, an event He announced to Noah with the words, “I am going to bring floodwaters on the earth to destroy from under the heavens all flesh in which there is the breath of life” (Genesis 6:17). This was no mere local deluge but a cataclysmic judgment that spared only Noah, his family, and representatives of every animal kind, preserved in an ark that Jehovah instructed Noah to build, saying, “Make for yourself an ark of gopher wood” (Genesis 6:14). The ark, measuring 300 cubits long, 50 cubits wide, and 30 cubits high (Genesis 6:15)—approximately 450 feet by 75 feet by 45 feet—was a marvel of divine engineering, its dimensions aligning with the stability ratios of modern ships, ensuring it could withstand the raging waters. Evidence of this flood abounds in the geological record, such as the Karoo Formation in South Africa, which contains an estimated 800 billion vertebrate fossils buried in vast sedimentary layers, a testament to rapid, catastrophic burial rather than slow accumulation over eons. Similarly, coal seams and oil deposits worldwide, formed from massive amounts of organic material, point to a sudden, global upheaval consistent with the Bible’s account. Flood legends from cultures like the Babylonian Gilgamesh Epic, dated to around 2000 BCE, and the Chinese tale of Nuwa, echo this event, preserving a collective memory of Jehovah’s judgment, which He promised never to repeat, saying, “Never again will all flesh be destroyed by the waters of a flood” (Genesis 9:11).</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>Animal Creation</h3>
-                        <p>Jehovah created animals “according to their kinds” (Genesis 1:25), a process that produced distinct categories of life—birds, fish, mammals, and more—each perfectly suited to its environment and role in the earth’s ecosystem. This biblical truth stands in sharp contrast to evolution’s claim that all life evolved from a single ancestor, a theory that requires countless intermediate forms that simply do not exist in the fossil record. Consider the complexity of animal features like the eagle’s eye, with its ability to spot prey from miles away, or the bat’s echolocation, a sonar system so precise it detects insects in mid-flight—these are examples of irreducible complexity, meaning they require all parts to function and could not have developed gradually. Jehovah’s care for His creation is evident in His words, “Look at the birds of the air, for they neither sow nor reap nor gather into barns; yet your heavenly Father feeds them” (Matthew 6:26), and “Not one sparrow is forgotten in God’s sight” (Luke 12:6), showing that He sustains even the smallest creatures. Scientific studies, such as those on the bombardier beetle, which fires a boiling chemical spray to deter predators, reveal systems so intricate that they defy step-by-step evolution, pointing instead to a deliberate act of creation by Jehovah, who “made the beasts of the earth according to their kinds” (Genesis 1:25) in a display of wisdom and power that continues to amaze those who study His works.</p>
-                    </div>
-                    <blockquote class="scripture">“In the beginning God created the heavens and the earth.” —Genesis 1:1</blockquote>
-                </div>
-            </section>
 
-            <!-- True Worship Section -->
-            <section id="true-worship" class="topic-section">
-                <div class="topic-header">
-                    <h2>True Worship</h2>
-                    <p class="subtitle">Serving Jehovah with Spirit and Truth</p>
-                </div>
-                <div class="topic-content">
-                    <div class="highlight-box">
-                        <p>True worship is the heartfelt, obedient service that Jehovah, the only true God, demands from those who seek everlasting life, a principle Jesus made clear when he said, “This means everlasting life, their taking in knowledge of you, the only true God, and of the one whom you sent, Jesus Christ” (John 17:3). This worship is not a casual or optional act but a way of life defined by doing Jehovah’s will, as Jesus warned, “Not everyone saying to me, ‘Lord, Lord,’ will enter into the Kingdom of the heavens, but only the one doing the will of my Father who is in the heavens will” (Matthew 7:21).</p>
-                    </div>
-                    <div class="content-grid">
-                        <div class="content-card">
-                            <p>Jehovah has always required exclusive devotion, commanding, “You must not have any other gods besides me” (Exodus 20:3), a standard so serious that He struck Uzzah dead for irreverently touching the ark (2 Samuel 6:7), showing that true worship must be pure and respectful.</p>
+                        <!-- Lesson 4: The Eight Kings -->
+                        <div id="lesson-4" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">THE EIGHT KINGS</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <h3>Human World Powers in Bible Prophecy</h3>
+                            <p>In Revelation 17:10, the apostle John is told:</p>
+                            <p class="scripture">"They are seven kings: five have fallen, one is, the other has not yet arrived, but when he does arrive he must remain a short while." - Revelation 17:10</p>
+                            <p>These “kings” represent political world powers that have directly affected Jehovah’s people throughout history. The prophecy refers not to individual rulers, but to successive empires that dominate the earth and interact with God’s people from ancient times to the modern day. The Bible identifies eight such “kings.”</p>
+                            <h3>The Five That Had Fallen</h3>
+                            <h4>1. Egypt</h4>
+                            <p>Egypt was the first major world power to oppress God’s people, enslaving the Israelites for centuries. Jehovah humbled Egypt and freed his people by means of miraculous plagues.</p>
+                            <p class="scripture">"By this you will know that I am Jehovah. I am going to strike the water of the Nile…and it will turn into blood." - Exodus 7:17</p>
+                            <h4>2. Assyria</h4>
+                            <p>Assyria conquered the ten-tribe kingdom of Israel and exiled its people. But Jehovah foretold and brought about Assyria’s end.</p>
+                            <p class="scripture">"I will make Nineveh desolate, as dry as the desert." - Zephaniah 2:13</p>
+                            <h4>3. Babylon</h4>
+                            <p>Babylon conquered Judah and destroyed Jerusalem in 607 B.C.E. But Jehovah also foretold Babylon’s swift fall.</p>
+                            <p class="scripture">"In that very night Belshazzar…was killed, and Darius the Mede received the kingdom." - Daniel 5:30-31</p>
+                            <h4>4. Medo-Persia</h4>
+                            <p>Jehovah used the Persian king Cyrus to end Babylon’s rule and allow His people to return home.</p>
+                            <p class="scripture">"This is what Jehovah says…‘I will stir up Cyrus…to open doors before him.’" - Isaiah 45:1</p>
+                            <h4>5. Greece</h4>
+                            <p>The Greek Empire under Alexander the Great fulfilled prophecy by quickly conquering Medo-Persia.</p>
+                            <p class="scripture">"The male goat…struck down the ram…and trampled it down." - Daniel 8:7</p>
+                            <h3>The Sixth King: Rome</h3>
+                            <p>The sixth king “is,” meaning Rome was in power during John’s time. Rome ruled with brutality and persecution, even executing Jesus and oppressing early Christians.</p>
+                            <p class="scripture">"They led him away to be executed…They fastened him to the stake." - Luke 23:26, 33</p>
+                            <p>Rome eventually weakened and fell in 476 C.E., paving the way for the next king.</p>
+                            <h3>The Seventh King: Anglo-American World Power</h3>
+                            <p>This seventh king is a dual power—Britain and the United States—ruling together especially since World War I. It is during the time of this seventh king that God’s Kingdom was established in heaven in 1914.</p>
+                            <p class="scripture">"In the days of those kings the God of heaven will set up a kingdom…It will crush and put an end to all these kingdoms." - Daniel 2:44</p>
+                            <p>But this power will not last long. It will eventually give way to the eighth king.</p>
+                            <h3>The Eighth King: The United Nations</h3>
+                            <p>The scarlet-colored beast of Revelation 17 symbolizes the United Nations. It is not a separate world power, but a coalition representing global political unity.</p>
+                            <p class="scripture">"The wild beast…is also himself an eighth king, but springs from the seven." - Revelation 17:11</p>
+                            <p>This eighth king exists during the time of the seventh and has no real power of its own—except what is given to it. Jehovah will allow the United Nations and its supporters to carry out His purpose by attacking Babylon the Great, false religion.</p>
+                            <p class="scripture">"These will hate the prostitute and will make her devastated…For God put it into their hearts to carry out His thought." - Revelation 17:16-17</p>
+                            <h3>Jehovah’s Sovereignty Over All Kings</h3>
+                            <p>The rise and fall of these eight kings proves that no human government can stand against Jehovah’s will. All of them have been used—or allowed—to fulfill God’s prophecies. But in the end, all human rulership will be replaced by the everlasting Kingdom of God.</p>
+                            <p class="scripture">"The God of heaven will set up a kingdom…It will crush and put an end to all these kingdoms." - Daniel 2:44</p>
+                            <h3>What Comes Next?</h3>
+                            <p>The United Nations—the eighth king—will play a key role in a sudden proclamation of global harmony. But will this lead to true peace? Or will it trigger the final phase of this system? In the next section, we’ll explore the dramatic declaration foretold in 1 Thessalonians 5:3…</p>
                         </div>
-=“”>
-                        <div class="content-card">
-                            <p>His worshipers are united as “one flock with one shepherd” (John 10:16), bound by “one faith, one baptism” (Ephesians 4:5), and they fulfill the global commission to preach, as Jesus foretold, “This good news of the Kingdom will be preached in all the inhabited earth for a witness to all the nations, and then the end will come” (Matthew 24:14). From the first century to today, this unity and mission have defined Jehovah’s people, setting them apart from the divided, ritualistic religions of the world.</p>
-                        </div>
-                    </div>
-                    <div class="content-block">
-                        <p>The history of true worship is marked by perseverance through persecution, a test that has refined and strengthened Jehovah’s servants across the ages. In 64 CE, the Roman Emperor Nero falsely blamed Christians for the great fire of Rome, subjecting them to horrific tortures—some were sewn into animal skins and torn apart by dogs, others were burned alive as human torches—yet their faith endured, as “they went away from the Sanhedrin rejoicing because they had been counted worthy to be dishonored for the sake of that name” (Acts 5:41). This scattering only spread the good news further, fulfilling the pattern seen when “a great persecution arose against the congregation in Jerusalem, and they were all scattered throughout the regions of Judea and Samaria” (Acts 8:1-4). Today, true worshipers continue this legacy by remaining “no part of the world” (John 17:16), refusing to participate in politics, wars, or nationalistic fervor, a stand that mirrors Daniel’s refusal to bow to King Darius’ image around 539 BCE, when he chose the lions’ den over compromise (Daniel 6:10-16). Jehovah honors such loyalty, promising, “Those honoring me I will honor” (1 Samuel 2:30), and He expects His worshipers to reflect His holiness, as Jesus taught, “You must worship Jehovah your God with spirit and truth” (John 4:24), a call to worship that is active, informed, and unwavering.</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>Good News</h3>
-                        <p>The good news of Jehovah’s Kingdom is the central message of true worship, a promise of a real government that will soon transform the earth into a paradise, as foretold in the prophecy, “The God of heaven will set up a kingdom that will never be destroyed... it will crush and put an end to all these kingdoms, and it alone will stand forever” (Daniel 2:44). This Kingdom, led by Jesus Christ, offers hope for a world free of suffering, where “the righteous will possess the earth, and they will live forever on it” (Psalm 37:29), and it fulfills Jehovah’s original purpose for humanity, which He expressed in Eden. Jesus taught his followers to pray for this solution, saying, “Let your Kingdom come. Let your will take place, as in heaven, also on earth” (Matthew 6:10), a prayer that has been answered in part since 1914, when Christ began ruling, and will be fully realized when “a new heavens and a new earth” emerge (2 Peter 3:13). This message has been preached since Jesus’ day, when he “went through the cities and villages, teaching and continuing his journey, proclaiming the good news of the Kingdom of God” (Luke 8:1), and it continues today through a global effort that reaches billions, proving that Jehovah’s worshipers are not passive but active heralds of His coming reign, as He commands, “Go, therefore, and make disciples of people of all the nations” (Matthew 28:19).</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>Baptism</h3>
-                        <p>Baptism is a sacred, public declaration of dedication to Jehovah, a step that every true worshiper must take to symbolize their commitment to His service, as Jesus instructed, “Go, therefore, and make disciples of people of all the nations, baptizing them in the name of the Father and of the Son and of the holy spirit” (Matthew 28:19). This is not a ritual for infants, as some false religions practice, but a conscious choice made by adults who understand its meaning, following the example of Jesus, who was baptized at about 30 years old, when “the heavens were opened up to him” (Matthew 3:16-17; Luke 3:23). The act represents a request to God for a clean conscience, as Peter explained, “Baptism, which corresponds to this, is now saving you (not by the removal of the filth of the flesh, but by the request made to God for a good conscience), through the resurrection of Jesus Christ” (1 Peter 3:21). This practice dates back to the first century, when thousands were baptized after hearing the truth, such as the 3,000 on Pentecost who “were baptized and added on that day” (Acts 2:41), but it stands in contrast to the pagan-influenced infant baptisms introduced by Christendom in the fourth century CE, a tradition with no scriptural basis. Jehovah views baptism as a serious vow, and He expects those who take it to live up to it, as “the one who endures to the end is the one who will be saved” (Matthew 24:13).</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>Neutrality</h3>
-                        <p>True worshipers maintain strict neutrality in the world’s conflicts, a principle rooted in Jesus’ declaration, “My Kingdom is no part of this world. If my Kingdom were part of this world, my attendants would have fought” (John 18:36), which sets them apart from the political and military entanglements that dominate human society. In the first century, early Christians faced death rather than serve in Rome’s armies or honor its emperors as gods, a stand that led to martyrdom in arenas where “they overcame because of the blood of the Lamb and because of the word of their witnessing” (Revelation 12:11). This neutrality reflects Jehovah’s own impartiality, as He says, “I am Jehovah, who exercises loyal love, justice, and righteousness in the earth” (Jeremiah 9:24), and it aligns with His command to “love your enemies and pray for those persecuting you” (Matthew 5:44), rather than taking sides in human disputes. Today, this stance is evident when true worshipers refuse to salute flags, vote in elections, or fight in wars, choices that often bring persecution but fulfill the call to be “a people for his name” (Acts 15:14), separate from Satan’s system, which “the whole world is lying in the power of the wicked one” (1 John 5:19). Jehovah promises protection to those who remain faithful, as He did for Daniel in the lions’ den (Daniel 6:22), ensuring that “no weapon formed against you will have any success” (Isaiah 54:17).</p>
-                    </div>
-                    <blockquote class="scripture">“You must worship Jehovah your God with spirit and truth.” —John 4:24</blockquote>
-                </div>
-            </section>
 
-            <!-- False Worship Section -->
-            <section id="false-worship" class="topic-section">
-                <div class="topic-header">
-                    <h2>False Worship</h2>
-                    <p class="subtitle">Satan’s Counterfeit Religion</p>
-                </div>
-                <div class="topic-content">
-                    <div class="highlight-box">
-                        <p>False worship is Satan’s counterfeit system that opposes Jehovah’s truth, described in the Bible as “Babylon the Great, the mother of the prostitutes and of the disgusting things of the earth” (Revelation 17:5), a vast network of religions that deceive humanity and provoke Jehovah’s wrath. This rebellion began at Babel around 2269 BCE, when Nimrod led humanity to defy Jehovah, saying, “Come, let us build a city for ourselves and a tower with its top in the heavens” (Genesis 11:4), an act that prompted Jehovah to confuse their languages and scatter them, declaring, “Jehovah scattered them from there over all the surface of the earth” (Genesis 11:9).</p>
-                    </div>
-                    <div class="content-grid">
-                        <div class="content-card">
-                            <p>Jehovah hates false worship with a fierce jealousy, as He warns, “I will remove those turning away from following Jehovah and those who do not seek Jehovah or inquire of him” (Zephaniah 1:6), and He demonstrated this by incinerating Nadab and Abihu with fire from heaven when they offered “unauthorized fire” before Him (Leviticus 10:1-2).</p>
+                        <!-- Lesson 5: Peace and Security -->
+                        <div id="lesson-5" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">PEACE AND SECURITY</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <h3>A Declaration from World Leaders, Not from God</h3>
+                            <p>The Bible foretells a specific event that will occur just before the great tribulation begins—a global proclamation of “Peace and Security.” The apostle Paul wrote:</p>
+                            <p class="scripture">"Whenever it is that they are saying, 'Peace and security!' then sudden destruction is to be instantly on them, just like birth pains on a pregnant woman, and they will by no means escape." - 1 Thessalonians 5:3</p>
+                            <p>This message will not come from Jehovah or his people. Instead, it will be declared by political, religious, and international leaders who believe they’ve achieved stability in the world. They may see it as the beginning of a new era of peace, perhaps connected to the United Nations, the symbolic “eighth king” mentioned in the book of Revelation.</p>
+                            <h3>A False Hope Before the Collapse</h3>
+                            <p>The cry of “Peace and Security” may bring celebration and a false sense of hope to the world. Leaders might point to peace treaties, economic cooperation, or diplomatic breakthroughs. But Jehovah sees through this illusion. It will not be true peace.</p>
+                            <p>Just as the world begins to feel secure, sudden destruction will begin—starting with the fall of Babylon the Great, the world empire of false religion.</p>
+                            <p class="scripture">"These will hate the prostitute and will make her devastated and naked, and will eat up her flesh and completely burn her with fire. For God put it into their hearts to carry out his thought." - Revelation 17:16-17</p>
+                            <h3>A Clear Warning for Jehovah’s People</h3>
+                            <p>For Jehovah’s servants, this announcement is not a time to relax. Jesus warned his followers to stay alert. He said:</p>
+                            <p class="scripture">"Pay attention to yourselves… Keep awake, then, all the time, making supplication… that you may succeed in escaping all these things." - Luke 21:34-36</p>
+                            <p>The “Peace and Security” declaration is a clear sign for Jehovah’s people. They will recognize it as a prophetic marker, showing that Jehovah’s day is about to begin. This is why God’s people are encouraged to stay awake spiritually and to keep proclaiming the good news while there is still time.</p>
+                            <h3>The Final Warning Before the Storm</h3>
+                            <p>This false proclamation of peace will serve as the final calm before the storm. It signals that Jehovah’s judgment is about to begin. Just as labor pains strike suddenly and grow more intense, the destruction of this world’s system will begin abruptly and move quickly.</p>
+                            <p>The sudden downfall of false religion will mark the start of the great tribulation. After that, Jehovah will bring judgment upon the rest of the world’s political, military, and economic powers, clearing the way for the full establishment of his Kingdom.</p>
+                            <p class="scripture">"And in the days of those kings the God of heaven will set up a kingdom that will never be destroyed." - Daniel 2:44</p>
+                            <h3>What Happens Next?</h3>
+                            <p>The announcement of “Peace and Security” will mark the beginning of the final chain of events. False religion will fall, and Jehovah’s judgments will begin to unfold. What comes next is a time of distress that the Bible calls “the great tribulation”—a period unlike anything in history.</p>
                         </div>
-                        <div class="content-card">
-                            <p>The end of this system is certain, as Revelation proclaims, “Babylon the Great has fallen, and she has become a dwelling place of demons” (Revelation 18:2), a judgment that will destroy all who cling to her lies, for Jehovah commands, “Get out of her, my people, if you do not want to share with her in her sins” (Revelation 18:4).</p>
+
+                        <!-- Lesson 6: The Great Tribulation -->
+                        <div id="lesson-6" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">THE GREAT TRIBULATION</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <h3>A Time of Distress Unlike Any Other</h3>
+                            <p>Jesus foretold that the Great Tribulation would be unlike anything the world has ever experienced. He said:</p>
+                            <p class="scripture">"Then there will be great tribulation such as has not occurred since the world’s beginning until now, no, nor will occur again." - Matthew 24:21</p>
+                            <p>This is not just another time of war or disaster. It is the first major phase of Jehovah’s final judgment on this system of things. No previous event in history compares to what will happen during this period, and it will never be repeated. Jehovah Himself initiates it, demonstrating His justice and holiness.</p>
+                            <h3>What Triggers the Great Tribulation?</h3>
+                            <p>The Great Tribulation is triggered after the symbolic cry of “Peace and Security.” Though this announcement will seem like a turning point for global stability, it is quickly followed by a shocking event—Jehovah allows the political powers to destroy Babylon the Great, the world empire of false religion.</p>
+                            <p class="scripture">"The ten horns… and the wild beast will hate the prostitute and will make her devastated and naked… and they will completely burn her with fire." - Revelation 17:16</p>
+                            <p>The destruction of false religion is not random—it is part of Jehovah’s will. He puts it into the hearts of world leaders to carry it out.</p>
+                            <h3>Jehovah’s People Are Spared</h3>
+                            <p>Though the Great Tribulation is a time of judgment, Jehovah protects His people. They are not part of Babylon the Great and have remained separate from false worship. Jesus assured his followers:</p>
+                            <p class="scripture">"If those days were not cut short, no flesh would be saved; but on account of the chosen ones those days will be cut short." - Matthew 24:22</p>
+                            <p>This means that Jehovah will intervene before the tribulation can wipe out all life. His people, often referred to as the “great crowd,” will be preserved because they stay loyal and clean in Jehovah’s eyes. Their survival is a powerful testimony to Jehovah’s mercy and justice.</p>
+                            <h3>What’s Next?</h3>
+                            <p>As the Great Tribulation escalates, the world will experience unprecedented turmoil. A critical mark will be introduced at this time, symbolizing allegiance to the world’s system—666. What does this number mean, and how will it affect those who refuse to bow to the beast’s rule? Let’s explore this critical issue in the next article.</p>
+                        </div>
+
+                        <!-- Lesson 7: 666 — The Mark of the Beast -->
+                        <div id="lesson-7" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">666 — THE MARK OF THE BEAST</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <p>666 is the number, or name, of the wild beast with seven heads and ten horns that comes out of the sea.</p>
+                            <p class="scripture">"And it stood still on the sand of the sea. And I saw a wild beast ascending out of the sea, with ten horns and seven heads, and on its horns ten diadems, but on its heads blasphemous names." - Revelation 13:1</p>
+                            <p class="scripture">"This is where it calls for wisdom: Let the one who has insight calculate the number of the wild beast, for it is a man’s number, and its number is 666." - Revelation 13:18</p>
+                            <p>This beast is a symbol of the worldwide political system.</p>
+                            <p class="scripture">"It was permitted to wage war with the holy ones and conquer them, and it was given authority over every tribe and people and tongue and nation." - Revelation 13:7</p>
+                            <p>The name 666 identifies the political system as a gross failure in God’s sight.</p>
+                            <h3>The Significance of 666</h3>
+                            <p>Seven typically represents completeness or perfection. Six, being one short of seven, can denote something incomplete or flawed in God’s eyes, and it can be associated with God’s enemies. The Bible sometimes stresses a matter by stating it three times.</p>
+                            <p class="scripture">"As for the four living creatures, each one of them had six wings; they were full of eyes all around and underneath. And continuously, day and night, they say: 'Holy, holy, holy is Jehovah God, the Almighty, who was and who is and who is coming.'" - Revelation 4:8</p>
+                            <p class="scripture">"And I saw, and I heard an eagle flying in midheaven say with a loud voice: 'Woe, woe, woe to those dwelling on the earth because of the rest of the trumpet blasts of the three angels who are about to blow their trumpets!'" - Revelation 8:13</p>
+                            <p>So the name 666 powerfully emphasizes that God views human political systems as gross failures. They have been unable to bring lasting peace and security —things that only God’s Kingdom will achieve.</p>
+                            <h3>The Mark of the Beast</h3>
+                            <p>But, the beast with seven heads that comes out of the water isn’t the only thing under the name 666. The mark of the beast is also tied into the name. But what is the mark of the beast, and how do some get the mark of the beast?</p>
+                            <p>The Bible indicates that people receive “the mark of the wild beast” because they follow it with admiration, ultimately leading to worship.</p>
+                            <p class="scripture">"I saw that one of its heads seemed to have been fatally wounded, but its mortal wound had been healed, and all the earth followed the wild beast with admiration. And they worshipped the dragon because it gave the authority to the wild beast, and they worshipped the wild beast with the words: 'Who is like the wild beast, and who can do battle with it?'" - Revelation 13:3, 4</p>
+                            <p class="scripture">"The first one went off and poured out his bowl on the earth. And a hurtful and malignant ulcer afflicted the people who had the mark of the wild beast and who were worshipping its image." - Revelation 16:2</p>
+                            <h3>Worshipful Honor to the Political System</h3>
+                            <p>Those who receive the mark of the beast give worshipful honor to their country, its symbols, or its military might. As stated in The Encyclopedia of Religion, “Nationalism has become a dominant form of religion in the modern world.”</p>
+                            <h3>The Mark on the Right Hand or Forehead</h3>
+                            <p>How is the mark of the beast placed on someone’s right hand or forehead?</p>
+                            <p class="scripture">"It puts under compulsion all people—the small and the great, the rich and the poor, the free and the slaves—that these should be marked on their right hand or on their forehead." - Revelation 13:16</p>
+                            <p>In contrast, God’s commands to the nation of Israel were to be internalized, not literally marked on their hands and foreheads.</p>
+                            <p class="scripture">"You must impress these words of mine on your heart and your soul and bind them as a reminder on your hand, and they should be like a headband on your forehead." - Deuteronomy 11:18</p>
+                            <p>This meant that God’s words would guide all their actions and thoughts.</p>
+                            <h3>The Symbolic Meaning of the Mark</h3>
+                            <p>Rather than a literal mark, such as a 666 tattoo, the mark of the beast symbolically identifies those who let the political system rule their lives.</p>
+                            <h3>Opposition to God</h3>
+                            <p>Those with the mark of the beast place themselves in opposition to God.</p>
+                            <p class="scripture">"Another angel, a third, followed them, saying in a loud voice: 'If anyone worships the wild beast and its image and receives a mark on his forehead or on his hand, he will also drink of the wine of the anger of God that is poured out undiluted into the cup of His wrath, and he will be tormented with fire and sulfur in the sight of the holy angels and in the sight of the Lamb.'" - Revelation 14:9, 10</p>
+                            <p class="scripture">"And I saw the wild beast and the kings of the earth and their armies gathered together to wage war against the one seated on the horse and against his army. And the wild beast was caught, and along with it the false prophet that performed in front of it the signs with which he misled those who received the mark of the wild beast and those who worship its image. While still alive, they both were hurled into the fiery lake that burns with sulfur. But the rest were killed off with the long sword that proceeded out of the mouth of the one seated on the horse. And all the birds were filled with their flesh." - Revelation 19:19-21</p>
+                            <h3>What’s Next?</h3>
+                            <p>Now, let’s explore what happens next: the fall of Babylon the Great — false religion’s destruction. How will this event unfold, and what does it mean for those who have remained faithful to Jehovah? Stay tuned as we dig deeper into this prophecy.</p>
+                        </div>
+
+                        <!-- Lesson 8: The Fall of Babylon the Great -->
+                        <div id="lesson-8" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">THE FALL OF BABYLON THE GREAT</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <h3>The Judgment of False Religion Begins</h3>
+                            <p>Babylon the Great is a symbol of the world empire of false religion. For centuries, false religion has misled people, opposed Jehovah, and allied itself with political powers. During the Great Tribulation, Jehovah will finally bring judgment against this system. It will be the first visible sign that this world is collapsing.</p>
+                            <p class="scripture">"She fell! Babylon the Great has fallen, and she has become a dwelling place of demons." - Revelation 18:2</p>
+                            <p>This global collapse of false religion will shock people everywhere. Religious institutions that seemed unshakable will be devastated as Jehovah allows political powers to turn against them.</p>
+                            <p class="scripture">"She has fallen! Babylon the Great has fallen, and she has become a place for demons to dwell, a haunt for every unclean spirit… for all the nations have drunk the wine of the passion of her sexual immorality." - Revelation 18:2</p>
+                            <h3>How Will Babylon the Great Fall?</h3>
+                            <p>The symbolic “ten horns” (political powers) and the scarlet-colored wild beast (the United Nations) will unexpectedly turn on false religion. They will destroy her wealth, power, and global influence. The very governments that once supported her will now bring her to ruin.</p>
+                            <p class="scripture">"The ten horns that you saw, and the wild beast, these will hate the prostitute and will make her devastated and naked, and they will eat up her flesh and completely burn her with fire." - Revelation 17:16</p>
+                            <p>These governments will think they’re acting in their own interest—perhaps to bring peace or security—but in truth, Jehovah is guiding these events to accomplish His purpose.</p>
+                            <p class="scripture">"God put it into their hearts to carry out his purpose, yes, to carry out their one thought by giving their kingdom to the wild beast until the words of God will have been accomplished." - Revelation 17:16-17</p>
+                            <h3>Why Does Jehovah Allow This Destruction?</h3>
+                            <p>False religion has long misrepresented Jehovah and harmed people spiritually and physically. It has supported wars, promoted immorality, and taught lies about God. Now Jehovah will remove it forever. The fall of Babylon the Great is not an accident—it is His righteous judgment.</p>
+                            <p class="scripture">"Come out of her, my people, if you do not want to share with her in her sins and if you do not want to receive part of her plagues." - Revelation 18:4</p>
+                            <p>Jehovah’s people have already obeyed this command. They are not part of Babylon the Great. That is why they are not harmed when she falls. Her destruction begins the final countdown for this system.</p>
+                            <p class="scripture">"Get out of her, my people, so that you do not share with her in her sins and so that you do not receive part of her plagues." - Revelation 18:4</p>
+                            <h3>The World Will Mourn—but Jehovah’s People Will Rejoice</h3>
+                            <p>Many will grieve when Babylon the Great falls, especially those who profited from her—politicians, merchants, and religious leaders. But Jehovah’s people will rejoice, knowing this judgment proves that Jehovah is cleansing the earth.</p>
+                            <p class="scripture">"Be glad over her, O heaven, and you holy ones and apostles and prophets, because God has pronounced judgment for you against her!" - Revelation 18:20</p>
+                            <p>Her end will be permanent. False religion will never rise again. Jehovah’s justice will be complete.</p>
+                            <p class="scripture">"With a swift pitch, a strong angel lifted up a stone like a great millstone and hurled it into the sea, saying: 'This is how Babylon the great city will be hurled down, and she will never be found again.'" - Revelation 18:20-21</p>
+                            <h3>What Happens Next?</h3>
+                            <p>With Babylon the Great out of the way, the nations will now prepare for their final attack—this time not on religion, but on Jehovah’s people. Under the name “Gog of Magog,” the nations will unite in a last attempt to wipe out the Great Crowd. Will they succeed? Or will Jehovah step in?</p>
+                        </div>
+
+                        <!-- Lesson 9: Gog of Magog -->
+                        <div id="lesson-9" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">GOG OF MAGOG</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <h3>The Final Attack Against Jehovah’s People</h3>
+                            <p>After the fall of Babylon the Great, the world will enter its most dangerous moment. The political powers, no longer distracted by false religion, will now unite in an all-out attack on Jehovah’s people. The Bible refers to this global attack as the assault by Gog of Magog.</p>
+                            <p class="scripture">"You will come against my people Israel like a cloud covering the land. In the final part of the days, I will bring you against my land, so that the nations may know me." - Ezekiel 38:16</p>
+                            <p>This prophecy is not about ancient Israel. It points to Jehovah’s present-day people—those who have dedicated themselves to Him and are standing firm during the Great Tribulation. The world, under Satan’s control, will now attempt to wipe them out completely.</p>
+                            <p class="scripture">"You will come against my people Israel like a cloud covering the land. In the final part of the days, I will bring you against my land, so that the nations may know me when I sanctify myself through you before their eyes, O Gog." - Ezekiel 38:16</p>
+                            <h3>Who Is Gog of Magog?</h3>
+                            <p>Gog of Magog is not a single human or nation. It is a symbolic name for the combined forces of this world, united under Satan after the fall of false religion. These include kings, rulers, military powers, and global institutions who are deceived into thinking they can defeat God’s people.</p>
+                            <p class="scripture">"They are, in fact, expressions inspired by demons… to gather them together to the war of the great day of God the Almighty." - Revelation 16:14</p>
+                            <p>Satan uses these powers to gather the nations for one final rebellion. But what appears to be a unified military campaign is actually the beginning of their destruction.</p>
+                            <p class="scripture">"They are, in fact, expressions inspired by demons and perform signs, and they go out to the kings of the entire inhabited earth, to gather them together to the war of the great day of God the Almighty." - Revelation 16:14</p>
+                            <h3>Why Does Gog Attack Jehovah’s People?</h3>
+                            <p>Jehovah’s people will be the only organized group left standing in support of God’s Kingdom. Without Babylon the Great, and with global systems in chaos, Jehovah’s servants will seem vulnerable—peaceful, unarmed, and without political protection. Gog will believe this is the perfect opportunity.</p>
+                            <p class="scripture">"You will say, 'I will go up against the land of unprotected settlements… to loot and plunder.'" - Ezekiel 38:11-12</p>
+                            <p>But Jehovah sees this attack coming. He will allow Gog to advance—but only so far. Then Jehovah will respond with decisive power, showing the nations that they have gone too far.</p>
+                            <p class="scripture">"You will say, 'I will go up against the land of unprotected settlements… against people gathered from the nations, who are dwelling in security, all of them living without a wall.'" - Ezekiel 38:11-12</p>
+                            <h3>Jehovah Responds to Gog’s Attack</h3>
+                            <p>Jehovah will not allow His people to be destroyed. Just as Gog’s forces close in, Jehovah will intervene in the most powerful way. The Bible says He will act with rage, using natural and supernatural forces to protect His people and strike down their enemies.</p>
+                            <p class="scripture">"My great rage will flare up… I will call for a sword against him… torrential rain, hailstones, fire, and sulfur." - Ezekiel 38:18-22</p>
+                            <p>This overwhelming response will begin the final phase of the Great Tribulation. It will be clear to all who is truly in control. Jehovah will sanctify His name before the eyes of the world.</p>
+                            <p class="scripture">"In that day, my great rage will flare up… I will call for a sword against him… And I will bring my judgment against him with pestilence and bloodshed; and I will rain down a torrential downpour and hailstones and fire and sulfur." - Ezekiel 38:18-22</p>
+                            <h3>This Leads Directly to Armageddon</h3>
+                            <p>The attack by Gog of Magog sets the stage for the war of Armageddon. As the nations fight against Jehovah’s people, Jehovah’s King—Jesus Christ—will take action. With the heavenly armies, Jesus will strike down all enemies of God’s Kingdom. But how exactly will this final battle unfold?</p>
+                        </div>
+
+                        <!-- Lesson 10: Armageddon -->
+                        <div id="lesson-10" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">ARMAGEDDON</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <h3>The Beginning of Armageddon</h3>
+                            <p>Armageddon begins when Satan’s world system, represented by the UN (8th king) and the Anglo-American powers (7th king), launches a final attempt to crush Jehovah’s people—the Great Crowd—after the destruction of Babylon the Great. The nations of the world, under Gog of Magog, will unite in opposition to God’s Kingdom, thinking they can wipe out Jehovah’s faithful ones.</p>
+                            <p class="scripture">"They are, in fact, expressions inspired by demons and perform signs, and they go out to the kings of the entire inhabited earth, to gather them together to the war of the great day of God the Almighty." - Revelation 16:14</p>
+                            <p>At the start of this event, Jehovah’s heavenly army (including Jesus Christ and the 144,000) will begin to intervene, bringing judgment upon the wicked and providing protection for the faithful. In this first stage, it will be clear that Jehovah’s Kingdom is established, and the destruction of false religion has already set the stage for the final battle.</p>
+                            <p class="scripture">"They are, in fact, expressions inspired by demons and perform signs, and they go out to the kings of the entire inhabited earth, to gather them together to the war of the great day of God the Almighty." - Revelation 16:14</p>
+                            <h3>The Middle of Armageddon: The Battle and Judgment</h3>
+                            <p>The middle of Armageddon is marked by direct divine intervention. The heavenly forces, led by Jesus Christ, will defeat all of Satan’s armies, including the political, military, and religious forces opposed to God’s Kingdom.</p>
+                            <p class="scripture">"And I saw heaven opened, and there was a white horse. The one seated on it is called Faithful and True, and he judges and carries on war in righteousness." - Revelation 19:11</p>
+                            <p>Jesus Christ’s victory over the forces of Satan at the height of Armageddon will be decisive. The beast and the false prophet—symbols of corrupt religion and corrupt political systems—will be destroyed and cast into the lake of fire.</p>
+                            <p>This phase also includes the Judgment of the Sheep and the Goats, marking the division between those who serve Jehovah faithfully (the sheep) and those who oppose His Kingdom (the goats). The righteous will be rewarded with eternal life, while the wicked will face destruction.</p>
+                            <p class="scripture">"When the Son of man comes in his glory… all the nations will be gathered before him, and he will separate people one from another, just as a shepherd separates the sheep from the goats." - Matthew 25:31-32</p>
+                            <p class="scripture">"And I saw heaven opened, and there was a white horse. The one seated on it is called Faithful and True, and he judges and carries on war in righteousness." - Revelation 19:11</p>
+                            <h3>The End of Armageddon: Final Destruction and Peace</h3>
+                            <p>The final phase of Armageddon will see the complete defeat of all opposition to God’s Kingdom. The goats (the wicked) will be destroyed in judgment, and Jesus Christ will bring an end to all human rulership and the influence of Satan.</p>
+                            <p class="scripture">"These will wage war with the Lamb, but the Lamb will conquer them, because he is Lord of lords and King of kings." - Revelation 17:14</p>
+                            <p>At the conclusion of Armageddon, all the armies opposing Christ will be utterly defeated. But will this be the end of all opposition? We will find out in the next article.</p>
+                            <p class="scripture">"These will wage war with the Lamb, but the Lamb will conquer them, because he is Lord of lords and King of kings." - Revelation 17:14</p>
+                            <h3>What’s Next?</h3>
+                            <p>After the defeating of Armageddon will be the end to all evil—right? Let’s find out in the next article.</p>
+                        </div>
+
+                        <!-- Lesson 11: The End -->
+                        <div id="lesson-11" class="lesson" style="display: none;">
+                            <div class="lesson-header">
+                                <button class="btn-study" onclick="showPreviousLesson()">Last</button>
+                                <h2 class="lesson-title">THE END</h2>
+                                <button class="btn-study" onclick="showNextLesson()">Next</button>
+                            </div>
+                            <h3>The Destruction of Satan’s World System</h3>
+                            <p>After Armageddon, the entire system that Satan has ruled—including all human governments, institutions, and his influence—will be completely removed.</p>
+                            <p class="scripture">"And I saw an angel coming down out of heaven, having the key of the abyss and a great chain in his hand. He seized the dragon, the original serpent, which is the Devil and Satan, and bound him for a thousand years." - Revelation 20:1-2</p>
+                            <p>Satan and his demons will be bound and abyssed for 1,000 years, unable to mislead the nations during Christ’s Millennial Rule. The world will be free from the corruption and deception Satan has caused throughout human history.</p>
+                            <p class="scripture">"And I saw an angel coming down out of heaven, having the key of the abyss and a great chain in his hand. He seized the dragon, the original serpent, which is the Devil and Satan, and bound him for a thousand years." - Revelation 20:1-2</p>
+                            <h3>Christ’s 1,000-Year Reign Begins</h3>
+                            <p>This marks the start of the Millennial Reign of Jesus Christ alongside the 144,000 anointed ones in heaven. Jehovah’s Kingdom will rule over the earth with righteousness, peace, and everlasting life.</p>
+                            <p class="scripture">"They will be priests of God and of the Christ, and they will rule as kings with him for the 1,000 years." - Revelation 20:6</p>
+                            <p>During this time:</p>
+                            <p>Paradise will be restored on earth.</p>
+                            <p class="scripture">"They will build houses and dwell in them; they will plant vineyards and eat their fruit." - Isaiah 65:21</p>
+                            <p>Righteous government will bring peace.</p>
+                            <p class="scripture">"In his days the righteous will flourish, and peace will abound until the moon is no more." - Psalm 72:7</p>
+                            <p>People will enjoy perfect health and everlasting life.</p>
+                            <p class="scripture">"They will be priests of God and of the Christ, and they will rule as kings with him for the 1,000 years." - Revelation 20:6</p>
+                            <h3>The Resurrection of the Righteous and the Unrighteous</h3>
+                            <p>During the 1,000 years, many who died faithful to Jehovah will be resurrected to life on a peaceful earth. Even those who did not know Jehovah will be given a chance to learn and choose His ways.</p>
+                            <p class="scripture">"Do not marvel at this, because the hour is coming in which all those in the memorial tombs will hear his voice and come out." - John 5:28-29</p>
+                            <p class="scripture">"There is going to be a resurrection of both the righteous and the unrighteous." - Acts 24:15</p>
+                            <h3>Gradual Elimination of Imperfection</h3>
+                            <p>During the 1,000 years, obedient humans will gradually be raised to perfection—physically, mentally, and spiritually. This process will restore what Adam and Eve lost.</p>
+                            <p class="scripture">"On either side of the river was the tree of life… and the leaves of the tree were for the curing of the nations." - Revelation 22:1-2</p>
+                            <p>The “trees of life” symbolize the healing and restoration available during this time, as humankind is gradually brought back to perfection.</p>
+                            <p class="scripture">"On either side of the river was the tree of life… and the leaves of the tree were for the curing of the nations." - Revelation 22:1-2</p>
+                            <h3>Final Test After the 1,000 Years</h3>
+                            <p>After the 1,000 years, Satan will be released from the abyss for a short time and will try to mislead perfected humans.</p>
+                            <p class="scripture">"And when the thousand years have been ended, Satan will be released from his prison and will go out to mislead the nations." - Revelation 20:7-8</p>
+                            <p>Those who choose to follow Satan will be destroyed permanently. Then Satan himself will be destroyed forever—this is known as the second death.</p>
+                            <p class="scripture">"And when the thousand years have been ended, Satan will be released from his prison and will go out to mislead the nations." - Revelation 20:7-8</p>
+                            <h3>Jehovah Becomes “All Things to Everyone”</h3>
+                            <p>After Satan’s destruction, Jesus hands the Kingdom back to Jehovah, and Jehovah becomes “all things to everyone.”</p>
+                            <p class="scripture">"Then comes the end, when he hands over the Kingdom to his God and Father, when he has brought to nothing all government and all authority and power." - 1 Corinthians 15:24</p>
+                            <p>Jehovah will rule the universe directly, and all will recognize Him as King. All that is imperfect will have been removed, and peace will reign forever.</p>
                         </div>
                     </div>
-                    <div class="content-block">
-                        <p>From Nimrod’s pagan towers to the ornate churches of today, false worship has blended truth with lies, enslaving billions under Satan’s influence, as Jesus described the religious leaders of his day, “You are from your father the Devil, and you wish to do the desires of your father” (John 8:44). This deception spans history, from the ziggurats of Mesopotamia to the cathedrals of Christendom, all marked by idolatry and doctrines that defy Jehovah’s Word. For example, Jehovah struck down 3,000 Israelites for worshiping the golden calf around 1513 BCE, declaring, “Whoever is for Jehovah, come to me!” (Exodus 32:26-28), a swift punishment that shows His intolerance for mixing His worship with paganism. Today, false religion continues to thrive on holidays, clergy hierarchies, and rituals that have no basis in Scripture, but Jehovah’s judgment looms, as He promises, “In one day her plagues will come, death and mourning and famine, and she will be completely burned with fire, because Jehovah God who judged her is strong” (Revelation 18:8). True worshipers must flee this corrupt system, heeding the call to “worship the One who made the heaven and the earth and sea and springs of waters” (Revelation 14:7).</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>Christmas</h3>
-                        <p>The celebration of Christmas, widely accepted as a Christian holiday, actually originates from pagan festivals like Rome’s Saturnalia, a week-long revelry of feasting and gift-giving that began around 217 BCE, and the worship of Mithra, a Persian god whose birth was celebrated on December 25. The Bible provides no command to celebrate Jesus’ birth, and the account of his nativity notes that “shepherds were living out of doors and keeping watch in the night over their flocks” (Luke 2:8), a detail suggesting an autumn birth, likely in September or October, when shepherds in Judea still tended flocks outdoors, not a winter date like December 25. This pagan origin was cemented in 336 CE, when Emperor Constantine, seeking to unify his empire’s Christians and pagans, officially merged these traditions into a “Christian” holiday, a move that Scripture never endorses. Jehovah forbids adopting such customs, warning, “Do not learn the way of the nations... for the customs of the peoples are a delusion” (Jeremiah 10:2-3), yet Christmas persists with its trees, lights, and Santa Claus—elements rooted in Germanic and Norse mythology, not the Bible. True worshipers reject this festival, knowing that Jehovah demands worship “in truth” (John 4:24), not through lies borrowed from idolaters.</p>
-                    </div>
-                    <div class="subtopic">
-                        <h3>Easter</h3>
-                        <p>Easter, another cornerstone of false worship, fuses the commemoration of Jesus’ resurrection with pagan fertility rites, a
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <div class="numbered-navigation">
+        <a href="#" onclick="showLesson(1)">1</a>
+        <a href="#" onclick="showLesson(2)">2</a>
+        <a href="#" onclick="showLesson(3)">3</a>
+        <a href="#" onclick="showLesson(4)">4</a>
+        <a href="#" onclick="showLesson(5)">5</a>
+        <a href="#" onclick="showLesson(6)">6</a>
+        <a href="#" onclick="showLesson(7)">7</a>
+        <a href="#" onclick="showLesson(8)">8</a>
+        <a href="#" onclick="showLesson(9)">9</a>
+        <a href="#" onclick="showLesson(10)">10</a>
+        <a href="#" onclick="showLesson(11)">11</a>
+    </div>
+
+    <div class="article">
+        <p class="scripture">"I planted, Apollos watered, but God kept making it grow, so that neither is the one who plants anything nor is the one who waters, but God who makes it grow." - 1 Corinthians 3:6,7</p>
+    </div>
+
+    <footer>
+        <p>© 2025 Just Wise Love. All rights reserved. All research is from JW.ORG, and Bible verses are quoted from the New World Translation (2013 revision).</p>
+    </footer>
+
+    <script>
+        let currentLesson = 1;
+        const totalLessons = 11;
+
+        function showLesson(lessonNumber) {
+            for (let i = 1; i <= totalLessons; i++) {
+                document.getElementById(`lesson-${i}`).style.display = 'none';
+            }
+            document.getElementById(`lesson-${lessonNumber}`).style.display = 'block';
+            currentLesson = lessonNumber;
+            const details = document.querySelector('details');
+            details.open = true; // Opens details when a lesson is selected
+        }
+
+        function showNextLesson() {
+            if (currentLesson < totalLessons) {
+                currentLesson++;
+                showLesson(currentLesson);
+            }
+        }
+
+        function showPreviousLesson() {
+            if (currentLesson > 1) {
+                currentLesson--;
+                showLesson(currentLesson);
+            }
+        }
+
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+            const button = document.querySelector('.mode-toggle');
+            button.textContent = document.body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        }
+
+        window.onload = function() {
+            showLesson(1);
+            const details = document.querySelector('details');
+            details.open = false; // Ensures details starts closed
+        };
+    </script>
+</body>
+</html>
