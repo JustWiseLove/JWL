@@ -20,18 +20,18 @@
 /* Body and Theme Styles */
 /* ========================================================================= */
 
-/* Base body styles for light mode */
+/* Base body styles */
 body {
-    background-color: #ffffff; /* White background in light mode */
-    color: #333333; /* Dark gray text in light mode */
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark gray text */
     line-height: 1.6; /* Improved readability with line spacing */
     transition: background-color 0.3s, color 0.3s; /* Smooth theme transition */
 }
 
 /* Dark mode overrides for body */
 body.dark-mode {
-    background-color: #1a1a1a; /* Dark gray background in dark mode */
-    color: #e6e6e6; /* Light gray text in dark mode */
+    background-color: #333333; /* Dark gray background */
+    color: #cccccc; /* Light gray text */
 }
 
 /* ========================================================================= */
@@ -40,7 +40,7 @@ body.dark-mode {
 
 /* Header layout and styling */
 header {
-    background-color: #000000; /* Black background */
+    background-color: #ffffff; /* White background */
     padding: 1rem; /* Inner spacing */
     display: flex; /* Flexbox for layout */
     justify-content: space-between; /* Space out logo and button */
@@ -56,30 +56,30 @@ h1, h1 a {
 }
 
 header h1 {
-    color: #ffd800; /* Gold color for JWL logo */
+    color: #000000; /* Black color for JWL logo */
     font-size: 2rem; /* Larger font size */
     font-family: 'Audiowide', sans-serif; /* Audiowide font for branding */
 }
 
 /* Logo link styling */
 header h1 a {
-    color: #ffd800; /* Gold color for link */
+    color: #000000; /* Black color for link */
     text-decoration: none; /* Removes underline */
     font-family: 'Audiowide', sans-serif; /* Audiowide font for branding */
 }
 
-/* Ensure link color remains gold in all states */
+/* Ensure link color remains black in all states */
 header h1 a:link,
 header h1 a:visited,
 header h1 a:hover,
 header h1 a:active {
-    color: #ffd800; /* Consistent gold color */
+    color: #000000; /* Consistent black color */
 }
 
 /* Mode toggle button styling */
 .mode-toggle {
     padding: 0.5rem 1rem; /* Vertical and horizontal padding */
-    background-color: #ffd800; /* Gold background */
+    background-color: #cccccc; /* Light gray background */
     border: none; /* No border */
     border-radius: 4px; /* Rounded corners */
     cursor: pointer; /* Hand cursor on hover */
@@ -90,7 +90,7 @@ header h1 a:active {
 
 /* Hover effect for mode toggle button */
 .mode-toggle:hover {
-    background-color: #e6c200; /* Darker gold on hover */
+    background-color: #666666; /* Medium gray on hover */
 }
 
 /* ========================================================================= */
@@ -120,7 +120,7 @@ header h1 a:active {
 
 /* Styling for featured scripture blocks */
 .featured-scripture {
-    background-color: #ffe868; /* Light gold background in light mode */
+    background-color: #333333; /* Dark gray background */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
     padding: 1.5rem; /* Inner spacing */
@@ -137,7 +137,7 @@ body.dark-mode .featured-scripture {
 /* Scripture paragraph styling */
 .featured-scripture p {
     font-style: italic; /* Italicized text */
-    color: #555555; /* Medium gray in light mode */
+    color: #cccccc; /* Light gray text */
     font-size: 1.2rem; /* Slightly larger text */
 }
 
@@ -152,7 +152,7 @@ body.dark-mode .featured-scripture p {
 
 /* Base card styling */
 .card {
-    background-color: #ffe868; /* Light gold background in light mode */
+    background-color: #333333; /* Dark gray background */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
     overflow: hidden; /* Prevents content overflow */
@@ -174,12 +174,12 @@ body.dark-mode .card {
 /* Featured card specific styling */
 .card.featured {
     max-width: 600px; /* Limits width */
-    border: 2px solid #ffd800; /* Gold border */
+    border: 2px solid #ffffff; /* White border */
 }
 
 /* Card header styling */
 .card-header {
-    background-color: #FFD800; /* Gold background */
+    background-color: #ffffff; /* White background */
     color: #000000; /* Black text */
     padding: 1rem; /* Inner spacing */
     font-size: 1.5rem; /* Larger text */
@@ -190,7 +190,7 @@ body.dark-mode .card {
 
 /* Featured card header override */
 .card.featured .card-header {
-    background-color: #ffd800; /* Gold background */
+    background-color: #ffffff; /* White background */
     color: #000000; /* Black text */
 }
 
@@ -207,37 +207,37 @@ details[open] .card-content {
 
 /* Card content paragraphs */
 .card-content p {
-    color: #333333; /* Dark gray in light mode */
+    color: #cccccc; /* Light gray text */
     font-size: 1rem; /* Standard text size */
     margin-bottom: 1rem; /* Spacing below */
 }
 
 /* Dark mode override for card content text */
 body.dark-mode .card-content p {
-    color: #e6e6e6; /* Light gray in dark mode */
+    color: #cccccc; /* Light gray in dark mode */
 }
 
 /* Scripture styling within cards */
 .card-content .scripture {
     font-style: italic; /* Italicized text */
-    color: #555555; /* Medium gray in light mode */
+    color: #ffffff; /* White text */
     font-size: 0.95rem; /* Slightly smaller text */
     margin: 1rem 0; /* Vertical spacing */
     text-align: center; /* Centered text */
-    background-color: #ffe868; /* Light gold background */
+    background-color: #333333; /* Dark gray background */
     padding: 0.5rem; /* Inner padding */
     border-radius: 4px; /* Rounded corners */
 }
 
 /* Dark mode override for scripture in cards */
 body.dark-mode .card-content .scripture {
-    color: #cccccc; /* Light gray text */
-    background-color: #404040; /* Darker gray background */
+    color: #ffffff; /* White text */
+    background-color: #333333; /* Dark gray background */
 }
 
 /* Links within card content */
 .card-content a {
-    color: #FFD800; /* Gold link color */
+    color: #ffffff; /* White link color */
     text-decoration: none; /* No underline */
     font-weight: bold; /* Bold text */
     transition: color 0.3s; /* Smooth color change */
@@ -245,7 +245,7 @@ body.dark-mode .card-content .scripture {
 
 /* Hover effect for links in cards */
 .card-content a:hover {
-    color: #ffd800; /* Gold on hover */
+    color: #cccccc; /* Light gray on hover */
 }
 
 /* ========================================================================= */
@@ -276,7 +276,7 @@ details summary {
 /* Article main heading */
 .article h1 {
     font-size: 2.5rem; /* Large title */
-    color: #ffd800; /* Gold color */
+    color: #ffffff; /* White color */
     text-align: center; /* Centered */
     margin-bottom: 2rem; /* Spacing below */
 }
@@ -284,38 +284,38 @@ details summary {
 /* Article subheadings */
 .article h2 {
     font-size: 1.8rem; /* Slightly smaller than h1 */
-    color: #FFD800; /* Gold color */
+    color: #ffffff; /* White color */
     margin: 1.5rem 0 1rem; /* Vertical spacing */
 }
 
 /* Article paragraphs */
 .article p {
-    color: #333333; /* Dark gray in light mode */
+    color: #cccccc; /* Light gray text */
     font-size: 1rem; /* Standard size */
     margin-bottom: 1rem; /* Spacing below */
 }
 
 /* Dark mode override for article paragraphs */
 body.dark-mode .article p {
-    color: #e6e6e6; /* Light gray in dark mode */
+    color: #cccccc; /* Light gray in dark mode */
 }
 
-/* Scripture styling in articles (consistent with cards) */
+/* Scripture styling in articles */
 .article .scripture {
     font-style: italic; /* Italicized */
-    color: #555555; /* Medium gray in light mode */
+    color: #ffffff; /* White text */
     font-size: 0.95rem; /* Slightly smaller */
     margin: 1rem 0; /* Vertical spacing */
     text-align: center; /* Centered */
-    background-color: #ffe868; /* Light gold background */
+    background-color: #333333; /* Dark gray background */
     padding: 0.5rem; /* Inner padding */
     border-radius: 4px; /* Rounded corners */
 }
 
 /* Dark mode override for article scripture */
 body.dark-mode .article .scripture {
-    color: #cccccc; /* Light gray text */
-    background-color: #404040; /* Dark gray background */
+    color: #ffffff; /* White text */
+    background-color: #333333; /* Dark gray background */
 }
 
 /* ========================================================================= */
@@ -326,7 +326,7 @@ body.dark-mode .article .scripture {
 .button-section {
     text-align: center; /* Centers buttons */
     padding: 0.5rem 0; /* Reduced vertical padding for less space above/below */
-    background-color: #1a1a1a; /* Dark gray (matches dark mode) */
+    background-color: #333333; /* Dark gray background */
 }
 
 /* Light mode override for button section */
@@ -337,14 +337,14 @@ body.light-mode .button-section {
 /* Button section heading */
 .button-section h2 {
     font-size: 1.8rem; /* Large text */
-    color: #ffd800; /* Gold color */
+    color: #ffffff; /* White color */
     margin-bottom: 1rem; /* Spacing below */
 }
 
 /* Study Guide button */
 .btn-study {
-    background-color: #FFD800; /* Gold background */
-    color: #1a1a1a; /* Dark gray text */
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark gray text */
     padding: 12px 25px; /* Vertical and horizontal padding */
     margin: 10px; /* Spacing around */
     border: none; /* No border */
@@ -358,8 +358,8 @@ body.light-mode .button-section {
 
 /* Topic Index button */
 .btn-topic {
-    background-color: #ffd800; /* Gold background */
-    color: #1a1a1a; /* Dark gray text */
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark gray text */
     padding: 12px 25px; /* Vertical and horizontal padding */
     margin: 10px; /* Spacing around */
     border: none; /* No border */
@@ -379,7 +379,7 @@ body.light-mode .button-section {
 
 /* Button link styling for Study Guide */
 .btn-study a {
-    color: #1a1a1a; /* Dark gray text */
+    color: #333333; /* Dark gray text */
     text-decoration: none; /* No underline */
 }
 
@@ -388,13 +388,13 @@ body.light-mode .button-section {
 .btn-study a:visited,
 .btn-study a:hover,
 .btn-study a:active {
-    color: #1a1a1a; /* Consistent dark gray */
+    color: #333333; /* Consistent dark gray */
     text-decoration: none; /* No underline in any state */
 }
 
 /* Button link styling for Topic Index */
 .btn-topic a {
-    color: #1a1a1a; /* Dark gray text */
+    color: #333333; /* Dark gray text */
     text-decoration: none; /* No underline */
 }
 
@@ -403,7 +403,7 @@ body.light-mode .button-section {
 .btn-topic a:visited,
 .btn-topic a:hover,
 .btn-topic a:active {
-    color: #1a1a1a; /* Consistent dark gray */
+    color: #333333; /* Consistent dark gray */
     text-decoration: none; /* No underline in any state */
 }
 
@@ -415,14 +415,14 @@ body.light-mode .button-section {
 footer {
     text-align: center; /* Centered text */
     padding: 1rem; /* Inner padding */
-    background-color: #ffd800; /* Gold background */
-    color: #000000; /* Black text */
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark gray text */
     margin-top: 2rem; /* Spacing above */
 }
 
-/* Dark mode retains same footer styling (no override needed) */
+/* Dark mode retains same footer styling */
 body.dark-mode footer {
-    background-color: #ffd800; /* Gold background persists */
+    background-color: #333333; /* Dark gray background */
 }
 
 /* ========================================================================= */
@@ -477,7 +477,7 @@ p {
 }
 
 body.dark-mode .lesson-title {
-    color: #e6e6e6;
+    color: #cccccc;
 }
 
 /* ========================================================================= */
@@ -498,9 +498,9 @@ body.dark-mode .lesson-title {
     height: 40px;
     line-height: 40px;
     text-align: center;
-    background-color: #fff;
-    color: #1a1a1a;
-    border: 2px solid #ffd800;
+    background-color: #ffffff;
+    color: #333333;
+    border: 2px solid #cccccc;
     border-radius: 5px;
     text-decoration: none;
     font-size: 16px;
@@ -508,6 +508,6 @@ body.dark-mode .lesson-title {
 }
 
 .numbered-navigation a:hover {
-    background-color: #ffd800;
-    color: #1a1a1a;
+    background-color: #cccccc;
+    color: #333333;
 }
