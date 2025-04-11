@@ -98,11 +98,11 @@
         }
         /* Override for Save Article button to ensure black background and white text */
         .btn-study#saveBtn {
-            background-color: #ffffff; /* White background */
+            background-color: #d3d3d3; /* Light gray background */
             color: #000000; /* Black text */
         }
         body.dark-mode .btn-study#saveBtn {
-            background-color: #ffffff; /* White for dark mode */
+            background-color: #d3d3d3; /* Light gray for dark mode */
             color: #000000; /* Blavk text for dark mode */
         }
     </style>
@@ -162,7 +162,7 @@
                     };
                     editingArticleId = null;
                     saveBtn.textContent = 'Save Article';
-                    saveBtn.style.backgroundColor = '#ffffff'; /* White instead of gold */
+                    saveBtn.style.backgroundColor = '#d3d3d3'; /* Light gray instead of gold */
                 } else {
                     const article = {
                         id: Date.now(),
@@ -191,7 +191,7 @@
                 editingArticleId = id;
                 const saveBtn = document.getElementById('saveBtn');
                 saveBtn.textContent = 'Update Article';
-                saveBtn.style.backgroundColor = '#FFFFFF'; /* White instead of gold */
+                saveBtn.style.backgroundColor = '#d3d3d3'; /* Light gray instead of gold */
             }
         }
 
