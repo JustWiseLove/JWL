@@ -345,7 +345,7 @@
             }
         }
 
-        // Update shaft worker with prioritized collection and dump behavior
+        // Update shaft worker with prioritized collection
         function updateShaftWorker(worker) {
             let sortedMines = mines.slice().sort((a, b) => a.y - b.y); // Sort mines from top to bottom
 
@@ -368,47 +368,48 @@
                     worker.movingDown = true; // Start moving down after dumping
                 }
             } else if (worker.movingDown) {
-                // Moving down, stop at each bin to collect triangles
-                let nextMine = sortedMines.find(m => m.y > worker.y);
-                if (!nextMine) {
-                    // At the lowest mine
-                    let lowestMine = sortedMines[sortedMines.length - 1];
-                    if (lowestMine) {
-                        // Collect triangles if available and not full
-                        if (lowestMine.bin.triangles >= 3 && worker.triangles < worker.carryCapacity) {
-                            let trianglesToTake = Math.min(lowestMine.bin.triangles, worker.carryCapacity - worker.triangles);
-                            lowestMine.bin.triangles -= trianglesToTake;
+                // Find the first mine with triangles >= 3, or move to the next mine if none
+                let targetMine = null;
+                for (let mine of sortedMines) {
+                    if (mine.y >= worker.y && mine.bin.triangles >= 3) {
+                        targetMine = mine;
+                        break;
+                    }
+                }
+
+                if (!targetMine && worker.y < sortedMines[sortedMines.length - 1].y) {
+                    // No non-empty bins at or below current position, move to next mine
+                    let nextMine = sortedMines.find(m => m.y > worker.y);
+                    if (nextMine) {
+                        let dy = nextMine.y - worker.y;
+                        worker.y += Math.sign(dy) * worker.speed;
+                        if (Math.abs(dy) < worker.speed) {
+                            worker.y = nextMine.y;
+                        }
+                    }
+                } else if (targetMine) {
+                    // Move to the target mine's y position
+                    let dy = targetMine.y - worker.y;
+                    if (Math.abs(dy) > worker.speed) {
+                        worker.y += Math.sign(dy) * worker.speed;
+                    } else {
+                        worker.y = targetMine.y;
+                        // Collect triangles if not full
+                        if (targetMine.bin.triangles >= 3 && worker.triangles < worker.carryCapacity) {
+                            let trianglesToTake = Math.min(targetMine.bin.triangles, worker.carryCapacity - worker.triangles);
+                            targetMine.bin.triangles -= trianglesToTake;
                             worker.triangles += trianglesToTake;
                             worker.hasTruth = worker.triangles > 0;
                         }
-                        // If the lowest mine bin is empty (0 triangles), go dump even if not full
-                        if (lowestMine.bin.triangles === 0) {
-                            worker.movingDown = false;
-                            worker.movingToBin = true;
-                        }
                         // If full, go dump
-                        else if (worker.triangles >= worker.carryCapacity) {
+                        if (worker.triangles >= worker.carryCapacity) {
                             worker.movingDown = false;
                             worker.movingToBin = true;
                         }
                     }
-                    return;
-                }
-                let nextY = nextMine.y;
-                let dy = nextY - worker.y;
-                worker.y += Math.sign(dy) * worker.speed;
-                if (Math.abs(dy) < worker.speed) {
-                    worker.y = nextY;
-                    // Collect all available triangles from the current mine bin
-                    let currentMine = sortedMines.find(m => m.y === worker.y);
-                    if (currentMine && currentMine.bin.triangles >= 3 && worker.triangles < worker.carryCapacity) {
-                        let trianglesToTake = Math.min(currentMine.bin.triangles, worker.carryCapacity - worker.triangles);
-                        currentMine.bin.triangles -= trianglesToTake;
-                        worker.triangles += trianglesToTake;
-                        worker.hasTruth = worker.triangles > 0;
-                    }
-                    // If full, start moving up
-                    if (worker.triangles >= worker.carryCapacity) {
+                } else {
+                    // At the lowest mine with no triangles to collect, go dump if carrying any
+                    if (worker.triangles > 0) {
                         worker.movingDown = false;
                         worker.movingToBin = true;
                     }
@@ -585,7 +586,7 @@
                 // Clamp cameraY to keep the game world in view
                 let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
                 worldHeight = lowestY + PATH_WIDTH;
-                cameraY = Math.max(CART_Y - window.innerHeight / 2, Math.min(cameraY, workdHeight - window.innerHeight / 2));
+                cameraY = Math.max(CART_Y - window.innerHeight / 2, Math.min(cameraY, worldHeight - window.innerHeight / 2));
             }
         });
 
