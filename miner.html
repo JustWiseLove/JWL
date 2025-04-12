@@ -95,7 +95,7 @@
                     movingToBin: false,
                     waiting: false,
                     triangles: 0,
-                    carryCapacity: 9, // Start at 9
+                    carryCapacity: 12, // Start at 12
                     movingDown: true // Track direction
                 }
             ],
@@ -109,7 +109,7 @@
                     movingToBin: false,
                     waiting: true,
                     triangles: 0,
-                    carryCapacity: 6 // Start at 6
+                    carryCapacity: 9 // Start at 9
                 }
             ]
         };
@@ -177,7 +177,7 @@
                         movingToBin: false,
                         waiting: false,
                         triangles: 0,
-                        carryCapacity: 9, // Start at 9
+                        carryCapacity: 12, // Start at 12
                         movingDown: true
                     }
                 ],
@@ -191,7 +191,7 @@
                         movingToBin: false,
                         waiting: true,
                         triangles: 0,
-                        carryCapacity: 6 // Start at 6
+                        carryCapacity: 9 // Start at 9
                     }
                 ]
             };
@@ -520,11 +520,14 @@
                     worker.level++;
                     // Update speed and capacity based on worker type
                     if (button.worker === 'shaft') {
-                        worker.speed = 6 + (worker.level - 1) * 0.5; // Start at 6, +0.5 per level
-                        worker.carryCapacity = 9 + (worker.level - 1) * 2; // Start at 9, +2 per level
+                        worker.speed = 6 + (worker.level - 1) * 2; // Start at 6, +2 per level
+                        worker.carryCapacity = 12 + (worker.level - 1) * 6; // Start at 12, +6 per level
+                    } else if (button.worker === 'cart') {
+                        worker.speed = 3 + (worker.level - 1) * 1; // Start at 3, +1 per level
+                        worker.carryCapacity = 9 + (worker.level - 1) * 6; // Start at 9, +6 per level
                     } else {
-                        worker.speed = 3 + (worker.level - 1) * 0.25; // Start at 3, +0.25 per level
-                        worker.carryCapacity = 6 + (worker.level - 1) * 1; // Start at 6, +1 per level
+                        worker.speed = 3 + (worker.level - 1) * 0.25; // Mine: Start at 3, +0.25 per level
+                        worker.carryCapacity = 6 + (worker.level - 1) * 1; // Mine: Start at 6, +1 per level
                     }
                 });
 
@@ -581,10 +584,10 @@
                             width: BUTTON_WIDTH,
                             height: BUTTON_HEIGHT
                         });
-                        // Increase shaft worker capacity by 6
-                        workers.shaft[0].carryCapacity += 6;
-                        // Increase cart worker capacity by 3
-                        workers.cart[0].carryCapacity += 3;
+                        // Increase shaft worker capacity by 9
+                        workers.shaft[0].carryCapacity += 9;
+                        // Increase cart worker capacity by 6
+                        workers.cart[0].carryCapacity += 6;
                     }
                 }
             }
