@@ -290,9 +290,14 @@
 
         function drawButtons() {
             buttons.forEach(button => {
-                ctx.fillStyle = button.name === 'AUTO' ? '#000000' : '#555555';
+                // AUTO button: white with black text when active, black with white text when inactive
+                if (button.name === 'AUTO') {
+                    ctx.fillStyle = isAutoEnabled ? '#FFFFFF' : '#000000';
+                } else {
+                    ctx.fillStyle = '#555555';
+                }
                 ctx.fillRect(button.x, button.y - cameraY, button.width, button.height);
-                ctx.fillStyle = '#FFFFFF';
+                ctx.fillStyle = button.name === 'AUTO' && isAutoEnabled ? '#000000' : '#FFFFFF';
                 ctx.font = `${window.innerWidth * 0.03}px Arial`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
@@ -552,7 +557,7 @@
             worldHeight = lowestY + PATH_WIDTH;
         }
 
-        // Unified input handling for touch and mouse
+        // Unified input handling
         function handleStart(clientX, clientY) {
             const rect = canvas.getBoundingClientRect();
             const x = (clientX - rect.left) / (rect.width / window.innerWidth);
@@ -676,7 +681,7 @@
             requestAnimationFrame(gameLoop);
         }
 
-        // Initial render attempt
+        // Initial render
         try {
             gameLoop();
         } catch (error) {
