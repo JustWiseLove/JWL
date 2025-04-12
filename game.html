@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth Miner</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #gameCanvas {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Adjust canvas for device pixel ratio and screen size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth * devicePixelRatio;
+            canvas.height = window.innerHeight * devicePixelRatio;
+            canvas.style.width = window.innerWidth + 'px';
+            canvas.style.height = window.innerHeight + 'px';
+            ctx.scale(devicePixelRatio, devicePixelRatio);
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Game constants
+        const PATH_WIDTH = window.innerWidth * 0.15;
+        const WORKER_SIZE = PATH_WIDTH * 0.5;
+        const TRIANGLE_SIZE = WORKER_SIZE * 0.3;
+        const BIN_SIZE = PATH_WIDTH * 0.7;
+        const PATH_COLOR = '#777777';
+        const WORKER_COLOR = '#000000';
+        const BIN_COLOR = '#000000';
+        const TRIANGLE_COLOR = '#FFFFFF';
+        const GOLD_COLOR = '#FFD800';
+        const MINE_Y = window.innerHeight * 0.85;
+        const MINE_SPACING = 100; // Increased to 100 pixels below each mine
+        const SHAFT_X = window.innerWidth * 0.15;
+        const CART_Y = window.innerHeight * 0.15;
+        const MINE_START_X = window.innerWidth * 0.85;
+        const MINE_END_X = SHAFT_X;
+        const SHAFT_END_Y = CART_Y;
+        const CART_START_X = SHAFT_X;
+        const CART_END_X = window.innerWidth * 0.85;
+        const BUTTON_X = window.innerWidth * 0.85 - 20;
+        const MAX_MINES = 10; // Up to Mine 10
+
+        // Game state
+        let truthCount = 0;
+        let totalTruthsMined = 0;
+        let miningGold = false;
+        let mines = [
+            {
+                y: MINE_Y,
+                worker: {
+                    x: MINE_START_X,
+                    y: MINE_Y,
+                    speed: 2,
+                    level: 1,
+                    hasTruth: false,
+                    movingToBin: false,
+                    waiting: true,
+                    triangles: 0
+                },
+                bin: { x: MINE_END_X, y: MINE_Y, triangles: 3 },
+                name: 'Mine 1'
+            }
+        ];
+        let workers = {
+            shaft: [
+                {
+                    x: SHAFT_X,
+                    y: MINE_Y,
+                    speed: 2,
+                    level: 1,
+                    hasTruth: false,
+                    movingToBin: false,
+                    waiting: true,
+                    triangles: 0,
+                    carryCapacity: 3
+                }
+            ],
+            cart: [
+                {
+                    x: CART_START_X,
+                    y: CART_Y,
+                    speed: 2,
+                    level: 1,
+                    hasTruth: false,
+                    movingToBin: false,
+                    waiting: true,
+                    triangles: 0,
+                    carryCapacity: 3
+                }
+            ]
+        };
+        let bins = {
+            shaft: { x: SHAFT_X, y: SHAFT_END_Y, triangles: 0 },
+            cart: { x: CART_END_X, y: CART_Y, triangles: 0 }
+        };
+
+        // Scrolling state
+        let cameraY = 0;
+        let worldHeight = window.innerHeight;
+
+        // Button definitions
+        let buttons = [
+            { name: 'Cart', worker: 'cart', x: BUTTON_X, y: window.innerHeight * 0.25, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
+            { name: 'Shaft', worker: 'shaft', x: BUTTON_X, y: window.innerHeight * 0.45, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
+            { name: 'Mine 1', worker: 'mine', index: 0, x: BUTTON_X, y: window.innerHeight * 0.65, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 }
+        ];
+
+        // Reset game state except totalTruthsMined
+        function resetGameState() {
+            truthCount = 0;
+            mines = [
+                {
+                    y: MINE_Y,
+                    worker: {
+                        x: MINE_START_X,
+                        y: MINE_Y,
+                        speed: 2,
+                        level: 1,
+                        hasTruth: false,
+                        movingToBin: false,
+                        waiting: true,
+                        triangles: 0
+                    },
+                    bin: { x: MINE_END_X, y: MINE_Y, triangles: 3 },
+                    name: 'Mine 1'
+                }
+            ];
+            workers = {
+                shaft: [
+                    {
+                        x: SHAFT_X,
+                        y: MINE_Y,
+                        speed: 2,
+                        level: 1,
+                        hasTruth: false,
+                        movingToBin: false,
+                        waiting: true,
+                        triangles: 0,
+                        carryCapacity: 3
+                    }
+                ],
+                cart: [
+                    {
+                        x: CART_START_X,
+                        y: CART_Y,
+                        speed: 2,
+                        level: 1,
+                        hasTruth: false,
+                        movingToBin: false,
+                        waiting: true,
+                        triangles: 0,
+                        carryCapacity: 3
+                    }
+                ]
+            };
+            bins = {
+                shaft: { x: SHAFT_X, y: SHAFT_END_Y, triangles: 0 },
+                cart: { x: CART_END_X, y: CART_Y, triangles: 0 }
+            };
+            buttons = [
+                { name: 'Cart', worker: 'cart', x: BUTTON_X, y: window.innerHeight * 0.25, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
+                { name: 'Shaft', worker: 'shaft', x: BUTTON_X, y: window.innerHeight * 0.45, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
+                { name: 'Mine 1', worker: 'mine', index: 0, x: BUTTON_X, y: window.innerHeight * 0.65, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 }
+            ];
+            cameraY = 0;
+            worldHeight = window.innerHeight;
+        }
+
+        // Draw diamond shape
+        function drawDiamond(x, y, size, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x, y - size);
+            ctx.lineTo(x + size, y);
+            ctx.lineTo(x, y + size);
+            ctx.lineTo(x - size, y);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Draw triangle
+        function drawTriangle(x, y, size, color) {
+            ctx.fillStyle = miningGold ? GOLD_COLOR : color;
+            ctx.beginPath();
+            ctx.moveTo(x, y - size);
+            ctx.lineTo(x + size * 0.866, y + size * 0.5);
+            ctx.lineTo(x - size * 0.866, y + size * 0.5);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Draw worker with triangles
+        function drawWorker(worker) {
+            drawDiamond(worker.x, worker.y - cameraY, WORKER_SIZE, WORKER_COLOR);
+            if (worker.hasTruth) {
+                drawTriangle(worker.x, worker.y - cameraY - WORKER_SIZE * 0.5, TRIANGLE_SIZE, TRIANGLE_COLOR);
+                drawTriangle(worker.x - WORKER_SIZE * 0.5, worker.y - cameraY, TRIANGLE_SIZE, TRIANGLE_COLOR);
+                drawTriangle(worker.x + WORKER_SIZE * 0.5, worker.y - cameraY, TRIANGLE_SIZE, TRIANGLE_COLOR);
+            }
+        }
+
+        // Draw bin with triangles
+        function drawBin(bin) {
+            ctx.fillStyle = BIN_COLOR;
+            ctx.fillRect(bin.x - BIN_SIZE / 2, bin.y - cameraY - BIN_SIZE / 2, BIN_SIZE, BIN_SIZE);
+            if (bin.triangles > 0) {
+                drawTriangle(bin.x, bin.y - cameraY - BIN_SIZE * 0.3, TRIANGLE_SIZE, TRIANGLE_COLOR);
+                drawTriangle(bin.x - BIN_SIZE * 0.3, bin.y - cameraY, TRIANGLE_SIZE, TRIANGLE_COLOR);
+                drawTriangle(bin.x + BIN_SIZE * 0.3, bin.y - cameraY, TRIANGLE_SIZE, TRIANGLE_COLOR);
+            }
+        }
+
+        // Draw paths
+        function drawPaths() {
+            ctx.fillStyle = PATH_COLOR;
+            mines.forEach(mine => {
+                ctx.fillRect(0, mine.y - cameraY - PATH_WIDTH / 2, window.innerWidth, PATH_WIDTH);
+            });
+            ctx.fillRect(0, CART_Y - cameraY - PATH_WIDTH / 2, window.innerWidth, PATH_WIDTH);
+            let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
+            ctx.fillRect(SHAFT_X - PATH_WIDTH / 2, CART_Y - cameraY, PATH_WIDTH, lowestY - CART_Y);
+        }
+
+        // Draw Truth counter and related text
+        function drawCounter() {
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = `${window.innerWidth * 0.05}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            let counterY = cameraY + window.innerHeight * 0.5;
+            ctx.fillText(miningGold ? 'Solid Food' : 'Drink Milk', window.innerWidth * 0.5, counterY - 125);
+            ctx.fillText(`Truth: ${truthCount}`, window.innerWidth * 0.5, counterY);
+            ctx.fillText(`${totalTruthsMined}`, window.innerWidth * 0.5, counterY + 125);
+        }
+
+        // Draw bin counters
+        function drawBinCounters() {
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = `${window.innerWidth * 0.05}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            mines.forEach(mine => {
+                ctx.fillText(`${mine.bin.triangles}`, mine.bin.x, mine.bin.y - cameraY + BIN_SIZE / 2 + 10);
+            });
+            ctx.textBaseline = 'bottom';
+            ctx.fillText(`${bins.shaft.triangles}`, bins.shaft.x, bins.shaft.y - cameraY - BIN_SIZE / 2 - 10);
+        }
+
+        // Draw buttons
+        function drawButtons() {
+            buttons.forEach(button => {
+                ctx.fillStyle = '#555555';
+                ctx.fillRect(button.x, button.y - cameraY, button.width, button.height); // Adjust button position with camera
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = `${window.innerWidth * 0.03}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                let level;
+                if (button.worker === 'mine' && button.index < mines.length) {
+                    level = mines[button.index].worker.level;
+                } else {
+                    level = workers[button.worker][0].level;
+                }
+                let cost = level * 10;
+                ctx.fillText(`${button.name} (${cost})`, button.x + button.width / 2, button.y - cameraY + button.height / 2);
+            });
+        }
+
+        // Update mine worker
+        function updateMineWorker(mine) {
+            let worker = mine.worker;
+            if (worker.waiting) {
+                if (mine.bin.triangles >= 3 || !worker.hasTruth) {
+                    worker.waiting = false;
+                    worker.movingToBin = true;
+                    worker.hasTruth = true;
+                    worker.triangles = 3;
+                }
+            } else if (worker.movingToBin) {
+                let dx = MINE_END_X - worker.x;
+                worker.x += Math.sign(dx) * worker.speed;
+                if (Math.abs(dx) < worker.speed) {
+                    worker.x = MINE_END_X;
+                    worker.movingToBin = false;
+                    mine.bin.triangles += 3;
+                    worker.hasTruth = false;
+                    worker.triangles = 0;
+                }
+            } else {
+                let dx = MINE_START_X - worker.x;
+                worker.x += Math.sign(dx) * worker.speed;
+                if (Math.abs(dx) < worker.speed) {
+                    worker.x = MINE_START_X;
+                    worker.waiting = true;
+                }
+            }
+        }
+
+        // Update shaft worker with multi-bin collection
+        function updateShaftWorker(worker) {
+            let sortedMines = mines.slice().sort((a, b) => b.y - a.y); // Sort mines from bottom to top
+            let lowestY = sortedMines[0].y;
+
+            if (worker.waiting) {
+                worker.y = lowestY; // Start at the lowest mine
+                worker.waiting = false;
+                worker.movingToBin = false;
+            } else if (!worker.movingToBin) {
+                // Collect from bins from bottom to top
+                for (let i = 0; i < sortedMines.length; i++) {
+                    let mine = sortedMines[i];
+                    if (worker.y === mine.y && mine.bin.triangles >= 3 && worker.triangles < worker.carryCapacity) {
+                        let trianglesToTake = Math.min(3, worker.carryCapacity - worker.triangles);
+                        mine.bin.triangles -= trianglesToTake;
+                        worker.triangles += trianglesToTake;
+                        worker.hasTruth = worker.triangles > 0;
+                        if (worker.triangles >= worker.carryCapacity) {
+                            worker.movingToBin = true;
+                            break;
+                        }
+                    }
+                }
+                // Move to the next bin up or to the cart bin if full
+                if (!worker.movingToBin) {
+                    let nextY = sortedMines.find(m => m.y < worker.y)?.y || SHAFT_END_Y;
+                    let dy = nextY - worker.y;
+                    worker.y += Math.sign(dy) * worker.speed;
+                    if (Math.abs(dy) < worker.speed) {
+                        worker.y = nextY;
+                        if (worker.y === SHAFT_END_Y) {
+                            worker.movingToBin = true;
+                        }
+                    }
+                }
+            } else {
+                let dy = SHAFT_END_Y - worker.y;
+                worker.y += Math.sign(dy) * worker.speed;
+                if (Math.abs(dy) < worker.speed) {
+                    worker.y = SHAFT_END_Y;
+                    worker.movingToBin = false;
+                    bins.shaft.triangles += worker.triangles;
+                    worker.hasTruth = false;
+                    worker.triangles = 0;
+                    worker.waiting = true;
+                }
+            }
+        }
+
+        // Update cart worker
+        function updateCartWorker(worker) {
+            if (worker.waiting) {
+                if (bins.shaft.triangles >= worker.carryCapacity) {
+                    worker.waiting = false;
+                    worker.movingToBin = true;
+                    bins.shaft.triangles -= worker.carryCapacity;
+                    worker.hasTruth = true;
+                    worker.triangles = worker.carryCapacity;
+                }
+            } else if (worker.movingToBin) {
+                let dx = CART_END_X - worker.x;
+                worker.x += Math.sign(dx) * worker.speed;
+                if (Math.abs(dx) < worker.speed) {
+                    worker.x = CART_END_X;
+                    worker.movingToBin = false;
+                    bins.cart.triangles += worker.triangles;
+                    truthCount += worker.triangles;
+                    totalTruthsMined += worker.triangles;
+                    worker.hasTruth = false;
+                    worker.triangles = 0;
+                    if (totalTruthsMined >= 5000 && !miningGold) {
+                        miningGold = true;
+                        resetGameState();
+                    }
+                    bins.cart.triangles = 0;
+                }
+            } else {
+                let dx = CART_START_X - worker.x;
+                worker.x += Math.sign(dx) * worker.speed;
+                if (Math.abs(dx) < worker.speed) {
+                    worker.x = CART_START_X;
+                    worker.waiting = true;
+                }
+            }
+        }
+
+        // Handle scrolling
+        function updateCamera() {
+            // Calculate the full height of the game world (from cart to lowest mine)
+            let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
+            let highestY = CART_Y; // Top of the game world
+            worldHeight = lowestY + PATH_WIDTH; // Add some padding at the bottom
+
+            // If the world height is smaller than the screen, center it
+            if (worldHeight < window.innerHeight) {
+                cameraY = (worldHeight - window.innerHeight) / 2;
+            } else {
+                // Otherwise, adjust camera to keep the lowest mine in view while showing as much of the world as possible
+                let targetY = lowestY - window.innerHeight + PATH_WIDTH * 2; // Add padding to see the lowest mine fully
+                cameraY = Math.max(0, Math.min(targetY, worldHeight - window.innerHeight));
+            }
+        }
+
+        // Handle upgrades and mine unlocking
+        function handleClick(x, y) {
+            buttons.forEach(button => {
+                // Adjust click coordinates for camera position
+                let adjustedY = y + cameraY;
+                if (x >= button.x && x <= button.x + button.width && adjustedY >= button.y && adjustedY <= button.y + button.height) {
+                    let level, workerGroup;
+                    if (button.worker === 'mine' && button.index < mines.length) {
+                        workerGroup = [mines[button.index].worker];
+                        level = workerGroup[0].level;
+                    } else {
+                        workerGroup = workers[button.worker];
+                        level = workerGroup[0].level;
+                    }
+                    let cost = level * 10;
+                    if (truthCount >= cost) {
+                        truthCount -= cost;
+                        // Check for mine unlock before incrementing level
+                        if (button.worker === 'mine' && cost === 10 && mines.length < MAX_MINES) {
+                            let newMineIndex = mines.length + 1;
+                            console.log(`Adding Mine ${newMineIndex} at purchase cost 10 (level ${level}) for Mine ${button.index + 1}`);
+                            let newMineY = mines[mines.length - 1].y + MINE_SPACING;
+                            mines.push({
+                                y: newMineY,
+                                worker: {
+                                    x: MINE_START_X,
+                                    y: newMineY,
+                                    speed: 2,
+                                    level: 1,
+                                    hasTruth: false,
+                                    movingToBin: false,
+                                    waiting: true,
+                                    triangles: 0
+                                },
+                                bin: { x: MINE_END_X, y: newMineY, triangles: 3 },
+                                name: `Mine ${newMineIndex}`
+                            });
+                            // Add new mine button between the new mine and the previous mine
+                            let prevMineY = mines[mines.length - 2].y;
+                            let newMineYForButton = mines[mines.length - 1].y;
+                            let buttonY = (prevMineY + newMineYForButton) / 2;
+                            buttons.push({
+                                name: `Mine ${newMineIndex}`,
+                                worker: 'mine',
+                                index: mines.length - 1,
+                                x: BUTTON_X,
+                                y: buttonY,
+                                width: window.innerWidth * 0.1,
+                                height: window.innerHeight * 0.1
+                            });
+                            // Double shaft and cart carry capacity
+                            workers.shaft[0].carryCapacity *= 2;
+                            workers.cart[0].carryCapacity *= 2;
+                        }
+                        // Increment level after checking for mine unlock
+                        workerGroup.forEach(worker => {
+                            worker.level++;
+                            worker.speed += 1;
+                        });
+                    }
+                }
+            });
+        }
+
+        // Touch event
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            const x = (touch.clientX - rect.left) / (rect.width / window.innerWidth);
+            const y = (touch.clientY - rect.top) / (rect.height / window.innerHeight);
+            handleClick(x, y);
+        });
+
+        // Game loop
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (truthCount === 6 && mines[0].bin.triangles !== 6) {
+                mines[0].bin.triangles = 6;
+            }
+
+            updateCamera();
+            drawPaths();
+            mines.forEach(mine => {
+                drawBin(mine.bin);
+                drawWorker(mine.worker);
+            });
+            drawBin(bins.shaft);
+            drawBin(bins.cart);
+            workers.shaft.forEach(worker => drawWorker(worker));
+            workers.cart.forEach(worker => drawWorker(worker));
+            drawCounter();
+            drawBinCounters();
+            drawButtons();
+
+            mines.forEach(updateMineWorker);
+            workers.shaft.forEach(updateShaftWorker);
+            workers.cart.forEach(updateCartWorker);
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>
