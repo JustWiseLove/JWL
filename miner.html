@@ -478,7 +478,8 @@
             let minCost = Infinity;
 
             buttons.forEach(button => {
-                if (button.worker) {
+                // Skip mine buttons if all 10 mines are created
+                if (button.worker && !(mines.length === MAX_MINES && button.worker === 'mine')) {
                     let level;
                     if (button.worker === 'mine' && button.index < mines.length) {
                         level = mines[button.index].worker.level;
