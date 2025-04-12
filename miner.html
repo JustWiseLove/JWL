@@ -297,12 +297,7 @@
         // Draw buttons
         function drawButtons() {
             buttons.forEach(button => {
-                if (button.name === 'AUTO') {
-                    // Black when enabled and all 10 mines exist, green when enabled otherwise, grey when disabled
-                    ctx.fillStyle = isAutoEnabled ? (mines.length === MAX_MINES ? '#000000' : '#00FF00') : '#555555';
-                } else {
-                    ctx.fillStyle = '#555555';
-                }
+                ctx.fillStyle = button.name === 'AUTO' ? '#000000' : '#555555'; // AUTO always black
                 ctx.fillRect(button.x, button.y - cameraY, button.width, button.height); // Adjust button position with camera
                 ctx.fillStyle = '#FFFFFF';
                 ctx.font = `${window.innerWidth * 0.03}px Arial`;
@@ -483,8 +478,7 @@
             let minCost = Infinity;
 
             buttons.forEach(button => {
-                // Skip mine buttons if all 10 mines are created
-                if (button.worker && !(mines.length === MAX_MINES && button.worker === 'mine')) {
+                if (button.worker) { // Consider all worker buttons (Cart, Shaft, Mine)
                     let level;
                     if (button.worker === 'mine' && button.index < mines.length) {
                         level = mines[button.index].worker.level;
@@ -551,7 +545,7 @@
                     } else if (mines.length === 7 && mines[6].worker.level >= 4) { // Mine 8 when Mine 7 is level 4
                         createNewMine = true;
                     } else if (mines.length === 8 && mines[7].worker.level >= 4) { // Mine 9 when Mine 8 is level 4
-                        createNewMine = true;
+                       =createNewMine = true;
                     } else if (mines.length === 9 && mines[8].worker.level >= 5) { // Mine 10 when Mine 9 is level 5
                         createNewMine = true;
                     }
