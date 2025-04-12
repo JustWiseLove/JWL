@@ -60,6 +60,8 @@
         const BUTTON_X = window.innerWidth * 0.85 - 20;
         const MAX_MINES = 10; // Up to Mine 10
         const COUNTER_Y = window.innerHeight * 0.5; // Position in the game world
+        const BUTTON_WIDTH = window.innerWidth * 0.1;
+        const BUTTON_HEIGHT = window.innerHeight * 0.1;
 
         // Game state
         let truthCount = 0;
@@ -70,12 +72,13 @@
                 worker: {
                     x: MINE_START_X,
                     y: MINE_Y,
-                    speed: 2,
+                    speed: 3, // Start at 3
                     level: 1,
                     hasTruth: false,
                     movingToBin: false,
                     waiting: true,
-                    triangles: 0
+                    triangles: 0,
+                    carryCapacity: 6 // Start at 6
                 },
                 bin: { x: MINE_END_X, y: MINE_Y, triangles: 3 },
                 name: 'Mine 1'
@@ -86,13 +89,13 @@
                 {
                     x: SHAFT_X,
                     y: SHAFT_END_Y, // Start at the top (shaft bin)
-                    speed: 2,
+                    speed: 6, // Start at 6
                     level: 1,
                     hasTruth: false,
                     movingToBin: false,
                     waiting: false,
                     triangles: 0,
-                    carryCapacity: 5, // Changed to 5
+                    carryCapacity: 9, // Start at 9
                     movingDown: true // Track direction
                 }
             ],
@@ -100,13 +103,13 @@
                 {
                     x: CART_START_X,
                     y: CART_Y,
-                    speed: 2,
+                    speed: 3, // Start at 3
                     level: 1,
                     hasTruth: false,
                     movingToBin: false,
                     waiting: true,
                     triangles: 0,
-                    carryCapacity: 3 // Changed to 3
+                    carryCapacity: 6 // Start at 6
                 }
             ]
         };
@@ -122,11 +125,15 @@
         let startY = 0;
         let startCameraY = 0;
 
+        // Automation state
+        let isAutoEnabled = false;
+
         // Button definitions
         let buttons = [
-            { name: 'Cart', worker: 'cart', x: BUTTON_X, y: window.innerHeight * 0.25, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
-            { name: 'Shaft', worker: 'shaft', x: BUTTON_X, y: window.innerHeight * 0.45, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
-            { name: 'Mine 1', worker: 'mine', index: 0, x: BUTTON_X, y: window.innerHeight * 0.65, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 }
+            { name: 'Cart', worker: 'cart', x: BUTTON_X, y: window.innerHeight * 0.25, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'Shaft', worker: 'shaft', x: BUTTON_X, y: window.innerHeight * 0.45, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'AUTO', action: 'toggleAuto', x: BUTTON_X, y: window.innerHeight * 0.65, width: BUTTON_WIDTH, height: BUTTON_HEIGHT }
         ];
 
         // Evolution stages for "Drink Milk" section
@@ -147,12 +154,13 @@
                     worker: {
                         x: MINE_START_X,
                         y: MINE_Y,
-                        speed: 2,
+                        speed: 3, // Start at 3
                         level: 1,
                         hasTruth: false,
                         movingToBin: false,
                         waiting: true,
-                        triangles: 0
+                        triangles: 0,
+                        carryCapacity: 6 // Start at 6
                     },
                     bin: { x: MINE_END_X, y: MINE_Y, triangles: 3 },
                     name: 'Mine 1'
@@ -163,13 +171,13 @@
                     {
                         x: SHAFT_X,
                         y: SHAFT_END_Y,
-                        speed: 2,
+                        speed: 6, // Start at 6
                         level: 1,
                         hasTruth: false,
                         movingToBin: false,
                         waiting: false,
                         triangles: 0,
-                        carryCapacity: 5, // Changed to 5
+                        carryCapacity: 9, // Start at 9
                         movingDown: true
                     }
                 ],
@@ -177,13 +185,13 @@
                     {
                         x: CART_START_X,
                         y: CART_Y,
-                        speed: 2,
+                        speed: 3, // Start at 3
                         level: 1,
                         hasTruth: false,
                         movingToBin: false,
                         waiting: true,
                         triangles: 0,
-                        carryCapacity: 3 // Changed to 3
+                        carryCapacity: 6 // Start at 6
                     }
                 ]
             };
@@ -192,15 +200,17 @@
                 cart: { x: CART_END_X, y: CART_Y, triangles: 0 }
             };
             buttons = [
-                { name: 'Cart', worker: 'cart', x: BUTTON_X, y: window.innerHeight * 0.25, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
-                { name: 'Shaft', worker: 'shaft', x: BUTTON_X, y: window.innerHeight * 0.45, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 },
-                { name: 'Mine 1', worker: 'mine', index: 0, x: BUTTON_X, y: window.innerHeight * 0.65, width: window.innerWidth * 0.1, height: window.innerHeight * 0.1 }
+                { name: 'Cart', worker: 'cart', x: BUTTON_X, y: window.innerHeight * 0.25, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: 'Shaft', worker: 'shaft', x: BUTTON_X, y: window.innerHeight * 0.45, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: 'AUTO', action: 'toggleAuto', x: BUTTON_X, y: window.innerHeight * 0.65, width: BUTTON_WIDTH, height: BUTTON_HEIGHT }
             ];
             cameraY = 0;
             worldHeight = window.innerHeight;
             isDragging = false;
             startY = 0;
             startCameraY = 0;
+            isAutoEnabled = false;
         }
 
         // Draw diamond shape
@@ -287,20 +297,23 @@
         // Draw buttons
         function drawButtons() {
             buttons.forEach(button => {
-                ctx.fillStyle = '#555555';
+                ctx.fillStyle = button.name === 'AUTO' && isAutoEnabled ? '#00FF00' : '#555555'; // Green when auto is enabled
                 ctx.fillRect(button.x, button.y - cameraY, button.width, button.height); // Adjust button position with camera
                 ctx.fillStyle = '#FFFFFF';
                 ctx.font = `${window.innerWidth * 0.03}px Arial`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                let level;
-                if (button.worker === 'mine' && button.index < mines.length) {
-                    level = mines[button.index].worker.level;
-                } else {
-                    level = workers[button.worker][0].level;
+                let displayText = button.name;
+                if (button.worker && button.worker !== 'mine') {
+                    let level = workers[button.worker][0].level;
+                    let cost = level * 10;
+                    displayText = `${button.name} (${cost})`;
+                } else if (button.worker === 'mine' && button.index < mines.length) {
+                    let level = mines[button.index].worker.level;
+                    let cost = level * 10;
+                    displayText = `${button.name} (${cost})`;
                 }
-                let cost = level * 10;
-                ctx.fillText(`${button.name} (${cost})`, button.x + button.width / 2, button.y - cameraY + button.height / 2);
+                ctx.fillText(displayText, button.x + button.width / 2, button.y - cameraY + button.height / 2);
             });
         }
 
@@ -312,7 +325,7 @@
                     worker.waiting = false;
                     worker.movingToBin = true;
                     worker.hasTruth = true;
-                    worker.triangles = 3;
+                    worker.triangles = Math.min(3, worker.carryCapacity); // Respect carry capacity
                 }
             } else if (worker.movingToBin) {
                 let dx = MINE_END_X - worker.x;
@@ -320,7 +333,7 @@
                 if (Math.abs(dx) < worker.speed) {
                     worker.x = MINE_END_X;
                     worker.movingToBin = false;
-                    mine.bin.triangles += 3;
+                    mine.bin.triangles += worker.triangles;
                     worker.hasTruth = false;
                     worker.triangles = 0;
                 }
@@ -334,7 +347,7 @@
             }
         }
 
-        // Update shaft worker with prioritized collection and dump behavior
+        // Update shaft worker with prioritized collection
         function updateShaftWorker(worker) {
             let sortedMines = mines.slice().sort((a, b) => a.y - b.y); // Sort mines from top to bottom
 
@@ -357,47 +370,48 @@
                     worker.movingDown = true; // Start moving down after dumping
                 }
             } else if (worker.movingDown) {
-                // Moving down, stop at each bin to collect triangles
-                let nextMine = sortedMines.find(m => m.y > worker.y);
-                if (!nextMine) {
-                    // At the lowest mine
-                    let lowestMine = sortedMines[sortedMines.length - 1];
-                    if (lowestMine) {
-                        // Collect triangles if available and not full
-                        if (lowestMine.bin.triangles >= 3 && worker.triangles < worker.carryCapacity) {
-                            let trianglesToTake = Math.min(lowestMine.bin.triangles, worker.carryCapacity - worker.triangles);
-                            lowestMine.bin.triangles -= trianglesToTake;
+                // Find the first mine with triangles >= 3, or move to the next mine if none
+                let targetMine = null;
+                for (let mine of sortedMines) {
+                    if (mine.y >= worker.y && mine.bin.triangles >= 3) {
+                        targetMine = mine;
+                        break;
+                    }
+                }
+
+                if (!targetMine && worker.y < sortedMines[sortedMines.length - 1].y) {
+                    // No non-empty bins at or below current position, move to next mine
+                    let nextMine = sortedMines.find(m => m.y > worker.y);
+                    if (nextMine) {
+                        let dy = nextMine.y - worker.y;
+                        worker.y += Math.sign(dy) * worker.speed;
+                        if (Math.abs(dy) < worker.speed) {
+                            worker.y = nextMine.y;
+                        }
+                    }
+                } else if (targetMine) {
+                    // Move to the target mine's y position
+                    let dy = targetMine.y - worker.y;
+                    if (Math.abs(dy) > worker.speed) {
+                        worker.y += Math.sign(dy) * worker.speed;
+                    } else {
+                        worker.y = targetMine.y;
+                        // Collect triangles if not full
+                        if (targetMine.bin.triangles >= 3 && worker.triangles < worker.carryCapacity) {
+                            let trianglesToTake = Math.min(targetMine.bin.triangles, worker.carryCapacity - worker.triangles);
+                            targetMine.bin.triangles -= trianglesToTake;
                             worker.triangles += trianglesToTake;
                             worker.hasTruth = worker.triangles > 0;
                         }
-                        // If the lowest mine bin is empty (0 triangles), go dump even if not full
-                        if (lowestMine.bin.triangles === 0) {
-                            worker.movingDown = false;
-                            worker.movingToBin = true;
-                        }
                         // If full, go dump
-                        else if (worker.triangles >= worker.carryCapacity) {
+                        if (worker.triangles >= worker.carryCapacity) {
                             worker.movingDown = false;
                             worker.movingToBin = true;
                         }
                     }
-                    return;
-                }
-                let nextY = nextMine.y;
-                let dy = nextY - worker.y;
-                worker.y += Math.sign(dy) * worker.speed;
-                if (Math.abs(dy) < worker.speed) {
-                    worker.y = nextY;
-                    // Collect all available triangles from the current mine bin
-                    let currentMine = sortedMines.find(m => m.y === worker.y);
-                    if (currentMine && currentMine.bin.triangles >= 3 && worker.triangles < worker.carryCapacity) {
-                        let trianglesToTake = Math.min(currentMine.bin.triangles, worker.carryCapacity - worker.triangles);
-                        currentMine.bin.triangles -= trianglesToTake;
-                        worker.triangles += trianglesToTake;
-                        worker.hasTruth = worker.triangles > 0;
-                    }
-                    // If full, start moving up
-                    if (worker.triangles >= worker.carryCapacity) {
+                } else {
+                    // At the lowest mine with no triangles to collect, go dump if carrying any
+                    if (worker.triangles > 0) {
                         worker.movingDown = false;
                         worker.movingToBin = true;
                     }
@@ -405,7 +419,7 @@
             }
         }
 
-        // Update cart worker to haul any value except 0
+        // Update cart worker to haul any value except 0 and reset on stage change
         function updateCartWorker(worker) {
             if (worker.waiting) {
                 if (bins.shaft.triangles > 0) { // Haul any value greater than 0
@@ -424,16 +438,26 @@
                     worker.movingToBin = false;
                     bins.cart.triangles += worker.triangles;
                     truthCount += worker.triangles;
+
                     if (totalTruthsMined < 99999) {
+                        let previousTotal = totalTruthsMined;
                         totalTruthsMined += worker.triangles;
-                        // Update stage based on totalTruthsMined
+
+                        // Check for stage transition
+                        let previousStage = currentStage;
                         for (let i = stages.length - 1; i >= 0; i--) {
                             if (totalTruthsMined >= stages[i].threshold) {
                                 currentStage = stages[i];
                                 break;
                             }
                         }
+
+                        // If stage changed, reset the game
+                        if (currentStage !== previousStage) {
+                            resetGameState();
+                        }
                     }
+
                     worker.hasTruth = false;
                     worker.triangles = 0;
                     bins.cart.triangles = 0;
@@ -448,13 +472,99 @@
             }
         }
 
+        // Find the cheapest upgrade
+        function findCheapestUpgrade() {
+            let cheapestButton = null;
+            let minCost = Infinity;
+
+            buttons.forEach(button => {
+                if (button.worker) {
+                    let level;
+                    if (button.worker === 'mine' && button.index < mines.length) {
+                        level = mines[button.index].worker.level;
+                    } else if (button.worker === 'cart' || button.worker === 'shaft') {
+                        level = workers[button.worker][0].level;
+                    }
+                    let cost = level * 10;
+                    if (cost < minCost) {
+                        minCost = cost;
+                        cheapestButton = button;
+                    }
+                }
+            });
+
+            return { button: cheapestButton, cost: minCost };
+        }
+
+        // Perform the upgrade for a given button
+        function performUpgrade(button) {
+            let level, workerGroup;
+            if (button.worker === 'mine' && button.index < mines.length) {
+                workerGroup = [mines[button.index].worker];
+                level = workerGroup[0].level;
+            } else {
+                workerGroup = workers[button.worker];
+                level = workerGroup[0].level;
+            }
+            let cost = level * 10;
+            if (truthCount >= cost) {
+                truthCount -= cost;
+                // Increment level
+                workerGroup.forEach(worker => {
+                    worker.level++;
+                    // Update speed and capacity based on worker type
+                    if (button.worker === 'shaft') {
+                        worker.speed = 6 + (worker.level - 1) * 0.5; // Start at 6, +0.5 per level
+                        worker.carryCapacity = 9 + (worker.level - 1) * 2; // Start at 9, +2 per level
+                    } else {
+                        worker.speed = 3 + (worker.level - 1) * 0.25; // Start at 3, +0.25 per level
+                        worker.carryCapacity = 6 + (worker.level - 1) * 1; // Start at 6, +1 per level
+                    }
+                });
+
+                // Check for new mine creation when any mine reaches level 5
+                if (button.worker === 'mine' && workerGroup[0].level >= 5 && mines.length < MAX_MINES) {
+                    let newMineIndex = mines.length + 1;
+                    let newMineY = mines[mines.length - 1].y + MINE_SPACING;
+                    mines.push({
+                        y: newMineY,
+                        worker: {
+                            x: MINE_START_X,
+                            y: newMineY,
+                            speed: 3, // Start at 3
+                            level: 1,
+                            hasTruth: false,
+                            movingToBin: false,
+                            waiting: true,
+                            triangles: 0,
+                            carryCapacity: 6 // Start at 6
+                        },
+                        bin: { x: MINE_END_X, y: newMineY, triangles: 3 },
+                        name: `Mine ${newMineIndex}`
+                    });
+                    // Add new mine button
+                    buttons.push({
+                        name: `Mine ${newMineIndex}`,
+                        worker: 'mine',
+                        index: mines.length - 1,
+                        x: MINE_START_X - BUTTON_WIDTH / 2,
+                        y: newMineY - BUTTON_HEIGHT / 2,
+                        width: BUTTON_WIDTH,
+                        height: BUTTON_HEIGHT
+                    });
+                    // Increase shaft worker capacity by 6
+                    workers.shaft[0].carryCapacity += 6;
+                }
+            }
+        }
+
         // Update world height for scrolling
         function updateWorldHeight() {
             let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
             worldHeight = lowestY + PATH_WIDTH; // Add padding at the bottom
         }
 
-        // Handle touch start for scrolling
+        // Handle touch start for scrolling and button clicks
         canvas.addEventListener('touchstart', (e) => {
             e.preventDefault();
             const touch = e.touches[0];
@@ -468,7 +578,11 @@
                 let adjustedY = y + cameraY;
                 if (x >= button.x && x <= button.x + button.width && adjustedY >= button.y && adjustedY <= button.y + button.height) {
                     isButtonClick = true;
-                    handleClick(x, y);
+                    if (button.action === 'toggleAuto') {
+                        isAutoEnabled = !isAutoEnabled;
+                    } else {
+                        handleClick(x, y);
+                    }
                 }
             });
 
@@ -505,63 +619,20 @@
         function handleClick(x, y) {
             buttons.forEach(button => {
                 let adjustedY = y + cameraY;
-                if (x >= button.x && x <= button.x + button.width && adjustedY >= button.y && adjustedY <= button.y + button.height) {
-                    let level, workerGroup;
-                    if (button.worker === 'mine' && button.index < mines.length) {
-                        workerGroup = [mines[button.index].worker];
-                        level = workerGroup[0].level;
-                    } else {
-                        workerGroup = workers[button.worker];
-                        level = workers[button.worker][0].level;
-                    }
-                    let cost = level * 10;
-                    if (truthCount >= cost) {
-                        truthCount -= cost;
-                        // Check for mine unlock before incrementing level
-                        if (button.worker === 'mine' && cost === 100 && mines.length < MAX_MINES) {
-                            let newMineIndex = mines.length + 1;
-                            console.log(`Adding Mine ${newMineIndex} at purchase cost 100 (level ${level}) for Mine ${button.index + 1}`);
-                            let newMineY = mines[mines.length - 1].y + MINE_SPACING;
-                            mines.push({
-                                y: newMineY,
-                                worker: {
-                                    x: MINE_START_X,
-                                    y: newMineY,
-                                    speed: 2,
-                                    level: 1,
-                                    hasTruth: false,
-                                    movingToBin: false,
-                                    waiting: true,
-                                    triangles: 0
-                                },
-                                bin: { x: MINE_END_X, y: newMineY, triangles: 3 },
-                                name: `Mine ${newMineIndex}`
-                            });
-                            // Add new mine button between the new mine and the previous mine
-                            let prevMineY = mines[mines.length - 2].y;
-                            let newMineYForButton = mines[mines.length - 1].y;
-                            let buttonY = (prevMineY + newMineYForButton) / 2;
-                            buttons.push({
-                                name: `Mine ${newMineIndex}`,
-                                worker: 'mine',
-                                index: mines.length - 1,
-                                x: BUTTON_X,
-                                y: buttonY,
-                                width: window.innerWidth * 0.1,
-                                height: window.innerHeight * 0.1
-                            });
-                            // Increase shaft and cart carry capacity by 50%
-                            workers.shaft[0].carryCapacity = Math.ceil(workers.shaft[0].carryCapacity * 1.5);
-                            workers.cart[0].carryCapacity = Math.ceil(workers.cart[0].carryCapacity * 1.5);
-                        }
-                        // Increment level after checking for mine unlock
-                        workerGroup.forEach(worker => {
-                            worker.level++;
-                            worker.speed += 1;
-                        });
-                    }
+                if (button.worker && x >= button.x && x <= button.x + button.width && adjustedY >= button.y && adjustedY <= button.y + button.height) {
+                    performUpgrade(button);
                 }
             });
+        }
+
+        // Automate upgrades if enabled
+        function automateUpgrades() {
+            if (!isAutoEnabled) return;
+
+            const { button, cost } = findCheapestUpgrade();
+            if (button && truthCount >= cost) {
+                performUpgrade(button);
+            }
         }
 
         // Game loop
@@ -571,6 +642,9 @@
             if (truthCount === 6 && mines[0].bin.triangles !== 6) {
                 mines[0].bin.triangles = 6;
             }
+
+            // Handle automation
+            automateUpgrades();
 
             updateWorldHeight();
             drawPaths();
