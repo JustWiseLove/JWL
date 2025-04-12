@@ -417,7 +417,7 @@
             }
         }
 
-        // Update cart worker to haul any value except 0
+        // Update cart worker to haul any value except 0 and reset on stage change
         function updateCartWorker(worker) {
             if (worker.waiting) {
                 if (bins.shaft.triangles > 0) { // Haul any value greater than 0
@@ -436,16 +436,26 @@
                     worker.movingToBin = false;
                     bins.cart.triangles += worker.triangles;
                     truthCount += worker.triangles;
+
                     if (totalTruthsMined < 99999) {
+                        let previousTotal = totalTruthsMined;
                         totalTruthsMined += worker.triangles;
-                        // Update stage based on totalTruthsMined
+
+                        // Check for stage transition
+                        let previousStage = currentStage;
                         for (let i = stages.length - 1; i >= 0; i--) {
                             if (totalTruthsMined >= stages[i].threshold) {
                                 currentStage = stages[i];
                                 break;
                             }
                         }
+
+                        // If stage changed, reset the game
+                        if (currentStage !== previousStage) {
+                            resetGameState();
+                        }
                     }
+
                     worker.hasTruth = false;
                     worker.triangles = 0;
                     bins.cart.triangles = 0;
