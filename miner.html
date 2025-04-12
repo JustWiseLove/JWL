@@ -72,14 +72,14 @@
                 worker: {
                     x: MINE_START_X,
                     y: MINE_Y,
-                    speed: 3, // Initial speed 3
+                    speed: 3,
                     level: 1,
                     hasTruth: false,
                     movingToBin: false,
                     waiting: true,
                     triangles: 0
                 },
-                bin: { x: MINE_END_X, y: MINE_Y, triangles: 6 }, // Initial bin value 6
+                bin: { x: MINE_END_X, y: MINE_Y, triangles: 6 },
                 name: 'Mine 1'
             }
         ];
@@ -88,13 +88,13 @@
                 {
                     x: SHAFT_X,
                     y: SHAFT_END_Y,
-                    speed: 6, // Initial speed 6
+                    speed: 6,
                     level: 1,
                     hasTruth: false,
                     movingToBin: false,
                     waiting: false,
                     triangles: 0,
-                    carryCapacity: 9, // Can carry up to 9 Truth
+                    carryCapacity: 9,
                     movingDown: true
                 }
             ],
@@ -102,12 +102,12 @@
                 {
                     x: CART_START_X,
                     y: CART_Y,
-                    speed: 3, // Initial speed 3
+                    speed: 3,
                     level: 1,
                     hasTruth: false,
                     movingToBin: false,
                     triangles: 0,
-                    carryCapacity: 6 // Can carry up to 6 Truth
+                    carryCapacity: 6
                 }
             ]
         };
@@ -152,14 +152,14 @@
                     worker: {
                         x: MINE_START_X,
                         y: MINE_Y,
-                        speed: 3, // Initial speed 3
+                        speed: 3,
                         level: 1,
                         hasTruth: false,
                         movingToBin: false,
                         waiting: true,
                         triangles: 0
                     },
-                    bin: { x: MINE_END_X, y: MINE_Y, triangles: 6 }, // Initial bin value 6
+                    bin: { x: MINE_END_X, y: MINE_Y, triangles: 6 },
                     name: 'Mine 1'
                 }
             ];
@@ -168,13 +168,13 @@
                     {
                         x: SHAFT_X,
                         y: SHAFT_END_Y,
-                        speed: 6, // Initial speed 6
+                        speed: 6,
                         level: 1,
                         hasTruth: false,
                         movingToBin: false,
                         waiting: false,
                         triangles: 0,
-                        carryCapacity: 9, // Can carry up to 9 Truth
+                        carryCapacity: 9,
                         movingDown: true
                     }
                 ],
@@ -182,12 +182,12 @@
                     {
                         x: CART_START_X,
                         y: CART_Y,
-                        speed: 3, // Initial speed 3
+                        speed: 3,
                         level: 1,
                         hasTruth: false,
                         movingToBin: false,
                         triangles: 0,
-                        carryCapacity: 6 // Can carry up to 6 Truth
+                        carryCapacity: 6
                     }
                 ]
             };
@@ -317,11 +317,11 @@
         function updateMineWorker(mine) {
             let worker = mine.worker;
             if (worker.waiting) {
-                if (mine.bin.triangles >= 6 || !worker.hasTruth) { // Check for 6 Truth
+                if (mine.bin.triangles >= 6 || !worker.hasTruth) {
                     worker.waiting = false;
                     worker.movingToBin = true;
                     worker.hasTruth = true;
-                    worker.triangles = 6; // Mine moves 6 Truth at a time
+                    worker.triangles = 6;
                 }
             } else if (worker.movingToBin) {
                 let dx = MINE_END_X - worker.x;
@@ -329,7 +329,7 @@
                 if (Math.abs(dx) < worker.speed) {
                     worker.x = MINE_END_X;
                     worker.movingToBin = false;
-                    mine.bin.triangles += 6; // Deposit 6 Truth
+                    mine.bin.triangles += 6;
                     worker.hasTruth = false;
                     worker.triangles = 0;
                 }
@@ -345,17 +345,17 @@
 
         // Update shaft worker
         function updateShaftWorker(worker) {
-            let sortedMines = mines.slice().sort((a, b) => a.y - b.y); // Mines sorted top to bottom (Mine 1, Mine 2, etc.)
+            let sortedMines = mines.slice().sort((a, b) => b.y - a.y); // Mines sorted bottom to top (deepest first)
 
-            // If empty and not at Mine 1, move to Mine 1
+            // If empty and not at the deepest Mine, move to the deepest Mine
             if (worker.triangles === 0 && worker.y !== sortedMines[0].y && !worker.movingToBin) {
                 let dy = sortedMines[0].y - worker.y;
                 worker.y += Math.sign(dy) * worker.speed;
                 if (Math.abs(dy) < worker.speed) {
                     worker.y = sortedMines[0].y;
-                    worker.movingDown = true;
+                    worker.movingDown = false; // Moving upward
                 }
-                return; // Wait to collect until at Mine 1
+                return; // Wait to collect until at the deepest Mine
             }
 
             if (worker.movingToBin) {
@@ -368,19 +368,19 @@
                     bins.shaft.triangles += worker.triangles;
                     worker.hasTruth = false;
                     worker.triangles = 0;
-                    worker.movingDown = true; // Continue cycle by moving to Mine 1
+                    worker.movingDown = true; // Will move to the deepest Mine next
                 }
             } else {
                 // Find the Mine at the worker’s current y position
                 let currentMine = sortedMines.find(m => Math.abs(m.y - worker.y) < worker.speed);
                 if (!currentMine) {
-                    // Not at a Mine yet, move to the next Mine below or Mine 1
-                    let targetMine = sortedMines.find(m => m.y > worker.y) || sortedMines[0];
+                    // Not at a Mine yet, move to the next Mine above or the deepest Mine
+                    let targetMine = sortedMines.find(m => m.y < worker.y) || sortedMines[0];
                     let dy = targetMine.y - worker.y;
                     worker.y += Math.sign(dy) * worker.speed;
                     if (Math.abs(dy) < worker.speed) {
                         worker.y = targetMine.y;
-                        worker.movingDown = true;
+                        worker.movingDown = false; // Moving upward
                     }
                 } else {
                     // At a Mine, collect all available Truth
@@ -393,24 +393,24 @@
 
                     // Decide next action
                     let currentIndex = sortedMines.indexOf(currentMine);
-                    let hasNextMine = currentIndex + 1 < sortedMines.length;
-                    let nextMine = hasNextMine ? sortedMines[currentIndex + 1] : null;
+                    let hasPreviousMine = currentIndex + 1 < sortedMines.length; // Check for a Mine above (shallower)
+                    let previousMine = hasPreviousMine ? sortedMines[currentIndex + 1] : null;
 
-                    if (worker.triangles >= worker.carryCapacity || (!hasNextMine && worker.triangles > 0)) {
-                        // Full or at lowest Mine with some Truth, return to Shaft bin
-                        worker.movingDown = false;
+                    if (worker.triangles >= worker.carryCapacity || (!hasPreviousMine && worker.triangles > 0)) {
+                        // Full or at topmost Mine with some Truth, return to Shaft bin
+                        worker.movingDown = true; // Will move downward to deepest Mine after
                         worker.movingToBin = true;
-                    } else if (hasNextMine && worker.triangles < worker.carryCapacity) {
-                        // Not full and next Mine exists, move to next Mine
-                        worker.movingDown = true;
-                        let dy = nextMine.y - worker.y;
+                    } else if (hasPreviousMine && worker.triangles < worker.carryCapacity) {
+                        // Not full and a Mine above exists, move to the next Mine up
+                        worker.movingDown = false;
+                        let dy = previousMine.y - worker.y;
                         worker.y += Math.sign(dy) * worker.speed;
                         if (Math.abs(dy) < worker.speed) {
-                            worker.y = nextMine.y;
+                            worker.y = previousMine.y;
                         }
-                    } else if (!hasNextMine) {
-                        // At lowest Mine with no Truth, return to Shaft bin to continue cycle
-                        worker.movingDown = false;
+                    } else if (!hasPreviousMine) {
+                        // At topmost Mine with no Truth, return to Shaft bin to continue cycle
+                        worker.movingDown = true;
                         worker.movingToBin = true;
                     }
                 }
@@ -526,14 +526,14 @@
                         worker: {
                             x: MINE_START_X,
                             y: newMineY,
-                            speed: 3, // Initial speed 3
+                            speed: 3,
                             level: 1,
                             hasTruth: false,
                             movingToBin: false,
                             waiting: true,
                             triangles: 0
                         },
-                        bin: { x: MINE_END_X, y: newMineY, triangles: 6 }, // Initial bin value 6
+                        bin: { x: MINE_END_X, y: newMineY, triangles: 6 },
                         name: `Mine ${newMineIndex}`
                     });
                     // Add new mine button
@@ -546,9 +546,11 @@
                         width: BUTTON_WIDTH,
                         height: BUTTON_HEIGHT
                     });
-                    // Apply speed boosts
+                    // Apply speed and capacity boosts
                     workers.shaft[0].speed += 1; // Shaft gets +1 speed
                     workers.cart[0].speed += 0.5; // Cart gets +0.5 speed
+                    workers.shaft[0].carryCapacity += 6; // Shaft capacity +6
+                    workers.cart[0].carryCapacity += 3; // Cart capacity +3
                 }
             }
         }
