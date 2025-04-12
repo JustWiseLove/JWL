@@ -470,28 +470,56 @@
             }
         }
 
-        // Find the cheapest upgrade
-        function findCheapestUpgrade() {
-            let cheapestButton = null;
-            let minCost = Infinity;
+        // Find the best upgrade for AUTO mode based on game state
+        function findBestUpgrade() {
+            let bestButton = null;
+            let bestScore = -Infinity;
+            let affordableUpgrades = [];
 
+            // Calculate upgrade scores
             buttons.forEach(button => {
                 if (button.worker) {
-                    let level;
+                    let level, cost, score = 0;
                     if (button.worker === 'mine' && button.index < mines.length) {
                         level = mines[button.index].worker.level;
-                    } else if (button.worker === 'cart' || button.worker === 'shaft') {
-                        level = workers[button.worker][0].level;
+                        cost = level * 10;
+                        // Score mine upgrades based on output need
+                        let binFullness = mines[button.index].bin.triangles;
+                        score = (binFullness < 3 ? 2 : 1) * (10 / level); // Prioritize if bin is empty
+                        if (cost === 100 && mines.length < MAX_MINES) {
+                            // New mine: high score if shaft and cart can handle more
+                            let totalShaftCapacity = workers.shaft.reduce((sum, w) => sum + w.carryCapacity, 0);
+                            let totalMineOutput = mines.length * 3; // Approx output per cycle
+                            score = (totalShaftCapacity > totalMineOutput * 1.5 ? 3 : 1);
+                        }
+                    } else if (button.worker === 'shaft') {
+                        level = workers.shaft[0].level;
+                        cost = level * 10;
+                        // Score shaft upgrades based on mine bin fullness
+                        let totalBinTriangles = mines.reduce((sum, m) => sum + m.bin.triangles, 0);
+                        score = (totalBinTriangles / (mines.length * 3)) * (10 / level); // High if bins are full
+                    } else if (button.worker === 'cart') {
+                        level = workers.cart[0].level;
+                        cost = level * 10;
+                        // Score cart upgrades based on shaft bin fullness
+                        score = (bins.shaft.triangles / workers.cart[0].carryCapacity) * (10 / level); // High if shaft bin is full
                     }
-                    let cost = level * 10;
-                    if (cost < minCost) {
-                        minCost = cost;
-                        cheapestButton = button;
+
+                    if (truthCount >= cost) {
+                        affordableUpgrades.push({ button, cost, score });
                     }
                 }
             });
 
-            return { button: cheapestButton, cost: minCost };
+            // Select the upgrade with the highest score
+            affordableUpgrades.forEach(upgrade => {
+                if (upgrade.score > bestScore) {
+                    bestScore = upgrade.score;
+                    bestButton = upgrade.button;
+                }
+            });
+
+            return bestButton ? { button: bestButton, cost: affordableUpgrades.find(u => u.button === bestButton).cost } : { button: null, cost: Infinity };
         }
 
         // Perform the upgrade for a given button
@@ -527,7 +555,7 @@
                         bin: { x: MINE_END_X, y: newMineY, triangles: 3 },
                         name: `Mine ${newMineIndex}`
                     });
-                    // Add new mine button at the far right of the new mine's path, centered vertically
+                    // Add new mine button
                     buttons.push({
                         name: `Mine ${newMineIndex}`,
                         worker: 'mine',
@@ -538,13 +566,35 @@
                         height: BUTTON_HEIGHT
                     });
                     // Increase shaft and cart carry capacity by 50%
-                    workers.shaft[0].carryCapacity = Math.ceil(workers.shaft[0].carryCapacity * 1.5);
-                    workers.cart[0].carryCapacity = Math.ceil(workers.cart[0].carryCapacity * 1.5);
+                    workers.shaft.forEach(worker => {
+                        worker.carryCapacity = Math.ceil(worker.carryCapacity * 1.5);
+                    });
+                    workers.cart.forEach(worker => {
+                        worker.carryCapacity = Math.ceil(worker.carryCapacity * 1.5);
+                    });
+                    // Add second shaft worker when Mine 2 is built
+                    if (newMineIndex === 2) {
+                        workers.shaft.push({
+                            x: SHAFT_X,
+                            y: SHAFT_END_Y,
+                            speed: 2,
+                            level: 1,
+                            hasTruth: false,
+                            movingToBin: false,
+                            waiting: false,
+                            triangles: 0,
+                            carryCapacity: 5,
+                            movingDown: true
+                        });
+                    }
                 }
-                // Increment level after checking for mine unlock
+                // Increment level and adjust stats
                 workerGroup.forEach(worker => {
                     worker.level++;
                     worker.speed += 1;
+                    if (button.worker === 'shaft' || button.worker === 'cart') {
+                        worker.carryCapacity += 1; // Incremental capacity increase per level
+                    }
                 });
             }
         }
@@ -620,7 +670,7 @@
         function automateUpgrades() {
             if (!isAutoEnabled) return;
 
-            const { button, cost } = findCheapestUpgrade();
+            const { button, cost } = findBestUpgrade();
             if (button && truthCount >= cost) {
                 performUpgrade(button);
             }
