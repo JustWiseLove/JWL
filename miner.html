@@ -297,7 +297,12 @@
         // Draw buttons
         function drawButtons() {
             buttons.forEach(button => {
-                ctx.fillStyle = button.name === 'AUTO' && isAutoEnabled ? '#00FF00' : '#555555'; // Green when auto is enabled
+                if (button.name === 'AUTO') {
+                    // Black when enabled and all 10 mines exist, green when enabled otherwise, grey when disabled
+                    ctx.fillStyle = isAutoEnabled ? (mines.length === MAX_MINES ? '#000000' : '#00FF00') : '#555555';
+                } else {
+                    ctx.fillStyle = '#555555';
+                }
                 ctx.fillRect(button.x, button.y - cameraY, button.width, button.height); // Adjust button position with camera
                 ctx.fillStyle = '#FFFFFF';
                 ctx.font = `${window.innerWidth * 0.03}px Arial`;
@@ -523,40 +528,64 @@
                     }
                 });
 
-                // Check for new mine creation when any mine reaches level 5
-                if (button.worker === 'mine' && workerGroup[0].level >= 5 && mines.length < MAX_MINES) {
+                // Check for new mine creation based on specific mine levels
+                if (button.worker === 'mine' && button.index < mines.length && mines.length < MAX_MINES) {
+                    let createNewMine = false;
                     let newMineIndex = mines.length + 1;
-                    let newMineY = mines[mines.length - 1].y + MINE_SPACING;
-                    mines.push({
-                        y: newMineY,
-                        worker: {
-                            x: MINE_START_X,
+
+                    if (mines.length === 1 && mines[0].worker.level >= 2) { // Mine 2 when Mine 1 is level 2
+                        createNewMine = true;
+                    } else if (mines.length === 2 && mines[1].worker.level >= 2) { // Mine 3 when Mine 2 is level 2
+                        createNewMine = true;
+                    } else if (mines.length === 3 && mines[2].worker.level >= 2) { // Mine 4 when Mine 3 is level 2
+                        createNewMine = true;
+                    } else if (mines.length === 4 && mines[3].worker.level >= 3) { // Mine 5 when Mine 4 is level 3
+                        createNewMine = true;
+                    } else if (mines.length === 5 && mines[4].worker.level >= 3) { // Mine 6 when Mine 5 is level 3
+                        createNewMine = true;
+                    } else if (mines.length === 6 && mines[5].worker.level >= 3) { // Mine 7 when Mine 6 is level 3
+                        createNewMine = true;
+                    } else if (mines.length === 7 && mines[6].worker.level >= 4) { // Mine 8 when Mine 7 is level 4
+                        createNewMine = true;
+                    } else if (mines.length === 8 && mines[7].worker.level >= 4) { // Mine 9 when Mine 8 is level 4
+                        createNewMine = true;
+                    } else if (mines.length === 9 && mines[8].worker.level >= 5) { // Mine 10 when Mine 9 is level 5
+                        createNewMine = true;
+                    }
+
+                    if (createNewMine) {
+                        let newMineY = mines[mines.length - 1].y + MINE_SPACING;
+                        mines.push({
                             y: newMineY,
-                            speed: 3, // Start at 3
-                            level: 1,
-                            hasTruth: false,
-                            movingToBin: false,
-                            waiting: true,
-                            triangles: 0,
-                            carryCapacity: 6 // Start at 6
-                        },
-                        bin: { x: MINE_END_X, y: newMineY, triangles: 3 },
-                        name: `Mine ${newMineIndex}`
-                    });
-                    // Add new mine button
-                    buttons.push({
-                        name: `Mine ${newMineIndex}`,
-                        worker: 'mine',
-                        index: mines.length - 1,
-                        x: MINE_START_X - BUTTON_WIDTH / 2,
-                        y: newMineY - BUTTON_HEIGHT / 2,
-                        width: BUTTON_WIDTH,
-                        height: BUTTON_HEIGHT
-                    });
-                    // Increase shaft worker capacity by 6
-                    workers.shaft[0].carryCapacity += 6;
-                    // Increase cart worker capacity by 3
-                    workers.cart[0].carryCapacity += 3;
+                            worker: {
+                                x: MINE_START_X,
+                                y: newMineY,
+                                speed: 3, // Start at 3
+                                level: 1,
+                                hasTruth: false,
+                                movingToBin: false,
+                                waiting: true,
+                                triangles: 0,
+                                carryCapacity: 6 // Start at 6
+                            },
+                            bin: { x: MINE_END_X, y: newMineY, triangles: 3 },
+                            name: `Mine ${newMineIndex}`
+                        });
+                        // Add new mine button
+                        buttons.push({
+                            name: `Mine ${newMineIndex}`,
+                            worker: 'mine',
+                            index: mines.length - 1,
+                            x: MINE_START_X - BUTTON_WIDTH / 2,
+                            y: newMineY - BUTTON_HEIGHT / 2,
+                            width: BUTTON_WIDTH,
+                            height: BUTTON_HEIGHT
+                        });
+                        // Increase shaft worker capacity by 6
+                        workers.shaft[0].carryCapacity += 6;
+                        // Increase cart worker capacity by 3
+                        workers.cart[0].carryCapacity += 3;
+                    }
                 }
             }
         }
