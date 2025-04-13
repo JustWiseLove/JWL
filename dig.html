@@ -80,7 +80,7 @@
         const BUTTON_HEIGHT = VIRTUAL_HEIGHT * 0.08;
         const MINE_BUTTON_HEIGHT = PATH_WIDTH;
         const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
-        const MAX_MINES = 21; // Increased to allow Mine 21
+        const MAX_MINES = 21;
 
         // Game state
         let truthCount = 0;
@@ -151,7 +151,7 @@
             { name: 'AUTO', x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
         ];
 
-        // Evolution stages (JWL remains at 15000)
+        // Evolution stages
         const stages = [
             { name: 'Just', triangleColor: '#808080', threshold: 0 },
             { name: 'Wise', triangleColor: '#FFD800', threshold: 5000 },
@@ -293,7 +293,7 @@
             } else {
                 minedCounterY = mines[0].y + PATH_WIDTH / 2 + PATH_WIDTH - cameraY;
             }
-            let displayMined = totalTruthsMined >= 99999 ? 99999 : totalTruthsMined;
+            let displayMined = totalTruthsMined >= 999999 ? 999999 : totalTruthsMined;
             ctx.fillText(`Mined: ${displayMined}`, VIRTUAL_WIDTH / 2, minedCounterY);
         }
 
@@ -327,7 +327,7 @@
                     let cost = level * 10;
                     displayText = `${button.name} (${cost})`;
                 } else if (button.worker === 'mine' && button.index < mines.length) {
-                    let level = mines[button.index].workers[0].level; // Use the level of the first worker
+                    let level = mines[button.index].workers[0].level;
                     let cost = level * 10;
                     displayText = `${button.name} (${cost})`;
                 } else if (!button.worker && !button.index) {
@@ -369,7 +369,7 @@
                     worker.y = SHAFT_END_Y;
                     worker.movingToBin = false;
                     bins.shaft.triangles += worker.triangles;
-                    worker.hasTruth = false;
+                    worker.hasTruth = false; // Fixed typo: changed 'hasLife' to 'hasTruth'
                     worker.triangles = 0;
                     worker.movingDown = true;
                 }
@@ -414,7 +414,7 @@
                     worker.movingToBin = false;
                     bins.cart.triangles += worker.triangles;
                     truthCount += worker.triangles;
-                    if (totalTruthsMined < 99999) {
+                    if (totalTruthsMined < 999999) {
                         let previousTotal = totalTruthsMined;
                         totalTruthsMined += worker.triangles;
                         let previousStage = currentStage;
@@ -477,8 +477,8 @@
             mine.workers.push({
                 x: MINE_START_X,
                 y: mine.y,
-                speed: mine.workers[0].speed, // Inherit speed from the first worker
-                level: mine.workers[0].level, // Inherit level from the first worker
+                speed: mine.workers[0].speed,
+                level: mine.workers[0].level,
                 hasTruth: false,
                 movingToBin: false,
                 triangles: 0,
@@ -509,11 +509,10 @@
                     }
                 });
 
-                // Add additional workers in JWL stage at levels 3, 6, 9, etc.
                 if (button.worker === 'mine' && currentStage.name === 'JWL') {
                     let mine = mines[button.index];
                     let currentLevel = mine.workers[0].level;
-                    let expectedWorkers = Math.floor(currentLevel / 3) + 1; // 1 worker at start, +1 at level 3, 6, 9, etc.
+                    let expectedWorkers = Math.floor(currentLevel / 3) + 1;
                     while (mine.workers.length < expectedWorkers) {
                         addMineWorker(mine);
                     }
@@ -560,7 +559,7 @@
                         createNewMine = true;
                     } else if (mines.length === 19 && mines[18].workers[0].level >= 12) {
                         createNewMine = true;
-                    } else if (mines.length === 20 && mines[19].workers[0].level >= 12) { // Logic for Mine 21
+                    } else if (mines.length === 20 && mines[19].workers[0].level >= 12) {
                         createNewMine = true;
                     }
                     if (createNewMine) {
