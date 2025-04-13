@@ -59,12 +59,12 @@
         const BASE_BUTTON_WIDTH = window.innerWidth * 0.1;
         const BASE_BUTTON_HEIGHT = window.innerHeight * 0.1;
         const BASE_AUTO_BUTTON_HEIGHT = BASE_BUTTON_HEIGHT / 2;
-        const BASE_FONT_SIZE_MULTIPLIER = 0.05; // For counters
-        const BASE_BUTTON_FONT_SIZE_MULTIPLIER = 0.03; // For button text
+        const BASE_FONT_SIZE_MULTIPLIER = 0.03; // Reduced for smaller counter text
+        const BASE_BUTTON_FONT_SIZE_MULTIPLIER = 0.03;
 
-        // Scaling factors for tablet and desktop
+        // Scaling factors for tablet and desktop (less aggressive)
         const deviceType = getDeviceType();
-        const scaleFactor = deviceType === 'mobile' ? 1 : (deviceType === 'tablet' ? 1.2 : 1.5);
+        const scaleFactor = deviceType === 'mobile' ? 1 : (deviceType === 'tablet' ? 1.1 : 1.3);
 
         // Adjusted constants based on device type
         const PATH_WIDTH = BASE_PATH_WIDTH * scaleFactor;
@@ -85,7 +85,9 @@
         const CART_END_X = window.innerWidth * 0.85;
         const BUTTON_WIDTH = BASE_BUTTON_WIDTH * scaleFactor;
         const BUTTON_HEIGHT = BASE_BUTTON_HEIGHT * scaleFactor;
-        const AUTO_BUTTON_HEIGHT = BASE_AUTO_BUTTON_HEIGHT * scaleFactor;
+        // Increased size for AUTO button to fit text
+        const AUTO_BUTTON_WIDTH = BUTTON_WIDTH * 1.5; // Wider for AUTO button
+        const AUTO_BUTTON_HEIGHT = BASE_AUTO_BUTTON_HEIGHT * scaleFactor * 1.5; // Taller for AUTO button
         const MAX_MINES = 20;
 
         // Game state
@@ -154,7 +156,7 @@
             { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - (10 * scaleFactor), width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
             { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - (10 * scaleFactor), width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
             { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'AUTO', x: window.innerWidth / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT + (10 * scaleFactor), width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+            { name: 'AUTO', x: window.innerWidth / 2 - AUTO_BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT + (10 * scaleFactor), width: AUTO_BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
         ];
 
         // Evolution stages
@@ -224,7 +226,7 @@
                 { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - (10 * scaleFactor), width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
                 { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - (10 * scaleFactor), width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
                 { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: currentStage.name, x: window.innerWidth / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT + (10 * scaleFactor), width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+                { name: currentStage.name, x: window.innerWidth / 2 - AUTO_BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT + (10 * scaleFactor), width: AUTO_BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
             ];
             cameraY = 0;
             worldHeight = window.innerHeight;
@@ -290,19 +292,17 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
-            // Truth counter centered between Cart path and Mine 1 path
-            let truthCounterY = CART_Y + (MINE_Y - CART_Y) / 2 - cameraY;
+            // Position Truth and Mined counters below the AUTO button
+            const autoButton = buttons.find(button => !button.worker && !button.index);
+            const autoButtonBottomY = autoButton.y + autoButton.height / 2;
+            const spacingBetweenCounters = 30 * scaleFactor; // Space between Truth and Mined
+
+            // Truth counter below AUTO button
+            let truthCounterY = autoButtonBottomY + spacingBetweenCounters - cameraY;
             ctx.fillText(`Truth: ${truthCount}`, window.innerWidth / 2, truthCounterY);
 
-            // Mined counter centered between Mine 1 path and Mine 2 path (if Mine 2 exists)
-            let minedCounterY;
-            if (mines.length > 1) {
-                // Center between Mine 1 and Mine 2
-                minedCounterY = mines[0].y + (mines[1].y - mines[0].y) / 2 - cameraY;
-            } else {
-                // Fallback: position below Mine 1 if Mine 2 doesn't exist
-                minedCounterY = mines[0].y + PATH_WIDTH / 2 + PATH_WIDTH * 0.5 - cameraY;
-            }
+            // Mined counter below Truth counter
+            let minedCounterY = truthCounterY + spacingBetweenCounters - cameraY;
             let displayMined = totalTruthsMined >= 99999 ? 99999 : totalTruthsMined;
             ctx.fillText(`Mined: ${displayMined}`, window.innerWidth / 2, minedCounterY);
         }
