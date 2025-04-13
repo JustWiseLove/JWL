@@ -59,7 +59,7 @@
         const BUTTON_WIDTH = window.innerWidth * 0.1;
         const BUTTON_HEIGHT = window.innerHeight * 0.1;
         const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
-        const MAX_MINES = 15;
+        const MAX_MINES = 20;
 
         // Game state
         let truthCount = 0;
@@ -262,10 +262,22 @@
             ctx.font = `${window.innerWidth * 0.05}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            let counterY = CART_Y + (MINE_Y - CART_Y) / 2 - cameraY;
-            ctx.fillText(`Truth: ${truthCount}`, window.innerWidth / 2 - 50, counterY);
+
+            // Truth counter centered between Cart path and Mine 1 path
+            let truthCounterY = CART_Y + (MINE_Y - CART_Y) / 2 - cameraY;
+            ctx.fillText(`Truth: ${truthCount}`, window.innerWidth / 2, truthCounterY);
+
+            // Mined counter centered between Mine 1 path and Mine 2 path (if Mine 2 exists)
+            let minedCounterY;
+            if (mines.length > 1) {
+                // Center between Mine 1 and Mine 2
+                minedCounterY = mines[0].y + (mines[1].y - mines[0].y) / 2 - cameraY;
+            } else {
+                // Fallback: position below Mine 1 if Mine 2 doesn't exist
+                minedCounterY = mines[0].y + PATH_WIDTH / 2 + PATH_WIDTH * 0.5 - cameraY;
+            }
             let displayMined = totalTruthsMined >= 99999 ? 99999 : totalTruthsMined;
-            ctx.fillText(`${displayMined}`, window.innerWidth / 2 + 50, counterY);
+            ctx.fillText(`Mined: ${displayMined}`, window.innerWidth / 2, minedCounterY);
         }
 
         function drawBinCounters() {
@@ -500,6 +512,16 @@
                     } else if (mines.length === 13 && mines[12].worker.level >= 9) {
                         createNewMine = true;
                     } else if (mines.length === 14 && mines[13].worker.level >= 9) {
+                        createNewMine = true;
+                    } else if (mines.length === 15 && mines[14].worker.level >= 10) {
+                        createNewMine = true;
+                    } else if (mines.length === 16 && mines[15].worker.level >= 10) {
+                        createNewMine = true;
+                    } else if (mines.length === 17 && mines[16].worker.level >= 11) {
+                        createNewMine = true;
+                    } else if (mines.length === 18 && mines[17].worker.level >= 11) {
+                        createNewMine = true;
+                    } else if (mines.length === 19 && mines[18].worker.level >= 12) {
                         createNewMine = true;
                     }
                     if (createNewMine) {
