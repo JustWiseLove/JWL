@@ -30,9 +30,9 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
-        // Define a fixed virtual resolution for the game
-        const VIRTUAL_WIDTH = 1000;
-        const VIRTUAL_HEIGHT = 1500;
+        // Define a fixed virtual resolution for the game (adjusted to match mobile aspect ratio)
+        const VIRTUAL_WIDTH = 600; // Adjusted to better fit a mobile screen
+        const VIRTUAL_HEIGHT = 1000; // Adjusted to match the proportions in the second image
 
         // Scale factor to map virtual coordinates to screen coordinates
         let scaleFactor = 1;
@@ -59,32 +59,30 @@
             // Apply CSS scaling to fit the canvas on screen
             canvas.style.width = `${VIRTUAL_WIDTH * scaleFactor}px`;
             canvas.style.height = `${VIRTUAL_HEIGHT * scaleFactor}px`;
-
-            // No need for ctx.scale here since we're working in virtual coordinates
         }
 
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Game constants (now defined in virtual coordinates)
-        const PATH_WIDTH = VIRTUAL_WIDTH * 0.15;
+        // Game constants (adjusted for better spacing)
+        const PATH_WIDTH = VIRTUAL_WIDTH * 0.2; // Increased path width for better visibility
         const WORKER_SIZE = PATH_WIDTH * 0.5;
         const TRIANGLE_SIZE = WORKER_SIZE * 0.3;
         const BIN_SIZE = PATH_WIDTH * 0.7;
         const PATH_COLOR = '#777777';
         const WORKER_COLOR = '#000000';
         const BIN_COLOR = '#000000';
-        const CART_Y = VIRTUAL_HEIGHT * 0.15;
-        const MINE_Y = CART_Y + 100;
-        const MINE_SPACING = 100;
+        const CART_Y = VIRTUAL_HEIGHT * 0.15; // Adjusted for more vertical spacing
+        const MINE_Y = CART_Y + 200; // Increased gap between Cart path and Mine 1
+        const MINE_SPACING = 200; // Increased spacing between mines
         const SHAFT_X = VIRTUAL_WIDTH * 0.15;
         const MINE_START_X = VIRTUAL_WIDTH * 0.85;
         const MINE_END_X = SHAFT_X;
         const SHAFT_END_Y = CART_Y;
         const CART_START_X = SHAFT_X;
         const CART_END_X = VIRTUAL_WIDTH * 0.85;
-        const BUTTON_WIDTH = VIRTUAL_WIDTH * 0.1;
-        const BUTTON_HEIGHT = VIRTUAL_HEIGHT * 0.1;
+        const BUTTON_WIDTH = VIRTUAL_WIDTH * 0.15; // Increased button size
+        const BUTTON_HEIGHT = VIRTUAL_HEIGHT * 0.08; // Adjusted button height
         const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
         const MAX_MINES = 20;
 
@@ -149,12 +147,12 @@
         let startY = 0;
         let startCameraY = 0;
 
-        // Button definitions
+        // Button definitions (adjusted positions for better spacing)
         let buttons = [
-            { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 10, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 10, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'AUTO', x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT + 10, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+            { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2 - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'AUTO', x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
         ];
 
         // Evolution stages
@@ -221,10 +219,10 @@
                 cart: { x: CART_END_X, y: CART_Y, triangles: 0 }
             };
             buttons = [
-                { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 10, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 10, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: currentStage.name, x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT + 10, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+                { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2 - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: currentStage.name, x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
             ];
             cameraY = 0;
             worldHeight = VIRTUAL_HEIGHT;
@@ -286,7 +284,7 @@
 
         function drawCounter() {
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${VIRTUAL_WIDTH * 0.05}px Arial`;
+            ctx.font = `${VIRTUAL_WIDTH * 0.06}px Arial`; // Increased font size for better readability
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
@@ -299,7 +297,7 @@
             if (mines.length > 1) {
                 minedCounterY = mines[0].y + (mines[1].y - mines[0].y) / 2 - cameraY;
             } else {
-                minedCounterY = mines[0].y + PATH_WIDTH / 2 + PATH_WIDTH * 0.5 - cameraY;
+                minedCounterY = mines[0].y + PATH_WIDTH / 2 + PATH_WIDTH - cameraY; // Adjusted for more spacing
             }
             let displayMined = totalTruthsMined >= 99999 ? 99999 : totalTruthsMined;
             ctx.fillText(`Mined: ${displayMined}`, VIRTUAL_WIDTH / 2, minedCounterY);
@@ -311,9 +309,9 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
             mines.forEach(mine => {
-                ctx.fillText(`${mine.bin.triangles}`, mine.bin.x, mine.bin.y - cameraY + BIN_SIZE / 2 + 10);
+                ctx.fillText(`${mine.bin.triangles}`, mine.bin.x, mine.bin.y - cameraY + BIN_SIZE / 2 + 20); // Increased offset for better spacing
             });
-            ctx.fillText(`${bins.shaft.triangles}`, bins.shaft.x, bins.shaft.y - cameraY + BIN_SIZE / 2 + 10);
+            ctx.fillText(`${bins.shaft.triangles}`, bins.shaft.x, bins.shaft.y - cameraY + BIN_SIZE / 2 + 20);
         }
 
         function drawButtons() {
@@ -326,7 +324,7 @@
                 }
                 ctx.fillRect(button.x, button.y - cameraY, button.width, button.height);
                 ctx.fillStyle = textColor;
-                ctx.font = `${VIRTUAL_WIDTH * 0.03}px Arial`;
+                ctx.font = `${VIRTUAL_WIDTH * 0.04}px Arial`; // Increased font size for buttons
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 let displayText = button.name;
@@ -377,7 +375,7 @@
                 if (Math.abs(dy) < worker.speed) {
                     worker.y = SHAFT_END_Y;
                     worker.movingToBin = false;
-                    bins.shaft.carryCapacity += worker.triangles;
+                    bins.shaft.triangles += worker.triangles;
                     worker.hasTruth = false;
                     worker.triangles = 0;
                     worker.movingDown = true;
@@ -404,10 +402,7 @@
                         currentMine.bin.triangles -= trianglesToTake;
                         worker.triangles += trianglesToTake;
                         worker.hasTruth = worker.triangles > 0;
-                        if (currentMine.bin.triangles < 0) {
-                            worker.triangles += currentMine.bin.triangles;
-                            currentMine.bin.triangles = 0;
-                        }
+                        if (currentMine.bin.triangles < 0)	currentMine.bin.triangles = 0;
                     }
                     if (worker.triangles >= worker.carryCapacity) {
                         worker.movingDown = false;
@@ -571,7 +566,7 @@
                             worker: 'mine',
                             index: mines.length - 1,
                             x: MINE_START_X - BUTTON_WIDTH / 2,
-                            y: newMineY - BUTTON_HEIGHT / 2,
+                            y: newMineY - BUTTON_HEIGHT / 2 - 20,
                             width: BUTTON_WIDTH,
                             height: BUTTON_HEIGHT
                         });
@@ -589,7 +584,6 @@
 
         function handleStart(clientX, clientY) {
             const rect = canvas.getBoundingClientRect();
-            // Map screen coordinates to virtual coordinates
             const x = (clientX - rect.left) / scaleFactor;
             const y = (clientY - rect.top) / scaleFactor;
             let isButtonClick = false;
@@ -624,7 +618,7 @@
 
         function handleMove(clientY) {
             if (isDragging) {
-                const deltaY = (clientY - startY) / scaleFactor; // Adjust delta for virtual coordinates
+                const deltaY = (clientY - startY) / scaleFactor;
                 cameraY = startCameraY - deltaY;
                 let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
                 worldHeight = lowestY + PATH_WIDTH;
