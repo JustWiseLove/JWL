@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Truth Miner</title>
     <style>
         body, html {
@@ -17,9 +17,10 @@
             align-items: center;
         }
         #gameCanvas {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             display: block;
+            object-fit: contain; /* Preserve aspect ratio */
         }
     </style>
 </head>
@@ -29,37 +30,57 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
+        // Define a fixed virtual resolution for the game
+        const VIRTUAL_WIDTH = 600;
+        const VIRTUAL_HEIGHT = 1000;
+
+        // Scale factor to map virtual coordinates to screen coordinates
+        let scaleFactor = 1;
+
         function resizeCanvas() {
-            canvas.width = window.innerWidth * devicePixelRatio;
-            canvas.height = window.innerHeight * devicePixelRatio;
-            canvas.style.width = window.innerWidth + 'px';
-            canvas.style.height = window.innerHeight + 'px';
-            ctx.scale(devicePixelRatio, devicePixelRatio);
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const aspectRatio = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
+            const windowAspectRatio = windowWidth / windowHeight;
+
+            if (windowAspectRatio > aspectRatio) {
+                scaleFactor = windowHeight / VIRTUAL_HEIGHT;
+            } else {
+                scaleFactor = windowWidth / VIRTUAL_WIDTH;
+            }
+
+            canvas.width = VIRTUAL_WIDTH;
+            canvas.height = VIRTUAL_HEIGHT;
+
+            canvas.style.width = `${VIRTUAL_WIDTH * scaleFactor}px`;
+            canvas.style.height = `${VIRTUAL_HEIGHT * scaleFactor}px`;
         }
+
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
         // Game constants
-        const PATH_WIDTH = window.innerWidth * 0.15;
+        const PATH_WIDTH = VIRTUAL_WIDTH * 0.2;
         const WORKER_SIZE = PATH_WIDTH * 0.5;
         const TRIANGLE_SIZE = WORKER_SIZE * 0.3;
         const BIN_SIZE = PATH_WIDTH * 0.7;
         const PATH_COLOR = '#777777';
         const WORKER_COLOR = '#000000';
         const BIN_COLOR = '#000000';
-        const CART_Y = window.innerHeight * 0.15;
-        const MINE_Y = CART_Y + 100;
-        const MINE_SPACING = 100;
-        const SHAFT_X = window.innerWidth * 0.15;
-        const MINE_START_X = window.innerWidth * 0.85;
+        const CART_Y = VIRTUAL_HEIGHT * 0.15;
+        const MINE_Y = CART_Y + 200;
+        const MINE_SPACING = 200;
+        const SHAFT_X = VIRTUAL_WIDTH * 0.15;
+        const MINE_START_X = VIRTUAL_WIDTH * 0.85;
         const MINE_END_X = SHAFT_X;
         const SHAFT_END_Y = CART_Y;
         const CART_START_X = SHAFT_X;
-        const CART_END_X = window.innerWidth * 0.85;
-        const BUTTON_WIDTH = window.innerWidth * 0.1;
-        const BUTTON_HEIGHT = window.innerHeight * 0.1;
+        const CART_END_X = VIRTUAL_WIDTH * 0.85;
+        const BUTTON_WIDTH = VIRTUAL_WIDTH * 0.15;
+        const BUTTON_HEIGHT = VIRTUAL_HEIGHT * 0.08;
+        const MINE_BUTTON_HEIGHT = PATH_WIDTH;
         const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
-        const MAX_MINES = 20;
+        const MAX_MINES = 21; // Increased to allow Mine 21
 
         // Game state
         let truthCount = 0;
@@ -69,7 +90,7 @@
         let mines = [
             {
                 y: MINE_Y,
-                worker: {
+                workers: [{
                     x: MINE_START_X,
                     y: MINE_Y,
                     speed: 2,
@@ -78,7 +99,7 @@
                     movingToBin: false,
                     triangles: 0,
                     carryCapacity: 3
-                },
+                }],
                 bin: { x: MINE_END_X, y: MINE_Y, triangles: 0 },
                 name: 'Mine 1'
             }
@@ -117,20 +138,20 @@
 
         // Scrolling state
         let cameraY = 0;
-        let worldHeight = window.innerHeight;
+        let worldHeight = VIRTUAL_HEIGHT;
         let isDragging = false;
         let startY = 0;
         let startCameraY = 0;
 
         // Button definitions
         let buttons = [
-            { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 10, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 10, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'AUTO', x: window.innerWidth / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT + 10, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+            { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - MINE_BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: MINE_BUTTON_HEIGHT },
+            { name: 'AUTO', x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
         ];
 
-        // Evolution stages
+        // Evolution stages (JWL remains at 15000)
         const stages = [
             { name: 'Just', triangleColor: '#808080', threshold: 0 },
             { name: 'Wise', triangleColor: '#FFD800', threshold: 5000 },
@@ -148,7 +169,7 @@
             mines = [
                 {
                     y: MINE_Y,
-                    worker: {
+                    workers: [{
                         x: MINE_START_X,
                         y: MINE_Y,
                         speed: 2,
@@ -157,7 +178,7 @@
                         movingToBin: false,
                         triangles: 0,
                         carryCapacity: 3
-                    },
+                    }],
                     bin: { x: MINE_END_X, y: MINE_Y, triangles: 0 },
                     name: 'Mine 1'
                 }
@@ -194,13 +215,13 @@
                 cart: { x: CART_END_X, y: CART_Y, triangles: 0 }
             };
             buttons = [
-                { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 10, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 10, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: currentStage.name, x: window.innerWidth / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT + 10, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+                { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - MINE_BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: MINE_BUTTON_HEIGHT },
+                { name: currentStage.name, x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
             ];
             cameraY = 0;
-            worldHeight = window.innerHeight;
+            worldHeight = VIRTUAL_HEIGHT;
             isDragging = false;
             startY = 0;
             startCameraY = 0;
@@ -250,45 +271,41 @@
         function drawPaths() {
             ctx.fillStyle = PATH_COLOR;
             mines.forEach(mine => {
-                ctx.fillRect(0, mine.y - cameraY - PATH_WIDTH / 2, window.innerWidth, PATH_WIDTH);
+                ctx.fillRect(0, mine.y - cameraY - PATH_WIDTH / 2, VIRTUAL_WIDTH, PATH_WIDTH);
             });
-            ctx.fillRect(0, CART_Y - cameraY - PATH_WIDTH / 2, window.innerWidth, PATH_WIDTH);
+            ctx.fillRect(0, CART_Y - cameraY - PATH_WIDTH / 2, VIRTUAL_WIDTH, PATH_WIDTH);
             let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
             ctx.fillRect(SHAFT_X - PATH_WIDTH / 2, CART_Y - cameraY, PATH_WIDTH, lowestY - CART_Y);
         }
 
         function drawCounter() {
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${window.innerWidth * 0.05}px Arial`;
+            ctx.font = `${VIRTUAL_WIDTH * 0.06}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
-            // Truth counter centered between Cart path and Mine 1 path
             let truthCounterY = CART_Y + (MINE_Y - CART_Y) / 2 - cameraY;
-            ctx.fillText(`Truth: ${truthCount}`, window.innerWidth / 2, truthCounterY);
+            ctx.fillText(`Truth: ${truthCount}`, VIRTUAL_WIDTH / 2, truthCounterY);
 
-            // Mined counter centered between Mine 1 path and Mine 2 path (if Mine 2 exists)
             let minedCounterY;
             if (mines.length > 1) {
-                // Center between Mine 1 and Mine 2
                 minedCounterY = mines[0].y + (mines[1].y - mines[0].y) / 2 - cameraY;
             } else {
-                // Fallback: position below Mine 1 if Mine 2 doesn't exist
-                minedCounterY = mines[0].y + PATH_WIDTH / 2 + PATH_WIDTH * 0.5 - cameraY;
+                minedCounterY = mines[0].y + PATH_WIDTH / 2 + PATH_WIDTH - cameraY;
             }
             let displayMined = totalTruthsMined >= 99999 ? 99999 : totalTruthsMined;
-            ctx.fillText(`Mined: ${displayMined}`, window.innerWidth / 2, minedCounterY);
+            ctx.fillText(`Mined: ${displayMined}`, VIRTUAL_WIDTH / 2, minedCounterY);
         }
 
         function drawBinCounters() {
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${window.innerWidth * 0.05}px Arial`;
+            ctx.font = `${VIRTUAL_WIDTH * 0.05}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
             mines.forEach(mine => {
-                ctx.fillText(`${mine.bin.triangles}`, mine.bin.x, mine.bin.y - cameraY + BIN_SIZE / 2 + 10);
+                ctx.fillText(`${mine.bin.triangles}`, mine.bin.x, mine.bin.y - cameraY + BIN_SIZE / 2 + 20);
             });
-            ctx.fillText(`${bins.shaft.triangles}`, bins.shaft.x, bins.shaft.y - cameraY + BIN_SIZE / 2 + 10);
+            ctx.fillText(`${bins.shaft.triangles}`, bins.shaft.x, bins.shaft.y - cameraY + BIN_SIZE / 2 + 20);
         }
 
         function drawButtons() {
@@ -301,7 +318,7 @@
                 }
                 ctx.fillRect(button.x, button.y - cameraY, button.width, button.height);
                 ctx.fillStyle = textColor;
-                ctx.font = `${window.innerWidth * 0.03}px Arial`;
+                ctx.font = `${VIRTUAL_WIDTH * 0.04}px Arial`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 let displayText = button.name;
@@ -310,7 +327,7 @@
                     let cost = level * 10;
                     displayText = `${button.name} (${cost})`;
                 } else if (button.worker === 'mine' && button.index < mines.length) {
-                    let level = mines[button.index].worker.level;
+                    let level = mines[button.index].workers[0].level; // Use the level of the first worker
                     let cost = level * 10;
                     displayText = `${button.name} (${cost})`;
                 } else if (!button.worker && !button.index) {
@@ -320,8 +337,7 @@
             });
         }
 
-        function updateMineWorker(mine) {
-            let worker = mine.worker;
+        function updateMineWorker(mine, worker) {
             if (worker.movingToBin) {
                 let dx = MINE_END_X - worker.x;
                 worker.x += Math.sign(dx) * worker.speed;
@@ -379,10 +395,7 @@
                         currentMine.bin.triangles -= trianglesToTake;
                         worker.triangles += trianglesToTake;
                         worker.hasTruth = worker.triangles > 0;
-                        if (currentMine.bin.triangles < 0) {
-                            worker.triangles += currentMine.bin.triangles;
-                            currentMine.bin.triangles = 0;
-                        }
+                        if (currentMine.bin.triangles < 0) currentMine.bin.triangles = 0;
                     }
                     if (worker.triangles >= worker.carryCapacity) {
                         worker.movingDown = false;
@@ -446,7 +459,7 @@
                 if (button.worker) {
                     let level;
                     if (button.worker === 'mine' && button.index < mines.length) {
-                        level = mines[button.index].worker.level;
+                        level = mines[button.index].workers[0].level;
                     } else if (button.worker === 'cart' || button.worker === 'shaft') {
                         level = workers[button.worker][0].level;
                     }
@@ -460,10 +473,23 @@
             return { button: cheapestButton, cost: minCost };
         }
 
+        function addMineWorker(mine) {
+            mine.workers.push({
+                x: MINE_START_X,
+                y: mine.y,
+                speed: mine.workers[0].speed, // Inherit speed from the first worker
+                level: mine.workers[0].level, // Inherit level from the first worker
+                hasTruth: false,
+                movingToBin: false,
+                triangles: 0,
+                carryCapacity: 3
+            });
+        }
+
         function performUpgrade(button) {
             let level, workerGroup;
             if (button.worker === 'mine' && button.index < mines.length) {
-                workerGroup = [mines[button.index].worker];
+                workerGroup = mines[button.index].workers;
                 level = workerGroup[0].level;
             } else {
                 workerGroup = workers[button.worker];
@@ -482,53 +508,66 @@
                         worker.speed = 2 + (worker.level - 1) * 0.5;
                     }
                 });
+
+                // Add additional workers in JWL stage at levels 3, 6, 9, etc.
+                if (button.worker === 'mine' && currentStage.name === 'JWL') {
+                    let mine = mines[button.index];
+                    let currentLevel = mine.workers[0].level;
+                    let expectedWorkers = Math.floor(currentLevel / 3) + 1; // 1 worker at start, +1 at level 3, 6, 9, etc.
+                    while (mine.workers.length < expectedWorkers) {
+                        addMineWorker(mine);
+                    }
+                }
+
                 if (button.worker === 'mine' && button.index < mines.length && mines.length < MAX_MINES) {
                     let createNewMine = false;
                     let newMineIndex = mines.length + 1;
-                    if (mines.length === 1 && mines[0].worker.level >= 3) {
+                    if (mines.length === 1 && mines[0].workers[0].level >= 3) {
                         createNewMine = true;
-                    } else if (mines.length === 2 && mines[1].worker.level >= 3) {
+                    } else if (mines.length === 2 && mines[1].workers[0].level >= 3) {
                         createNewMine = true;
-                    } else if (mines.length === 3 && mines[2].worker.level >= 4) {
+                    } else if (mines.length === 3 && mines[2].workers[0].level >= 4) {
                         createNewMine = true;
-                    } else if (mines.length === 4 && mines[3].worker.level >= 4) {
+                    } else if (mines.length === 4 && mines[3].workers[0].level >= 4) {
                         createNewMine = true;
-                    } else if (mines.length === 5 && mines[4].worker.level >= 5) {
+                    } else if (mines.length === 5 && mines[4].workers[0].level >= 5) {
                         createNewMine = true;
-                    } else if (mines.length === 6 && mines[5].worker.level >= 5) {
+                    } else if (mines.length === 6 && mines[5].workers[0].level >= 5) {
                         createNewMine = true;
-                    } else if (mines.length === 7 && mines[6].worker.level >= 6) {
+                    } else if (mines.length === 7 && mines[6].workers[0].level >= 6) {
                         createNewMine = true;
-                    } else if (mines.length === 8 && mines[7].worker.level >= 6) {
+                    } else if (mines.length === 8 && mines[7].workers[0].level >= 6) {
                         createNewMine = true;
-                    } else if (mines.length === 9 && mines[8].worker.level >= 7) {
+                    } else if (mines.length === 9 && mines[8].workers[0].level >= 7) {
                         createNewMine = true;
-                    } else if (mines.length === 10 && mines[9].worker.level >= 7) {
+                    } else if (mines.length === 10 && mines[9].workers[0].level >= 7) {
                         createNewMine = true;
-                    } else if (mines.length === 11 && mines[10].worker.level >= 8) {
+                    } else if (mines.length === 11 && mines[10].workers[0].level >= 8) {
                         createNewMine = true;
-                    } else if (mines.length === 12 && mines[11].worker.level >= 8) {
+                    } else if (mines.length === 12 && mines[11].workers[0].level >= 8) {
                         createNewMine = true;
-                    } else if (mines.length === 13 && mines[12].worker.level >= 9) {
+                    } else if (mines.length === 13 && mines[12].workers[0].level >= 9) {
                         createNewMine = true;
-                    } else if (mines.length === 14 && mines[13].worker.level >= 9) {
+                    } else if (mines.length === 14 && mines[13].workers[0].level >= 9) {
                         createNewMine = true;
-                    } else if (mines.length === 15 && mines[14].worker.level >= 10) {
+                    } else if (mines.length === 15 && mines[14].workers[0].level >= 10) {
                         createNewMine = true;
-                    } else if (mines.length === 16 && mines[15].worker.level >= 10) {
+                    } else if (mines.length === 16 && mines[15].workers[0].level >= 10) {
                         createNewMine = true;
-                    } else if (mines.length === 17 && mines[16].worker.level >= 11) {
+                    } else if (mines.length === 17 && mines[16].workers[0].level >= 11) {
                         createNewMine = true;
-                    } else if (mines.length === 18 && mines[17].worker.level >= 11) {
+                    } else if (mines.length === 18 && mines[17].workers[0].level >= 11) {
                         createNewMine = true;
-                    } else if (mines.length === 19 && mines[18].worker.level >= 12) {
+                    } else if (mines.length === 19 && mines[18].workers[0].level >= 12) {
+                        createNewMine = true;
+                    } else if (mines.length === 20 && mines[19].workers[0].level >= 12) { // Logic for Mine 21
                         createNewMine = true;
                     }
                     if (createNewMine) {
                         let newMineY = mines[mines.length - 1].y + MINE_SPACING;
                         mines.push({
                             y: newMineY,
-                            worker: {
+                            workers: [{
                                 x: MINE_START_X,
                                 y: newMineY,
                                 speed: 2,
@@ -537,7 +576,7 @@
                                 movingToBin: false,
                                 triangles: 0,
                                 carryCapacity: 3
-                            },
+                            }],
                             bin: { x: MINE_END_X, y: newMineY, triangles: 0 },
                             name: `Mine ${newMineIndex}`
                         });
@@ -546,9 +585,9 @@
                             worker: 'mine',
                             index: mines.length - 1,
                             x: MINE_START_X - BUTTON_WIDTH / 2,
-                            y: newMineY - BUTTON_HEIGHT / 2,
+                            y: newMineY - MINE_BUTTON_HEIGHT / 2,
                             width: BUTTON_WIDTH,
-                            height: BUTTON_HEIGHT
+                            height: MINE_BUTTON_HEIGHT
                         });
                         workers.shaft[0].carryCapacity += 9;
                         workers.cart[0].carryCapacity += 12;
@@ -564,8 +603,8 @@
 
         function handleStart(clientX, clientY) {
             const rect = canvas.getBoundingClientRect();
-            const x = (clientX - rect.left) / (rect.width / window.innerWidth);
-            const y = (clientY - rect.top) / (rect.height / window.innerHeight);
+            const x = (clientX - rect.left) / scaleFactor;
+            const y = (clientY - rect.top) / scaleFactor;
             let isButtonClick = false;
             buttons.forEach(button => {
                 let adjustedY = y + cameraY;
@@ -598,11 +637,11 @@
 
         function handleMove(clientY) {
             if (isDragging) {
-                const deltaY = clientY - startY;
-                cameraY = startCameraY - deltaY * (window.innerHeight / canvas.height);
+                const deltaY = (clientY - startY) / scaleFactor;
+                cameraY = startCameraY - deltaY;
                 let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
                 worldHeight = lowestY + PATH_WIDTH;
-                cameraY = Math.max(CART_Y - window.innerHeight / 2, Math.min(cameraY, worldHeight - window.innerHeight / 2));
+                cameraY = Math.max(CART_Y - VIRTUAL_HEIGHT / 2, Math.min(cameraY, worldHeight - VIRTUAL_HEIGHT / 2));
             }
         }
 
@@ -653,7 +692,7 @@
                 drawPaths();
                 mines.forEach(mine => {
                     drawBin(mine.bin);
-                    drawWorker(mine.worker);
+                    mine.workers.forEach(worker => drawWorker(worker));
                 });
                 drawBin(bins.shaft);
                 drawBin(bins.cart);
@@ -662,7 +701,9 @@
                 drawCounter();
                 drawBinCounters();
                 drawButtons();
-                mines.forEach(updateMineWorker);
+                mines.forEach(mine => {
+                    mine.workers.forEach(worker => updateMineWorker(mine, worker));
+                });
                 workers.shaft.forEach(updateShaftWorker);
                 workers.cart.forEach(updateCartWorker);
             } catch (error) {
@@ -670,7 +711,7 @@
                 ctx.fillStyle = '#FFFFFF';
                 ctx.font = '20px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText('Error: Check console', window.innerWidth / 2, window.innerHeight / 2);
+                ctx.fillText('Error: Check console', VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2);
             }
             requestAnimationFrame(gameLoop);
         }
@@ -683,7 +724,7 @@
             ctx.fillStyle = '#FFFFFF';
             ctx.font = '20px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('Loading...', window.innerWidth / 2, window.innerHeight / 2);
+            ctx.fillText('Loading...', VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2);
         }
     </script>
 </body>
