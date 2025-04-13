@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Truth Miner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -27,7 +28,7 @@
         }
     </style>
 </head>
-<body>
+<body class="dark-mode">
     <canvas id="gameCanvas"></canvas>
     <script>
         const canvas = document.getElementById('gameCanvas');
@@ -100,8 +101,18 @@
         const PATH_COLOR = '#777777';
         const WORKER_COLOR = '#000000';
         const BIN_COLOR = '#000000';
-        const CART_Y = VIRTUAL_HEIGHT * 0.15; // 60 units on mobile
-        const MINE_Y = CART_Y + (isMobile ? 40 : 200); // 100 units on mobile
+        const BUTTON_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.12 : VIRTUAL_WIDTH * 0.15;
+        const BUTTON_HEIGHT = isMobile ? VIRTUAL_HEIGHT * 0.06 : VIRTUAL_HEIGHT * 0.08;
+        const MINE_BUTTON_HEIGHT = PATH_WIDTH;
+        const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
+        const MAX_MINES = 21;
+
+        // Header and footer constants
+        const HEADER_HEIGHT = isMobile ? 40 : 60;
+        const FOOTER_HEIGHT = isMobile ? 20 : 30; // Reduced for better fit
+        const GAME_OFFSET_Y = HEADER_HEIGHT; // Offset to shift game content below header
+        const CART_Y = VIRTUAL_HEIGHT * 0.15 + GAME_OFFSET_Y; // Adjusted for header
+        const MINE_Y = CART_Y + (isMobile ? 40 : 200); // Adjusted for header
         const MINE_SPACING = isMobile ? 40 : 200;
         const SHAFT_X = VIRTUAL_WIDTH * 0.15;
         const MINE_START_X = VIRTUAL_WIDTH * 0.85;
@@ -109,11 +120,46 @@
         const SHAFT_END_Y = CART_Y;
         const CART_START_X = SHAFT_X;
         const CART_END_X = VIRTUAL_WIDTH * 0.85;
-        const BUTTON_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.12 : VIRTUAL_WIDTH * 0.15;
-        const BUTTON_HEIGHT = isMobile ? VIRTUAL_HEIGHT * 0.06 : VIRTUAL_HEIGHT * 0.08;
-        const MINE_BUTTON_HEIGHT = PATH_WIDTH;
-        const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
-        const MAX_MINES = 21;
+
+        const HEADER_TEXT = 'FUTURE';
+        const TOGGLE_BUTTON_TEXT = 'Toggle Light Mode';
+        const FOOTER_TEXT = '© 2025 Just Wise Love. All rights reserved.';
+        const TOGGLE_BUTTON_WIDTH = isMobile ? 80 : 120;
+        const TOGGLE_BUTTON_HEIGHT = isMobile ? 20 : 30;
+        const HEADER_FONT_SIZE = isMobile ? 20 : 30;
+        const FOOTER_FONT_SIZE = isMobile ? 10 : 12; // Reduced font size
+
+        // Mode state
+        let isDarkMode = true;
+
+        // Colors based on mode
+        function getColors() {
+            return {
+                headerBg: isDarkMode ? '#1a1a1a' : '#ffffff',
+                headerText: isDarkMode ? '#ffffff' : '#000000',
+                buttonBg: isDarkMode ? '#2a2a2a' : '#d3d3d3',
+                buttonText: isDarkMode ? '#ffffff' : '#000000',
+                footerBg: isDarkMode ? '#1a1a1a' : '#ffffff',
+                footerText: isDarkMode ? '#ffffff' : '#000000',
+                bodyBg: isDarkMode ? '#333333' : '#ffffff'
+            };
+        }
+
+        // Toggle mode function
+        function toggleMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode');
+            document.body.style.backgroundColor = getColors().bodyBg;
+        }
+
+        // Toggle button for mode
+        const toggleButton = {
+            x: VIRTUAL_WIDTH - TOGGLE_BUTTON_WIDTH - 10,
+            y: (HEADER_HEIGHT - TOGGLE_BUTTON_HEIGHT) / 2,
+            width: TOGGLE_BUTTON_WIDTH,
+            height: TOGGLE_BUTTON_HEIGHT,
+            name: TOGGLE_BUTTON_TEXT
+        };
 
         // Game state
         let truthCount = 0;
@@ -176,7 +222,7 @@
         let startY = 0;
         let startCameraY = 0;
 
-        // Button definitions
+        // Button definitions (adjusted for GAME_OFFSET_Y)
         let buttons = [
             { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
             { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
@@ -265,6 +311,38 @@
             return Math.round(value);
         }
 
+        // Draw header and footer
+        function drawHeaderAndFooter() {
+            const colors = getColors();
+
+            // Draw header
+            ctx.fillStyle = colors.headerBg;
+            ctx.fillRect(0, -cameraY, VIRTUAL_WIDTH, HEADER_HEIGHT);
+            ctx.fillStyle = colors.headerText;
+            ctx.font = `${snapToPixel(HEADER_FONT_SIZE)}px Audiowide`;
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(HEADER_TEXT, 10, HEADER_HEIGHT / 2 - cameraY);
+
+            // Draw toggle button
+            ctx.fillStyle = colors.buttonBg;
+            ctx.fillRect(toggleButton.x, toggleButton.y - cameraY, toggleButton.width, toggleButton.height);
+            ctx.fillStyle = colors.buttonText;
+            ctx.font = `${snapToPixel(isMobile ? 10 : 14)}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(toggleButton.name, toggleButton.x + toggleButton.width / 2, toggleButton.y + toggleButton.height / 2 - cameraY);
+
+            // Draw footer
+            ctx.fillStyle = colors.footerBg;
+            ctx.fillRect(0, worldHeight - cameraY, VIRTUAL_WIDTH, FOOTER_HEIGHT);
+            ctx.fillStyle = colors.footerText;
+            ctx.font = `${snapToPixel(FOOTER_FONT_SIZE)}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(FOOTER_TEXT, VIRTUAL_WIDTH / 2, worldHeight + FOOTER_HEIGHT / 2 - cameraY);
+        }
+
         // Draw shapes with pixel snapping
         function drawDiamond(x, y, size, color) {
             x = snapToPixel(x);
@@ -331,8 +409,8 @@
         }
 
         function drawCounter() {
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.05)}px Arial`; // Reduced from 0.08 to 0.05
+            ctx.fillStyle = isDarkMode ? '#FFFFFF' : '#000000';
+            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.05)}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
@@ -350,8 +428,8 @@
         }
 
         function drawBinCounters() {
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`; // Reduced from 0.06 to 0.04
+            ctx.fillStyle = isDarkMode ? '#FFFFFF' : '#000000';
+            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
             mines.forEach(mine => {
@@ -363,10 +441,10 @@
         function drawButtons() {
             buttons.forEach(button => {
                 ctx.fillStyle = '#555555';
-                let textColor = '#FFFFFF';
+                let textColor = isDarkMode ? '#FFFFFF' : '#000000';
                 if (!button.worker && !button.index) {
-                    ctx.fillStyle = isAutoMode ? '#FFFFFF' : '#000000';
-                    textColor = isAutoMode ? '#000000' : '#FFFFFF';
+                    ctx.fillStyle = isAutoMode ? (isDarkMode ? '#FFFFFF' : '#000000') : '#000000';
+                    textColor = isAutoMode ? (isDarkMode ? '#000000' : '#FFFFFF') : (isDarkMode ? '#FFFFFF' : '#000000');
                 }
                 const x = snapToPixel(button.x);
                 const y = snapToPixel(button.y - cameraY);
@@ -374,7 +452,7 @@
                 const height = snapToPixel(button.height);
                 ctx.fillRect(x, y, width, height);
                 ctx.fillStyle = textColor;
-                ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`; // Reduced from 0.05 to 0.04
+                ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 let displayText = button.name;
@@ -653,28 +731,30 @@
 
         function updateWorldHeight() {
             let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
-            worldHeight = lowestY + PATH_WIDTH;
+            worldHeight = lowestY + PATH_WIDTH + FOOTER_HEIGHT + GAME_OFFSET_Y;
         }
 
         function handleStart(clientX, clientY) {
             const rect = canvas.getBoundingClientRect();
-            // Adjust for DPR and scaleFactor correctly
             const x = (clientX - rect.left) / scaleFactor;
             const y = (clientY - rect.top) / scaleFactor;
             let isButtonClick = false;
 
+            // Check if toggle button is clicked
+            let adjustedY = y + cameraY;
+            if (x >= toggleButton.x && x <= toggleButton.x + toggleButton.width && adjustedY >= toggleButton.y && adjustedY <= toggleButton.y + toggleButton.height) {
+                toggleMode();
+                return;
+            }
+
             buttons.forEach(button => {
-                let adjustedY = y + cameraY;
-                // Debug: Log button positions and click coordinates
-                console.log(`Button: ${button.name}, x: ${button.x}, y: ${button.y}, width: ${button.width}, height: ${button.height}, clickX: ${x}, clickY: ${adjustedY}`);
+                adjustedY = y + cameraY;
                 if (x >= button.x && x <= button.x + button.width && adjustedY >= button.y && adjustedY <= button.y + button.height) {
-                    console.log(`Clicked ${button.name}`);
                     isButtonClick = true;
                     if (button.worker) {
                         performUpgrade(button);
                     } else if (!button.worker && !button.index) {
                         isAutoMode = !isAutoMode;
-                        console.log(`AUTO mode: ${isAutoMode}`);
                         if (isAutoMode) {
                             autoInterval = setInterval(() => {
                                 let { button, cost } = findCheapestUpgrade();
@@ -702,8 +782,8 @@
                 const deltaY = (clientY - startY) / scaleFactor;
                 cameraY = startCameraY - deltaY;
                 let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
-                worldHeight = lowestY + PATH_WIDTH;
-                cameraY = Math.max(CART_Y - VIRTUAL_HEIGHT / 2, Math.min(cameraY, worldHeight - VIRTUAL_HEIGHT / 2));
+                worldHeight = lowestY + PATH_WIDTH + FOOTER_HEIGHT + GAME_OFFSET_Y;
+                cameraY = Math.max(GAME_OFFSET_Y - VIRTUAL_HEIGHT / 2, Math.min(cameraY, worldHeight - VIRTUAL_HEIGHT / 2));
             }
         }
 
@@ -763,6 +843,7 @@
                 drawCounter();
                 drawBinCounters();
                 drawButtons();
+                drawHeaderAndFooter();
                 mines.forEach(mine => {
                     mine.workers.forEach(worker => updateMineWorker(mine, worker));
                 });
