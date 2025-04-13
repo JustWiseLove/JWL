@@ -101,7 +101,7 @@
         const PATH_COLOR = '#777777';
         const WORKER_COLOR = '#000000';
         const BIN_COLOR = '#000000';
-        const BUTTON_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.22 : VIRTUAL_WIDTH * 0.26; // Increased width slightly
+        const BUTTON_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.24 : VIRTUAL_WIDTH * 0.28; // Increased width slightly
         const BUTTON_HEIGHT = isMobile ? VIRTUAL_HEIGHT * 0.06 : VIRTUAL_HEIGHT * 0.08;
         const MINE_BUTTON_HEIGHT = PATH_WIDTH;
         const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
@@ -135,11 +135,11 @@
         // Colors based on mode
         function getColors() {
             return {
-                headerBg: isDarkMode ? '#1a1a1a' : '#ffffff',
+                headerBg: isDarkMode ? '#000000' : '#ffffff',
                 headerText: isDarkMode ? '#ffffff' : '#000000',
                 buttonBg: isDarkMode ? '#2a2a2a' : '#d3d3d3',
                 buttonText: isDarkMode ? '#ffffff' : '#000000',
-                footerBg: isDarkMode ? '#1a1a1a' : '#ffffff',
+                footerBg: isDarkMode ? '#000000' : '#ffffff',
                 footerText: isDarkMode ? '#ffffff' : '#000000',
                 bodyBg: isDarkMode ? '#333333' : '#ffffff'
             };
