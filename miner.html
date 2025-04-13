@@ -58,7 +58,7 @@
         const CART_START_X = SHAFT_X;
         const CART_END_X = window.innerWidth * 0.85;
         const BUTTON_X = window.innerWidth * 0.85 - 20;
-        const MAX_MINES = 10;
+        const MAX_MINES = 15;
         const COUNTER_Y = window.innerHeight * 0.5;
         const BUTTON_WIDTH = window.innerWidth * 0.1;
         const BUTTON_HEIGHT = window.innerHeight * 0.1;
@@ -109,7 +109,7 @@
                     movingToBin: false,
                     waiting: true,
                     triangles: 0,
-                    carryCapacity: 9
+                    carryCapacity: 8
                 }
             ]
         };
@@ -191,7 +191,7 @@
                         movingToBin: false,
                         waiting: true,
                         triangles: 0,
-                        carryCapacity: 9
+                        carryCapacity: 8
                     }
                 ]
             };
@@ -290,7 +290,6 @@
 
         function drawButtons() {
             buttons.forEach(button => {
-                // AUTO button: white with black text when active, black with white text when inactive
                 if (button.name === 'AUTO') {
                     ctx.fillStyle = isAutoEnabled ? '#FFFFFF' : '#000000';
                 } else {
@@ -490,7 +489,7 @@
                         worker.carryCapacity = 12 + (worker.level - 1) * 6;
                     } else if (button.worker === 'cart') {
                         worker.speed = 3 + (worker.level - 1) * 1;
-                        worker.carryCapacity = 9 + (worker.level - 1) * 6;
+                        worker.carryCapacity = 8 + (worker.level - 1) * 4;
                     } else {
                         worker.speed = 3 + (worker.level - 1) * 0.25;
                         worker.carryCapacity = 6 + (worker.level - 1) * 1;
@@ -499,23 +498,33 @@
                 if (button.worker === 'mine' && button.index < mines.length && mines.length < MAX_MINES) {
                     let createNewMine = false;
                     let newMineIndex = mines.length + 1;
-                    if (mines.length === 1 && mines[0].worker.level >= 2) {
+                    if (mines.length === 1 && mines[0].worker.level >= 3) {
                         createNewMine = true;
-                    } else if (mines.length === 2 && mines[1].worker.level >= 2) {
+                    } else if (mines.length === 2 && mines[1].worker.level >= 3) {
                         createNewMine = true;
-                    } else if (mines.length === 3 && mines[2].worker.level >= 2) {
+                    } else if (mines.length === 3 && mines[2].worker.level >= 4) {
                         createNewMine = true;
-                    } else if (mines.length === 4 && mines[3].worker.level >= 3) {
+                    } else if (mines.length === 4 && mines[3].worker.level >= 4) {
                         createNewMine = true;
-                    } else if (mines.length === 5 && mines[4].worker.level >= 3) {
+                    } else if (mines.length === 5 && mines[4].worker.level >= 5) {
                         createNewMine = true;
-                    } else if (mines.length === 6 && mines[5].worker.level >= 3) {
+                    } else if (mines.length === 6 && mines[5].worker.level >= 5) {
                         createNewMine = true;
-                    } else if (mines.length === 7 && mines[6].worker.level >= 4) {
+                    } else if (mines.length === 7 && mines[6].worker.level >= 6) {
                         createNewMine = true;
-                    } else if (mines.length === 8 && mines[7].worker.level >= 4) {
+                    } else if (mines.length === 8 && mines[7].worker.level >= 6) {
                         createNewMine = true;
-                    } else if (mines.length === 9 && mines[8].worker.level >= 5) {
+                    } else if (mines.length === 9 && mines[8].worker.level >= 7) {
+                        createNewMine = true;
+                    } else if (mines.length === 10 && mines[9].worker.level >= 7) {
+                        createNewMine = true;
+                    } else if (mines.length === 11 && mines[10].worker.level >= 8) {
+                        createNewMine = true;
+                    } else if (mines.length === 12 && mines[11].worker.level >= 8) {
+                        createNewMine = true;
+                    } else if (mines.length === 13 && mines[12].worker.level >= 9) {
+                        createNewMine = true;
+                    } else if (mines.length === 14 && mines[13].worker.level >= 9) {
                         createNewMine = true;
                     }
                     if (createNewMine) {
@@ -546,7 +555,7 @@
                             height: BUTTON_HEIGHT
                         });
                         workers.shaft[0].carryCapacity += 9;
-                        workers.cart[0].carryCapacity += 6;
+                        workers.cart[0].carryCapacity += 4;
                     }
                 }
             }
