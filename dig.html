@@ -3,32 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Google Fonts for the logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <title>Truth Miner</title>
     <style>
-        body, html {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body, html {
             width: 100%;
             height: 100%;
             overflow: hidden;
             background-color: #333333;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
+        }
+        header {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 5px;
+            text-align: center;
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .logo {
+            font-size: 60px;
+            font-weight: bold;
+        }
+        .logo a {
+            font-family: 'Audiowide', cursive, sans-serif;
+            text-decoration: none;
+            color: #000000;
+        }
+        .logo a:hover {
+            color: #666666;
         }
         #gameCanvas {
             width: 100%;
-            height: 100%;
+            flex-grow: 1;
             display: block;
-            object-fit: contain; /* Preserve aspect ratio */
-            image-rendering: pixelated; /* For pixel-perfect scaling */
-            image-rendering: -webkit-optimize-contrast; /* For Safari */
-            image-rendering: crisp-edges; /* For Firefox */
+            object-fit: contain;
+            image-rendering: pixelated;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        footer {
+            background-color: #ffffff;
+            color: #333333;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            width: 100%;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 4rem;
+            }
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <a href="notes.html">JWL</a>
+        </div>
+    </header>
     <canvas id="gameCanvas"></canvas>
+    <footer>
+        <p>Copyright © 2025 Just Wise Love. All Rights Reserved.</p>
+    </footer>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -45,30 +94,35 @@
         // Define a fixed virtual resolution for the game, adjusted for mobile
         const BASE_VIRTUAL_WIDTH = 600;
         const BASE_VIRTUAL_HEIGHT = 1000;
-        const MOBILE_SCALE = 0.4; // Kept at 0.4 for compact mobile layout
+        const MOBILE_SCALE = 0.4;
 
         let VIRTUAL_WIDTH = BASE_VIRTUAL_WIDTH;
         let VIRTUAL_HEIGHT = BASE_VIRTUAL_HEIGHT;
 
         if (isMobile) {
-            VIRTUAL_WIDTH = BASE_VIRTUAL_WIDTH * MOBILE_SCALE; // 240
-            VIRTUAL_HEIGHT = BASE_VIRTUAL_HEIGHT * MOBILE_SCALE; // 400
+            VIRTUAL_WIDTH = BASE_VIRTUAL_WIDTH * MOBILE_SCALE;
+            VIRTUAL_HEIGHT = BASE_VIRTUAL_HEIGHT * MOBILE_SCALE;
         }
 
         // Scale factor to map virtual coordinates to screen coordinates
         let scaleFactor = 1;
 
         function resizeCanvas() {
+            // Account for header and footer heights
+            const header = document.querySelector('header');
+            const footer = document.querySelector('footer');
+            const headerHeight = header ? header.offsetHeight : 0;
+            const footerHeight = footer ? footer.offsetHeight : 0;
+            const availableHeight = window.innerHeight - headerHeight - footerHeight;
             const windowWidth = window.innerWidth;
-            const windowHeight = window.innerHeight;
             const aspectRatio = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
-            const windowAspectRatio = windowWidth / windowHeight;
+            const windowAspectRatio = windowWidth / availableHeight;
 
             let renderWidth, renderHeight;
 
             if (windowAspectRatio > aspectRatio) {
-                scaleFactor = windowHeight / VIRTUAL_HEIGHT;
-                renderHeight = windowHeight;
+                scaleFactor = availableHeight / VIRTUAL_HEIGHT;
+                renderHeight = availableHeight;
                 renderWidth = renderHeight * aspectRatio;
             } else {
                 scaleFactor = windowWidth / VIRTUAL_WIDTH;
@@ -85,7 +139,7 @@
             canvas.style.height = `${renderHeight}px`;
 
             // Scale the context to account for DPR
-            ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.scale(scaleFactor * dpr, scaleFactor * dpr);
         }
 
@@ -93,15 +147,15 @@
         window.addEventListener('resize', resizeCanvas);
 
         // Game constants, adjusted for mobile
-        const PATH_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.1 : VIRTUAL_WIDTH * 0.2; // 24 units on mobile
+        const PATH_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.1 : VIRTUAL_WIDTH * 0.2;
         const WORKER_SIZE = PATH_WIDTH * 0.5;
         const TRIANGLE_SIZE = WORKER_SIZE * 0.3;
         const BIN_SIZE = PATH_WIDTH * 0.7;
         const PATH_COLOR = '#777777';
         const WORKER_COLOR = '#000000';
         const BIN_COLOR = '#000000';
-        const CART_Y = VIRTUAL_HEIGHT * 0.15; // 60 units on mobile
-        const MINE_Y = CART_Y + (isMobile ? 40 : 200); // 100 units on mobile
+        const CART_Y = VIRTUAL_HEIGHT * 0.15;
+        const MINE_Y = CART_Y + (isMobile ? 40 : 200);
         const MINE_SPACING = isMobile ? 40 : 200;
         const SHAFT_X = VIRTUAL_WIDTH * 0.15;
         const MINE_START_X = VIRTUAL_WIDTH * 0.85;
@@ -312,6 +366,7 @@
             if (bin.triangles > 0) {
                 drawTriangle(bin.x, bin.y - cameraY - BIN_SIZE * 0.3, TRIANGLE_SIZE);
                 drawTriangle(bin.x - BIN_SIZE * 0.3, bin.y - cameraY, TRIANGLE_SIZE);
+                drawTriangle(bin.x - BIN_SIZE * 0.3, bin.y - cameraY, TRIANGLE_SIZE);
                 drawTriangle(bin.x + BIN_SIZE * 0.3, bin.y - cameraY, TRIANGLE_SIZE);
             }
         }
@@ -332,7 +387,7 @@
 
         function drawCounter() {
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.05)}px Arial`; // Reduced from 0.08 to 0.05
+            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.05)}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
@@ -351,7 +406,7 @@
 
         function drawBinCounters() {
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`; // Reduced from 0.06 to 0.04
+            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
             mines.forEach(mine => {
@@ -374,7 +429,7 @@
                 const height = snapToPixel(button.height);
                 ctx.fillRect(x, y, width, height);
                 ctx.fillStyle = textColor;
-                ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`; // Reduced from 0.05 to 0.04
+                ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 let displayText = button.name;
@@ -658,23 +713,18 @@
 
         function handleStart(clientX, clientY) {
             const rect = canvas.getBoundingClientRect();
-            // Adjust for DPR and scaleFactor correctly
             const x = (clientX - rect.left) / scaleFactor;
             const y = (clientY - rect.top) / scaleFactor;
             let isButtonClick = false;
 
             buttons.forEach(button => {
                 let adjustedY = y + cameraY;
-                // Debug: Log button positions and click coordinates
-                console.log(`Button: ${button.name}, x: ${button.x}, y: ${button.y}, width: ${button.width}, height: ${button.height}, clickX: ${x}, clickY: ${adjustedY}`);
                 if (x >= button.x && x <= button.x + button.width && adjustedY >= button.y && adjustedY <= button.y + button.height) {
-                    console.log(`Clicked ${button.name}`);
                     isButtonClick = true;
                     if (button.worker) {
                         performUpgrade(button);
                     } else if (!button.worker && !button.index) {
                         isAutoMode = !isAutoMode;
-                        console.log(`AUTO mode: ${isAutoMode}`);
                         if (isAutoMode) {
                             autoInterval = setInterval(() => {
                                 let { button, cost } = findCheapestUpgrade();
