@@ -3,33 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Truth Miner</title>
+    <!-- Google Fonts for the logo -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <title>Truth Mined</title>
     <style>
-        body, html {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body, html {
             width: 100%;
             height: 100%;
             overflow: hidden;
             background-color: #333333;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
+        }
+        header {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 5px;
+            text-align: center;
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .logo {
+            font-size: 60px;
+            font-weight: bold;
+        }
+        .logo a {
+            font-family: 'Audiowide', cursive, sans-serif;
+            text-decoration: none;
+            color: #000000;
+        }
+        .logo a:hover {
+            color: #666666;
         }
         #gameCanvas {
             width: 100%;
-            height: 100%;
+            flex-grow: 1;
             display: block;
-            object-fit: contain; /* Preserve aspect ratio */
-            image-rendering: pixelated; /* For pixel-perfect scaling */
-            image-rendering: -webkit-optimize-contrast; /* For Safari */
-            image-rendering: crisp-edges; /* For Firefox */
+            object-fit: contain;
+            image-rendering: pixelated;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        footer {
+            background-color: #ffffff;
+            color: #333333;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            width: 100%;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 4rem;
+            }
         }
     </style>
 </head>
-<body class="dark-mode">
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">MINED</a>
+        </div>
+    </header>
     <canvas id="gameCanvas"></canvas>
+    <footer>
+        <p>Copyright © 2025 Just Wise Love. All Rights Reserved.</p>
+    </footer>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -46,30 +94,35 @@
         // Define a fixed virtual resolution for the game, adjusted for mobile
         const BASE_VIRTUAL_WIDTH = 600;
         const BASE_VIRTUAL_HEIGHT = 1000;
-        const MOBILE_SCALE = 0.4; // Kept at 0.4 for compact mobile layout
+        const MOBILE_SCALE = 0.4;
 
         let VIRTUAL_WIDTH = BASE_VIRTUAL_WIDTH;
         let VIRTUAL_HEIGHT = BASE_VIRTUAL_HEIGHT;
 
         if (isMobile) {
-            VIRTUAL_WIDTH = BASE_VIRTUAL_WIDTH * MOBILE_SCALE; // 240
-            VIRTUAL_HEIGHT = BASE_VIRTUAL_HEIGHT * MOBILE_SCALE; // 400
+            VIRTUAL_WIDTH = BASE_VIRTUAL_WIDTH * MOBILE_SCALE;
+            VIRTUAL_HEIGHT = BASE_VIRTUAL_HEIGHT * MOBILE_SCALE;
         }
 
         // Scale factor to map virtual coordinates to screen coordinates
         let scaleFactor = 1;
 
         function resizeCanvas() {
+            // Account for header and footer heights
+            const header = document.querySelector('header');
+            const footer = document.querySelector('footer');
+            const headerHeight = header ? header.offsetHeight : 0;
+            const footerHeight = footer ? footer.offsetHeight : 0;
+            const availableHeight = window.innerHeight - headerHeight - footerHeight;
             const windowWidth = window.innerWidth;
-            const windowHeight = window.innerHeight;
             const aspectRatio = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
-            const windowAspectRatio = windowWidth / windowHeight;
+            const windowAspectRatio = windowWidth / availableHeight;
 
             let renderWidth, renderHeight;
 
             if (windowAspectRatio > aspectRatio) {
-                scaleFactor = windowHeight / VIRTUAL_HEIGHT;
-                renderHeight = windowHeight;
+                scaleFactor = availableHeight / VIRTUAL_HEIGHT;
+                renderHeight = availableHeight;
                 renderWidth = renderHeight * aspectRatio;
             } else {
                 scaleFactor = windowWidth / VIRTUAL_WIDTH;
@@ -86,7 +139,7 @@
             canvas.style.height = `${renderHeight}px`;
 
             // Scale the context to account for DPR
-            ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.scale(scaleFactor * dpr, scaleFactor * dpr);
         }
 
@@ -94,25 +147,15 @@
         window.addEventListener('resize', resizeCanvas);
 
         // Game constants, adjusted for mobile
-        const PATH_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.1 : VIRTUAL_WIDTH * 0.2; // 24 units on mobile
+        const PATH_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.1 : VIRTUAL_WIDTH * 0.2;
         const WORKER_SIZE = PATH_WIDTH * 0.5;
         const TRIANGLE_SIZE = WORKER_SIZE * 0.3;
         const BIN_SIZE = PATH_WIDTH * 0.7;
         const PATH_COLOR = '#777777';
         const WORKER_COLOR = '#000000';
         const BIN_COLOR = '#000000';
-        const BUTTON_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.24 : VIRTUAL_WIDTH * 0.28; // Increased width slightly
-        const BUTTON_HEIGHT = isMobile ? VIRTUAL_HEIGHT * 0.06 : VIRTUAL_HEIGHT * 0.08;
-        const MINE_BUTTON_HEIGHT = PATH_WIDTH;
-        const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
-        const MAX_MINES = 21;
-
-        // Header and footer constants
-        const HEADER_HEIGHT = isMobile ? 40 : 60;
-        const FOOTER_HEIGHT = isMobile ? 20 : 30;
-        const GAME_OFFSET_Y = HEADER_HEIGHT; // Offset to shift game content below header
-        const CART_Y = VIRTUAL_HEIGHT * 0.15 + GAME_OFFSET_Y; // Adjusted for header
-        const MINE_Y = CART_Y + (isMobile ? 40 : 200); // Adjusted for header
+        const CART_Y = VIRTUAL_HEIGHT * 0.15;
+        const MINE_Y = CART_Y + (isMobile ? 40 : 200);
         const MINE_SPACING = isMobile ? 40 : 200;
         const SHAFT_X = VIRTUAL_WIDTH * 0.15;
         const MINE_START_X = VIRTUAL_WIDTH * 0.85;
@@ -120,46 +163,11 @@
         const SHAFT_END_Y = CART_Y;
         const CART_START_X = SHAFT_X;
         const CART_END_X = VIRTUAL_WIDTH * 0.85;
-
-        const HEADER_TEXT = 'MINED'; // Changed from 'FUTURE' to 'MINED'
-        const TOGGLE_BUTTON_TEXT = 'Toggle Light Mode';
-        const FOOTER_TEXT = '© 2025 Just Wise Love. All rights reserved.';
-        const TOGGLE_BUTTON_WIDTH = isMobile ? 80 : 120;
-        const TOGGLE_BUTTON_HEIGHT = isMobile ? 20 : 30;
-        const HEADER_FONT_SIZE = isMobile ? 20 : 30;
-        const FOOTER_FONT_SIZE = isMobile ? 10 : 12;
-
-        // Mode state
-        let isDarkMode = true;
-
-        // Colors based on mode
-        function getColors() {
-            return {
-                headerBg: isDarkMode ? '#000000' : '#ffffff',
-                headerText: isDarkMode ? '#ffffff' : '#000000',
-                buttonBg: isDarkMode ? '#2a2a2a' : '#d3d3d3',
-                buttonText: isDarkMode ? '#ffffff' : '#000000',
-                footerBg: isDarkMode ? '#000000' : '#ffffff',
-                footerText: isDarkMode ? '#ffffff' : '#000000',
-                bodyBg: isDarkMode ? '#333333' : '#ffffff'
-            };
-        }
-
-        // Toggle mode function
-        function toggleMode() {
-            isDarkMode = !isDarkMode;
-            document.body.classList.toggle('dark-mode');
-            document.body.style.backgroundColor = getColors().bodyBg;
-        }
-
-        // Toggle button for mode
-        const toggleButton = {
-            x: VIRTUAL_WIDTH - TOGGLE_BUTTON_WIDTH - 10,
-            y: (HEADER_HEIGHT - TOGGLE_BUTTON_HEIGHT) / 2,
-            width: TOGGLE_BUTTON_WIDTH,
-            height: TOGGLE_BUTTON_HEIGHT,
-            name: TOGGLE_BUTTON_TEXT
-        };
+        const BUTTON_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.12 : VIRTUAL_WIDTH * 0.15;
+        const BUTTON_HEIGHT = isMobile ? VIRTUAL_HEIGHT * 0.06 : VIRTUAL_HEIGHT * 0.08;
+        const MINE_BUTTON_HEIGHT = PATH_WIDTH;
+        const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
+        const MAX_MINES = 21;
 
         // Game state
         let truthCount = 0;
@@ -222,7 +230,7 @@
         let startY = 0;
         let startCameraY = 0;
 
-        // Button definitions (adjusted for GAME_OFFSET_Y)
+        // Button definitions
         let buttons = [
             { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
             { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
@@ -311,38 +319,6 @@
             return Math.round(value);
         }
 
-        // Draw header and footer
-        function drawHeaderAndFooter() {
-            const colors = getColors();
-
-            // Draw header
-            ctx.fillStyle = colors.headerBg;
-            ctx.fillRect(0, -cameraY, VIRTUAL_WIDTH, HEADER_HEIGHT);
-            ctx.fillStyle = colors.headerText;
-            ctx.font = `${snapToPixel(HEADER_FONT_SIZE)}px Audiowide`;
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(HEADER_TEXT, 10, HEADER_HEIGHT / 2 - cameraY);
-
-            // Draw toggle button
-            ctx.fillStyle = colors.buttonBg;
-            ctx.fillRect(toggleButton.x, toggleButton.y - cameraY, toggleButton.width, toggleButton.height);
-            ctx.fillStyle = colors.buttonText;
-            ctx.font = `${snapToPixel(isMobile ? 8 : 12)}px Arial`; // Reduced font size
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(toggleButton.name, toggleButton.x + toggleButton.width / 2, toggleButton.y + toggleButton.height / 2 - cameraY);
-
-            // Draw footer
-            ctx.fillStyle = colors.footerBg;
-            ctx.fillRect(0, worldHeight - cameraY, VIRTUAL_WIDTH, FOOTER_HEIGHT);
-            ctx.fillStyle = colors.footerText;
-            ctx.font = `${snapToPixel(FOOTER_FONT_SIZE)}px Arial`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(FOOTER_TEXT, VIRTUAL_WIDTH / 2, worldHeight + FOOTER_HEIGHT / 2 - cameraY);
-        }
-
         // Draw shapes with pixel snapping
         function drawDiamond(x, y, size, color) {
             x = snapToPixel(x);
@@ -390,6 +366,7 @@
             if (bin.triangles > 0) {
                 drawTriangle(bin.x, bin.y - cameraY - BIN_SIZE * 0.3, TRIANGLE_SIZE);
                 drawTriangle(bin.x - BIN_SIZE * 0.3, bin.y - cameraY, TRIANGLE_SIZE);
+                drawTriangle(bin.x - BIN_SIZE * 0.3, bin.y - cameraY, TRIANGLE_SIZE);
                 drawTriangle(bin.x + BIN_SIZE * 0.3, bin.y - cameraY, TRIANGLE_SIZE);
             }
         }
@@ -409,7 +386,7 @@
         }
 
         function drawCounter() {
-            ctx.fillStyle = isDarkMode ? '#FFFFFF' : '#000000';
+            ctx.fillStyle = '#FFFFFF';
             ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.05)}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -428,7 +405,7 @@
         }
 
         function drawBinCounters() {
-            ctx.fillStyle = isDarkMode ? '#FFFFFF' : '#000000';
+            ctx.fillStyle = '#FFFFFF';
             ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
@@ -440,13 +417,11 @@
 
         function drawButtons() {
             buttons.forEach(button => {
-                let textColor = isDarkMode ? '#FFFFFF' : '#000000';
+                ctx.fillStyle = '#555555';
+                let textColor = '#FFFFFF';
                 if (!button.worker && !button.index) {
-                    // AUTO button
-                    ctx.fillStyle = isAutoMode ? '#000000' : '#333333'; // Black when pressed, dark gray when not
-                    textColor = isDarkMode ? '#FFFFFF' : '#FFFFFF'; // White text for readability
-                } else {
-                    ctx.fillStyle = '#555555'; // Other buttons
+                    ctx.fillStyle = isAutoMode ? '#FFFFFF' : '#000000';
+                    textColor = isAutoMode ? '#000000' : '#FFFFFF';
                 }
                 const x = snapToPixel(button.x);
                 const y = snapToPixel(button.y - cameraY);
@@ -733,7 +708,7 @@
 
         function updateWorldHeight() {
             let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
-            worldHeight = lowestY + PATH_WIDTH + FOOTER_HEIGHT + GAME_OFFSET_Y;
+            worldHeight = lowestY + PATH_WIDTH;
         }
 
         function handleStart(clientX, clientY) {
@@ -742,15 +717,8 @@
             const y = (clientY - rect.top) / scaleFactor;
             let isButtonClick = false;
 
-            // Check if toggle button is clicked
-            let adjustedY = y + cameraY;
-            if (x >= toggleButton.x && x <= toggleButton.x + toggleButton.width && adjustedY >= toggleButton.y && adjustedY <= toggleButton.y + toggleButton.height) {
-                toggleMode();
-                return;
-            }
-
             buttons.forEach(button => {
-                adjustedY = y + cameraY;
+                let adjustedY = y + cameraY;
                 if (x >= button.x && x <= button.x + button.width && adjustedY >= button.y && adjustedY <= button.y + button.height) {
                     isButtonClick = true;
                     if (button.worker) {
@@ -784,8 +752,8 @@
                 const deltaY = (clientY - startY) / scaleFactor;
                 cameraY = startCameraY - deltaY;
                 let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
-                worldHeight = lowestY + PATH_WIDTH + FOOTER_HEIGHT + GAME_OFFSET_Y;
-                cameraY = Math.max(GAME_OFFSET_Y - VIRTUAL_HEIGHT / 2, Math.min(cameraY, worldHeight - VIRTUAL_HEIGHT / 2));
+                worldHeight = lowestY + PATH_WIDTH;
+                cameraY = Math.max(CART_Y - VIRTUAL_HEIGHT / 2, Math.min(cameraY, worldHeight - VIRTUAL_HEIGHT / 2));
             }
         }
 
@@ -845,7 +813,6 @@
                 drawCounter();
                 drawBinCounters();
                 drawButtons();
-                drawHeaderAndFooter();
                 mines.forEach(mine => {
                     mine.workers.forEach(worker => updateMineWorker(mine, worker));
                 });
