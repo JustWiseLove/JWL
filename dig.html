@@ -21,6 +21,9 @@
             height: 100%;
             display: block;
             object-fit: contain; /* Preserve aspect ratio */
+            image-rendering: pixelated; /* For pixel-perfect scaling */
+            image-rendering: -webkit-optimize-contrast; /* For Safari */
+            image-rendering: crisp-edges; /* For Firefox */
         }
     </style>
 </head>
@@ -30,9 +33,27 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
-        // Define a fixed virtual resolution for the game
-        const VIRTUAL_WIDTH = 600;
-        const VIRTUAL_HEIGHT = 1000;
+        // Disable image smoothing for crisp rendering
+        ctx.imageSmoothingEnabled = false;
+
+        // Detect if the device is mobile (screen width < 768px)
+        const isMobile = window.innerWidth < 768;
+
+        // Get the device pixel ratio
+        const dpr = window.devicePixelRatio || 1;
+
+        // Define a fixed virtual resolution for the game, adjusted for mobile
+        const BASE_VIRTUAL_WIDTH = 600;
+        const BASE_VIRTUAL_HEIGHT = 1000;
+        const MOBILE_SCALE = 0.4; // Kept at 0.4 for compact mobile layout
+
+        let VIRTUAL_WIDTH = BASE_VIRTUAL_WIDTH;
+        let VIRTUAL_HEIGHT = BASE_VIRTUAL_HEIGHT;
+
+        if (isMobile) {
+            VIRTUAL_WIDTH = BASE_VIRTUAL_WIDTH * MOBILE_SCALE; // 240
+            VIRTUAL_HEIGHT = BASE_VIRTUAL_HEIGHT * MOBILE_SCALE; // 400
+        }
 
         // Scale factor to map virtual coordinates to screen coordinates
         let scaleFactor = 1;
@@ -43,41 +64,53 @@
             const aspectRatio = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
             const windowAspectRatio = windowWidth / windowHeight;
 
+            let renderWidth, renderHeight;
+
             if (windowAspectRatio > aspectRatio) {
                 scaleFactor = windowHeight / VIRTUAL_HEIGHT;
+                renderHeight = windowHeight;
+                renderWidth = renderHeight * aspectRatio;
             } else {
                 scaleFactor = windowWidth / VIRTUAL_WIDTH;
+                renderWidth = windowWidth;
+                renderHeight = renderWidth / aspectRatio;
             }
 
-            canvas.width = VIRTUAL_WIDTH;
-            canvas.height = VIRTUAL_HEIGHT;
+            // Adjust canvas resolution for DPR
+            canvas.width = Math.round(VIRTUAL_WIDTH * scaleFactor * dpr);
+            canvas.height = Math.round(VIRTUAL_HEIGHT * scaleFactor * dpr);
 
-            canvas.style.width = `${VIRTUAL_WIDTH * scaleFactor}px`;
-            canvas.style.height = `${VIRTUAL_HEIGHT * scaleFactor}px`;
+            // Set the CSS size to the actual display size
+            canvas.style.width = `${renderWidth}px`;
+            canvas.style.height = `${renderHeight}px`;
+
+            // Scale the context to account for DPR
+            ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
+            ctx.scale(scaleFactor * dpr, scaleFactor * dpr);
         }
 
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Game constants
-        const PATH_WIDTH = VIRTUAL_WIDTH * 0.2;
+        // Game constants, adjusted for mobile
+        const PATH_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.1 : VIRTUAL_WIDTH * 0.2; // 24 units on mobile
         const WORKER_SIZE = PATH_WIDTH * 0.5;
         const TRIANGLE_SIZE = WORKER_SIZE * 0.3;
         const BIN_SIZE = PATH_WIDTH * 0.7;
         const PATH_COLOR = '#777777';
         const WORKER_COLOR = '#000000';
         const BIN_COLOR = '#000000';
-        const CART_Y = VIRTUAL_HEIGHT * 0.15;
-        const MINE_Y = CART_Y + 200;
-        const MINE_SPACING = 200;
+        const CART_Y = VIRTUAL_HEIGHT * 0.15; // 60 units on mobile
+        const MINE_Y = CART_Y + (isMobile ? 40 : 200); // 100 units on mobile
+        const MINE_SPACING = isMobile ? 40 : 200;
         const SHAFT_X = VIRTUAL_WIDTH * 0.15;
         const MINE_START_X = VIRTUAL_WIDTH * 0.85;
         const MINE_END_X = SHAFT_X;
         const SHAFT_END_Y = CART_Y;
         const CART_START_X = SHAFT_X;
         const CART_END_X = VIRTUAL_WIDTH * 0.85;
-        const BUTTON_WIDTH = VIRTUAL_WIDTH * 0.15;
-        const BUTTON_HEIGHT = VIRTUAL_HEIGHT * 0.08;
+        const BUTTON_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.12 : VIRTUAL_WIDTH * 0.15;
+        const BUTTON_HEIGHT = isMobile ? VIRTUAL_HEIGHT * 0.06 : VIRTUAL_HEIGHT * 0.08;
         const MINE_BUTTON_HEIGHT = PATH_WIDTH;
         const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
         const MAX_MINES = 21;
@@ -145,10 +178,10 @@
 
         // Button definitions
         let buttons = [
-            { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+            { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
             { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - MINE_BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: MINE_BUTTON_HEIGHT },
-            { name: 'AUTO', x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+            { name: 'AUTO', x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
         ];
 
         // Evolution stages
@@ -215,10 +248,10 @@
                 cart: { x: CART_END_X, y: CART_Y, triangles: 0 }
             };
             buttons = [
-                { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
+                { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
                 { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - MINE_BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: MINE_BUTTON_HEIGHT },
-                { name: currentStage.name, x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 20, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+                { name: currentStage.name, x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
             ];
             cameraY = 0;
             worldHeight = VIRTUAL_HEIGHT;
@@ -227,8 +260,16 @@
             startCameraY = 0;
         }
 
-        // Draw shapes
+        // Helper function to snap coordinates to pixels
+        function snapToPixel(value) {
+            return Math.round(value);
+        }
+
+        // Draw shapes with pixel snapping
         function drawDiamond(x, y, size, color) {
+            x = snapToPixel(x);
+            y = snapToPixel(y);
+            size = snapToPixel(size);
             ctx.fillStyle = color;
             ctx.beginPath();
             ctx.moveTo(x, y - size);
@@ -240,6 +281,9 @@
         }
 
         function drawTriangle(x, y, size) {
+            x = snapToPixel(x);
+            y = snapToPixel(y);
+            size = snapToPixel(size);
             ctx.fillStyle = currentStage.triangleColor;
             ctx.beginPath();
             ctx.moveTo(x, y - size);
@@ -259,8 +303,12 @@
         }
 
         function drawBin(bin) {
+            const x = snapToPixel(bin.x - BIN_SIZE / 2);
+            const y = snapToPixel(bin.y - cameraY - BIN_SIZE / 2);
+            const width = snapToPixel(BIN_SIZE);
+            const height = snapToPixel(BIN_SIZE);
             ctx.fillStyle = BIN_COLOR;
-            ctx.fillRect(bin.x - BIN_SIZE / 2, bin.y - cameraY - BIN_SIZE / 2, BIN_SIZE, BIN_SIZE);
+            ctx.fillRect(x, y, width, height);
             if (bin.triangles > 0) {
                 drawTriangle(bin.x, bin.y - cameraY - BIN_SIZE * 0.3, TRIANGLE_SIZE);
                 drawTriangle(bin.x - BIN_SIZE * 0.3, bin.y - cameraY, TRIANGLE_SIZE);
@@ -271,41 +319,45 @@
         function drawPaths() {
             ctx.fillStyle = PATH_COLOR;
             mines.forEach(mine => {
-                ctx.fillRect(0, mine.y - cameraY - PATH_WIDTH / 2, VIRTUAL_WIDTH, PATH_WIDTH);
+                const x = snapToPixel(0);
+                const y = snapToPixel(mine.y - cameraY - PATH_WIDTH / 2);
+                const width = snapToPixel(VIRTUAL_WIDTH);
+                const height = snapToPixel(PATH_WIDTH);
+                ctx.fillRect(x, y, width, height);
             });
-            ctx.fillRect(0, CART_Y - cameraY - PATH_WIDTH / 2, VIRTUAL_WIDTH, PATH_WIDTH);
+            ctx.fillRect(snapToPixel(0), snapToPixel(CART_Y - cameraY - PATH_WIDTH / 2), snapToPixel(VIRTUAL_WIDTH), snapToPixel(PATH_WIDTH));
             let lowestY = mines.reduce((max, m) => Math.max(max, m.y), MINE_Y);
-            ctx.fillRect(SHAFT_X - PATH_WIDTH / 2, CART_Y - cameraY, PATH_WIDTH, lowestY - CART_Y);
+            ctx.fillRect(snapToPixel(SHAFT_X - PATH_WIDTH / 2), snapToPixel(CART_Y - cameraY), snapToPixel(PATH_WIDTH), snapToPixel(lowestY - CART_Y));
         }
 
         function drawCounter() {
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${VIRTUAL_WIDTH * 0.06}px Arial`;
+            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.05)}px Arial`; // Reduced from 0.08 to 0.05
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
-            let truthCounterY = CART_Y + (MINE_Y - CART_Y) / 2 - cameraY;
-            ctx.fillText(`Truth: ${truthCount}`, VIRTUAL_WIDTH / 2, truthCounterY);
+            let truthCounterY = snapToPixel(CART_Y + (MINE_Y - CART_Y) / 2 - cameraY);
+            ctx.fillText(`Truth: ${truthCount}`, snapToPixel(VIRTUAL_WIDTH / 2), truthCounterY);
 
             let minedCounterY;
             if (mines.length > 1) {
-                minedCounterY = mines[0].y + (mines[1].y - mines[0].y) / 2 - cameraY;
+                minedCounterY = snapToPixel(mines[0].y + (mines[1].y - mines[0].y) / 2 - cameraY);
             } else {
-                minedCounterY = mines[0].y + PATH_WIDTH / 2 + PATH_WIDTH - cameraY;
+                minedCounterY = snapToPixel(mines[0].y + PATH_WIDTH / 2 + PATH_WIDTH - cameraY);
             }
             let displayMined = totalTruthsMined >= 999999 ? 999999 : totalTruthsMined;
-            ctx.fillText(`Mined: ${displayMined}`, VIRTUAL_WIDTH / 2, minedCounterY);
+            ctx.fillText(`Mined: ${displayMined}`, snapToPixel(VIRTUAL_WIDTH / 2), minedCounterY);
         }
 
         function drawBinCounters() {
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${VIRTUAL_WIDTH * 0.05}px Arial`;
+            ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`; // Reduced from 0.06 to 0.04
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
             mines.forEach(mine => {
-                ctx.fillText(`${mine.bin.triangles}`, mine.bin.x, mine.bin.y - cameraY + BIN_SIZE / 2 + 20);
+                ctx.fillText(`${mine.bin.triangles}`, snapToPixel(mine.bin.x), snapToPixel(mine.bin.y - cameraY + BIN_SIZE / 2 + 5));
             });
-            ctx.fillText(`${bins.shaft.triangles}`, bins.shaft.x, bins.shaft.y - cameraY + BIN_SIZE / 2 + 20);
+            ctx.fillText(`${bins.shaft.triangles}`, snapToPixel(bins.shaft.x), snapToPixel(bins.shaft.y - cameraY + BIN_SIZE / 2 + 5));
         }
 
         function drawButtons() {
@@ -316,9 +368,13 @@
                     ctx.fillStyle = isAutoMode ? '#FFFFFF' : '#000000';
                     textColor = isAutoMode ? '#000000' : '#FFFFFF';
                 }
-                ctx.fillRect(button.x, button.y - cameraY, button.width, button.height);
+                const x = snapToPixel(button.x);
+                const y = snapToPixel(button.y - cameraY);
+                const width = snapToPixel(button.width);
+                const height = snapToPixel(button.height);
+                ctx.fillRect(x, y, width, height);
                 ctx.fillStyle = textColor;
-                ctx.font = `${VIRTUAL_WIDTH * 0.04}px Arial`;
+                ctx.font = `${snapToPixel(VIRTUAL_WIDTH * 0.04)}px Arial`; // Reduced from 0.05 to 0.04
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 let displayText = button.name;
@@ -333,7 +389,7 @@
                 } else if (!button.worker && !button.index) {
                     displayText = currentStage.name;
                 }
-                ctx.fillText(displayText, button.x + button.width / 2, button.y - cameraY + button.height / 2);
+                ctx.fillText(displayText, snapToPixel(button.x + button.width / 2), snapToPixel(button.y - cameraY + button.height / 2));
             });
         }
 
@@ -369,7 +425,7 @@
                     worker.y = SHAFT_END_Y;
                     worker.movingToBin = false;
                     bins.shaft.triangles += worker.triangles;
-                    worker.hasTruth = false; // Fixed typo: changed 'hasLife' to 'hasTruth'
+                    worker.hasTruth = false;
                     worker.triangles = 0;
                     worker.movingDown = true;
                 }
@@ -602,17 +658,23 @@
 
         function handleStart(clientX, clientY) {
             const rect = canvas.getBoundingClientRect();
+            // Adjust for DPR and scaleFactor correctly
             const x = (clientX - rect.left) / scaleFactor;
             const y = (clientY - rect.top) / scaleFactor;
             let isButtonClick = false;
+
             buttons.forEach(button => {
                 let adjustedY = y + cameraY;
+                // Debug: Log button positions and click coordinates
+                console.log(`Button: ${button.name}, x: ${button.x}, y: ${button.y}, width: ${button.width}, height: ${button.height}, clickX: ${x}, clickY: ${adjustedY}`);
                 if (x >= button.x && x <= button.x + button.width && adjustedY >= button.y && adjustedY <= button.y + button.height) {
+                    console.log(`Clicked ${button.name}`);
                     isButtonClick = true;
                     if (button.worker) {
                         performUpgrade(button);
                     } else if (!button.worker && !button.index) {
                         isAutoMode = !isAutoMode;
+                        console.log(`AUTO mode: ${isAutoMode}`);
                         if (isAutoMode) {
                             autoInterval = setInterval(() => {
                                 let { button, cost } = findCheapestUpgrade();
@@ -627,6 +689,7 @@
                     }
                 }
             });
+
             if (!isButtonClick) {
                 isDragging = true;
                 startY = clientY;
