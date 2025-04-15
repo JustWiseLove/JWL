@@ -10,6 +10,26 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
+    <style>
+        /* Override grid for single-column layout */
+        .container {
+            grid-template-columns: 1fr;
+        }
+        /* Ensure card content is always visible */
+        .card-content {
+            display: block;
+        }
+        /* Style card header links */
+        .card-header a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Tighten card content spacing */
+        .card-content p {
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
 <body class="dark-mode">
     <header>
@@ -20,198 +40,154 @@
     <div class="container">
         <!-- Welcome Message -->
         <div class="featured-scripture">
-            <p>Welcome to Just Wise Love, where Jehovah’s truth lights the way to a life of purpose and peace.</p>
-        </div>
-
-        <!-- Featured Section 1: Alive -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="alive.html">Alive</a></summary>
-                    <div class="card-content">
-                        <p>Celebrate the gift of life Jehovah gives, finding joy and purpose in his creation.</p>
-                        <div class="scripture">
-                            “You open your hand and satisfy the desire of every living thing.” 
-                            <cite>—Psalm 145:16</cite>
-                        </div>
-                    </div>
-                </details>
+            <p>Welcome to Just Wise Love, where Jehovah’s truth lights your path to purpose and peace.</p>
+            <div class="scripture">
+                “You will know the truth, and the truth will set you free.” 
+                <cite>—John 8:32</cite>
             </div>
         </div>
 
-        <!-- Featured Section 2: Awake -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="awake.html">Awake</a></summary>
-                    <div class="card-content">
-                        <p>Stay alert to deception, letting Jehovah’s truth guide you through a darkened world.</p>
-                        <div class="scripture">
-                            “Keep your senses, be watchful! Your adversary, the Devil, walks about like a roaring lion.” 
-                            <cite>—1 Peter 5:8</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 1: Alive -->
+        <div class="card">
+            <div class="card-header"><a href="alive.html">Alive</a></div>
+            <div class="card-content">
+                <p>Find joy in the life Jehovah gives, made vibrant through his love.</p>
+                <div class="scripture">
+                    “As in Adam all die, so in the Christ all will be made alive.” 
+                    <cite>—1 Corinthians 15:22</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 3: Build -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="build.html">Build</a></summary>
-                    <div class="card-content">
-                        <p>Construct a faith as strong as rock, rooted in Jehovah’s Word for enduring hope.</p>
-                        <div class="scripture">
-                            “Everyone who hears these sayings of mine and does them will be like a wise man who built his house on the rock.” 
-                            <cite>—Matthew 7:24</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 2: Awake -->
+        <div class="card">
+            <div class="card-header"><a href="awake.html">Awake</a></div>
+            <div class="card-content">
+                <p>Stay vigilant in a deceptive world, roused by Jehovah’s truth.</p>
+                <div class="scripture">
+                    “Awake, awake, put on your strength, O arm of Jehovah!” 
+                    <cite>—Isaiah 51:9</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 4: Guide -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="guide.html">Guide</a></summary>
-                    <div class="card-content">
-                        <p>Follow Jehovah’s principles as a lamp, lighting every step of your journey.</p>
-                        <div class="scripture">
-                            “Your word is a lamp to my foot and a light to my path.” 
-                            <cite>—Psalm 119:105</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 3: Build -->
+        <div class="card">
+            <div class="card-header"><a href="build.html">Build</a></div>
+            <div class="card-content">
+                <p>Strengthen your faith like a house Jehovah helps you construct.</p>
+                <div class="scripture">
+                    “We will build it, and the God of the heavens will make us successful.” 
+                    <cite>—Nehemiah 2:20</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 5: Mined -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="mined.html">Mined</a></summary>
-                    <div class="card-content">
-                        <p>Dig deep into scripture, uncovering treasures of wisdom from Jehovah’s truth.</p>
-                        <div class="scripture">
-                            “If you keep seeking for it as for silver, then you will find the knowledge of God.” 
-                            <cite>—Proverbs 2:4-5</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 4: Guide -->
+        <div class="card">
+            <div class="card-header"><a href="guide.html">Guide</a></div>
+            <div class="card-content">
+                <p>Let Jehovah’s Word direct your steps with divine wisdom.</p>
+                <div class="scripture">
+                    “With your counsel you guide me, and afterward you will take me to glory.” 
+                    <cite>—Psalm 73:24</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 6: Notes -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="notes.html">Notes</a></summary>
-                    <div class="card-content">
-                        <p>Capture personal reflections and insights, growing closer to Jehovah through study.</p>
-                        <div class="scripture">
-                            “My son, do not forget my teaching, but let your heart keep my commandments.” 
-                            <cite>—Proverbs 3:1</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 5: Mined -->
+        <div class="card">
+            <div class="card-header"><a href="mined.html">Mined</a></div>
+            <div class="card-content">
+                <p>Uncover treasures of wisdom by searching Jehovah’s scriptures.</p>
+                <div class="scripture">
+                    “If you keep searching for it as for hidden treasures, then you will find the knowledge of God.” 
+                    <cite>—Proverbs 2:4-5</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 7: Quest -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="quest.html">Quest</a></summary>
-                    <div class="card-content">
-                        <p>Pursue Jehovah’s purpose with zeal, seeking truth to transform your life.</p>
-                        <div class="scripture">
-                            “Keep on seeking, and you will find; keep on knocking, and it will be opened to you.” 
-                            <cite>—Matthew 7:7</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 6: Notes -->
+        <div class="card">
+            <div class="card-header"><a href="notes.html">Notes</a></div>
+            <div class="card-content">
+                <p>Record insights from Jehovah’s Word to deepen your faith.</p>
+                <div class="scripture">
+                    “Write them on the doorposts of your house and on your gates.” 
+                    <cite>—Deuteronomy 6:9</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 8: Study -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="study.html">Study</a></summary>
-                    <div class="card-content">
-                        <p>Deepen your understanding of Jehovah’s Word, building faith through diligent study.</p>
-                        <div class="scripture">
-                            “This book of the Law should not depart from your mouth, and you must read it in an undertone day and night.” 
-                            <cite>—Joshua 1:8</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 7: Quest -->
+        <div class="card">
+            <div class="card-header"><a href="quest.html">Quest</a></div>
+            <div class="card-content">
+                <p>Pursue Jehovah’s purpose, seeking truth to transform your life.</p>
+                <div class="scripture">
+                    “Keep on seeking, and you will find; keep on knocking, and it will be opened to you.” 
+                    <cite>—Matthew 7:7</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 9: Teach -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="teach.html">Teach</a></summary>
-                    <div class="card-content">
-                        <p>Share Jehovah’s truth with others, guiding them toward his love and hope.</p>
-                        <div class="scripture">
-                            “Go, therefore, and make disciples of people of all the nations, teaching them.” 
-                            <cite>—Matthew 28:19-20</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 8: Study -->
+        <div class="card">
+            <div class="card-header"><a href="study.html">Study</a></div>
+            <div class="card-content">
+                <p>Deepen your faith by examining Jehovah’s Word diligently.</p>
+                <div class="scripture">
+                    “They were examining the Scriptures daily to see whether these things were so.” 
+                    <cite>—Acts 17:11</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 10: Topic -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="topic.html">Topic</a></summary>
-                    <div class="card-content">
-                        <p>Explore key themes of faith, finding Jehovah’s answers to life’s questions.</p>
-                        <div class="scripture">
-                            “All things you want men to do to you, you also must do to them.” 
-                            <cite>—Matthew 7:12</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 9: Teach -->
+        <div class="card">
+            <div class="card-header"><a href="teach.html">Teach</a></div>
+            <div class="card-content">
+                <p>Share Jehovah’s truth, guiding others to his love and hope.</p>
+                <div class="scripture">
+                    “Teach them to your children, speaking about them when you sit at home.” 
+                    <cite>—Deuteronomy 6:7</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 11: Trust -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="trust.html">Trust</a></summary>
-                    <div class="card-content">
-                        <p>Rest in Jehovah’s promises, finding peace through his unchanging strength.</p>
-                        <div class="scripture">
-                            “Trust in Jehovah with all your heart, and do not rely on your own understanding.” 
-                            <cite>—Proverbs 3:5</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 10: Topic -->
+        <div class="card">
+            <div class="card-header"><a href="topic.html">Topic</a></div>
+            <div class="card-content">
+                <p>Explore faith’s themes through Jehovah’s illuminating words.</p>
+                <div class="scripture">
+                    “Your word is a lamp to my foot and a light to my path.” 
+                    <cite>—Psalm 119:105</cite>
+                </div>
             </div>
         </div>
 
-        <!-- Featured Section 12: Truth -->
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header"><a href="truth.html">Truth</a></summary>
-                    <div class="card-content">
-                        <p>Embrace Jehovah’s truth, the foundation for a life free from falsehood.</p>
-                        <div class="scripture">
-                            “You will know the truth, and the truth will set you free.” 
-                            <cite>—John 8:32</cite>
-                        </div>
-                    </div>
-                </details>
+        <!-- Link 11: Trust -->
+        <div class="card">
+            <div class="card-header"><a href="trust.html">Trust</a></div>
+            <div class="card-content">
+                <p>Find peace by relying on Jehovah’s faithful promises.</p>
+                <div class="scripture">
+                    “Trust in Jehovah with all your heart, and do not rely on your own understanding.” 
+                    <cite>—Proverbs 3:5</cite>
+                </div>
+            </div>
+        </div>
+
+        <!-- Link 12: Truth -->
+        <div class="card">
+            <div class="card-header"><a href="truth.html">Truth</a></div>
+            <div class="card-content">
+                <p>Embrace Jehovah’s truth, freeing you from deception’s grip.</p>
+                <div class="scripture">
+                    “You will know the truth, and the truth will set you free.” 
+                    <cite>—John 8:32</cite>
+                </div>
             </div>
         </div>
     </div>
