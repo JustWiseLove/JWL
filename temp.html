@@ -11,27 +11,72 @@
 <body>
     <header>
         <h1><a href="notes.html">JWL</a></h1>
-        <button class="mode-toggle">Toggle Mode</button>
+        <button class="mode-toggle">Dark Mode</button>
     </header>
     <div class="container">
         <div class="article">
-            <h2>Explore Our Pages</h2>
-            <p><a href="topic.html">Topic</a></p>
-            <p><a href="quest.html">Quest</a></p>
-            <p><a href="guide.html">Guide</a></p>
-            <p><a href="trust.html">Trust</a></p>
-            <p><a href="teach.html">Teach</a></p>
-            <p><a href="truth.html">Truth</a></p>
-            <p><a href="alive.html">Alive</a></p>
-            <p><a href="build.html">Build</a></p>
-            <p><a href="awake.html">Awake</a></p>
+            <h2>Discover Our Pages</h2>
+        </div>
+        <div class="card">
+            <div class="card-header">Topic</div>
+            <div class="card-content">
+                <p><a href="topic.html">Explore Topics</a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Quest</div>
+            <div class="card-content">
+                <p><a href="quest.html">Begin Your Quest</a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Guide</div>
+            <div class="card-content">
+                <p><a href="guide.html">Find Guidance</a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Trust</div>
+            <div class="card-content">
+                <p><a href="trust.html">Build Trust</a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Teach</div>
+            <div class="card-content">
+                <p><a href="teach.html">Learn to Teach</a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Truth</div>
+            <div class="card-content">
+                <p><a href="truth.html">Seek Truth</a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Alive</div>
+            <div class="card-content">
+                <p><a href="alive.html">Celebrate Life</a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Build</div>
+            <div class="card-content">
+                <p><a href="build.html">Grow Strong</a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Awake</div>
+            <div class="card-content">
+                <p><a href="awake.html">Stay Awake</a></p>
+            </div>
         </div>
     </div>
     <footer>
         <p>Copyright © 2025 Just Wise Love. All Rights Reserved.</p>
     </footer>
     <script>
-        // JavaScript for mode toggle (based on styles.css dark-mode support)
+        // JavaScript for mode toggle
         const toggleButton = document.querySelector('.mode-toggle');
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
