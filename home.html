@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation - Just Wise Love</title>
+    <title>Just Wise Love</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts link for Audiowide -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Browser tab favicon -->
-    <link rel="apple-touch-icon" href="apple-touch-icon.png"> <!-- iOS home screen icon -->
-    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png"> <!-- Android home screen icon -->
 </head>
-<body class="dark-mode">
+<body>
     <header>
-        <h1><a href="notes.html">JWL</a></h1>
-        <button class="mode-toggle" onclick="toggleMode()">STYLE</button>
+        <div class="logo">
+            <a href="notes.html">
+                <h1>JWL</h1>
+            </a>
+        </div>
     </header>
-
-    <div class="container">
-        <div class="featured-section">
+    <main>
+        <section class="intro">
             <h2>Walk Wise</h2>
             <p>Explore the truth of the Bible through inspiring articles and resources.</p>
-            <div class="featured-scripture">
-            <p>Matthew 7:24,25 "Therefore, everyone who hears these sayings of mine and does them will be like a discreet man who built his house on the rock. And the rain poured down and the floods came and the winds blew and lashed against that house, but it did not cave in, for it had been founded on the rock."</p>
+            <div class="scripture">
+                <p><em>The one walking with the wise will become wise, But the one who has dealings with the stupid will fare badly. — Proverbs 13:20</em></p>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="featured-section">
-            <h2>Spotlight</h2>
-            <div class="card featured">
-                <details>
-                    <summary class="card-header">Can You Break Free From Lies?</summary>
-                    <div class="card-content">
+        </section>
+        <section class="featured-articles">
+            <h2 class="section-title">Spotlight</h2>
+            <div class="item-list">
+                <details class="item">
+                    <summary class="item-button">Can You Break Free From Lies?</summary>
+                    <div class="item-content">
                         <p>To accept Bible truth, your personality matters. Some resist because they’ve been indoctrinated with lies for years. Jehovah seeks those with the right traits to break free and learn. What are they?</p>
                         <ul>
                             <li><strong>Are you hungry for truth?</strong> A deep desire to know Jehovah drives you to seek His Word over human traditions.</li>
@@ -59,13 +55,9 @@
                         <p>These traits—hunger, honesty, humility, open-mindedness, and courage—equip you to see past a lifetime of lies and embrace Jehovah’s truth!</p>
                     </div>
                 </details>
-            </div>
-        </div>
-        <div class="featured-section">
-            <div class="card featured">
-                <details>
-                    <summary class="card-header">Is The Bible Trustworthy?</summary>
-                    <div class="card-content">
+                <details class="item">
+                    <summary class="item-button">Is The Bible Trustworthy?</summary>
+                    <div class="item-content">
                         <p>The Bible stands as Jehovah’s unshakable truth—written by honest men, proven by history and science, and enduring all attacks. Why trust it?</p>
                         <ul>
                             <li><strong>Men Moved by God:</strong> Over 40 writers across 1,600 years—fishermen, kings, prophets—wrote as one under Jehovah’s spirit (2 Peter 1:21), baring their flaws (Exodus 4:10, Psalm 51).</li>
@@ -93,70 +85,60 @@
                     </div>
                 </details>
             </div>
-        </div>
-    </div>
+        </section>
         <section class="categories">
             <div class="category">
                 <a href="characters.html">
                     <h3>Characters</h3>
-                    <p>Learn from their faith and mistakes.</p>
+                    <p>Learn from faithful people in the Bible.</p>
                 </a>
             </div>
             <div class="category">
-                <a href="direction.html">
+                <a href="discussion.html">
                     <h3>Direction</h3>
-                    <p>Instruct you in the way you should go.</p>
+                    <p>Allow the Bible to help you find fulfillment.</p>
                 </a>
             </div>
             <div class="category">
                 <a href="endurance.html">
                     <h3>Endurance</h3>
-                    <p>Search through the deeper teachings.</p>
+                    <p>Dive into the deeper teachings of the Bible.</p>
                 </a>
             </div>
             <div class="category">
                 <a href="foundation.html">
                     <h3>Foundation</h3>
-                    <p>Learn how to find accurate knowledge.</p>
+                    <p>Understand the basic teachings of the Bible.</p>
                 </a>
             </div>
             <div class="category">
                 <a href="personality.html">
                     <h3>Personality</h3>
-                    <p>Allow Jehovah to mold your character.</p>
+                    <p>Let the Bible mold your character.</p>
                 </a>
             </div>
             <div class="category">
                 <a href="questions.html">
                     <h3>Questions</h3>
-                    <p>Answers to life’s biggest questions.</p>
+                    <p>Find answers to life’s biggest questions.</p>
                 </a>
             </div>
             <div class="category">
                 <a href="reasoning.html">
                     <h3>Reasoning</h3>
-                    <p>Journey through a detailed topic index.</p>
+                    <p>Search and learn about all bible topics.</p>
                 </a>
             </div>
             <div class="category">
                 <a href="scriptures.html">
                     <h3>Scriptures</h3>
-                    <p>Highlight key scriptures sharing Truth.</p>
+                    <p>Highlight key scriptures sharing Bible Truth.</p>
                 </a>
             </div>
         </section>
-
+    </main>
     <footer>
-        <p>© 2025 Just Wise Love</p>
+        <p>© Just Wise Love</p>
     </footer>
-
-    <script>
-        function toggleMode() {
-            document.body.classList.toggle('dark-mode');
-            document.body.classList.toggle('light-mode');
-            const button = document.querySelector('.mode-toggle');
-            button.textContent = document.body.classList.contains('dark-mode') ? 'STYLE' : 'STYLE';
-        }
-    </script>
 </body>
 </html>
