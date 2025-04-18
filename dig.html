@@ -196,12 +196,12 @@
                 {
                     x: SHAFT_X,
                     y: SHAFT_END_Y,
-                    speed: 4,
+                    speed: 3, // Changed from 4
                     level: 1,
                     hasTruth: false,
                     movingToBin: false,
                     triangles: 0,
-                    carryCapacity: 9,
+                    carryCapacity: 6, // Changed from 9
                     movingDown: true
                 }
             ],
@@ -209,12 +209,12 @@
                 {
                     x: CART_START_X,
                     y: CART_Y,
-                    speed: 2,
+                    speed: 1.5, // Changed from 2
                     level: 1,
                     hasTruth: false,
                     movingToBin: false,
                     triangles: 0,
-                    carryCapacity: 12
+                    carryCapacity: 8 // Changed from 12
                 }
             ]
         };
@@ -303,12 +303,12 @@
                     {
                         x: SHAFT_X,
                         y: SHAFT_END_Y,
-                        speed: 4,
+                        speed: 3, // Changed from 4
                         level: 1,
                         hasTruth: false,
                         movingToBin: false,
                         triangles: 0,
-                        carryCapacity: 9,
+                        carryCapacity: 6, // Changed from 9
                         movingDown: true
                     }
                 ],
@@ -316,12 +316,12 @@
                     {
                         x: CART_START_X,
                         y: CART_Y,
-                        speed: 2,
+                        speed: 1.5, // Changed from 2
                         level: 1,
                         hasTruth: false,
                         movingToBin: false,
                         triangles: 0,
-                        carryCapacity: 12
+                        carryCapacity: 8 // Changed from 12
                     }
                 ]
             };
@@ -491,11 +491,11 @@
                 let displayText = button.name;
                 if (button.worker && button.worker !== 'mine') {
                     let level = workers[button.worker][0].level;
-                    let cost = level * 10;
+                    let cost = level * 15; // Changed from 10
                     displayText = `${button.name} (${cost})`;
                 } else if (button.worker === 'mine' && button.index < mines.length) {
                     let level = mines[button.index].workers[0].level;
-                    let cost = level * 10;
+                    let cost = level * 10; // Unchanged for mines
                     displayText = `${button.name} (${cost})`;
                 } else if (!button.worker && !button.index) {
                     displayText = currentStage.name;
@@ -625,12 +625,13 @@
             buttons.forEach(button => {
                 if (button.worker) {
                     let level;
+                    let costMultiplier = button.worker === 'mine' ? 10 : 15; // Different cost for mine vs shaft/cart
                     if (button.worker === 'mine' && button.index < mines.length) {
                         level = mines[button.index].workers[0].level;
                     } else if (button.worker === 'cart' || button.worker === 'shaft') {
                         level = workers[button.worker][0].level;
                     }
-                    let cost = level * 10;
+                    let cost = level * costMultiplier;
                     if (cost < minCost) {
                         minCost = cost;
                         cheapestButton = button;
@@ -655,6 +656,7 @@
 
         function performUpgrade(button) {
             let level, workerGroup;
+            let costMultiplier = button.worker === 'mine' ? 10 : 15; // Changed for shaft/cart
             if (button.worker === 'mine' && button.index < mines.length) {
                 workerGroup = mines[button.index].workers;
                 level = workerGroup[0].level;
@@ -662,15 +664,15 @@
                 workerGroup = workers[button.worker];
                 level = workerGroup[0].level;
             }
-            let cost = level * 10;
+            let cost = level * costMultiplier;
             if (truthCount >= cost) {
                 truthCount -= cost;
                 workerGroup.forEach(worker => {
                     worker.level++;
                     if (button.worker === 'shaft') {
-                        worker.speed = 4 + (worker.level - 1) * 1;
+                        worker.speed = 3 + (worker.level - 1) * 0.5; // Changed from 4 + (level - 1) * 1
                     } else if (button.worker === 'cart') {
-                        worker.speed = 2 + (worker.level - 1) * 1;
+                        worker.speed = 1.5 + (worker.level - 1) * 0.5; // Changed from 2 + (level - 1) * 1
                     } else if (button.worker === 'mine') {
                         worker.speed = 2 + (worker.level - 1) * 0.5;
                     }
@@ -755,8 +757,8 @@
                             width: BUTTON_WIDTH,
                             height: MINE_BUTTON_HEIGHT
                         });
-                        workers.shaft[0].carryCapacity += 9;
-                        workers.cart[0].carryCapacity += 12;
+                        workers.shaft[0].carryCapacity += 6; // Changed from 9
+                        workers.cart[0].carryCapacity += 8; // Changed from 12
                     }
                 }
             }
