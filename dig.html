@@ -71,7 +71,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href="index.html">DIG</a>
+            <a href="index.html">MINED</a>
         </div>
     </header>
     <canvas id="gameCanvas"></canvas>
@@ -163,7 +163,7 @@
         const SHAFT_END_Y = CART_Y;
         const CART_START_X = SHAFT_X;
         const CART_END_X = VIRTUAL_WIDTH * 0.85;
-        const BUTTON_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.12 : VIRTUAL_WIDTH * 0.15;
+        const BUTTON_WIDTH = isMobile ? VIRTUAL_WIDTH * 0.18 : VIRTUAL_WIDTH * 0.18;
         const BUTTON_HEIGHT = isMobile ? VIRTUAL_HEIGHT * 0.06 : VIRTUAL_HEIGHT * 0.08;
         const MINE_BUTTON_HEIGHT = PATH_WIDTH;
         const AUTO_BUTTON_HEIGHT = BUTTON_HEIGHT / 2;
@@ -232,10 +232,38 @@
 
         // Button definitions
         let buttons = [
-            { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-            { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - MINE_BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: MINE_BUTTON_HEIGHT },
-            { name: 'AUTO', x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+            { 
+                name: 'Cart', 
+                worker: 'cart', 
+                x: CART_END_X - BUTTON_WIDTH / 2, 
+                y: CART_Y - PATH_WIDTH / 2 - BUTTON_HEIGHT - 10, 
+                width: BUTTON_WIDTH, 
+                height: BUTTON_HEIGHT 
+            },
+            { 
+                name: 'Shaft', 
+                worker: 'shaft', 
+                x: SHAFT_X - BUTTON_WIDTH / 2, 
+                y: CART_Y - PATH_WIDTH / 2 - BUTTON_HEIGHT - 10, 
+                width: BUTTON_WIDTH, 
+                height: BUTTON_HEIGHT 
+            },
+            { 
+                name: 'Mine 1', 
+                worker: 'mine', 
+                index: 0, 
+                x: MINE_START_X - BUTTON_WIDTH / 2, 
+                y: MINE_Y - MINE_BUTTON_HEIGHT / 2, 
+                width: BUTTON_WIDTH, 
+                height: MINE_BUTTON_HEIGHT 
+            },
+            { 
+                name: 'AUTO', 
+                x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, 
+                y: CART_Y - PATH_WIDTH / 2 - BUTTON_HEIGHT - 10, 
+                width: BUTTON_WIDTH, 
+                height: AUTO_BUTTON_HEIGHT 
+            }
         ];
 
         // Evolution stages
@@ -302,10 +330,38 @@
                 cart: { x: CART_END_X, y: CART_Y, triangles: 0 }
             };
             buttons = [
-                { name: 'Cart', worker: 'cart', x: CART_END_X - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: 'Shaft', worker: 'shaft', x: SHAFT_X - BUTTON_WIDTH / 2, y: SHAFT_END_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: BUTTON_HEIGHT },
-                { name: 'Mine 1', worker: 'mine', index: 0, x: MINE_START_X - BUTTON_WIDTH / 2, y: MINE_Y - MINE_BUTTON_HEIGHT / 2, width: BUTTON_WIDTH, height: MINE_BUTTON_HEIGHT },
-                { name: currentStage.name, x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, y: CART_Y - BIN_SIZE / 2 - BUTTON_HEIGHT - 5, width: BUTTON_WIDTH, height: AUTO_BUTTON_HEIGHT }
+                { 
+                    name: 'Cart', 
+                    worker: 'cart', 
+                    x: CART_END_X - BUTTON_WIDTH / 2, 
+                    y: CART_Y - PATH_WIDTH / 2 - BUTTON_HEIGHT - 10, 
+                    width: BUTTON_WIDTH, 
+                    height: BUTTON_HEIGHT 
+                },
+                { 
+                    name: 'Shaft', 
+                    worker: 'shaft', 
+                    x: SHAFT_X - BUTTON_WIDTH / 2, 
+                    y: CART_Y - PATH_WIDTH / 2 - BUTTON_HEIGHT - 10, 
+                    width: BUTTON_WIDTH, 
+                    height: BUTTON_HEIGHT 
+                },
+                { 
+                    name: 'Mine 1', 
+                    worker: 'mine', 
+                    index: 0, 
+                    x: MINE_START_X - BUTTON_WIDTH / 2, 
+                    y: MINE_Y - MINE_BUTTON_HEIGHT / 2, 
+                    width: BUTTON_WIDTH, 
+                    height: MINE_BUTTON_HEIGHT 
+                },
+                { 
+                    name: currentStage.name, 
+                    x: VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, 
+                    y: CART_Y - PATH_WIDTH / 2 - BUTTON_HEIGHT - 10, 
+                    width: BUTTON_WIDTH, 
+                    height: AUTO_BUTTON_HEIGHT 
+                }
             ];
             cameraY = 0;
             worldHeight = VIRTUAL_HEIGHT;
