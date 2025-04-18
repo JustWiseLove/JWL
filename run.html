@@ -225,22 +225,9 @@
         const timerDisplay = document.getElementById('timer');
 
         // Set canvas size
-        let scale = 1;
         function setCanvasSize() {
-            let width, height;
-            if (window.innerWidth >= 1024) {
-                width = 1080;
-                height = 1920;
-                scale = 3;
-            } else if (window.innerWidth >= 768) {
-                width = 720;
-                height = 1280;
-                scale = 2;
-            } else {
-                width = Math.min(window.innerWidth, 360);
-                height = width * (16 / 9);
-                scale = 1;
-            }
+            const width = Math.min(window.innerWidth, 360);
+            const height = width * (16 / 9);
             canvas.width = width;
             canvas.height = height;
             canvas.style.width = `${width}px`;
@@ -248,8 +235,8 @@
             const dpr = window.devicePixelRatio || 1;
             canvas.width *= dpr;
             canvas.height *= dpr;
-            ctx.scale(dpr * scale, dpr * scale);
-            console.log(`Canvas set to ${width}x${height}, scale: ${scale}, DPR: ${dpr}`);
+            ctx.scale(dpr, dpr);
+            console.log(`Canvas set to ${width}x${height}, DPR: ${dpr}`);
         }
         setCanvasSize();
         window.addEventListener('resize', setCanvasSize);
@@ -257,15 +244,15 @@
         // Game variables
         let gameRunning = false;
         let player = {
-            x: 50 / scale,
-            y: (canvas.height / scale) - 100 / scale,
-            width: 50 / scale,
-            height: 50 / scale,
+            x: 50,
+            y: canvas.height - 50,
+            width: 50,
+            height: 50,
             jumping: false,
             ducking: false,
-            jumpHeight: 100 / scale,
-            jumpSpeed: 200 / scale,
-            gravity: 400 / scale
+            jumpHeight: 100,
+            jumpSpeed: 200,
+            gravity: 400
         };
         let obstacles = [];
         let lastObstacleTime = 0;
@@ -279,25 +266,26 @@
             const type = Math.random() < 0.5 ? 'jump' : 'duck';
             let obstacle;
             if (type === 'jump') {
-                const height = (20 + Math.random() * 30) / scale;
+                const height = 20 + Math.random() * 30;
                 obstacle = {
-                    x: canvas.width / scale,
-                    y: (canvas.height / scale) - height,
-                    width: 30 / scale,
+                    x: canvas.width,
+                    y: canvas.height - height,
+                    width: 30,
                     height: height,
                     type: 'jump'
                 };
             } else {
-                const height = (20 + Math.random() * 30) / scale;
+                const height = 20 + Math.random() * 30;
                 obstacle = {
-                    x: canvas.width / scale,
+                    x: canvas.width,
                     y: 0,
-                    width: 30 / scale,
+                    width: 30,
                     height: height,
                     type: 'duck'
                 };
             }
             obstacles.push(obstacle);
+            console.log(`Created ${type} obstacle at x: ${obstacle.x}, y: ${obstacle.y}`);
         }
 
         // Update game state
@@ -311,19 +299,20 @@
             // Player physics
             if (player.jumping) {
                 player.y -= player.jumpSpeed * deltaTime;
-                if (player.y <= (canvas.height / scale) - player.height - player.jumpHeight) {
+                if (player.y <= canvas.height - player.height - player.jumpHeight) {
                     player.jumping = false;
                 }
-            } else if (player.y < (canvas.height / scale) - player.height) {
+            } else if (player.y < canvas.height - player.height) {
                 player.y += player.gravity * deltaTime;
-                if (player.y > (canvas.height / scale) - player.height) {
-                    player.y = (canvas.height / scale) - player.height;
+                if (player.y > canvas.height - player.height) {
+                    player.y = canvas.height - player.height;
                 }
             }
+            console.log(`Player at x: ${player.x}, y: ${player.y}`);
 
             // Update obstacles
             obstacles.forEach(obstacle => {
-                obstacle.x -= 200 / scale * deltaTime;
+                obstacle.x -= 200 * deltaTime;
             });
             obstacles = obstacles.filter(obstacle => obstacle.x + obstacle.width > 0);
 
@@ -354,7 +343,7 @@
             });
 
             // Draw
-            ctx.clearRect(0, 0, canvas.width / scale, canvas.height / scale);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#333333';
             if (player.ducking) {
                 ctx.fillRect(player.x, player.y + player.height / 2, player.width, player.height / 2);
@@ -396,10 +385,11 @@
             lastObstacleTime = Date.now();
             startTime = Date.now();
             score = 0;
-            player.y = (canvas.height / scale) - player.height;
+            player.y = canvas.height - player.height;
             player.jumping = false;
             player.ducking = false;
             timerDisplay.textContent = 'Time: 0.00s';
+            console.log(`Player initialized at x: ${player.x}, y: ${player.y}`);
         }
 
         // Event listeners
@@ -414,23 +404,28 @@
         jumpButton.addEventListener('click', () => {
             if (gameRunning && !player.jumping && !player.ducking) {
                 player.jumping = true;
+                console.log('Jump triggered');
             }
         });
         duckButton.addEventListener('mousedown', () => {
             if (gameRunning && !player.jumping) {
                 player.ducking = true;
+                console.log('Duck started');
             }
         });
         duckButton.addEventListener('mouseup', () => {
             player.ducking = false;
+            console.log('Duck ended');
         });
         duckButton.addEventListener('touchstart', () => {
             if (gameRunning && !player.jumping) {
                 player.ducking = true;
+                console.log('Duck started (touch)');
             }
         });
         duckButton.addEventListener('touchend', () => {
             player.ducking = false;
+            console.log('Duck ended (touch)');
         });
 
         // Game loop
