@@ -304,32 +304,42 @@
         let obstacles = [];
         let lastObstacleTime = 0;
         let obstacleInterval = 1500;
+        let baseObstacleIntervalMin = 1000;
+        let baseObstacleIntervalMax = 2000;
+        let baseObstacleSpeed = 150;
+        let difficultyIncreaseInterval = 30000; // 30 seconds
+        let lastDifficultyIncrease = 0;
+        let difficultyMultiplier = 1;
         let startTime = 0;
         let score = 0;
         let leaderboard = JSON.parse(localStorage.getItem('rollLeaderboard')) || [];
 
-        // Draw diamond shape for player
-        function drawDiamond(x, y, width, height) {
+        // Draw diamond shape
+        function drawDiamond(x, y, width, height, color = '#333333') {
             ctx.beginPath();
             ctx.moveTo(x + width / 2, y); // Top point
             ctx.lineTo(x + width, y + height / 2); // Right point
             ctx.lineTo(x + width / 2, y + height); // Bottom point
             ctx.lineTo(x, y + height / 2); // Left point
             ctx.closePath();
-            ctx.fillStyle = '#333333';
+            ctx.fillStyle = color;
             ctx.fill();
         }
 
         // Obstacle constructor
         function createObstacle() {
+            const isGoldDiamond = Math.random() < 0.1; // 10% chance
             const obstacle = {
-                x: Math.random() * (canvas.width - 30) + 15, // Center of circle
+                x: Math.random() * (canvas.width - 30) + 15, // Center of circle or diamond
                 y: 0,
-                radius: 15, // 30px diameter
-                speed: 150
+                radius: 15, // For circles (30px diameter)
+                width: 50, // For gold diamonds
+                height: 50, // For gold diamonds
+                speed: baseObstacleSpeed * difficultyMultiplier,
+                type: isGoldDiamond ? 'gold' : 'circle'
             };
             obstacles.push(obstacle);
-            console.log(`Created obstacle at x: ${obstacle.x}, y: ${obstacle.y}`);
+            console.log(`Created ${obstacle.type} at x: ${obstacle.x}, y: ${obstacle.y}, speed: ${obstacle.speed}`);
         }
 
         // Update game state
@@ -338,6 +348,16 @@
             if (gameRunning) {
                 score = (Date.now() - startTime) / 1000;
                 timerDisplay.textContent = `Time: ${score.toFixed(2)}s`;
+
+                // Increase difficulty every 30 seconds
+                if (Date.now() - lastDifficultyIncrease > difficultyIncreaseInterval) {
+                    difficultyMultiplier *= 1.1; // Increase speed by 10%
+                    baseObstacleIntervalMin = Math.max(500, baseObstacleIntervalMin * 0.9); // Reduce interval by 10%, min 500ms
+                    baseObstacleIntervalMax = Math.max(1000, baseObstacleIntervalMax * 0.9); // Reduce interval by 10%, min 1000ms
+                    difficultyMultiplier = Math.min(difficultyMultiplier, 2); // Cap speed at 2x (300px/s)
+                    lastDifficultyIncrease = Date.now();
+                    console.log(`Difficulty increased: multiplier=${difficultyMultiplier}, interval=${baseObstacleIntervalMin}-${baseObstacleIntervalMax}`);
+                }
             }
 
             // Player movement
@@ -360,21 +380,37 @@
                 if (Date.now() - lastObstacleTime > obstacleInterval) {
                     createObstacle();
                     lastObstacleTime = Date.now();
-                    obstacleInterval = 1000 + Math.random() * 1000 - Math.min(500, score * 10);
+                    obstacleInterval = baseObstacleIntervalMin + Math.random() * (baseObstacleIntervalMax - baseObstacleIntervalMin);
                 }
 
                 // Collision detection
                 player.stuck = false;
                 player.stuckObstacle = null;
                 obstacles.forEach(obstacle => {
-                    // Approximate collision with circle using player's bounding box
-                    const closestX = Math.max(player.x, Math.min(obstacle.x, player.x + player.width));
-                    const closestY = Math.max(player.y, Math.min(obstacle.y, player.y + player.height));
-                    const distanceX = obstacle.x - closestX;
-                    const distanceY = obstacle.y - closestY;
-                    if ((distanceX ** 2 + distanceY ** 2) <= (obstacle.radius ** 2)) {
-                        player.stuck = true;
-                        player.stuckObstacle = obstacle;
+                    if (obstacle.type === 'circle') {
+                        // Circle collision with player's bounding box
+                        const closestX = Math.max(player.x, Math.min(obstacle.x, player.x + player.width));
+                        const closestY = Math.max(player.y, Math.min(obstacle.y, player.y + player.height));
+                        const distanceX = obstacle.x - closestX;
+                        const distanceY = obstacle.y - closestY;
+                        if ((distanceX ** 2 + distanceY ** 2) <= (obstacle.radius ** 2)) {
+                            player.stuck = true;
+                            player.stuckObstacle = obstacle;
+                        }
+                    } else if (obstacle.type === 'gold') {
+                        // Gold diamond collision (approximate with bounding box)
+                        if (
+                            player.x + player.width > obstacle.x - obstacle.width / 2 &&
+                            player.x < obstacle.x + obstacle.width / 2 &&
+                            player.y + player.height > obstacle.y &&
+                            player.y < obstacle.y + obstacle.height
+                        ) {
+                            // Push player up by 20px
+                            player.y = Math.max(0, player.y - 20);
+                            // Mark gold diamond to be removed after collision
+                            obstacle.y = canvas.height + 1; // Force removal
+                            console.log(`Player hit gold diamond, pushed up to y: ${player.y}`);
+                        }
                     }
                 });
 
@@ -392,11 +428,15 @@
             // Draw
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawDiamond(player.x, player.y, player.width, player.height);
-            ctx.fillStyle = '#000000';
             obstacles.forEach(obstacle => {
-                ctx.beginPath();
-                ctx.arc(obstacle.x, obstacle.y, obstacle.radius, 0, Math.PI * 2);
-                ctx.fill();
+                if (obstacle.type === 'circle') {
+                    ctx.beginPath();
+                    ctx.arc(obstacle.x, obstacle.y, obstacle.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = '#000000';
+                    ctx.fill();
+                } else if (obstacle.type === 'gold') {
+                    drawDiamond(obstacle.x - obstacle.width / 2, obstacle.y, obstacle.width, obstacle.height, '#FFD700');
+                }
             });
             console.log(`Drawing player at x: ${player.x}, y: ${player.y}, obstacles: ${obstacles.length}`);
         }
@@ -431,6 +471,10 @@
             player.stuck = false;
             player.stuckObstacle = null;
             timerDisplay.textContent = 'Time: 0.00s';
+            difficultyMultiplier = 1;
+            baseObstacleIntervalMin = 1000;
+            baseObstacleIntervalMax = 2000;
+            lastDifficultyIncrease = Date.now();
             console.log(`Player initialized at x: ${player.x}, y: ${player.y}`);
         }
 
