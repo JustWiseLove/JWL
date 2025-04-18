@@ -27,7 +27,7 @@
             padding: 10px 0;
         }
 
-        .logo, .footer-logo {
+        .logo {
             font-family: 'Audiowide', sans-serif;
             font-size: 36px;
             color: #FFFFFF;
@@ -62,7 +62,7 @@
             border: 2px solid #000000;
             width: 100%;
             max-width: 360px;
-            height: 640px;
+            height: 600px;
         }
 
         #startButton {
@@ -151,9 +151,9 @@
             }
             #gameCanvas {
                 max-width: 720px;
-                height: 1280px;
+                height: 1200px;
             }
-            .logo, .footer-logo {
+            .logo {
                 font-size: 48px;
             }
             #timer {
@@ -195,9 +195,9 @@
             }
             #gameCanvas {
                 max-width: 1080px;
-                height: 1920px;
+                height: 1800px;
             }
-            .logo, .footer-logo {
+            .logo {
                 font-size: 60px;
             }
             #timer {
@@ -236,7 +236,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">DIG</div>
+        <div class="logo">RUN</div>
     </header>
     <div class="game-container">
         <div id="timer">Time: 0.00s</div>
@@ -255,7 +255,6 @@
         </div>
     </div>
     <footer>
-        <div class="footer-logo">DIG</div>
         <p>Copyright © 2025 Just Wise Love. All Rights Reserved.</p>
     </footer>
     <script>
@@ -274,13 +273,13 @@
 
         // Set canvas size
         function setCanvasSize() {
-            let width = 360, height = 640;
+            let width = 360, height = 600;
             if (window.innerWidth >= 1024) {
                 width = 1080;
-                height = 1920;
+                height = 1800;
             } else if (window.innerWidth >= 768) {
                 width = 720;
-                height = 1280;
+                height = 1200;
             }
             canvas.width = width;
             canvas.height = height;
@@ -295,7 +294,7 @@
         let gameRunning = false;
         let player = {
             x: (360 - 50) / 2, // Center for 360px canvas
-            y: 640 - 50,       // Bottom for 640px canvas
+            y: 600 - 50,       // Bottom for 600px canvas
             width: 50,
             height: 50,
             moveSpeed: 200,
@@ -309,13 +308,24 @@
         let score = 0;
         let leaderboard = JSON.parse(localStorage.getItem('rollLeaderboard')) || [];
 
+        // Draw diamond shape for player
+        function drawDiamond(x, y, width, height) {
+            ctx.beginPath();
+            ctx.moveTo(x + width / 2, y); // Top point
+            ctx.lineTo(x + width, y + height / 2); // Right point
+            ctx.lineTo(x + width / 2, y + height); // Bottom point
+            ctx.lineTo(x, y + height / 2); // Left point
+            ctx.closePath();
+            ctx.fillStyle = '#333333';
+            ctx.fill();
+        }
+
         // Obstacle constructor
         function createObstacle() {
             const obstacle = {
-                x: Math.random() * (canvas.width - 30),
+                x: Math.random() * (canvas.width - 30) + 15, // Center of circle
                 y: 0,
-                width: 30,
-                height: 30,
+                radius: 15, // 30px diameter
                 speed: 150
             };
             obstacles.push(obstacle);
@@ -357,12 +367,12 @@
                 player.stuck = false;
                 player.stuckObstacle = null;
                 obstacles.forEach(obstacle => {
-                    if (
-                        player.x + player.width > obstacle.x &&
-                        player.x < obstacle.x + obstacle.width &&
-                        player.y + player.height > obstacle.y &&
-                        player.y < obstacle.y + obstacle.height
-                    ) {
+                    // Approximate collision with circle using player's bounding box
+                    const closestX = Math.max(player.x, Math.min(obstacle.x, player.x + player.width));
+                    const closestY = Math.max(player.y, Math.min(obstacle.y, player.y + player.height));
+                    const distanceX = obstacle.x - closestX;
+                    const distanceY = obstacle.y - closestY;
+                    if ((distanceX ** 2 + distanceY ** 2) <= (obstacle.radius ** 2)) {
                         player.stuck = true;
                         player.stuckObstacle = obstacle;
                     }
@@ -381,11 +391,12 @@
 
             // Draw
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#333333';
-            ctx.fillRect(player.x, player.y, player.width, player.height);
+            drawDiamond(player.x, player.y, player.width, player.height);
             ctx.fillStyle = '#000000';
             obstacles.forEach(obstacle => {
-                ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+                ctx.beginPath();
+                ctx.arc(obstacle.x, obstacle.y, obstacle.radius, 0, Math.PI * 2);
+                ctx.fill();
             });
             console.log(`Drawing player at x: ${player.x}, y: ${player.y}, obstacles: ${obstacles.length}`);
         }
