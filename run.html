@@ -71,7 +71,7 @@
             border: 2px solid #000000;
             width: 100%;
             max-width: 360px;
-            height: 600px;
+            height: 540px; /* Reduced from 600px */
         }
 
         #startButton {
@@ -160,21 +160,19 @@
             }
             #gameCanvas {
                 max-width: 720px;
-                height: 1200px;
+                height: 1080px; /* Reduced from 1200px */
             }
             .logo {
                 font-size: 48px;
             }
-            
             .logo a {
-            font-family: 'Audiowide', cursive, sans-serif;
-            text-decoration: none;
-            color: #000000;
+                font-family: 'Audiowide', cursive, sans-serif;
+                text-decoration: none;
+                color: #000000;
             }
             .logo a:hover {
-            color: #666666;
+                color: #666666;
             }
-            
             #timer {
                 font-size: 24px;
             }
@@ -214,20 +212,19 @@
             }
             #gameCanvas {
                 max-width: 1080px;
-                height: 1800px;
+                height: 1620px; /* Reduced from 1800px */
             }
             .logo {
                 font-size: 48px;
             }
             .logo a {
-            font-family: 'Audiowide', cursive, sans-serif;
-            text-decoration: none;
-            color: #000000;
+                font-family: 'Audiowide', cursive, sans-serif;
+                text-decoration: none;
+                color: #000000;
             }
             .logo a:hover {
-            color: #666666;
+                color: #666666;
             }
-            
             #timer {
                 font-size: 30px;
             }
@@ -301,13 +298,13 @@
 
         // Set canvas size
         function setCanvasSize() {
-            let width = 360, height = 600;
+            let width = 360, height = 540; // Reduced height from 600px
             if (window.innerWidth >= 1024) {
                 width = 1080;
-                height = 1800;
+                height = 1620; // Reduced from 1800px
             } else if (window.innerWidth >= 768) {
                 width = 720;
-                height = 1200;
+                height = 1080; // Reduced from 1200px
             }
             canvas.width = width;
             canvas.height = height;
@@ -322,7 +319,7 @@
         let gameRunning = false;
         let player = {
             x: (360 - 50) / 2, // Center for 360px canvas
-            y: 600 - 50,       // Bottom for 600px canvas
+            y: 540 - 50,       // Bottom for 540px canvas
             width: 50,
             height: 50,
             moveSpeed: 200,
@@ -338,6 +335,9 @@
         let difficultyIncreaseInterval = 30000; // 30 seconds
         let lastDifficultyIncrease = 0;
         let difficultyMultiplier = 1;
+        let obstacleCountIncreaseInterval = 15000; // 15 seconds
+        let lastObstacleCountIncrease = 0;
+        let obstaclesPerSpawn = 1; // Start with 1 obstacle per spawn
         let startTime = 0;
         let score = 0;
         let leaderboard = JSON.parse(localStorage.getItem('rollLeaderboard')) || [];
@@ -386,6 +386,13 @@
                     lastDifficultyIncrease = Date.now();
                     console.log(`Difficulty increased: multiplier=${difficultyMultiplier}, interval=${baseObstacleIntervalMin}-${baseObstacleIntervalMax}`);
                 }
+
+                // Increase number of obstacles every 15 seconds
+                if (Date.now() - lastObstacleCountIncrease > obstacleCountIncreaseInterval) {
+                    obstaclesPerSpawn += 1; // Increase obstacles per spawn with no cap
+                    lastObstacleCountIncrease = Date.now();
+                    console.log(`Obstacles per spawn increased to: ${obstaclesPerSpawn}`);
+                }
             }
 
             // Player movement
@@ -406,7 +413,9 @@
 
                 // Spawn obstacles
                 if (Date.now() - lastObstacleTime > obstacleInterval) {
-                    createObstacle();
+                    for (let i = 0; i < obstaclesPerSpawn; i++) {
+                        createObstacle(); // Spawn multiple obstacles
+                    }
                     lastObstacleTime = Date.now();
                     obstacleInterval = baseObstacleIntervalMin + Math.random() * (baseObstacleIntervalMax - baseObstacleIntervalMin);
                 }
@@ -495,7 +504,7 @@
             startTime = Date.now();
             score = 0;
             player.x = (canvas.width - player.width) / 2;
-            player.y = canvas.height - player.height;
+            player.y = canvas.height - player.height; // Adjusted for new height
             player.stuck = false;
             player.stuckObstacle = null;
             timerDisplay.textContent = 'Time: 0.00s';
@@ -503,6 +512,8 @@
             baseObstacleIntervalMin = 1000;
             baseObstacleIntervalMax = 2000;
             lastDifficultyIncrease = Date.now();
+            obstaclesPerSpawn = 1; // Reset obstacles per spawn
+            lastObstacleCountIncrease = Date.now();
             console.log(`Player initialized at x: ${player.x}, y: ${player.y}`);
         }
 
