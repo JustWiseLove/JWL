@@ -303,9 +303,9 @@
         };
         let obstacles = [];
         let lastObstacleTime = 0;
-        let obstacleInterval = 1500;
-        let baseObstacleIntervalMin = 1000;
-        let baseObstacleIntervalMax = 2000;
+        let obstacleInterval = 500;
+        let baseObstacleIntervalMin = 500; // Start at 0.5s
+        let baseObstacleIntervalMax = 1000; // Start at 1s
         let baseObstacleSpeed = 150;
         let difficultyIncreaseInterval = 30000; // 30 seconds
         let lastDifficultyIncrease = 0;
@@ -328,15 +328,15 @@
 
         // Obstacle constructor
         function createObstacle() {
-            const isGoldDiamond = Math.random() < 0.1; // 10% chance
+            const isWhiteDiamond = Math.random() < 0.1; // 10% chance
             const obstacle = {
                 x: Math.random() * (canvas.width - 30) + 15, // Center of circle or diamond
                 y: 0,
                 radius: 15, // For circles (30px diameter)
-                width: 50, // For gold diamonds
-                height: 50, // For gold diamonds
+                width: 50, // For white diamonds
+                height: 50, // For white diamonds
                 speed: baseObstacleSpeed * difficultyMultiplier,
-                type: isGoldDiamond ? 'gold' : 'circle'
+                type: isWhiteDiamond ? 'white' : 'circle'
             };
             obstacles.push(obstacle);
             console.log(`Created ${obstacle.type} at x: ${obstacle.x}, y: ${obstacle.y}, speed: ${obstacle.speed}`);
@@ -352,8 +352,8 @@
                 // Increase difficulty every 30 seconds
                 if (Date.now() - lastDifficultyIncrease > difficultyIncreaseInterval) {
                     difficultyMultiplier *= 1.1; // Increase speed by 10%
-                    baseObstacleIntervalMin = Math.max(500, baseObstacleIntervalMin * 0.9); // Reduce interval by 10%, min 500ms
-                    baseObstacleIntervalMax = Math.max(1000, baseObstacleIntervalMax * 0.9); // Reduce interval by 10%, min 1000ms
+                    baseObstacleIntervalMin = Math.max(250, baseObstacleIntervalMin * 0.9); // Reduce interval by 10%, min 250ms
+                    baseObstacleIntervalMax = Math.max(500, baseObstacleIntervalMax * 0.9); // Reduce interval by 10%, min 500ms
                     difficultyMultiplier = Math.min(difficultyMultiplier, 2); // Cap speed at 2x (300px/s)
                     lastDifficultyIncrease = Date.now();
                     console.log(`Difficulty increased: multiplier=${difficultyMultiplier}, interval=${baseObstacleIntervalMin}-${baseObstacleIntervalMax}`);
@@ -397,8 +397,8 @@
                             player.stuck = true;
                             player.stuckObstacle = obstacle;
                         }
-                    } else if (obstacle.type === 'gold') {
-                        // Gold diamond collision (approximate with bounding box)
+                    } else if (obstacle.type === 'white') {
+                        // White diamond collision (approximate with bounding box)
                         if (
                             player.x + player.width > obstacle.x - obstacle.width / 2 &&
                             player.x < obstacle.x + obstacle.width / 2 &&
@@ -407,9 +407,9 @@
                         ) {
                             // Push player up by 20px
                             player.y = Math.max(0, player.y - 20);
-                            // Mark gold diamond to be removed after collision
+                            // Mark white diamond to be removed after collision
                             obstacle.y = canvas.height + 1; // Force removal
-                            console.log(`Player hit gold diamond, pushed up to y: ${player.y}`);
+                            console.log(`Player hit white diamond, pushed up to y: ${player.y}`);
                         }
                     }
                 });
@@ -434,8 +434,8 @@
                     ctx.arc(obstacle.x, obstacle.y, obstacle.radius, 0, Math.PI * 2);
                     ctx.fillStyle = '#000000';
                     ctx.fill();
-                } else if (obstacle.type === 'gold') {
-                    drawDiamond(obstacle.x - obstacle.width / 2, obstacle.y, obstacle.width, obstacle.height, '#FFD700');
+                } else if (obstacle.type === 'white') {
+                    drawDiamond(obstacle.x - obstacle.width / 2, obstacle.y, obstacle.width, obstacle.height, '#FFFFFF');
                 }
             });
             console.log(`Drawing player at x: ${player.x}, y: ${player.y}, obstacles: ${obstacles.length}`);
@@ -472,8 +472,8 @@
             player.stuckObstacle = null;
             timerDisplay.textContent = 'Time: 0.00s';
             difficultyMultiplier = 1;
-            baseObstacleIntervalMin = 1000;
-            baseObstacleIntervalMax = 2000;
+            baseObstacleIntervalMin = 500;
+            baseObstacleIntervalMax = 1000;
             lastDifficultyIncrease = Date.now();
             console.log(`Player initialized at x: ${player.x}, y: ${player.y}`);
         }
@@ -506,7 +506,7 @@
             console.log('Left button touch ended');
         });
 
-        rightButton.addEventListener('mousedown', () => {
+        rightButton.addEvent whiteButton.addEventListener('mousedown', () => {
             rightButtonPressed = true;
             console.log('Right button pressed');
         });
