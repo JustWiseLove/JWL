@@ -71,7 +71,7 @@
             border: 2px solid #000000;
             width: 100%;
             max-width: 360px;
-            height: 540px; /* Reduced from 600px */
+            height: 540px;
         }
 
         #startButton {
@@ -160,7 +160,7 @@
             }
             #gameCanvas {
                 max-width: 720px;
-                height: 1080px; /* Reduced from 1200px */
+                height: 1080px;
             }
             .logo {
                 font-size: 48px;
@@ -212,7 +212,7 @@
             }
             #gameCanvas {
                 max-width: 1080px;
-                height: 1620px; /* Reduced from 1800px */
+                height: 1134px; /* 30% smaller than 1620px */
             }
             .logo {
                 font-size: 48px;
@@ -298,13 +298,13 @@
 
         // Set canvas size
         function setCanvasSize() {
-            let width = 360, height = 540; // Reduced height from 600px
+            let width = 360, height = 540;
             if (window.innerWidth >= 1024) {
                 width = 1080;
-                height = 1620; // Reduced from 1800px
+                height = 1134; // 30% smaller than 1620px
             } else if (window.innerWidth >= 768) {
                 width = 720;
-                height = 1080; // Reduced from 1200px
+                height = 1080;
             }
             canvas.width = width;
             canvas.height = height;
@@ -318,8 +318,8 @@
         // Game variables
         let gameRunning = false;
         let player = {
-            x: (360 - 50) / 2, // Center for 360px canvas
-            y: 540 - 50,       // Bottom for 540px canvas
+            x: (360 - 50) / 2,
+            y: 540 - 50,
             width: 50,
             height: 50,
             moveSpeed: 200,
@@ -328,16 +328,16 @@
         };
         let obstacles = [];
         let lastObstacleTime = 0;
-        let obstacleInterval = 1500;
+        let obstacleInterval = 2000;
         let baseObstacleIntervalMin = 1000;
         let baseObstacleIntervalMax = 2000;
         let baseObstacleSpeed = 150;
-        let difficultyIncreaseInterval = 30000; // 30 seconds
+        let difficultyIncreaseInterval = 30000;
         let lastDifficultyIncrease = 0;
         let difficultyMultiplier = 1;
-        let obstacleCountIncreaseInterval = 15000; // 15 seconds
+        let obstacleCountIncreaseInterval = 20000;
         let lastObstacleCountIncrease = 0;
-        let obstaclesPerSpawn = 1; // Start with 1 obstacle per spawn
+        let obstaclesPerSpawn = 1;
         let startTime = 0;
         let score = 0;
         let leaderboard = JSON.parse(localStorage.getItem('rollLeaderboard')) || [];
@@ -345,10 +345,10 @@
         // Draw diamond shape
         function drawDiamond(x, y, width, height, color = '#333333') {
             ctx.beginPath();
-            ctx.moveTo(x + width / 2, y); // Top point
-            ctx.lineTo(x + width, y + height / 2); // Right point
-            ctx.lineTo(x + width / 2, y + height); // Bottom point
-            ctx.lineTo(x, y + height / 2); // Left point
+            ctx.moveTo(x + width / 2, y);
+            ctx.lineTo(x + width, y + height / 2);
+            ctx.lineTo(x + width / 2, y + height);
+            ctx.lineTo(x, y + height / 2);
             ctx.closePath();
             ctx.fillStyle = color;
             ctx.fill();
@@ -356,13 +356,13 @@
 
         // Obstacle constructor
         function createObstacle() {
-            const isGoldDiamond = Math.random() < 0.1; // 10% chance
+            const isGoldDiamond = Math.random() < 0.1;
             const obstacle = {
-                x: Math.random() * (canvas.width - 30) + 15, // Center of circle or diamond
+                x: Math.random() * (canvas.width - 30) + 15,
                 y: 0,
-                radius: 15, // For circles (30px diameter)
-                width: 50, // For gold diamonds
-                height: 50, // For gold diamonds
+                radius: 15,
+                width: 50,
+                height: 50,
                 speed: baseObstacleSpeed * difficultyMultiplier,
                 type: isGoldDiamond ? 'gold' : 'circle'
             };
@@ -372,24 +372,24 @@
 
         // Update game state
         function update(deltaTime) {
-            // Update timer
+            console.log(`Update called, gameRunning: ${gameRunning}, obstacles: ${obstacles.length}`);
             if (gameRunning) {
                 score = (Date.now() - startTime) / 1000;
                 timerDisplay.textContent = `Time: ${score.toFixed(2)}s`;
 
                 // Increase difficulty every 30 seconds
                 if (Date.now() - lastDifficultyIncrease > difficultyIncreaseInterval) {
-                    difficultyMultiplier *= 1.1; // Increase speed by 10%
-                    baseObstacleIntervalMin = Math.max(500, baseObstacleIntervalMin * 0.9); // Reduce interval by 10%, min 500ms
-                    baseObstacleIntervalMax = Math.max(1000, baseObstacleIntervalMax * 0.9); // Reduce interval by 10%, min 1000ms
-                    difficultyMultiplier = Math.min(difficultyMultiplier, 2); // Cap speed at 2x (300px/s)
+                    difficultyMultiplier *= 1.1;
+                    baseObstacleIntervalMin = Math.max(500, baseObstacleIntervalMin * 0.9);
+                    baseObstacleIntervalMax = Math.max(1000, baseObstacleIntervalMax * 0.9);
+                    difficultyMultiplier = Math.min(difficultyMultiplier, 2);
                     lastDifficultyIncrease = Date.now();
                     console.log(`Difficulty increased: multiplier=${difficultyMultiplier}, interval=${baseObstacleIntervalMin}-${baseObstacleIntervalMax}`);
                 }
 
-                // Increase number of obstacles every 15 seconds
+                // Increase number of obstacles every 20 seconds
                 if (Date.now() - lastObstacleCountIncrease > obstacleCountIncreaseInterval) {
-                    obstaclesPerSpawn += 1; // Increase obstacles per spawn with no cap
+                    obstaclesPerSpawn += 1;
                     lastObstacleCountIncrease = Date.now();
                     console.log(`Obstacles per spawn increased to: ${obstaclesPerSpawn}`);
                 }
@@ -410,14 +410,16 @@
                     obstacle.y += obstacle.speed * deltaTime;
                 });
                 obstacles = obstacles.filter(obstacle => obstacle.y < canvas.height);
+                console.log(`Obstacles after filter: ${obstacles.length}`);
 
                 // Spawn obstacles
                 if (Date.now() - lastObstacleTime > obstacleInterval) {
                     for (let i = 0; i < obstaclesPerSpawn; i++) {
-                        createObstacle(); // Spawn multiple obstacles
+                        createObstacle();
                     }
                     lastObstacleTime = Date.now();
                     obstacleInterval = baseObstacleIntervalMin + Math.random() * (baseObstacleIntervalMax - baseObstacleIntervalMin);
+                    console.log(`Spawned ${obstaclesPerSpawn} obstacles, next spawn in ${obstacleInterval}ms`);
                 }
 
                 // Collision detection
@@ -425,7 +427,6 @@
                 player.stuckObstacle = null;
                 obstacles.forEach(obstacle => {
                     if (obstacle.type === 'circle') {
-                        // Circle collision with player's bounding box
                         const closestX = Math.max(player.x, Math.min(obstacle.x, player.x + player.width));
                         const closestY = Math.max(player.y, Math.min(obstacle.y, player.y + player.height));
                         const distanceX = obstacle.x - closestX;
@@ -435,17 +436,14 @@
                             player.stuckObstacle = obstacle;
                         }
                     } else if (obstacle.type === 'gold') {
-                        // Gold diamond collision (approximate with bounding box)
                         if (
                             player.x + player.width > obstacle.x - obstacle.width / 2 &&
                             player.x < obstacle.x + obstacle.width / 2 &&
                             player.y + player.height > obstacle.y &&
                             player.y < obstacle.y + obstacle.height
                         ) {
-                            // Push player up by 20px
                             player.y = Math.max(0, player.y - 20);
-                            // Mark gold diamond to be removed after collision
-                            obstacle.y = canvas.height + 1; // Force removal
+                            obstacle.y = canvas.height + 1;
                             console.log(`Player hit gold diamond, pushed up to y: ${player.y}`);
                         }
                     }
@@ -458,6 +456,7 @@
 
                 // Game over if pushed off bottom
                 if (player.y > canvas.height) {
+                    console.log('Player pushed off bottom, ending game');
                     endGame();
                 }
             }
@@ -480,17 +479,20 @@
 
         // End game
         function endGame() {
-            gameRunning = false;
-            startButton.classList.add('hidden');
-            gameOverScreen.classList.remove('hidden');
-            scoreDisplay.textContent = `Your Time: ${score.toFixed(2)}s`;
-            leaderboardDisplay.innerHTML = '<h3>Leaderboard</h3>' + leaderboard.map((entry, index) =>
-                `${index + 1}. ${entry.name}: ${entry.score.toFixed(2)}s`
-            ).join('<br>');
-            nameInput.value = '';
-            nameInput.classList.remove('hidden');
-            enterButton.classList.remove('hidden');
-            restartButton.classList.add('hidden');
+            if (gameRunning) {
+                gameRunning = false;
+                startButton.classList.add('hidden');
+                gameOverScreen.classList.remove('hidden');
+                scoreDisplay.textContent = `Your Time: ${score.toFixed(2)}s`;
+                leaderboardDisplay.innerHTML = '<h3>Leaderboard</h3>' + leaderboard.map((entry, index) =>
+                    `${index + 1}. ${entry.name}: ${entry.score.toFixed(2)}s`
+                ).join('<br>');
+                nameInput.value = '';
+                nameInput.classList.remove('hidden');
+                enterButton.classList.remove('hidden');
+                restartButton.classList.add('hidden');
+                console.log('Game ended');
+            }
         }
 
         // Start game
@@ -504,7 +506,7 @@
             startTime = Date.now();
             score = 0;
             player.x = (canvas.width - player.width) / 2;
-            player.y = canvas.height - player.height; // Adjusted for new height
+            player.y = canvas.height - player.height;
             player.stuck = false;
             player.stuckObstacle = null;
             timerDisplay.textContent = 'Time: 0.00s';
@@ -512,8 +514,9 @@
             baseObstacleIntervalMin = 1000;
             baseObstacleIntervalMax = 2000;
             lastDifficultyIncrease = Date.now();
-            obstaclesPerSpawn = 1; // Reset obstacles per spawn
+            obstaclesPerSpawn = 1;
             lastObstacleCountIncrease = Date.now();
+            createObstacle(); // Force initial obstacle spawn
             console.log(`Player initialized at x: ${player.x}, y: ${player.y}`);
         }
 
@@ -521,7 +524,7 @@
         let leftButtonPressed = false;
         let rightButtonPressed = false;
 
-        // Event listeners
+        // Event listeners for buttons
         startButton.addEventListener('click', () => {
             console.log('Start button clicked');
             startGame();
@@ -561,6 +564,27 @@
         rightButton.addEventListener('touchend', () => {
             rightButtonPressed = false;
             console.log('Right button touch ended');
+        });
+
+        // Keyboard controls for arrow keys
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                leftButtonPressed = true;
+                console.log('Left arrow key pressed');
+            } else if (e.key === 'ArrowRight') {
+                rightButtonPressed = true;
+                console.log('Right arrow key pressed');
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowLeft') {
+                leftButtonPressed = false;
+                console.log('Left arrow key released');
+            } else if (e.key === 'ArrowRight') {
+                rightButtonPressed = false;
+                console.log('Right arrow key released');
+            }
         });
 
         enterButton.addEventListener('click', () => {
