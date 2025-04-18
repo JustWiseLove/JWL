@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RUN Game</title>
+    <title>ROLL</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,8 +13,8 @@
         }
 
         body {
-            background-color: #FFFFFF;
-            color: #000000;
+            background-color: #000000;
+            color: #FFFFFF;
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
@@ -22,19 +22,19 @@
         }
 
         header, footer {
-            background-color: #FFFFFF;
+            background-color: #000000;
             text-align: center;
             padding: 10px 0;
         }
 
         .logo, .footer-logo {
             font-family: 'Audiowide', sans-serif;
-            font-size: 24px;
-            color: #000000;
+            font-size: 36px;
+            color: #FFFFFF;
         }
 
         footer p {
-            color: #000000;
+            color: #FFFFFF;
             font-size: 14px;
             margin-top: 5px;
         }
@@ -52,10 +52,9 @@
         }
 
         #timer {
-            position: absolute;
-            top: 10px;
-            color: #333333;
+            color: #FFFFFF;
             font-size: 18px;
+            margin-bottom: 10px;
         }
 
         #gameCanvas {
@@ -66,37 +65,22 @@
             height: 640px;
         }
 
-        #startButton, #restartButton {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #333333;
-            color: #FFFFFF;
-            border: 2px solid #000000;
-            padding: 15px 30px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
         #controls {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 360px;
+            padding: 10px;
         }
 
-        #jumpButton, #duckButton {
-            background-color: #333333;
+        #leftButton, #rightButton {
+            background-color: #000000;
             color: #FFFFFF;
-            border: 2px solid #000000;
-            padding: 20px 40px;
+            border: 2px solid #FFFFFF;
+            padding: 10px;
             font-size: 16px;
             cursor: pointer;
-            width: 100px;
+            width: 80px;
             text-align: center;
         }
 
@@ -105,11 +89,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #FFFFFF;
-            border: 2px solid #000000;
+            background-color: #000000;
+            border: 2px solid #FFFFFF;
             padding: 20px;
             text-align: center;
-            color: #000000;
+            color: #FFFFFF;
+            width: 80%;
+            max-width: 300px;
         }
 
         #scoreDisplay {
@@ -118,7 +104,28 @@
         }
 
         #leaderboard {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        #nameInput {
+            background-color: #FFFFFF;
+            color: #000000;
+            border: none;
+            padding: 5px;
+            font-size: 16px;
+            width: 100px;
+            text-align: center;
             margin: 10px 0;
+        }
+
+        #enterButton, #startButton {
+            background-color: #000000;
+            color: #FFFFFF;
+            border: 2px solid #FFFFFF;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
 
         .hidden {
@@ -134,25 +141,34 @@
                 height: 1280px;
             }
             .logo, .footer-logo {
-                font-size: 36px;
+                font-size: 48px;
             }
             #timer {
                 font-size: 24px;
             }
-            #startButton, #restartButton {
-                padding: 20px 40px;
-                font-size: 24px;
-            }
-            #jumpButton, #duckButton {
-                padding: 30px 60px;
+            #leftButton, #rightButton {
+                padding: 15px;
                 font-size: 20px;
-                width: 150px;
+                width: 120px;
             }
             #gameOver {
                 padding: 30px;
+                max-width: 600px;
             }
             #scoreDisplay {
                 font-size: 24px;
+            }
+            #leaderboard {
+                font-size: 20px;
+            }
+            #nameInput {
+                padding: 8px;
+                font-size: 20px;
+                width: 150px;
+            }
+            #enterButton, #startButton {
+                padding: 15px 30px;
+                font-size: 20px;
             }
         }
 
@@ -165,63 +181,72 @@
                 height: 1920px;
             }
             .logo, .footer-logo {
-                font-size: 48px;
+                font-size: 60px;
             }
             #timer {
                 font-size: 30px;
             }
-            #startButton, #restartButton {
-                padding: 25px 50px;
-                font-size: 30px;
-            }
-            #jumpButton, #duckButton {
-                padding: 40px 80px;
+            #leftButton, #rightButton {
+                padding: 20px;
                 font-size: 24px;
-                width: 200px;
+                width: 160px;
             }
             #gameOver {
                 padding: 40px;
+                max-width: 900px;
             }
             #scoreDisplay {
                 font-size: 28px;
+            }
+            #leaderboard {
+                font-size: 24px;
+            }
+            #nameInput {
+                padding: 10px;
+                font-size: 24px;
+                width: 200px;
+            }
+            #enterButton, #startButton {
+                padding: 20px 40px;
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <a href="index.html">
-            <div class="logo">RUN</div>
-        </a>
+        <div class="logo">DIG</div>
     </header>
     <div class="game-container">
         <div id="timer">Time: 0.00s</div>
         <canvas id="gameCanvas"></canvas>
-        <button id="startButton">RUN</button>
         <div id="controls">
-            <button id="jumpButton">JUMP</button>
-            <button id="duckButton">DUCK</button>
+            <button id="leftButton">L</button>
+            <button id="rightButton">R</button>
         </div>
         <div id="gameOver" class="hidden">
             <div id="scoreDisplay"></div>
             <div id="leaderboard"></div>
-            <button id="restartButton" class="hidden">RUN</button>
+            <input id="nameInput" type="text" maxlength="3" placeholder="Initials">
+            <button id="enterButton">ENTER</button>
+            <button id="startButton" class="hidden">START</button>
         </div>
     </div>
     <footer>
-        <div class="footer-logo">RUN</div>
+        <div class="footer-logo">DIG</div>
         <p>Copyright © 2025 Just Wise Love. All Rights Reserved.</p>
     </footer>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
-        const startButton = document.getElementById('startButton');
-        const jumpButton = document.getElementById('jumpButton');
-        const duckButton = document.getElementById('duckButton');
+        const leftButton = document.getElementById('leftButton');
+        const rightButton = document.getElementById('rightButton');
         const gameOverScreen = document.getElementById('gameOver');
         const scoreDisplay = document.getElementById('scoreDisplay');
         const leaderboardDisplay = document.getElementById('leaderboard');
-        const restartButton = document.getElementById('restartButton');
+        const nameInput = document.getElementById('nameInput');
+        const enterButton = document.getElementById('enterButton');
+        const startButton = document.getElementById('startButton');
         const timerDisplay = document.getElementById('timer');
 
         // Set canvas size
@@ -246,48 +271,32 @@
         // Game variables
         let gameRunning = false;
         let player = {
-            x: 50,
+            x: 155,
             y: 590,
             width: 50,
             height: 50,
-            jumping: false,
-            ducking: false,
-            jumpHeight: 100,
-            jumpSpeed: 300,
-            gravity: 600
+            moveSpeed: 200,
+            stuck: false,
+            stuckObstacle: null
         };
         let obstacles = [];
         let lastObstacleTime = 0;
         let obstacleInterval = 1500;
         let startTime = 0;
         let score = 0;
-        let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+        let leaderboard = JSON.parse(localStorage.getItem('rollLeaderboard')) || [];
 
         // Obstacle constructor
         function createObstacle() {
-            const type = Math.random() < 0.5 ? 'jump' : 'duck';
-            let obstacle;
-            if (type === 'jump') {
-                const height = 20 + Math.random() * 30;
-                obstacle = {
-                    x: 360,
-                    y: 640 - height,
-                    width: 30,
-                    height: height,
-                    type: 'jump'
-                };
-            } else {
-                const height = 20 + Math.random() * 30;
-                obstacle = {
-                    x: 360,
-                    y: 0,
-                    width: 30,
-                    height: height,
-                    type: 'duck'
-                };
-            }
+            const obstacle = {
+                x: Math.random() * (canvas.width - 30),
+                y: 0,
+                width: 30,
+                height: 30,
+                speed: 150
+            };
             obstacles.push(obstacle);
-            console.log(`Created ${type} obstacle at x: ${obstacle.x}, y: ${obstacle.y}, height: ${obstacle.height}`);
+            console.log(`Created obstacle at x: ${obstacle.x}, y: ${obstacle.y}`);
         }
 
         // Update game state
@@ -298,60 +307,57 @@
             score = (Date.now() - startTime) / 1000;
             timerDisplay.textContent = `Time: ${score.toFixed(2)}s`;
 
-            // Player physics
-            if (player.jumping) {
-                player.y -= player.jumpSpeed * deltaTime;
-                if (player.y <= 640 - player.height - player.jumpHeight) {
-                    player.jumping = false;
-                }
-            } else if (player.y < 640 - player.height) {
-                player.y += player.gravity * deltaTime;
-                if (player.y > 640 - player.height) {
-                    player.y = 640 - player.height;
-                }
+            // Player movement
+            if (leftButtonPressed) {
+                player.x -= player.moveSpeed * deltaTime;
             }
-            console.log(`Player at x: ${player.x}, y: ${player.y}`);
+            if (rightButtonPressed) {
+                player.x += player.moveSpeed * deltaTime;
+            }
+            player.x = Math.max(0, Math.min(player.x, canvas.width - player.width));
 
             // Update obstacles
             obstacles.forEach(obstacle => {
-                obstacle.x -= 200 * deltaTime;
+                obstacle.y += obstacle.speed * deltaTime;
             });
-            obstacles = obstacles.filter(obstacle => obstacle.x + obstacle.width > 0);
+            obstacles = obstacles.filter(obstacle => obstacle.y < canvas.height);
+
+            // Collision detection
+            player.stuck = false;
+            player.stuckObstacle = null;
+            obstacles.forEach(obstacle => {
+                if (
+                    player.x + player.width > obstacle.x &&
+                    player.x < obstacle.x + obstacle.width &&
+                    player.y + player.height > obstacle.y &&
+                    player.y < obstacle.y + obstacle.height
+                ) {
+                    player.stuck = true;
+                    player.stuckObstacle = obstacle;
+                }
+            });
+
+            // If stuck, move with obstacle
+            if (player.stuck) {
+                player.y += player.stuckObstacle.speed * deltaTime;
+            }
+
+            // Game over if pushed off bottom
+            if (player.y > canvas.height) {
+                endGame();
+            }
 
             // Spawn obstacles
             if (Date.now() - lastObstacleTime > obstacleInterval) {
                 createObstacle();
                 lastObstacleTime = Date.now();
-                obstacleInterval = 1000 + Math.random() * 500;
+                obstacleInterval = 1000 + Math.random() * 1000 - Math.min(500, score * 10);
             }
-
-            // Collision detection
-            obstacles.forEach(obstacle => {
-                let playerHeight = player.ducking ? player.height / 2 : player.height;
-                let playerY = player.ducking ? player.y + player.height / 2 : player.y;
-                if (
-                    player.x + player.width > obstacle.x &&
-                    player.x < obstacle.x + obstacle.width &&
-                    playerY + playerHeight > obstacle.y &&
-                    playerY < obstacle.y + obstacle.height
-                ) {
-                    if (
-                        (obstacle.type === 'jump' && !player.jumping) ||
-                        (obstacle.type === 'duck' && !player.ducking)
-                    ) {
-                        endGame();
-                    }
-                }
-            });
 
             // Draw
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#333333';
-            if (player.ducking) {
-                ctx.fillRect(player.x, player.y + player.height / 2, player.width, player.height / 2);
-            } else {
-                ctx.fillRect(player.x, player.y, player.width, player.height);
-            }
+            ctx.fillRect(player.x, player.y, player.width, player.height);
             ctx.fillStyle = '#000000';
             obstacles.forEach(obstacle => {
                 ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
@@ -363,72 +369,90 @@
             gameRunning = false;
             gameOverScreen.classList.remove('hidden');
             scoreDisplay.textContent = `Your Time: ${score.toFixed(2)}s`;
-            if (leaderboard.length < 5 || score > Math.min(...leaderboard.map(entry => entry.score))) {
-                let name = prompt('You made the leaderboard! Enter your name:') || 'Anonymous';
-                leaderboard.push({ name, score });
-                leaderboard.sort((a, b) => b.score - a.score);
-                leaderboard = leaderboard.slice(0, 5);
-                localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-            }
             leaderboardDisplay.innerHTML = '<h3>Leaderboard</h3>' + leaderboard.map((entry, index) =>
                 `${index + 1}. ${entry.name}: ${entry.score.toFixed(2)}s`
             ).join('<br>');
-            restartButton.classList.remove('hidden');
+            nameInput.value = '';
+            nameInput.classList.remove('hidden');
+            enterButton.classList.remove('hidden');
+            startButton.classList.add('hidden');
         }
 
         // Start game
         function startGame() {
             console.log('Starting game...');
             gameRunning = true;
-            startButton.classList.add('hidden');
             gameOverScreen.classList.add('hidden');
-            restartButton.classList.add('hidden');
             obstacles = [];
             lastObstacleTime = Date.now();
             startTime = Date.now();
             score = 0;
-            player.x = 50;
-            player.y = 590;
-            player.jumping = false;
-            player.ducking = false;
+            player.x = (canvas.width - player.width) / 2;
+            player.y = canvas.height - player.height;
+            player.stuck = false;
+            player.stuckObstacle = null;
             timerDisplay.textContent = 'Time: 0.00s';
             console.log(`Player initialized at x: ${player.x}, y: ${player.y}`);
         }
 
+        // Button states
+        let leftButtonPressed = false;
+        let rightButtonPressed = false;
+
         // Event listeners
+        leftButton.addEventListener('mousedown', () => {
+            leftButtonPressed = true;
+            console.log('Left button pressed');
+        });
+        leftButton.addEventListener('mouseup', () => {
+            leftButtonPressed = false;
+            console.log('Left button released');
+        });
+        leftButton.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            leftButtonPressed = true;
+            console.log('Left button touched');
+        });
+        leftButton.addEventListener('touchend', () => {
+            leftButtonPressed = false;
+            console.log('Left button touch ended');
+        });
+
+        rightButton.addEventListener('mousedown', () => {
+            rightButtonPressed = true;
+            console.log('Right button pressed');
+        });
+        rightButton.addEventListener('mouseup', () => {
+            rightButtonPressed = false;
+            console.log('Right button released');
+        });
+        rightButton.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            rightButtonPressed = true;
+            console.log('Right button touched');
+        });
+        rightButton.addEventListener('touchend', () => {
+            rightButtonPressed = false;
+            console.log('Right button touch ended');
+        });
+
+        enterButton.addEventListener('click', () => {
+            let name = nameInput.value.trim().substring(0, 3) || 'Anonymous';
+            leaderboard.push({ name, score });
+            leaderboard.sort((a, b) => b.score - a.score);
+            leaderboard = leaderboard.slice(0, 5);
+            localStorage.setItem('rollLeaderboard', JSON.stringify(leaderboard));
+            leaderboardDisplay.innerHTML = '<h3>Leaderboard</h3>' + leaderboard.map((entry, index) =>
+                `${index + 1}. ${entry.name}: ${entry.score.toFixed(2)}s`
+            ).join('<br>');
+            nameInput.classList.add('hidden');
+            enterButton.classList.add('hidden');
+            startButton.classList.remove('hidden');
+        });
+
         startButton.addEventListener('click', () => {
             console.log('Start button clicked');
             startGame();
-        });
-        restartButton.addEventListener('click', () => {
-            console.log('Restart button clicked');
-            startGame();
-        });
-        jumpButton.addEventListener('click', () => {
-            if (gameRunning && !player.jumping && !player.ducking) {
-                player.jumping = true;
-                console.log('Jump triggered');
-            }
-        });
-        duckButton.addEventListener('mousedown', () => {
-            if (gameRunning && !player.jumping) {
-                player.ducking = true;
-                console.log('Duck started');
-            }
-        });
-        duckButton.addEventListener('mouseup', () => {
-            player.ducking = false;
-            console.log('Duck ended');
-        });
-        duckButton.addEventListener('touchstart', () => {
-            if (gameRunning && !player.jumping) {
-                player.ducking = true;
-                console.log('Duck started (touch)');
-            }
-        });
-        duckButton.addEventListener('touchend', () => {
-            player.ducking = false;
-            console.log('Duck ended (touch)');
         });
 
         // Game loop
