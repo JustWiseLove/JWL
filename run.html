@@ -65,6 +65,19 @@
             height: 640px;
         }
 
+        #startButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #000000;
+            color: #FFFFFF;
+            border: 2px solid #FFFFFF;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
         #controls {
             display: flex;
             justify-content: space-between;
@@ -119,7 +132,7 @@
             margin: 10px 0;
         }
 
-        #enterButton, #startButton {
+        #enterButton, #restartButton {
             background-color: #000000;
             color: #FFFFFF;
             border: 2px solid #FFFFFF;
@@ -146,6 +159,10 @@
             #timer {
                 font-size: 24px;
             }
+            #startButton {
+                padding: 20px 40px;
+                font-size: 24px;
+            }
             #leftButton, #rightButton {
                 padding: 15px;
                 font-size: 20px;
@@ -166,7 +183,7 @@
                 font-size: 20px;
                 width: 150px;
             }
-            #enterButton, #startButton {
+            #enterButton, #restartButton {
                 padding: 15px 30px;
                 font-size: 20px;
             }
@@ -184,6 +201,10 @@
                 font-size: 60px;
             }
             #timer {
+                font-size: 30px;
+            }
+            #startButton {
+                padding: 25px 50px;
                 font-size: 30px;
             }
             #leftButton, #rightButton {
@@ -206,7 +227,7 @@
                 font-size: 24px;
                 width: 200px;
             }
-            #enterButton, #startButton {
+            #enterButton, #restartButton {
                 padding: 20px 40px;
                 font-size: 24px;
             }
@@ -220,6 +241,7 @@
     <div class="game-container">
         <div id="timer">Time: 0.00s</div>
         <canvas id="gameCanvas"></canvas>
+        <button id="startButton">START</button>
         <div id="controls">
             <button id="leftButton">L</button>
             <button id="rightButton">R</button>
@@ -229,7 +251,7 @@
             <div id="leaderboard"></div>
             <input id="nameInput" type="text" maxlength="3" placeholder="Initials">
             <button id="enterButton">ENTER</button>
-            <button id="startButton" class="hidden">START</button>
+            <button id="restartButton" class="hidden">START</button>
         </div>
     </div>
     <footer>
@@ -239,6 +261,7 @@
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
+        const startButton = document.getElementById('startButton');
         const leftButton = document.getElementById('leftButton');
         const rightButton = document.getElementById('rightButton');
         const gameOverScreen = document.getElementById('gameOver');
@@ -246,7 +269,7 @@
         const leaderboardDisplay = document.getElementById('leaderboard');
         const nameInput = document.getElementById('nameInput');
         const enterButton = document.getElementById('enterButton');
-        const startButton = document.getElementById('startButton');
+        const restartButton = document.getElementById('restartButton');
         const timerDisplay = document.getElementById('timer');
 
         // Set canvas size
@@ -271,8 +294,8 @@
         // Game variables
         let gameRunning = false;
         let player = {
-            x: 155,
-            y: 590,
+            x: (360 - 50) / 2, // Center for 360px canvas
+            y: 640 - 50,       // Bottom for 640px canvas
             width: 50,
             height: 50,
             moveSpeed: 200,
@@ -301,57 +324,59 @@
 
         // Update game state
         function update(deltaTime) {
-            if (!gameRunning) return;
-
             // Update timer
-            score = (Date.now() - startTime) / 1000;
-            timerDisplay.textContent = `Time: ${score.toFixed(2)}s`;
+            if (gameRunning) {
+                score = (Date.now() - startTime) / 1000;
+                timerDisplay.textContent = `Time: ${score.toFixed(2)}s`;
+            }
 
             // Player movement
-            if (leftButtonPressed) {
+            if (gameRunning && leftButtonPressed) {
                 player.x -= player.moveSpeed * deltaTime;
             }
-            if (rightButtonPressed) {
+            if (gameRunning && rightButtonPressed) {
                 player.x += player.moveSpeed * deltaTime;
             }
             player.x = Math.max(0, Math.min(player.x, canvas.width - player.width));
 
             // Update obstacles
-            obstacles.forEach(obstacle => {
-                obstacle.y += obstacle.speed * deltaTime;
-            });
-            obstacles = obstacles.filter(obstacle => obstacle.y < canvas.height);
+            if (gameRunning) {
+                obstacles.forEach(obstacle => {
+                    obstacle.y += obstacle.speed * deltaTime;
+                });
+                obstacles = obstacles.filter(obstacle => obstacle.y < canvas.height);
 
-            // Collision detection
-            player.stuck = false;
-            player.stuckObstacle = null;
-            obstacles.forEach(obstacle => {
-                if (
-                    player.x + player.width > obstacle.x &&
-                    player.x < obstacle.x + obstacle.width &&
-                    player.y + player.height > obstacle.y &&
-                    player.y < obstacle.y + obstacle.height
-                ) {
-                    player.stuck = true;
-                    player.stuckObstacle = obstacle;
+                // Spawn obstacles
+                if (Date.now() - lastObstacleTime > obstacleInterval) {
+                    createObstacle();
+                    lastObstacleTime = Date.now();
+                    obstacleInterval = 1000 + Math.random() * 1000 - Math.min(500, score * 10);
                 }
-            });
 
-            // If stuck, move with obstacle
-            if (player.stuck) {
-                player.y += player.stuckObstacle.speed * deltaTime;
-            }
+                // Collision detection
+                player.stuck = false;
+                player.stuckObstacle = null;
+                obstacles.forEach(obstacle => {
+                    if (
+                        player.x + player.width > obstacle.x &&
+                        player.x < obstacle.x + obstacle.width &&
+                        player.y + player.height > obstacle.y &&
+                        player.y < obstacle.y + obstacle.height
+                    ) {
+                        player.stuck = true;
+                        player.stuckObstacle = obstacle;
+                    }
+                });
 
-            // Game over if pushed off bottom
-            if (player.y > canvas.height) {
-                endGame();
-            }
+                // If stuck, move with obstacle
+                if (player.stuck) {
+                    player.y += player.stuckObstacle.speed * deltaTime;
+                }
 
-            // Spawn obstacles
-            if (Date.now() - lastObstacleTime > obstacleInterval) {
-                createObstacle();
-                lastObstacleTime = Date.now();
-                obstacleInterval = 1000 + Math.random() * 1000 - Math.min(500, score * 10);
+                // Game over if pushed off bottom
+                if (player.y > canvas.height) {
+                    endGame();
+                }
             }
 
             // Draw
@@ -362,11 +387,13 @@
             obstacles.forEach(obstacle => {
                 ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
             });
+            console.log(`Drawing player at x: ${player.x}, y: ${player.y}, obstacles: ${obstacles.length}`);
         }
 
         // End game
         function endGame() {
             gameRunning = false;
+            startButton.classList.add('hidden');
             gameOverScreen.classList.remove('hidden');
             scoreDisplay.textContent = `Your Time: ${score.toFixed(2)}s`;
             leaderboardDisplay.innerHTML = '<h3>Leaderboard</h3>' + leaderboard.map((entry, index) =>
@@ -375,13 +402,14 @@
             nameInput.value = '';
             nameInput.classList.remove('hidden');
             enterButton.classList.remove('hidden');
-            startButton.classList.add('hidden');
+            restartButton.classList.add('hidden');
         }
 
         // Start game
         function startGame() {
             console.log('Starting game...');
             gameRunning = true;
+            startButton.classList.add('hidden');
             gameOverScreen.classList.add('hidden');
             obstacles = [];
             lastObstacleTime = Date.now();
@@ -400,6 +428,11 @@
         let rightButtonPressed = false;
 
         // Event listeners
+        startButton.addEventListener('click', () => {
+            console.log('Start button clicked');
+            startGame();
+        });
+
         leftButton.addEventListener('mousedown', () => {
             leftButtonPressed = true;
             console.log('Left button pressed');
@@ -447,11 +480,11 @@
             ).join('<br>');
             nameInput.classList.add('hidden');
             enterButton.classList.add('hidden');
-            startButton.classList.remove('hidden');
+            restartButton.classList.remove('hidden');
         });
 
-        startButton.addEventListener('click', () => {
-            console.log('Start button clicked');
+        restartButton.addEventListener('click', () => {
+            console.log('Restart button clicked');
             startGame();
         });
 
