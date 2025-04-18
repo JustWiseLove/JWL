@@ -1,228 +1,435 @@
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-const startButton = document.getElementById('startButton');
-const jumpButton = document.getElementById('jumpButton');
-const duckButton = document.getElementById('duckButton');
-const gameOverScreen = document.getElementById('gameOver');
-const scoreDisplay = document.getElementById('scoreDisplay');
-const leaderboardDisplay = document.getElementById('leaderboard');
-const restartButton = document.getElementById('restartButton');
-const timerDisplay = document.getElementById('timer');
-
-// Set canvas size for mobile
-let scale = 1;
-function setCanvasSize() {
-    if (window.innerWidth >= 1024) {
-        canvas.width = 1080;
-        canvas.height = 1920;
-        scale = 3;
-    } else if (window.innerWidth >= 768) {
-        canvas.width = 720;
-        canvas.height = 1280;
-        scale = 2;
-    } else {
-        canvas.width = 360;
-        canvas.height = 640;
-        scale = 1;
-    }
-    // Ensure sharpness
-    const dpr = window.devicePixelRatio || 1;
-    canvas.style.width = `${canvas.width}px`;
-    canvas.style.height = `${canvas.height}px`;
-    canvas.width *= dpr;
-    canvas.height *= dpr;
-    ctx.scale(dpr * scale, dpr * scale);
-}
-setCanvasSize();
-window.addEventListener('resize', setCanvasSize);
-
-// Game variables
-let gameRunning = false;
-let player = {
-    x: 50 / scale,
-    y: (canvas.height / scale) - 100 / scale,
-    width: 50 / scale,
-    height: 50 / scale,
-    jumping: false,
-    ducking: false,
-    jumpHeight: 100 / scale,
-    jumpSpeed: 200 / scale,
-    gravity: 400 / scale
-};
-let obstacles = [];
-let lastObstacleTime = 0;
-let obstacleInterval = 1500;
-let startTime = 0;
-let score = 0;
-let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
-
-// Obstacle constructor
-function createObstacle() {
-    const type = Math.random() < 0.5 ? 'jump' : 'duck';
-    let obstacle;
-    if (type === 'jump') {
-        const height = (20 + Math.random() * 30) / scale;
-        obstacle = {
-            x: canvas.width / scale,
-            y: (canvas.height / scale) - height,
-            width: 30 / scale,
-            height: height,
-            type: 'jump'
-        };
-    } else {
-        const height = (20 + Math.random() * 30) / scale;
-        obstacle = {
-            x: canvas.width / scale,
-            y: 0,
-            width: 30 / scale,
-            height: height,
-            type: 'duck'
-        };
-    }
-    obstacles.push(obstacle);
-}
-
-// Update game state
-function update(deltaTime) {
-    if (!gameRunning) return;
-
-    // Update timer
-    score = (Date.now() - startTime) / 1000;
-    timerDisplay.textContent = `Time: ${score.toFixed(2)}s`;
-
-    // Player physics
-    if (player.jumping) {
-        player.y -= player.jumpSpeed * deltaTime;
-        if (player.y <= (canvas.height / scale) - player.height - player.jumpHeight) {
-            player.jumping = false;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUN Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    } else if (player.y < (canvas.height / scale) - player.height) {
-        player.y += player.gravity * deltaTime;
-        if (player.y > (canvas.height / scale) - player.height) {
-            player.y = (canvas.height / scale) - player.height;
+
+        body {
+            background-color: #FFFFFF;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-    }
 
-    // Update obstacles
-    obstacles.forEach(obstacle => {
-        obstacle.x -= 200 / scale * deltaTime;
-    });
-    obstacles = obstacles.filter(obstacle => obstacle.x + obstacle.width > 0);
+        header, footer {
+            background-color: #FFFFFF;
+            text-align: center;
+            padding: 10px 0;
+        }
 
-    // Spawn obstacles
-    if (Date.now() - lastObstacleTime > obstacleInterval) {
-        createObstacle();
-        lastObstacleTime = Date.now();
-        obstacleInterval = 1000 + Math.random() * 1000;
-    }
+        .logo, .footer-logo {
+            font-family: 'Audiowide', sans-serif;
+            font-size: 24px;
+            color: #000000;
+        }
 
-    // Collision detection
-    obstacles.forEach(obstacle => {
-        let playerHeight = player.ducking ? player.height / 2 : player.height;
-        let playerY = player.ducking ? player.y + player.height / 2 : player.y;
-        if (
-            player.x + player.width > obstacle.x &&
-            player.x < obstacle.x + obstacle.width &&
-            playerY + playerHeight > obstacle.y &&
-            playerY < obstacle.y + obstacle.height
-        ) {
-            if (
-                (obstacle.type === 'jump' && (player.jumping || player.ducking)) ||
-                (obstacle.type === 'duck' && !player.ducking)
-            ) {
-                endGame();
+        footer p {
+            color: #000000;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .game-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            max-width: 360px;
+            margin: 0 auto;
+        }
+
+        #timer {
+            position: absolute;
+            top: 10px;
+            color: #333333;
+            font-size: 18px;
+        }
+
+        #gameCanvas {
+            background-color: #CCCCCC;
+            border: 2px solid #000000;
+        }
+
+        #startButton, #restartButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333333;
+            color: #FFFFFF;
+            border: 2px solid #000000;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #controls {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #jumpButton, #duckButton {
+            background-color: #333333;
+            color: #FFFFFF;
+            border: 2px solid #000000;
+            padding: 20px 40px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100px;
+            text-align: center;
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFFFFF;
+            border: 2px solid #000000;
+            padding: 20px;
+            text-align: center;
+            color: #000000;
+        }
+
+        #scoreDisplay {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #leaderboard {
+            margin: 10px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Tablet */
+        @media (min-width: 768px) {
+            .game-container {
+                max-width: 720px;
+            }
+            .logo, .footer-logo {
+                font-size: 36px;
+            }
+            #timer {
+                font-size: 24px;
+            }
+            #startButton, #restartButton {
+                padding: 20px 40px;
+                font-size: 24px;
+            }
+            #jumpButton, #duckButton {
+                padding: 30px 60px;
+                font-size: 20px;
+                width: 150px;
+            }
+            #gameOver {
+                padding: 30px;
+            }
+            #scoreDisplay {
+                font-size: 24px;
             }
         }
-    });
 
-    // Draw
-    ctx.clearRect(0, 0, canvas.width / scale, canvas.height / scale);
-    // Draw player
-    ctx.fillStyle = '#333333';
-    if (player.ducking) {
-        ctx.fillRect(player.x, player.y + player.height / 2, player.width, player.height / 2);
-    } else {
-        ctx.fillRect(player.x, player.y, player.width, player.height);
-    }
-    // Draw obstacles
-    ctx.fillStyle = '#000000';
-    obstacles.forEach(obstacle => {
-        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
-    });
-}
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .game-container {
+                max-width: 1080px;
+            }
+            .logo, .footer-logo {
+                font-size: 48px;
+            }
+            #timer {
+                font-size: 30px;
+            }
+            #startButton, #restartButton {
+                padding: 25px 50px;
+                font-size: 30px;
+            }
+            #jumpButton, #duckButton {
+                padding: 40px 80px;
+                font-size: 24px;
+                width: 200px;
+            }
+            #gameOver {
+                padding: 40px;
+            }
+            #scoreDisplay {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <div class="logo">RUN</div>
+        </a>
+    </header>
+    <div class="game-container">
+        <div id="timer">Time: 0.00s</div>
+        <canvas id="gameCanvas"></canvas>
+        <button id="startButton">RUN</button>
+        <div id="controls">
+            <button id="jumpButton">JUMP</button>
+            <button id="duckButton">DUCK</button>
+        </div>
+        <div id="gameOver" class="hidden">
+            <div id="scoreDisplay"></div>
+            <div id="leaderboard"></div>
+            <button id="restartButton" class="hidden">RUN</button>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-logo">RUN</div>
+        <p>Copyright © 2025 Just Wise Love. All Rights Reserved.</p>
+    </footer>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const startButton = document.getElementById('startButton');
+        const jumpButton = document.getElementById('jumpButton');
+        const duckButton = document.getElementById('duckButton');
+        const gameOverScreen = document.getElementById('gameOver');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const leaderboardDisplay = document.getElementById('leaderboard');
+        const restartButton = document.getElementById('restartButton');
+        const timerDisplay = document.getElementById('timer');
 
-// End game
-function endGame() {
-    gameRunning = false;
-    gameOverScreen.classList.remove('hidden');
-    scoreDisplay.textContent = `Your Time: ${score.toFixed(2)}s`;
+        // Set canvas size for mobile
+        let scale = 1;
+        function setCanvasSize() {
+            if (window.innerWidth >= 1024) {
+                canvas.width = 1080;
+                canvas.height = 1920;
+                scale = 3;
+            } else if (window.innerWidth >= 768) {
+                canvas.width = 720;
+                canvas.height = 1280;
+                scale = 2;
+            } else {
+                canvas.width = 360;
+                canvas.height = 640;
+                scale = 1;
+            }
+            // Ensure sharpness
+            const dpr = window.devicePixelRatio || 1;
+            canvas.style.width = `${canvas.width}px`;
+            canvas.style.height = `${canvas.height}px`;
+            canvas.width *= dpr;
+            canvas.height *= dpr;
+            ctx.scale(dpr * scale, dpr * scale);
+        }
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
 
-    // Update leaderboard
-    if (leaderboard.length < 5 || score > Math.min(...leaderboard.map(entry => entry.score))) {
-        let name = prompt('You made the leaderboard! Enter your name:') || 'Anonymous';
-        leaderboard.push({ name, score });
-        leaderboard.sort((a, b) => b.score - a.score);
-        leaderboard = leaderboard.slice(0, 5);
-        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-    }
+        // Game variables
+        let gameRunning = false;
+        let player = {
+            x: 50 / scale,
+            y: (canvas.height / scale) - 100 / scale,
+            width: 50 / scale,
+            height: 50 / scale,
+            jumping: false,
+            ducking: false,
+            jumpHeight: 100 / scale,
+            jumpSpeed: 200 / scale,
+            gravity: 400 / scale
+        };
+        let obstacles = [];
+        let lastObstacleTime = 0;
+        let obstacleInterval = 1500;
+        let startTime = 0;
+        let score = 0;
+        let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
-    // Display leaderboard
-    leaderboardDisplay.innerHTML = '<h3>Leaderboard</h3>' + leaderboard.map((entry, index) =>
-        `${index + 1}. ${entry.name}: ${entry.score.toFixed(2)}s`
-    ).join('<br>');
+        // Obstacle constructor
+        function createObstacle() {
+            const type = Math.random() < 0.5 ? 'jump' : 'duck';
+            let obstacle;
+            if (type === 'jump') {
+                const height = (20 + Math.random() * 30) / scale;
+                obstacle = {
+                    x: canvas.width / scale,
+                    y: (canvas.height / scale) - height,
+                    width: 30 / scale,
+                    height: height,
+                    type: 'jump'
+                };
+            } else {
+                const height = (20 + Math.random() * 30) / scale;
+                obstacle = {
+                    x: canvas.width / scale,
+                    y: 0,
+                    width: 30 / scale,
+                    height: height,
+                    type: 'duck'
+                };
+            }
+            obstacles.push(obstacle);
+        }
 
-    restartButton.classList.remove('hidden');
-}
+        // Update game state
+        function update(deltaTime) {
+            if (!gameRunning) return;
 
-// Start game
-function startGame() {
-    gameRunning = true;
-    startButton.classList.add('hidden');
-    gameOverScreen.classList.add('hidden');
-    restartButton.classList.add('hidden');
-    obstacles = [];
-    lastObstacleTime = Date.now();
-    startTime = Date.now();
-    score = 0;
-    player.y = (canvas.height / scale) - player.height;
-    player.jumping = false;
-    player.ducking = false;
-    timerDisplay.textContent = 'Time: 0.00s';
-}
+            // Update timer
+            score = (Date.now() - startTime) / 1000;
+            timerDisplay.textContent = `Time: ${score.toFixed(2)}s`;
 
-// Event listeners
-startButton.addEventListener('click', startGame);
-restartButton.addEventListener('click', startGame);
+            // Player physics
+            if (player.jumping) {
+                player.y -= player.jumpSpeed * deltaTime;
+                if (player.y <= (canvas.height / scale) - player.height - player.jumpHeight) {
+                    player.jumping = false;
+                }
+            } else if (player.y < (canvas.height / scale) - player.height) {
+                player.y += player.gravity * deltaTime;
+                if (player.y > (canvas.height / scale) - player.height) {
+                    player.y = (canvas.height / scale) - player.height;
+                }
+            }
 
-jumpButton.addEventListener('click', () => {
-    if (gameRunning && !player.jumping && !player.ducking) {
-        player.jumping = true;
-    }
-});
+            // Update obstacles
+            obstacles.forEach(obstacle => {
+                obstacle.x -= 200 / scale * deltaTime;
+            });
+            obstacles = obstacles.filter(obstacle => obstacle.x + obstacle.width > 0);
 
-duckButton.addEventListener('mousedown', () => {
-    if (gameRunning && !player.jumping) {
-        player.ducking = true;
-    }
-});
-duckButton.addEventListener('mouseup', () => {
-    player.ducking = false;
-});
-duckButton.addEventListener('touchstart', () => {
-    if (gameRunning && !player.jumping) {
-        player.ducking = true;
-    }
-});
-duckButton.addEventListener('touchend', () => {
-    player.ducking = false;
-});
+            // Spawn obstacles
+            if (Date.now() - lastObstacleTime > obstacleInterval) {
+                createObstacle();
+                lastObstacleTime = Date.now();
+                obstacleInterval = 1000 + Math.random() * 1000;
+            }
 
-// Game loop
-let lastTime = 0;
-function gameLoop(timestamp) {
-    const deltaTime = (timestamp - lastTime) / 1000;
-    lastTime = timestamp;
-    update(deltaTime);
-    requestAnimationFrame(gameLoop);
-}
-requestAnimationFrame(gameLoop);
+            // Collision detection
+            obstacles.forEach(obstacle => {
+                let playerHeight = player.ducking ? player.height / 2 : player.height;
+                let playerY = player.ducking ? player.y + player.height / 2 : player.y;
+                if (
+                    player.x + player.width > obstacle.x &&
+                    player.x < obstacle.x + obstacle.width &&
+                    playerY + playerHeight > obstacle.y &&
+                    playerY < obstacle.y + obstacle.height
+                ) {
+                    if (
+                        (obstacle.type === 'jump' && (player.jumping || player.ducking)) ||
+                        (obstacle.type === 'duck' && !player.ducking)
+                    ) {
+                        endGame();
+                    }
+                }
+            });
+
+            // Draw
+            ctx.clearRect(0, 0, canvas.width / scale, canvas.height / scale);
+            // Draw player
+            ctx.fillStyle = '#333333';
+            if (player.ducking) {
+                ctx.fillRect(player.x, player.y + player.height / 2, player.width, player.height / 2);
+            } else {
+                ctx.fillRect(player.x, player.y, player.width, player.height);
+            }
+            // Draw obstacles
+            ctx.fillStyle = '#000000';
+            obstacles.forEach(obstacle => {
+                ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            });
+        }
+
+        // End game
+        function endGame() {
+            gameRunning = false;
+            gameOverScreen.classList.remove('hidden');
+            scoreDisplay.textContent = `Your Time: ${score.toFixed(2)}s`;
+
+            // Update leaderboard
+            if (leaderboard.length < 5 || score > Math.min(...leaderboard.map(entry => entry.score))) {
+                let name = prompt('You made the leaderboard! Enter your name:') || 'Anonymous';
+                leaderboard.push({ name, score });
+                leaderboard.sort((a, b) => b.score - a.score);
+                leaderboard = leaderboard.slice(0, 5);
+                localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+            }
+
+            // Display leaderboard
+            leaderboardDisplay.innerHTML = '<h3>Leaderboard</h3>' + leaderboard.map((entry, index) =>
+                `${index + 1}. ${entry.name}: ${entry.score.toFixed(2)}s`
+            ).join('<br>');
+
+            restartButton.classList.remove('hidden');
+        }
+
+        // Start game
+        function startGame() {
+            gameRunning = true;
+            startButton.classList.add('hidden');
+            gameOverScreen.classList.add('hidden');
+            restartButton.classList.add('hidden');
+            obstacles = [];
+            lastObstacleTime = Date.now();
+            startTime = Date.now();
+            score = 0;
+            player.y = (canvas.height / scale) - player.height;
+            player.jumping = false;
+            player.ducking = false;
+            timerDisplay.textContent = 'Time: 0.00s';
+        }
+
+        // Event listeners
+        startButton.addEventListener('click', startGame);
+        restartButton.addEventListener('click', startGame);
+
+        jumpButton.addEventListener('click', () => {
+            if (gameRunning && !player.jumping && !player.ducking) {
+                player.jumping = true;
+            }
+        });
+
+        duckButton.addEventListener('mousedown', () => {
+            if (gameRunning && !player.jumping) {
+                player.ducking = true;
+            }
+        });
+        duckButton.addEventListener('mouseup', () => {
+            player.ducking = false;
+        });
+        duckButton.addEventListener('touchstart', () => {
+ discontinuities in the code due to length constraints. Here's the continuation to complete the JavaScript section:
+
+        });
+        duckButton.addEventListener('touchend', () => {
+            player.ducking = false;
+        });
+
+        // Game loop
+        let lastTime = 0;
+        function gameLoop(timestamp) {
+            const deltaTime = (timestamp - lastTime) / 1000;
+            lastTime = timestamp;
+            update(deltaTime);
+            requestAnimationFrame(gameLoop);
+        }
+        requestAnimationFrame(gameLoop);
+    </script>
+</body>
+</html>
