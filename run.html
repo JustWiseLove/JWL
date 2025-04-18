@@ -63,7 +63,7 @@
             border: 2px solid #000000;
             width: 100%;
             max-width: 360px;
-            aspect-ratio: 9 / 16;
+            height: 640px;
         }
 
         #startButton, #restartButton {
@@ -125,13 +125,13 @@
             display: none;
         }
 
-        /* Tablet */
         @media (min-width: 768px) {
             .game-container {
                 max-width: 720px;
             }
             #gameCanvas {
                 max-width: 720px;
+                height: 1280px;
             }
             .logo, .footer-logo {
                 font-size: 36px;
@@ -156,13 +156,13 @@
             }
         }
 
-        /* Desktop */
         @media (min-width: 1024px) {
             .game-container {
                 max-width: 1080px;
             }
             #gameCanvas {
                 max-width: 1080px;
+                height: 1920px;
             }
             .logo, .footer-logo {
                 font-size: 48px;
@@ -226,17 +226,19 @@
 
         // Set canvas size
         function setCanvasSize() {
-            const width = Math.min(window.innerWidth, 360);
-            const height = width * (16 / 9);
+            let width = 360, height = 640;
+            if (window.innerWidth >= 1024) {
+                width = 1080;
+                height = 1920;
+            } else if (window.innerWidth >= 768) {
+                width = 720;
+                height = 1280;
+            }
             canvas.width = width;
             canvas.height = height;
             canvas.style.width = `${width}px`;
             canvas.style.height = `${height}px`;
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width *= dpr;
-            canvas.height *= dpr;
-            ctx.scale(dpr, dpr);
-            console.log(`Canvas set to ${width}x${height}, DPR: ${dpr}`);
+            console.log(`Canvas set to ${width}x${height}`);
         }
         setCanvasSize();
         window.addEventListener('resize', setCanvasSize);
@@ -245,14 +247,14 @@
         let gameRunning = false;
         let player = {
             x: 50,
-            y: canvas.height - 50,
+            y: 590,
             width: 50,
             height: 50,
             jumping: false,
             ducking: false,
             jumpHeight: 100,
-            jumpSpeed: 200,
-            gravity: 400
+            jumpSpeed: 300,
+            gravity: 600
         };
         let obstacles = [];
         let lastObstacleTime = 0;
@@ -268,8 +270,8 @@
             if (type === 'jump') {
                 const height = 20 + Math.random() * 30;
                 obstacle = {
-                    x: canvas.width,
-                    y: canvas.height - height,
+                    x: 360,
+                    y: 640 - height,
                     width: 30,
                     height: height,
                     type: 'jump'
@@ -277,7 +279,7 @@
             } else {
                 const height = 20 + Math.random() * 30;
                 obstacle = {
-                    x: canvas.width,
+                    x: 360,
                     y: 0,
                     width: 30,
                     height: height,
@@ -285,7 +287,7 @@
                 };
             }
             obstacles.push(obstacle);
-            console.log(`Created ${type} obstacle at x: ${obstacle.x}, y: ${obstacle.y}`);
+            console.log(`Created ${type} obstacle at x: ${obstacle.x}, y: ${obstacle.y}, height: ${obstacle.height}`);
         }
 
         // Update game state
@@ -299,13 +301,13 @@
             // Player physics
             if (player.jumping) {
                 player.y -= player.jumpSpeed * deltaTime;
-                if (player.y <= canvas.height - player.height - player.jumpHeight) {
+                if (player.y <= 640 - player.height - player.jumpHeight) {
                     player.jumping = false;
                 }
-            } else if (player.y < canvas.height - player.height) {
+            } else if (player.y < 640 - player.height) {
                 player.y += player.gravity * deltaTime;
-                if (player.y > canvas.height - player.height) {
-                    player.y = canvas.height - player.height;
+                if (player.y > 640 - player.height) {
+                    player.y = 640 - player.height;
                 }
             }
             console.log(`Player at x: ${player.x}, y: ${player.y}`);
@@ -320,7 +322,7 @@
             if (Date.now() - lastObstacleTime > obstacleInterval) {
                 createObstacle();
                 lastObstacleTime = Date.now();
-                obstacleInterval = 1000 + Math.random() * 1000;
+                obstacleInterval = 1000 + Math.random() * 500;
             }
 
             // Collision detection
@@ -334,7 +336,7 @@
                     playerY < obstacle.y + obstacle.height
                 ) {
                     if (
-                        (obstacle.type === 'jump' && (player.jumping || player.ducking)) ||
+                        (obstacle.type === 'jump' && !player.jumping) ||
                         (obstacle.type === 'duck' && !player.ducking)
                     ) {
                         endGame();
@@ -385,7 +387,8 @@
             lastObstacleTime = Date.now();
             startTime = Date.now();
             score = 0;
-            player.y = canvas.height - player.height;
+            player.x = 50;
+            player.y = 590;
             player.jumping = false;
             player.ducking = false;
             timerDisplay.textContent = 'Time: 0.00s';
@@ -438,7 +441,6 @@
         }
         requestAnimationFrame(gameLoop);
 
-        // Log initialization
         console.log('Game initialized');
     </script>
 </body>
