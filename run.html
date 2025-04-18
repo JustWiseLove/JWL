@@ -236,7 +236,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">RUN - Just Wise Love</div>
+        <div class="logo">RUN</div>
     </header>
     <div class="game-container">
         <div id="timer">Time: 0.00s</div>
@@ -293,8 +293,8 @@
         // Game variables
         let gameRunning = false;
         let player = {
-            x: (360 - 50) / 2,
-            y: 600 - 50,
+            x: (360 - 50) / 2, // Center for 360px canvas
+            y: 600 - 50,       // Bottom for 600px canvas
             width: 50,
             height: 50,
             moveSpeed: 200,
@@ -310,8 +310,6 @@
         let difficultyIncreaseInterval = 30000; // 30 seconds
         let lastDifficultyIncrease = 0;
         let difficultyMultiplier = 1;
-        let lastSpawnRateIncrease = 0;
-        let spawnRateIncreaseInterval = 15000; // 15 seconds
         let startTime = 0;
         let score = 0;
         let leaderboard = JSON.parse(localStorage.getItem('rollLeaderboard')) || [];
@@ -330,15 +328,15 @@
 
         // Obstacle constructor
         function createObstacle() {
-            const isWhiteDiamond = Math.random() < 0.1; // 10% chance
+            const isGoldDiamond = Math.random() < 0.1; // 10% chance
             const obstacle = {
-                x: Math.random() * (canvas.width - 30) + 15,
+                x: Math.random() * (canvas.width - 30) + 15, // Center of circle or diamond
                 y: 0,
-                radius: 15,
-                width: 50,
-                height: 50,
+                radius: 15, // For circles (30px diameter)
+                width: 50, // For gold diamonds
+                height: 50, // For gold diamonds
                 speed: baseObstacleSpeed * difficultyMultiplier,
-                type: isWhiteDiamond ? 'white' : 'circle'
+                type: isGoldDiamond ? 'gold' : 'circle'
             };
             obstacles.push(obstacle);
             console.log(`Created ${obstacle.type} at x: ${obstacle.x}, y: ${obstacle.y}, speed: ${obstacle.speed}`);
@@ -359,14 +357,6 @@
                     difficultyMultiplier = Math.min(difficultyMultiplier, 2); // Cap speed at 2x (300px/s)
                     lastDifficultyIncrease = Date.now();
                     console.log(`Difficulty increased: multiplier=${difficultyMultiplier}, interval=${baseObstacleIntervalMin}-${baseObstacleIntervalMax}`);
-                }
-
-                // Increase spawn rate every 15 seconds
-                if (Date.now() - lastSpawnRateIncrease > spawnRateIncreaseInterval) {
-                    baseObstacleIntervalMin = Math.max(300, baseObstacleIntervalMin * 0.85); // Reduce interval by 15%, min 300ms
-                    baseObstacleIntervalMax = Math.max(600, baseObstacleIntervalMax * 0.85); // Reduce interval by 15%, min 600ms
-                    lastSpawnRateIncrease = Date.now();
-                    console.log(`Spawn rate increased: interval=${baseObstacleIntervalMin}-${baseObstacleIntervalMax}`);
                 }
             }
 
@@ -407,8 +397,8 @@
                             player.stuck = true;
                             player.stuckObstacle = obstacle;
                         }
-                    } else if (obstacle.type === 'white') {
-                        // White diamond collision (approximate with bounding box)
+                    } else if (obstacle.type === 'gold') {
+                        // Gold diamond collision (approximate with bounding box)
                         if (
                             player.x + player.width > obstacle.x - obstacle.width / 2 &&
                             player.x < obstacle.x + obstacle.width / 2 &&
@@ -417,9 +407,9 @@
                         ) {
                             // Push player up by 20px
                             player.y = Math.max(0, player.y - 20);
-                            // Mark white diamond to be removed after collision
+                            // Mark gold diamond to be removed after collision
                             obstacle.y = canvas.height + 1; // Force removal
-                            console.log(`Player hit white diamond, pushed up to y: ${player.y}`);
+                            console.log(`Player hit gold diamond, pushed up to y: ${player.y}`);
                         }
                     }
                 });
@@ -437,15 +427,15 @@
 
             // Draw
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawDiamond(player.x, player.y, player.width, height, '#333333');
+            drawDiamond(player.x, player.y, player.width, player.height);
             obstacles.forEach(obstacle => {
                 if (obstacle.type === 'circle') {
                     ctx.beginPath();
                     ctx.arc(obstacle.x, obstacle.y, obstacle.radius, 0, Math.PI * 2);
                     ctx.fillStyle = '#000000';
                     ctx.fill();
-                } else if (obstacle.type === 'white') {
-                    drawDiamond(obstacle.x - obstacle.width / 2, obstacle.y, obstacle.width, obstacle.height, '#FFFFFF');
+                } else if (obstacle.type === 'gold') {
+                    drawDiamond(obstacle.x - obstacle.width / 2, obstacle.y, obstacle.width, obstacle.height, '#FFD700');
                 }
             });
             console.log(`Drawing player at x: ${player.x}, y: ${player.y}, obstacles: ${obstacles.length}`);
@@ -485,7 +475,6 @@
             baseObstacleIntervalMin = 1000;
             baseObstacleIntervalMax = 2000;
             lastDifficultyIncrease = Date.now();
-            lastSpawnRateIncrease = Date.now();
             console.log(`Player initialized at x: ${player.x}, y: ${player.y}`);
         }
 
