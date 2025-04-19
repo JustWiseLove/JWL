@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Weekly Watchtower Study Guide Generator for Jehovah’s Witnesses, creating answers from pasted article text.">
+    <title>Watchtower Study Guide Generator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #1a4971;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .input-section {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .input-section label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .input-section input, .input-section textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .input-section textarea {
+            height: 200px;
+            resize: vertical;
+        }
+
+        .input-section button {
+            background-color: #1a4971;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .input-section button:hover {
+            background-color: #143f5f;
+        }
+
+        .study-guide {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .study-guide h2 {
+            color: #1a4971;
+            margin-bottom: 1rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+        }
+
+        .question h3 {
+            font-size: 1.2rem;
+            color: #1a4971;
+            margin-bottom: 0.5rem;
+        }
+
+        .question p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #1a4971;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Watchtower Study Guide Generator</h1>
+        <p>Paste your article to create a study guide</p>
+    </header>
+
+    <div class="container">
+        <div class="input-section">
+            <h2 id="article-title">Study Guide Generator</h2>
+            <label for="article-title-input">Article Title:</label>
+            <input type="text" id="article-title-input" placeholder="Enter article title">
+            <label for="article-date">Study Week:</label>
+            <input type="text" id="article-date" placeholder="e.g., April 14–20, 2025">
+            <label for="article-text">Paste Watchtower Article:</label>
+            <textarea id="article-text" placeholder="Copy.ConcurrentModificationException: null
+ at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1097)
+ at java.base/java.util.ArrayList$Itr.next(ArrayList.java:1050)
+ at org.apache.logging.log4j.core.appender.rolling.RollingFileManager.checkRollover(RollingFileManager.java:320)
+ at org.apache.logging.log4j.core.appender.RollingFileAppender.append(RollingFileAppender.java:285)
+ at org.apache.logging.log4j.core.config.AppenderControl.tryCallAppender(AppenderControl.java:161)
+ at org.apache.logging.log4j.core.config.AppenderControl.callAppender0(AppenderControl.java:134)
+ at org.apache.logging.log4j.core.config.AppenderControl.callAppender(AppenderControl.java:78)
+ at org.apache.logging.log4j.core.config.LoggerConfig.callAppenders(LoggerConfig.java:543)
+ at org.apache.logging.log4j.core.config.LoggerConfig.processLogEvent(LoggerConfig.java:502)
+ at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:485)
+ at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:460)
+ at org.apache.logging.log4j.core.config.AwaitCompletionReliabilityStrategy.log(AwaitCompletionReliabilityStrategy.java:82)
+ at org.apache.logging.log4j.core.Logger.log(Logger.java:161)
+ at org.apache.logging.log4j.spi.AbstractLogger.tryLogMessage(AbstractLogger.java:2205)
+ at org.apache.logging.log4j.spi.AbstractLogger.logMessageTrackRecursion(AbstractLogger.java:2159)
+ at org.apache.logging.log4j.spi.AbstractLogger.logMessageSafely(AbstractLogger.java:2142)
+ at org.apache.logging.log4j.spi.AbstractLogger.logMessage(AbstractLogger.java:2017)
+ at org.apache.logging.log4j.spi.AbstractLogger.logIfEnabled(AbstractLogger.java:1983)
+ at org.apache.logging.log4j.spi.AbstractLogger.info(AbstractLogger.java:1327)
+ at ai.x.model.llm.Grok3.log(Grok3.java:256)
+ at ai.x.model.llm.Grok3.write(Grok3.java:246)
+ at ai.x.model.llm.Grok3.create(Grok3.java:100)
+ at ai.x.service.ChatService.createChat(ChatService.java:88)
+ at ai.x.controller.ChatController.lambda$createChat$1(ChatController.java:54)
+ at java.base/java.util.Optional.map(Optional.java:260)
+ at ai.x.controller.ChatController.createChat(ChatController.java:54)
+ at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+ at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+ at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+ at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+ at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209)
+ at org springs and paste the article text here"></textarea>
+            <button onclick="generateStudyGuide()">Generate Study Guide</button>
+        </div>
+
+        <div class="study-guide" id="study-guide">
+            <h2>Numerical Questions</h2>
+            <p>Paste an article and click "Generate Study Guide" to see answers.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Watchtower Study Guide Generator | Built for Jehovah’s Witnesses</p>
+    </footer>
+
+    <script>
+        function generateStudyGuide() {
+            const articleText = document.getElementById('article-text').value;
+            const titleInput = document.getElementById('article-title-input').value;
+            const dateInput = document.getElementById('article-date').value;
+            const studyGuideDiv = document.getElementById('study-guide');
+            const titleDisplay = document.getElementById('article-title');
+
+            // Update title
+            if (titleInput && dateInput) {
+                titleDisplay.textContent = `Study Guide for ${titleInput} (${dateInput})`;
+            } else if (dateInput) {
+                titleDisplay.textContent = `Study Guide for ${dateInput}`;
+            } else {
+                titleDisplay.textContent = `Study Guide`;
+            }
+
+            // Clear previous guide
+            studyGuideDiv.innerHTML = '<h2>Numerical Questions</h2>';
+
+            if (!articleText) {
+                studyGuideDiv.innerHTML += '<p>Please paste an article to generate the study guide.</p>';
+                return;
+            }
+
+            // Parse article text
+            const lines = articleText.split('\n').filter(line => line.trim());
+            let paragraphs = [];
+            let questions = [];
+            let summaryQuestions = [];
+            let currentParagraph = null;
+
+            // Parse lines
+            lines.forEach(line => {
+                // Paragraphs start with a number (e.g., "1. ")
+                if (/^\d+\./.test(line)) {
+                    if (currentParagraph) paragraphs.push(currentParagraph);
+                    currentParagraph = { text: line.replace(/^\d+\.\s*/, ''), number: parseInt(line.match(/^\d+/)[0]) };
+                }
+                // Questions have "(?)" or are numbered like "1. What..."
+                else if (line.includes('(?)') || line.match(/^\d+\s*\./)) {
+                    questions.push(line);
+                }
+                // Summary questions under "HOW WOULD YOU ANSWER?"
+                else if (line.includes('HOW WOULD YOU ANSWER?')) {
+                    const nextLines = lines.slice(lines.indexOf(line) + 1);
+                    summaryQuestions = nextLines.filter(l => l.trim() && !l.includes('———')).slice(0, 3);
+                }
+                // Add to current paragraph
+                else if (currentParagraph) {
+                    currentParagraph.text += ' ' + line;
+                }
+            });
+            if (currentParagraph) paragraphs.push(currentParagraph);
+
+            // Generate numerical question answers
+            let numericalHTML = '<h2>Numerical Questions</h2>';
+            paragraphs.forEach((para, index) => {
+                let question = questions.find(q => q.includes(`(${para.number})`) || q.includes(`${para.number}.`));
+                if (!question) {
+                    question = `Paragraph ${para.number}: What is the main point?`;
+                }
+                // Summarize first sentence or relevant content
+                let answer = para.text.split('.')[0].trim().substring(0, 45);
+                if (answer.length > 40) answer = answer.substring(0, 40) + '...';
+                if (!answer) answer = 'Key point not clear from text.';
+
+                numericalHTML += `
+                    <div class="question">
+                        <h3>${question}</h3>
+                        <p>${answer}</p>
+                    </div>
+                `;
+            });
+
+            // Generate summary question answers
+            let summaryHTML = '<h2>How Would You Answer?</h2>';
+            summaryQuestions.forEach((q, index) => {
+                // Find relevant paragraph for summary answer
+                let answer = '';
+                const relatedPara = paragraphs.find(p => p.text.toLowerCase().includes(q.toLowerCase().split('?')[0]));
+                if (relatedPara) {
+                    answer = relatedPara.text.split('.')[0].trim().substring(0, 45);
+                    if (answer.length > 40) answer = answer.substring(0, 40) + '...';
+                } else {
+                    answer = 'Summarize key article points.';
+                }
+                summaryHTML += `
+                    <div class="question">
+                        <h3>${q}</h3>
+                        <p>${answer}</p>
+                    </div>
+                `;
+            });
+
+            // Update study guide
+            studyGuideDiv.innerHTML = numericalHTML + (summaryQuestions.length ? summaryHTML : '');
+        }
+    </script>
+</body>
+</html>
