@@ -90,8 +90,18 @@
             background: #fff;
             border-radius: 8px;
         }
+        #html-output {
+            margin-top: 20px;
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            background: #f9f9f9;
+        }
 
-        /* Your original CSS for the generated page */
+        /* Your original CSS for the generated page, with added gap between articles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -135,6 +145,7 @@
         }
         .item {
             width: 100%;
+            margin-bottom: 20px; /* Added gap between articles */
         }
         details[open] .item-content {
             display: block;
@@ -193,7 +204,7 @@
         .scripture {
             background-color: #c0c0c0;
             padding: 10px;
-            margin-top: 10px;
+            margin-top: 10px -webkit-tap-highlight-color: transparent;
             margin-left: auto;
             margin-right: auto;
             border-radius: 5px;
@@ -256,23 +267,19 @@
         </div>
         <button onclick="addArticleSection()">Add Another Article Section</button>
 
-        <!-- Footer Section -->
-        <h2>Footer</h2>
-        <div class="section-group">
-            <label for="footer-text">Footer Text:</label>
-            <input type="text" id="footer-text" value="© Just Wise Love">
-        </div>
-
         <!-- Generate and Preview -->
         <button onclick="generatePage()">Generate Page</button>
-        <a id="download-link" style="display: none;">Download HTML</a>
+        <div>
+            <h3>Generated HTML</h3>
+            <textarea id="html-output" readonly></textarea>
+        </div>
         <div id="preview"></div>
     </div>
 
     <script>
         let articleCount = 1;
-        let elementCounts = { 0: 0 }; // Track elements per article
-        let elements = { 0: [] }; // Store elements for each article
+        let elementCounts = { 0: 0 };
+        let elements = { 0: [] };
 
         function addArticleSection() {
             const container = document.getElementById('article-container');
@@ -338,7 +345,7 @@
             elements[articleIndex].push(element);
             elementCounts[articleIndex]++;
             renderElementList(articleIndex);
-            document.getElementById(`element-text-${articleIndex}`).value = ''; // Clear input
+            document.getElementById(`element-text-${articleIndex}`).value = '';
         }
 
         function editElement(articleIndex, elementId) {
@@ -380,7 +387,6 @@
         function updatePreview() {
             const logoText = document.getElementById('logo-text').value;
             const logoLink = document.getElementById('logo-link').value;
-            const footerText = document.getElementById('footer-text').value;
 
             const articleSections = [];
             for (let i = 0; i < articleCount; i++) {
@@ -423,7 +429,7 @@
                     </section>
                 </main>
                 <footer>
-                    <p>${footerText}</p>
+                    <p>© Just Wise Love</p>
                 </footer>
             `;
             document.getElementById('preview').innerHTML = html;
@@ -432,7 +438,6 @@
         function generatePage() {
             const logoText = document.getElementById('logo-text').value;
             const logoLink = document.getElementById('logo-link').value;
-            const footerText = document.getElementById('footer-text').value;
 
             const articleSections = [];
             for (let i = 0; i < articleCount; i++) {
@@ -490,7 +495,7 @@
         </section>
     </main>
     <footer>
-        <p>${footerText}</p>
+        <p>© Just Wise Love</p>
     </footer>
 </body>
 </html>
@@ -498,17 +503,9 @@
 
             const preview = document.getElementById('preview');
             preview.innerHTML = html;
-
-            const downloadLink = document.getElementById('download-link');
-            const blob = new Blob([html], { type: 'text/html' });
-            downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = 'generated-page.html';
-            downloadLink.style.display = 'block';
-            downloadLink.textContent = 'Download HTML';
+            const htmlOutput = document.getElementById('html-output');
+            htmlOutput.value = html;
         }
-
-        // Initialize element type listeners
-        updateElementTypeListeners();
     </script>
 </body>
 </html>
