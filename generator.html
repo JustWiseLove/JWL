@@ -6,7 +6,7 @@
     <title>Web Page Builder - Just Wise Love</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
-        /* Include your existing CSS here for consistency */
+        /* Form-specific styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -14,20 +14,21 @@
             background-color: #f4f4f4;
         }
         .builder-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        h2 {
+        h1, h2 {
             font-family: 'Audiowide', sans-serif;
             color: #333;
         }
         label {
             display: block;
             margin: 10px 0 5px;
+            font-weight: bold;
         }
         input, textarea {
             width: 100%;
@@ -35,12 +36,17 @@
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box;
         }
-        .category-group, .intro-group {
+        .section-group, .article-group, .heading-group, .scripture-group {
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 4px;
+            background: #f9f9f9;
+        }
+        .article-group > div {
+            margin-bottom: 10px;
         }
         button {
             padding: 10px 20px;
@@ -49,6 +55,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin: 5px;
         }
         button:hover {
             background-color: #555;
@@ -60,49 +67,192 @@
             background: #fff;
             border-radius: 8px;
         }
+        .remove-btn {
+            background-color: #d33;
+        }
+        .remove-btn:hover {
+            background-color: #b00;
+        }
+
+        /* Your original CSS for the generated page */
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #333;
+        }
+        .logo h1 {
+            font-family: 'Audiowide', sans-serif;
+            color: #000;
+            font-size: 48px;
+            margin: 0;
+        }
+        .logo a {
+            text-decoration: none !important;
+            color: #000 !important;
+        }
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        footer {
+            background-color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 2px solid #333;
+            color: #000;
+            font-size: 14px;
+        }
+        .article {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .item {
+            width: 100%;
+        }
+        details[open] .item-content {
+            display: block;
+        }
+        .item-button {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 14px;
+            background-color: #d3d3d3;
+            border: none;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+        }
+        .item-button:hover {
+            background-color: #b0b0b0;
+        }
+        .item-button::-webkit-details-marker {
+            display: none;
+        }
+        .item-button::marker {
+            display: none;
+        }
+        .item-content {
+            display: none;
+            padding: 20px;
+            background-color: #e0e0e0;
+            border-radius: 0 0 5px 5px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center !important;
+        }
+        .item-content p,
+        .item-content li,
+        .item-content strong,
+        .item-content .scripture,
+        .item-content .scripture p {
+            text-align: center !important;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .item-content ul {
+            list-style-position: inside;
+            padding: 0;
+            margin: 0 auto;
+            text-align: center !important;
+        }
+        .item-content ul li {
+            display: block;
+            text-align: center !important;
+            margin: 10px 0;
+        }
+        .scripture {
+            background-color: #c0c0c0;
+            padding: 10px;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .scripture p {
+            font-style: italic;
+            margin: 5px 0;
+        }
+        .article h3, .article h4 {
+            font-family: 'Audiowide', sans-serif;
+            color: #000;
+            margin: 1rem 0;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="builder-container">
         <h1>Just Wise Love Page Builder</h1>
-        
+
         <!-- Header Section -->
         <h2>Header</h2>
-        <label for="logo-text">Logo Text (e.g., JWL):</label>
-        <input type="text" id="logo-text" value="JWL">
-        <label for="logo-link">Logo Link (e.g., bulletin.html):</label>
-        <input type="text" id="logo-link" value="bulletin.html">
-
-        <!-- Intro Section -->
-        <h2>Intro Section</h2>
-        <div class="intro-group">
-            <label for="intro-title">Intro Title:</label>
-            <input type="text" id="intro-title" value="Whom Will You Serve?">
-            <label for="intro-scripture">Intro Scripture:</label>
-            <textarea id="intro-scripture">“Now if it seems bad to you to serve Jehovah, choose for yourselves today whom you will serve… But as for me and my household, we will serve Jehovah.” (Joshua 24:15)</textarea>
-            <label for="intro-content">Intro Content (for 'Read More'):</label>
-            <textarea id="intro-content" rows="10">Your life’s most vital decision looms: will you serve Satan’s fleeting world or embrace Jehovah’s everlasting Kingdom?...</textarea>
+        <div class="section-group">
+            <label for="logo-text">Logo Text (e.g., JWL):</label>
+            <input type="text" id="logo-text" value="JWL">
+            <label for="logo-link">Logo Link (e.g., bulletin.html):</label>
+            <input type="text" id="logo-link" value="bulletin.html">
         </div>
 
-        <!-- Categories Section -->
-        <h2>Categories</h2>
-        <div id="categories-container">
-            <div class="category-group">
-                <label for="category-title-0">Category Title:</label>
-                <input type="text" id="category-title-0" value="Characters">
-                <label for="category-link-0">Category Link:</label>
-                <input type="text" id="category-link-0" value="characters.html">
-                <label for="category-desc-0">Category Description:</label>
-                <input type="text" id="category-desc-0" value="Learn from their faith and mistakes.">
+        <!-- Article Sections (Dropdowns) -->
+        <h2>Article Sections</h2>
+        <div id="article-container">
+            <div class="article-group" data-index="0">
+                <label for="article-title-0">Article Title (Dropdown Label):</label>
+                <input type="text" id="article-title-0" value="Article Title">
+                <label for="article-content-0">Main Content:</label>
+                <textarea id="article-content-0" rows="5">Your life’s most vital decision looms: will you serve Satan’s fleeting world or embrace Jehovah’s everlasting Kingdom?...</textarea>
+                
+                <!-- Headings -->
+                <h3>Headings</h3>
+                <div class="headings-container" data-index="0">
+                    <div class="heading-group">
+                        <label for="heading-text-0-0">Heading Text:</label>
+                        <input type="text" id="heading-text-0-0" value="Satan’s World: Lies and Deception">
+                        <label for="heading-level-0-0">Heading Level:</label>
+                        <select id="heading-level-0-0">
+                            <option value="h3">H3</option>
+                            <option value="h4">H4</option>
+                        </select>
+                        <button class="remove-btn" onclick="removeElement(this, 'heading-group')">Remove Heading</button>
+                    </div>
+                </div>
+                <button onclick="addHeading(0)">Add Heading</button>
+
+                <!-- Scriptures -->
+                <h3>Scriptures</h3>
+                <div class="scriptures-container" data-index="0">
+                    <div class="scripture-group">
+                        <label for="scripture-text-0-0">Scripture Text:</label>
+                        <textarea id="scripture-text-0-0" rows="3">The whole world is lying in the power of the wicked one. — 1 John 5:19</textarea>
+                        <button class="remove-btn" onclick="removeElement(this, 'scripture-group')">Remove Scripture</button>
+                    </div>
+                </div>
+                <button onclick="addScripture(0)">Add Scripture</button>
             </div>
-            <!-- Add more category groups dynamically -->
         </div>
-        <button onclick="addCategory()">Add Another Category</button>
+        <button onclick="addArticleSection()">Add Another Article Section</button>
 
         <!-- Footer Section -->
         <h2>Footer</h2>
-        <label for="footer-text">Footer Text:</label>
-        <input type="text" id="footer-text" value="© Just Wise Love">
+        <div class="section-group">
+            <label for="footer-text">Footer Text:</label>
+            <input type="text" id="footer-text" value="© Just Wise Love">
+        </div>
 
         <!-- Generate and Preview -->
         <button onclick="generatePage()">Generate Page</button>
@@ -111,41 +261,102 @@
     </div>
 
     <script>
-        let categoryCount = 1;
+        let articleCount = 1;
+        let headingCounts = { 0: 1 };
+        let scriptureCounts = { 0: 1 };
 
-        function addCategory() {
-            const container = document.getElementById('categories-container');
+        function addArticleSection() {
+            const container = document.getElementById('article-container');
+            const index = articleCount;
+            headingCounts[index] = 0;
+            scriptureCounts[index] = 0;
             const newGroup = document.createElement('div');
-            newGroup.className = 'category-group';
+            newGroup.className = 'article-group';
+            newGroup.dataset.index = index;
             newGroup.innerHTML = `
-                <label for="category-title-${categoryCount}">Category Title:</label>
-                <input type="text" id="category-title-${categoryCount}">
-                <label for="category-link-${categoryCount}">Category Link:</label>
-                <input type="text" id="category-link-${categoryCount}">
-                <label for="category-desc-${categoryCount}">Category Description:</label>
-                <input type="text" id="category-desc-${categoryCount}">
+                <label for="article-title-${index}">Article Title (Dropdown Label):</label>
+                <input type="text" id="article-title-${index}">
+                <label for="article-content-${index}">Main Content:</label>
+                <textarea id="article-content-${index}" rows="5"></textarea>
+                <h3>Headings</h3>
+                <div class="headings-container" data-index="${index}"></div>
+                <button onclick="addHeading(${index})">Add Heading</button>
+                <h3>Scriptures</h3>
+                <div class="scriptures-container" data-index="${index}"></div>
+                <button onclick="addScripture(${index})">Add Scripture</button>
+                <button class="remove-btn" onclick="removeElement(this, 'article-group')">Remove Section</button>
             `;
             container.appendChild(newGroup);
-            categoryCount++;
+            articleCount++;
+        }
+
+        function addHeading(articleIndex) {
+            const container = document.querySelector(`.headings-container[data-index="${articleIndex}"]`);
+            const headingIndex = (headingCounts[articleIndex] || 0);
+            const newHeading = document.createElement('div');
+            newHeading.className = 'heading-group';
+            newHeading.innerHTML = `
+                <label for="heading-text-${articleIndex}-${headingIndex}">Heading Text:</label>
+                <input type="text" id="heading-text-${articleIndex}-${headingIndex}">
+                <label for="heading-level-${articleIndex}-${headingIndex}">Heading Level:</label>
+                <select id="heading-level-${articleIndex}-${headingIndex}">
+                    <option value="h3">H3</option>
+                    <option value="h4">H4</option>
+                </select>
+                <button class="remove-btn" onclick="removeElement(this, 'heading-group')">Remove Heading</button>
+            `;
+            container.appendChild(newHeading);
+            headingCounts[articleIndex] = headingIndex + 1;
+        }
+
+        function addScripture(articleIndex) {
+            const container = document.querySelector(`.scriptures-container[data-index="${articleIndex}"]`);
+            const scriptureIndex = (scriptureCounts[articleIndex] || 0);
+            const newScripture = document.createElement('div');
+            newScripture.className = 'scripture-group';
+            newScripture.innerHTML = `
+                <label for="scripture-text-${articleIndex}-${scriptureIndex}">Scripture Text:</label>
+                <textarea id="scripture-text-${articleIndex}-${scriptureIndex}" rows="3"></textarea>
+                <button class="remove-btn" onclick="removeElement(this, 'scripture-group')">Remove Scripture</button>
+            `;
+            container.appendChild(newScripture);
+            scriptureCounts[articleIndex] = scriptureIndex + 1;
+        }
+
+        function removeElement(button, className) {
+            button.closest(`.${className}`).remove();
         }
 
         function generatePage() {
             // Collect inputs
             const logoText = document.getElementById('logo-text').value;
             const logoLink = document.getElementById('logo-link').value;
-            const introTitle = document.getElementById('intro-title').value;
-            const introScripture = document.getElementById('intro-scripture').value;
-            const introContent = document.getElementById('intro-content').value;
             const footerText = document.getElementById('footer-text').value;
 
-            // Collect categories
-            const categories = [];
-            for (let i = 0; i < categoryCount; i++) {
-                const title = document.getElementById(`category-title-${i}`)?.value;
-                const link = document.getElementById(`category-link-${i}`)?.value;
-                const desc = document.getElementById(`category-desc-${i}`)?.value;
-                if (title && link && desc) {
-                    categories.push({ title, link, desc });
+            // Collect Article sections
+            const articleSections = [];
+            for (let i = 0; i < articleCount; i++) {
+                const title = document.getElementById(`article-title-${i}`)?.value;
+                const content = document.getElementById(`article-content-${i}`)?.value;
+                if (title && content) {
+                    // Collect headings
+                    const headings = [];
+                    for (let j = 0; j < (headingCounts[i] || 0); j++) {
+                        const text = document.getElementById(`heading-text-${i}-${j}`)?.value;
+                        const level = document.getElementById(`heading-level-${i}-${j}`)?.value;
+                        if (text && level) {
+                            headings.push({ text, level });
+                        }
+                    }
+                    // Collect scriptures
+                    const scriptures = [];
+                    for (let j = 0; j < (scriptureCounts[i] || 0); j++) {
+                        const text = document.getElementById(`scripture-text-${i}-${j}`)?.value;
+                        if (text) {
+                            scriptures.push(text);
+                        }
+                    }
+                    articleSections.push({ title, content, headings, scriptures });
                 }
             }
 
@@ -162,7 +373,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
-        ${document.querySelector('style').innerText} /* Include your existing CSS */
+        ${document.querySelector('style').innerText}
     </style>
 </head>
 <body>
@@ -174,26 +385,20 @@
         </div>
     </header>
     <main>
-        <section class="intro">
-            <h2>${introTitle}</h2>
-            <div class="scripture">
-                <p><em>${introScripture}</em></p>
-            </div>
-            <details class="item">
-                <summary class="item-button">Read More</summary>
-                <div class="item-content">
-                    ${introContent}
-                </div>
-            </details>
-        </section>
-        <section class="categories">
-            ${categories.map(cat => `
-                <div class="category">
-                    <a href="${cat.link}">
-                        <h3>${cat.title}</h3>
-                        <p>${cat.desc}</p>
-                    </a>
-                </div>
+        <section class="article">
+            ${articleSections.map(section => `
+                <details class="item">
+                    <summary class="item-button">${section.title}</summary>
+                    <div class="item-content">
+                        <p>${section.content}</p>
+                        ${section.headings.map(h => `<${h.level}>${h.text}</${h.level}>`).join('')}
+                        ${section.scriptures.map(s => `
+                            <div class="scripture">
+                                <p><em>${s}</em></p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </details>
             `).join('')}
         </section>
     </main>
