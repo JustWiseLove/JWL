@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generator - Just Wise Love</title>
+    <title>Web Page Builder - Just Wise Love</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
         /* Form-specific styles */
@@ -15,7 +15,7 @@
         }
         .builder-container {
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 20px auto;
             background: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -37,6 +37,10 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            color: #000 !important;
+        }
+        select option {
+            color: #000 !important;
         }
         .section-group, .article-group {
             border: 1px solid #ccc;
@@ -67,21 +71,28 @@
         button:hover {
             background-color: #555;
         }
-        .remove-btn, .edit-btn {
+        .remove-btn, .edit-btn, .copy-btn {
             padding: 5px 10px;
             font-size: 12px;
         }
         .remove-btn {
-            background-color: #d33;
+            background-color: #FFD800;
+            color: #000;
         }
         .remove-btn:hover {
-            background-color: #b00;
+            background-color: #E6C200;
         }
         .edit-btn {
             background-color: #3a3;
         }
         .edit-btn:hover {
             background-color: #2a2;
+        }
+        .copy-btn {
+            background-color: #007bff;
+        }
+        .copy-btn:hover {
+            background-color: #0056b3;
         }
         #preview {
             margin-top: 20px;
@@ -91,7 +102,7 @@
             border-radius: 8px;
         }
         #html-output {
-            margin-top: 20px;
+            margin-top: 10px;
             width: 100%;
             height: 300px;
             border: 1px solid #ccc;
@@ -101,14 +112,7 @@
             background: #f9f9f9;
         }
 
-        /* Your original CSS for the generated page, with added gap between articles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+        /* CSS for the generated page and builder page header/footer */
         header {
             background-color: #fff;
             text-align: center;
@@ -125,11 +129,6 @@
             text-decoration: none !important;
             color: #000 !important;
         }
-        main {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
         footer {
             background-color: #fff;
             text-align: center;
@@ -138,6 +137,17 @@
             color: #000;
             font-size: 14px;
         }
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .intro {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
         .article {
             max-width: 1200px;
             margin: 2rem auto;
@@ -145,7 +155,7 @@
         }
         .item {
             width: 100%;
-            margin-bottom: 20px; /* Added gap between articles */
+            margin-bottom: 20px;
         }
         details[open] .item-content {
             display: block;
@@ -204,7 +214,7 @@
         .scripture {
             background-color: #c0c0c0;
             padding: 10px;
-            margin-top: 10px -webkit-tap-highlight-color: transparent;
+            margin-top: 10px;
             margin-left: auto;
             margin-right: auto;
             border-radius: 5px;
@@ -223,16 +233,30 @@
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <h1>Generator</h1>
+            </a>
+        </div>
+    </header>
     <div class="builder-container">
-        <h1>Generator</h1>
+        <h1>Just Wise Love Page Builder</h1>
+
+        <!-- Intro Scripture Section -->
+        <h2>Intro Scripture</h2>
+        <div class="section-group">
+            <label for="intro-scripture">Intro Scripture:</label>
+            <textarea id="intro-scripture" rows="3"></textarea>
+        </div>
 
         <!-- Header Section -->
         <h2>Header</h2>
         <div class="section-group">
             <label for="logo-text">Logo Text (e.g., JWL):</label>
             <input type="text" id="logo-text" value="JWL">
-            <label for="logo-link">Logo Link (e.g., index.html):</label>
-            <input type="text" id="logo-link" value="index.html">
+            <label for="logo-link">Logo Link (e.g., bulletin.html):</label>
+            <input type="text" id="logo-link" value="bulletin.html">
         </div>
 
         <!-- Article Sections (Dropdowns) -->
@@ -250,7 +274,7 @@
                 <div class="element-input">
                     <label for="element-type-0">Element Type:</label>
                     <select id="element-type-0">
-                        <option value="subheading">Heading</option>
+                        <option value="subheading">Subheading</option>
                         <option value="content">Content</option>
                         <option value="scripture">Scripture</option>
                     </select>
@@ -265,21 +289,32 @@
                 </div>
             </div>
         </div>
-        <button onclick="addArticleSection()">Add Another Article</button>
+        <button onclick="addArticleSection()">Add Another Article Section</button>
 
         <!-- Generate and Preview -->
         <button onclick="generatePage()">Generate Page</button>
         <div>
             <h3>Generated HTML</h3>
+            <button class="copy-btn" onclick="copyHtml()">Copy HTML</button>
             <textarea id="html-output" readonly></textarea>
         </div>
         <div id="preview"></div>
     </div>
+    <footer>
+        <p>© Just Wise Love</p>
+    </footer>
 
     <script>
         let articleCount = 1;
         let elementCounts = { 0: 0 };
         let elements = { 0: [] };
+
+        function copyHtml() {
+            const htmlOutput = document.getElementById('html-output');
+            htmlOutput.select();
+            document.execCommand('copy');
+            alert('HTML copied to clipboard!');
+        }
 
         function addArticleSection() {
             const container = document.getElementById('article-container');
@@ -387,6 +422,7 @@
         function updatePreview() {
             const logoText = document.getElementById('logo-text').value;
             const logoLink = document.getElementById('logo-link').value;
+            const introScripture = document.getElementById('intro-scripture').value;
 
             const articleSections = [];
             for (let i = 0; i < articleCount; i++) {
@@ -405,6 +441,13 @@
                     </div>
                 </header>
                 <main>
+                    ${introScripture ? `
+                        <section class="intro">
+                            <div class="scripture">
+                                <p><em>${introScripture}</em></p>
+                            </div>
+                        </section>
+                    ` : ''}
                     <section class="article">
                         ${articleSections.map(section => `
                             <details class="item">
@@ -438,6 +481,7 @@
         function generatePage() {
             const logoText = document.getElementById('logo-text').value;
             const logoLink = document.getElementById('logo-link').value;
+            const introScripture = document.getElementById('intro-scripture').value;
 
             const articleSections = [];
             for (let i = 0; i < articleCount; i++) {
@@ -471,6 +515,13 @@
         </div>
     </header>
     <main>
+        ${introScripture ? `
+            <section class="intro">
+                <div class="scripture">
+                    <p><em>${introScripture}</em></p>
+                </div>
+            </section>
+        ` : ''}
         <section class="article">
             ${articleSections.map(section => `
                 <details class="item">
