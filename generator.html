@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Page Builder - Just Wise Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        /* Include your existing CSS here for consistency */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .builder-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            font-family: 'Audiowide', sans-serif;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .category-group, .intro-group {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        #preview {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="builder-container">
+        <h1>Just Wise Love Page Builder</h1>
+        
+        <!-- Header Section -->
+        <h2>Header</h2>
+        <label for="logo-text">Logo Text (e.g., JWL):</label>
+        <input type="text" id="logo-text" value="JWL">
+        <label for="logo-link">Logo Link (e.g., bulletin.html):</label>
+        <input type="text" id="logo-link" value="bulletin.html">
+
+        <!-- Intro Section -->
+        <h2>Intro Section</h2>
+        <div class="intro-group">
+            <label for="intro-title">Intro Title:</label>
+            <input type="text" id="intro-title" value="Whom Will You Serve?">
+            <label for="intro-scripture">Intro Scripture:</label>
+            <textarea id="intro-scripture">“Now if it seems bad to you to serve Jehovah, choose for yourselves today whom you will serve… But as for me and my household, we will serve Jehovah.” (Joshua 24:15)</textarea>
+            <label for="intro-content">Intro Content (for 'Read More'):</label>
+            <textarea id="intro-content" rows="10">Your life’s most vital decision looms: will you serve Satan’s fleeting world or embrace Jehovah’s everlasting Kingdom?...</textarea>
+        </div>
+
+        <!-- Categories Section -->
+        <h2>Categories</h2>
+        <div id="categories-container">
+            <div class="category-group">
+                <label for="category-title-0">Category Title:</label>
+                <input type="text" id="category-title-0" value="Characters">
+                <label for="category-link-0">Category Link:</label>
+                <input type="text" id="category-link-0" value="characters.html">
+                <label for="category-desc-0">Category Description:</label>
+                <input type="text" id="category-desc-0" value="Learn from their faith and mistakes.">
+            </div>
+            <!-- Add more category groups dynamically -->
+        </div>
+        <button onclick="addCategory()">Add Another Category</button>
+
+        <!-- Footer Section -->
+        <h2>Footer</h2>
+        <label for="footer-text">Footer Text:</label>
+        <input type="text" id="footer-text" value="© Just Wise Love">
+
+        <!-- Generate and Preview -->
+        <button onclick="generatePage()">Generate Page</button>
+        <a id="download-link" style="display: none;">Download HTML</a>
+        <div id="preview"></div>
+    </div>
+
+    <script>
+        let categoryCount = 1;
+
+        function addCategory() {
+            const container = document.getElementById('categories-container');
+            const newGroup = document.createElement('div');
+            newGroup.className = 'category-group';
+            newGroup.innerHTML = `
+                <label for="category-title-${categoryCount}">Category Title:</label>
+                <input type="text" id="category-title-${categoryCount}">
+                <label for="category-link-${categoryCount}">Category Link:</label>
+                <input type="text" id="category-link-${categoryCount}">
+                <label for="category-desc-${categoryCount}">Category Description:</label>
+                <input type="text" id="category-desc-${categoryCount}">
+            `;
+            container.appendChild(newGroup);
+            categoryCount++;
+        }
+
+        function generatePage() {
+            // Collect inputs
+            const logoText = document.getElementById('logo-text').value;
+            const logoLink = document.getElementById('logo-link').value;
+            const introTitle = document.getElementById('intro-title').value;
+            const introScripture = document.getElementById('intro-scripture').value;
+            const introContent = document.getElementById('intro-content').value;
+            const footerText = document.getElementById('footer-text').value;
+
+            // Collect categories
+            const categories = [];
+            for (let i = 0; i < categoryCount; i++) {
+                const title = document.getElementById(`category-title-${i}`)?.value;
+                const link = document.getElementById(`category-link-${i}`)?.value;
+                const desc = document.getElementById(`category-desc-${i}`)?.value;
+                if (title && link && desc) {
+                    categories.push({ title, link, desc });
+                }
+            }
+
+            // Generate HTML
+            const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore spiritual wisdom and truth through Just Wise Love, with scripture-based guidance.">
+    <meta name="keywords" content="Jehovah, scripture, spiritual guidance, Just Wise Love">
+    <title>Just Wise Love</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        ${document.querySelector('style').innerText} /* Include your existing CSS */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="${logoLink}">
+                <h1>${logoText}</h1>
+            </a>
+        </div>
+    </header>
+    <main>
+        <section class="intro">
+            <h2>${introTitle}</h2>
+            <div class="scripture">
+                <p><em>${introScripture}</em></p>
+            </div>
+            <details class="item">
+                <summary class="item-button">Read More</summary>
+                <div class="item-content">
+                    ${introContent}
+                </div>
+            </details>
+        </section>
+        <section class="categories">
+            ${categories.map(cat => `
+                <div class="category">
+                    <a href="${cat.link}">
+                        <h3>${cat.title}</h3>
+                        <p>${cat.desc}</p>
+                    </a>
+                </div>
+            `).join('')}
+        </section>
+    </main>
+    <footer>
+        <p>${footerText}</p>
+    </footer>
+</body>
+</html>
+            `;
+
+            // Display preview
+            const preview = document.getElementById('preview');
+            preview.innerHTML = html;
+
+            // Enable download
+            const downloadLink = document.getElementById('download-link');
+            const blob = new Blob([html], { type: 'text/html' });
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = 'generated-page.html';
+            downloadLink.style.display = 'block';
+            downloadLink.textContent = 'Download HTML';
+        }
+    </script>
+</body>
+</html>
