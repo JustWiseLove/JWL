@@ -30,7 +30,7 @@
             margin: 10px 0 5px;
             font-weight: bold;
         }
-        input, textarea {
+        input, textarea, select {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -38,15 +38,22 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        .section-group, .article-group, .heading-group, .scripture-group {
+        .section-group, .article-group {
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 4px;
             background: #f9f9f9;
         }
-        .article-group > div {
-            margin-bottom: 10px;
+        .element-group {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background: #fff;
+        }
+        .element-list {
+            margin-bottom: 20px;
         }
         button {
             padding: 10px 20px;
@@ -60,12 +67,9 @@
         button:hover {
             background-color: #555;
         }
-        #preview {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
+        .remove-btn, .edit-btn {
+            padding: 5px 10px;
+            font-size: 12px;
         }
         .remove-btn {
             background-color: #d33;
@@ -73,9 +77,21 @@
         .remove-btn:hover {
             background-color: #b00;
         }
+        .edit-btn {
+            background-color: #3a3;
+        }
+        .edit-btn:hover {
+            background-color: #2a2;
+        }
+        #preview {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+        }
 
         /* Your original CSS for the generated page */
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -213,36 +229,29 @@
         <div id="article-container">
             <div class="article-group" data-index="0">
                 <label for="article-title-0">Article Title (Dropdown Label):</label>
-                <input type="text" id="article-title-0" value="Article Title">
-                <label for="article-content-0">Main Content:</label>
-                <textarea id="article-content-0" rows="5">Your life’s most vital decision looms: will you serve Satan’s fleeting world or embrace Jehovah’s everlasting Kingdom?...</textarea>
+                <input type="text" id="article-title-0" value="Choose Jehovah">
                 
-                <!-- Headings -->
-                <h3>Headings</h3>
-                <div class="headings-container" data-index="0">
-                    <div class="heading-group">
-                        <label for="heading-text-0-0">Heading Text:</label>
-                        <input type="text" id="heading-text-0-0" value="Satan’s World: Lies and Deception">
-                        <label for="heading-level-0-0">Heading Level:</label>
-                        <select id="heading-level-0-0">
-                            <option value="h3">H3</option>
-                            <option value="h4">H4</option>
-                        </select>
-                        <button class="remove-btn" onclick="removeElement(this, 'heading-group')">Remove Heading</button>
-                    </div>
+                <!-- Element List (for added elements) -->
+                <h3>Article Content</h3>
+                <div class="element-list" data-index="0"></div>
+                
+                <!-- Element Input -->
+                <div class="element-input">
+                    <label for="element-type-0">Element Type:</label>
+                    <select id="element-type-0">
+                        <option value="subheading">Subheading</option>
+                        <option value="content">Content</option>
+                        <option value="scripture">Scripture</option>
+                    </select>
+                    <label for="element-text-0">Text:</label>
+                    <textarea id="element-text-0" rows="3"></textarea>
+                    <label for="subheading-level-0" class="subheading-level" style="display: none;">Subheading Level:</label>
+                    <select id="subheading-level-0" class="subheading-level" style="display: none;">
+                        <option value="h3">H3</option>
+                        <option value="h4">H4</option>
+                    </select>
+                    <button onclick="addElement(0)">Add Element</button>
                 </div>
-                <button onclick="addHeading(0)">Add Heading</button>
-
-                <!-- Scriptures -->
-                <h3>Scriptures</h3>
-                <div class="scriptures-container" data-index="0">
-                    <div class="scripture-group">
-                        <label for="scripture-text-0-0">Scripture Text:</label>
-                        <textarea id="scripture-text-0-0" rows="3">The whole world is lying in the power of the wicked one. — 1 John 5:19</textarea>
-                        <button class="remove-btn" onclick="removeElement(this, 'scripture-group')">Remove Scripture</button>
-                    </div>
-                </div>
-                <button onclick="addScripture(0)">Add Scripture</button>
             </div>
         </div>
         <button onclick="addArticleSection()">Add Another Article Section</button>
@@ -262,105 +271,177 @@
 
     <script>
         let articleCount = 1;
-        let headingCounts = { 0: 1 };
-        let scriptureCounts = { 0: 1 };
+        let elementCounts = { 0: 0 }; // Track elements per article
+        let elements = { 0: [] }; // Store elements for each article
 
         function addArticleSection() {
             const container = document.getElementById('article-container');
             const index = articleCount;
-            headingCounts[index] = 0;
-            scriptureCounts[index] = 0;
+            elementCounts[index] = 0;
+            elements[index] = [];
             const newGroup = document.createElement('div');
             newGroup.className = 'article-group';
             newGroup.dataset.index = index;
             newGroup.innerHTML = `
                 <label for="article-title-${index}">Article Title (Dropdown Label):</label>
                 <input type="text" id="article-title-${index}">
-                <label for="article-content-${index}">Main Content:</label>
-                <textarea id="article-content-${index}" rows="5"></textarea>
-                <h3>Headings</h3>
-                <div class="headings-container" data-index="${index}"></div>
-                <button onclick="addHeading(${index})">Add Heading</button>
-                <h3>Scriptures</h3>
-                <div class="scriptures-container" data-index="${index}"></div>
-                <button onclick="addScripture(${index})">Add Scripture</button>
-                <button class="remove-btn" onclick="removeElement(this, 'article-group')">Remove Section</button>
+                <h3>Article Content</h3>
+                <div class="element-list" data-index="${index}"></div>
+                <div class="element-input">
+                    <label for="element-type-${index}">Element Type:</label>
+                    <select id="element-type-${index}">
+                        <option value="subheading">Subheading</option>
+                        <option value="content">Content</option>
+                        <option value="scripture">Scripture</option>
+                    </select>
+                    <label for="element-text-${index}">Text:</label>
+                    <textarea id="element-text-${index}" rows="3"></textarea>
+                    <label for="subheading-level-${index}" class="subheading-level" style="display: none;">Subheading Level:</label>
+                    <select id="subheading-level-${index}" class="subheading-level" style="display: none;">
+                        <option value="h3">H3</option>
+                        <option value="h4">H4</option>
+                    </select>
+                    <button onclick="addElement(${index})">Add Element</button>
+                </div>
+                <button class="remove-btn" onclick="removeArticle(${index})">Remove Article</button>
             `;
             container.appendChild(newGroup);
             articleCount++;
+            updateElementTypeListeners();
         }
 
-        function addHeading(articleIndex) {
-            const container = document.querySelector(`.headings-container[data-index="${articleIndex}"]`);
-            const headingIndex = (headingCounts[articleIndex] || 0);
-            const newHeading = document.createElement('div');
-            newHeading.className = 'heading-group';
-            newHeading.innerHTML = `
-                <label for="heading-text-${articleIndex}-${headingIndex}">Heading Text:</label>
-                <input type="text" id="heading-text-${articleIndex}-${headingIndex}">
-                <label for="heading-level-${articleIndex}-${headingIndex}">Heading Level:</label>
-                <select id="heading-level-${articleIndex}-${headingIndex}">
-                    <option value="h3">H3</option>
-                    <option value="h4">H4</option>
-                </select>
-                <button class="remove-btn" onclick="removeElement(this, 'heading-group')">Remove Heading</button>
-            `;
-            container.appendChild(newHeading);
-            headingCounts[articleIndex] = headingIndex + 1;
+        function updateElementTypeListeners() {
+            document.querySelectorAll('select[id^="element-type-"]').forEach(select => {
+                select.removeEventListener('change', handleElementTypeChange);
+                select.addEventListener('change', handleElementTypeChange);
+            });
         }
 
-        function addScripture(articleIndex) {
-            const container = document.querySelector(`.scriptures-container[data-index="${articleIndex}"]`);
-            const scriptureIndex = (scriptureCounts[articleIndex] || 0);
-            const newScripture = document.createElement('div');
-            newScripture.className = 'scripture-group';
-            newScripture.innerHTML = `
-                <label for="scripture-text-${articleIndex}-${scriptureIndex}">Scripture Text:</label>
-                <textarea id="scripture-text-${articleIndex}-${scriptureIndex}" rows="3"></textarea>
-                <button class="remove-btn" onclick="removeElement(this, 'scripture-group')">Remove Scripture</button>
-            `;
-            container.appendChild(newScripture);
-            scriptureCounts[articleIndex] = scriptureIndex + 1;
+        function handleElementTypeChange(e) {
+            const index = e.target.id.split('-')[2];
+            const value = e.target.value;
+            const subheadingFields = document.querySelectorAll(`#subheading-level-${index}, label[for="subheading-level-${index}"]`);
+            subheadingFields.forEach(field => {
+                field.style.display = value === 'subheading' ? 'block' : 'none';
+            });
         }
 
-        function removeElement(button, className) {
-            button.closest(`.${className}`).remove();
+        function addElement(articleIndex) {
+            const type = document.getElementById(`element-type-${articleIndex}`).value;
+            const text = document.getElementById(`element-text-${articleIndex}`).value;
+            if (!text) {
+                alert('Please enter text for the element.');
+                return;
+            }
+            const level = type === 'subheading' ? document.getElementById(`subheading-level-${articleIndex}`).value : null;
+            const element = { type, text, level, id: elementCounts[articleIndex] };
+            elements[articleIndex].push(element);
+            elementCounts[articleIndex]++;
+            renderElementList(articleIndex);
+            document.getElementById(`element-text-${articleIndex}`).value = ''; // Clear input
         }
 
-        function generatePage() {
-            // Collect inputs
+        function editElement(articleIndex, elementId) {
+            const element = elements[articleIndex].find(e => e.id === elementId);
+            const newText = prompt('Edit text:', element.text);
+            if (newText !== null && newText.trim()) {
+                element.text = newText.trim();
+                renderElementList(articleIndex);
+                updatePreview();
+            }
+        }
+
+        function removeElement(articleIndex, elementId) {
+            elements[articleIndex] = elements[articleIndex].filter(e => e.id !== elementId);
+            renderElementList(articleIndex);
+            updatePreview();
+        }
+
+        function removeArticle(articleIndex) {
+            document.querySelector(`.article-group[data-index="${articleIndex}"]`).remove();
+            delete elements[articleIndex];
+            delete elementCounts[articleIndex];
+            updatePreview();
+        }
+
+        function renderElementList(articleIndex) {
+            const list = document.querySelector(`.element-list[data-index="${articleIndex}"]`);
+            list.innerHTML = elements[articleIndex].map(element => `
+                <div class="element-group">
+                    <strong>${element.type.charAt(0).toUpperCase() + element.type.slice(1)}${element.type === 'subheading' ? ` (${element.level.toUpperCase()})` : ''}:</strong>
+                    <p>${element.text}</p>
+                    <button class="edit-btn" onclick="editElement(${articleIndex}, ${element.id})">Edit</button>
+                    <button class="remove-btn" onclick="removeElement(${articleIndex}, ${element.id})">Remove</button>
+                </div>
+            `).join('');
+            updatePreview();
+        }
+
+        function updatePreview() {
             const logoText = document.getElementById('logo-text').value;
             const logoLink = document.getElementById('logo-link').value;
             const footerText = document.getElementById('footer-text').value;
 
-            // Collect Article sections
             const articleSections = [];
             for (let i = 0; i < articleCount; i++) {
                 const title = document.getElementById(`article-title-${i}`)?.value;
-                const content = document.getElementById(`article-content-${i}`)?.value;
-                if (title && content) {
-                    // Collect headings
-                    const headings = [];
-                    for (let j = 0; j < (headingCounts[i] || 0); j++) {
-                        const text = document.getElementById(`heading-text-${i}-${j}`)?.value;
-                        const level = document.getElementById(`heading-level-${i}-${j}`)?.value;
-                        if (text && level) {
-                            headings.push({ text, level });
-                        }
-                    }
-                    // Collect scriptures
-                    const scriptures = [];
-                    for (let j = 0; j < (scriptureCounts[i] || 0); j++) {
-                        const text = document.getElementById(`scripture-text-${i}-${j}`)?.value;
-                        if (text) {
-                            scriptures.push(text);
-                        }
-                    }
-                    articleSections.push({ title, content, headings, scriptures });
+                if (title && elements[i]?.length) {
+                    articleSections.push({ title, elements: elements[i] });
                 }
             }
 
-            // Generate HTML
+            const html = `
+                <header>
+                    <div class="logo">
+                        <a href="${logoLink}">
+                            <h1>${logoText}</h1>
+                        </a>
+                    </div>
+                </header>
+                <main>
+                    <section class="article">
+                        ${articleSections.map(section => `
+                            <details class="item">
+                                <summary class="item-button">${section.title}</summary>
+                                <div class="item-content">
+                                    ${section.elements.map(element => {
+                                        if (element.type === 'subheading') {
+                                            return `<${element.level}>${element.text}</${element.level}>`;
+                                        } else if (element.type === 'content') {
+                                            return `<p>${element.text}</p>`;
+                                        } else {
+                                            return `
+                                                <div class="scripture">
+                                                    <p><em>${element.text}</em></p>
+                                                </div>
+                                            `;
+                                        }
+                                    }).join('')}
+                                </div>
+                            </details>
+                        `).join('')}
+                    </section>
+                </main>
+                <footer>
+                    <p>${footerText}</p>
+                </footer>
+            `;
+            document.getElementById('preview').innerHTML = html;
+        }
+
+        function generatePage() {
+            const logoText = document.getElementById('logo-text').value;
+            const logoLink = document.getElementById('logo-link').value;
+            const footerText = document.getElementById('footer-text').value;
+
+            const articleSections = [];
+            for (let i = 0; i < articleCount; i++) {
+                const title = document.getElementById(`article-title-${i}`)?.value;
+                if (title && elements[i]?.length) {
+                    articleSections.push({ title, elements: elements[i] });
+                }
+            }
+
             const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -390,13 +471,19 @@
                 <details class="item">
                     <summary class="item-button">${section.title}</summary>
                     <div class="item-content">
-                        <p>${section.content}</p>
-                        ${section.headings.map(h => `<${h.level}>${h.text}</${h.level}>`).join('')}
-                        ${section.scriptures.map(s => `
-                            <div class="scripture">
-                                <p><em>${s}</em></p>
-                            </div>
-                        `).join('')}
+                        ${section.elements.map(element => {
+                            if (element.type === 'subheading') {
+                                return `<${element.level}>${element.text}</${element.level}>`;
+                            } else if (element.type === 'content') {
+                                return `<p>${element.text}</p>`;
+                            } else {
+                                return `
+                                    <div class="scripture">
+                                        <p><em>${element.text}</em></p>
+                                    </div>
+                                `;
+                            }
+                        }).join('')}
                     </div>
                 </details>
             `).join('')}
@@ -409,11 +496,9 @@
 </html>
             `;
 
-            // Display preview
             const preview = document.getElementById('preview');
             preview.innerHTML = html;
 
-            // Enable download
             const downloadLink = document.getElementById('download-link');
             const blob = new Blob([html], { type: 'text/html' });
             downloadLink.href = URL.createObjectURL(blob);
@@ -421,6 +506,9 @@
             downloadLink.style.display = 'block';
             downloadLink.textContent = 'Download HTML';
         }
+
+        // Initialize element type listeners
+        updateElementTypeListeners();
     </script>
 </body>
 </html>
