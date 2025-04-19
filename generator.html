@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Page Builder - Just Wise Love</title>
+    <title>Generator - Just Wise Love</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
         /* Form-specific styles */
@@ -224,15 +224,15 @@
 </head>
 <body>
     <div class="builder-container">
-        <h1>Just Wise Love Page Builder</h1>
+        <h1>Generator</h1>
 
         <!-- Header Section -->
         <h2>Header</h2>
         <div class="section-group">
             <label for="logo-text">Logo Text (e.g., JWL):</label>
             <input type="text" id="logo-text" value="JWL">
-            <label for="logo-link">Logo Link (e.g., bulletin.html):</label>
-            <input type="text" id="logo-link" value="bulletin.html">
+            <label for="logo-link">Logo Link (e.g., index.html):</label>
+            <input type="text" id="logo-link" value="index.html">
         </div>
 
         <!-- Article Sections (Dropdowns) -->
@@ -250,7 +250,7 @@
                 <div class="element-input">
                     <label for="element-type-0">Element Type:</label>
                     <select id="element-type-0">
-                        <option value="subheading">Subheading</option>
+                        <option value="subheading">Heading</option>
                         <option value="content">Content</option>
                         <option value="scripture">Scripture</option>
                     </select>
@@ -265,7 +265,7 @@
                 </div>
             </div>
         </div>
-        <button onclick="addArticleSection()">Add Another Article Section</button>
+        <button onclick="addArticleSection()">Add Another Article</button>
 
         <!-- Generate and Preview -->
         <button onclick="generatePage()">Generate Page</button>
