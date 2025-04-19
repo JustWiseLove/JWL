@@ -89,10 +89,10 @@
             background-color: #2a2;
         }
         .copy-btn {
-            background-color: #007bff;
+            background-color: #28a745; /* Green */
         }
         .copy-btn:hover {
-            background-color: #0056b3;
+            background-color: #218838; /* Darker green */
         }
         #preview {
             margin-top: 20px;
@@ -155,7 +155,7 @@
         }
         .item {
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Reduced gap between articles */
         }
         details[open] .item-content {
             display: block;
@@ -241,14 +241,7 @@
         </div>
     </header>
     <div class="builder-container">
-        <h1>Just Wise Love Page Builder</h1>
-
-        <!-- Intro Scripture Section -->
-        <h2>Intro Scripture</h2>
-        <div class="section-group">
-            <label for="intro-scripture">Intro Scripture:</label>
-            <textarea id="intro-scripture" rows="3"></textarea>
-        </div>
+        <h1>Generate Webpage</h1>
 
         <!-- Header Section -->
         <h2>Header</h2>
@@ -257,6 +250,13 @@
             <input type="text" id="logo-text" value="JWL">
             <label for="logo-link">Logo Link (e.g., bulletin.html):</label>
             <input type="text" id="logo-link" value="bulletin.html">
+        </div>
+
+        <!-- Intro Scripture Section -->
+        <h2>Intro Scripture</h2>
+        <div class="section-group">
+            <label for="intro-scripture">Intro Scripture:</label>
+            <textarea id="intro-scripture" rows="3"></textarea>
         </div>
 
         <!-- Article Sections (Dropdowns) -->
