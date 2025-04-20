@@ -160,7 +160,7 @@
             }
             #gameCanvas {
                 max-width: 720px;
-                height: 1080px;
+                height: 540px; /* Changed from 1080px to 540px (halved) */
             }
             .logo {
                 font-size: 48px;
@@ -212,7 +212,7 @@
             }
             #gameCanvas {
                 max-width: 1080px;
-                height: 1134px; /* 30% smaller than 1620px */
+                height: 567px; /* Changed from 1134px to 567px (halved) */
             }
             .logo {
                 font-size: 48px;
@@ -299,12 +299,12 @@
         // Set canvas size
         function setCanvasSize() {
             let width = 360, height = 540;
-            if (window.innerWidth >= 1024) {
+/movies            if (window.innerWidth >= 1024) {
                 width = 1080;
-                height = 1134; // 30% smaller than 1620px
+                height = 567; // Changed from 1134px to 567px (halved)
             } else if (window.innerWidth >= 768) {
                 width = 720;
-                height = 1080;
+                height = 540; // Changed from 1080px to 540px (halved)
             }
             canvas.width = width;
             canvas.height = height;
@@ -435,7 +435,9 @@
                             player.stuck = true;
                             player.stuckObstacle = obstacle;
                         }
-                    } else if (obstacle.type === 'gold') {
+                    } else if (obstacle.type === '
+
+gold') {
                         if (
                             player.x + player.width > obstacle.x - obstacle.width / 2 &&
                             player.x < obstacle.x + obstacle.width / 2 &&
