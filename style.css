@@ -203,6 +203,8 @@ details[open] .item-content {
     margin-right: auto;
     border-radius: 5px;
     display: inline-block;
+    justify-content: center;
+    text-align: center;
 }
 
 .scripture p {
