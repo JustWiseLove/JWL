@@ -71,7 +71,7 @@
         button:hover {
             background-color: #555;
         }
-        .remove-btn, .edit-btn, .copy-btn {
+        .remove-btn, .copy-btn {
             padding: 5px 10px;
             font-size: 12px;
         }
@@ -81,12 +81,6 @@
         }
         .remove-btn:hover {
             background-color: #E6C200;
-        }
-        .edit-btn {
-            background-color: #3a3;
-        }
-        .edit-btn:hover {
-            background-color: #2a2;
         }
         .copy-btn {
             background-color: #28a745; /* Green */
@@ -109,6 +103,22 @@
             border-radius: 4px;
             padding: 10px;
             font-family: monospace;
+            background: #f9f9f9;
+        }
+        .element-group textarea {
+            width: 100%;
+            min-height: 50px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            background: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        .element-group textarea:focus {
+            border-color: #333;
+            outline: none;
             background: #f9f9f9;
         }
 
@@ -382,13 +392,14 @@
             document.getElementById(`element-text-${articleIndex}`).value = '';
         }
 
-        function editElement(articleIndex, elementId) {
+        function updateElement(articleIndex, elementId, newText) {
             const element = elements[articleIndex].find(e => e.id === elementId);
-            const newText = prompt('Edit text:', element.text);
-            if (newText !== null && newText.trim()) {
+            if (newText.trim()) {
                 element.text = newText.trim();
-                renderElementList(articleIndex);
                 updatePreview();
+            } else {
+                alert('Text cannot be empty.');
+                renderElementList(articleIndex); // Re-render to restore previous text
             }
         }
 
@@ -410,8 +421,7 @@
             list.innerHTML = elements[articleIndex].map(element => `
                 <div class="element-group">
                     <strong>${element.type.charAt(0).toUpperCase() + element.type.slice(1)}${element.type === 'subheading' ? ` (${element.level.toUpperCase()})` : ''}:</strong>
-                    <p>${element.text}</p>
-                    <button class="edit-btn" onclick="editElement(${articleIndex}, ${element.id})">Edit</button>
+                    <textarea onblur="updateElement(${articleIndex}, ${element.id}, this.value)">${element.text}</textarea>
                     <button class="remove-btn" onclick="removeElement(${articleIndex}, ${element.id})">Remove</button>
                 </div>
             `).join('');
