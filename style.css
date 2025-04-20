@@ -202,7 +202,7 @@ details[open] .item-content {
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
-    display: inline-block;
+    display: block;
     justify-content: center !important;
     text-align: center !important;
     font-style: italic !important;
