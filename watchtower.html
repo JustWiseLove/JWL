@@ -3,383 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <title>WATCHTOWER Study Assistant</title>
+    <title>Search JW.ORG</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
         body {
-            background-color: #e0e0e0; /* Match homeschool.html background */
-            color: #333333; /* Consistent dark gray text */
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: #e0e0e0; /* Match background */
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        header .logo {
-            margin: 0;
-        }
-
-        header .logo a {
-            font-family: 'Audiowide', sans-serif;
-            font-size: 24px;
-            color: #333333; /* Dark gray for header text */
-            text-decoration: none;
-        }
-
-        .main-section {
-            background-color: #e0e0e0; /* Match body background */
-            padding: 50px 20px;
-            text-align: center;
-            color: #333333;
-        }
-
-        .article-editor {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            background-color: #e0e0e0; /* Match background */
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        .article-editor textarea {
-            width: 100%;
-            height: 400px;
-            background-color: #e0e0e0; /* Match background */
-            color: #333333; /* Dark gray text */
             font-family: Arial, sans-serif;
-            font-size: 16px;
-            padding: 10px 15px;
-            border: 2px solid #666666; /* Grayscale border */
-            border-radius: 5px;
-            resize: vertical;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            line-height: 1.6;
-        }
-
-        .article-editor textarea::placeholder {
-            color: #999999; /* Grayscale placeholder */
-        }
-
-        .buttons {
+            max-width: 600px;
             margin: 20px auto;
+            padding: 0 10px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .search-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            max-width: 600px;
+            margin-top: 20px;
         }
-
-        .submit-btn {
-            background-color: #d0d0d0; /* Light gray button */
-            color: #333333; /* Dark gray text */
-            border: 2px solid #d0d0d0;
+        #searchInput {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+        }
+        button {
             padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            font-weight: bold;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 16px;
         }
-
-        .submit-btn:hover {
-            background-color: #b0b0b0; /* Match hover effect from homeschool.html */
+        button:hover {
+            background: #0056b3;
         }
-
-        .output-section {
-            background-color: #e0e0e0; /* Match background */
-            padding: 20px;
-            margin-top: 20px;
-            display: none; /* Hidden by default */
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            border: 2px solid #333333; /* Dark gray border */
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .output-section h2 {
-            color: #333333;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .output-section h3 {
-            color: #333333;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .output-section p, .output-section li {
-            color: #333333;
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
-        .output-section ul {
-            list-style-type: decimal;
-            padding-left: 20px;
-        }
-
-        footer {
-            background-color: #e0e0e0; /* Match background */
-            color: #333333; /* Dark gray text */
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        @media (max-width: 768px) {
-            .article-editor textarea {
-                height: 300px;
-            }
-
-            .submit-btn {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-
-            .output-section {
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .article-editor textarea {
-                height: 200px;
-                font-size: 14px;
-                padding: 10px;
-            }
-
-            .submit-btn {
-                padding: 6px 12px;
-                font-size: 0.9rem;
-            }
-
-            .output-section {
-                padding: 10px;
-            }
+        p {
+            color: #555;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1><a href="watchtower.html">WATCHTOWER</a></h1>
-        </div>
-    </header>
-
-    <section class="main-section">
-        <div class="article-editor">
-            <textarea id="articleInput" placeholder="Paste the Watchtower article here..."></textarea>
-        </div>
-        <div class="buttons">
-            <button class="submit-btn" onclick="processArticle()">Submit</button>
-        </div>
-        <div class="output-section" id="outputSection">
-            <h2>Article Summary</h2>
-            <p id="summaryOutput"></p>
-            <h3>Numerical Questions and Answers</h3>
-            <ul id="numericalQuestionsOutput"></ul>
-            <h3>Summary Questions and Answers</h3>
-            <p id="summaryQuestionsOutput"></p>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2025 CODEXEDOC</p>
-    </footer>
+    <h1>Search JW.ORG for Bible Answers</h1>
+    <p>Type your Bible question or topic to search JW.ORG’s content.</p>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="e.g., What does the Bible say about suffering?" maxlength="200" required>
+        <button onclick="searchJwOrg()">Search</button>
+    </div>
 
     <script>
-        function processArticle() {
-            const articleText = document.getElementById('articleInput').value.trim();
-            const outputSection = document.getElementById('outputSection');
-            const summaryOutput = document.getElementById('summaryOutput');
-            const numericalQuestionsOutput = document.getElementById('numericalQuestionsOutput');
-            const summaryQuestionsOutput = document.getElementById('summaryQuestionsOutput');
-
-            if (!articleText) {
-                alert('Please paste a Watchtower article to process.');
-                outputSection.style.display = 'none';
+        function searchJwOrg() {
+            const input = document.getElementById('searchInput').value.trim();
+            if (!input) {
+                alert('Please enter a search term.');
                 return;
             }
 
-            // Display the output section
-            outputSection.style.display = 'block';
+            // Construct JW.ORG search URL
+            const query = encodeURIComponent(input);
+            const searchUrl = `https://www.jw.org/en/search/?q=${query}`;
 
-            // Step 1: Generate a summary of the article
-            const summary = generateSummary(articleText);
-            summaryOutput.innerHTML = summary;
-
-            // Step 2: Extract and answer numerical questions
-            const numericalQuestions = extractNumericalQuestions(articleText);
-            numericalQuestionsOutput.innerHTML = '';
-            numericalQuestions.forEach(({ question, answer }) => {
-                const li = document.createElement('li');
-                li.innerHTML = `<strong>${question}</strong><br>${answer}`;
-                numericalQuestionsOutput.appendChild(li);
-            });
-
-            // Step 3: Extract and answer summary questions
-            const summaryQuestions = extractSummaryQuestions(articleText);
-            summaryQuestionsOutput.innerHTML = summaryQuestions.map(({ question, answer }) => `<strong>${question}</strong><br>${answer}`).join('<br><br>');
+            // Redirect to JW.ORG search results
+            window.open(searchUrl, '_blank');
         }
 
-        function generateSummary(articleText) {
-            // Split the article into paragraphs
-            const paragraphs = articleText.split(/\n\s*\n/).filter(p => p.trim());
-
-            // Extract key themes by looking for recurring topics or emphasized points
-            const themes = [];
-            const scriptureRegex = /\b[A-Za-z]+\s+\d+:\d+\b/g;
-            const introPara = paragraphs[0] || '';
-            const concludingPara = paragraphs[paragraphs.length - 1] || '';
-
-            // Look for scriptures as they often highlight key points
-            const scriptures = articleText.match(scriptureRegex) || [];
-
-            // Basic theme detection: look for repeated words or phrases
-            const words = articleText.toLowerCase().split(/\W+/);
-            const wordFreq = {};
-            words.forEach(word => {
-                if (word.length > 4 && !['jehovah', 'jesus', 'bible', 'scriptures'].includes(word)) {
-                    wordFreq[word] = (wordFreq[word] || 0) + 1;
-                }
-            });
-
-            const commonThemes = Object.keys(wordFreq)
-                .filter(word => wordFreq[word] > 2)
-                .slice(0, 3)
-                .join(', ');
-
-            // Construct a summary
-            let summary = 'This article focuses on key spiritual lessons and encouragement for Jehovah’s Witnesses. ';
-            if (introPara) {
-                summary += `It begins by introducing ${introPara.slice(0, 100).replace(/\n/g, ' ')}... `;
+        // Allow pressing Enter to search
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                searchJwOrg();
             }
-            if (commonThemes) {
-                summary += `The article emphasizes themes such as ${commonThemes}. `;
-            }
-            if (scriptures.length > 0) {
-                summary += `It references scriptures like ${scriptures.slice(0, 2).join(' and ')} to support its points. `;
-            }
-            if (concludingPara) {
-                summary += `The article concludes by encouraging readers to ${concludingPara.slice(0, 100).replace(/\n/g, ' ')}...`;
-            }
-
-            return summary;
-        }
-
-        function extractNumericalQuestions(articleText) {
-            // Regex to find numerical questions (e.g., "1. What does this teach us?")
-            const questionRegex = /^\d+\.\s*.*?\?/gm;
-            const questions = articleText.match(questionRegex) || [];
-
-            // For each question, find the corresponding paragraph and generate an answer
-            const paragraphs = articleText.split(/\n\s*\n/).filter(p => p.trim());
-            const results = [];
-
-            questions.forEach((question, index) => {
-                // Find the paragraph associated with the question (usually the preceding paragraph)
-                const questionNumber = parseInt(question.match(/^\d+/)[0]);
-                let associatedPara = '';
-                for (let i = 0; i < paragraphs.length; i++) {
-                    if (paragraphs[i].includes(`${questionNumber}.`)) {
-                        associatedPara = paragraphs[i - 1] || paragraphs[i];
-                        break;
-                    }
-                }
-
-                // Generate an answer based on the paragraph content
-                let answer = `Based on the article, this paragraph highlights key points. `;
-                const scriptureRegex = /\b[A-Za-z]+\s+\d+:\d+\b/;
-                const scriptureMatch = associatedPara.match(scriptureRegex);
-
-                if (scriptureMatch) {
-                    const scripture = scriptureMatch[0];
-                    // Use NWT 2013 revision for scripture quotes
-                    const scriptureText = getScriptureText(scripture);
-                    answer += `It references ${scripture}, which states: "${scriptureText}". This teaches us the importance of applying the principle in our lives. `;
-                } else {
-                    answer += `The paragraph emphasizes spiritual lessons, encouraging us to reflect on our faith and actions. `;
-                }
-
-                // Extract key sentences from the paragraph
-                const sentences = associatedPara.split(/(?<=\.)\s+/).filter(s => s.trim());
-                if (sentences.length > 0) {
-                    answer += `Specifically, it mentions ${sentences[0].slice(0, 100).replace(/\n/g, ' ')}...`;
-                }
-
-                results.push({ question, answer });
-            });
-
-            return results;
-        }
-
-        function extractSummaryQuestions(articleText) {
-            // Summary questions are typically at the end of the article, often under a heading like "REVIEW"
-            const paragraphs = articleText.split(/\n\s*\n/).filter(p => p.trim());
-            const summarySectionIndex = paragraphs.findIndex(p => p.toLowerCase().includes('review') || p.toLowerCase().includes('summary'));
-            const summaryQuestions = [];
-
-            if (summarySectionIndex !== -1) {
-                // Extract questions from the summary section
-                const summaryParas = paragraphs.slice(summarySectionIndex + 1);
-                const questionRegex = /^[^\d].*?\?/; // Questions not starting with a number
-                summaryParas.forEach(para => {
-                    if (questionRegex.test(para)) {
-                        let answer = 'This question encourages deeper reflection on the article’s themes. ';
-                        const scriptureRegex = /\b[A-Za-z]+\s+\d+:\d+\b/;
-                        const scriptureMatch = para.match(scriptureRegex);
-
-                        if (scriptureMatch) {
-                            const scripture = scriptureMatch[0];
-                            const scriptureText = getScriptureText(scripture);
-                            answer += `It relates to ${scripture}, which says: "${scriptureText}". This reminds us to apply these principles in our daily lives. `;
-                        } else {
-                            answer += `The article suggests that we consider how the lessons apply to our personal circumstances, such as strengthening our faith or supporting others in the congregation. `;
-                        }
-
-                        summaryQuestions.push({ question: para, answer });
-                    }
-                });
-            }
-
-            if (summaryQuestions.length === 0) {
-                summaryQuestions.push({
-                    question: 'No summary questions found.',
-                    answer: 'Please ensure the article includes a review section with summary questions.'
-                });
-            }
-
-            return summaryQuestions;
-        }
-
-        function getScriptureText(scriptureRef) {
-            // Simulate fetching scripture text from NWT 2013 revision
-            // In a real application, this would involve an API call to JW.ORG or a local database
-            // For demonstration, we'll provide a few common scriptures as examples
-            const scriptureMap = {
-                'Matthew 6:10': 'Let your Kingdom come. Let your will take place, as in heaven, also on earth.',
-                '1 Corinthians 14:8': 'For if the trumpet sounds an indistinct call, who will get ready for battle?',
-                'Genesis 31:20': 'So Jacob outwitted Laban the Syrian by not telling him that he was running away.',
-                'Psalm 12:7': 'You will guard them, O Jehovah; You will protect each one from this generation forever.'
-            };
-
-            return scriptureMap[scriptureRef] || 'Scripture text not available in this demo. Please refer to the NWT (2013) on JW.ORG for the full text.';
-        }
+        });
     </script>
 </body>
 </html>
