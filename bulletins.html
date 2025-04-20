@@ -10,7 +10,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
     <style>
-        /* Existing styles unchanged, adding new styles for copy button */
+        /* Existing styles unchanged, adding new styles for delete button */
         * {
             box-sizing: border-box;
         }
@@ -121,34 +121,9 @@
             background-color: #d0d0d0;
         }
 
+        /* New styles for delete button */
         .btn-study#deleteBtn {
-            background-color: #ff4d4d;
-            color: #ffffff;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            max-width: 200px;
-            margin: 10px auto;
-            display: none;
-        }
-
-        .btn-study#deleteBtn:hover {
-            background-color: #cc0000;
-        }
-
-        .btn-study#deleteBtn.confirm {
-            background-color: #b30000;
-        }
-
-        .btn-study#deleteBtn.confirm:hover {
-            background-color: #990000;
-        }
-
-        /* New styles for copy button */
-        .btn-study#copyBtn {
-            background-color: #00cc00; /* Green for copy */
+            background-color: #ff4d4d; /* Red for delete */
             color: #ffffff;
             padding: 8px 16px;
             border: none;
@@ -160,8 +135,16 @@
             display: none; /* Hidden by default */
         }
 
-        .btn-study#copyBtn:hover {
-            background-color: #009900; /* Darker green on hover */
+        .btn-study#deleteBtn:hover {
+            background-color: #cc0000; /* Darker red on hover */
+        }
+
+        .btn-study#deleteBtn.confirm {
+            background-color: #b30000; /* Even darker red for confirm state */
+        }
+
+        .btn-study#deleteBtn.confirm:hover {
+            background-color: #990000;
         }
 
         /* Media query for smaller screens */
@@ -183,7 +166,7 @@
                 font-size: 0.9rem;
             }
 
-            .btn-study#saveBtn, .btn-study#deleteBtn, .btn-study#copyBtn {
+            .btn-study#saveBtn, .btn-study#deleteBtn {
                 padding: 6px 12px;
             }
         }
@@ -200,9 +183,8 @@
         <input type="text" id="titleInput" placeholder="Enter article title">
         <input type="number" id="orderInput" placeholder="Enter article order" min="0" step="1">
         <textarea id="notesInput" rows="15" placeholder="Enter your notes"></textarea>
-        <!-- New copy button -->
-        <button id="copyBtn" class="btn-study" onclick="copyArticle()">Copy</button>
         <button id="saveBtn" class="btn-study" onclick="saveOrUpdateArticle()">Save Article</button>
+        <!-- New delete button -->
         <button id="deleteBtn" class="btn-study" onclick="deleteArticle()">Delete</button>
     </div>
     
@@ -220,7 +202,7 @@
         let articles = JSON.parse(localStorage.getItem('articles')) || [];
         let editingArticleId = null;
         let openArticles = new Set();
-        let isDeleteConfirmed = false;
+        let isDeleteConfirmed = false; // Track delete confirmation state
         displayArticles(articles);
 
         function saveOrUpdateArticle() {
@@ -229,7 +211,6 @@
             const order = parseInt(document.getElementById('orderInput').value) || 0;
             const saveBtn = document.getElementById('saveBtn');
             const deleteBtn = document.getElementById('deleteBtn');
-            const copyBtn = document.getElementById('copyBtn');
             
             if (title && notes) {
                 if (editingArticleId) {
@@ -243,9 +224,8 @@
                     };
                     editingArticleId = null;
                     saveBtn.textContent = 'Save Article';
-                    deleteBtn.style.display = 'none';
-                    copyBtn.style.display = 'none'; // Hide copy button
-                    isDeleteConfirmed = false;
+                    deleteBtn.style.display = 'none'; // Hide delete button
+                    isDeleteConfirmed = false; // Reset delete confirmation
                     deleteBtn.textContent = 'Delete';
                     deleteBtn.classList.remove('confirm');
                 } else {
@@ -276,48 +256,24 @@
                 editingArticleId = id;
                 const saveBtn = document.getElementById('saveBtn');
                 const deleteBtn = document.getElementById('deleteBtn');
-                const copyBtn = document.getElementById('copyBtn');
                 saveBtn.textContent = 'Update Article';
-                deleteBtn.style.display = 'block';
-                copyBtn.style.display = 'block'; // Show copy button
-                isDeleteConfirmed = false;
+                deleteBtn.style.display = 'block'; // Show delete button
+                isDeleteConfirmed = false; // Reset delete confirmation
                 deleteBtn.textContent = 'Delete';
                 deleteBtn.classList.remove('confirm');
-                copyBtn.textContent = 'Copy'; // Reset copy button text
             }
         }
 
-        // New function to copy article content
-        function copyArticle() {
-            const title = document.getElementById('titleInput').value;
-            const notes = document.getElementById('notesInput').value;
-            const copyBtn = document.getElementById('copyBtn');
-            
-            if (title || notes) {
-                const textToCopy = `${title}\n\n${notes}`;
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    copyBtn.textContent = 'Copied!';
-                    setTimeout(() => {
-                        copyBtn.textContent = 'Copy';
-                    }, 2000); // Reset text after 2 seconds
-                }).catch(err => {
-                    console.error('Failed to copy: ', err);
-                    copyBtn.textContent = 'Copy Failed';
-                    setTimeout(() => {
-                        copyBtn.textContent = 'Copy';
-                    }, 2000);
-                });
-            }
-        }
-
+        // New function to handle article deletion
         function deleteArticle() {
             const deleteBtn = document.getElementById('deleteBtn');
-            const copyBtn = document.getElementById('copyBtn');
             if (!isDeleteConfirmed) {
+                // First click: ask for confirmation
                 isDeleteConfirmed = true;
                 deleteBtn.textContent = 'Confirm Delete';
                 deleteBtn.classList.add('confirm');
             } else {
+                // Second click: delete the article
                 if (editingArticleId) {
                     articles = articles.filter(a => a.id !== editingArticleId);
                     localStorage.setItem('articles', JSON.stringify(articles));
@@ -325,8 +281,7 @@
                     isDeleteConfirmed = false;
                     deleteBtn.textContent = 'Delete';
                     deleteBtn.classList.remove('confirm');
-                    deleteBtn.style.display = 'none';
-                    copyBtn.style.display = 'none'; // Hide copy button
+                    deleteBtn.style.display = 'none'; // Hide delete button
                     document.getElementById('titleInput').value = '';
                     document.getElementById('orderInput').value = '';
                     document.getElementById('notesInput').value = '';
@@ -382,4 +337,62 @@
                     const start = Math.max(0, index - contextLength);
                     const end = Math.min(notes.length, index + searchTerm.length + contextLength);
                     let preview = notes.substring(start, end);
-                    if (start > 0) preview
+                    if (start > 0) preview = '...' + preview;
+                    if (end < notes.length) preview += '...';
+                    return highlightText(formatNotes(preview), searchTerm);
+                }
+            }
+
+            return notes.length > maxPreviewLength 
+                ? highlightText(formatNotes(notes.substring(0, maxPreviewLength)) + '...', searchTerm) 
+                : highlightText(formattedNotes, searchTerm);
+        }
+
+        function displayArticles(articlesToShow) {
+            const container = document.getElementById('articlesContainer');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            container.innerHTML = '';
+            
+            const sortedArticles = [...articlesToShow].sort((a, b) => {
+                if (a.order === b.order) {
+                    return a.title.localeCompare(b.title);
+                }
+                return a.order - b.order;
+            });
+            
+            sortedArticles.forEach(article => {
+                const isOpen = openArticles.has(article.id);
+                const articleDiv = document.createElement('div');
+                articleDiv.className = 'article';
+                const highlightedTitle = highlightText(article.title, searchTerm);
+                const previewNotes = getPreviewText(article.notes, searchTerm, isOpen);
+                const showOpenLink = article.notes.length > 85 || (searchTerm && !isOpen);
+
+                articleDiv.innerHTML = `
+                    <h2>${highlightedTitle}</h2>
+                    <p class="notes-preview">${previewNotes}</p>
+                    <div class="article-footer">
+                        <small>Created: ${article.date}</small>
+                        <div class="order-controls">
+                            <input type="number" class="order-input" value="${article.order || 0}" 
+                                onchange="updateOrder(${article.id}, this.value)">
+                            ${showOpenLink ? `<span class="open-link" onclick="toggleArticle(${article.id})">${isOpen ? 'Close' : 'Open'}</span>` : ''}
+                            <span class="edit-link" onclick="editArticle(${article.id})">Edit</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(articleDiv);
+            });
+        }
+
+        function searchArticles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredArticles = articles.filter(article => 
+                article.title.toLowerCase().includes(searchTerm) || 
+                article.notes.toLowerCase().includes(searchTerm)
+            );
+            displayArticles(filteredArticles);
+        }
+    </script>
+</body>
+</html>
