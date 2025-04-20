@@ -10,16 +10,16 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
     <style>
-        /* Ensure box-sizing is applied globally to include padding and borders in width */
+        /* Existing styles unchanged, adding new styles for delete button */
         * {
             box-sizing: border-box;
         }
 
         .input-section {
-            max-width: 90%; /* Adjusted for mobile screens */
+            max-width: 90%;
             width: 100%;
             margin: 2rem auto;
-            padding: 0 0.5rem; /* Reduced padding for smaller screens */
+            padding: 0 0.5rem;
         }
 
         input, textarea {
@@ -33,10 +33,10 @@
         }
 
         .search-section {
-            max-width: 90%; /* Adjusted for mobile screens */
+            max-width: 90%;
             width: 100%;
             margin: 0 auto;
-            padding: 0 0.5rem; /* Reduced padding */
+            padding: 0 0.5rem;
         }
 
         #searchInput {
@@ -44,27 +44,27 @@
         }
 
         .highlight {
-            background-color: #808080; /* Pale gray for highlights */
+            background-color: #808080;
             padding: 2px 4px;
             border-radius: 3px;
         }
 
         .article {
-            max-width: 90%; /* Adjusted for mobile screens */
+            max-width: 90%;
             width: 100%;
             margin: 0 auto 2rem auto;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 1rem; /* Adjusted padding */
+            padding: 1rem;
         }
 
         .article h2 {
-            color: #000000; /* Black for article titles */
+            color: #000000;
             margin: 0 0 0.5rem 0;
-            font-size: 1.5rem; /* Slightly smaller for mobile */
+            font-size: 1.5rem;
         }
 
         .article .notes-preview {
-            color: #333333; /* Dark gray for article text */
+            color: #333333;
             margin: 0 0 0.5rem 0;
         }
 
@@ -73,19 +73,19 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 1rem;
-            flex-wrap: wrap; /* Allow wrapping on small screens */
+            flex-wrap: wrap;
             gap: 0.5rem;
         }
 
         .edit-link, .open-link {
             cursor: pointer;
-            color: #666666; /* Medium gray for links */
+            color: #666666;
             text-decoration: underline;
         }
 
         .edit-link:hover,
         .open-link:hover {
-            color: #333333; /* Dark gray on hover */
+            color: #333333;
         }
 
         .notes-preview {
@@ -95,53 +95,79 @@
         .order-controls {
             display: flex;
             align-items: center;
-            gap: 8px; /* Reduced gap for smaller screens */
-            flex-wrap: wrap; /* Allow wrapping */
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .order-input {
-            width: 50px; /* Reduced width for mobile */
+            width: 50px;
             padding: 5px;
         }
 
         .btn-study#saveBtn {
-            background-color: #e0e0e0; /* Light gray for button */
-            color: #000000; /* Black text */
+            background-color: #e0e0e0;
+            color: #000000;
             padding: 8px 16px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            width: 100%; /* Full width on mobile for better touch target */
-            max-width: 200px; /* Limit width on larger screens */
-            margin: 0 auto; /* Center the button */
-            display: block; /* Ensure block-level for centering */
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
         }
 
         .btn-study#saveBtn:hover {
-            background-color: #d0d0d0; /* Slightly darker gray on hover */
+            background-color: #d0d0d0;
+        }
+
+        /* New styles for delete button */
+        .btn-study#deleteBtn {
+            background-color: #ff4d4d; /* Red for delete */
+            color: #ffffff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 200px;
+            margin: 10px auto;
+            display: none; /* Hidden by default */
+        }
+
+        .btn-study#deleteBtn:hover {
+            background-color: #cc0000; /* Darker red on hover */
+        }
+
+        .btn-study#deleteBtn.confirm {
+            background-color: #b30000; /* Even darker red for confirm state */
+        }
+
+        .btn-study#deleteBtn.confirm:hover {
+            background-color: #990000;
         }
 
         /* Media query for smaller screens */
         @media (max-width: 600px) {
             .input-section, .search-section, .article {
-                max-width: 90%; /* Full width on very small screens */
-                padding: 0 0.25rem; /* Minimal padding */
+                max-width: 90%;
+                padding: 0 0.25rem;
             }
 
             .article h2 {
-                font-size: 1.25rem; /* Even smaller for very small screens */
+                font-size: 1.25rem;
             }
 
             .order-input {
-                width: 40px; /* Further reduce input width */
+                width: 40px;
             }
 
             .edit-link, .open-link {
-                font-size: 0.9rem; /* Smaller text for links */
+                font-size: 0.9rem;
             }
 
-            .btn-study#saveBtn {
-                padding: 6px 12px; /* Smaller padding for mobile */
+            .btn-study#saveBtn, .btn-study#deleteBtn {
+                padding: 6px 12px;
             }
         }
     </style>
@@ -158,6 +184,8 @@
         <input type="number" id="orderInput" placeholder="Enter article order" min="0" step="1">
         <textarea id="notesInput" rows="15" placeholder="Enter your notes"></textarea>
         <button id="saveBtn" class="btn-study" onclick="saveOrUpdateArticle()">Save Article</button>
+        <!-- New delete button -->
+        <button id="deleteBtn" class="btn-study" onclick="deleteArticle()">Delete</button>
     </div>
     
     <div class="search-section">
@@ -174,6 +202,7 @@
         let articles = JSON.parse(localStorage.getItem('articles')) || [];
         let editingArticleId = null;
         let openArticles = new Set();
+        let isDeleteConfirmed = false; // Track delete confirmation state
         displayArticles(articles);
 
         function saveOrUpdateArticle() {
@@ -181,6 +210,7 @@
             const notes = document.getElementById('notesInput').value;
             const order = parseInt(document.getElementById('orderInput').value) || 0;
             const saveBtn = document.getElementById('saveBtn');
+            const deleteBtn = document.getElementById('deleteBtn');
             
             if (title && notes) {
                 if (editingArticleId) {
@@ -194,6 +224,10 @@
                     };
                     editingArticleId = null;
                     saveBtn.textContent = 'Save Article';
+                    deleteBtn.style.display = 'none'; // Hide delete button
+                    isDeleteConfirmed = false; // Reset delete confirmation
+                    deleteBtn.textContent = 'Delete';
+                    deleteBtn.classList.remove('confirm');
                 } else {
                     const article = {
                         id: Date.now(),
@@ -221,7 +255,39 @@
                 document.getElementById('notesInput').value = article.notes;
                 editingArticleId = id;
                 const saveBtn = document.getElementById('saveBtn');
+                const deleteBtn = document.getElementById('deleteBtn');
                 saveBtn.textContent = 'Update Article';
+                deleteBtn.style.display = 'block'; // Show delete button
+                isDeleteConfirmed = false; // Reset delete confirmation
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.classList.remove('confirm');
+            }
+        }
+
+        // New function to handle article deletion
+        function deleteArticle() {
+            const deleteBtn = document.getElementById('deleteBtn');
+            if (!isDeleteConfirmed) {
+                // First click: ask for confirmation
+                isDeleteConfirmed = true;
+                deleteBtn.textContent = 'Confirm Delete';
+                deleteBtn.classList.add('confirm');
+            } else {
+                // Second click: delete the article
+                if (editingArticleId) {
+                    articles = articles.filter(a => a.id !== editingArticleId);
+                    localStorage.setItem('articles', JSON.stringify(articles));
+                    editingArticleId = null;
+                    isDeleteConfirmed = false;
+                    deleteBtn.textContent = 'Delete';
+                    deleteBtn.classList.remove('confirm');
+                    deleteBtn.style.display = 'none'; // Hide delete button
+                    document.getElementById('titleInput').value = '';
+                    document.getElementById('orderInput').value = '';
+                    document.getElementById('notesInput').value = '';
+                    document.getElementById('saveBtn').textContent = 'Save Article';
+                    displayArticles(articles);
+                }
             }
         }
 
