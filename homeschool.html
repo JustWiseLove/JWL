@@ -80,6 +80,8 @@
             body {
                 background-color: #fff;
                 color: #000;
+                margin: 0;
+                padding: 0;
             }
 
             header, footer {
@@ -96,26 +98,35 @@
                 margin: 0;
                 width: 100%;
                 max-width: none;
+                height: 100vh; /* Restrict to one viewport height (approximately one page) */
+                overflow: hidden; /* Clip content that exceeds one page */
             }
 
-            .item-button {
-                background-color: transparent;
-                border: none;
-                font-size: 16px;
-                cursor: default;
-            }
-
-            details[open] .item-content,
             .item-content {
                 display: block !important; /* Ensure content is visible when printing */
                 background-color: transparent;
                 border: none;
+                padding: 20px;
+                box-sizing: border-box;
+                max-height: 100%; /* Ensure content fits within one page */
             }
 
-            .worksheet-intro,
-            .questions li,
-            .answers {
+            .worksheet-title {
+                font-size: 24px;
+                margin: 10px 0;
+            }
+
+            .worksheet-intro {
+                margin-bottom: 20px;
+            }
+
+            .questions {
+                margin: 20px 0;
+            }
+
+            .questions li {
                 color: #000;
+                margin-bottom: 10px;
             }
 
             .answers {
@@ -123,10 +134,21 @@
                 -webkit-transform: rotate(180deg);
                 -moz-transform: rotate(180deg);
                 border-top: 1px solid #000;
+                color: #000;
             }
 
             .print-btn {
                 display: none; /* Hide print button during printing */
+            }
+
+            /* Ensure only the first page prints */
+            @page {
+                size: 8.5in 11in; /* Standard US letter size */
+                margin: 0.5in; /* Standard margins */
+            }
+
+            .item-content::after {
+                content: none; /* Prevent additional content from spilling over */
             }
         }
     </style>
@@ -818,6 +840,8 @@
                             margin: 0;
                             padding: 20px;
                             color: #000;
+                            height: 100vh; /* Restrict to one viewport height */
+                            overflow: hidden; /* Clip content beyond one page */
                         }
                         .worksheet-title {
                             font-family: 'Audiowide', sans-serif;
@@ -858,6 +882,10 @@
                         }
                         .answers p {
                             margin: 5px 0;
+                        }
+                        @page {
+                            size: 8.5in 11in; /* Standard US letter size */
+                            margin: 0.5in; /* Standard margins */
                         }
                     </style>
                 </head>
