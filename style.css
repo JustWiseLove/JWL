@@ -203,7 +203,6 @@ details[open] .item-content {
     margin-right: auto;
     border-radius: 5px;
     display: flex;
-    position: relative;
     justify-content: center !important;
     text-align: center !important;
     font-style: italic !important;
