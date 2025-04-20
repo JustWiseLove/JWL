@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watchtower Summary Generator</title>
+    <title>Watchtower Study Guide Generator</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
@@ -134,25 +134,52 @@
             // Split the article into lines for parsing
             const lines = articleText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
-            // Extract the title (usually the first line with a date in parentheses)
+            // Extract the title (assuming it's in the format "Your answer" followed by the actual article content)
             let title = '';
-            for (let line of lines) {
-                if (line.includes('(') && line.includes(')')) {
-                    title = line.split('(')[0].trim();
+            let titleFound = false;
+            for (let i = 0; i < lines.length; i++) {
+                if (lines[i].toLowerCase() === 'your answer') {
+                    // Look for the next line that might be the title or content
+                    for (let j = i + 1; j < lines.length; j++) {
+                        if (lines[j].match(/^\d+[-–]\d+\./) || lines[j].match(/^\d+\./)) break; // Stop at questions
+                        if (lines[j] && !lines[j].toLowerCase().includes('focus') && !lines[j].match(/^\d+\s/)) {
+                            title = lines[j].split('(')[0].trim();
+                            titleFound = true;
+                            break;
+                        }
+                    }
                     break;
+                }
+            }
+            if (!titleFound) {
+                // If "Your answer" isn't found, look for a line with parentheses as the title
+                for (let line of lines) {
+                    if (line.includes('(') && line.includes(')')) {
+                        title = line.split('(')[0].trim();
+                        break;
+                    }
                 }
             }
             if (!title) title = 'Unknown Watchtower Article';
 
-            // Extract the focus statement (often after the title, before numbered sections)
+            // Extract the focus statement
             let focus = '';
             let focusFound = false;
             for (let i = 0; i < lines.length; i++) {
-                if (lines[i].match(/^\d+\./) || lines[i].match(/^\d+\s/)) break; // Stop at numbered sections
-                if (lines[i].toLowerCase().includes('this article') || lines[i].toLowerCase().includes('we will')) {
-                    focus = lines[i];
+                if (lines[i].toLowerCase().startsWith('focus:')) {
+                    focus = lines[i].replace(/^FOCUS:/i, '').trim();
                     focusFound = true;
                     break;
+                }
+            }
+            if (!focusFound) {
+                for (let i = 0; i < lines.length; i++) {
+                    if (lines[i].match(/^\d+[-–]\d+\./) || lines[i].match(/^\d+\./)) break;
+                    if (lines[i].toLowerCase().includes('this article') || lines[i].toLowerCase().includes('we will')) {
+                        focus = lines[i];
+                        focusFound = true;
+                        break;
+                    }
                 }
             }
             if (!focusFound) focus = 'This article discusses key spiritual principles for Christian living.';
@@ -160,18 +187,20 @@
             // Extract questions and answers
             const points = [];
             let currentQuestion = '';
-            let currentAnswer = [];
-            let currentScripture = '';
+            let currentAnswerLines = [];
             let inQuestionSection = false;
+            let questionNumberPattern = /^(\d+[-–]\d+|\d+)\.\s(.+)/; // Match "1-2." or "1."
+            let paragraphNumberPattern = /^\d+\s/; // Match paragraph numbers like "2 "
 
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i];
 
-                // Identify questions (lines starting with a number and a period or space)
-                if (line.match(/^\d+\./) || line.match(/^\d+\s/)) {
+                // Identify questions
+                let questionMatch = line.match(questionNumberPattern);
+                if (questionMatch) {
                     if (currentQuestion) {
                         // Save the previous question and answer
-                        let answerText = currentAnswer.join(' ').trim();
+                        let answerText = currentAnswerLines.join(' ').trim();
                         // Limit answer to 50 words
                         const words = answerText.split(/\s+/);
                         if (words.length > 50) {
@@ -180,32 +209,44 @@
                         points.push({
                             question: currentQuestion,
                             answer: answerText,
-                            scripture: currentScripture
+                            scripture: '' // We'll handle scriptures later
                         });
                     }
-                    currentQuestion = line.trim();
-                    currentAnswer = [];
-                    currentScripture = '';
+                    currentQuestion = questionMatch[0]; // Include the number in the question
+                    currentAnswerLines = [];
                     inQuestionSection = true;
                     continue;
                 }
 
                 if (inQuestionSection) {
-                    // Look for scriptures (e.g., "Psalm 23:1")
-                    const scriptureMatch = line.match(/(?:Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\sSamuel|2\sSamuel|1\sKings|2\sKings|1\sChronicles|2\sChronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\sOf\sSolomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\sCorinthians|2\sCorinthians|Galatians|Ephesians|Philippians|Colossians|1\sThessalonians|2\sThessalonians|1\sTimothy|2\sTimothy|Titus|Philemon|Hebrews|James|1\sPeter|2\sPeter|1\sJohn|2\sJohn|3\sJohn|Jude|Revelation)\s\d+:\d+(-\d+)?/i);
-                    if (scriptureMatch) {
-                        currentScripture = `${scriptureMatch[0]} (NWT)`;
-                        // Simulate scripture text (since I can't fetch from JW.ORG)
-                        currentScripture += `: "${scriptureMatch[0]} - Scripture text not available. Please refer to JW.ORG for the full text."`;
+                    // Check if the line is a new paragraph number (e.g., "2 ")
+                    if (line.match(paragraphNumberPattern)) {
+                        // Start of a new paragraph; continue collecting for the current answer
+                        currentAnswerLines.push(line.replace(paragraphNumberPattern, '').trim());
+                    } else if (line.match(/^\d+[-–]\d+\./) || line.match(/^\d+\./)) {
+                        // Start of a new question; save the current answer and move on
+                        let answerText = currentAnswerLines.join(' ').trim();
+                        const words = answerText.split(/\s+/);
+                        if (words.length > 50) {
+                            answerText = words.slice(0, 50).join(' ') + '...';
+                        }
+                        points.push({
+                            question: currentQuestion,
+                            answer: answerText,
+                            scripture: ''
+                        });
+                        currentQuestion = line;
+                        currentAnswerLines = [];
                     } else {
-                        currentAnswer.push(line);
+                        // Continue collecting answer lines
+                        currentAnswerLines.push(line);
                     }
                 }
             }
 
             // Add the last question and answer
             if (currentQuestion) {
-                let answerText = currentAnswer.join(' ').trim();
+                let answerText = currentAnswerLines.join(' ').trim();
                 const words = answerText.split(/\s+/);
                 if (words.length > 50) {
                     answerText = words.slice(0, 50).join(' ') + '...';
@@ -213,9 +254,25 @@
                 points.push({
                     question: currentQuestion,
                     answer: answerText,
-                    scripture: currentScripture
+                    scripture: ''
                 });
             }
+
+            // Process answers for quoted scriptures
+            points.forEach(point => {
+                const answerLines = point.answer.split(/(?<=\.)\s+/); // Split on sentence boundaries
+                let scriptureText = '';
+                answerLines.forEach(line => {
+                    // Look for quoted scripture text (e.g., "text in quotes" followed by a reference)
+                    const quoteMatch = line.match(/"([^"]+)"\s*(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\sSamuel|2\sSamuel|1\sKings|2\sKings|1\sChronicles|2\sChronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\sOf\sSolomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\sCorinthians|2\sCorinthians|Galatians|Ephesians|Philippians|Colossians|1\sThessalonians|2\sThessalonians|1\sTimothy|2\sTimothy|Titus|Philemon|Hebrews|James|1\sPeter|2\sPeter|1\sJohn|2\sJohn|3\sJohn|Jude|Revelation)\s\d+:\d+(-\d+)?/i);
+                    if (quoteMatch) {
+                        const quote = quoteMatch[1];
+                        const reference = quoteMatch[0].match(/(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\sSamuel|2\sSamuel|1\sKings|2\sKings|1\sChronicles|2\sChronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\sOf\sSolomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\sCorinthians|2\sCorinthians|Galatians|Ephesians|Philippians|Colossians|1\sThessalonians|2\sThessalonians|1\sTimothy|2\sTimothy|Titus|Philemon|Hebrews|James|1\sPeter|2\sPeter|1\sJohn|2\sJohn|3\sJohn|Jude|Revelation)\s\d+:\d+(-\d+)?/i)[0];
+                        scriptureText += `${reference} (NWT): "${quote}"\n`;
+                    }
+                });
+                point.scripture = scriptureText.trim();
+            });
 
             // If no points were found, add a placeholder
             if (points.length === 0) {
