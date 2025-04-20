@@ -62,6 +62,14 @@
             margin-bottom: 20px;
         }
 
+        .output-section h3 {
+            font-family: 'Audiowide', sans-serif;
+            color: #333;
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
         .output-section p {
             margin: 10px 0;
         }
@@ -73,6 +81,19 @@
             border-radius: 5px;
             font-style: italic;
             text-align: center;
+        }
+
+        .summary-questions {
+            margin-top: 20px;
+        }
+
+        .summary-questions ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .summary-questions li {
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -196,6 +217,11 @@
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i];
 
+                // Stop parsing questions if we hit the "How Would You Answer?" section
+                if (line.toLowerCase().includes('how would you answer')) {
+                    break;
+                }
+
                 // Identify questions
                 let questionMatch = line.match(questionNumberPattern);
                 if (questionMatch) {
@@ -247,6 +273,26 @@
                 });
             }
 
+            // Extract "How Would You Answer?" summary questions
+            let summaryQuestions = [];
+            let inSummarySection = false;
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.toLowerCase().includes('how would you answer')) {
+                    inSummarySection = true;
+                    continue;
+                }
+                if (inSummarySection) {
+                    // Look for questions (often bullet points, numbers, or plain text)
+                    if (line.match(/^\d+\.\s/) || line.match(/^\d+[-–]\d+\.\s/) || line.match(/^\s*[-•]\s/) || (line.trim().endsWith('?') && !line.match(/^\d+\s/))) {
+                        let questionText = line.trim();
+                        // Clean up bullet points or numbering if present
+                        questionText = questionText.replace(/^\s*[-•]\s/, '').replace(/^\d+\.\s/, '').replace(/^\d+[-–]\d+\.\s/, '');
+                        summaryQuestions.push(questionText);
+                    }
+                }
+            }
+
             // If no points were found, add a placeholder
             if (points.length === 0) {
                 points.push({
@@ -266,6 +312,18 @@
                     studyGuideHtml += `<div class="scripture"><p>${point.scripture}</p></div>`;
                 }
             });
+
+            // Add summary questions if they exist
+            if (summaryQuestions.length > 0) {
+                studyGuideHtml += `<div class="summary-questions">`;
+                studyGuideHtml += `<h3>Summary Questions</h3>`;
+                studyGuideHtml += `<ul>`;
+                summaryQuestions.forEach(question => {
+                    studyGuideHtml += `<li>${question}</li>`;
+                });
+                studyGuideHtml += `</ul>`;
+                studyGuideHtml += `</div>`;
+            }
 
             // Display the study guide
             document.getElementById('studyGuideOutput').innerHTML = studyGuideHtml;
