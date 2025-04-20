@@ -58,6 +58,23 @@
             margin: 5px 0;
         }
 
+        .print-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #e0e0e0; /* Matches button styles from style.css */
+            border: none;
+            border-radius: 5px;
+            font-family: 'Audiowide', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .print-btn:hover {
+            background-color: #b0b0b0; /* Matches hover effect from style.css */
+        }
+
         /* Print styles */
         @media print {
             body {
@@ -107,6 +124,10 @@
                 -moz-transform: rotate(180deg);
                 border-top: 1px solid #000;
             }
+
+            .print-btn {
+                display: none; /* Hide print button during printing */
+            }
         }
     </style>
 </head>
@@ -150,27 +171,9 @@
                                 <li>How did Jonathan show loyalty to David?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. Noah</p>
-                            <p>2. Built an ark as Jehovah commanded</p>
-                            <p>3. About 50-60 years</p>
-                            <p>4. Offer him as a sacrifice</p>
-                            <p>5. Obeyed Jehovah’s command without hesitation</p>
-                            <p>6. Sarah</p>
-                            <p>7. His offspring would be as numerous as the stars</p>
-                            <p>8. Rachel</p>
-                            <p>9. Refused to sin with Potiphar’s wife</p>
-                            <p>10. Second-in-command to Pharaoh</p>
-                            <p>11. Moses</p>
-                            <p>12. Trusted Jehovah to send the plagues</p>
-                            <p>13. The Ten Commandments</p>
-                            <p>14. Aaron</p>
-                            <p>15. Spoke for Moses and served as high priest</p>
-                            <p>16. David</p>
-                            <p>17. Trusted Jehovah to deliver him</p>
-                            <p>18. A sling and a stone</p>
-                            <p>19. Jonathan</p>
-                            <p>20. Protected David from Saul</p>
+                            <p>1. Noah, 2. Built an ark as Jehovah commanded, 3. About 50-60 years, 4. Offer him as a sacrifice, 5. Obeyed Jehovah’s command without hesitation, 6. Sarah, 7. His offspring would be as numerous as the stars, 8. Rachel, 9. Refused to sin with Potiphar’s wife, 10. Second-in-command to Pharaoh, 11. Moses, 12. Trusted Jehovah to send the plagues, 13. The Ten Commandments, 14. Aaron, 15. Spoke for Moses and served as high priest, 16. David, 17. Trusted Jehovah to deliver him, 18. A sling and a stone, 19. Jonathan, 20. Protected David from Saul</p>
                         </div>
                     </div>
                 </details>
@@ -209,27 +212,9 @@
                                 <li>Which disciple was known as “the Zealot”?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. Simon Peter and Andrew</p>
-                            <p>2. Fishing</p>
-                            <p>3. Andrew</p>
-                            <p>4. Peter</p>
-                            <p>5. James and John</p>
-                            <p>6. Sons of Thunder</p>
-                            <p>7. Matthew</p>
-                            <p>8. Left his tax office and followed Jesus</p>
-                            <p>9. Thomas</p>
-                            <p>10. “My Lord and my God!”</p>
-                            <p>11. Judas Iscariot</p>
-                            <p>12. Hanged himself</p>
-                            <p>13. Matthias</p>
-                            <p>14. John</p>
-                            <p>15. Leaned on Jesus’ chest</p>
-                            <p>16. Peter</p>
-                            <p>17. He wept bitterly</p>
-                            <p>18. Bartholomew</p>
-                            <p>19. Brought Nathanael to Jesus</p>
-                            <p>20. Simon</p>
+                            <p>1. Simon Peter and Andrew, 2. Fishing, 3. Andrew, 4. Peter, 5. James and John, 6. Sons of Thunder, 7. Matthew, 8. Left his tax office and followed Jesus, 9. Thomas, 10. “My Lord and my God!”, 11. Judas Iscariot, 12. Hanged himself, 13. Matthias, 14. John, 15. Leaned on Jesus’ chest, 16. Peter, 17. He wept bitterly, 18. Bartholomew, 19. Brought Nathanael to Jesus, 20. Simon</p>
                         </div>
                     </div>
                 </details>
@@ -269,27 +254,9 @@
                                 <li>How did the people respond to Josiah’s reforms?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. Ezra</p>
-                            <p>2. Priest and scribe</p>
-                            <p>3. Nehemiah</p>
-                            <p>4. The city wall</p>
-                            <p>5. 52 days</p>
-                            <p>6. Sanballat and Tobiah</p>
-                            <p>7. Taught the Law to the people</p>
-                            <p>8. Haggai</p>
-                            <p>9. It would be filled with glory</p>
-                            <p>10. Joshua</p>
-                            <p>11. Led the people to rebuild the temple</p>
-                            <p>12. Cyrus</p>
-                            <p>13. To rebuild the temple in Jerusalem</p>
-                            <p>14. Huldah</p>
-                            <p>15. Judgment on Judah but peace for Josiah</p>
-                            <p>16. Hilkiah</p>
-                            <p>17. Removed idolatry and celebrated the Passover</p>
-                            <p>18. Josiah</p>
-                            <p>19. The Passover</p>
-                            <p>20. They obeyed the Law</p>
+                            <p>1. Ezra, 2. Priest and scribe, 3. Nehemiah, 4. The city wall, 5. 52 days, 6. Sanballat and Tobiah, 7. Taught the Law to the people, 8. Haggai, 9. It would be filled with glory, 10. Joshua, 11. Led the people to rebuild the temple, 12. Cyrus, 13. To rebuild the temple in Jerusalem, 14. Huldah, 15. Judgment on Judah but peace for Josiah, 16. Hilkiah, 17. Removed idolatry and celebrated the Passover, 18. Josiah, 19. The Passover, 20. They obeyed the Law</p>
                         </div>
                     </div>
                 </details>
@@ -329,27 +296,9 @@
                                 <li>What did Paul say about the scriptures in 2 Timothy?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. Moses</p>
-                            <p>2. Creation and early human history</p>
-                            <p>3. Solomon</p>
-                            <p>4. Wisdom</p>
-                            <p>5. Isaiah</p>
-                            <p>6. The Messiah would be a suffering servant</p>
-                            <p>7. Jeremiah</p>
-                            <p>8. Its destruction by Babylon</p>
-                            <p>9. Daniel</p>
-                            <p>10. The march of world powers</p>
-                            <p>11. Matthew</p>
-                            <p>12. Tax collector</p>
-                            <p>13. Luke</p>
-                            <p>14. Physician</p>
-                            <p>15. John</p>
-                            <p>16. Jesus as the Son of God</p>
-                            <p>17. Paul</p>
-                            <p>18. A Pharisee and persecutor of Christians</p>
-                            <p>19. Hebrews</p>
-                            <p>20. They are inspired and beneficial for teaching</p>
+                            <p>1. Moses, 2. Creation and early human history, 3. Solomon, 4. Wisdom, 5. Isaiah, 6. The Messiah would be a suffering servant, 7. Jeremiah, 8. Its destruction by Babylon, 9. Daniel, 10. The march of world powers, 11. Matthew, 12. Tax collector, 13. Luke, 14. Physician, 15. John, 16. Jesus as the Son of God, 17. Paul, 18. A Pharisee and persecutor of Christians, 19. Hebrews, 20. They are inspired and beneficial for teaching</p>
                         </div>
                     </div>
                 </details>
@@ -389,27 +338,9 @@
                                 <li>Why is the Memorial important for pure worship?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. Jesus’ death</p>
-                            <p>2. Nisan 14</p>
-                            <p>3. Unleavened bread</p>
-                            <p>4. Jesus’ blood</p>
-                            <p>5. Jesus</p>
-                            <p>6. 33 CE</p>
-                            <p>7. Those with a heavenly hope</p>
-                            <p>8. The new covenant</p>
-                            <p>9. Once a year</p>
-                            <p>10. Gave thanks</p>
-                            <p>11. The apostles</p>
-                            <p>12. Jesus’ sacrifice</p>
-                            <p>13. An upper room in Jerusalem</p>
-                            <p>14. It is his blood of the covenant</p>
-                            <p>15. To align with the Passover</p>
-                            <p>16. The ransom sacrifice</p>
-                            <p>17. Everyone</p>
-                            <p>18. Went to the Garden of Gethsemane</p>
-                            <p>19. Prayed for his disciples</p>
-                            <p>20. It honors Jesus’ sacrifice</p>
+                            <p>1. Jesus’ death, 2. Nisan 14, 3. Unleavened bread, 4. Jesus’ blood, 5. Jesus, 6. 33 CE, 7. Those with a heavenly hope, 8. The new covenant, 9. Once a year, 10. Gave thanks, 11. The apostles, 12. Jesus’ sacrifice, 13. An upper room in Jerusalem, 14. It is his blood of the covenant, 15. To align with the Passover, 16. The ransom sacrifice, 17. Everyone, 18. Went to the Garden of Gethsemane, 19. Prayed for his disciples, 20. It honors Jesus’ sacrifice</p>
                         </div>
                     </div>
                 </details>
@@ -450,27 +381,9 @@
                                 <li>Why does Jehovah reject Christmas celebrations?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. No</p>
-                            <p>2. Likely autumn</p>
-                            <p>3. Shepherds would not be in fields in winter</p>
-                            <p>4. Gold, frankincense, and myrrh</p>
-                            <p>5. About two years old</p>
-                            <p>6. Saturnalia</p>
-                            <p>7. Constantine</p>
-                            <p>8. 336 CE</p>
-                            <p>9. Pagan tree worship</p>
-                            <p>10. It was not part of pure worship</p>
-                            <p>11. Do not learn the way of the nations</p>
-                            <p>12. They nullify the word of God</p>
-                            <p>13. The Memorial</p>
-                            <p>14. Pagan sun worship</p>
-                            <p>15. Saint Nicholas</p>
-                            <p>16. A 4th-century bishop</p>
-                            <p>17. Focus on gifts and commercialism</p>
-                            <p>18. Give without expecting in return</p>
-                            <p>19. Observe the Memorial</p>
-                            <p>20. It has pagan origins</p>
+                            <p>1. No, 2. Likely autumn, 3. Shepherds would not be in fields in winter, 4. Gold, frankincense, and myrrh, 5. About two years old, 6. Saturnalia, 7. Constantine, 8. 336 CE, 9. Pagan tree worship, 10. It was not part of pure worship, 11. Do not learn the way of the nations, 12. They nullify the word of God, 13. The Memorial, 14. Pagan sun worship, 15. Saint Nicholas, 16. A 4th-century bishop, 17. Focus on gifts and commercialism, 18. Give without expecting in return, 19. Observe the Memorial, 20. It has pagan origins</p>
                         </div>
                     </div>
                 </details>
@@ -510,27 +423,9 @@
                                 <li>How can we honor Jesus’ resurrection?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. No</p>
-                            <p>2. Eostre</p>
-                            <p>3. Fertility and new life</p>
-                            <p>4. Pagan fertility symbols</p>
-                            <p>5. Jesus’ resurrection</p>
-                            <p>6. His death (Memorial)</p>
-                            <p>7. Pagan influence</p>
-                            <p>8. Council of Nicaea</p>
-                            <p>9. 325 CE</p>
-                            <p>10. Do not learn the way of the nations</p>
-                            <p>11. The Memorial</p>
-                            <p>12. He was raised on the third day</p>
-                            <p>13. Three days and three nights</p>
-                            <p>14. The first day of the week</p>
-                            <p>15. To mark Jesus’ death</p>
-                            <p>16. They nullify God’s word</p>
-                            <p>17. Being misled by philosophy</p>
-                            <p>18. It mixes paganism with Christianity</p>
-                            <p>19. The Memorial</p>
-                            <p>20. By preaching the good news</p>
+                            <p>1. No, 2. Eostre, 3. Fertility and new life, 4. Pagan fertility symbols, 5. Jesus’ resurrection, 6. His death (Memorial), 7. Pagan influence, 8. Council of Nicaea, 9. 325 CE, 10. Do not learn the way of the nations, 11. The Memorial, 12. He was raised on the third day, 13. Three days and three nights, 14. The first day of the week, 15. To mark Jesus’ death, 16. They nullify God’s word, 17. Being misled by philosophy, 18. It mixes paganism with Christianity, 19. The Memorial, 20. By preaching the good news</p>
                         </div>
                     </div>
                 </details>
@@ -570,27 +465,9 @@
                                 <li>How can we honor Jehovah instead of celebrating birthdays?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. No</p>
-                            <p>2. Pharaoh</p>
-                            <p>3. The baker was executed</p>
-                            <p>4. Herod</p>
-                            <p>5. John the Baptist was beheaded</p>
-                            <p>6. Feasted on their “day”</p>
-                            <p>7. Offered sacrifices for them</p>
-                            <p>8. They were pagan in origin</p>
-                            <p>9. Magic and superstition</p>
-                            <p>10. Wishing on candles</p>
-                            <p>11. They focus on self</p>
-                            <p>12. Humility</p>
-                            <p>13. The greatest must be the least</p>
-                            <p>14. They may involve worldly customs</p>
-                            <p>15. Give without expecting in return</p>
-                            <p>16. Give gifts on any day</p>
-                            <p>17. The Memorial</p>
-                            <p>18. Origen</p>
-                            <p>19. Focus on feasting and drinking</p>
-                            <p>20. Worship Him daily</p>
+                            <p>1. No, 2. Pharaoh, 3. The baker was executed, 4. Herod, 5. John the Baptist was beheaded, 6. Feasted on their “day”, 7. Offered sacrifices for them, 8. They were pagan in origin, 9. Magic and superstition, 10. Wishing on candles, 11. They focus on self, 12. Humility, 13. The greatest must be the least, 14. They may involve worldly customs, 15. Give without expecting in return, 16. Give gifts on any day, 17. The Memorial, 18. Origen, 19. Focus on feasting and drinking, 20. Worship Him daily</p>
                         </div>
                     </div>
                 </details>
@@ -630,27 +507,9 @@
                                 <li>How can we show love for Jehovah’s name?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. Jehovah</p>
-                            <p>2. Exodus 3:14</p>
-                            <p>3. He Causes to Become</p>
-                            <p>4. Nearly 7,000 times</p>
-                            <p>5. Due to superstition</p>
-                            <p>6. He made it known to his disciples</p>
-                            <p>7. Included it in his prayers</p>
-                            <p>8. They will be protected</p>
-                            <p>9. It draws us closer to Him</p>
-                            <p>10. Not to misuse it</p>
-                            <p>11. Joel</p>
-                            <p>12. Worshipping Him</p>
-                            <p>13. By living in harmony with it</p>
-                            <p>14. The Lord’s Prayer</p>
-                            <p>15. It will be declared</p>
-                            <p>16. Those calling on His name</p>
-                            <p>17. They used it in worship</p>
-                            <p>18. Every tongue should confess it</p>
-                            <p>19. To distance us from God</p>
-                            <p>20. Use it in prayer and preaching</p>
+                            <p>1. Jehovah, 2. Exodus 3:14, 3. He Causes to Become, 4. Nearly 7,000 times, 5. Due to superstition, 6. He made it known to his disciples, 7. Included it in his prayers, 8. They will be protected, 9. It draws us closer to Him, 10. Not to misuse it, 11. Joel, 12. Worshipping Him, 13. By living in harmony with it, 14. The Lord’s Prayer, 15. It will be declared, 16. Those calling on His name, 17. They used it in worship, 18. Every tongue should confess it, 19. To distance us from God, 20. Use it in prayer and preaching</p>
                         </div>
                     </div>
                 </details>
@@ -690,27 +549,9 @@
                                 <li>Why should we care for Jehovah’s creation?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. Jehovah</p>
-                            <p>2. Six days</p>
-                            <p>3. Light</p>
-                            <p>4. The sky</p>
-                            <p>5. Dry land and vegetation</p>
-                            <p>6. Sun, moon, and stars</p>
-                            <p>7. Sea creatures and birds</p>
-                            <p>8. Land animals and humans</p>
-                            <p>9. It was very good</p>
-                            <p>10. Jesus</p>
-                            <p>11. He was the firstborn of creation</p>
-                            <p>12. His power and wisdom</p>
-                            <p>13. He calls them by name</p>
-                            <p>14. Through its vastness and complexity</p>
-                            <p>15. It hangs on nothing</p>
-                            <p>16. Adam and Eve</p>
-                            <p>17. Fill the earth and subdue it</p>
-                            <p>18. It draws us closer to Him</p>
-                            <p>19. It will stand forever</p>
-                            <p>20. It reflects our love for Him</p>
+                            <p>1. Jehovah, 2. Six days, 3. Light, 4. The sky, 5. Dry land and vegetation, 6. Sun, moon, and stars, 7. Sea creatures and birds, 8. Land animals and humans, 9. It was very good, 10. Jesus, 11. He was the firstborn of creation, 12. His power and wisdom, 13. He calls them by name, 14. Through its vastness and complexity, 15. It hangs on nothing, 16. Adam and Eve, 17. Fill the earth and subdue it, 18. It draws us closer to Him, 19. It will stand forever, 20. It reflects our love for Him</p>
                         </div>
                     </div>
                 </details>
@@ -750,27 +591,9 @@
                                 <li>What should we do if our prayers seem unanswered?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. Jehovah</p>
-                            <p>2. Jesus</p>
-                            <p>3. The model prayer</p>
-                            <p>4. Without ceasing</p>
-                            <p>5. God’s Kingdom</p>
-                            <p>6. He hears them</p>
-                            <p>7. To show love</p>
-                            <p>8. Prayed often and alone</p>
-                            <p>9. In solitary places</p>
-                            <p>10. For God’s will to be done</p>
-                            <p>11. Solomon</p>
-                            <p>12. A son</p>
-                            <p>13. Gave her Samuel</p>
-                            <p>14. Prayed three times a day</p>
-                            <p>15. Saved him from the lions</p>
-                            <p>16. They accomplish much</p>
-                            <p>17. God wants heartfelt words</p>
-                            <p>18. Humility</p>
-                            <p>19. It draws us closer to Him</p>
-                            <p>20. Keep praying and trust Jehovah</p>
+                            <p>1. Jehovah, 2. Jesus, 3. The model prayer, 4. Without ceasing, 5. God’s Kingdom, 6. He hears them, 7. To show love, 8. Prayed often and alone, 9. In solitary places, 10. For God’s will to be done, 11. Solomon, 12. A son, 13. Gave her Samuel, 14. Prayed three times a day, 15. Saved him from the lions, 16. They accomplish much, 17. God wants heartfelt words, 18. Humility, 19. It draws us closer to Him, 20. Keep praying and trust Jehovah</p>
                         </div>
                     </div>
                 </details>
@@ -810,27 +633,9 @@
                                 <li>What does paradise show about Jehovah’s love?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. The Garden of Eden</p>
-                            <p>2. They disobeyed Jehovah</p>
-                            <p>3. A seed to crush the serpent</p>
-                            <p>4. Jesus</p>
-                            <p>5. It will be a paradise</p>
-                            <p>6. The meek</p>
-                            <p>7. Death, pain, and tears</p>
-                            <p>8. He would be with him in paradise</p>
-                            <p>9. No more death or pain</p>
-                            <p>10. It will be swallowed up</p>
-                            <p>11. They will be at peace</p>
-                            <p>12. It will be full of knowledge of Jehovah</p>
-                            <p>13. The faithful</p>
-                            <p>14. Fruits of the earth</p>
-                            <p>15. The earth will be filled with obedient humans</p>
-                            <p>16. People will build houses and plant vineyards</p>
-                            <p>17. Jehovah will heal all</p>
-                            <p>18. Learn about Jehovah</p>
-                            <p>19. By exercising faith</p>
-                            <p>20. He wants the best for us</p>
+                            <p>1. The Garden of Eden, 2. They disobeyed Jehovah, 3. A seed to crush the serpent, 4. Jesus, 5. It will be a paradise, 6. The meek, 7. Death, pain, and tears, 8. He would be with him in paradise, 9. No more death or pain, 10. It will be swallowed up, 11. They will be at peace, 12. It will be full of knowledge of Jehovah, 13. The faithful, 14. Fruits of the earth, 15. The earth will be filled with obedient humans, 16. People will build houses and plant vineyards, 17. Jehovah will heal all, 18. Learn about Jehovah, 19. By exercising faith, 20. He wants the best for us</p>
                         </div>
                     </div>
                 </details>
@@ -870,27 +675,9 @@
                                 <li>Why does Jehovah hate idolatry?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. Do not make or worship idols</p>
-                            <p>2. A golden calf</p>
-                            <p>3. Moses destroyed it</p>
-                            <p>4. Gideon</p>
-                            <p>5. Tore down Baal’s altar</p>
-                            <p>6. It is detestable</p>
-                            <p>7. Sun worship</p>
-                            <p>8. A stake</p>
-                            <p>9. Stauros</p>
-                            <p>10. An upright stake</p>
-                            <p>11. Constantine</p>
-                            <p>12. 312 CE</p>
-                            <p>13. It is an image of worship</p>
-                            <p>14. He boasted in Jesus’ sacrifice</p>
-                            <p>15. Worship in spirit and truth</p>
-                            <p>16. It was pagan</p>
-                            <p>17. Worship in spirit and truth</p>
-                            <p>18. They will not inherit God’s Kingdom</p>
-                            <p>19. Worship only Jehovah</p>
-                            <p>20. It dishonors Him</p>
+                            <p>1. Do not make or worship idols, 2. A golden calf, 3. Moses destroyed it, 4. Gideon, 5. Tore down Baal’s altar, 6. It is detestable, 7. Sun worship, 8. A stake, 9. Stauros, 10. An upright stake, 11. Constantine, 12. 312 CE, 13. It is an image of worship, 14. He boasted in Jesus’ sacrifice, 15. Worship in spirit and truth, 16. It was pagan, 17. Worship in spirit and truth, 18. They will not inherit God’s Kingdom, 19. Worship only Jehovah, 20. It dishonors Him</p>
                         </div>
                     </div>
                 </details>
@@ -930,27 +717,9 @@
                                 <li>Why does Satan promote the Trinity?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. No</p>
-                            <p>2. He alone is the Most High</p>
-                            <p>3. The Father is greater than he is</p>
-                            <p>4. He does not know the day or hour</p>
-                            <p>5. Jehovah</p>
-                            <p>6. It is God’s active force</p>
-                            <p>7. No</p>
-                            <p>8. Council of Nicaea</p>
-                            <p>9. 325 CE</p>
-                            <p>10. Jehovah is the only true God</p>
-                            <p>11. To blend pagan beliefs</p>
-                            <p>12. They lead to destruction</p>
-                            <p>13. False teachers</p>
-                            <p>14. It hides His name</p>
-                            <p>15. Worship in spirit and truth</p>
-                            <p>16. It misrepresents Jehovah</p>
-                            <p>17. There is no other</p>
-                            <p>18. Know the truth</p>
-                            <p>19. Jehovah is one</p>
-                            <p>20. To confuse people</p>
+                            <p>1. No, 2. He alone is the Most High, 3. The Father is greater than he is, 4. He does not know the day or hour, 5. Jehovah, 6. It is God’s active force, 7. No, 8. Council of Nicaea, 9. 325 CE, 10. Jehovah is the only true God, 11. To blend pagan beliefs, 12. They lead to destruction, 13. False teachers, 14. It hides His name, 15. Worship in spirit and truth, 16. It misrepresents Jehovah, 17. There is no other, 18. Know the truth, 19. Jehovah is one, 20. To confuse people</p>
                         </div>
                     </div>
                 </details>
@@ -990,27 +759,9 @@
                                 <li>What should we teach about the dead?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. No</p>
-                            <p>2. They are unconscious</p>
-                            <p>3. Sheol</p>
-                            <p>4. The common grave</p>
-                            <p>5. Hades</p>
-                            <p>6. The common grave</p>
-                            <p>7. Death</p>
-                            <p>8. It can be destroyed</p>
-                            <p>9. Early church leaders</p>
-                            <p>10. Greek and Roman mythology</p>
-                            <p>11. It never came into His heart</p>
-                            <p>12. A change in spiritual status</p>
-                            <p>13. It portrays Him as cruel</p>
-                            <p>14. A place of destruction</p>
-                            <p>15. They were burned up</p>
-                            <p>16. They will be destroyed</p>
-                            <p>17. To slander Jehovah</p>
-                            <p>18. Resurrection and paradise</p>
-                            <p>19. He is love</p>
-                            <p>20. They sleep in death</p>
+                            <p>1. No, 2. They are unconscious, 3. Sheol, 4. The common grave, 5. Hades, 6. The common grave, 7. Death, 8. It can be destroyed, 9. Early church leaders, 10. Greek and Roman mythology, 11. It never came into His heart, 12. A change in spiritual status, 13. It portrays Him as cruel, 14. A place of destruction, 15. They were burned up, 16. They will be destroyed, 17. To slander Jehovah, 18. Resurrection and paradise, 19. He is love, 20. They sleep in death</p>
                         </div>
                     </div>
                 </details>
@@ -1050,27 +801,9 @@
                                 <li>Why is the resurrection hope better than immortality?</li>
                             </ol>
                         </div>
+                        <button class="print-btn" onclick="printWorksheet(this)">Print Worksheet</button>
                         <div class="answers">
-                            <p>1. No</p>
-                            <p>2. It will die</p>
-                            <p>3. He would return to dust</p>
-                            <p>4. A living creature</p>
-                            <p>5. Yes</p>
-                            <p>6. They know nothing</p>
-                            <p>7. Greek philosophy</p>
-                            <p>8. Plato</p>
-                            <p>9. The resurrection</p>
-                            <p>10. They will rise</p>
-                            <p>11. Jehovah</p>
-                            <p>12. The spirit returns to God</p>
-                            <p>13. It denies the resurrection</p>
-                            <p>14. The dead will rise</p>
-                            <p>15. They will perish</p>
-                            <p>16. To deny the resurrection</p>
-                            <p>17. Everlasting life</p>
-                            <p>18. Through faith in Jesus</p>
-                            <p>19. He is the resurrection and the life</p>
-                            <p>20. It relies on Jehovah’s power</p>
+                            <p>1. No, 2. It will die, 3. He would return to dust, 4. A living creature, 5. Yes, 6. They know nothing, 7. Greek philosophy, 8. Plato, 9. The resurrection, 10. They will rise, 11. Jehovah, 12. The spirit returns to God, 13. It denies the resurrection, 14. The dead will rise, 15. They will perish, 16. To deny the resurrection, 17. Everlasting life, 18. Through faith in Jesus, 19. He is the resurrection and the life, 20. It relies on Jehovah’s power</p>
                         </div>
                     </div>
                 </details>
@@ -1081,5 +814,86 @@
     <footer>
         <p>© 2025 Just Wise Love</p>
     </footer>
+
+    <script>
+        function printWorksheet(button) {
+            // Get the parent item-content div
+            const itemContent = button.closest('.item-content');
+            const item = itemContent.closest('.item');
+
+            // Create a new window for printing
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Print Worksheet</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 20px;
+                            color: #000;
+                        }
+                        .worksheet-title {
+                            font-family: 'Audiowide', sans-serif;
+                            font-size: 24px;
+                            color: #000;
+                            text-align: center;
+                            margin: 10px 0;
+                        }
+                        .worksheet-intro {
+                            font-style: italic;
+                            text-align: center;
+                            margin-bottom: 20px;
+                        }
+                        .questions {
+                            margin: 20px 0;
+                            text-align: left;
+                            max-width: 600px;
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                        .questions ol {
+                            padding-left: 20px;
+                        }
+                        .questions li {
+                            margin-bottom: 10px;
+                            text-align: left;
+                        }
+                        .scripture {
+                            background-color: transparent;
+                            padding: 10px;
+                            margin-top: 10px;
+                            border-radius: 5px;
+                            text-align: center;
+                            font-style: italic;
+                        }
+                        .answers {
+                            margin-top: 20px;
+                            padding: 10px;
+                            border-top: 1px solid #000;
+                            text-align: center;
+                            transform: rotate(180deg);
+                            -webkit-transform: rotate(180deg);
+                            -moz-transform: rotate(180deg);
+                            font-size: 12px;
+                            color: #000;
+                        }
+                        .answers p {
+                            margin: 5px 0;
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${itemContent.innerHTML.replace(/<button class="print-btn".*?button>/, '')}
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+        }
+    </script>
 </body>
 </html>
