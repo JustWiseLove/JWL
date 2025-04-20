@@ -85,6 +85,7 @@
             padding: 15px 30px;
             font-size: 18px;
             cursor: pointer;
+            z-index: 10; /* Ensure button is above canvas */
         }
 
         #controls {
@@ -118,6 +119,7 @@
             color: #FFFFFF;
             width: 80%;
             max-width: 300px;
+            z-index: 10; /* Ensure game over screen is above canvas */
         }
 
         #scoreDisplay {
@@ -160,7 +162,7 @@
             }
             #gameCanvas {
                 max-width: 720px;
-                height: 540px; /* Changed from 1080px to 540px (halved) */
+                height: 540px; /* Halved from 1080px */
             }
             .logo {
                 font-size: 48px;
@@ -179,6 +181,7 @@
             #startButton {
                 padding: 20px 40px;
                 font-size: 24px;
+                z-index: 10;
             }
             #leftButton, #rightButton {
                 padding: 15px;
@@ -188,6 +191,7 @@
             #gameOver {
                 padding: 30px;
                 max-width: 600px;
+                z-index: 10;
             }
             #scoreDisplay {
                 font-size: 24px;
@@ -212,7 +216,7 @@
             }
             #gameCanvas {
                 max-width: 1080px;
-                height: 567px; /* Changed from 1134px to 567px (halved) */
+                height: 567px; /* Halved from 1134px */
             }
             .logo {
                 font-size: 48px;
@@ -231,6 +235,7 @@
             #startButton {
                 padding: 25px 50px;
                 font-size: 30px;
+                z-index: 10;
             }
             #leftButton, #rightButton {
                 padding: 20px;
@@ -240,6 +245,7 @@
             #gameOver {
                 padding: 40px;
                 max-width: 900px;
+                z-index: 10;
             }
             #scoreDisplay {
                 font-size: 28px;
@@ -299,12 +305,12 @@
         // Set canvas size
         function setCanvasSize() {
             let width = 360, height = 540;
-/movies            if (window.innerWidth >= 1024) {
+            if (window.innerWidth >= 1024) {
                 width = 1080;
-                height = 567; // Changed from 1134px to 567px (halved)
+                height = 567; // Halved from 1134px
             } else if (window.innerWidth >= 768) {
                 width = 720;
-                height = 540; // Changed from 1080px to 540px (halved)
+                height = 540; // Halved from 1080px
             }
             canvas.width = width;
             canvas.height = height;
@@ -435,9 +441,7 @@
                             player.stuck = true;
                             player.stuckObstacle = obstacle;
                         }
-                    } else if (obstacle.type === '
-
-gold') {
+                    } else if (obstacle.type === 'gold') {
                         if (
                             player.x + player.width > obstacle.x - obstacle.width / 2 &&
                             player.x < obstacle.x + obstacle.width / 2 &&
@@ -499,7 +503,8 @@ gold') {
 
         // Start game
         function startGame() {
-            console.log('Starting game...');
+            console.log('startGame: Initializing game...');
+            setCanvasSize(); // Ensure canvas size is correct before starting
             gameRunning = true;
             startButton.classList.add('hidden');
             gameOverScreen.classList.add('hidden');
@@ -519,7 +524,7 @@ gold') {
             obstaclesPerSpawn = 1;
             lastObstacleCountIncrease = Date.now();
             createObstacle(); // Force initial obstacle spawn
-            console.log(`Player initialized at x: ${player.x}, y: ${player.y}`);
+            console.log(`startGame: Player at x: ${player.x}, y: ${player.y}, canvas: ${canvas.width}x${canvas.height}`);
         }
 
         // Button states
@@ -528,7 +533,7 @@ gold') {
 
         // Event listeners for buttons
         startButton.addEventListener('click', () => {
-            console.log('Start button clicked');
+            console.log('Start button clicked, calling startGame');
             startGame();
         });
 
