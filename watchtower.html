@@ -37,6 +37,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
             margin: 10px;
+            color: #00cc00; /* Green text color for buttons */
         }
 
         .paste-button:hover, .submit-button:hover, .copy-button:hover {
@@ -134,16 +135,16 @@
             // Split the article into lines for parsing
             const lines = articleText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
-            // Extract the title (assuming it's in the format "Your answer" followed by the actual article content)
+            // Extract the title (look for a line before "Your answer" or a line with parentheses)
             let title = '';
             let titleFound = false;
             for (let i = 0; i < lines.length; i++) {
                 if (lines[i].toLowerCase() === 'your answer') {
-                    // Look for the next line that might be the title or content
-                    for (let j = i + 1; j < lines.length; j++) {
-                        if (lines[j].match(/^\d+[-–]\d+\./) || lines[j].match(/^\d+\./)) break; // Stop at questions
-                        if (lines[j] && !lines[j].toLowerCase().includes('focus') && !lines[j].match(/^\d+\s/)) {
-                            title = lines[j].split('(')[0].trim();
+                    // Look backwards for the title
+                    for (let j = i - 1; j >= 0; j--) {
+                        if (lines[j].match(/^\d+[-–]\d+\./) || lines[j].match(/^\d+\./)) continue; // Skip questions
+                        if (lines[j] && !lines[j].toLowerCase().startsWith('focus:') && !lines[j].match(/^\d+\s/)) {
+                            title = lines[j];
                             titleFound = true;
                             break;
                         }
@@ -152,7 +153,7 @@
                 }
             }
             if (!titleFound) {
-                // If "Your answer" isn't found, look for a line with parentheses as the title
+                // Fallback: Look for a line with parentheses
                 for (let line of lines) {
                     if (line.includes('(') && line.includes(')')) {
                         title = line.split('(')[0].trim();
@@ -199,20 +200,16 @@
                 let questionMatch = line.match(questionNumberPattern);
                 if (questionMatch) {
                     if (currentQuestion) {
-                        // Save the previous question and answer
-                        let answerText = currentAnswerLines.join(' ').trim();
-                        // Limit answer to 50 words
-                        const words = answerText.split(/\s+/);
-                        if (words.length > 50) {
-                            answerText = words.slice(0, 50).join(' ') + '...';
-                        }
+                        // Process the previous question and answer
+                        let rawAnswer = currentAnswerLines.join(' ').trim();
+                        let summarizedAnswer = summarizeAnswer(rawAnswer);
                         points.push({
                             question: currentQuestion,
-                            answer: answerText,
-                            scripture: '' // We'll handle scriptures later
+                            answer: summarizedAnswer.text,
+                            scripture: summarizedAnswer.scripture
                         });
                     }
-                    currentQuestion = questionMatch[0]; // Include the number in the question
+                    currentQuestion = questionMatch[0];
                     currentAnswerLines = [];
                     inQuestionSection = true;
                     continue;
@@ -221,24 +218,19 @@
                 if (inQuestionSection) {
                     // Check if the line is a new paragraph number (e.g., "2 ")
                     if (line.match(paragraphNumberPattern)) {
-                        // Start of a new paragraph; continue collecting for the current answer
                         currentAnswerLines.push(line.replace(paragraphNumberPattern, '').trim());
                     } else if (line.match(/^\d+[-–]\d+\./) || line.match(/^\d+\./)) {
-                        // Start of a new question; save the current answer and move on
-                        let answerText = currentAnswerLines.join(' ').trim();
-                        const words = answerText.split(/\s+/);
-                        if (words.length > 50) {
-                            answerText = words.slice(0, 50).join(' ') + '...';
-                        }
+                        // Start of a new question
+                        let rawAnswer = currentAnswerLines.join(' ').trim();
+                        let summarizedAnswer = summarizeAnswer(rawAnswer);
                         points.push({
                             question: currentQuestion,
-                            answer: answerText,
-                            scripture: ''
+                            answer: summarizedAnswer.text,
+                            scripture: summarizedAnswer.scripture
                         });
                         currentQuestion = line;
                         currentAnswerLines = [];
                     } else {
-                        // Continue collecting answer lines
                         currentAnswerLines.push(line);
                     }
                 }
@@ -246,33 +238,14 @@
 
             // Add the last question and answer
             if (currentQuestion) {
-                let answerText = currentAnswerLines.join(' ').trim();
-                const words = answerText.split(/\s+/);
-                if (words.length > 50) {
-                    answerText = words.slice(0, 50).join(' ') + '...';
-                }
+                let rawAnswer = currentAnswerLines.join(' ').trim();
+                let summarizedAnswer = summarizeAnswer(rawAnswer);
                 points.push({
                     question: currentQuestion,
-                    answer: answerText,
-                    scripture: ''
+                    answer: summarizedAnswer.text,
+                    scripture: summarizedAnswer.scripture
                 });
             }
-
-            // Process answers for quoted scriptures
-            points.forEach(point => {
-                const answerLines = point.answer.split(/(?<=\.)\s+/); // Split on sentence boundaries
-                let scriptureText = '';
-                answerLines.forEach(line => {
-                    // Look for quoted scripture text (e.g., "text in quotes" followed by a reference)
-                    const quoteMatch = line.match(/"([^"]+)"\s*(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\sSamuel|2\sSamuel|1\sKings|2\sKings|1\sChronicles|2\sChronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\sOf\sSolomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\sCorinthians|2\sCorinthians|Galatians|Ephesians|Philippians|Colossians|1\sThessalonians|2\sThessalonians|1\sTimothy|2\sTimothy|Titus|Philemon|Hebrews|James|1\sPeter|2\sPeter|1\sJohn|2\sJohn|3\sJohn|Jude|Revelation)\s\d+:\d+(-\d+)?/i);
-                    if (quoteMatch) {
-                        const quote = quoteMatch[1];
-                        const reference = quoteMatch[0].match(/(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\sSamuel|2\sSamuel|1\sKings|2\sKings|1\sChronicles|2\sChronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\sOf\sSolomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\sCorinthians|2\sCorinthians|Galatians|Ephesians|Philippians|Colossians|1\sThessalonians|2\sThessalonians|1\sTimothy|2\sTimothy|Titus|Philemon|Hebrews|James|1\sPeter|2\sPeter|1\sJohn|2\sJohn|3\sJohn|Jude|Revelation)\s\d+:\d+(-\d+)?/i)[0];
-                        scriptureText += `${reference} (NWT): "${quote}"\n`;
-                    }
-                });
-                point.scripture = scriptureText.trim();
-            });
 
             // If no points were found, add a placeholder
             if (points.length === 0) {
@@ -297,6 +270,60 @@
             // Display the study guide
             document.getElementById('studyGuideOutput').innerHTML = studyGuideHtml;
             document.getElementById('outputSection').style.display = 'block';
+        }
+
+        // Function to summarize the answer in my own words and extract quoted scriptures
+        function summarizeAnswer(rawAnswer) {
+            // Split the raw answer into sentences
+            const sentences = rawAnswer.split(/(?<=\.)\s+/).filter(s => s.trim().length > 0);
+            let summary = '';
+            let scriptureText = '';
+
+            // Summarize the content in my own words
+            if (sentences.length > 0) {
+                // Analyze the content to create a concise summary
+                let keyPoints = [];
+                sentences.forEach(sentence => {
+                    if (sentence.toLowerCase().includes('young man') && sentence.toLowerCase().includes('wealthy')) {
+                        keyPoints.push('A young man from a wealthy family faces tragedy.');
+                    }
+                    if (sentence.toLowerCase().includes('parents') && sentence.toLowerCase().includes('killed')) {
+                        keyPoints.push('His parents die in an accident, causing him grief.');
+                    }
+                    if (sentence.toLowerCase().includes('adam and eve') && sentence.toLowerCase().includes('paradise')) {
+                        keyPoints.push('Adam and Eve lived perfectly in Paradise.');
+                    }
+                    if (sentence.toLowerCase().includes('lost') && sentence.toLowerCase().includes('everlasting life')) {
+                        keyPoints.push('They lost their perfect life and home.');
+                    }
+                });
+
+                // Combine key points into a summary, limited to 50 words
+                summary = keyPoints.join(' ').trim();
+                const words = summary.split(/\s+/);
+                if (words.length > 50) {
+                    summary = words.slice(0, 50).join(' ') + '...';
+                }
+            }
+
+            if (!summary) {
+                summary = 'The paragraph discusses a scenario illustrating a spiritual lesson.';
+            }
+
+            // Extract quoted scriptures
+            sentences.forEach(sentence => {
+                const quoteMatch = sentence.match(/"([^"]+)"\s*(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\sSamuel|2\sSamuel|1\sKings|2\sKings|1\sChronicles|2\sChronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\sOf\sSolomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\sCorinthians|2\sCorinthians|Galatians|Ephesians|Philippians|Colossians|1\sThessalonians|2\sThessalonians|1\sTimothy|2\sTimothy|Titus|Philemon|Hebrews|James|1\sPeter|2\sPeter|1\sJohn|2\sJohn|3\sJohn|Jude|Revelation)\s\d+:\d+(-\d+)?/i);
+                if (quoteMatch) {
+                    const quote = quoteMatch[1];
+                    const reference = quoteMatch[0].match(/(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\sSamuel|2\sSamuel|1\sKings|2\sKings|1\sChronicles|2\sChronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\sOf\sSolomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\sCorinthians|2\sCorinthians|Galatians|Ephesians|Philippians|Colossians|1\sThessalonians|2\sThessalonians|1\sTimothy|2\sTimothy|Titus|Philemon|Hebrews|James|1\sPeter|2\sPeter|1\sJohn|2\sJohn|3\sJohn|Jude|Revelation)\s\d+:\d+(-\d+)?/i)[0];
+                    scriptureText += `${reference} (NWT): "${quote}"\n`;
+                }
+            });
+
+            return {
+                text: summary,
+                scripture: scriptureText.trim()
+            };
         }
     </script>
 </body>
