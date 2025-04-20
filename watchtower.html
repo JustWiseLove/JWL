@@ -199,7 +199,7 @@
     </section>
 
     <footer>
-        <p>© 2025 CODEXEDOC</p>
+        <p>© 2025 Just Wise Love</p>
     </footer>
 
     <script>
@@ -238,19 +238,13 @@
         }
 
         function generateSummary(articleText) {
-            // Split the article into paragraphs
             const paragraphs = articleText.split(/\n\s*\n/).filter(p => p.trim());
-
-            // Extract key themes by looking for recurring topics or emphasized points
             const themes = [];
             const scriptureRegex = /\b[A-Za-z]+\s+\d+:\d+\b/g;
-            const introPara = paragraphs[0] || '';
+            const introPara = paragraphs.find(p => p.match(/^\d+\./)) || '';
             const concludingPara = paragraphs[paragraphs.length - 1] || '';
 
-            // Look for scriptures as they often highlight key points
             const scriptures = articleText.match(scriptureRegex) || [];
-
-            // Basic theme detection: look for repeated words or phrases
             const words = articleText.toLowerCase().split(/\W+/);
             const wordFreq = {};
             words.forEach(word => {
@@ -264,7 +258,6 @@
                 .slice(0, 3)
                 .join(', ');
 
-            // Construct a summary
             let summary = 'This article focuses on key spiritual lessons and encouragement for Jehovah’s Witnesses. ';
             if (introPara) {
                 summary += `It begins by introducing ${introPara.slice(0, 100).replace(/\n/g, ' ')}... `;
@@ -283,61 +276,69 @@
         }
 
         function extractNumericalQuestions(articleText) {
-            // Regex to find numerical questions (e.g., "1. What does this teach us?")
-            const questionRegex = /^\d+\.\s*.*?\?/gm;
-            const questions = articleText.match(questionRegex) || [];
-
-            // For each question, find the corresponding paragraph and generate an answer
-            const paragraphs = articleText.split(/\n\s*\n/).filter(p => p.trim());
+            // Split the article into lines for better question detection
+            const lines = articleText.split('\n').filter(line => line.trim());
+            const questionRegex = /^\d+\.\s*.*?$/; // Match lines starting with a number and period
             const results = [];
 
-            questions.forEach((question, index) => {
-                // Find the paragraph associated with the question (usually the preceding paragraph)
-                const questionNumber = parseInt(question.match(/^\d+/)[0]);
-                let associatedPara = '';
-                for (let i = 0; i < paragraphs.length; i++) {
-                    if (paragraphs[i].includes(`${questionNumber}.`)) {
-                        associatedPara = paragraphs[i - 1] || paragraphs[i];
-                        break;
+            // Store questions and their associated paragraphs
+            let currentQuestion = null;
+            let associatedPara = '';
+
+            lines.forEach((line, index) => {
+                if (questionRegex.test(line)) {
+                    // If we already have a question, process it before starting a new one
+                    if (currentQuestion) {
+                        const answer = generateAnswer(associatedPara, currentQuestion);
+                        results.push({ question: currentQuestion, answer });
                     }
+                    // Start a new question
+                    currentQuestion = line.trim();
+                    associatedPara = ''; // Reset the associated paragraph
+                } else if (currentQuestion) {
+                    // Accumulate lines into the associated paragraph until the next question
+                    associatedPara += (associatedPara ? ' ' : '') + line.trim();
                 }
-
-                // Generate an answer based on the paragraph content
-                let answer = `Based on the article, this paragraph highlights key points. `;
-                const scriptureRegex = /\b[A-Za-z]+\s+\d+:\d+\b/;
-                const scriptureMatch = associatedPara.match(scriptureRegex);
-
-                if (scriptureMatch) {
-                    const scripture = scriptureMatch[0];
-                    // Use NWT 2013 revision for scripture quotes
-                    const scriptureText = getScriptureText(scripture);
-                    answer += `It references ${scripture}, which states: "${scriptureText}". This teaches us the importance of applying the principle in our lives. `;
-                } else {
-                    answer += `The paragraph emphasizes spiritual lessons, encouraging us to reflect on our faith and actions. `;
-                }
-
-                // Extract key sentences from the paragraph
-                const sentences = associatedPara.split(/(?<=\.)\s+/).filter(s => s.trim());
-                if (sentences.length > 0) {
-                    answer += `Specifically, it mentions ${sentences[0].slice(0, 100).replace(/\n/g, ' ')}...`;
-                }
-
-                results.push({ question, answer });
             });
+
+            // Process the last question
+            if (currentQuestion) {
+                const answer = generateAnswer(associatedPara, currentQuestion);
+                results.push({ question: currentQuestion, answer });
+            }
 
             return results;
         }
 
+        function generateAnswer(associatedPara, question) {
+            let answer = 'Based on the article, this paragraph highlights key points. ';
+            const scriptureRegex = /\b[A-Za-z]+\s+\d+:\d+\b/;
+            const scriptureMatch = associatedPara.match(scriptureRegex);
+
+            if (scriptureMatch) {
+                const scripture = scriptureMatch[0];
+                const scriptureText = getScriptureText(scripture);
+                answer += `It references ${scripture}, which states: "${scriptureText}". This teaches us the importance of applying the principle in our lives. `;
+            } else {
+                answer += `The paragraph emphasizes spiritual lessons, encouraging us to reflect on our faith and actions. `;
+            }
+
+            const sentences = associatedPara.split(/(?<=\.)\s+/).filter(s => s.trim());
+            if (sentences.length > 0) {
+                answer += `Specifically, it mentions ${sentences[0].slice(0, 100).replace(/\n/g, ' ')}...`;
+            }
+
+            return answer;
+        }
+
         function extractSummaryQuestions(articleText) {
-            // Summary questions are typically at the end of the article, often under a heading like "REVIEW"
             const paragraphs = articleText.split(/\n\s*\n/).filter(p => p.trim());
-            const summarySectionIndex = paragraphs.findIndex(p => p.toLowerCase().includes('review') || p.toLowerCase().includes('summary'));
+            const summarySectionIndex = paragraphs.findIndex(p => p.toLowerCase().includes('how would you answer') || p.toLowerCase().includes('review') || p.toLowerCase().includes('summary'));
             const summaryQuestions = [];
 
             if (summarySectionIndex !== -1) {
-                // Extract questions from the summary section
                 const summaryParas = paragraphs.slice(summarySectionIndex + 1);
-                const questionRegex = /^[^\d].*?\?/; // Questions not starting with a number
+                const questionRegex = /^[^\d].*?\?/;
                 summaryParas.forEach(para => {
                     if (questionRegex.test(para)) {
                         let answer = 'This question encourages deeper reflection on the article’s themes. ';
@@ -368,14 +369,15 @@
         }
 
         function getScriptureText(scriptureRef) {
-            // Simulate fetching scripture text from NWT 2013 revision
-            // In a real application, this would involve an API call to JW.ORG or a local database
-            // For demonstration, we'll provide a few common scriptures as examples
             const scriptureMap = {
-                'Matthew 6:10': 'Let your Kingdom come. Let your will take place, as in heaven, also on earth.',
-                '1 Corinthians 14:8': 'For if the trumpet sounds an indistinct call, who will get ready for battle?',
-                'Genesis 31:20': 'So Jacob outwitted Laban the Syrian by not telling him that he was running away.',
-                'Psalm 12:7': 'You will guard them, O Jehovah; You will protect each one from this generation forever.'
+                'John 3:16': 'For God loved the world so much that he gave his only-begotten Son, so that everyone exercising faith in him might not be destroyed but have everlasting life.',
+                'Romans 5:12': 'That is why, just as through one man sin entered into the world and death through sin, and so death spread to all men because they had all sinned—',
+                'Psalm 49:7': 'None of them can ever redeem a brother, Nor give to God a ransom for him.',
+                'Psalm 49:8': '(For the redemption price of their life is so precious That it is always out of reach);',
+                'Romans 5:10': 'For if when we were enemies we became reconciled to God through the death of his Son, how much more we will be saved by his life, now that we have become reconciled.',
+                'Matthew 20:28': 'Just as the Son of man came, not to be ministered to, but to minister and to give his life as a ransom in exchange for many.',
+                'Hebrews 9:28': 'So also the Christ was offered once for all time to bear the sins of many; and the second time he appears it will be apart from sin, and he will be seen by those earnestly looking for him for their salvation.',
+                '1 Peter 2:22': 'He committed no sin, nor was deception found in his mouth.'
             };
 
             return scriptureMap[scriptureRef] || 'Scripture text not available in this demo. Please refer to the NWT (2013) on JW.ORG for the full text.';
