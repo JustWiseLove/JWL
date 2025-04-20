@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
+            max-width: 800px;
             margin: 20px auto;
             padding: 0 10px;
             text-align: center;
@@ -18,7 +18,7 @@
         .search-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin: 20px 0;
         }
         #searchInput {
             width: 70%;
@@ -39,19 +39,26 @@
         button:hover {
             background: #0056b3;
         }
+        #resultsFrame {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
         p {
             color: #555;
-            margin-top: 10px;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
     <h1>Search JW.ORG for Bible Answers</h1>
-    <p>Type your Bible question or topic to search JW.ORG’s content.</p>
+    <p>Type your Bible question or topic to view results from JW.ORG.</p>
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="e.g., What does the Bible say about suffering?" maxlength="200" required>
         <button onclick="searchJwOrg()">Search</button>
     </div>
+    <iframe id="resultsFrame" src="https://www.jw.org/en/search/" title="JW.ORG Search Results"></iframe>
 
     <script>
         function searchJwOrg() {
@@ -65,8 +72,8 @@
             const query = encodeURIComponent(input);
             const searchUrl = `https://www.jw.org/en/search/?q=${query}`;
 
-            // Redirect to JW.ORG search results
-            window.open(searchUrl, '_blank');
+            // Update iframe source to load search results
+            document.getElementById('resultsFrame').src = searchUrl;
         }
 
         // Allow pressing Enter to search
