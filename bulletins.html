@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin - Just Wise Love</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
+    <style>
+        .input-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        input, textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #333333;
+        }
+        .search-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        #searchInput {
+            width: 100%;
+        }
+        .highlight {
+            background-color: #f0f0f0; /* Pale gray for highlights */
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .article {
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        .article h2 {
+            color: #000000; /* Black for article titles */
+        }
+        .article .notes-preview {
+            color: #333333; /* Dark gray for article text */
+        }
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .edit-link, .open-link {
+            cursor: pointer;
+            color: #666666; /* Medium gray for links */
+            text-decoration: underline;
+        }
+        .edit-link:hover,
+        .open-link:hover {
+            color: #333333; /* Dark gray on hover */
+        }
+        .notes-preview {
+            overflow: hidden;
+        }
+        .order-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .order-input {
+            width: 60px;
+            padding: 5px;
+        }
+        .btn-study#saveBtn {
+            background-color: #e0e0e0; /* Light gray for button */
+            color: #000000; /* Black text */
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-study#saveBtn:hover {
+            background-color: #d0d0d0; /* Slightly darker gray on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1><a href="index.html">BULLETIN</a></h1>
+        </div>
+    </header>
+
+    <div class="input-section">
+        <input type="text" id="titleInput" placeholder="Enter article title">
+        <input type="number" id="orderInput" placeholder="Enter article order" min="0" step="1">
+        <textarea id="notesInput" rows="15" placeholder="Enter your notes"></textarea>
+        <button id="saveBtn" class="btn-study" onclick="saveOrUpdateArticle()">Save Article</button>
+    </div>
+    
+    <div class="search-section">
+        <input type="text" id="searchInput" placeholder="Search articles..." onkeyup="searchArticles()">
+    </div>
+    
+    <div id="articlesContainer"></div>
+
+    <footer>
+        <p>© 2025 Just Wise Love</p>
+    </footer>
+
+    <script>
+        let articles = JSON.parse(localStorage.getItem('articles')) || [];
+        let editingArticleId = null;
+        let openArticles = new Set();
+        displayArticles(articles);
+
+        function saveOrUpdateArticle() {
+            const title = document.getElementById('titleInput').value;
+            const notes = document.getElementById('notesInput').value;
+            const order = parseInt(document.getElementById('orderInput').value) || 0;
+            const saveBtn = document.getElementById('saveBtn');
+            
+            if (title && notes) {
+                if (editingArticleId) {
+                    const articleIndex = articles.findIndex(a => a.id === editingArticleId);
+                    articles[articleIndex] = {
+                        ...articles[articleIndex],
+                        title: title,
+                        notes: notes,
+                        order: order,
+                        date: new Date().toLocaleString()
+                    };
+                    editingArticleId = null;
+                    saveBtn.textContent = 'Save Article';
+                } else {
+                    const article = {
+                        id: Date.now(),
+                        title: title,
+                        notes: notes,
+                        order: order,
+                        date: new Date().toLocaleString()
+                    };
+                    articles.push(article);
+                }
+                
+                localStorage.setItem('articles', JSON.stringify(articles));
+                document.getElementById('titleInput').value = '';
+                document.getElementById('orderInput').value = '';
+                document.getElementById('notesInput').value = '';
+                displayArticles(articles);
+            }
+        }
+
+        function editArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (article) {
+                document.getElementById('titleInput').value = article.title;
+                document.getElementById('orderInput').value = article.order;
+                document.getElementById('notesInput').value = article.notes;
+                editingArticleId = id;
+                const saveBtn = document.getElementById('saveBtn');
+                saveBtn.textContent = 'Update Article';
+            }
+        }
+
+        function updateOrder(id, newOrder) {
+            const articleIndex = articles.findIndex(a => a.id === id);
+            if (articleIndex !== -1) {
+                articles[articleIndex].order = parseInt(newOrder) || 0;
+                localStorage.setItem('articles', JSON.stringify(articles));
+                displayArticles(articles);
+            }
+        }
+
+        function toggleArticle(id) {
+            if (openArticles.has(id)) {
+                openArticles.delete(id);
+            } else {
+                openArticles.add(id);
+            }
+            displayArticles(articles);
+        }
+
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        function formatNotes(notes) {
+            return notes.replace(/\n/g, '<br>');
+        }
+
+        function getPreviewText(notes, searchTerm, isOpen) {
+            const maxPreviewLength = 85;
+            const contextLength = 30;
+
+            let formattedNotes = formatNotes(notes);
+
+            if (isOpen) {
+                return highlightText(formattedNotes, searchTerm);
+            }
+
+            if (searchTerm) {
+                const lowerNotes = notes.toLowerCase();
+                const lowerSearch = searchTerm.toLowerCase();
+                const index = lowerNotes.indexOf(lowerSearch);
+                if (index !== -1) {
+                    const start = Math.max(0, index - contextLength);
+                    const end = Math.min(notes.length, index + searchTerm.length + contextLength);
+                    let preview = notes.substring(start, end);
+                    if (start > 0) preview = '...' + preview;
+                    if (end < notes.length) preview += '...';
+                    return highlightText(formatNotes(preview), searchTerm);
+                }
+            }
+
+            return notes.length > maxPreviewLength 
+                ? highlightText(formatNotes(notes.substring(0, maxPreviewLength)) + '...', searchTerm) 
+                : highlightText(formattedNotes, searchTerm);
+        }
+
+        function displayArticles(articlesToShow) {
+            const container = document.getElementById('articlesContainer');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            container.innerHTML = '';
+            
+            const sortedArticles = [...articlesToShow].sort((a, b) => {
+                if (a.order === b.order) {
+                    return a.title.localeCompare(b.title);
+                }
+                return a.order - b.order;
+            });
+            
+            sortedArticles.forEach(article => {
+                const isOpen = openArticles.has(article.id);
+                const articleDiv = document.createElement('div');
+                articleDiv.className = 'article';
+                const highlightedTitle = highlightText(article.title, searchTerm);
+                const previewNotes = getPreviewText(article.notes, searchTerm, isOpen);
+                const showOpenLink = article.notes.length > 85 || (searchTerm && !isOpen);
+
+                articleDiv.innerHTML = `
+                    <h2>${highlightedTitle}</h2>
+                    <p class="notes-preview">${previewNotes}</p>
+                    <div class="article-footer">
+                        <small>Created: ${article.date}</small>
+                        <div class="order-controls">
+                            <input type="number" class="order-input" value="${article.order || 0}" 
+                                onchange="updateOrder(${article.id}, this.value)">
+                            ${showOpenLink ? `<span class="open-link" onclick="toggleArticle(${article.id})">${isOpen ? 'Close' : 'Open'}</span>` : ''}
+                            <span class="edit-link" onclick="editArticle(${article.id})">Edit</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(articleDiv);
+            });
+        }
+
+        function searchArticles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredArticles = articles.filter(article => 
+                article.title.toLowerCase().includes(searchTerm) || 
+                article.notes.toLowerCase().includes(searchTerm)
+            );
+            displayArticles(filteredArticles);
+        }
+    </script>
+</body>
+</html>
