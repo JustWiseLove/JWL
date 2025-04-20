@@ -205,6 +205,7 @@ details[open] .item-content {
     display: inline-block;
     justify-content: center;
     text-align: center;
+    font-style: italic;
 }
 
 .scripture p {
