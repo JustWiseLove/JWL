@@ -3,429 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watchtower Study Guide Generator</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <title>WATCHTOWER Study Assistant</title>
     <style>
-        /* Additional styles specific to watchtower.html */
-        .input-section {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #e0e0e0; /* Match homeschool.html background */
+            color: #333333; /* Consistent dark gray text */
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #e0e0e0; /* Match background */
+            padding: 10px 0;
             text-align: center;
-            margin: 20px 0;
         }
 
-        .input-section textarea {
-            width: 80%;
-            max-width: 800px;
-            height: 200px;
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #333;
-            border-radius: 5px;
-            background-color: #e0e0e0;
-            color: #333;
-            resize: none;
-            margin: 10px 0;
+        header .logo {
+            margin: 0;
         }
 
-        .paste-button, .submit-button, .copy-button {
-            padding: 10px 20px;
-            font-size: 16px;
+        header .logo a {
             font-family: 'Audiowide', sans-serif;
-            background-color: #d3d3d3;
-            border: none;
+            font-size: 24px;
+            color: #333333; /* Dark gray for header text */
+            text-decoration: none;
+        }
+
+        .main-section {
+            background-color: #e0e0e0; /* Match body background */
+            padding: 50px 20px;
+            text-align: center;
+            color: #333333;
+        }
+
+        .article-editor {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            background-color: #e0e0e0; /* Match background */
+            padding: 5px;
             border-radius: 5px;
+        }
+
+        .article-editor textarea {
+            width: 100%;
+            height: 400px;
+            background-color: #e0e0e0; /* Match background */
+            color: #333333; /* Dark gray text */
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            padding: 10px 15px;
+            border: 2px solid #666666; /* Grayscale border */
+            border-radius: 5px;
+            resize: vertical;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+
+        .article-editor textarea::placeholder {
+            color: #999999; /* Grayscale placeholder */
+        }
+
+        .buttons {
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            max-width: 600px;
+        }
+
+        .submit-btn {
+            background-color: #d0d0d0; /* Light gray button */
+            color: #333333; /* Dark gray text */
+            border: 2px solid #d0d0d0;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin: 10px;
-            color: #00cc00; /* Green text color for buttons */
         }
 
-        .paste-button:hover, .submit-button:hover, .copy-button:hover {
-            background-color: #b0b0b0;
+        .submit-btn:hover {
+            background-color: #b0b0b0; /* Match hover effect from homeschool.html */
         }
 
         .output-section {
-            display: none;
-            max-width: 800px;
-            margin: 20px auto;
+            background-color: #e0e0e0; /* Match background */
             padding: 20px;
-            background-color: #e0e0e0;
+            margin-top: 20px;
+            display: none; /* Hidden by default */
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #333333; /* Dark gray border */
             border-radius: 5px;
-            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .output-section h2 {
-            font-family: 'Audiowide', sans-serif;
-            color: #333;
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
+            color: #333333;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
         }
 
         .output-section h3 {
-            font-family: 'Audiowide', sans-serif;
-            color: #333;
-            font-size: 20px;
+            color: #333333;
+            font-size: 1.2rem;
             margin-top: 20px;
             margin-bottom: 10px;
         }
 
-        .output-section p {
-            margin: 10px 0;
+        .output-section p, .output-section li {
+            color: #333333;
+            font-size: 1rem;
+            margin-bottom: 10px;
         }
 
-        .output-section .scripture {
-            background-color: #c0c0c0;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-style: italic;
+        .output-section ul {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        footer {
+            background-color: #e0e0e0; /* Match background */
+            color: #333333; /* Dark gray text */
             text-align: center;
+            padding: 10px 0;
         }
 
-        .summary-questions {
-            margin-top: 20px;
+        @media (max-width: 768px) {
+            .article-editor textarea {
+                height: 300px;
+            }
+
+            .submit-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .output-section {
+                padding: 15px;
+            }
         }
 
-        .summary-questions ul {
-            list-style-type: none;
-            padding: 0;
-        }
+        @media (max-width: 480px) {
+            .article-editor textarea {
+                height: 200px;
+                font-size: 14px;
+                padding: 10px;
+            }
 
-        .summary-questions li {
-            margin: 5px 0;
-        }
+            .submit-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
 
-        .paragraph-comment {
-            background-color: #d3d3d3;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
+            .output-section {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <a href="watchtower.html"><h1>WATCHTOWER</h1></a>
+            <h1><a href="watchtower.html">WATCHTOWER</a></h1>
         </div>
     </header>
 
-    <main>
-        <div class="input-section">
-            <button class="paste-button" onclick="pasteArticle()">Paste</button>
+    <section class="main-section">
+        <div class="article-editor">
             <textarea id="articleInput" placeholder="Paste the Watchtower article here..."></textarea>
-            <br>
-            <button class="submit-button" onclick="generateStudyGuide()">Submit</button>
         </div>
-
+        <div class="buttons">
+            <button class="submit-btn" onclick="processArticle()">Submit</button>
+        </div>
         <div class="output-section" id="outputSection">
-            <div id="studyGuideOutput"></div>
-            <button class="copy-button" onclick="copyStudyGuide()">Copy</button>
+            <h2>Article Summary</h2>
+            <p id="summaryOutput"></p>
+            <h3>Numerical Questions and Answers</h3>
+            <ul id="numericalQuestionsOutput"></ul>
+            <h3>Summary Questions and Answers</h3>
+            <p id="summaryQuestionsOutput"></p>
         </div>
-    </main>
+    </section>
 
     <footer>
-        <p>© 2025 Just Wise Love</p>
+        <p>© 2025 CODEXEDOC</p>
     </footer>
 
     <script>
-        // Paste functionality
-        async function pasteArticle() {
-            try {
-                const text = await navigator.clipboard.readText();
-                document.getElementById('articleInput').value = text;
-            } catch (err) {
-                console.error('Failed to paste: ', err);
-                alert('Failed to paste. Please paste manually.');
-            }
-        }
-
-        // Copy functionality
-        function copyStudyGuide() {
-            const studyGuideText = document.getElementById('studyGuideOutput').innerText;
-            navigator.clipboard.writeText(studyGuideText).then(() => {
-                alert('Study guide copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-                alert('Failed to copy. Please copy manually.');
-            });
-        }
-
-        // Study guide generation
-        function generateStudyGuide() {
+        function processArticle() {
             const articleText = document.getElementById('articleInput').value.trim();
+            const outputSection = document.getElementById('outputSection');
+            const summaryOutput = document.getElementById('summaryOutput');
+            const numericalQuestionsOutput = document.getElementById('numericalQuestionsOutput');
+            const summaryQuestionsOutput = document.getElementById('summaryQuestionsOutput');
+
             if (!articleText) {
-                alert('Please paste a Watchtower article before submitting.');
+                alert('Please paste a Watchtower article to process.');
+                outputSection.style.display = 'none';
                 return;
             }
 
-            // Split the article into lines for parsing
-            const lines = articleText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+            // Display the output section
+            outputSection.style.display = 'block';
 
-            // Extract the title (look for a line with parentheses or before questions)
-            let title = '';
-            let titleFound = false;
-            for (let i = 0; i < lines.length; i++) {
-                if (lines[i].match(/^\d+[-–]\d+\./) || lines[i].match(/^\d+\./)) {
-                    // Look backwards for the title
-                    for (let j = i - 1; j >= 0; j--) {
-                        if (lines[j].includes('(') && lines[j].includes(')')) {
-                            title = lines[j].split('(')[0].trim();
-                            titleFound = true;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            if (!titleFound) title = 'Unknown Watchtower Article';
+            // Step 1: Generate a summary of the article
+            const summary = generateSummary(articleText);
+            summaryOutput.innerHTML = summary;
 
-            // Extract the focus statement
-            let focus = '';
-            let focusFound = false;
-            for (let i = 0; i < lines.length; i++) {
-                if (lines[i].toLowerCase().startsWith('focus:')) {
-                    focus = lines[i].replace(/^FOCUS:/i, '').trim();
-                    focusFound = true;
-                    break;
-                }
-            }
-            if (!focusFound) focus = 'This article discusses key spiritual principles for Christian living.';
+            // Step 2: Extract and answer numerical questions
+            const numericalQuestions = extractNumericalQuestions(articleText);
+            numericalQuestionsOutput.innerHTML = '';
+            numericalQuestions.forEach(({ question, answer }) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${question}</strong><br>${answer}`;
+                numericalQuestionsOutput.appendChild(li);
+            });
 
-            // Extract questions, paragraphs, and comments
-            const points = [];
-            let currentQuestion = '';
-            let currentAnswerLines = [];
-            let paragraphs = [];
-            let inQuestionSection = false;
-            let questionNumberPattern = /^(\d+[-–]\d+|\d+)\.\s(.+)/; // Match "1-2." or "1."
-            let paragraphNumberPattern = /^\d+\s/; // Match paragraph numbers like "2 "
+            // Step 3: Extract and answer summary questions
+            const summaryQuestions = extractSummaryQuestions(articleText);
+            summaryQuestionsOutput.innerHTML = summaryQuestions.map(({ question, answer }) => `<strong>${question}</strong><br>${answer}`).join('<br><br>');
+        }
 
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i];
+        function generateSummary(articleText) {
+            // Split the article into paragraphs
+            const paragraphs = articleText.split(/\n\s*\n/).filter(p => p.trim());
 
-                // Stop parsing questions if we hit the "How Would You Answer?" section
-                if (line.toLowerCase().includes('how would you answer')) {
-                    break;
-                }
+            // Extract key themes by looking for recurring topics or emphasized points
+            const themes = [];
+            const scriptureRegex = /\b[A-Za-z]+\s+\d+:\d+\b/g;
+            const introPara = paragraphs[0] || '';
+            const concludingPara = paragraphs[paragraphs.length - 1] || '';
 
-                // Identify questions
-                let questionMatch = line.match(questionNumberPattern);
-                if (questionMatch) {
-                    if (currentQuestion) {
-                        // Process the previous question and answer
-                        let rawAnswer = currentAnswerLines.join(' ').trim();
-                        let summarizedAnswer = summarizeAnswer(rawAnswer, currentQuestion);
-                        points.push({
-                            question: currentQuestion,
-                            answer: summarizedAnswer.text,
-                            scripture: summarizedAnswer.scripture,
-                            paragraphComments: generateParagraphComments(currentAnswerLines, currentQuestion)
-                        });
-                    }
-                    currentQuestion = questionMatch[0];
-                    currentAnswerLines = [];
-                    inQuestionSection = true;
-                    continue;
-                }
+            // Look for scriptures as they often highlight key points
+            const scriptures = articleText.match(scriptureRegex) || [];
 
-                if (inQuestionSection) {
-                    // Check if the line is a new paragraph number (e.g., "2 ")
-                    if (line.match(paragraphNumberPattern)) {
-                        let paragraphText = line.replace(paragraphNumberPattern, '').trim();
-                        currentAnswerLines.push(paragraphText);
-                        paragraphs.push({ number: line.match(/^\d+/)[0], text: paragraphText });
-                    } else if (line.match(/^\d+[-–]\d+\./) || line.match(/^\d+\./)) {
-                        // Start of a new question
-                        let rawAnswer = currentAnswerLines.join(' ').trim();
-                        let summarizedAnswer = summarizeAnswer(rawAnswer, currentQuestion);
-                        points.push({
-                            question: currentQuestion,
-                            answer: summarizedAnswer.text,
-                            scripture: summarizedAnswer.scripture,
-                            paragraphComments: generateParagraphComments(currentAnswerLines, currentQuestion)
-                        });
-                        currentQuestion = line;
-                        currentAnswerLines = [];
-                    } else if (!line.toLowerCase().startsWith('your answer') && !line.toLowerCase().startsWith('focus:') && !line.toLowerCase().includes('the paragraph discusses')) {
-                        currentAnswerLines.push(line);
-                        paragraphs.push({ number: paragraphs.length + 1, text: line });
-                    }
-                }
-            }
-
-            // Add the last question and answer
-            if (currentQuestion) {
-                let rawAnswer = currentAnswerLines.join(' ').trim();
-                let summarizedAnswer = summarizeAnswer(rawAnswer, currentQuestion);
-                points.push({
-                    question: currentQuestion,
-                    answer: summarizedAnswer.text,
-                    scripture: summarizedAnswer.scripture,
-                    paragraphComments: generateParagraphComments(currentAnswerLines, currentQuestion)
-                });
-            }
-
-            // Extract "How Would You Answer?" summary questions and provide brief answers
-            let summaryQuestions = [];
-            let inSummarySection = false;
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i];
-                if (line.toLowerCase().includes('how would you answer')) {
-                    inSummarySection = true;
-                    continue;
-                }
-                if (inSummarySection) {
-                    if (line.match(/^\d+\.\s/) || line.match(/^\d+[-–]\d+\.\s/) || line.match(/^\s*[-•]\s/) || (line.trim().endsWith('?') && !line.match(/^\d+\s/))) {
-                        let questionText = line.trim();
-                        questionText = questionText.replace(/^\s*[-•]\s/, '').replace(/^\d+\.\s/, '').replace(/^\d+[-–]\d+\.\s/, '');
-                        let answer = generateSummaryAnswer(questionText, points);
-                        summaryQuestions.push({ question: questionText, answer: answer });
-                    }
-                }
-            }
-
-            // If no points were found, add a placeholder
-            if (points.length === 0) {
-                points.push({
-                    question: "1. What is the main theme of the article?",
-                    answer: "The article discusses key spiritual lessons. Please ensure the article text includes numbered questions for a detailed study guide.",
-                    scripture: '',
-                    paragraphComments: []
-                });
-            }
-
-            // Generate the study guide HTML
-            let studyGuideHtml = `<h2>${title}</h2>`;
-            studyGuideHtml += `<p><strong>FOCUS:</strong> ${focus}</p>`;
-            points.forEach(point => {
-                studyGuideHtml += `<p><strong>${point.question}</strong></p>`;
-                studyGuideHtml += `<p>${point.answer}</p>`;
-                if (point.scripture) {
-                    studyGuideHtml += `<div class="scripture"><p>${point.scripture}</p></div>`;
-                }
-                if (point.paragraphComments.length > 0) {
-                    point.paragraphComments.forEach(comment => {
-                        studyGuideHtml += `<div class="paragraph-comment"><strong>Comment on Paragraph ${comment.paragraphNumber}:</strong> ${comment.comment}</div>`;
-                    });
+            // Basic theme detection: look for repeated words or phrases
+            const words = articleText.toLowerCase().split(/\W+/);
+            const wordFreq = {};
+            words.forEach(word => {
+                if (word.length > 4 && !['jehovah', 'jesus', 'bible', 'scriptures'].includes(word)) {
+                    wordFreq[word] = (wordFreq[word] || 0) + 1;
                 }
             });
 
-            // Add summary questions if they exist
-            if (summaryQuestions.length > 0) {
-                studyGuideHtml += `<div class="summary-questions">`;
-                studyGuideHtml += `<h3>Summary Questions</h3>`;
-                studyGuideHtml += `<ul>`;
-                summaryQuestions.forEach(q => {
-                    studyGuideHtml += `<li><strong>${q.question}</strong><br>${q.answer}</li>`;
-                });
-                studyGuideHtml += `</ul>`;
-                studyGuideHtml += `</div>`;
+            const commonThemes = Object.keys(wordFreq)
+                .filter(word => wordFreq[word] > 2)
+                .slice(0, 3)
+                .join(', ');
+
+            // Construct a summary
+            let summary = 'This article focuses on key spiritual lessons and encouragement for Jehovah’s Witnesses. ';
+            if (introPara) {
+                summary += `It begins by introducing ${introPara.slice(0, 100).replace(/\n/g, ' ')}... `;
+            }
+            if (commonThemes) {
+                summary += `The article emphasizes themes such as ${commonThemes}. `;
+            }
+            if (scriptures.length > 0) {
+                summary += `It references scriptures like ${scriptures.slice(0, 2).join(' and ')} to support its points. `;
+            }
+            if (concludingPara) {
+                summary += `The article concludes by encouraging readers to ${concludingPara.slice(0, 100).replace(/\n/g, ' ')}...`;
             }
 
-            // Display the study guide
-            document.getElementById('studyGuideOutput').innerHTML = studyGuideHtml;
-            document.getElementById('outputSection').style.display = 'block';
+            return summary;
         }
 
-        // Function to summarize the answer in my own words and extract quoted scriptures
-        function summarizeAnswer(rawAnswer, question) {
-            const sentences = rawAnswer.split(/(?<=\.)\s+/).filter(s => s.trim().length > 0);
-            let summary = '';
-            let scriptureText = '';
+        function extractNumericalQuestions(articleText) {
+            // Regex to find numerical questions (e.g., "1. What does this teach us?")
+            const questionRegex = /^\d+\.\s*.*?\?/gm;
+            const questions = articleText.match(questionRegex) || [];
 
-            // Summarize based on the question
-            if (question.toLowerCase().includes('why can our sin be likened to "debts"?')) {
-                summary = 'Sin creates a spiritual debt we owe to Jehovah, much like a financial debt. It reflects the obligation to make amends for our imperfections, which we cannot fully repay on our own.';
-            } else if (question.toLowerCase().includes('what would happen to all sinners?')) {
-                summary = 'Without help, sinners face death due to sin’s consequences. The Bible compares sin to a debt that leads to spiritual ruin if unpaid.';
-            } else if (question.toLowerCase().includes('to what does the word "sin" refer')) {
-                summary = 'In the Bible, "sin" refers to actions that miss God’s standards, like an archer missing a target. It includes both intentional and unintentional acts against Jehovah’s laws.';
-            } else if (question.toLowerCase().includes('how has our loving father helped us')) {
-                summary = 'Jehovah, our loving Father, helps us by providing a way to overcome sin’s debt. His guidance and mercy allow us to seek forgiveness and maintain a relationship with Him.';
-            } else if (question.toLowerCase().includes('what bible terms will we consider')) {
-                summary = 'The article examines terms like "atonement" and "propitiation," explaining how they relate to forgiveness and the removal of sin through Jehovah’s arrangements.';
-            } else if (question.toLowerCase().includes('what else did adam and eve lose?')) {
-                summary = 'Adam and Eve lost their perfection and relationship with Jehovah. Their disobedience led to sin and death, impacting all their descendants.';
-            } else if (question.toLowerCase().includes('as descendants of adam and eve, what do we desperately need?')) {
-                summary = 'We need forgiveness and redemption from sin’s effects. Romans 5:10, 11 highlights reconciliation with Jehovah through Jesus’ sacrifice to regain what was lost.';
-            } else if (question.toLowerCase().includes('what is (a) atonement? (b) propitiation?')) {
-                summary = 'Atonement is the act of making amends for sin, restoring peace with Jehovah. Propitiation refers to the means, like Jesus’ sacrifice, that satisfies God’s justice.';
-            } else if (question.toLowerCase().includes('what temporary arrangement did jehovah make')) {
-                summary = 'Jehovah provided the Mosaic Law’s sacrificial system for the Israelites. It temporarily covered sins, pointing to a greater future provision for forgiveness.';
-            } else if (question.toLowerCase().includes('what permanent arrangement did jehovah make')) {
-                summary = 'Jehovah arranged for Jesus’ ransom sacrifice, a permanent solution to forgive sins. It fulfills the Law and offers everlasting life to those who accept it.';
-            } else {
-                summary = 'The paragraph discusses a scenario illustrating a spiritual lesson.';
-            }
+            // For each question, find the corresponding paragraph and generate an answer
+            const paragraphs = articleText.split(/\n\s*\n/).filter(p => p.trim());
+            const results = [];
 
-            // Limit summary to 50 words
-            const words = summary.split(/\s+/);
-            if (words.length > 50) {
-                summary = words.slice(0, 50).join(' ') + '...';
-            }
-
-            // Extract quoted scriptures
-            sentences.forEach(sentence => {
-                const quoteMatch = sentence.match(/"([^"]+)"\s*(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\sSamuel|2\sSamuel|1\sKings|2\sKings|1\sChronicles|2\sChronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\sOf\sSolomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\sCorinthians|2\sCorinthians|Galatians|Ephesians|Philippians|Colossians|1\sThessalonians|2\sThessalonians|1\sTimothy|2\sTimothy|Titus|Philemon|Hebrews|James|1\sPeter|2\sPeter|1\sJohn|2\sJohn|3\sJohn|Jude|Revelation)\s\d+:\d+(-\d+)?/i);
-                if (quoteMatch) {
-                    const quote = quoteMatch[1];
-                    const reference = quoteMatch[0].match(/(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\sSamuel|2\sSamuel|1\sKings|2\sKings|1\sChronicles|2\sChronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\sOf\sSolomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\sCorinthians|2\sCorinthians|Galatians|Ephesians|Philippians|Colossians|1\sThessalonians|2\sThessalonians|1\sTimothy|2\sTimothy|Titus|Philemon|Hebrews|James|1\sPeter|2\sPeter|1\sJohn|2\sJohn|3\sJohn|Jude|Revelation)\s\d+:\d+(-\d+)?/i)[0];
-                    scriptureText += `${reference} (NWT): "${quote}"\n`;
+            questions.forEach((question, index) => {
+                // Find the paragraph associated with the question (usually the preceding paragraph)
+                const questionNumber = parseInt(question.match(/^\d+/)[0]);
+                let associatedPara = '';
+                for (let i = 0; i < paragraphs.length; i++) {
+                    if (paragraphs[i].includes(`${questionNumber}.`)) {
+                        associatedPara = paragraphs[i - 1] || paragraphs[i];
+                        break;
+                    }
                 }
-            });
 
-            return {
-                text: summary,
-                scripture: scriptureText.trim()
-            };
-        }
+                // Generate an answer based on the paragraph content
+                let answer = `Based on the article, this paragraph highlights key points. `;
+                const scriptureRegex = /\b[A-Za-z]+\s+\d+:\d+\b/;
+                const scriptureMatch = associatedPara.match(scriptureRegex);
 
-        // Function to generate comments for each paragraph
-        function generateParagraphComments(answerLines, question) {
-            let comments = [];
-            answerLines.forEach((line, index) => {
-                let comment = '';
-                if (question.toLowerCase().includes('why can our sin be likened to "debts"?')) {
-                    comment = 'I’d mention that sin creates a debt because it’s a shortfall we owe Jehovah, similar to how we owe money when we can’t pay a bill.';
-                } else if (question.toLowerCase().includes('what would happen to all sinners?')) {
-                    comment = 'I’d point out that sinners would die spiritually and physically without help, as sin separates us from Jehovah’s favor, leading to eternal consequences.';
-                } else if (question.toLowerCase().includes('to what does the word "sin" refer')) {
-                    comment = 'I’d say "sin" means missing Jehovah’s standards, like an archer missing a target, covering both deliberate and accidental actions against His will.';
-                } else if (question.toLowerCase().includes('how has our loving father helped us')) {
-                    comment = 'I’d highlight that Jehovah helps by offering forgiveness, showing His love through provisions like prayer and guidance to overcome our sinful nature.';
-                } else if (question.toLowerCase().includes('what bible terms will we consider')) {
-                    comment = 'I’d note that we’ll explore "atonement" and "propitiation," terms that show how Jehovah addresses sin to restore our relationship with Him.';
-                } else if (question.toLowerCase().includes('what else did adam and eve lose?')) {
-                    comment = 'I’d emphasize that Adam and Eve lost their close bond with Jehovah, not just Paradise, which affected their spiritual well-being and future.';
-                } else if (question.toLowerCase().includes('as descendants of adam and eve, what do we desperately need?')) {
-                    comment = 'I’d say we need Jehovah’s forgiveness through Jesus’ sacrifice to be reconciled, as Romans 5:10, 11 shows, restoring our hope for life.';
-                } else if (question.toLowerCase().includes('what is (a) atonement? (b) propitiation?')) {
-                    comment = 'I’d explain atonement as making amends for sin, and propitiation as Jesus’ sacrifice that satisfies Jehovah’s justice, allowing forgiveness.';
-                } else if (question.toLowerCase().includes('what temporary arrangement did jehovah make')) {
-                    comment = 'I’d mention the Mosaic Law’s sacrifices, which temporarily covered Israel’s sins, teaching them the need for a greater, permanent solution.';
-                } else if (question.toLowerCase().includes('what permanent arrangement did jehovah make')) {
-                    comment = 'I’d point out that Jesus’ ransom is the permanent solution, fulfilling the Law and providing a lasting way to forgive sins for all.';
+                if (scriptureMatch) {
+                    const scripture = scriptureMatch[0];
+                    // Use NWT 2013 revision for scripture quotes
+                    const scriptureText = getScriptureText(scripture);
+                    answer += `It references ${scripture}, which states: "${scriptureText}". This teaches us the importance of applying the principle in our lives. `;
                 } else {
-                    comment = 'I’d comment that this paragraph illustrates a spiritual lesson, helping us understand Jehovah’s principles through a relatable scenario.';
+                    answer += `The paragraph emphasizes spiritual lessons, encouraging us to reflect on our faith and actions. `;
                 }
-                comments.push({ paragraphNumber: index + 1, comment: comment });
+
+                // Extract key sentences from the paragraph
+                const sentences = associatedPara.split(/(?<=\.)\s+/).filter(s => s.trim());
+                if (sentences.length > 0) {
+                    answer += `Specifically, it mentions ${sentences[0].slice(0, 100).replace(/\n/g, ' ')}...`;
+                }
+
+                results.push({ question, answer });
             });
-            return comments;
+
+            return results;
         }
 
-        // Function to generate brief answers for summary questions
-        function generateSummaryAnswer(summaryQuestion, points) {
-            if (summaryQuestion.toLowerCase().includes('how does sin create a debt')) {
-                return 'Sin creates a debt by separating us from Jehovah, requiring repayment through forgiveness, as we fall short of His perfect standards.';
-            } else if (summaryQuestion.toLowerCase().includes('what did adam and eve lose')) {
-                return 'Adam and Eve lost Paradise, perfection, and their relationship with Jehovah, passing sin and death to their descendants.';
-            } else if (summaryQuestion.toLowerCase().includes('what permanent arrangement')) {
-                return 'Jesus’ ransom sacrifice permanently forgives sins, fulfilling the Law and offering reconciliation and everlasting life to humanity.';
-            } else {
-                return 'This question reinforces the article’s key lessons about sin and forgiveness.';
+        function extractSummaryQuestions(articleText) {
+            // Summary questions are typically at the end of the article, often under a heading like "REVIEW"
+            const paragraphs = articleText.split(/\n\s*\n/).filter(p => p.trim());
+            const summarySectionIndex = paragraphs.findIndex(p => p.toLowerCase().includes('review') || p.toLowerCase().includes('summary'));
+            const summaryQuestions = [];
+
+            if (summarySectionIndex !== -1) {
+                // Extract questions from the summary section
+                const summaryParas = paragraphs.slice(summarySectionIndex + 1);
+                const questionRegex = /^[^\d].*?\?/; // Questions not starting with a number
+                summaryParas.forEach(para => {
+                    if (questionRegex.test(para)) {
+                        let answer = 'This question encourages deeper reflection on the article’s themes. ';
+                        const scriptureRegex = /\b[A-Za-z]+\s+\d+:\d+\b/;
+                        const scriptureMatch = para.match(scriptureRegex);
+
+                        if (scriptureMatch) {
+                            const scripture = scriptureMatch[0];
+                            const scriptureText = getScriptureText(scripture);
+                            answer += `It relates to ${scripture}, which says: "${scriptureText}". This reminds us to apply these principles in our daily lives. `;
+                        } else {
+                            answer += `The article suggests that we consider how the lessons apply to our personal circumstances, such as strengthening our faith or supporting others in the congregation. `;
+                        }
+
+                        summaryQuestions.push({ question: para, answer });
+                    }
+                });
             }
+
+            if (summaryQuestions.length === 0) {
+                summaryQuestions.push({
+                    question: 'No summary questions found.',
+                    answer: 'Please ensure the article includes a review section with summary questions.'
+                });
+            }
+
+            return summaryQuestions;
+        }
+
+        function getScriptureText(scriptureRef) {
+            // Simulate fetching scripture text from NWT 2013 revision
+            // In a real application, this would involve an API call to JW.ORG or a local database
+            // For demonstration, we'll provide a few common scriptures as examples
+            const scriptureMap = {
+                'Matthew 6:10': 'Let your Kingdom come. Let your will take place, as in heaven, also on earth.',
+                '1 Corinthians 14:8': 'For if the trumpet sounds an indistinct call, who will get ready for battle?',
+                'Genesis 31:20': 'So Jacob outwitted Laban the Syrian by not telling him that he was running away.',
+                'Psalm 12:7': 'You will guard them, O Jehovah; You will protect each one from this generation forever.'
+            };
+
+            return scriptureMap[scriptureRef] || 'Scripture text not available in this demo. Please refer to the NWT (2013) on JW.ORG for the full text.';
         }
     </script>
 </body>
