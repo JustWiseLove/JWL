@@ -15,7 +15,7 @@ header {
 }
 
 .logo h1 {
-    font-family: 'Audiowide', sans-serif;
+    font-family: 'Audiowide', sans-serif !important;
     color: #000;
     font-size: 48px;
     margin: 0;
