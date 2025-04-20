@@ -203,9 +203,9 @@ details[open] .item-content {
     margin-right: auto;
     border-radius: 5px;
     display: inline-block;
-    justify-content: center;
-    text-align: center;
-    font-style: italic;
+    justify-content: center !important;
+    text-align: center !important;
+    font-style: italic !important;
 }
 
 .scripture p {
