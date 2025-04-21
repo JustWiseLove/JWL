@@ -1,87 +1,107 @@
+# Writing the HTML, CSS, and JavaScript for the full-page implementation
+html_code = '''
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search JW.ORG</title>
+    <title>Study Guide Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 10px;
+            background-color: #f2f2f2;
             text-align: center;
+            padding: 20px;
         }
+
         h1 {
-            color: #333;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            margin-bottom: 20px;
         }
-        .search-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        #searchInput {
-            width: 70%;
+
+        select, textarea, button {
+            font-size: 1em;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px 0 0 5px;
-            font-size: 16px;
+            width: 80%;
+            margin: 10px auto;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid #999;
         }
+
         button {
-            padding: 10px 20px;
-            background: #007bff;
-            color: white;
+            background-color: #ccc;
             border: none;
-            border-radius: 0 5px 5px 0;
             cursor: pointer;
-            font-size: 16px;
         }
-        button:hover {
-            background: #0056b3;
+
+        #output {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            display: none;
+            text-align: left;
         }
-        #resultsFrame {
-            width: 100%;
-            height: 600px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        p {
-            color: #555;
-            margin: 10px 0;
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #444;
         }
     </style>
 </head>
 <body>
-    <h1>Search JW.ORG for Bible Answers</h1>
-    <p>Type your Bible question or topic to view results from JW.ORG.</p>
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="e.g., What does the Bible say about suffering?" maxlength="200" required>
-        <button onclick="searchJwOrg()">Search</button>
-    </div>
-    <iframe id="resultsFrame" src="https://www.jw.org/en/search/" title="JW.ORG Search Results"></iframe>
+    <h1>WATCHTOWER</h1>
+
+    <select id="studyType">
+        <option value="watchtower">Watchtower Study</option>
+        <option value="biblestudy">Bible Study</option>
+    </select>
+
+    <textarea id="inputText" rows="12" placeholder="Paste the Watchtower article or Bible chapter(s) here..."></textarea>
+    <button onclick="generateComments()">Submit</button>
+
+    <div id="output"></div>
+
+    <footer>
+        © 2025 CODEXEDOC
+    </footer>
 
     <script>
-        function searchJwOrg() {
-            const input = document.getElementById('searchInput').value.trim();
-            if (!input) {
-                alert('Please enter a search term.');
-                return;
+        async function generateComments() {
+            const type = document.getElementById('studyType').value;
+            const input = document.getElementById('inputText').value;
+            const outputDiv = document.getElementById('output');
+            outputDiv.style.display = 'block';
+
+            let result = '';
+            if (type === 'watchtower') {
+                const paragraphs = input.split(/\\n\\n+/);
+                paragraphs.forEach((para, index) => {
+                    result += `<p><strong>Paragraph ${index + 1}:</strong> A faithful Christian might apply this by recognizing that ${para.slice(0, 40)}... It strengthens faith and motivates imitation.</p>`;
+                });
+            } else if (type === 'biblestudy') {
+                const verses = input.split(/\\n+/);
+                const topVerses = verses.slice(0, 5);
+                topVerses.forEach((verse, index) => {
+                    result += `<p><strong>Verse ${index + 1}:</strong> "${verse.trim()}" — This verse teaches us the importance of applying godly wisdom and avoiding foolish behavior.</p>`;
+                });
             }
 
-            // Construct JW.ORG search URL
-            const query = encodeURIComponent(input);
-            const searchUrl = `https://www.jw.org/en/search/?q=${query}`;
-
-            // Update iframe source to load search results
-            document.getElementById('resultsFrame').src = searchUrl;
+            outputDiv.innerHTML = result;
         }
-
-        // Allow pressing Enter to search
-        document.getElementById('searchInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                searchJwOrg();
-            }
-        });
     </script>
 </body>
 </html>
+'''
+
+# Save the code to an HTML file
+file_path = "/mnt/data/study_guide_tool.html"
+with open(file_path, "w") as f:
+    f.write(html_code)
+
+file_path
