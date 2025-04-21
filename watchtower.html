@@ -1,138 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Watchtower Study Tool</title>
-  <style>
-    body {
-      background-color: #f2f2f2;
-      color: #000;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
-      color: #111;
-    }
-
-    select, textarea, button {
-      width: 90%;
-      max-width: 600px;
-      margin: 10px auto;
-      display: block;
-      font-size: 1em;
-    }
-
-    textarea {
-      height: 200px;
-      padding: 10px;
-      border: 1px solid #999;
-      background-color: #fff;
-      color: #000;
-      resize: vertical;
-    }
-
-    button {
-      padding: 10px 20px;
-      background-color: #ccc;
-      border: none;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    #output {
-      margin-top: 30px;
-      padding: 20px;
-      background-color: #fff;
-      color: #000;
-      border: 1px solid #999;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
-    }
-
-    p {
-      margin-bottom: 15px;
-    }
-
-    strong {
-      display: block;
-      margin-bottom: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>WATCHTOWER STUDY TOOL</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            color: #000;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-weight: bold;
+        }
+        select, textarea, button {
+            width: 90%;
+            max-width: 600px;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+            display: block;
+            color: #000;
+            background-color: #fff;
+        }
+        button {
+            background-color: #ccc;
+            cursor: pointer;
+        }
+        .output {
+            background: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            width: 90%;
+            max-width: 700px;
+            text-align: left;
+            color: #000;
+            font-size: 16px;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
-  <h1>WATCHTOWER</h1>
-  <select id="studyType">
-    <option value="watchtower">Watchtower Study</option>
-    <option value="biblestudy">Bible Study</option>
-  </select>
-  <textarea id="inputText" placeholder="Paste the Watchtower article or Bible chapter here..."></textarea>
-  <button onclick="generateComments()">Submit</button>
-  <div id="output" style="display:none;"></div>
+    <h1>WATCHTOWER</h1>
+    <select id="mode">
+        <option value="watchtower">Watchtower Study</option>
+        <option value="bible">Bible Study</option>
+    </select>
+    <textarea id="inputText" rows="12" placeholder="Paste the article or Bible chapter(s) here..."></textarea>
+    <button onclick="generateComments()">Submit</button>
+    <div id="output" class="output" style="display:none;"></div>
 
-  <script>
-    function generateComments() {
-      const type = document.getElementById('studyType').value;
-      const input = document.getElementById('inputText').value;
-      const outputDiv = document.getElementById('output');
-      outputDiv.style.display = 'block';
+    <script>
+        function generateComments() {
+            const mode = document.getElementById("mode").value;
+            const input = document.getElementById("inputText").value.trim();
+            const outputDiv = document.getElementById("output");
+            if (!input) return;
 
-      let result = '';
+            let result = "";
 
-      if (type === 'watchtower') {
-        const lines = input.split('\\n').map(l => l.trim()).filter(l => l.length > 0);
-        const qAndA = [];
-        let currentQuestion = '';
-        let currentParagraphs = [];
+            if (mode === "watchtower") {
+                const lines = input.split(/\\n+/);
+                let currentQ = "";
+                let qNum = 0;
 
-        for (let line of lines) {
-          if (/^\\d+(,\\d+)*\\./.test(line)) {
-            if (currentQuestion) {
-              qAndA.push({ question: currentQuestion, paragraphs: currentParagraphs });
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (/^\\d+(,\\d+)?\\./.test(line) || /^How Would You Answer/i.test(line)) {
+                        if (currentQ) {
+                            result += "\\nYour answer:\\nA spiritually thoughtful response in line with JW.ORG.\\n\\n";
+                        }
+                        currentQ = line;
+                        result += currentQ + "\\n";
+                    } else if (currentQ) {
+                        result += "\\nYour answer:\\n" + summarize(line) + "\\n\\n";
+                        currentQ = "";
+                    }
+                }
+            } else {
+                // Bible mode
+                const verses = input.split(/[,\\n]+/).slice(0, 5);
+                result += "Selected Verses:\\n";
+                verses.forEach(v => {
+                    result += `\\n${v.trim()}\\nSpiritual value: Applies to our lives by encouraging faithfulness and wisdom.\\n`;
+                });
             }
-            currentQuestion = line;
-            currentParagraphs = [];
-          } else if (/how would you answer\\?/i.test(line)) {
-            if (currentQuestion) {
-              qAndA.push({ question: currentQuestion, paragraphs: currentParagraphs });
-              currentParagraphs = [];
-            }
-            currentQuestion = 'Summary Question: ' + line;
-          } else {
-            currentParagraphs.push(line);
-          }
+
+            outputDiv.textContent = result.trim();
+            outputDiv.style.display = "block";
         }
 
-        if (currentQuestion && currentParagraphs.length > 0) {
-          qAndA.push({ question: currentQuestion, paragraphs: currentParagraphs });
+        function summarize(text) {
+            // Simple mock summary for now; could be expanded
+            return "This paragraph encourages spiritual growth by imitating Jesus, valuing Jehovah’s qualities, and remaining faithful.";
         }
-
-        qAndA.forEach((entry, index) => {
-          const content = entry.paragraphs.join(' ');
-          const preview = content.slice(0, 100);
-          result += `<p><strong>${entry.question}</strong> A faithful Christian might apply this by reflecting on: ${preview}... This strengthens faith and encourages imitation of Christ.</p>`;
-        });
-
-      } else if (type === 'biblestudy') {
-        const verses = input
-          .split(/\\n+/)
-          .map(v => v.trim())
-          .filter(v => v.length > 0)
-          .slice(0, 5);
-
-        verses.forEach((verse, index) => {
-          result += `<p><strong>Verse ${index + 1}:</strong> "${verse}" — This verse encourages godly conduct and provides wisdom for daily life. Applying it strengthens our relationship with Jehovah.</p>`;
-        });
-      }
-
-      outputDiv.innerHTML = result;
-    }
-  </script>
+    </script>
 </body>
 </html>
