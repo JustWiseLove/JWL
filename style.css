@@ -70,6 +70,37 @@ footer {
     margin: 20px 0;
 }
 
+/* Style for each category group */
+.category-group {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #e0e0e0; /* Matches .intro and .item-content background */
+    border-radius: 8px;
+    border: 1px solid #d3d3d3; /* Matches .category background for cohesion */
+}
+
+/* Heading for each group */
+.category-group h2 {
+    font-family: 'Audiowide', sans-serif;
+    font-size: 24px; /* Matches .section-title size */
+    color: #333; /* Matches .intro h2 and .category a */
+    margin-bottom: 15px;
+    border-bottom: 2px solid #333; /* Matches header/footer border */
+    padding-bottom: 5px;
+    text-align: center; /* Consistent with other centered headings */
+}
+
+.category-group:nth-child(odd) {
+    background-color: #e8e8e8;
+}
+.category-group:nth-child(even) {
+    background-color: #e0e0e0;
+}
+
+.category-group:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 .categories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
