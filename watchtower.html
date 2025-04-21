@@ -3,101 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>WATCHTOWER STUDY TOOL</title>
-    <style>
-        body {
-            background-color: #f2f2f2;
-            font-family: Arial, sans-serif;
-            color: #000;
-            text-align: center;
-            padding: 20px;
-        }
-        h1 {
-            font-weight: bold;
-        }
-        select, textarea, button {
-            width: 90%;
-            max-width: 600px;
-            margin: 10px auto;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #aaa;
-            display: block;
-            color: #000;
-            background-color: #fff;
-        }
-        button {
-            background-color: #ccc;
-            cursor: pointer;
-        }
-        .output {
-            background: #fff;
-            border-radius: 5px;
-            padding: 20px;
-            margin-top: 20px;
-            width: 90%;
-            max-width: 700px;
-            text-align: left;
-            color: #000;
-            font-size: 16px;
-            white-space: pre-wrap;
-        }
-    </style>
 </head>
 <body>
-    <h1>WATCHTOWER</h1>
-    <select id="mode">
-        <option value="watchtower">Watchtower Study</option>
-        <option value="bible">Bible Study</option>
-    </select>
-    <textarea id="inputText" rows="12" placeholder="Paste the article or Bible chapter(s) here..."></textarea>
-    <button onclick="generateComments()">Submit</button>
-    <div id="output" class="output" style="display:none;"></div>
-
-    <script>
-        function generateComments() {
-            const mode = document.getElementById("mode").value;
-            const input = document.getElementById("inputText").value.trim();
-            const outputDiv = document.getElementById("output");
-            if (!input) return;
-
-            let result = "";
-
-            if (mode === "watchtower") {
-                const lines = input.split(/\\n+/);
-                let currentQ = "";
-                let qNum = 0;
-
-                for (let i = 0; i < lines.length; i++) {
-                    const line = lines[i].trim();
-                    if (/^\\d+(,\\d+)?\\./.test(line) || /^How Would You Answer/i.test(line)) {
-                        if (currentQ) {
-                            result += "\\nYour answer:\\nA spiritually thoughtful response in line with JW.ORG.\\n\\n";
-                        }
-                        currentQ = line;
-                        result += currentQ + "\\n";
-                    } else if (currentQ) {
-                        result += "\\nYour answer:\\n" + summarize(line) + "\\n\\n";
-                        currentQ = "";
-                    }
-                }
-            } else {
-                // Bible mode
-                const verses = input.split(/[,\\n]+/).slice(0, 5);
-                result += "Selected Verses:\\n";
-                verses.forEach(v => {
-                    result += `\\n${v.trim()}\\nSpiritual value: Applies to our lives by encouraging faithfulness and wisdom.\\n`;
-                });
-            }
-
-            outputDiv.textContent = result.trim();
-            outputDiv.style.display = "block";
-        }
-
-        function summarize(text) {
-            // Simple mock summary for now; could be expanded
-            return "This paragraph encourages spiritual growth by imitating Jesus, valuing Jehovah’s qualities, and remaining faithful.";
-        }
-    </script>
+<form action="https://duckduckgo.com/" method="GET">
+  <input type="hidden" name="sites" value="justwiselove.com">
+  <input type="text" name="q" placeholder="Search this site">
+  <button type="submit">Search</button>
+</form>
 </body>
 </html>
