@@ -1,14 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>WATCHTOWER STUDY TOOL</title>
+  <meta charset="UTF-8">
+  <title>Watchtower Study Tool</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    p.subtitle {
+      color: #555;
+      font-size: 1.1em;
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 1.1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      background-color: #fff;
+      color: #111;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1em;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    .verse-box {
+      margin-top: 60px;
+      font-size: 0.95em;
+      color: #444;
+      max-width: 600px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .verse-box strong {
+      color: #000;
+    }
+  </style>
 </head>
 <body>
-<form action="https://duckduckgo.com/" method="GET">
-  <input type="hidden" name="sites" value="justwiselove.com">
-  <input type="text" name="q" placeholder="Search this site">
-  <button type="submit">Search</button>
-</form>
+
+  <h1>Watchtower Study Tool</h1>
+  <p class="subtitle">Search the content of justwiselove.com to find encouraging articles, spiritual insights, and tools to help you prepare for your meetings.</p>
+
+  <form action="https://duckduckgo.com/" method="GET">
+    <input type="hidden" name="sites" value="justwiselove.com">
+    <input type="text" name="q" placeholder="Enter keywords (e.g. endurance, Proverbs 10, meeting workbook)">
+    <button type="submit">Search</button>
+  </form>
+
+  <div class="verse-box">
+    <p><strong>“Taste and see that Jehovah is good.”</strong> — <em>Psalm 34:8</em></p>
+    <p>Use this tool to search for faith-strengthening content that will draw you closer to Jehovah.</p>
+  </div>
+
 </body>
 </html>
