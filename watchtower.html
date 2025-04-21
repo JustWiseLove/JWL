@@ -1,97 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Study Guide Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            text-align: center;
-            padding: 20px;
-        }
+  <meta charset="UTF-8">
+  <title>Watchtower Study Tool</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      color: #000;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #111;
+    }
 
-        select, textarea, button {
-            font-size: 1em;
-            padding: 10px;
-            width: 80%;
-            margin: 10px auto;
-            display: block;
-            border-radius: 8px;
-            border: 1px solid #999;
-        }
+    select, textarea, button {
+      width: 90%;
+      max-width: 600px;
+      margin: 10px auto;
+      display: block;
+      font-size: 1em;
+    }
 
-        button {
-            background-color: #ccc;
-            border: none;
-            cursor: pointer;
-        }
+    textarea {
+      height: 200px;
+      padding: 10px;
+      border: 1px solid #999;
+      background-color: #fff;
+      color: #000;
+      resize: vertical;
+    }
 
-        #output {
-            background-color: #fff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 10px;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            display: none;
-            text-align: left;
-        }
+    button {
+      padding: 10px 20px;
+      background-color: #ccc;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-        footer {
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #444;
-        }
-    </style>
+    #output {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #999;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
 </head>
 <body>
-    <h1>WATCHTOWER</h1>
+  <h1>WATCHTOWER</h1>
+  <select id="studyType">
+    <option value="watchtower">Watchtower Study</option>
+    <option value="biblestudy">Bible Study</option>
+  </select>
+  <textarea id="inputText" placeholder="Paste the Watchtower article or Bible chapter here..."></textarea>
+  <button onclick="generateComments()">Submit</button>
+  <div id="output" style="display:none;"></div>
 
-    <select id="studyType">
-        <option value="watchtower">Watchtower Study</option>
-        <option value="biblestudy">Bible Study</option>
-    </select>
+  <script>
+    function generateComments() {
+      const type = document.getElementById('studyType').value;
+      const input = document.getElementById('inputText').value;
+      const outputDiv = document.getElementById('output');
+      outputDiv.style.display = 'block';
 
-    <textarea id="inputText" rows="12" placeholder="Paste the Watchtower article or Bible chapter(s) here..."></textarea>
-    <button onclick="generateComments()">Submit</button>
+      let result = '';
 
-    <div id="output"></div>
+      if (type === 'watchtower') {
+        const lines = input.split('\\n').map(l => l.trim()).filter(l => l.length > 0);
+        const qAndA = [];
+        let currentQuestion = '';
+        let currentParagraphs = [];
 
-    <footer>
-        © 2025 CODEXEDOC
-    </footer>
-
-    <script>
-        async function generateComments() {
-            const type = document.getElementById('studyType').value;
-            const input = document.getElementById('inputText').value;
-            const outputDiv = document.getElementById('output');
-            outputDiv.style.display = 'block';
-
-            let result = '';
-            if (type === 'watchtower') {
-                const paragraphs = input.split(/\\n\\n+/);
-                paragraphs.forEach((para, index) => {
-                    result += `<p><strong>Paragraph ${index + 1}:</strong> A faithful Christian might apply this by recognizing that ${para.slice(0, 40)}... It strengthens faith and motivates imitation.</p>`;
-                });
-            } else if (type === 'biblestudy') {
-                const verses = input.split(/\\n+/);
-                const topVerses = verses.slice(0, 5);
-                topVerses.forEach((verse, index) => {
-                    result += `<p><strong>Verse ${index + 1}:</strong> "${verse.trim()}" — This verse teaches us the importance of applying godly wisdom and avoiding foolish behavior.</p>`;
-                });
+        for (let line of lines) {
+          if (/^\\d+(,\\d+)*\\./.test(line)) {
+            if (currentQuestion) {
+              qAndA.push({ question: currentQuestion, paragraphs: currentParagraphs });
             }
-
-            outputDiv.innerHTML = result;
+            currentQuestion = line;
+            currentParagraphs = [];
+          } else if (/how would you answer\\?/i.test(line)) {
+            if (currentQuestion) {
+              qAndA.push({ question: currentQuestion, paragraphs: currentParagraphs });
+              currentParagraphs = [];
+            }
+            currentQuestion = 'Summary Question: ' + line;
+          } else {
+            currentParagraphs.push(line);
+          }
         }
-    </script>
+
+        if (currentQuestion && currentParagraphs.length > 0) {
+          qAndA.push({ question: currentQuestion, paragraphs: currentParagraphs });
+        }
+
+        qAndA.forEach((entry, index) => {
+          const content = entry.paragraphs.join(' ');
+          const preview = content.slice(0, 100);
+          result += `<p><strong>${entry.question}</strong> A faithful Christian might apply this by reflecting on: ${preview}... This strengthens faith and encourages imitation of Christ.</p>`;
+        });
+
+      } else if (type === 'biblestudy') {
+        const verses = input
+          .split(/\\n+/)
+          .map(v => v.trim())
+          .filter(v => v.length > 0)
+          .slice(0, 5);
+
+        verses.forEach((verse, index) => {
+          result += `<p><strong>Verse ${index + 1}:</strong> "${verse}" — This verse encourages godly conduct and provides wisdom for daily life. Applying it strengthens our relationship with Jehovah.</p>`;
+        });
+      }
+
+      outputDiv.innerHTML = result;
+    }
+  </script>
 </body>
 </html>
