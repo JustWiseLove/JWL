@@ -9,6 +9,39 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 30px;
+      }
+
+      input[type="text"] {
+        width: 80%;
+        max-width: 500px;
+        padding: 12px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      button:hover {
+        background-color: #555;
+      }
+    </style>
 </head>
 <body>
     <header>
@@ -18,17 +51,19 @@
             </a>
         </div>
     </header>
-  <p>Search the content of our website to find encouraging articles, spiritual insights, and tools to help you prepare for your meetings.</p>
 
-  <form action="https://duckduckgo.com/" method="GET">
-    <input type="hidden" name="sites" value="justwiselove.com">
-    <input type="text" name="q" placeholder="Enter keywords (e.g. endurance, discernment, truth)">
-    <button type="submit">Search</button>
-  </form>
+    <p>Search the content of our website to find encouraging articles, spiritual insights, and tools to help you prepare for your meetings.</p>
 
- <p class="scripture">“Taste and see that Jehovah is good.” Psalm 34:8</p>
-  <footer>
+    <form action="https://duckduckgo.com/" method="GET">
+      <input type="hidden" name="sites" value="justwiselove.com">
+      <input type="text" name="q" placeholder="Enter keywords (e.g. endurance, discernment, truth)">
+      <button type="submit">Search</button>
+    </form>
+
+    <p class="scripture">“Taste and see that Jehovah is good.” Psalm 34:8</p>
+
+    <footer>
         <p>© Just Wise Love</p>
-  </footer>
+    </footer>
 </body>
 </html>
