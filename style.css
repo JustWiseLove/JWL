@@ -105,13 +105,13 @@ footer {
     flex-wrap: wrap;
 }
 
-
 .category {
     background-color: #d3d3d3;
-    padding: 20px;
+    /*padding: 20px;*/
     border-radius: 8px;
     text-align: center;
     transition: transform 0.3s;
+    width: 280px;
 }
 
 .category:hover {
