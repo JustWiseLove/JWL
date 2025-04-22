@@ -134,7 +134,7 @@ footer {
     }
 
     .category {
-        height: 120px; /* Keep the height consistent */
+        height: 100px; /* Keep the height consistent */
         margin: 0 10px;
     }
 }
