@@ -101,10 +101,11 @@ footer {
     grid-template-columns: 1fr;
     gap: 20px;
     margin-bottom: 20px;
-    place-items: center;
+    justify-items: center;
+    align-items: center;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
     .categories {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -114,7 +115,7 @@ footer {
     .categories {
         grid-template-columns: repeat(4, 1fr);
     }
-}
+}*/
 
 .category {
     background-color: #d3d3d3;
