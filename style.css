@@ -110,12 +110,12 @@ footer {
 
 .category {
     background-color: #d3d3d3;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     text-align: center;
     transition: transform 0.3s;
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
     box-sizing: border-box;
     height: 100px; /* Explicitly set a fixed height */
     display: flex;
