@@ -134,7 +134,7 @@ footer {
     }
 
     .category {
-        max-width: 250px;
+        max-width: 1000px;
         height: 120px; /* Keep the height consistent */
         margin: 0 10px;
     }
