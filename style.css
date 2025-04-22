@@ -121,9 +121,6 @@ footer {
     border-radius: 8px;
     text-align: center;
     transition: transform 0.3s;
-    /*Edits to try to center*/
-    display: flex;
-    justify-content: center !important;
 }
 
 .category:hover {
