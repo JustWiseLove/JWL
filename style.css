@@ -114,6 +114,19 @@ footer {
     max-width: 300px; /* Constrain width */
 }
 
+/* Desktop layout */
+@media (min-width: 768px) {
+    .categories {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center; /* Center items as a group */
+    }
+
+    .category {
+        max-width: 200px; /* Adjust based on design */
+    }
+}
+
 /*.categories {
     display: grid;
     grid-template-columns: 1fr;
