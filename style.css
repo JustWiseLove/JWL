@@ -97,6 +97,24 @@ footer {
 }
 
 .categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.category {
+    background-color: #d3d3d3;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s;
+    width: 100%;
+    max-width: 300px; /* Constrain width */
+}
+
+/*.categories {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
@@ -122,7 +140,7 @@ footer {
     border-radius: 8px;
     text-align: center;
     transition: transform 0.3s;
-}
+}*/
 
 .category:hover {
     transform: scale(1.05);
