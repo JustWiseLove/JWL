@@ -101,6 +101,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 20px;
     margin-bottom: 20px;
+    place-items: center;
 }
 
 @media (min-width: 768px) {
