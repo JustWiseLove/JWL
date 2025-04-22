@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpages - Just Wise Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        /* Form-specific styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .builder-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            font-family: 'Audiowide', sans-serif;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: #000 !important;
+        }
+        select option {
+            color: #000 !important;
+        }
+        .section-group, .article-group {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        .element-group {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background: #fff;
+        }
+        .element-list {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        .remove-btn, .copy-btn {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .remove-btn {
+            background-color: #FFD800;
+            color: #000;
+        }
+        .remove-btn:hover {
+            background-color: #E6C200;
+        }
+        .copy-btn {
+            background-color: #28a745; /* Green */
+        }
+        .copy-btn:hover {
+            background-color: #218838; /* Darker green */
+        }
+        #preview {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+        }
+        #html-output {
+            margin-top: 10px;
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            background: #f9f9f9;
+        }
+        .element-group textarea {
+            width: 100%;
+            min-height: 50px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            background: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        .element-group textarea:focus {
+            border-color: #333;
+            outline: none;
+            background: #f9f9f9;
+        }
+
+        /* CSS for the generated page and builder page header/footer */
+        header {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #333;
+        }
+        .logo h1 {
+            font-family: 'Audiowide', sans-serif;
+            color: #000;
+            font-size: 48px;
+            margin: 0;
+        }
+        .logo a {
+            text-decoration: none !important;
+            color: #000 !important;
+        }
+        footer {
+            background-color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 2px solid #333;
+            color: #000;
+            font-size: 14px;
+        }
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .intro {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .article {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .item {
+            width: 100%;
+            margin-bottom: 10px; /* Reduced gap between articles */
+        }
+        details[open] .item-content {
+            display: block;
+        }
+        .item-button {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 14px;
+            background-color: #d3d3d3;
+            border: none;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+        }
+        .item-button:hover {
+            background-color: #b0b0b0;
+        }
+        .item-button::-webkit-details-marker {
+            display: none;
+        }
+        .item-button::marker {
+            display: none;
+        }
+        .item-content {
+            display: none;
+            padding: 20px;
+            background-color: #e0e0e0;
+            border-radius: 0 0 5px 5px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center !important;
+        }
+        .item-content p,
+        .item-content li,
+        .item-content strong,
+        .item-content .scripture,
+        .item-content .scripture p {
+            text-align: center !important;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .item-content ul {
+            list-style-position: inside;
+            padding: 0;
+            margin: 0 auto;
+            text-align: center !important;
+        }
+        .item-content ul li {
+            display: block;
+            text-align: center !important;
+            margin: 10px 0;
+        }
+        .scripture {
+            background-color: #c0c0c0;
+            padding: 10px;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .scripture p {
+            font-style: italic;
+            margin: 5px 0;
+        }
+        .article h3, .article h4 {
+            font-family: 'Audiowide', sans-serif;
+            color: #000;
+            margin: 1rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <h1>WEBPAGES</h1>
+            </a>
+        </div>
+    </header>
+    <div class="builder-container">
+
+        <!-- Header Section -->
+        <h2>Header</h2>
+        <div class="section-group">
+            <label for="logo-text">Logo Text (e.g., JWL):</label>
+            <input type="text" id="logo-text" value="JWL">
+            <label for="logo-link">Logo Link (e.g., index.html):</label>
+            <input type="text" id="logo-link" value="index.html">
+        </div>
+
+        <!-- Intro Scripture Section -->
+        <h2>Intro Scripture</h2>
+        <div class="section-group">
+            <label for="intro-scripture">Intro Scripture:</label>
+            <textarea id="intro-scripture" rows="3"></textarea>
+        </div>
+
+        <!-- Article Sections (Dropdowns) -->
+        <h2>Article Sections</h2>
+        <div id="article-container">
+            <div class="article-group" data-index="0">
+                <label for="article-title-0">Article Title:</label>
+                <input type="text" id="article-title-0" value="Paradise Restored">
+                
+                <!-- Element List (for added elements) -->
+                <h3>Article Content</h3>
+                <div class="element-list" data-index="0"></div>
+                
+                <!-- Element Input -->
+                <div class="element-input">
+                    <label for="element-type-0">Element Type:</label>
+                    <select id="element-type-0">
+                        <option value="subheading">Heading</option>
+                        <option value="content">Content</option>
+                        <option value="scripture">Scripture</option>
+                    </select>
+                    <label for="element-text-0">Text:</label>
+                    <textarea id="element-text-0" rows="3"></textarea>
+                    <label for="subheading-level-0" class="subheading-level" style="display: none;">Header Level:</label>
+                    <select id="subheading-level-0" class="subheading-level" style="display: none;">
+                        <option value="h3">H3</option>
+                        <option value="h4">H4</option>
+                    </select>
+                    <button onclick="addElement(0)">Add Element</button>
+                </div>
+            </div>
+        </div>
+        <button onclick="addArticleSection()">Add Another Article Section</button>
+
+        <!-- Generate and Preview -->
+        <button onclick="generatePage()">Generate Webpage</button>
+        <div>
+            <h3>Webpage HTML</h3>
+            <button class="copy-btn" onclick="copyHtml()">Copy HTML</button>
+            <textarea id="html-output" readonly></textarea>
+        </div>
+        <div id="preview"></div>
+    </div>
+    <footer>
+        <p>© Just Wise Love</p>
+    </footer>
+
+    <script>
+        let articleCount = 1;
+        let elementCounts = { 0: 0 };
+        let elements = { 0: [] };
+
+        function copyHtml() {
+            const htmlOutput = document.getElementById('html-output');
+            htmlOutput.select();
+            document.execCommand('copy');
+            alert('HTML copied to clipboard!');
+        }
+
+        function addArticleSection() {
+            const container = document.getElementById('article-container');
+            const index = articleCount;
+            elementCounts[index] = 0;
+            elements[index] = [];
+            const newGroup = document.createElement('div');
+            newGroup.className = 'article-group';
+            newGroup.dataset.index = index;
+            newGroup.innerHTML = `
+                <label for="article-title-${index}">Article Title (Dropdown Label):</label>
+                <input type="text" id="article-title-${index}">
+                <h3>Article Content</h3>
+                <div class="element-list" data-index="${index}"></div>
+                <div class="element-input">
+                    <label for="element-type-${index}">Element Type:</label>
+                    <select id="element-type-${index}">
+                        <option value="subheading">Subheading</option>
+                        <option value="content">Content</option>
+                        <option value="scripture">Scripture</option>
+                    </select>
+                    <label for="element-text-${index}">Text:</label>
+                    <textarea id="element-text-${index}" rows="3"></textarea>
+                    <label for="subheading-level-${index}" class="subheading-level" style="display: none;">Subheading Level:</label>
+                    <select id="subheading-level-${index}" class="subheading-level" style="display: none;">
+                        <option value="h3">H3</option>
+                        <option value="h4">H4</option>
+                    </select>
+                    <button onclick="addElement(${index})">Add Element</button>
+                </div>
+                <button class="remove-btn" onclick="removeArticle(${index})">Remove Article</button>
+            `;
+            container.appendChild(newGroup);
+            articleCount++;
+            updateElementTypeListeners();
+        }
+
+        function updateElementTypeListeners() {
+            document.querySelectorAll('select[id^="element-type-"]').forEach(select => {
+                select.removeEventListener('change', handleElementTypeChange);
+                select.addEventListener('change', handleElementTypeChange);
+            });
+        }
+
+        function handleElementTypeChange(e) {
+            const index = e.target.id.split('-')[2];
+            const value = e.target.value;
+            const subheadingFields = document.querySelectorAll(`#subheading-level-${index}, label[for="subheading-level-${index}"]`);
+            subheadingFields.forEach(field => {
+                field.style.display = value === 'subheading' ? 'block' : 'none';
+            });
+        }
+
+        function addElement(articleIndex) {
+            const type = document.getElementById(`element-type-${articleIndex}`).value;
+            const text = document.getElementById(`element-text-${articleIndex}`).value;
+            if (!text) {
+                alert('Please enter text for the element.');
+                return;
+            }
+            const level = type === 'subheading' ? document.getElementById(`subheading-level-${articleIndex}`).value : null;
+            const element = { type, text, level, id: elementCounts[articleIndex] };
+            elements[articleIndex].push(element);
+            elementCounts[articleIndex]++;
+            renderElementList(articleIndex);
+            document.getElementById(`element-text-${articleIndex}`).value = '';
+        }
+
+        function updateElement(articleIndex, elementId, newText) {
+            const element = elements[articleIndex].find(e => e.id === elementId);
+            if (newText.trim()) {
+                element.text = newText.trim();
+                updatePreview();
+            } else {
+                alert('Text cannot be empty.');
+                renderElementList(articleIndex); // Re-render to restore previous text
+            }
+        }
+
+        function removeElement(articleIndex, elementId) {
+            elements[articleIndex] = elements[articleIndex].filter(e => e.id !== elementId);
+            renderElementList(articleIndex);
+            updatePreview();
+        }
+
+        function removeArticle(articleIndex) {
+            document.querySelector(`.article-group[data-index="${articleIndex}"]`).remove();
+            delete elements[articleIndex];
+            delete elementCounts[articleIndex];
+            updatePreview();
+        }
+
+        function renderElementList(articleIndex) {
+            const list = document.querySelector(`.element-list[data-index="${articleIndex}"]`);
+            list.innerHTML = elements[articleIndex].map(element => `
+                <div class="element-group">
+                    <strong>${element.type.charAt(0).toUpperCase() + element.type.slice(1)}${element.type === 'subheading' ? ` (${element.level.toUpperCase()})` : ''}:</strong>
+                    <textarea onblur="updateElement(${articleIndex}, ${element.id}, this.value)">${element.text}</textarea>
+                    <button class="remove-btn" onclick="removeElement(${articleIndex}, ${element.id})">Remove</button>
+                </div>
+            `).join('');
+            updatePreview();
+        }
+
+        function updatePreview() {
+            const logoText = document.getElementById('logo-text').value;
+            const logoLink = document.getElementById('logo-link').value;
+            const introScripture = document.getElementById('intro-scripture').value;
+
+            const articleSections = [];
+            for (let i = 0; i < articleCount; i++) {
+                const title = document.getElementById(`article-title-${i}`)?.value;
+                if (title && elements[i]?.length) {
+                    articleSections.push({ title, elements: elements[i] });
+                }
+            }
+
+            const html = `
+                <header>
+                    <div class="logo">
+                        <a href="${logoLink}">
+                            <h1>${logoText}</h1>
+                        </a>
+                    </div>
+                </header>
+                <main>
+                    ${introScripture ? `
+                        <section class="intro">
+                            <div class="scripture">
+                                <p><em>${introScripture}</em></p>
+                            </div>
+                        </section>
+                    ` : ''}
+                    <section class="article">
+                        ${articleSections.map(section => `
+                            <details class="item">
+                                <summary class="item-button">${section.title}</summary>
+                                <div class="item-content">
+                                    ${section.elements.map(element => {
+                                        if (element.type === 'subheading') {
+                                            return `<${element.level}>${element.text}</${element.level}>`;
+                                        } else if (element.type === 'content') {
+                                            return `<p>${element.text}</p>`;
+                                        } else {
+                                            return `
+                                                <div class="scripture">
+                                                    <p><em>${element.text}</em></p>
+                                                </div>
+                                            `;
+                                        }
+                                    }).join('')}
+                                </div>
+                            </details>
+                        `).join('')}
+                    </section>
+                </main>
+                <footer>
+                    <p>© Just Wise Love</p>
+                </footer>
+            `;
+            document.getElementById('preview').innerHTML = html;
+        }
+
+        function generatePage() {
+            const logoText = document.getElementById('logo-text').value;
+            const logoLink = document.getElementById('logo-link').value;
+            const introScripture = document.getElementById('intro-scripture').value;
+
+            const articleSections = [];
+            for (let i = 0; i < articleCount; i++) {
+                const title = document.getElementById(`article-title-${i}`)?.value;
+                if (title && elements[i]?.length) {
+                    articleSections.push({ title, elements: elements[i] });
+                }
+            }
+
+            const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore spiritual wisdom and truth through Just Wise Love, with scripture-based guidance.">
+    <meta name="keywords" content="Jehovah, scripture, spiritual guidance, Just Wise Love">
+    <title>Just Wise Love</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        ${document.querySelector('style').innerText}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="${logoLink}">
+                <h1>${logoText}</h1>
+            </a>
+        </div>
+    </header>
+    <main>
+        ${introScripture ? `
+            <section class="intro">
+                <div class="scripture">
+                    <p><em>${introScripture}</em></p>
+                </div>
+            </section>
+        ` : ''}
+        <section class="article">
+            ${articleSections.map(section => `
+                <details class="item">
+                    <summary class="item-button">${section.title}</summary>
+                    <div class="item-content">
+                        ${section.elements.map(element => {
+                            if (element.type === 'subheading') {
+                                return `<${element.level}>${element.text}</${element.level}>`;
+                            } else if (element.type === 'content') {
+                                return `<p>${element.text}</p>`;
+                            } else {
+                                return `
+                                    <div class="scripture">
+                                        <p><em>${element.text}</em></p>
+                                    </div>
+                                `;
+                            }
+                        }).join('')}
+                    </div>
+                </details>
+            `).join('')}
+        </section>
+    </main>
+    <footer>
+        <p>© Just Wise Love</p>
+    </footer>
+</body>
+</html>
+            `;
+
+            const preview = document.getElementById('preview');
+            preview.innerHTML = html;
+            const htmlOutput = document.getElementById('html-output');
+            htmlOutput.value = html;
+        }
+    </script>
+</body>
+</html>
