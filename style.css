@@ -97,22 +97,12 @@ footer {
 }
 
 .categories {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     gap: 20px;
     margin-bottom: 20px;
-}
-
-@media (min-width: 768px) {
-    .categories {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .categories {
-        grid-template-columns: repeat(4, 1fr);
-    }
+    flex-wrap: wrap;
 }
 
 .category {
