@@ -78,7 +78,7 @@
             background: rgba(0, 0, 0, 0.8);
             border-radius: 8px;
             border: 1px solid #999999;
-            box-shadow: 0 0 10px rgba(153, 153, 153, 0.3);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             margin-top: 10px;
         }
 
@@ -118,6 +118,18 @@
             margin: 0 auto;
         }
 
+        #levelDisplay {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffffff;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: bold;
+            z-index: 10;
+            text-align: center;
+        }
+
         #gameCanvas {
             width: 100%;
             height: 100%;
@@ -136,13 +148,14 @@
             cursor: pointer;
             transform: translate(-50%, -50%);
             z-index: 5;
+            pointer-events: auto; /* Ensure spots can receive events */
         }
 
         .tower-spot:hover {
             background-color: rgba(153, 153, 153, 0.4);
         }
 
-        #startButton {
+        #startButton, #nextButton {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -156,10 +169,16 @@
             border-radius: 8px;
             cursor: pointer;
             z-index: 10;
-            display: block;
+            display: none;
+            touch-action: manipulation; /* Prevent scrolling on touch */
+            pointer-events: auto; /* Ensure button can receive events */
         }
 
-        #startButton:hover {
+        #startButton {
+            display: block; /* Initially visible */
+        }
+
+        #startButton:hover, #nextButton:hover {
             background-color: #cccccc;
         }
 
@@ -200,8 +219,10 @@
         <p>Use Trust Earned for Truth Served (📜).</p>
     </div>
     <div id="gameContainer">
+        <div id="levelDisplay"></div>
         <canvas id="gameCanvas"></canvas>
         <button id="startButton">START</button>
+        <button id="nextButton">NEXT</button>
     </div>
     <div id="gameCounter">
         <div class="counter-section">
@@ -226,7 +247,9 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const startButton = document.getElementById('startButton');
+        const nextButton = document.getElementById('nextButton');
         const gameInstructions = document.getElementById('gameInstructions');
+        const levelDisplay = document.getElementById('levelDisplay');
 
         function resizeCanvas() {
             const maxSize = 800;
@@ -245,12 +268,53 @@
         let towers = [];
         let enemies = [];
         let towerSpots = [];
-        let enemySpawnRate = 1000;
+        let enemySpawnRate = 2000;
         let lastSpawn = 0;
         let gameOver = false;
         let gameWon = false;
         let towerCount = 0;
         let gameStarted = false;
+        let currentLevel = 1;
+        let levelCleared = false;
+        let isTransitioning = false;
+
+        const levels = [
+            {
+                baseSpawnRate: 2000,
+                minSpawnRate: 1200,
+                spawnRateDecay: 0.96,
+                baseSpeed: 0.5,
+                maxSpeedMultiplier: 1.3
+            },
+            {
+                baseSpawnRate: 1900,
+                minSpawnRate: 1100,
+                spawnRateDecay: 0.95,
+                baseSpeed: 0.55,
+                maxSpeedMultiplier: 1.5
+            },
+            {
+                baseSpawnRate: 1800,
+                minSpawnRate: 1000,
+                spawnRateDecay: 0.94,
+                baseSpeed: 0.6,
+                maxSpeedMultiplier: 1.7
+            },
+            {
+                baseSpawnRate: 1700,
+                minSpawnRate: 900,
+                spawnRateDecay: 0.93,
+                baseSpeed: 0.65,
+                maxSpeedMultiplier: 2.0
+            },
+            {
+                baseSpawnRate: 1600,
+                minSpawnRate: 800,
+                spawnRateDecay: 0.92,
+                baseSpeed: 0.7,
+                maxSpeedMultiplier: 2.3
+            }
+        ];
 
         function getScaledPath() {
             const originalWidth = 800;
@@ -259,14 +323,15 @@
             const scale = currentSize / originalWidth;
 
             const padding = 50;
+            const verticalTipHeight = 15 * scale;
             const originalPath = [
                 {x: 50 + padding, y: 550 - padding},
                 {x: 250, y: 550 - padding},
-                {x: 250, y: 150 + padding},
-                {x: 350, y: 550 - padding},
-                {x: 450, y: 150 + padding},
-                {x: 550, y: 550 - padding},
-                {x: 650, y: 150 + padding},
+                {x: 250, y: 150 + padding + verticalTipHeight},
+                {x: 350, y: 550 - padding - verticalTipHeight},
+                {x: 450, y: 150 + padding + verticalTipHeight},
+                {x: 550, y: 550 - padding - verticalTipHeight},
+                {x: 650, y: 150 + padding + verticalTipHeight},
                 {x: 650, y: 550 - padding},
                 {x: 850 - padding, y: 550 - padding}
             ];
@@ -324,10 +389,11 @@
             towerSpots = [];
             
             const path = getScaledPath();
-            const offset = 60 * (canvas.width / 800);
             const totalLength = calculatePathLength(path);
             const numberOfSpots = 5;
             const stepSize = totalLength / (numberOfSpots - 1);
+            const offsetDistance = 60 * (canvas.width / 800);
+            const spotRadius = clamp(15, 3.5 * window.innerWidth / 100, 25) / 2;
 
             for (let i = 0; i < numberOfSpots; i++) {
                 const distance = i * stepSize;
@@ -343,14 +409,28 @@
                     dx /= length;
                     dy /= length;
                 }
-                
-                const perpX = -dy;
-                const perpY = dx;
 
-                const spot1X = Math.max(offset, Math.min(canvas.width - offset, pos.x + perpX * offset));
-                const spot1Y = Math.max(offset, Math.min(canvas.height - offset, pos.y + perpY * offset));
-                const spot2X = Math.max(offset, Math.min(canvas.width - offset, pos.x - perpX * offset));
-                const spot2Y = Math.max(offset, Math.min(canvas.height - offset, pos.y - perpY * offset));
+                const isHorizontal = Math.abs(dy) < 0.1;
+                let spot1X, spot1Y, spot2X, spot2Y;
+
+                if (isHorizontal) {
+                    const perpX = -dy;
+                    const perpY = dx;
+                    spot1X = pos.x + perpX * offsetDistance;
+                    spot1Y = pos.y + perpY * offsetDistance;
+                    spot2X = pos.x - perpX * offsetDistance;
+                    spot2Y = pos.y - perpY * offsetDistance;
+                } else {
+                    spot1X = pos.x + offsetDistance;
+                    spot1Y = pos.y;
+                    spot2X = pos.x - offsetDistance;
+                    spot2Y = pos.y;
+                }
+
+                spot1X = Math.max(spotRadius, Math.min(canvas.width - spotRadius, spot1X));
+                spot2X = Math.max(spotRadius, Math.min(canvas.width - spotRadius, spot2X));
+                spot1Y = Math.max(spotRadius, Math.min(canvas.height - spotRadius, spot1Y));
+                spot2Y = Math.max(spotRadius, Math.min(canvas.height - spotRadius, spot2Y));
 
                 const spot1 = document.createElement('div');
                 spot1.className = 'tower-spot';
@@ -382,7 +462,9 @@
             draw() {
                 ctx.font = `${30 * (canvas.width / 800)}px Arial`;
                 ctx.fillStyle = '#cccccc';
-                ctx.fillText(this.type, this.x - (15 * canvas.width / 800), this.y + (10 * canvas.width / 800));
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(this.type, this.x, this.y);
             }
 
             shoot() {
@@ -405,14 +487,15 @@
         class Enemy {
             constructor() {
                 const path = getScaledPath();
-                this.x = path[0].x;
-                this.y = path[0].y;
+                this.distanceTraveled = 0;
                 this.health = 2;
-                this.baseSpeed = 1 * (canvas.width / 800);
+                this.baseSpeed = levels[currentLevel - 1].baseSpeed * (canvas.width / 800);
                 this.speedMultiplier = 1;
                 this.speed = this.baseSpeed * this.speedMultiplier;
-                this.pathIndex = 1;
                 this.type = '⚕️';
+                const pos = getPositionAtDistance(path, this.distanceTraveled);
+                this.x = pos.x;
+                this.y = pos.y;
             }
 
             updateSpeed(multiplier) {
@@ -422,28 +505,26 @@
 
             move() {
                 const path = getScaledPath();
-                const target = path[this.pathIndex];
-                const dx = target.x - this.x;
-                const dy = target.y - this.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+                const totalLength = calculatePathLength(path);
 
-                if (distance < this.speed) {
-                    this.x = target.x;
-                    this.y = target.y;
-                    this.pathIndex++;
-                    if (this.pathIndex >= path.length) {
-                        gameOver = true;
-                    }
-                } else {
-                    this.x += (dx / distance) * this.speed;
-                    this.y += (dy / distance) * this.speed;
+                this.distanceTraveled += this.speed;
+
+                if (this.distanceTraveled >= totalLength) {
+                    gameOver = true;
+                    return;
                 }
+
+                const pos = getPositionAtDistance(path, this.distanceTraveled);
+                this.x = pos.x;
+                this.y = pos.y;
             }
 
             draw() {
                 ctx.font = `${20 * (canvas.width / 800)}px Arial`;
                 ctx.fillStyle = '#ffffff';
-                ctx.fillText(this.type, this.x - (10 * canvas.width / 800), this.y + (10 * canvas.width / 800));
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(this.type, this.x, this.y);
             }
         }
 
@@ -455,12 +536,24 @@
                 towers.push(new Tower(x, y, type));
                 towerCount++;
                 updateGameCounter();
+                adjustDifficultyForTowers();
             }
+        }
+
+        function adjustDifficultyForTowers() {
+            const towerDifficultyFactor = 1 + (towers.length * 0.05);
+            enemySpawnRate = Math.max(
+                levels[currentLevel - 1].minSpawnRate,
+                enemySpawnRate / towerDifficultyFactor
+            );
         }
 
         function spawnEnemy() {
             enemies.push(new Enemy());
-            enemySpawnRate = Math.max(500, enemySpawnRate * 0.98);
+            enemySpawnRate = Math.max(
+                levels[currentLevel - 1].minSpawnRate,
+                enemySpawnRate * levels[currentLevel - 1].spawnRateDecay
+            );
         }
 
         function updateGameCounter() {
@@ -471,7 +564,7 @@
 
         function drawPathWithSquaredTips(path, lineWidth) {
             const halfWidth = lineWidth / 2;
-            const verticalTipHeight = 15 * (canvas.width / 800); // Height of the vertical tips for J and L
+            const verticalTipHeight = 15 * (canvas.width / 800);
             ctx.strokeStyle = '#999999';
             ctx.lineWidth = lineWidth;
             ctx.lineCap = 'square';
@@ -481,39 +574,31 @@
                 const start = path[i];
                 const end = path[i + 1];
 
-                // Calculate direction of the segment
                 const dx = end.x - start.x;
                 const dy = end.y - start.y;
                 const length = Math.sqrt(dx * dx + dy * dy);
                 if (length === 0) continue;
 
-                // Normalize direction
                 const dirX = dx / length;
                 const dirY = dy / length;
 
-                // Perpendicular vector for width
                 const perpX = -dirY;
                 const perpY = dirX;
 
-                // Adjust start and end points to avoid overlap at corners (for W segments)
                 let adjustedStartX = start.x;
                 let adjustedStartY = start.y;
                 let adjustedEndX = end.x;
                 let adjustedEndY = end.y;
 
-                // Handle the "J" (first segment) and "L" (last segment) differently
                 if (i === 0) {
-                    // "J" segment: Flat bottom with vertical tips
-                    const jBaseY = start.y; // The flat bottom is at the y-coordinate of the start
-                    const jEndX = start.x + (end.x - start.x); // Extend to the end of the segment
+                    const jBaseY = start.y;
+                    const jEndX = start.x + (end.x - start.x);
 
-                    // Draw the flat bottom (horizontal line)
                     ctx.beginPath();
                     ctx.moveTo(start.x - halfWidth, jBaseY);
                     ctx.lineTo(jEndX + halfWidth, jBaseY);
                     ctx.stroke();
 
-                    // Draw the vertical tips at both ends
                     ctx.beginPath();
                     ctx.moveTo(start.x - halfWidth, jBaseY);
                     ctx.lineTo(start.x - halfWidth, jBaseY - verticalTipHeight);
@@ -524,21 +609,17 @@
                     ctx.lineTo(jEndX + halfWidth, jBaseY - verticalTipHeight);
                     ctx.stroke();
 
-                    // Adjust the end point to connect to the next segment (W)
                     adjustedEndX = jEndX;
                     adjustedEndY = jBaseY - verticalTipHeight;
                 } else if (i === path.length - 2) {
-                    // "L" segment: Flat bottom with vertical tips
-                    const lBaseY = end.y; // The flat bottom is at the y-coordinate of the end
+                    const lBaseY = end.y;
                     const lStartX = start.x;
 
-                    // Draw the flat bottom (horizontal line)
                     ctx.beginPath();
                     ctx.moveTo(lStartX - halfWidth, lBaseY);
                     ctx.lineTo(end.x + halfWidth, lBaseY);
                     ctx.stroke();
 
-                    // Draw the vertical tips at both ends
                     ctx.beginPath();
                     ctx.moveTo(lStartX - halfWidth, lBaseY);
                     ctx.lineTo(lStartX - halfWidth, lBaseY - verticalTipHeight);
@@ -549,12 +630,9 @@
                     ctx.lineTo(end.x + halfWidth, lBaseY - verticalTipHeight);
                     ctx.stroke();
 
-                    // Adjust the start point to connect to the previous segment (W)
                     adjustedStartX = lStartX;
                     adjustedStartY = lBaseY - verticalTipHeight;
                 } else {
-                    // Middle segments (W) with squared tips
-                    // Adjust start point to avoid overlap if not the first segment
                     if (i > 0) {
                         const prevDx = start.x - path[i - 1].x;
                         const prevDy = start.y - path[i - 1].y;
@@ -571,7 +649,6 @@
                         }
                     }
 
-                    // Adjust end point to avoid overlap if not the last segment
                     if (i < path.length - 2) {
                         const nextDx = path[i + 2].x - end.x;
                         const nextDy = path[i + 2].y - end.y;
@@ -588,13 +665,11 @@
                         }
                     }
 
-                    // Draw the W segment
                     ctx.beginPath();
                     ctx.moveTo(adjustedStartX, adjustedStartY);
                     ctx.lineTo(adjustedEndX, adjustedEndY);
                     ctx.stroke();
 
-                    // Draw squares at the vertices of the W
                     ctx.fillStyle = '#999999';
                     ctx.fillRect(start.x - halfWidth, start.y - halfWidth, lineWidth, lineWidth);
                     if (i === path.length - 3) {
@@ -604,12 +679,31 @@
             }
         }
 
+        function resetLevel() {
+            exe = 0;
+            cod = 4;
+            doc = 2;
+            towers = [];
+            enemies = [];
+            towerSpots.forEach(spot => spot.remove());
+            towerSpots = [];
+            lastSpawn = 0;
+            gameOver = false;
+            gameWon = false;
+            levelCleared = false;
+            isTransitioning = false;
+            enemySpawnRate = levels[currentLevel - 1].baseSpawnRate;
+            updateGameCounter();
+            createTowerSpots();
+        }
+
         function gameLoop(timestamp) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (!gameStarted) {
                 const path = getScaledPath();
                 drawPathWithSquaredTips(path, 40 * (canvas.width / 800));
+                levelDisplay.textContent = `${currentLevel}`;
                 requestAnimationFrame(gameLoop);
                 return;
             }
@@ -623,17 +717,24 @@
                 return;
             }
 
-            if (gameWon) {
+            if (gameWon && !levelCleared) {
                 ctx.fillStyle = '#cccccc';
                 ctx.font = `${40 * (canvas.width / 800)}px Arial`;
                 ctx.textAlign = 'center';
-                ctx.fillText('YOU WIN', canvas.width / 2, canvas.height / 2);
+                if (currentLevel < 5) {
+                    ctx.fillText('LEVEL CLEARED!', canvas.width / 2, canvas.height / 2 - 20);
+                    nextButton.style.display = 'block';
+                } else {
+                    ctx.fillText('YOU WIN!', canvas.width / 2, canvas.height / 2);
+                }
                 ctx.textAlign = 'start';
+                levelCleared = true;
                 return;
             }
 
             const path = getScaledPath();
             drawPathWithSquaredTips(path, 40 * (canvas.width / 800));
+            levelDisplay.textContent = `${currentLevel}`;
 
             if (timestamp - lastSpawn > enemySpawnRate) {
                 spawnEnemy();
@@ -645,7 +746,11 @@
                 tower.draw();
             });
 
-            const speedMultiplier = 1 + Math.floor(exe / 64) * 0.25;
+            const levelConfig = levels[currentLevel - 1];
+            const progress = exe / 314;
+            const baseSpeedMultiplier = 1 + (levelConfig.maxSpeedMultiplier - 1) * progress;
+            const towerDifficultyFactor = 1 + (towers.length * 0.05);
+            const speedMultiplier = baseSpeedMultiplier * towerDifficultyFactor;
 
             for (let i = enemies.length - 1; i >= 0; i--) {
                 enemies[i].updateSpeed(speedMultiplier);
@@ -665,9 +770,12 @@
             requestAnimationFrame(gameLoop);
         }
 
-        // Function to handle the start action
-        function startGame() {
-            console.log('Start button clicked or touched');
+        function clamp(min, value, max) {
+            return Math.max(min, Math.min(value, max));
+        }
+
+        function startGame(e) {
+            console.log('Start button triggered', e.type);
             gameStarted = true;
             startButton.style.display = 'none';
             gameInstructions.style.display = 'none';
@@ -675,16 +783,48 @@
             requestAnimationFrame(gameLoop);
         }
 
-        // Add both click and touchstart event listeners for mobile compatibility
-        startButton.addEventListener('click', startGame);
-        startButton.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
-            startGame();
+        function nextLevel(e) {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            console.log('Next button triggered', e.type);
+            console.log('Current Level before increment:', currentLevel);
+            currentLevel = Math.min(currentLevel + 1, 5);
+            console.log('Transitioning to Level:', currentLevel);
+            resetLevel();
+            nextButton.style.display = 'none';
+            gameStarted = true;
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.addEventListener('load', () => {
+            console.log('Window loaded, attaching event listeners');
+
+            // Verify startButton exists
+            if (!startButton) {
+                console.error('startButton not found in DOM');
+            } else {
+                console.log('startButton found, attaching click event listener');
+                startButton.addEventListener('click', (e) => {
+                    console.log('StartButton: Click event fired');
+                    startGame(e);
+                });
+            }
+
+            // Verify nextButton exists
+            if (!nextButton) {
+                console.error('nextButton not found in DOM');
+            } else {
+                console.log('nextButton found, attaching click event listener');
+                nextButton.addEventListener('click', (e) => {
+                    console.log('NextButton: Click event fired');
+                    nextLevel(e);
+                });
+            }
         });
 
         window.addEventListener('resize', () => {
             resizeCanvas();
-            if (gameStarted) {
+            if (gameStarted && !levelCleared) {
                 createTowerSpots();
             }
         });
