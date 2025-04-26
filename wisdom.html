@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Wise Love</title>
+    <!-- Google Fonts link for Audiowide -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #333333;
+            font-family: Arial, sans-serif;
+            overflow: auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            padding-top: 80px; /* Increased padding to account for header */
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333333;
+            z-index: 100;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .logo h1 {
+            font-family: 'Audiowide', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin: 0;
+        }
+
+        .logo a {
+            color: #cccccc;
+            text-decoration: none;
+        }
+
+        .logo a:hover,
+        .logo a:active,
+        .logo a:visited {
+            color: #cccccc;
+        }
+
+        #gameInstructions {
+            color: #cccccc;
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+            text-align: center;
+            margin-bottom: 15px;
+            max-width: 90%;
+            opacity: 0.9;
+        }
+
+        #gameCounter {
+            display: flex;
+            gap: 15px;
+            padding: 8px 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            border: 1px solid #999999;
+            box-shadow: 0 0 10px rgba(153, 153, 153, 0.3);
+            margin-top: 10px;
+        }
+
+        .counter-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .counter-label {
+            color: #999999;
+            font-size: clamp(0.8rem, 1.6vw, 1rem);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .counter-value {
+            color: #ffffff;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: bold;
+            margin: 2px 0;
+        }
+
+        .counter-desc {
+            color: #cccccc;
+            font-size: clamp(0.6rem, 1.4vw, 0.8rem);
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 90vw;
+            max-width: 800px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+        }
+
+        #gameCanvas {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #999999;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tower-spot {
+            position: absolute;
+            width: clamp(15px, 3.5vw, 25px);
+            height: clamp(15px, 3.5vw, 25px);
+            background-color: rgba(153, 153, 153, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+
+        .tower-spot:hover {
+            background-color: rgba(153, 153, 153, 0.4);
+        }
+
+        #startButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 12px 25px;
+            font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+            font-weight: bold;
+            color: #000000;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10;
+            display: block;
+        }
+
+        #startButton:hover {
+            background-color: #cccccc;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+                padding-top: 60px; /* Adjusted for smaller header on mobile */
+            }
+
+            #gameCounter {
+                gap: 8px;
+                padding: 5px 10px;
+            }
+
+            .counter-section {
+                min-width: 45px;
+            }
+            
+            .tower-spot {
+                width: clamp(12px, 4vw, 18px);
+                height: clamp(12px, 4vw, 18px);
+            }
+
+            .logo h1 {
+                font-size: clamp(1.2rem, 3.5vw, 2rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1><a href="index.html">JUST WISE LOVE</a></h1>
+        </div>
+    </header>
+    <div id="gameInstructions">
+        <p>Protect the truth from incoming lies (⚕️).</p>
+        <p>Use trust points to place truths (📜) on gray spots.</p>
+    </div>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <button id="startButton">START</button>
+    </div>
+    <div id="gameCounter">
+        <div class="counter-section">
+            <span class="counter-label">TRUST</span>
+            <span class="counter-value" id="codValue">4</span>
+            <span class="counter-desc">Earned</span>
+        </div>
+        <div class="counter-section">
+            <span class="counter-label">WISDOM</span>
+            <span class="counter-value" id="exeValue">0</span>
+            <span class="counter-desc">Gained</span>
+        </div>
+        <div class="counter-section">
+            <span class="counter-label">TRUTH</span>
+            <span class="counter-value" id="docValue">2</span>
+            <span class="counter-desc">Served</span>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('gameContainer');
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const startButton = document.getElementById('startButton');
+        const gameInstructions = document.getElementById('gameInstructions');
+
+        function resizeCanvas() {
+            const maxSize = 800;
+            const availableWidth = Math.min(window.innerWidth * 0.9, maxSize);
+            const size = Math.min(availableWidth, window.innerHeight * 0.8);
+
+            canvas.width = size;
+            canvas.height = size;
+            container.style.width = `${size}px`;
+            container.style.height = `${size}px`;
+        }
+
+        let cod = 4;
+        let exe = 0;
+        let doc = 2;
+        let towers = [];
+        let enemies = [];
+        let towerSpots = [];
+        let enemySpawnRate = 1000;
+        let lastSpawn = 0;
+        let gameOver = false;
+        let gameWon = false;
+        let towerCount = 0;
+        let gameStarted = false;
+
+        function getScaledPath() {
+            const originalWidth = 800;
+            const originalHeight = 600;
+            const currentSize = canvas.width;
+            const scale = currentSize / originalWidth;
+
+            const padding = 50;
+            const originalPath = [
+                {x: 50 + padding, y: 550 - padding},
+                {x: 250, y: 550 - padding},
+                {x: 250, y: 150 + padding},
+                {x: 350, y: 550 - padding},
+                {x: 450, y: 150 + padding},
+                {x: 550, y: 550 - padding},
+                {x: 650, y: 150 + padding},
+                {x: 650, y: 550 - padding},
+                {x: 850 - padding, y: 550 - padding}
+            ];
+
+            let minX = Math.min(...originalPath.map(p => p.x));
+            let maxX = Math.max(...originalPath.map(p => p.x));
+            let minY = Math.min(...originalPath.map(p => p.y));
+            let maxY = Math.max(...originalPath.map(p => p.y));
+
+            const pathWidth = maxX - minX;
+            const pathHeight = maxY - minY;
+
+            const offsetX = (currentSize - pathWidth * scale) / 2 - minX * scale;
+            const offsetY = (currentSize - pathHeight * scale) / 2 - minY * scale;
+
+            return originalPath.map(point => ({
+                x: point.x * scale + offsetX,
+                y: point.y * scale + offsetY
+            }));
+        }
+
+        function calculatePathLength(path) {
+            let totalLength = 0;
+            for (let i = 0; i < path.length - 1; i++) {
+                const dx = path[i + 1].x - path[i].x;
+                const dy = path[i + 1].y - path[i].y;
+                totalLength += Math.sqrt(dx * dx + dy * dy);
+            }
+            return totalLength;
+        }
+
+        function getPositionAtDistance(path, distance) {
+            let currentLength = 0;
+            for (let i = 0; i < path.length - 1; i++) {
+                const dx = path[i + 1].x - path[i].x;
+                const dy = path[i + 1].y - path[i].y;
+                const segmentLength = Math.sqrt(dx * dx + dy * dy);
+                
+                if (currentLength + segmentLength >= distance) {
+                    const remaining = distance - currentLength;
+                    const t = remaining / segmentLength;
+                    return {
+                        x: path[i].x + t * dx,
+                        y: path[i].y + t * dy,
+                        segment: i
+                    };
+                }
+                currentLength += segmentLength;
+            }
+            return { x: path[path.length - 1].x, y: path[path.length - 1].y, segment: path.length - 1 };
+        }
+
+        function createTowerSpots() {
+            towerSpots.forEach(spot => spot.remove());
+            towerSpots = [];
+            
+            const path = getScaledPath();
+            const offset = 60 * (canvas.width / 800);
+            const totalLength = calculatePathLength(path);
+            const numberOfSpots = 5;
+            const stepSize = totalLength / (numberOfSpots - 1);
+
+            for (let i = 0; i < numberOfSpots; i++) {
+                const distance = i * stepSize;
+                const pos = getPositionAtDistance(path, distance);
+                
+                let dx = 0, dy = 0;
+                if (pos.segment < path.length - 1) {
+                    dx = path[pos.segment + 1].x - path[pos.segment].x;
+                    dy = path[pos.segment + 1].y - path[pos.segment].y;
+                }
+                const length = Math.sqrt(dx * dx + dy * dy);
+                if (length > 0) {
+                    dx /= length;
+                    dy /= length;
+                }
+                
+                const perpX = -dy;
+                const perpY = dx;
+
+                const spot1X = Math.max(offset, Math.min(canvas.width - offset, pos.x + perpX * offset));
+                const spot1Y = Math.max(offset, Math.min(canvas.height - offset, pos.y + perpY * offset));
+                const spot2X = Math.max(offset, Math.min(canvas.width - offset, pos.x - perpX * offset));
+                const spot2Y = Math.max(offset, Math.min(canvas.height - offset, pos.y - perpY * offset));
+
+                const spot1 = document.createElement('div');
+                spot1.className = 'tower-spot';
+                spot1.style.left = `${spot1X}px`;
+                spot1.style.top = `${spot1Y}px`;
+                spot1.onclick = () => placeTower(spot1X, spot1Y);
+                container.appendChild(spot1);
+                towerSpots.push(spot1);
+
+                const spot2 = document.createElement('div');
+                spot2.className = 'tower-spot';
+                spot2.style.left = `${spot2X}px`;
+                spot2.style.top = `${spot2Y}px`;
+                spot2.onclick = () => placeTower(spot2X, spot2Y);
+                container.appendChild(spot2);
+                towerSpots.push(spot2);
+            }
+        }
+
+        class Tower {
+            constructor(x, y, type) {
+                this.x = x;
+                this.y = y;
+                this.type = type;
+                this.range = 150 * (canvas.width / 800);
+                this.cooldown = 0;
+            }
+
+            draw() {
+                ctx.font = `${30 * (canvas.width / 800)}px Arial`;
+                ctx.fillStyle = '#cccccc';
+                ctx.fillText(this.type, this.x - (15 * canvas.width / 800), this.y + (10 * canvas.width / 800));
+            }
+
+            shoot() {
+                if (this.cooldown <= 0) {
+                    for (let enemy of enemies) {
+                        const distance = Math.sqrt(
+                            Math.pow(enemy.x - this.x, 2) + Math.pow(enemy.y - this.y, 2)
+                        );
+                        if (distance < this.range) {
+                            enemy.health--;
+                            this.cooldown = 50;
+                            return;
+                        }
+                    }
+                }
+                this.cooldown--;
+            }
+        }
+
+        class Enemy {
+            constructor() {
+                const path = getScaledPath();
+                this.x = path[0].x;
+                this.y = path[0].y;
+                this.health = 2;
+                this.baseSpeed = 1 * (canvas.width / 800);
+                this.speedMultiplier = 1;
+                this.speed = this.baseSpeed * this.speedMultiplier;
+                this.pathIndex = 1;
+                this.type = '⚕️';
+            }
+
+            updateSpeed(multiplier) {
+                this.speedMultiplier = multiplier;
+                this.speed = this.baseSpeed * this.speedMultiplier;
+            }
+
+            move() {
+                const path = getScaledPath();
+                const target = path[this.pathIndex];
+                const dx = target.x - this.x;
+                const dy = target.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < this.speed) {
+                    this.x = target.x;
+                    this.y = target.y;
+                    this.pathIndex++;
+                    if (this.pathIndex >= path.length) {
+                        gameOver = true;
+                    }
+                } else {
+                    this.x += (dx / distance) * this.speed;
+                    this.y += (dy / distance) * this.speed;
+                }
+            }
+
+            draw() {
+                ctx.font = `${20 * (canvas.width / 800)}px Arial`;
+                ctx.fillStyle = '#ffffff';
+                ctx.fillText(this.type, this.x - (10 * canvas.width / 800), this.y + (10 * canvas.width / 800));
+            }
+        }
+
+        function placeTower(x, y) {
+            if (cod >= doc && !towers.some(t => t.x === x && t.y === y)) {
+                cod -= doc;
+                doc = Math.floor(doc * 1.5);
+                const type = '📜';
+                towers.push(new Tower(x, y, type));
+                towerCount++;
+                updateGameCounter();
+            }
+        }
+
+        function spawnEnemy() {
+            enemies.push(new Enemy());
+            enemySpawnRate = Math.max(500, enemySpawnRate * 0.98);
+        }
+
+        function updateGameCounter() {
+            document.getElementById('codValue').textContent = cod;
+            document.getElementById('exeValue').textContent = exe;
+            document.getElementById('docValue').textContent = doc;
+        }
+
+        function gameLoop(timestamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (!gameStarted) {
+                const path = getScaledPath();
+                ctx.beginPath();
+                ctx.strokeStyle = '#999999';
+                ctx.lineWidth = 40 * (canvas.width / 800);
+                ctx.moveTo(path[0].x, path[0].y);
+                for (let point of path) {
+                    ctx.lineTo(point.x, point.y);
+                }
+                ctx.stroke();
+
+                requestAnimationFrame(gameLoop);
+                return;
+            }
+
+            if (gameOver) {
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `${40 * (canvas.width / 800)}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
+                ctx.textAlign = 'start';
+                return;
+            }
+
+            if (gameWon) {
+                ctx.fillStyle = '#cccccc';
+                ctx.font = `${40 * (canvas.width / 800)}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.fillText('YOU WIN', canvas.width / 2, canvas.height / 2);
+                ctx.textAlign = 'start';
+                return;
+            }
+
+            const path = getScaledPath();
+            ctx.beginPath();
+            ctx.strokeStyle = '#999999';
+            ctx.lineWidth = 40 * (canvas.width / 800);
+            ctx.moveTo(path[0].x, path[0].y);
+            for (let point of path) {
+                ctx.lineTo(point.x, point.y);
+            }
+            ctx.stroke();
+
+            if (timestamp - lastSpawn > enemySpawnRate) {
+                spawnEnemy();
+                lastSpawn = timestamp;
+            }
+
+            towers.forEach(tower => {
+                tower.shoot();
+                tower.draw();
+            });
+
+            const speedMultiplier = 1 + Math.floor(exe / 64) * 0.25;
+
+            for (let i = enemies.length - 1; i >= 0; i--) {
+                enemies[i].updateSpeed(speedMultiplier);
+                enemies[i].move();
+                enemies[i].draw();
+                if (enemies[i].health <= 0) {
+                    enemies.splice(i, 1);
+                    cod += 1;
+                    exe += 1;
+                    updateGameCounter();
+                    if (exe >= 314) {
+                        gameWon = true;
+                    }
+                }
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        startButton.addEventListener('click', () => {
+            gameStarted = true;
+            startButton.style.display = 'none';
+            gameInstructions.style.display = 'none';
+            createTowerSpots();
+        });
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            if (gameStarted) {
+                createTowerSpots();
+            }
+        });
+        
+        resizeCanvas();
+        requestAnimationFrame(gameLoop);
+    </script>
+</body>
+</html>
