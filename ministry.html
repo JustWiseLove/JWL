@@ -10,17 +10,21 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        html, body {
             margin: 0;
-            padding: 10px;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+        body {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f4f4f9;
-            overflow: auto;
             box-sizing: border-box;
         }
         .game-content {
@@ -28,17 +32,19 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 100%;
+            height: 100%;
+            padding: 5px;
+            box-sizing: border-box;
         }
         .game-content h1 {
-            font-size: clamp(24px, 3vw, 36px);
+            font-size: clamp(20px, 2.5vw, 32px);
             color: #333;
-            margin: 10px 0;
+            margin: 5px 0;
             text-align: center;
         }
         .board {
             display: grid;
-            grid-template: repeat(11, 1fr) / repeat(11, 1fr); /* 11x11 grid for 36-space layout */
+            grid-template: repeat(11, 1fr) / repeat(11, 1fr); /* 11x11 grid for 40-space layout */
             width: 90vmin;
             height: 90vmin;
             max-width: 90vw;
@@ -54,9 +60,9 @@
             align-items: center;
             justify-content: center;
             background-color: #fff;
-            font-size: clamp(10px, 1.2vmin, 14px);
+            font-size: clamp(8px, 1vmin, 12px);
             text-align: center;
-            padding: 3px;
+            padding: 2px;
             box-sizing: border-box;
             transition: background-color 0.3s;
         }
@@ -83,9 +89,9 @@
             background-color: #f0f0f0;
         }
         .space-name {
-            padding: 2px;
+            padding: 1px;
             overflow-wrap: break-word;
-            line-height: 1.2;
+            line-height: 1.1;
             font-size: inherit;
         }
         .token-container {
@@ -94,14 +100,14 @@
             justify-content: center;
         }
         .token {
-            width: clamp(12px, 1.5vmin, 16px);
-            height: clamp(12px, 1.5vmin, 16px);
+            width: clamp(8px, 1vmin, 12px);
+            height: clamp(8px, 1vmin, 12px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: clamp(6px, 0.8vmin, 8px);
+            font-size: clamp(5px, 0.6vmin, 7px);
             margin: 1px;
             border: 1px solid #333;
         }
@@ -109,11 +115,11 @@
             grid-column: 2 / 11;
             grid-row: 2 / 11;
             background-color: #fff;
-            padding: 8px;
+            padding: 5px;
             overflow-y: auto;
             box-sizing: border-box;
-            font-size: clamp(12px, 1.2vmin, 14px);
-            line-height: 1.4;
+            font-size: clamp(10px, 1vmin, 12px);
+            line-height: 1.3;
             border: 2px solid #333;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -122,24 +128,24 @@
             justify-content: space-between;
         }
         .player-setup, .player-list {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         .player-setup div {
-            margin-bottom: 6px;
+            margin-bottom: 3px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 3px;
         }
         .player-setup input {
-            padding: 3px;
-            font-size: clamp(10px, 1.2vmin, 12px);
+            padding: 2px;
+            font-size: clamp(8px, 1vmin, 10px);
             width: 58%;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
         .player-setup select {
-            padding: 3px;
-            font-size: clamp(10px, 1.2vmin, 12px);
+            padding: 2px;
+            font-size: clamp(8px, 1vmin, 10px);
             width: 38%;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -152,17 +158,17 @@
             color: #333;
         }
         .message {
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             white-space: pre-wrap;
             font-family: 'Georgia', serif;
             flex-grow: 1;
-            font-size: clamp(12px, 1.2vmin, 14px);
+            font-size: clamp(10px, 1vmin, 12px);
         }
         button {
-            padding: 6px 12px;
-            font-size: clamp(12px, 1.2vmin, 14px);
+            padding: 5px 10px;
+            font-size: clamp(10px, 1vmin, 12px);
             cursor: pointer;
-            margin: 3px;
+            margin: 2px;
             background-color: #4CAF50;
             color: black;
             border: none;
@@ -174,51 +180,59 @@
             background-color: #45a049;
         }
         @media (max-width: 600px) {
-            body {
-                padding: 5px;
-            }
-            .board {
-                width: 95vmin;
-                height: 95vmin;
-                max-width: 95vw;
-                max-height: 95vh;
-            }
-            .space {
-                font-size: clamp(8px, 1vmin, 12px);
+            .game-content {
                 padding: 2px;
             }
+            .board {
+                width: 98vmin;
+                height: 98vmin;
+                max-width: 98vw;
+                max-height: 98vh;
+            }
+            .space {
+                font-size: clamp(6px, 0.8vmin, 10px);
+                padding: 1px;
+            }
             .space-name {
-                font-size: clamp(8px, 1vmin, 12px);
+                font-size: clamp(6px, 0.8vmin, 10px);
             }
             .center-display {
-                font-size: clamp(10px, 1vmin, 12px);
-                padding: 5px;
+                font-size: clamp(8px, 0.8vmin, 10px);
+                padding: 3px;
             }
             .player-setup div {
-                margin-bottom: 4px;
-                gap: 4px;
+                margin-bottom: 2px;
+                gap: 2px;
             }
             .player-setup input {
                 width: 55%;
-                font-size: clamp(8px, 1vmin, 10px);
-                padding: 2px;
+                font-size: clamp(6px, 0.8vmin, 8px);
+                padding: 1px;
             }
             .player-setup select {
                 width: 40%;
-                font-size: clamp(8px, 1vmin, 10px);
-                padding: 2px;
+                font-size: clamp(6px, 0.8vmin, 8px);
+                padding: 1px;
             }
             .message {
-                font-size: clamp(10px, 1vmin, 12px);
+                font-size: clamp(8px, 0.8vmin, 10px);
             }
             button {
-                padding: 5px 10px;
-                font-size: clamp(10px, 1vmin, 12px);
+                padding: 4px 8px;
+                font-size: clamp(8px, 0.8vmin, 10px);
             }
             .token {
-                width: clamp(10px, 1.2vmin, 14px);
-                height: clamp(10px, 1.2vmin, 14px);
-                font-size: clamp(5px, 0.6vmin, 7px);
+                width: clamp(6px, 0.8vmin, 10px);
+                height: clamp(6px, 0.8vmin, 10px);
+                font-size: clamp(4px, 0.5vmin, 6px);
+            }
+        }
+        @media (max-height: 600px) {
+            .board {
+                width: 98vmin;
+                height: 98vmin;
+                max-width: 98vw;
+                max-height: 98vh;
             }
         }
     </style>
@@ -232,7 +246,7 @@
     <div class="game-content">
         <h1>Ministry Monopoly</h1>
         <div class="board">
-            <!-- Top Row (Spaces 0 to 8, 9 spaces) -->
+            <!-- Top Row (Spaces 0 to 10, 11 spaces) -->
             <div class="space top-row corner" id="space-0" style="grid-column: 1; grid-row: 1;"><div class="space-name">Break</div><div class="token-container"></div></div>
             <div class="space top-row topic" id="space-1" style="grid-column: 2; grid-row: 1;"><div class="space-name">Gods Name</div><div class="token-container"></div></div>
             <div class="space top-row topic" id="space-2" style="grid-column: 3; grid-row: 1;"><div class="space-name">Trinity</div><div class="token-container"></div></div>
@@ -241,41 +255,44 @@
             <div class="space top-row topic" id="space-5" style="grid-column: 6; grid-row: 1;"><div class="space-name">Heaven</div><div class="token-container"></div></div>
             <div class="space top-row topic" id="space-6" style="grid-column: 7; grid-row: 1;"><div class="space-name">Hellfire</div><div class="token-container"></div></div>
             <div class="space top-row topic" id="space-7" style="grid-column: 8; grid-row: 1;"><div class="space-name">Death</div><div class="token-container"></div></div>
-            <div class="space top-row corner" id="space-8" style="grid-column: 11; grid-row: 1;"><div class="space-name">Not Interested</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-8" style="grid-column: 9; grid-row: 1;"><div class="space-name">Blood</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-9" style="grid-column: 10; grid-row: 1;"><div class="space-name">Cross</div><div class="token-container"></div></div>
+            <div class="space top-row corner" id="space-10" style="grid-column: 11; grid-row: 1;"><div class="space-name">Not Interested</div><div class="token-container"></div></div>
 
-            <!-- Right Column (Spaces 9 to 19, 11 spaces) -->
-            <div class="space right-column topic" id="space-9" style="grid-column: 11; grid-row: 2;"><div class="space-name">Resurrection</div><div class="token-container"></div></div>
-            <div class="space right-column topic" id="space-10" style="grid-column: 11; grid-row: 3;"><div class="space-name">Paradise</div><div class="token-container"></div></div>
-            <div class="space right-column topic" id="space-11" style="grid-column: 11; grid-row: 4;"><div class="space-name">Kingdom</div><div class="token-container"></div></div>
-            <div class="space right-column negative" id="space-12" style="grid-column: 11; grid-row: 5;"><div class="space-name">Speeding Ticket</div><div class="token-container"></div></div>
-            <div class="space right-column topic" id="space-13" style="grid-column: 11; grid-row: 6;"><div class="space-name">Salvation</div><div class="token-container"></div></div>
-            <div class="space right-column topic" id="space-14" style="grid-column: 11; grid-row: 7;"><div class="space-name">Faith</div><div class="token-container"></div></div>
-            <div class="space right-column topic" id="space-15" style="grid-column: 11; grid-row: 8;"><div class="space-name">Works</div><div class="token-container"></div></div>
-            <div class="space right-column topic" id="space-16" style="grid-column: 11; grid-row: 9;"><div class="space-name">Ministry</div><div class="token-container"></div></div>
-            <div class="space right-column topic" id="space-17" style="grid-column: 11; grid-row: 10;"><div class="space-name">Worship</div><div class="token-container"></div></div>
-            <div class="space right-column topic" id="space-18" style="grid-column: 11; grid-row: 11;"><div class="space-name">Bible</div><div class="token-container"></div></div>
-            <div class="space right-column corner" id="space-19" style="grid-column: 11; grid-row: 11;"><div class="space-name">Service Meetup</div><div class="token-container"></div></div>
+            <!-- Right Column (Spaces 11 to 21, 11 spaces) -->
+            <div class="space right-column topic" id="space-11" style="grid-column: 11; grid-row: 2;"><div class="space-name">Resurrection</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-12" style="grid-column: 11; grid-row: 3;"><div class="space-name">Paradise</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-13" style="grid-column: 11; grid-row: 4;"><div class="space-name">Kingdom</div><div class="token-container"></div></div>
+            <div class="space right-column negative" id="space-14" style="grid-column: 11; grid-row: 5;"><div class="space-name">Speeding Ticket</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-15" style="grid-column: 11; grid-row: 6;"><div class="space-name">Salvation</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-16" style="grid-column: 11; grid-row: 7;"><div class="space-name">Faith</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-17" style="grid-column: 11; grid-row: 8;"><div class="space-name">Works</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-18" style="grid-column: 11; grid-row: 9;"><div class="space-name">Ministry</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-19" style="grid-column: 11; grid-row: 10;"><div class="space-name">Worship</div><div class="token-container"></div></div>
+            <div class="space right-column corner" id="space-20" style="grid-column: 11; grid-row: 11;"><div class="space-name">Service Meetup</div><div class="token-container"></div></div>
 
-            <!-- Bottom Row (Spaces 20 to 28, 9 spaces) -->
-            <div class="space bottom-row topic" id="space-20" style="grid-column: 10; grid-row: 11;"><div class="space-name">Satan</div><div class="token-container"></div></div>
-            <div class="space bottom-row topic" id="space-21" style="grid-column: 9; grid-row: 11;"><div class="space-name">Spirit Creatures</div><div class="token-container"></div></div>
-            <div class="space bottom-row topic" id="space-22" style="grid-column: 8; grid-row: 11;"><div class="space-name">Sin</div><div class="token-container"></div></div>
-            <div class="space bottom-row negative" id="space-23" style="grid-column: 7; grid-row: 11;"><div class="space-name">Flat Tire</div><div class="token-container"></div></div>
-            <div class="space bottom-row topic" id="space-24" style="grid-column: 6; grid-row: 11;"><div class="space-name">Creation</div><div class="token-container"></div></div>
-            <div class="space bottom-row topic" id="space-25" style="grid-column: 5; grid-row: 11;"><div class="space-name">Free Will</div><div class="token-container"></div></div>
-            <div class="space bottom-row topic" id="space-26" style="grid-column: 4; grid-row: 11;"><div class="space-name">Organization</div><div class="token-container"></div></div>
-            <div class="space bottom-row corner" id="space-27" style="grid-column: 1; grid-row: 11;"><div class="space-name">No Trespassing</div><div class="token-container"></div></div>
+            <!-- Bottom Row (Spaces 21 to 31, 11 spaces) -->
+            <div class="space bottom-row topic" id="space-21" style="grid-column: 10; grid-row: 11;"><div class="space-name">Bible</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-22" style="grid-column: 9; grid-row: 11;"><div class="space-name">Satan</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-23" style="grid-column: 8; grid-row: 11;"><div class="space-name">Angels</div><div class="token-container"></div></div>
+            <div class="space bottom-row negative" id="space-24" style="grid-column: 7; grid-row: 11;"><div class="space-name">Flat Tire</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-25" style="grid-column: 6; grid-row: 11;"><div class="space-name">Demons</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-26" style="grid-column: 5; grid-row: 11;"><div class="space-name">Sin</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-27" style="grid-column: 4; grid-row: 11;"><div class="space-name">Creation</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-28" style="grid-column: 3; grid-row: 11;"><div class="space-name">Free Will</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-29" style="grid-column: 2; grid-row: 11;"><div class="space-name">Organization</div><div class="token-container"></div></div>
+            <div class="space bottom-row corner" id="space-30" style="grid-column: 1; grid-row: 11;"><div class="space-name">No Trespassing</div><div class="token-container"></div></div>
 
-            <!-- Left Column (Spaces 28 to 35, 11 spaces, wraps to 0) -->
-            <div class="space left-column topic" id="space-28" style="grid-column: 1; grid-row: 10;"><div class="space-name">Memorial</div><div class="token-container"></div></div>
-            <div class="space left-column topic" id="space-29" style="grid-column: 1; grid-row: 9;"><div class="space-name">Forgiveness</div><div class="token-container"></div></div>
-            <div class="space left-column topic" id="space-30" style="grid-column: 1; grid-row: 8;"><div class="space-name">Prophecy</div><div class="token-container"></div></div>
-            <div class="space left-column negative" id="space-31" style="grid-column: 1; grid-row: 7;"><div class="space-name">Check Engine</div><div class="token-container"></div></div>
-            <div class="space left-column topic" id="space-32" style="grid-column: 1; grid-row: 6;"><div class="space-name">Nature of Life</div><div class="token-container"></div></div>
-            <div class="space left-column topic" id="space-33" style="grid-column: 1; grid-row: 5;"><div class="space-name">Birthdays</div><div class="token-container"></div></div>
-            <div class="space left-column topic" id="space-34" style="grid-column: 1; grid-row: 4;"><div class="space-name">Holidays</div><div class="token-container"></div></div>
-            <div class="space left-column topic" id="space-35" style="grid-column: 1; grid-row: 3;"><div class="space-name">Sacrifice</div><div class="token-container"></div></div>
-            <div class="space left-column topic" id="space-36" style="grid-column: 1; grid-row: 2;"><div class="space-name">Faith</div><div class="token-container"></div></div>
+            <!-- Left Column (Spaces 31 to 39, 11 spaces) -->
+            <div class="space left-column topic" id="space-31" style="grid-column: 1; grid-row: 10;"><div class="space-name">Memorial</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-32" style="grid-column: 1; grid-row: 9;"><div class="space-name">Forgiveness</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-33" style="grid-column: 1; grid-row: 8;"><div class="space-name">Prophecy</div><div class="token-container"></div></div>
+            <div class="space left-column negative" id="space-34" style="grid-column: 1; grid-row: 7;"><div class="space-name">Check Engine</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-35" style="grid-column: 1; grid-row: 6;"><div class="space-name">Nature of Life</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-36" style="grid-column: 1; grid-row: 5;"><div class="space-name">Birthdays</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-37" style="grid-column: 1; grid-row: 4;"><div class="space-name">Holidays</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-38" style="grid-column: 1; grid-row: 3;"><div class="space-name">Salvation</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-39" style="grid-column: 1; grid-row: 2;"><div class="space-name">Kingdom</div><div class="token-container"></div></div>
 
             <!-- Center Display -->
             <div class="center-display">
@@ -373,61 +390,63 @@
         </div>
     </div>
     <script>
-        // List of 28 topics
+        // List of 32 topics
         const topics = [
-            "Gods Name", "Trinity", "Spirit", // Group 1: Core Beliefs
-            "Heaven", "Hellfire", "Death", // Group 2: Afterlife Beliefs
-            "Resurrection", "Paradise", "Kingdom", // Group 3: Resurrection and Hope
-            "Salvation", "Faith", "Works", // Group 4: Salvation Path
-            "Ministry", "Worship", "Bible", // Group 5: Christian Practices
-            "Satan", "Spirit Creatures", "Sin", // Group 6: Spiritual Challenges
-            "Creation", "Free Will", "Organization", // Group 7: Creation and Purpose
-            "Memorial", "Forgiveness", "Prophecy", // Group 8: Memorial and Forgiveness
-            "Nature of Life", "Birthdays", "Holidays", // Group 9: Life and Traditions
-            "Sacrifice", "Faith", "Works" // Extra topics for left side
+            "Gods Name", "Trinity", "Spirit", // Top: Core Beliefs
+            "Heaven", "Hellfire", "Death", // Top: Afterlife Beliefs
+            "Blood", "Cross", // Top: Extra
+            "Resurrection", "Paradise", "Kingdom", // Right: Resurrection and Hope
+            "Salvation", "Faith", "Works", // Right: Salvation Path
+            "Ministry", "Worship", // Right: Part of Christian Practices
+            "Bible", "Satan", "Angels", // Bottom: Part of Christian Practices and Spiritual Challenges
+            "Demons", "Sin", "Creation", // Bottom: Spiritual Challenges and Extra
+            "Free Will", "Organization", // Bottom: Part of Creation and Purpose
+            "Memorial", "Forgiveness", "Prophecy", // Left: Memorial and Forgiveness
+            "Nature of Life", "Birthdays", "Holidays", // Left: Life and Traditions
+            "Salvation", "Kingdom" // Left: Extra (repeated to fill space)
         ];
 
-        // Define the 36 spaces on the board
+        // Define the 40 spaces on the board
         const spaces = [];
         let topicIndex = 0;
-        for (let i = 0; i < 36; i++) {
-            if ([0, 8, 19, 27].includes(i)) {
+        for (let i = 0; i < 40; i++) {
+            if ([0, 10, 20, 30].includes(i)) {
                 // Corner spaces
                 let name, points, message;
                 if (i === 0) {
                     name = "Break";
                     points = 10;
                     message = "You took a break to recharge! +10 points.";
-                } else if (i === 8) {
+                } else if (i === 10) {
                     name = "Not Interested";
                     points = -50;
                     message = "The householder was not interested! -50 points.";
-                } else if (i === 19) {
+                } else if (i === 20) {
                     name = "Service Meetup";
                     points = 20;
                     message = "You attended a service meetup! +20 points.";
-                } else if (i === 27) {
+                } else if (i === 30) {
                     name = "No Trespassing";
                     points = -50;
                     message = "You were caught trespassing! -50 points.";
                 }
                 spaces.push({ type: "corner", name, points, message });
-            } else if ([4, 12, 23, 31].includes(i)) {
+            } else if ([4, 14, 24, 34].includes(i)) {
                 // Negative spaces
                 let name, points, message;
                 if (i === 4) {
                     name = "Need Gas";
                     points = -30;
                     message = "You need to refuel! -30 points.";
-                } else if (i === 12) {
+                } else if (i === 14) {
                     name = "Speeding Ticket";
                     points = -40;
                     message = "You got a speeding ticket! -40 points.";
-                } else if (i === 23) {
+                } else if (i === 24) {
                     name = "Flat Tire";
                     points = -10;
                     message = "You got a flat tire! -10 points.";
-                } else if (i === 31) {
+                } else if (i === 34) {
                     name = "Check Engine";
                     points = -20;
                     message = "Your check engine warning came on! -20 points.";
@@ -473,6 +492,18 @@
                         scriptures = [
                             { text: "Ecclesiastes 9:5 - For the living know that they will die, but the dead know nothing at all.", explanation: "Death is a state of unconsciousness, not an afterlife." },
                             { text: "John 11:11 - After he said these things, he added: ‘Lazarus our friend has fallen asleep, but I am traveling there to awaken him.’", explanation: "Jesus likened death to sleep, a temporary state." }
+                        ];
+                        break;
+                    case "Blood":
+                        scriptures = [
+                            { text: "Acts 15:29 - To keep abstaining from things sacrificed to idols, from blood, from what is strangled, and from sexual immorality.", explanation: "Christians are commanded to abstain from blood, respecting its sacredness." },
+                            { text: "Leviticus 17:14 - For the life of every sort of flesh is its blood, because the life is in it.", explanation: "Blood represents life, which is sacred to Jehovah." }
+                        ];
+                        break;
+                    case "Cross":
+                        scriptures = [
+                            { text: "Galatians 3:13 - Christ purchased us, releasing us from the curse of the Law by becoming a curse instead of us, because it is written: ‘Accursed is every man hung upon a stake.’", explanation: "Jesus died on a stake, not a cross, as the Greek word used means an upright pole." },
+                            { text: "Deuteronomy 21:23 - His corpse should not remain all night on the stake; you should bury him that day, because everyone hung on a stake is accursed of God.", explanation: "The instrument of Jesus’ death was a stake, aligning with biblical descriptions." }
                         ];
                         break;
                     case "Resurrection":
@@ -535,10 +566,16 @@
                             { text: "1 Peter 5:8 - Your adversary, the Devil, walks about like a roaring lion, seeking to devour someone.", explanation: "Satan actively seeks to harm God’s servants." }
                         ];
                         break;
-                    case "Spirit Creatures":
+                    case "Angels":
                         scriptures = [
                             { text: "Hebrews 1:14 - Are they not all spirits for holy service, sent out to minister for those who are going to inherit salvation?", explanation: "Angels are spirit beings who serve God and help humans." },
-                            { text: "James 2:19 - You believe that there is one God, do you? You are doing quite well. And yet the demons believe and shudder.", explanation: "Demons are fallen angels who oppose God but know His power." }
+                            { text: "Psalm 91:11 - For he will give his angels a command concerning you, to guard you in all your ways.", explanation: "Angels are sent by God to protect His servants." }
+                        ];
+                        break;
+                    case "Demons":
+                        scriptures = [
+                            { text: "James 2:19 - You believe that there is one God, do you? You are doing quite well. And yet the demons believe and shudder.", explanation: "Demons are fallen angels who oppose God but know His power." },
+                            { text: "Mark 5:9 - So he asked him: ‘What is your name?’ And he said to him: ‘My name is Legion, because there are many of us.’", explanation: "Demons can possess individuals, as shown in Jesus’ encounter." }
                         ];
                         break;
                     case "Sin":
@@ -601,12 +638,6 @@
                             { text: "Jeremiah 10:2-4 - This is what Jehovah says: ‘Do not learn the way of the nations... For the customs of the peoples are a delusion.’", explanation: "Many holidays have pagan roots, which Jehovah warns against adopting." }
                         ];
                         break;
-                    case "Sacrifice":
-                        scriptures = [
-                            { text: "Hebrews 10:12 - But this man offered one sacrifice for sins for all time and sat down at the right hand of God.", explanation: "Jesus’ sacrifice was sufficient for all time, eliminating the need for further sacrifices." },
-                            { text: "John 3:16 - For God loved the world so much that he gave his only-begotten Son, so that everyone exercising faith in him might not be destroyed but have everlasting life.", explanation: "Jesus’ sacrifice provides the basis for everlasting life." }
-                        ];
-                        break;
                 }
                 spaces.push({ type: "topic", name: topicName, points, scriptures });
                 topicIndex++;
@@ -652,7 +683,7 @@
             });
             playerList.style.display = "block";
 
-            const space0TokenContainer = document.getElementById("space-19").querySelector(".token-container");
+            const space0TokenContainer = document.getElementById("space-20").querySelector(".token-container");
             players.forEach(player => {
                 space0TokenContainer.appendChild(player.token);
             });
@@ -669,7 +700,7 @@
                 const player = players[currentPlayerIndex];
                 const roll = Math.floor(Math.random() * 6) + 1;
                 let previousPosition = player.position;
-                player.position = (player.position + roll) % 36;
+                player.position = (player.position + roll) % 40;
                 const space = spaces[player.position];
                 player.points += space.points;
 
