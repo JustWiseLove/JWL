@@ -431,7 +431,7 @@
                     message = "You were caught trespassing! -50 points.";
                 }
                 spaces.push({ type: "corner", name, points, message });
-            } else if ([4, 14, 24, 34].includes(i)) {
+            } else if ([ dört, 14, 24, 34].includes(i)) {
                 // Negative spaces
                 let name, points, message;
                 if (i === 4) {
@@ -460,182 +460,362 @@
                 switch (topicName) {
                     case "Gods Name":
                         scriptures = [
-                            { text: "Psalm 83:18 - That people may know that you, whose name is Jehovah, You alone are the Most High over all the earth.", explanation: "This scripture reveals God's personal name, Jehovah, emphasizing His unique sovereignty." },
-                            { text: "Exodus 3:15 - This is my name forever, and this is how I am to be remembered from generation to generation.", explanation: "God told Moses His name is Jehovah, to be remembered by all generations." }
+                            { 
+                                text: "Psalm 83:18 - That people may know that you, whose name is Jehovah, You alone are the Most High over all the earth.", 
+                                explanation: "This scripture, found in the book of Psalms, is a powerful declaration of God’s unique identity and sovereignty. Written by Asaph or his descendants during a time when Israel faced threats from surrounding nations, this verse emphasizes that Jehovah is the only true God, distinct from the false gods worshipped by other peoples. The use of God’s personal name, Jehovah, highlights the intimate relationship He desires with His people, encouraging them to trust in His supreme authority. For players of Ministry Monopoly, this scripture serves as a reminder to focus on knowing and honoring Jehovah’s name in their ministry, fostering a deeper connection with Him." 
+                            },
+                            { 
+                                text: "Exodus 3:15 - This is my name forever, and this is how I am to be remembered from generation to generation.", 
+                                explanation: "In this verse from Exodus, God reveals His name to Moses at the burning bush, a pivotal moment in Israel’s history as they were about to be delivered from Egyptian slavery. By declaring His name as Jehovah and stating it is to be remembered forever, God establishes a lasting covenant with His people, ensuring they recognize Him as their Deliverer and Creator. This name distinguishes Jehovah from the gods of Egypt, like Ra or Osiris, emphasizing His eternal nature and authority. For players, this scripture underscores the importance of using God’s name in worship and ministry, encouraging them to share this truth with others as a foundation for faith." 
+                            }
                         ];
                         break;
                     case "Trinity":
                         scriptures = [
-                            { text: "Deuteronomy 6:4 - Listen, O Israel: Jehovah our God is one Jehovah.", explanation: "God is one, not a Trinity, emphasizing His unity." },
-                            { text: "John 14:28 - The Father is greater than I am.", explanation: "Jesus acknowledged the Father’s superiority, showing they are not equal as in a Trinity." }
+                            { 
+                                text: "Deuteronomy 6:4 - Listen, O Israel: Jehovah our God is one Jehovah.", 
+                                explanation: "Known as the Shema, this verse from Deuteronomy is a foundational statement of faith for the Israelites, recited daily to affirm their belief in one God. Written by Moses as part of his final exhortations before the Israelites entered the Promised Land, it counters the polytheistic beliefs of surrounding nations like the Canaanites, who worshipped multiple deities such as Baal and Asherah. The declaration that Jehovah is ‘one’ directly challenges the concept of a Trinity, emphasizing God’s singular nature. For Ministry Monopoly players, this scripture encourages a clear understanding of God’s unity, prompting them to share this truth with others and avoid confusion caused by Trinitarian doctrines, focusing instead on Jehovah’s unique identity." 
+                            },
+                            { 
+                                text: "John 14:28 - The Father is greater than I am.", 
+                                explanation: "Spoken by Jesus during his final discourse with his disciples before his death, this verse from the Gospel of John highlights the relationship between Jesus and his Father, Jehovah. Jesus’ acknowledgment that the Father is greater than he is directly contradicts the Trinitarian idea that the Father, Son, and Holy Spirit are co-equal. Historically, this statement aligns with early Christian teachings that viewed Jesus as subordinate to God, a view later debated in councils like Nicaea in 325 CE, which established the Trinity doctrine. For players, this scripture provides clarity in discussions about God’s nature, encouraging them to explain Jesus’ role as God’s Son and mediator, fostering a ministry grounded in biblical truth rather than later theological constructs." 
+                            }
                         ];
                         break;
                     case "Spirit":
                         scriptures = [
-                            { text: "John 4:24 - God is a Spirit, and those worshipping him must worship with spirit and truth.", explanation: "Jehovah is a spirit being, invisible to humans." },
-                            { text: "1 Corinthians 2:11 - For who among men knows the things of a man except the man’s spirit within him? So, too, no one has come to know the things of God except the spirit of God.", explanation: "God's spirit is His active force, not a person." }
+                            { 
+                                text: "John 4:24 - God is a Spirit, and those worshipping him must worship with spirit and truth.", 
+                                explanation: "In this verse, Jesus speaks to a Samaritan woman at a well, addressing her question about the proper place of worship. His statement that ‘God is a Spirit’ reveals Jehovah’s nature as an invisible, non-material being, distinct from humans and false gods often depicted in physical forms, like the Samaritan idols or Roman deities of the time. The phrase ‘spirit and truth’ emphasizes that true worship must be sincere, guided by accurate knowledge of God, not ritualistic practices. For Ministry Monopoly players, this scripture highlights the importance of understanding Jehovah’s spiritual nature and worshipping Him based on biblical truth, encouraging them to deepen their relationship with God through heartfelt, informed devotion." 
+                            },
+                            { 
+                                text: "1 Corinthians 2:11 - For who among men knows the things of a man except the man’s spirit within him? So, too, no one has come to know the things of God except the spirit of God.", 
+                                explanation: "Written by the apostle Paul to the Corinthians, this verse addresses the spiritual discernment needed to understand God’s purposes. Paul uses an analogy: just as a person’s thoughts are known only by their own spirit (or mind), God’s thoughts are revealed through His spirit—His active force, not a person. In the first century, the Corinthians faced influences from Greek philosophy and mystery religions, which often personified divine forces. Paul’s teaching counters this by clarifying that God’s spirit is His power at work, not a separate entity in a Trinity. For players, this scripture encourages reliance on God’s spirit to gain wisdom, helping them share spiritual truths confidently in their ministry." 
+                            }
                         ];
                         break;
                     case "Heaven":
                         scriptures = [
-                            { text: "Revelation 21:1 - Then I saw a new heaven and a new earth; for the former heaven and the former earth had passed away.", explanation: "A new heaven represents a renewed heavenly government." },
-                            { text: "Matthew 5:3 - Happy are those conscious of their spiritual need, since the Kingdom of the heavens belongs to them.", explanation: "The Kingdom of the heavens is a spiritual realm for the anointed." }
+                            { 
+                                text: "Revelation 21:1 - Then I saw a new heaven and a new earth; for the former heaven and the former earth had passed away.", 
+                                explanation: "This verse from Revelation, written by the apostle John while exiled on Patmos around 96 CE, describes a vision of God’s future purpose for humanity. Theავ: "The phrase ‘new heaven and new earth’ signifies a new system under God’s Kingdom, where His heavenly government (the ‘new heaven’) will transform the earth into a paradise (the ‘new earth’). The ‘former heaven and earth’—the current corrupt systems—will be replaced, fulfilling God’s promise to eradicate wickedness. For players, this scripture offers hope, motivating them to share the good news of God’s Kingdom, which will bring peace and righteousness globally, encouraging others to prepare for this future by living in harmony with God’s will." 
+                            },
+                            { 
+                                text: "Matthew 5:3 - Happy are those conscious of their spiritual need, since the Kingdom of the heavens belongs to them.", 
+                                explanation: "In the Sermon on the Mount, Jesus begins the Beatitudes with this statement, teaching a crowd in Galilee around 31 CE. ‘Those conscious of their spiritual need’ are humble individuals who recognize their dependence on God for guidance and salvation, unlike the self-righteous Pharisees of the time. The ‘Kingdom of the heavens’ refers to God’s heavenly government, which Jesus later taught his followers to pray for (Matthew 6:10). This Kingdom will rule over the earth, bringing blessings to those who seek God. For Ministry Monopoly players, this scripture encourages cultivating humility and a deep desire for spiritual understanding, equipping them to help others recognize their own spiritual needs and the hope of God’s Kingdom." 
+                            }
                         ];
                         break;
                     case "Hellfire":
                         scriptures = [
-                            { text: "Ecclesiastes 9:5 - For the living know that they will die, but the dead know nothing at all.", explanation: "The dead are unconscious, contradicting the idea of a fiery hell." },
-                            { text: "Romans 6:23 - For the wages sin pays is death, but the gift God gives is everlasting life.", explanation: "The penalty for sin is death, not eternal torment in hellfire." }
+                            { 
+                                text: "Ecclesiastes 9:5 - For the living know that they will die, but the dead know nothing at all.", 
+                                explanation: "Written by King Solomon around the 10th century BCE, this verse from Ecclesiastes reflects on the human condition and the reality of death. Solomon, known for his wisdom, observes that death ends consciousness—‘the dead know nothing at all’—challenging the widespread belief in an afterlife of torment, such as the hellfire doctrine later adopted by some Christian traditions. This teaching aligns with the Hebrew understanding of Sheol as a common grave, not a place of fiery punishment. For players, this scripture provides a clear biblical perspective to share in their ministry, helping others overcome fear of hellfire and instead focus on the hope of resurrection and God’s love, as taught in the Bible." 
+                            },
+                            { 
+                                text: "Romans 6:23 - For the wages sin pays is death, but the gift God gives is everlasting life.", 
+                                explanation: "In his letter to the Romans, written around 56 CE, the apostle Paul contrasts the consequences of sin with God’s provision for salvation. ‘The wages sin pays is death’ refers to the natural outcome of inherited sin from Adam—mortality and eventual death, not eternal torment in hellfire. This counters the medieval concept of hell as a place of fiery punishment, which stemmed from misinterpretations of symbolic language in Scripture. Instead, Paul highlights God’s gift of ‘everlasting life’ through Christ, offering hope to all who exercise faith. For Ministry Monopoly players, this scripture encourages sharing the truth about death and the hope of resurrection, helping others find comfort in God’s promise of life." 
+                            }
                         ];
                         break;
                     case "Death":
                         scriptures = [
-                            { text: "Ecclesiastes 9:5 - For the living know that they will die, but the dead know nothing at all.", explanation: "Death is a state of unconsciousness, not an afterlife." },
-                            { text: "John 11:11 - After he said these things, he added: ‘Lazarus our friend has fallen asleep, but I am traveling there to awaken him.’", explanation: "Jesus likened death to sleep, a temporary state." }
+                            { 
+                                text: "Ecclesiastes 9:5 - For the living know that they will die, but the dead know nothing at all.", 
+                                explanation: "This verse, penned by Solomon in the 10th century BCE, offers a sobering reflection on mortality during a time of peace and prosperity in Israel. Solomon’s statement that ‘the dead know nothing at all’ underscores the biblical view of death as a state of unconsciousness, akin to sleep, rather than an afterlife of awareness or torment. This understanding contrasts with ancient beliefs, such as Egyptian views of the afterlife, and later doctrines like purgatory. For players, this scripture provides a foundation to address common misconceptions about death in their ministry, encouraging them to share the Bible’s hope of resurrection, which offers comfort and clarity to those grieving or fearing death." 
+                            },
+                            { 
+                                text: "John 11:11 - After he said these things, he added: ‘Lazarus our friend has fallen asleep, but I am traveling there to awaken him.’", 
+                                explanation: "In this account from the Gospel of John, written around 98 CE, Jesus speaks to his disciples about the death of Lazarus, a close friend from Bethany. By likening death to sleep, Jesus provides a comforting metaphor: just as sleep is a temporary state from which one awakens, death is temporary for those who will be resurrected. This event, occurring shortly before Jesus’ own death, also demonstrates his power over death, as he raises Lazarus after four days, proving his authority as God’s Son. For Ministry Monopoly players, this scripture encourages sharing the hope of resurrection, helping others understand death as a temporary state and fostering faith in Jesus’ promise to ‘awaken’ the dead." 
+                            }
                         ];
                         break;
                     case "Blood":
                         scriptures = [
-                            { text: "Acts 15:29 - To keep abstaining from things sacrificed to idols, from blood, from what is strangled, and from sexual immorality.", explanation: "Christians are commanded to abstain from blood, respecting its sacredness." },
-                            { text: "Leviticus 17:14 - For the life of every sort of flesh is its blood, because the life is in it.", explanation: "Blood represents life, which is sacred to Jehovah." }
+                            { 
+                                text: "Acts 15:29 - To keep abstaining from things sacrificed to idols, from blood, from what is strangled, and from sexual immorality.", 
+                                explanation: "This verse records a decision made by the early Christian governing body in Jerusalem around 49 CE, as documented in the book of Acts. The apostles and elders, guided by holy spirit, issued this decree to Gentile believers, emphasizing the sacredness of blood as established in the Mosaic Law (Leviticus 17:10-14). Abstaining from blood meant refraining from consuming it, whether in food or through practices like blood transfusions, which some Christians view as a modern application. This directive also countered pagan practices involving blood consumption in rituals. For players, this scripture highlights the importance of respecting God’s view of blood, encouraging them to explain this principle in their ministry with clarity and conviction." 
+                            },
+                            { 
+                                text: "Leviticus 17:14 - For the life of every sort of flesh is its blood, because the life is in it.", 
+                                explanation: "Found in the book of Leviticus, written by Moses around 1512 BCE, this verse establishes a fundamental principle given to the Israelites after their exodus from Egypt. God declares that blood represents life, a sacred gift from Him, and thus must not be consumed. This law was part of the broader Mosaic covenant, distinguishing Israel from surrounding nations like the Canaanites, who engaged in blood-related rituals. The principle underscores Jehovah’s authority over life and His desire for His people to honor it. For Ministry Monopoly players, this scripture provides a basis for discussing the sanctity of blood, encouraging them to share how this principle applies today, such as in medical decisions, while showing respect for God’s standards." 
+                            }
                         ];
                         break;
                     case "Cross":
                         scriptures = [
-                            { text: "Galatians 3:13 - Christ purchased us, releasing us from the curse of the Law by becoming a curse instead of us, because it is written: ‘Accursed is every man hung upon a stake.’", explanation: "Jesus died on a stake, not a cross, as the Greek word used means an upright pole." },
-                            { text: "Deuteronomy 21:23 - His corpse should not remain all night on the stake; you should bury him that day, because everyone hung on a stake is accursed of God.", explanation: "The instrument of Jesus’ death was a stake, aligning with biblical descriptions." }
+                            { 
+                                text: "Galatians 3:13 - Christ purchased us, releasing us from the curse of the Law by becoming a curse instead of us, because it is written: ‘Accursed is every man hung upon a stake.’", 
+                                explanation: "In his letter to the Galatians, written around 50-52 CE, Paul addresses Christians struggling with legalism, emphasizing that salvation comes through faith in Christ, not the Mosaic Law. The phrase ‘hung upon a stake’ refers to Jesus’ execution, using the Greek word *stauros*, which means an upright pole, not a cross with a crossbeam as later traditions depict. This aligns with Deuteronomy 21:23, which Paul quotes, stating that such a death made one ‘accursed,’ symbolizing Jesus taking on the curse of sin for humanity. For players, this scripture corrects the misconception of a cross, encouraging them to share the accurate historical and biblical understanding of Jesus’ death in their ministry." 
+                            },
+                            { 
+                                text: "Deuteronomy 21:23 - His corpse should not remain all night on the stake; you should bury him that day, because everyone hung on a stake is accursed of God.", 
+                                explanation: "This verse from Deuteronomy, part of the Law given to Israel around 1512 BCE, outlines regulations for handling executions. The command to bury the body of someone ‘hung on a stake’ before nightfall reflects God’s concern for dignity and purity in the land, as a corpse left hanging would defile it. The phrase ‘accursed of God’ indicates the shame associated with this form of death, which Jesus later endured (Galatians 3:13). Historically, this method of execution involved a single upright pole, not a cross, aligning with the Greek term *stauros* used in the New Testament. For players, this scripture provides historical context to explain Jesus’ death accurately, enhancing their ministry with factual clarity." 
+                            }
                         ];
                         break;
                     case "Resurrection":
                         scriptures = [
-                            { text: "John 5:28-29 - All those in the memorial tombs will hear his voice and come out.", explanation: "Jesus will resurrect the dead to life on earth or in heaven." },
-                            { text: "Acts 24:15 - And I have hope toward God, which these men also look forward to, that there is going to be a resurrection of both the righteous and the unrighteous.", explanation: "There will be a resurrection for all, offering a chance for life." }
+                            { 
+                                text: "John 5:28-29 - All those in the memorial tombs will hear his voice and come out.", 
+                                explanation: "In this passage from the Gospel of John, written around 98 CE, Jesus speaks to a Jewish audience in Jerusalem, affirming his authority as God’s Son to resurrect the dead. The ‘memorial tombs’ refer to the resting place of the dead, whom Jesus will call forth at a future time, as depicted in Revelation 20:13. This resurrection includes both the ‘righteous’ (those who lived faithfully) and the ‘unrighteous’ (those who did not know God but will have an opportunity to learn), offering hope to all humanity. For Ministry Monopoly players, this scripture provides a powerful message to share in their ministry, encouraging others to have faith in Jesus’ promise of resurrection and the opportunity for everlasting life." 
+                            },
+                            { 
+                                text: "Acts 24:15 - And I have hope toward God, which these men also look forward to, that there is going to be a resurrection of both the righteous and the unrighteous.", 
+                                explanation: "This verse is part of Paul’s defense before Governor Felix in Caesarea around 58 CE, as recorded in Acts. Paul expresses his hope in the resurrection, a belief shared by some Jews, like the Pharisees, but rejected by others, like the Sadducees. The resurrection of ‘both the righteous and the unrighteous’ reflects God’s justice and mercy, giving all a chance to live again—either in heaven for the anointed or on a restored earth for the majority. This hope counters despair and false teachings about the afterlife. For players, this scripture inspires sharing the resurrection hope, helping others understand God’s purpose to restore life and offering them a future to look forward to." 
+                            }
                         ];
                         break;
                     case "Paradise":
                         scriptures = [
-                            { text: "Luke 23:43 - And he said to him: ‘Truly I tell you today, you will be with me in Paradise.’", explanation: "Jesus promised the evildoer a future in a paradise earth." },
-                            { text: "Isaiah 65:21-22 - They will build houses and live in them, and they will plant vineyards and eat their fruit.", explanation: "Paradise earth will be a place of peace and abundance." }
+                            { 
+                                text: "Luke 23:43 - And he said to him: ‘Truly I tell you today, you will be with me in Paradise.’", 
+                                explanation: "This verse captures a moment during Jesus’ crucifixion, as recorded in Luke’s Gospel around 60 CE. Jesus speaks to a criminal crucified alongside him, who expresses faith in Jesus’ kingship. The promise ‘you will be with me in Paradise’ refers to a future paradise on earth, not heaven, as Jesus was raised to heaven three days later (Acts 1:9), while the criminal died and remained in the grave. This paradise aligns with God’s original purpose for the earth (Genesis 2:8), to be restored under His Kingdom (Revelation 21:3-4). For Ministry Monopoly players, this scripture offers a hopeful message to share, encouraging others to trust in God’s promise of a restored earth where righteousness will prevail." 
+                            },
+                            { 
+                                text: "Isaiah 65:21-22 - They will build houses and live in them, and they will plant vineyards and eat their fruit.", 
+                                explanation: "Written by the prophet Isaiah around 732 BCE, this passage describes the blessings of God’s people in a future paradise earth, as part of God’s Kingdom promises. Unlike the oppression faced by Judah due to Assyrian threats, this vision assures that people will enjoy the fruits of their labor—building homes and cultivating vineyards without fear of loss. This prophecy points to a time when God’s will is done on earth (Matthew 6:10), eliminating injustice and suffering. For players, this scripture provides a vivid picture of the paradise hope to share in their ministry, inspiring others to seek God’s Kingdom and the peaceful, abundant life it will bring to obedient humanity." 
+                            }
                         ];
                         break;
                     case "Kingdom":
                         scriptures = [
-                            { text: "Daniel 2:44 - In the days of those kings the God of heaven will set up a kingdom that will never be destroyed.", explanation: "God’s Kingdom is a heavenly government that will last forever." },
-                            { text: "Matthew 6:10 - Let your Kingdom come. Let your will take place, as in heaven, also on earth.", explanation: "We pray for God’s Kingdom to bring His will to earth." }
+                            { 
+                                text: "Daniel 2:44 - In the days of those kings the God of heaven will set up a kingdom that will never be destroyed.", 
+                                explanation: "This prophecy, recorded by the prophet Daniel around 536 BCE, was given during the Babylonian exile of the Jews. In a dream interpreted for King Nebuchadnezzar, Daniel describes a succession of world powers, culminating in the establishment of God’s Kingdom. This ‘kingdom that will never be destroyed’ is a heavenly government led by Christ, which will ‘crush’ all human kingdoms and rule forever (Revelation 11:15). Unlike temporary human governments, such as Babylon or Rome, God’s Kingdom offers permanent peace and justice. For Ministry Monopoly players, this scripture is a cornerstone of the good news they share, encouraging others to pray for and support God’s Kingdom as the solution to human suffering." 
+                            },
+                            { 
+                                text: "Matthew 6:10 - Let your Kingdom come. Let your will take place, as in heaven, also on earth.", 
+                                explanation: "This verse is part of the Lord’s Prayer, taught by Jesus during the Sermon on the Mount around 31 CE, as recorded in Matthew’s Gospel. Jesus instructs his followers to pray for God’s Kingdom—a heavenly government that will bring God’s will to earth, just as it is in heaven. This means the eradication of sin, suffering, and death, fulfilling God’s purpose for a paradise earth (Revelation 21:4). In the first century, this prayer gave hope to Jesus’ disciples amidst Roman oppression. For players, this scripture emphasizes the importance of the Kingdom message in their ministry, encouraging them to teach others to pray for and live in harmony with God’s coming Kingdom." 
+                            }
                         ];
                         break;
                     case "Salvation":
                         scriptures = [
-                            { text: "John 3:16 - For God loved the world so much that he gave his only-begotten Son, so that everyone exercising faith in him might not be destroyed but have everlasting life.", explanation: "Salvation comes through faith in Jesus." },
-                            { text: "Acts 4:12 - Furthermore, there is no salvation in anyone else, for there is no other name under heaven that has been given among men by which we must get saved.", explanation: "Salvation is only through Jesus." }
+                            { 
+                                text: "John 3:16 - For God loved the world so much that he gave his only-begotten Son, so that everyone exercising faith in him might not be destroyed but have everlasting life.", 
+                                explanation: "This well-known verse from the Gospel of John, written around 98 CE, captures the essence of God’s plan for humanity. Spoken by Jesus to Nicodemus, a Pharisee seeking truth, it highlights God’s immense love in sacrificing His ‘only-begotten Son,’ Jesus, to provide a ransom for sinful humanity. ‘Exercising faith’ involves trusting in Jesus’ sacrifice and obeying his teachings, leading to ‘everlasting life’—either in heaven or on a paradise earth. This promise counters the despair of death inherited through Adam’s sin. For Ministry Monopoly players, this scripture is a foundational message to share, encouraging others to build faith in Jesus and embrace the hope of eternal life through God’s provision." 
+                            },
+                            { 
+                                text: "Acts 4:12 - Furthermore, there is no salvation in anyone else, for there is no other name under heaven that has been given among men by which we must get saved.", 
+                                explanation: "This statement by Peter, recorded in Acts around 62 CE, was made before the Sanhedrin after Peter and John were arrested for preaching about Jesus. Peter boldly declares that salvation comes only through Jesus, whose name represents his role as God’s appointed Savior. In the first century, this message challenged Jewish leaders who relied on the Law for salvation and Roman authorities who worshipped emperors like Caesar. The exclusivity of Jesus’ name emphasizes that no other means—be it works, rituals, or other gods—can save. For players, this scripture strengthens their ministry, urging them to focus on Jesus’ role in salvation and share this truth confidently with others." 
+                            }
                         ];
                         break;
                     case "Faith":
                         scriptures = [
-                            { text: "Hebrews 11:1 - Faith is the assured expectation of what is hoped for, the evident demonstration of realities that are not seen.", explanation: "Faith involves trusting in God’s promises." },
-                            { text: "Ephesians 2:8 - By this undeserved kindness you have been saved through faith, and this is not of your own doing; rather, it is God’s gift.", explanation: "Faith is the means to salvation, a gift from God." }
+                            { 
+                                text: "Hebrews 11:1 - Faith is the assured expectation of what is hoped for, the evident demonstration of realities that are not seen.", 
+                                explanation: "Written to Hebrew Christians around 61 CE, this verse from Hebrews defines faith as a confident expectation in God’s promises, even when they are not yet visible. The author, possibly Paul or a close associate, encourages believers facing persecution to remain steadfast, using examples like Abraham and Noah, who trusted God despite unseen outcomes (Hebrews 11:7-8). ‘Realities that are not seen’ include God’s Kingdom and the resurrection, which require faith to envision. For Ministry Monopoly players, this scripture highlights the role of faith in their ministry, inspiring them to trust in God’s promises and help others develop the same confidence through Bible study and application of God’s Word." 
+                            },
+                            { 
+                                text: "Ephesians 2:8 - By this undeserved kindness you have been saved through faith, and this is not of your own doing; rather, it is God’s gift.", 
+                                explanation: "In his letter to the Ephesians, written around 60 CE, Paul emphasizes that salvation is a gift from God, received through faith, not earned by works. The phrase ‘undeserved kindness’ (or grace) reflects God’s mercy in providing Jesus’ ransom, despite humanity’s sinful state. In Ephesus, a city steeped in pagan worship of Artemis, this message countered reliance on rituals or good deeds for salvation. Faith, as a gift, involves trusting in God’s provision and submitting to His will. For players, this scripture encourages sharing the simplicity of salvation through faith, helping others understand that God’s gift is available to all who accept it, fostering hope and gratitude in their ministry." 
+                            }
                         ];
                         break;
                     case "Works":
                         scriptures = [
-                            { text: "James 2:17 - So, too, faith by itself, without works, is dead.", explanation: "Works demonstrate the reality of our faith." },
-                            { text: "Matthew 5:16 - Let your light shine before men, so that they may see your fine works and give glory to your Father who is in the heavens.", explanation: "Good works glorify God." }
+                            { 
+                                text: "James 2:17 - So, too, faith by itself, without works, is dead.", 
+                                explanation: "Written by James, Jesus’ half-brother, around 62 CE, this verse addresses Jewish Christians scattered due to persecution. James stresses that genuine faith must be active, producing works that demonstrate one’s belief, such as acts of kindness, obedience to God, and sharing the good news. Without such works, faith is ‘dead’—lifeless and ineffective, like a body without breath. This teaching countered misunderstandings that faith alone, without action, was sufficient, a concern in early Christian communities. For Ministry Monopoly players, this scripture emphasizes the need to live their faith through good works, encouraging them to reflect God’s qualities in their ministry and inspire others to do the same." 
+                            },
+                            { 
+                                text: "Matthew 5:16 - Let your light shine before men, so that they may see your fine works and give glory to your Father who is in the heavens.", 
+                                explanation: "This verse is part of Jesus’ Sermon on the Mount, delivered around 31 CE to a crowd in Galilee, as recorded in Matthew’s Gospel. Jesus uses the metaphor of light to describe the influence of his followers, urging them to perform ‘fine works’—acts of love, kindness, and righteousness—that reflect God’s qualities. By doing so, others will see these deeds and glorify Jehovah, recognizing His role in their lives. In a region under Roman rule, such works stood out against corruption and oppression. For players, this scripture motivates them to be a positive example in their ministry, using their actions to draw others to God and His Kingdom." 
+                            }
                         ];
                         break;
                     case "Ministry":
                         scriptures = [
-                            { text: "2 Timothy 4:5 - But you, keep your senses in all things, endure hardship, do the work of an evangelizer, fully accomplish your ministry.", explanation: "All Christians are encouraged to fully accomplish their ministry." },
-                            { text: "Matthew 24:14 - And this good news of the Kingdom will be preached in all the inhabited earth for a witness to all the nations, and then the end will come.", explanation: "The ministry involves preaching the good news worldwide." }
+                            { 
+                                text: "2 Timothy 4:5 - But you, keep your senses in all things, endure hardship, do the work of an evangelizer, fully accomplish your ministry.", 
+                                explanation: "Written by Paul to Timothy around 62 CE while Paul was imprisoned in Rome, this verse encourages Timothy to remain steadfast in his ministry despite challenges like persecution and false teachers. ‘Do the work of an evangelizer’ involves preaching the good news, a responsibility for all Christians, not just leaders. In the first century, this work often meant facing opposition, as Timothy did in Ephesus, a city with strong pagan influences. ‘Fully accomplish your ministry’ urges complete dedication to sharing God’s message. For Ministry Monopoly players, this scripture inspires perseverance in their own ministry, encouraging them to overcome obstacles and share the Kingdom message with zeal and love." 
+                            },
+                            { 
+                                text: "Matthew 24:14 - And this good news of the Kingdom will be preached in all the inhabited earth for a witness to all the nations, and then the end will come.", 
+                                explanation: "Spoken by Jesus on the Mount of Olives around 33 CE, as recorded in Matthew’s Gospel, this prophecy outlines a key sign of the ‘last days.’ The ‘good news of the Kingdom’—the message of God’s heavenly government bringing peace to earth—must be preached globally before the end of the current system. In the first century, this work began with the apostles; today, it continues through millions of Christians worldwide. This global effort fulfills God’s purpose to give all nations a witness, offering them a chance to respond. For players, this scripture underscores the urgency of their ministry, motivating them to participate in the worldwide preaching work and help others learn about God’s Kingdom." 
+                            }
                         ];
                         break;
                     case "Worship":
                         scriptures = [
-                            { text: "John 4:23 - Nevertheless, the hour is coming, and it is now, when the true worshippers will worship the Father with spirit and truth.", explanation: "True worship must be based on truth." },
-                            { text: "Revelation 4:11 - You are worthy, Jehovah our God, to receive the glory and the honor and the power.", explanation: "Jehovah alone is worthy of our worship." }
+                            { 
+                                text: "John 4:23 - Nevertheless, the hour is coming, and it is now, when the true worshippers will worship the Father with spirit and truth.", 
+                                explanation: "Jesus spoke these words to a Samaritan woman at a well in Sychar around 30 CE, as recorded in John’s Gospel. Addressing her question about the correct location for worship—Mount Gerizim or Jerusalem—Jesus explains that true worship transcends physical places, focusing instead on ‘spirit and truth.’ ‘Spirit’ refers to heartfelt devotion, while ‘truth’ means worship based on accurate knowledge of God, as revealed in Scripture. This countered Samaritan syncretism and Jewish ritualism, emphasizing sincerity. For Ministry Monopoly players, this scripture encourages worship that is genuine and biblically grounded, helping them guide others to worship Jehovah in a way that honors His standards and deepens their relationship with Him." 
+                            },
+                            { 
+                                text: "Revelation 4:11 - You are worthy, Jehovah our God, to receive the glory and the honor and the power.", 
+                                explanation: "This verse from Revelation, written by John around 96 CE while exiled on Patmos, depicts a heavenly vision of worship around God’s throne. The 24 elders, representing the anointed in heaven, praise Jehovah as the Creator, declaring Him worthy of glory, honor, and power. This scene contrasts with the emperor worship prevalent in the Roman Empire, where figures like Domitian demanded divine honor. By focusing worship on Jehovah alone, this verse reinforces His exclusive right to devotion. For players, this scripture strengthens their resolve to direct all worship to Jehovah in their ministry, encouraging others to recognize Him as the Creator and give Him the honor He deserves." 
+                            }
                         ];
                         break;
                     case "Bible":
                         scriptures = [
-                            { text: "2 Timothy 3:16 - All Scripture is inspired of God and beneficial for teaching, for reproving, for setting things straight, for disciplining in righteousness.", explanation: "The Bible is God’s inspired Word for our guidance." },
-                            { text: "Psalm 119:105 - Your word is a lamp to my foot and a light to my path.", explanation: "The Bible lights our path in life." }
+                            { 
+                                text: "2 Timothy 3:16 - All Scripture is inspired of God and beneficial for teaching, for reproving, for setting things straight, for disciplining in righteousness.", 
+                                explanation: "Paul wrote this to Timothy around 62 CE while imprisoned in Rome, emphasizing the value of Scripture—what we now call the Old Testament, as the New Testament was still being written. ‘Inspired of God’ means that the Bible is God-breathed, its writers moved by holy spirit to convey His thoughts accurately. This makes Scripture a reliable tool for ‘teaching’ truth, ‘reproving’ wrong conduct, ‘setting things straight’ in beliefs, and ‘disciplining in righteousness’ to mold character. In a time of false teachings, this was vital for Timothy’s ministry in Ephesus. For Ministry Monopoly players, this scripture underscores the Bible’s authority, encouraging them to use it as their primary tool in teaching others and building their faith." 
+                            },
+                            { 
+                                text: "Psalm 119:105 - Your word is a lamp to my foot and a light to my path.", 
+                                explanation: "This verse from Psalm 119, likely written by a faithful Israelite such as David or Ezra around the 10th century BCE, uses a metaphor to describe the guidance provided by God’s Word. In ancient times, a lamp illuminated a traveler’s path at night, preventing stumbles; similarly, God’s Word lights the way for righteous living, offering direction amidst life’s uncertainties. For the psalmist, this guidance was crucial during challenges like Saul’s persecution or Babylonian exile. For Ministry Monopoly players, this scripture highlights the Bible’s role as a practical guide, encouraging them to study it daily and share its principles in their ministry, helping others navigate life’s challenges with divine wisdom." 
+                            }
                         ];
                         break;
                     case "Satan":
                         scriptures = [
-                            { text: "Revelation 12:9 - So down the great dragon was hurled, the original serpent, the one called Devil and Satan, who is misleading the entire inhabited earth.", explanation: "Satan is a real spirit being who deceives the world." },
-                            { text: "1 Peter 5:8 - Your adversary, the Devil, walks about like a roaring lion, seeking to devour someone.", explanation: "Satan actively seeks to harm God’s servants." }
+                            { 
+                                text: "Revelation 12:9 - So down the great dragon was hurled, the original serpent, the one called Devil and Satan, who is misleading the entire inhabited earth.", 
+                                explanation: "This verse from Revelation, written by John around 96 CE, describes a heavenly event where Satan, depicted as a ‘great dragon,’ is cast out of heaven to the earth. Identified as ‘the original serpent’ (from Genesis 3:1), Satan has deceived humanity since Eden, earning the titles ‘Devil’ (slanderer) and ‘Satan’ (opposer). His misleading influence affects the ‘entire inhabited earth,’ promoting false religion, immorality, and rebellion against God. In the first century, this was evident in Roman emperor worship and pagan practices. For Ministry Monopoly players, this scripture reveals Satan’s role as the enemy of truth, urging them to expose his deceptions in their ministry and help others align with God’s will to resist his influence." 
+                            },
+                            { 
+                                text: "1 Peter 5:8 - Your adversary, the Devil, walks about like a roaring lion, seeking to devour someone.", 
+                                explanation: "Peter wrote this letter around 62-64 CE to Christians in Asia Minor facing persecution under Nero’s reign. He compares the Devil to a ‘roaring lion,’ emphasizing Satan’s predatory nature as he seeks to ‘devour’ believers through temptation, persecution, or deception. As an ‘adversary,’ Satan opposes God’s servants, aiming to destroy their faith, as seen in early Christian martyrdoms. Peter’s warning urges vigilance and steadfastness in faith to resist Satan’s attacks. For Ministry Monopoly players, this scripture highlights the spiritual battle they face in their ministry, encouraging them to remain alert, rely on God’s strength, and help others safeguard their faith against Satan’s schemes." 
+                            }
                         ];
                         break;
                     case "Angels":
                         scriptures = [
-                            { text: "Hebrews 1:14 - Are they not all spirits for holy service, sent out to minister for those who are going to inherit salvation?", explanation: "Angels are spirit beings who serve God and help humans." },
-                            { text: "Psalm 91:11 - For he will give his angels a command concerning you, to guard you in all your ways.", explanation: "Angels are sent by God to protect His servants." }
+                            { 
+                                text: "Hebrews 1:14 - Are they not all spirits for holy service, sent out to minister for those who are going to inherit salvation?", 
+                                explanation: "Written to Hebrew Christians around 61 CE, this verse from Hebrews describes angels as ‘spirits’—invisible, powerful beings created by God to serve Him. Their role as ‘ministering spirits’ involves assisting those ‘inheriting salvation,’ such as the anointed who will rule with Christ in heaven, and indirectly, all of God’s servants. In the first century, angels delivered messages (e.g., to Mary in Luke 1:26-38) and protected believers (e.g., Acts 12:7-11). For Ministry Monopoly players, this scripture highlights the unseen support angels provide, encouraging them to trust in God’s care during their ministry and to share this comforting truth with others, reinforcing faith in divine protection." 
+                            },
+                            { 
+                                text: "Psalm 91:11 - For he will give his angels a command concerning you, to guard you in all your ways.", 
+                                explanation: "This verse from Psalm 91, possibly written by David or Moses around the 10th century BCE, offers assurance of God’s protection through His angels. Written during a time of personal or national trial—perhaps David’s flight from Saul or Israel’s wilderness journey—it promises that God commands His angels to ‘guard’ His faithful servants, ensuring their safety in ‘all their ways.’ This protection might include physical deliverance (as in Daniel 6:22) or spiritual guidance. For Ministry Monopoly players, this scripture provides encouragement to rely on God’s angelic support in their ministry, inspiring them to share this promise with others, helping them feel secure in God’s care amidst life’s challenges." 
+                            }
                         ];
                         break;
                     case "Demons":
                         scriptures = [
-                            { text: "James 2:19 - You believe that there is one God, do you? You are doing quite well. And yet the demons believe and shudder.", explanation: "Demons are fallen angels who oppose God but know His power." },
-                            { text: "Mark 5:9 - So he asked him: ‘What is your name?’ And he said to him: ‘My name is Legion, because there are many of us.’", explanation: "Demons can possess individuals, as shown in Jesus’ encounter." }
+                            { 
+                                text: "James 2:19 - You believe that there is one God, do you? You are doing quite well. And yet the demons believe and shudder.", 
+                                explanation: "James, Jesus’ half-brother, wrote this letter around 62 CE to Jewish Christians facing trials. He notes that even demons ‘believe’ in one God—acknowledging Jehovah’s existence as fallen angels who rebelled with Satan (Revelation 12:9). Unlike humans, who can act on faith, demons ‘shudder’ in fear, knowing their eventual judgment (Matthew 25:41). In the first century, demons influenced pagan worship and possessed individuals (Mark 5:1-20), opposing God’s purpose. For Ministry Monopoly players, this scripture reveals the reality of demonic forces, encouraging them to help others resist such influences by building faith in Jehovah, relying on His power to overcome evil, and focusing on true worship." 
+                            },
+                            { 
+                                text: "Mark 5:9 - So he asked him: ‘What is your name?’ And he said to him: ‘My name is Legion, because there are many of us.’", 
+                                explanation: "This account from Mark’s Gospel, written around 60 CE, describes Jesus’ encounter with a demon-possessed man in the region of the Gerasenes. The demons identify themselves as ‘Legion,’ indicating many spirits inhabiting the man, a term reflecting Roman military units of thousands, symbolizing their vast number. This event, occurring during Jesus’ ministry around 31 CE, demonstrates his authority over demonic forces, as he casts them out into a herd of swine, freeing the man. For Ministry Monopoly players, this scripture illustrates Jesus’ power over demons, encouraging them to share this account in their ministry, helping others understand the reality of demonic influence and the protection available through faith in Christ." 
+                            }
                         ];
                         break;
                     case "Sin":
                         scriptures = [
-                            { text: "Romans 3:23 - For all have sinned and fall short of the glory of God.", explanation: "All humans inherit sin and need redemption." },
-                            { text: "1 John 3:4 - Everyone who practices sin is also practicing lawlessness, and sin is lawlessness.", explanation: "Sin is breaking God’s laws." }
+                            { 
+                                text: "Romans 3:23 - For all have sinned and fall short of the glory of God.", 
+                                explanation: "Paul wrote this to the Romans around 56 CE, addressing both Jewish and Gentile Christians in a city known for its moral decadence. The statement ‘all have sinned’ reflects the universal condition of humanity, inherited through Adam’s disobedience in Eden (Romans 5:12). ‘Falling short of the glory of God’ means that no one can attain the perfection and righteousness God intended, as sin creates a barrier to His approval. This truth humbled the self-righteous Jews and offered hope to repentant Gentiles. For Ministry Monopoly players, this scripture provides a starting point to explain the need for salvation, encouraging them to share how Jesus’ ransom bridges the gap caused by sin, offering reconciliation with God." 
+                            },
+                            { 
+                                text: "1 John 3:4 - Everyone who practices sin is also practicing lawlessness, and sin is lawlessness.", 
+                                explanation: "Written by the apostle John around 98 CE, this verse defines sin as ‘lawlessness’—a deliberate violation of God’s laws, such as the Ten Commandments or Christ’s teachings. Addressed to Christians facing false teachers like the Gnostics, who downplayed sin’s seriousness, John emphasizes that sin involves willful disobedience, not mere imperfection. In the first century, this countered cultural norms in the Roman world, where immorality was often normalized. For Ministry Monopoly players, this scripture clarifies the nature of sin, encouraging them to help others recognize sinful behaviors, repent, and align with God’s standards, using the Bible to guide them in living a life that honors Jehovah and reflects His righteousness." 
+                            }
                         ];
                         break;
                     case "Creation":
                         scriptures = [
-                            { text: "Genesis 1:1 - In the beginning God created the heavens and the earth.", explanation: "Jehovah is the Creator of all things." },
-                            { text: "Psalm 19:1 - The heavens are declaring the glory of God; the skies above proclaim the work of his hands.", explanation: "Creation reflects Jehovah’s glory and power." }
+                            { 
+                                text: "Genesis 1:1 - In the beginning God created the heavens and the earth.", 
+                                explanation: "This opening verse of the Bible, written by Moses around 1513 BCE, establishes the foundation of biblical history during the Israelites’ wilderness journey. It declares Jehovah as the Creator of ‘the heavens and the earth,’ encompassing the entire universe and our planet, countering ancient creation myths like the Babylonian Enuma Elish, which attributed creation to warring gods. This simple yet profound statement affirms God’s sovereignty and purposeful design, setting the stage for His relationship with humanity. For Ministry Monopoly players, this scripture is a powerful starting point in their ministry, encouraging them to share the truth of God as Creator, helping others appreciate His power and purpose for the earth." 
+                            },
+                            { 
+                                text: "Psalm 19:1 - The heavens are declaring the glory of God; the skies above proclaim the work of his hands.", 
+                                explanation: "Likely written by David around the 10th century BCE, this psalm reflects on the natural world as evidence of God’s glory. During David’s time, as a shepherd and later king, he observed the heavens—the stars, sun, and skies—which silently ‘declare’ God’s majesty and craftsmanship. Unlike the Canaanite worship of celestial bodies, this verse directs praise to the Creator, not creation. The ‘work of his hands’ emphasizes God’s intentional design, visible in nature’s beauty and order. For Ministry Monopoly players, this scripture inspires them to point others to creation as proof of God’s existence, encouraging appreciation for His works and motivating a desire to learn more about Him through the Bible." 
+                            }
                         ];
                         break;
                     case "Free Will":
                         scriptures = [
-                            { text: "Deuteronomy 30:19 - I have put life and death before you, the blessing and the curse; and you must choose life.", explanation: "God gives humans the free will to choose obedience and life." },
-                            { text: "Joshua 24:15 - Now if it seems bad to you to serve Jehovah, choose for yourselves today whom you will serve.", explanation: "Joshua urged the Israelites to use their free will to serve Jehovah." }
+                            { 
+                                text: "Deuteronomy 30:19 - I have put life and death before you, the blessing and the curse; and you must choose life.", 
+                                explanation: "Spoken by Moses around 1473 BCE, as recorded in Deuteronomy, this verse addresses the Israelites on the plains of Moab before entering the Promised Land. God presents them with a choice between ‘life and death, the blessing and the curse,’ emphasizing their free will to obey His laws and receive blessings or disobey and face consequences. This choice reflects God’s desire for voluntary devotion, not forced obedience, a principle central to His relationship with humanity. For Ministry Monopoly players, this scripture underscores the importance of free will in their ministry, encouraging them to help others make informed choices to ‘choose life’ by aligning with God’s will and enjoying His blessings." 
+                            },
+                            { 
+                                text: "Joshua 24:15 - Now if it seems bad to you to serve Jehovah, choose for yourselves today whom you will serve.", 
+                                explanation: "This verse records Joshua’s final address to the Israelites around 1450 BCE, after they had settled in the Promised Land. Facing the temptation to worship Canaanite gods like Baal, Joshua challenges the people to ‘choose’ whom they will serve—Jehovah or false gods. His personal resolve, ‘as for me and my household, we will serve Jehovah,’ sets a powerful example of loyalty. This choice reflects the gift of free will, allowing the Israelites to decide their spiritual path. For Ministry Monopoly players, this scripture inspires them to encourage others to make a deliberate choice to serve Jehovah, using their free will to reject false worship and embrace true devotion." 
+                            }
                         ];
                         break;
-                    case "Organization":
+                                       case "Organization":
                         scriptures = [
-                            { text: "John 4:23 - Nevertheless, the hour is coming, and it is now, when the true worshippers will worship the Father with spirit and truth.", explanation: "God’s organization teaches us to worship with spirit and truth, aligning with Jehovah’s standards." },
-                            { text: "Ephesians 4:5 - One Lord, one faith, one baptism.", explanation: "God’s organization promotes unity through one faith and one baptism, avoiding division." }
+                            { 
+                                text: "John 4:23 - Nevertheless, the hour is coming, and it is now, when the true worshippers will worship the Father with spirit and truth.", 
+                                explanation: "Jesus spoke these words to a Samaritan woman in Sychar around 30 CE, as recorded in John’s Gospel. Addressing her question about the correct place of worship, Jesus emphasizes that true worship is not about location but about ‘spirit and truth’—sincere devotion based on accurate knowledge. This teaching countered the Samaritans’ syncretism and the Jews’ focus on temple rituals. For early Christians, this meant worshipping within a unified organization guided by truth, as seen in the first-century congregations led by apostles. For Ministry Monopoly players, this scripture highlights the importance of being part of God’s organized people today, encouraging them to worship Jehovah in unity and truth, and to help others find this same organized worship through their ministry efforts."
+                            },
+                            { 
+                                text: "Ephesians 4:5 - One Lord, one faith, one baptism.", 
+                                explanation: "Paul wrote this to the Ephesians around 60 CE, during his imprisonment in Rome, to encourage unity among Christians in a city known for its worship of Artemis. The phrase ‘one Lord, one faith, one baptism’ underscores the singularity of true Christianity—centered on Jesus as Lord, a shared faith based on Scripture, and a unified baptism symbolizing dedication to God. This countered the division caused by false teachers and pagan influences in Ephesus. For Ministry Monopoly players, this scripture emphasizes the importance of unity within God’s organization, encouraging them to promote one faith in their ministry, helping others avoid divisive teachings and join a unified brotherhood that honors Jehovah."
+                            }
                         ];
                         break;
                     case "Memorial":
                         scriptures = [
-                            { text: "Luke 22:19 - Also, he took a loaf, gave thanks, broke it, and gave it to them, saying: ‘This means my body, which is to be given in your behalf. Keep doing this in remembrance of me.’", explanation: "Jesus instituted the Memorial to commemorate his death." },
-                            { text: "1 Corinthians 11:25 - ‘This cup means the new covenant by virtue of my blood. Keep doing this, whenever you drink it, in remembrance of me.’", explanation: "The Memorial involves partaking of the bread and wine in remembrance of Jesus." }
+                            { 
+                                text: "Luke 22:19 - Also, he took a loaf, gave thanks, broke it, and gave it to them, saying: ‘This means my body, which is to be given in your behalf. Keep doing this in remembrance of me.’", 
+                                explanation: "This verse, recorded in Luke’s Gospel around 60 CE, captures Jesus’ institution of the Memorial on the night before his death in 33 CE. During the Passover meal in Jerusalem, Jesus used bread to symbolize his body, soon to be sacrificed for humanity’s sins. His command to ‘keep doing this in remembrance’ established an annual observance for his followers, focusing on his ransom sacrifice. Unlike the Jewish Passover, which recalled deliverance from Egypt, the Memorial honors Jesus’ greater deliverance from sin and death. For Ministry Monopoly players, this scripture underscores the significance of the Memorial, encouraging them to share its meaning in their ministry, helping others appreciate Christ’s sacrifice and participate in this sacred event."
+                            },
+                            { 
+                                text: "1 Corinthians 11:25 - ‘This cup means the new covenant by virtue of my blood. Keep doing this, whenever you drink it, in remembrance of me.’", 
+                                explanation: "Paul wrote this to the Corinthians around 55 CE, addressing issues in their congregation, including improper conduct during the Memorial. Quoting Jesus’ words from the Last Supper, Paul explains that the cup of wine symbolizes the ‘new covenant’—a relationship with God made possible through Jesus’ blood, fulfilling Jeremiah 31:31-34. This covenant replaced the old Mosaic Law, offering forgiveness and a closer bond with Jehovah. In the first century, this observance united Christians, reminding them of Jesus’ sacrifice. For Ministry Monopoly players, this scripture deepens their understanding of the Memorial, motivating them to explain its significance in their ministry, encouraging others to attend and reflect on the new covenant’s benefits."
+                            }
                         ];
                         break;
                     case "Forgiveness":
                         scriptures = [
-                            { text: "Ephesians 1:7 - By means of him we have the release by ransom through the blood of that one, yes, the forgiveness of our trespasses.", explanation: "Forgiveness comes through Jesus’ ransom sacrifice." },
-                            { text: "1 John 1:9 - If we confess our sins, he is faithful and righteous so as to forgive us our sins and to cleanse us from all unrighteousness.", explanation: "God forgives us when we confess our sins." }
+                            { 
+                                text: "Ephesians 1:7 - By means of him we have the release by ransom through the blood of that one, yes, the forgiveness of our trespasses.", 
+                                explanation: "Paul wrote this to the Ephesians around 60 CE, highlighting the role of Jesus’ sacrifice in securing forgiveness. The ‘release by ransom’ refers to Jesus’ death, which paid the price for humanity’s sins, inherited from Adam (Romans 5:12). Through his ‘blood,’ believers receive ‘forgiveness of trespasses,’ restoring their relationship with God. In Ephesus, a city steeped in pagan practices, this message offered hope to Gentiles who felt alienated from God. For Ministry Monopoly players, this scripture emphasizes the foundation of forgiveness, encouraging them to share the good news of Jesus’ ransom in their ministry, helping others seek God’s mercy and experience the freedom that comes from forgiveness."
+                            },
+                            { 
+                                text: "1 John 1:9 - If we confess our sins, he is faithful and righteous so as to forgive us our sins and to cleanse us from all unrighteousness.", 
+                                explanation: "John wrote this letter around 98 CE to Christians facing false teachings, such as Gnosticism, which denied the seriousness of sin. He assures believers that God is ‘faithful and righteous’ to forgive those who sincerely confess their sins, cleansing them from ‘all unrighteousness.’ This reflects God’s mercy and justice, as He forgives based on Jesus’ ransom while maintaining His standards. In the first century, this encouraged Christians to maintain a clean conscience before God. For Ministry Monopoly players, this scripture provides a comforting message to share, encouraging others to approach God with honest confession, trust in His forgiveness, and strive to live righteously in their daily lives."
+                            }
                         ];
                         break;
                     case "Prophecy":
                         scriptures = [
-                            { text: "2 Peter 1:21 - For prophecy was at no time brought by man’s will, but men spoke from God as they were moved by holy spirit.", explanation: "Prophecy comes from God, not human origin." },
-                            { text: "Isaiah 46:10 - From the beginning I foretell the outcome, and from long ago the things that have not yet been done.", explanation: "Jehovah’s prophecies always come true." }
+                            { 
+                                text: "2 Peter 1:21 - For prophecy was at no time brought by man’s will, but men spoke from God as they were moved by holy spirit.", 
+                                explanation: "Peter wrote this letter around 64 CE, shortly before his martyrdom, to strengthen Christians facing false teachers. He emphasizes that biblical prophecy originates from God, not human imagination, as prophets were ‘moved by holy spirit’ to convey divine messages. This distinguishes true prophecy from pagan oracles, like those at Delphi, which were human-driven and often ambiguous. Examples include Isaiah’s predictions of the Messiah (Isaiah 7:14) and Daniel’s vision of world powers (Daniel 2). For Ministry Monopoly players, this scripture affirms the reliability of Bible prophecy, encouraging them to share fulfilled prophecies in their ministry, helping others build trust in God’s Word and its promises for the future."
+                            },
+                            { 
+                                text: "Isaiah 46:10 - From the beginning I foretell the outcome, and from long ago the things that have not yet been done.", 
+                                explanation: "Isaiah recorded this prophecy around 732 BCE, during a time when Judah faced threats from Assyria and later Babylon. Jehovah declares His ability to ‘foretell the outcome,’ proving His sovereignty over history, unlike the lifeless idols worshipped by surrounding nations (Isaiah 46:5-7). Examples include His prediction of Cyrus as Judah’s deliverer (Isaiah 44:28), fulfilled over 150 years later. This demonstrates God’s control over time and events, giving assurance of His future promises, like the establishment of His Kingdom. For Ministry Monopoly players, this scripture inspires confidence in God’s prophetic word, motivating them to share these prophecies in their ministry, helping others see Jehovah’s power and reliability."
+                            }
                         ];
                         break;
                     case "Nature of Life":
                         scriptures = [
-                            { text: "Genesis 2:7 - And Jehovah God went on to form the man out of dust from the ground and to blow into his nostrils the breath of life, and the man became a living soul.", explanation: "A soul is a living person, not an immortal entity." },
-                            { text: "Ecclesiastes 12:7 - Then the dust returns to the earth, just as it was, and the spirit returns to the true God who gave it.", explanation: "At death, the spirit (breath of life) returns to God, and the person ceases to exist." }
+                            { 
+                                text: "Genesis 2:7 - And Jehovah God went on to form the man out of dust from the ground and to blow into his nostrils the breath of life, and the man became a living soul.", 
+                                explanation: "This verse, written by Moses around 1513 BCE, describes the creation of Adam in Eden, as part of the Genesis account given to the Israelites in the wilderness. Jehovah forms man from ‘dust,’ highlighting humanity’s humble origin, and breathes the ‘breath of life’ into him, making him a ‘living soul.’ This shows that a soul is not an immortal entity but a living person, countering Egyptian and later Greek beliefs in an immortal soul. For Ministry Monopoly players, this scripture clarifies the biblical definition of a soul, encouraging them to share this truth in their ministry, helping others understand the nature of life and death according to God’s Word."
+                            },
+                            { 
+                                text: "Ecclesiastes 12:7 - Then the dust returns to the earth, just as it was, and the spirit returns to the true God who gave it.", 
+                                explanation: "Solomon wrote this in Ecclesiastes around 1000 BCE, reflecting on life’s meaning during his reign in Israel. He describes death: the body (‘dust’) returns to the earth, as in Genesis 3:19, and the ‘spirit’—the life force or breath given by God—returns to Him, ceasing to animate the person. This aligns with the Hebrew view of death as a return to nonexistence, not an afterlife, unlike Babylonian beliefs in a shadowy underworld. For Ministry Monopoly players, this scripture provides a clear view of death, encouraging them to share the hope of resurrection in their ministry, helping others find comfort in God’s promise to restore life."
+                            }
                         ];
                         break;
                     case "Birthdays":
                         scriptures = [
-                            { text: "Ecclesiastes 7:1 - A good name is better than good oil, and the day of death than the day of birth.", explanation: "The Bible does not encourage celebrating birthdays, focusing instead on a good reputation." },
-                            { text: "Job 1:4 - His sons used to hold a banquet at the house of each one on his own day.", explanation: "Some interpret 'his own day' as possibly a birthday, but the Bible does not endorse such celebrations." }
+                            { 
+                                text: "Ecclesiastes 7:1 - A good name is better than good oil, and the day of death than the day of birth.", 
+                                explanation: "Solomon wrote this in Ecclesiastes around 1000 BCE, during a time of reflection on life’s value as king of Israel. He contrasts a ‘good name’—a reputation for integrity and godliness—with ‘good oil,’ a symbol of luxury often used in celebrations like birthdays. He notes that the ‘day of death’ is better than the ‘day of birth’ for a righteous person, as it marks the completion of a faithful life, unlike birth, which begins a journey of uncertainty. This perspective discourages self-focused celebrations like birthdays, common in cultures like Egypt. For Ministry Monopoly players, this scripture encourages focusing on a life that honors God, helping others prioritize spiritual values over worldly traditions."
+                            },
+                            { 
+                                text: "Job 1:4 - His sons used to hold a banquet at the house of each one on his own day.", 
+                                explanation: "This verse from Job, likely written by Moses around 1473 BCE, describes the lifestyle of Job’s children before their tragic deaths. ‘His own day’ may refer to each son’s birthday, as some interpret, reflecting a cultural practice in Uz, possibly influenced by surrounding nations like the Edomites. However, the Bible neither endorses nor commands such celebrations, and Job later expresses concern over his children’s conduct (Job 1:5), possibly due to the pagan origins of birthday customs, like those in Egypt involving astrology. For Ministry Monopoly players, this scripture provides insight into biblical neutrality on birthdays, encouraging them to explain why some Christians avoid such celebrations, focusing instead on honoring Jehovah."
+                            }
                         ];
                         break;
                     case "Holidays":
                         scriptures = [
-                            { text: "Colossians 2:16 - So let no man judge you in eating and drinking or in respect of a festival or an observance of the Sabbath.", explanation: "Christians are not bound to observe holidays, especially those with pagan origins." },
-                            { text: "Jeremiah 10:2-4 - This is what Jehovah says: ‘Do not learn the way of the nations... For the customs of the peoples are a delusion.’", explanation: "Many holidays have pagan roots, which Jehovah warns against adopting." }
+                            { 
+                                text: "Colossians 2:16 - So let no man judge you in eating and drinking or in respect of a festival or an observance of the Sabbath.", 
+                                explanation: "Paul wrote this to the Colossians around 60 CE, addressing pressures from Jewish Christians who insisted on observing Mosaic Law practices, like dietary laws and festivals. Paul emphasizes that Christians are not bound to these, as the Law was fulfilled in Christ (Colossians 2:14). This freedom also applies to holidays with pagan origins, like Saturnalia, prevalent in the Roman world. While the Law’s festivals pointed to Christ, many modern holidays stem from false worship, which Christians avoid. For Ministry Monopoly players, this scripture supports their choice to abstain from unbiblical holidays, encouraging them to explain this stance in their ministry, helping others focus on true worship."
+                            },
+                            { 
+                                text: "Jeremiah 10:2-4 - This is what Jehovah says: ‘Do not learn the way of the nations... For the customs of the peoples are a delusion.’", 
+                                explanation: "Jeremiah delivered this message around 620 BCE, during Judah’s decline before the Babylonian exile. Jehovah warns against adopting the ‘way of the nations,’ specifically their idolatrous customs, like decorating trees, a practice linked to pagan worship of fertility gods, such as in Assyrian or Babylonian rituals. These customs are called a ‘delusion’ because they honor false gods, not Jehovah. Many modern holidays, like Christmas, have similar pagan roots, including tree decorating. For Ministry Monopoly players, this scripture provides a clear basis to avoid such holidays, encouraging them to share this truth in their ministry, helping others worship Jehovah in a way that is pure and acceptable to Him."
+                            }
                         ];
                         break;
                 }
@@ -655,7 +835,7 @@
                     const player = {
                         name: nameInput,
                         color: colorSelect,
-                        position: 0,
+                        position: 20, // Start at "Service Meetup" (space 20)
                         points: 0,
                         token: document.createElement("div"),
                         hasCompletedLap: false
@@ -683,9 +863,9 @@
             });
             playerList.style.display = "block";
 
-            const space0TokenContainer = document.getElementById("space-20").querySelector(".token-container");
+            const space20TokenContainer = document.getElementById("space-20").querySelector(".token-container");
             players.forEach(player => {
-                space0TokenContainer.appendChild(player.token);
+                space20TokenContainer.appendChild(player.token);
             });
 
             let currentPlayerIndex = 0;
@@ -704,7 +884,7 @@
                 const space = spaces[player.position];
                 player.points += space.points;
 
-                if (!player.hasCompletedLap && player.position <= previousPosition && previousPosition !== 0) {
+                if (!player.hasCompletedLap && player.position <= previousPosition && previousPosition !== 20) {
                     player.hasCompletedLap = true;
                     completedPlayers++;
                 }
