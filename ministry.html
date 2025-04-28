@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministry - Just Wise Love</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts link for Audiowide -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Browser tab favicon -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png"> <!-- iOS home screen icon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png"> <!-- Android home screen icon -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+        /* Scope h1 styling to the game content only, avoiding interference with header h1 */
+        .game-content h1 {
+            font-size: clamp(20px, 3vw, 30px);
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .board {
+            display: grid;
+            grid-template: repeat(11, 1fr) / repeat(11, 1fr); /* 11x11 grid for Monopoly layout */
+            width: 90vw; /* Adjusted for mobile */
+            max-width: 90vw;
+            max-height: 90vw; /* Maintain square aspect ratio */
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #e0e0e0;
+        }
+        .space {
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            font-size: clamp(10px, 1.4vw, 14px); /* Increased font size for better readability */
+            text-align: center;
+            padding: 4px; /* Increased padding to fit larger space */
+            box-sizing: border-box;
+            transition: background-color 0.3s;
+        }
+        .space.negative {
+            background-color: #ffe6e6; /* Light pink for negative spaces */
+        }
+        .space.corner {
+            background-color: #e6ffe6; /* Light green for corners */
+            font-weight: bold;
+        }
+        /* Bottom row topics (blue) */
+        .space.bottom-row.topic {
+            background-color: #d9e6ff; /* Light blue */
+        }
+        /* Left column topics (yellow) */
+        .space.left-column.topic {
+            background-color: rgba(255, 255, 153, 0.5); /* Light semi-transparent yellow */
+        }
+        /* Top row topics (purple) */
+        .space.top-row.topic {
+            background-color: rgba(204, 153, 255, 0.5); /* Light semi-transparent purple */
+        }
+        /* Right column topics (red) */
+        .space.right-column.topic {
+            background-color: rgba(255, 153, 153, 0.5); /* Light semi-transparent red */
+        }
+        .space:hover {
+            background-color: #f0f0f0;
+        }
+        .space-name {
+            padding: 2px;
+            overflow-wrap: break-word; /* Ensure text wraps properly */
+            line-height: 1.2;
+            font-size: inherit; /* Inherit font size from .space */
+        }
+        .token-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .token {
+            width: clamp(12px, 1.8vw, 18px);
+            height: clamp(12px, 1.8vw, 18px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(6px, 0.8vw, 10px);
+            margin: 1px;
+            border: 1px solid #333;
+        }
+        .center-display {
+            grid-column: 3 / 10; /* Reduced from 2 / 11 to 3 / 10 to make outer spaces larger */
+            grid-row: 3 / 10; /* Reduced from 2 / 11 to 3 / 10 to make outer spaces larger */
+            background-color: #fff;
+            padding: 5px; /* Reduced padding to fit smaller area */
+            overflow-y: auto;
+            box-sizing: border-box;
+            font-size: clamp(10px, 1.2vw, 12px); /* Reduced font size to fit content */
+            line-height: 1.3; /* Slightly tighter line height */
+            border: 2px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribute content evenly */
+        }
+        .player-setup, .player-list {
+            margin-bottom: 10px; /* Reduced margin to fit content */
+        }
+        .player-setup div {
+            margin-bottom: 4px; /* Reduced from 8px to 4px for more compactness */
+            display: flex;
+            align-items: center;
+            gap: 4px; /* Reduced from 8px to 4px for more compactness */
+        }
+        .player-setup input {
+            padding: 2px; /* Reduced padding */
+            font-size: clamp(8px, 1.2vw, 12px); /* Reduced font size */
+            width: 55%; /* Adjusted to fit smaller area */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .player-setup select {
+            padding: 2px; /* Reduced padding */
+            font-size: clamp(8px, 1.2vw, 12px); /* Reduced font size */
+            width: 40%; /* Adjusted to fit smaller area */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            color: #333;
+        }
+        /* Style the placeholder option ("Choose Color") to be black */
+        .player-setup select option[value=""] {
+            color: black;
+        }
+        /* Ensure selected options are not grayed out */
+        .player-setup select option {
+            color: #333;
+        }
+        .message {
+            margin-bottom: 5px; /* Reduced margin */
+            white-space: pre-wrap;
+            font-family: 'Georgia', serif;
+            flex-grow: 1; /* Allow message to take available space */
+            font-size: clamp(10px, 1.2vw, 12px); /* Reduced font size */
+        }
+        button {
+            padding: 6px 12px; /* Reduced padding */
+            font-size: clamp(10px, 1.2vw, 12px); /* Reduced font size */
+            cursor: pointer;
+            margin: 3px; /* Reduced margin */
+            background-color: #4CAF50;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            align-self: center; /* Center the button */
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px) {
+            .board {
+                width: 90vw;
+                max-width: 90vw;
+                max-height: 90vw;
+            }
+            .space {
+                font-size: 10px; /* Adjusted for mobile */
+                padding: 3px; /* Adjusted for mobile */
+            }
+            .space-name {
+                font-size: 10px;
+            }
+            .center-display {
+                font-size: 10px;
+                padding: 3px; /* Further reduced padding for mobile */
+            }
+            .player-setup div {
+                margin-bottom: 3px; /* Further reduced for mobile */
+                gap: 3px; /* Further reduced for mobile */
+            }
+            .player-setup input {
+                width: 53%; /* Adjusted for mobile */
+                font-size: 8px;
+                padding: 1px;
+            }
+            .player-setup select {
+                width: 42%; /* Adjusted for mobile */
+                font-size: 8px;
+                padding: 1px;
+            }
+            .token {
+                width: 12px;
+                height: 12px;
+                font-size: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1><a href="index.html">MINISTRY</a></h1>
+        </div>
+    </header>
+    <div class="game-content">
+        <h1>Ministry Monopoly</h1>
+        <div class="board">
+            <!-- Bottom row (spaces 0 to 10) -->
+            <div class="space bottom-row corner" id="space-0" style="grid-column: 11; grid-row: 11;"><div class="space-name">Service Meetup</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-1" style="grid-column: 10; grid-row: 11;"><div class="space-name">Gods Name</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-2" style="grid-column: 9; grid-row: 11;"><div class="space-name">Hellfire</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-3" style="grid-column: 8; grid-row: 11;"><div class="space-name">Heaven</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-4" style="grid-column: 7; grid-row: 11;"><div class="space-name">Immortality</div><div class="token-container"></div></div>
+            <div class="space bottom-row negative" id="space-5" style="grid-column: 6; grid-row: 11;"><div class="space-name">Flat Tire</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-6" style="grid-column: 5; grid-row: 11;"><div class="space-name">Trinity</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-7" style="grid-column: 4; grid-row: 11;"><div class="space-name">Christmas</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-8" style="grid-column: 3; grid-row: 11;"><div class="space-name">Easter</div><div class="token-container"></div></div>
+            <div class="space bottom-row topic" id="space-9" style="grid-column: 2; grid-row: 11;"><div class="space-name">Birthdays</div><div class="token-container"></div></div>
+            <div class="space bottom-row corner" id="space-10" style="grid-column: 1; grid-row: 11;"><div class="space-name">No Trespassing</div><div class="token-container"></div></div>
+
+            <!-- Left column (spaces 11 to 19) -->
+            <div class="space left-column topic" id="space-11" style="grid-column: 1; grid-row: 10;"><div class="space-name">Memorial</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-12" style="grid-column: 1; grid-row: 9;"><div class="space-name">Kingdom</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-13" style="grid-column: 1; grid-row: 8;"><div class="space-name">Death</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-14" style="grid-column: 1; grid-row: 7;"><div class="space-name">Resurrection</div><div class="token-container"></div></div>
+            <div class="space left-column negative" id="space-15" style="grid-column: 1; grid-row: 6;"><div class="space-name">Check Engine</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-16" style="grid-column: 1; grid-row: 5;"><div class="space-name">Free Will</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-17" style="grid-column: 1; grid-row: 4;"><div class="space-name">Cross</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-18" style="grid-column: 1; grid-row: 3;"><div class="space-name">Paradise</div><div class="token-container"></div></div>
+            <div class="space left-column topic" id="space-19" style="grid-column: 1; grid-row: 2;"><div class="space-name">Organization</div><div class="token-container"></div></div>
+
+            <!-- Top row (spaces 20 to 29) -->
+            <div class="space top-row corner" id="space-20" style="grid-column: 1; grid-row: 1;"><div class="space-name">Break</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-21" style="grid-column: 2; grid-row: 1;"><div class="space-name">Blood</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-22" style="grid-column: 3; grid-row: 1;"><div class="space-name">Spirit</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-23" style="grid-column: 4; grid-row: 1;"><div class="space-name">Creation</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-24" style="grid-column: 5; grid-row: 1;"><div class="space-name">Soul</div><div class="token-container"></div></div>
+            <div class="space top-row negative" id="space-25" style="grid-column: 6; grid-row: 1;"><div class="space-name">Need Gas</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-26" style="grid-column: 7; grid-row: 1;"><div class="space-name">Angels</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-27" style="grid-column: 8; grid-row: 1;"><div class="space-name">Demons</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-28" style="grid-column: 9; grid-row: 1;"><div class="space-name">Satan</div><div class="token-container"></div></div>
+            <div class="space top-row topic" id="space-29" style="grid-column: 10; grid-row: 1;"><div class="space-name">Sin</div><div class="token-container"></div></div>
+            <div class="space top-row corner" id="space-30" style="grid-column: 11; grid-row: 1;"><div class="space-name">Not Interested</div><div class="token-container"></div></div>
+
+            <!-- Right column (spaces 31 to 39) -->
+            <div class="space right-column topic" id="space-31" style="grid-column: 11; grid-row: 2;"><div class="space-name">Forgiveness</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-32" style="grid-column: 11; grid-row: 3;"><div class="space-name">Salvation</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-33" style="grid-column: 11; grid-row: 4;"><div class="space-name">Faith</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-34" style="grid-column: 11; grid-row: 5;"><div class="space-name">Works</div><div class="token-container"></div></div>
+            <div class="space right-column negative" id="space-35" style="grid-column: 11; grid-row: 6;"><div class="space-name">Speeding Ticket</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-36" style="grid-column: 11; grid-row: 7;"><div class="space-name">Ministry</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-37" style="grid-column: 11; grid-row: 8;"><div class="space-name">Worship</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-38" style="grid-column: 11; grid-row: 9;"><div class="space-name">Bible</div><div class="token-container"></div></div>
+            <div class="space right-column topic" id="space-39" style="grid-column: 11; grid-row: 10;"><div class="space-name">Prophecy</div><div class="token-container"></div></div>
+
+            <!-- Center display -->
+            <div class="center-display">
+                <div class="player-setup">
+                    <div>
+                        <input type="text" placeholder="Player 1 name">
+                        <select>
+                            <option value="">Choose Color</option>
+                            <option value="green">Green</option>
+                            <option value="pink">Pink</option>
+                            <option value="blue">Blue</option>
+                            <option value="black">Black</option>
+                            <option value="gold">Gold</option>
+                            <option value="purple">Purple</option>
+                            <option value="orange">Orange</option>
+                            <option value="red">Red</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Player 2 name">
+                        <select>
+                            <option value="">Choose Color</option>
+                            <option value="green">Green</option>
+                            <option value="pink">Pink</option>
+                            <option value="blue">Blue</option>
+                            <option value="black">Black</option>
+                            <option value="gold">Gold</option>
+                            <option value="purple">Purple</option>
+                            <option value="orange">Orange</option>
+                            <option value="red">Red</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Player 3 name">
+                        <select>
+                            <option value="">Choose Color</option>
+                            <option value="green">Green</option>
+                            <option value="pink">Pink</option>
+                            <option value="blue">Blue</option>
+                            <option value="black">Black</option>
+                            <option value="gold">Gold</option>
+                            <option value="purple">Purple</option>
+                            <option value="orange">Orange</option>
+                            <option value="red">Red</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Player 4 name">
+                        <select>
+                            <option value="">Choose Color</option>
+                            <option value="green">Green</option>
+                            <option value="pink">Pink</option>
+                            <option value="blue">Blue</option>
+                            <option value="black">Black</option>
+                            <option value="gold">Gold</option>
+                            <option value="purple">Purple</option>
+                            <option value="orange">Orange</option>
+                            <option value="red">Red</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Player 5 name">
+                        <select>
+                            <option value="">Choose Color</option>
+                            <option value="green">Green</option>
+                            <option value="pink">Pink</option>
+                            <option value="blue">Blue</option>
+                            <option value="black">Black</option>
+                            <option value="gold">Gold</option>
+                            <option value="purple">Purple</option>
+                            <option value="orange">Orange</option>
+                            <option value="red">Red</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Player 6 name">
+                        <select>
+                            <option value="">Choose Color</option>
+                            <option value="green">Green</option>
+                            <option value="pink">Pink</option>
+                            <option value="blue">Blue</option>
+                            <option value="black">Black</option>
+                            <option value="gold">Gold</option>
+                            <option value="purple">Purple</option>
+                            <option value="orange">Orange</option>
+                            <option value="red">Red</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="player-list" style="display: none;"></div>
+                <div class="message">Welcome to Ministry Monopoly! Enter player names and choose colors, then click START.</div>
+                <button id="start-button">START</button>
+                <button id="roll-button" style="display: none;">Roll Die</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // List of Bible topics (32 topics for 32 topic spaces)
+        const topics = [
+            "Gods Name", "Hellfire", "Heaven", "Immortality", "Trinity", "Christmas", "Easter", "Birthdays", "Memorial", "Kingdom",
+            "Death", "Resurrection", "Free Will", "Cross", "Paradise", "Organization", "Blood", "Spirit", "Creation", "Soul",
+            "Angels", "Demons", "Satan", "Sin", "Forgiveness", "Salvation", "Faith", "Works", "Ministry", "Worship", "Bible", "Prophecy"
+        ];
+
+        // Define the 40 spaces on the board with real scriptures and explanations
+        const spaces = [];
+        let topicIndex = 0;
+        for (let i = 0; i < 40; i++) {
+            if ([0, 10, 20, 30].includes(i)) {
+                // Corner spaces
+                let name, points, message;
+                if (i === 0) {
+                    name = "Service Meetup";
+                    points = 20;
+                    message = "You attended a service meetup! +20 points.";
+                } else if (i === 10) {
+                    name = "No Trespassing";
+                    points = -50;
+                    message = "You were caught trespassing! -50 points.";
+                } else if (i === 20) {
+                    name = "Break";
+                    points = 10;
+                    message = "You took a break to recharge! +10 points.";
+                } else if (i === 30) {
+                    name = "Not Interested";
+                    points = -50;
+                    message = "The householder was not interested! -50 points.";
+                }
+                spaces.push({ type: "corner", name, points, message });
+            } else if ([5, 15, 25, 35].includes(i)) {
+                // Negative spaces (replacing railroads)
+                let name, points, message;
+                if (i === 5) {
+                    name = "Flat Tire";
+                    points = -10;
+                    message = "You got a flat tire! -10 points.";
+                } else if (i === 15) {
+                    name = "Check Engine";
+                    points = -20;
+                    message = "Your check engine warning came on! -20 points.";
+                } else if (i === 25) {
+                    name = "Need Gas";
+                    points = -30;
+                    message = "You need to refuel! -30 points.";
+                } else if (i === 35) {
+                    name = "Speeding Ticket";
+                    points = -40;
+                    message = "You got a speeding ticket! -40 points.";
+                }
+                spaces.push({ type: "negative", name, points, message });
+            } else {
+                // Bible topic spaces
+                let topicName = topics[topicIndex];
+                let points = 10 + topicIndex * 3; // Points increase from 10 to 97
+                let scriptures = [];
+                switch (topicName) {
+                    case "Gods Name":
+                        scriptures = [
+                            { text: "Psalm 83:18 - That people may know that you, whose name is Jehovah, You alone are the Most High over all the earth.", explanation: "This scripture reveals God's personal name, Jehovah, emphasizing His unique sovereignty." },
+                            { text: "Exodus 3:15 - This is my name forever, and this is how I am to be remembered from generation to generation.", explanation: "God told Moses His name is Jehovah, to be remembered by all generations." },
+                            { text: "Isaiah 42:8 - I am Jehovah. That is my name; I give my glory to no one else.", explanation: "Jehovah declares His name and that He shares His glory with no one." },
+                            { text: "Matthew 6:9 - You must pray, then, this way: ‘Our Father in the heavens, let your name be sanctified.’", explanation: "Jesus taught us to pray for God’s name to be sanctified, showing its importance." }
+                        ];
+                        break;
+                    case "Hellfire":
+                        scriptures = [
+                            { text: "Ecclesiastes 9:5 - For the living know that they will die, but the dead know nothing at all.", explanation: "The dead are unconscious, contradicting the idea of a fiery hell." },
+                            { text: "Psalm 146:4 - His spirit goes out, he returns to the ground; on that very day his thoughts perish.", explanation: "Death ends all consciousness, showing no torment in a hellfire." },
+                            { text: "Romans 6:23 - For the wages sin pays is death, but the gift God gives is everlasting life.", explanation: "The penalty for sin is death, not eternal torment in hellfire." },
+                            { text: "Revelation 20:14 - And death and the Grave were hurled into the lake of fire. This means the second death, the lake of fire.", explanation: "The lake of fire symbolizes complete destruction, not eternal torment." }
+                        ];
+                        break;
+                    case "Heaven":
+                        scriptures = [
+                            { text: "Revelation 21:1 - Then I saw a new heaven and a new earth; for the former heaven and the former earth had passed away.", explanation: "A new heaven represents a renewed heavenly government." },
+                            { text: "Matthew 5:3 - Happy are those conscious of their spiritual need, since the Kingdom of the heavens belongs to them.", explanation: "The Kingdom of the heavens is a spiritual realm for the anointed." },
+                            { text: "John 14:2 - In the house of my Father are many dwelling places. I am going to prepare a place for you.", explanation: "Jesus prepares a place in heaven for his followers with a heavenly hope." },
+                            { text: "Revelation 5:10 - And you made them to be a kingdom and priests to our God, and they are to rule as kings over the earth.", explanation: "A limited number will rule with Christ in heaven over the earth." }
+                        ];
+                        break;
+                    case "Immortality":
+                        scriptures = [
+                            { text: "1 Corinthians 15:53 - For this which is corruptible must put on incorruption, and this which is mortal must put on immortality.", explanation: "Immortality is a gift for those resurrected to heavenly life, not an inherent state of the soul." },
+                            { text: "1 Timothy 6:16 - The one alone having immortality, who dwells in unapproachable light.", explanation: "Only Jehovah inherently possesses immortality; humans receive it as a reward from Him." },
+                            { text: "Romans 2:7 - Everlasting life to those who are seeking glory, honor, and incorruptibility by endurance in work that is good.", explanation: "Immortality is granted to the anointed who endure in doing good, not to all at death." },
+                            { text: "Revelation 20:6 - They will be priests of God and of the Christ, and they will rule as kings with him for the 1,000 years.", explanation: "Those granted immortality will rule with Christ, a future hope, not a present reality for the dead." }
+                        ];
+                        break;
+                    case "Trinity":
+                        scriptures = [
+                            { text: "Deuteronomy 6:4 - Listen, O Israel: Jehovah our God is one Jehovah.", explanation: "God is one, not a Trinity, emphasizing His unity." },
+                            { text: "John 14:28 - The Father is greater than I am.", explanation: "Jesus acknowledged the Father’s superiority, showing they are not equal as in a Trinity." },
+                            { text: "1 Corinthians 11:3 - The head of the Christ is God.", explanation: "God is the head of Christ, indicating a hierarchy, not a co-equal Trinity." },
+                            { text: "John 17:3 - This means everlasting life, their coming to know you, the only true God, and the one whom you sent, Jesus Christ.", explanation: "The Father is the only true God, distinct from Jesus." }
+                        ];
+                        break;
+                    case "Christmas":
+                        scriptures = [
+                            { text: "Luke 2:11 - For today there was born to you in David’s city a savior, who is Christ the Lord.", explanation: "Jesus’ birth is significant, but the Bible does not specify December 25." },
+                            { text: "Deuteronomy 12:31 - You must not worship Jehovah your God in that way, for every detestable thing that Jehovah hates, they have done to their gods.", explanation: "Christmas has pagan origins, which Jehovah disapproves of." },
+                            { text: "Jeremiah 10:2-4 - This is what Jehovah says: ‘Do not learn the way of the nations... For the customs of the peoples are a delusion.’", explanation: "Decorating trees, a Christmas tradition, is linked to pagan practices." },
+                            { text: "Matthew 15:9 - It is in vain that they keep worshipping me, for they teach commands of men as doctrines.", explanation: "Christmas traditions are man-made, not from God." }
+                        ];
+                        break;
+                    case "Easter":
+                        scriptures = [
+                            { text: "Acts 12:4 - (And when he had apprehended him, he put him in prison, and delivered him to four quaternions of soldiers to keep him; intending after Easter to bring him forth to the people.)", explanation: "The term 'Easter' in some translations (KJV) is a mistranslation; the original Greek says 'Passover.'" },
+                            { text: "Deuteronomy 12:30 - Be careful not to be ensnared by following their ways after they have been destroyed before you.", explanation: "Easter’s fertility symbols (eggs, rabbits) have pagan origins, which Jehovah rejects." },
+                            { text: "1 Corinthians 5:7 - For, indeed, Christ our Passover lamb has been sacrificed.", explanation: "Jesus is our Passover, not linked to Easter traditions." },
+                            { text: "Matthew 28:6 - He is not here, for he has been raised up, just as he said.", explanation: "Jesus’ resurrection is important, but Easter celebrations are not scripturally mandated." }
+                        ];
+                        break;
+                    case "Birthdays":
+                        scriptures = [
+                            { text: "Ecclesiastes 7:1 - A good name is better than good oil, and the day of death than the day of birth.", explanation: "The Bible does not emphasize celebrating the day of birth." },
+                            { text: "Genesis 40:20 - Now on the third day, which was Pharaoh’s birthday, he made a feast for all his servants.", explanation: "Birthday celebrations in the Bible were by pagans, not God’s servants." },
+                            { text: "Matthew 14:6 - But when Herod’s birthday was being celebrated, the daughter of Herodias danced before them.", explanation: "Herod’s birthday celebration led to John the Baptist’s execution, showing negative associations." },
+                            { text: "Job 1:4 - His sons used to go and hold a feast in the house of each one on his day.", explanation: "Some translations suggest 'his day' might mean birthdays, but this practice was not approved by God." }
+                        ];
+                        break;
+                    case "Memorial":
+                        scriptures = [
+                            { text: "Luke 22:19 - Also, he took a loaf, gave thanks, broke it, and gave it to them, saying: ‘This means my body, which is to be given in your behalf. Keep doing this in remembrance of me.’", explanation: "Jesus instituted the Memorial to commemorate his death." },
+                            { text: "1 Corinthians 11:25 - ‘This cup means the new covenant by virtue of my blood. Keep doing this, whenever you drink it, in remembrance of me.’", explanation: "The Memorial involves partaking of the bread and wine in remembrance of Jesus." },
+                            { text: "John 6:53 - Unless you eat the flesh of the Son of man and drink his blood, you have no life in yourselves.", explanation: "The Memorial symbols represent Jesus’ sacrifice, necessary for life." },
+                            { text: "Hebrews 10:10 - By this ‘will’ we have been sanctified through the offering of the body of Jesus Christ once for all time.", explanation: "The Memorial reminds us of Jesus’ one-time sacrifice for our sanctification." }
+                        ];
+                        break;
+                    case "Kingdom":
+                        scriptures = [
+                            { text: "Daniel 2:44 - In the days of those kings the God of heaven will set up a kingdom that will never be destroyed.", explanation: "God’s Kingdom is a heavenly government that will last forever." },
+                            { text: "Matthew 6:10 - Let your Kingdom come. Let your will take place, as in heaven, also on earth.", explanation: "We pray for God’s Kingdom to bring His will to earth." },
+                            { text: "Revelation 11:15 - The kingdom of the world has become the Kingdom of our Lord and of his Christ.", explanation: "God’s Kingdom will take over rulership of the earth." },
+                            { text: "Luke 1:33 - And he will rule as King over the house of Jacob forever, and there will be no end to his Kingdom.", explanation: "Jesus will rule as King in God’s Kingdom forever." }
+                        ];
+                        break;
+                    case "Death":
+                        scriptures = [
+                            { text: "Ecclesiastes 9:5 - For the living know that they will die, but the dead know nothing at all.", explanation: "Death is a state of unconsciousness, not an afterlife." },
+                            { text: "John 11:11 - After he said these things, he added: ‘Lazarus our friend has fallen asleep, but I am traveling there to awaken him.’", explanation: "Jesus likened death to sleep, a temporary state." },
+                            { text: "Romans 5:12 - Through one man sin entered into the world, and death through sin, and so death spread to all men because they had all sinned.", explanation: "Death is a result of inherited sin from Adam." },
+                            { text: "1 Corinthians 15:26 - And the last enemy, death, is to be brought to nothing.", explanation: "God’s purpose is to eliminate death in the future." }
+                        ];
+                        break;
+                    case "Resurrection":
+                        scriptures = [
+                            { text: "John 5:28-29 - All those in the memorial tombs will hear his voice and come out.", explanation: "Jesus will resurrect the dead to life on earth or in heaven." },
+                            { text: "Acts 24:15 - And I have hope toward God, which these men also look forward to, that there is going to be a resurrection of both the righteous and the unrighteous.", explanation: "There will be a resurrection for all, offering a chance for life." },
+                            { text: "1 Corinthians 15:22 - For just as in Adam all are dying, so also in the Christ all will be made alive.", explanation: "Through Christ, all will be resurrected." },
+                            { text: "Revelation 20:6 - Happy and holy is anyone having part in the first resurrection.", explanation: "The first resurrection is for those ruling with Christ in heaven." }
+                        ];
+                        break;
+                    case "Free Will":
+                        scriptures = [
+                            { text: "Deuteronomy 30:19 - I have put life and death before you, the blessing and the curse; and you must choose life.", explanation: "God gives humans the free will to choose obedience and life." },
+                            { text: "Joshua 24:15 - Now if it seems bad to you to serve Jehovah, choose for yourselves today whom you will serve.", explanation: "Joshua urged the Israelites to use their free will to serve Jehovah." },
+                            { text: "Proverbs 16:9 - A man’s heart plans his way, but Jehovah directs his steps.", explanation: "We have free will to plan, but Jehovah guides us if we seek Him." },
+                            { text: "Galatians 5:13 - For you were called to freedom, brothers; only do not use this freedom as an opportunity for the flesh.", explanation: "Free will should be used responsibly, not for selfish desires." }
+                        ];
+                        break;
+                    case "Cross":
+                        scriptures = [
+                            { text: "Acts 5:30 - The God of our forefathers raised up Jesus, whom you killed, hanging him on a stake.", explanation: "Jesus was executed on a stake, not a cross, as 'stauros' means an upright pole." },
+                            { text: "Deuteronomy 21:23 - His dead body should not remain all night on the stake.", explanation: "The Bible uses 'stake' for execution instruments, not a cross." },
+                            { text: "Galatians 3:13 - Christ purchased us, releasing us from the curse of the Law by becoming a curse instead of us, because it is written: ‘Accursed is every man hung upon a stake.’", explanation: "Jesus died on a stake to redeem us." },
+                            { text: "Philippians 2:8 - He humbled himself and became obedient to the point of death, yes, death on a stake.", explanation: "Jesus’ death on a stake shows his obedience and humility." }
+                        ];
+                        break;
+                    case "Paradise":
+                        scriptures = [
+                            { text: "Luke 23:43 - And he said to him: ‘Truly I tell you today, you will be with me in Paradise.’", explanation: "Jesus promised the evildoer a future in a paradise earth." },
+                            { text: "Revelation 2:7 - To the one who conquers I will grant to eat of the tree of life, which is in the paradise of God.", explanation: "Paradise will be restored, offering everlasting life." },
+                            { text: "Isaiah 65:21-22 - They will build houses and live in them, and they will plant vineyards and eat their fruit.", explanation: "Paradise earth will be a place of peace and abundance." },
+                            { text: "Psalm 37:29 - The righteous will possess the earth, and they will live forever on it.", explanation: "The righteous will inherit a paradise earth forever." }
+                        ];
+                        break;
+                    case "Organization":
+                        scriptures = [
+                            { text: "John 4:23 - Nevertheless, the hour is coming, and it is now, when the true worshippers will worship the Father with spirit and truth.", explanation: "God’s organization teaches us to worship with spirit and truth, aligning with Jehovah’s standards." },
+                            { text: "Ephesians 4:5 - One Lord, one faith, one baptism.", explanation: "God’s organization promotes unity through one faith and one baptism, avoiding division." },
+                            { text: "Matthew 7:14 - But small is the gate and narrow the road that leads to life, and only a few find it.", explanation: "God’s organization guides us on the narrow road to life, which few follow." },
+                            { text: "Matthew 7:21-23 - Not everyone saying to me, ‘Lord, Lord,’ will enter into the Kingdom of the heavens, but the one doing the will of my Father who is in the heavens will... I never knew you! Get away from me, you workers of lawlessness.", explanation: "God’s organization emphasizes doing Jehovah’s will, not just professing faith." }
+                        ];
+                        break;
+                    case "Blood":
+                        scriptures = [
+                            { text: "Acts 15:29 - To keep abstaining from things sacrificed to idols, from blood, from what is strangled, and from sexual immorality.", explanation: "Christians must abstain from blood in all forms." },
+                            { text: "Leviticus 17:14 - For the life of every sort of flesh is its blood, because the life is in it. Consequently, I said to the Israelites: ‘You must not eat the blood of any sort of flesh.’", explanation: "Blood represents life and is sacred to Jehovah." },
+                            { text: "Genesis 9:4 - Only flesh with its life—its blood—you must not eat.", explanation: "From Noah’s time, God commanded abstaining from blood." },
+                            { text: "1 Samuel 14:33 - You have acted faithlessly by eating meat with the blood!", explanation: "Eating blood is an act of unfaithfulness to God." }
+                        ];
+                        break;
+                    case "Spirit":
+                        scriptures = [
+                            { text: "John 4:24 - God is a Spirit, and those worshipping him must worship with spirit and truth.", explanation: "Jehovah is a spirit being, invisible to humans." },
+                            { text: "2 Corinthians 3:17 - Now Jehovah is the Spirit, and where the spirit of Jehovah is, there is freedom.", explanation: "God’s spirit brings freedom to those who worship Him." },
+                            { text: "Galatians 5:22-23 - On the other hand, the fruitage of the spirit is love, joy, peace, patience, kindness, goodness, faith, mildness, self-control.", explanation: "God’s spirit produces good qualities in us." },
+                            { text: "Acts 2:4 - And they all became filled with holy spirit and started to speak in different languages.", explanation: "Holy spirit empowered early Christians to preach effectively." }
+                        ];
+                        break;
+                    case "Creation":
+                        scriptures = [
+                            { text: "Genesis 1:1 - In the beginning God created the heavens and the earth.", explanation: "Jehovah is the Creator of all things." },
+                            { text: "Psalm 19:1 - The heavens are declaring the glory of God; the skies above proclaim the work of his hands.", explanation: "Creation reflects Jehovah’s glory and power." },
+                            { text: "Revelation 4:11 - You are worthy, Jehovah our God, to receive the glory and the honor and the power, because you created all things.", explanation: "Jehovah deserves worship as the Creator." },
+                            { text: "Isaiah 40:26 - Lift up your eyes to heaven and see. Who has created these things?", explanation: "Jehovah’s creation of the stars shows His immense power." }
+                        ];
+                        break;
+                    case "Soul":
+                        scriptures = [
+                            { text: "Genesis 2:7 - And Jehovah God went on to form the man out of dust from the ground and to blow into his nostrils the breath of life, and the man became a living soul.", explanation: "A soul is a living person, not an immortal entity." },
+                            { text: "Ezekiel 18:4 - The soul who sins is the one who will die.", explanation: "The soul is mortal and can die, not live on after death." },
+                            { text: "Matthew 10:28 - Do not become fearful of those who kill the body but cannot kill the soul.", explanation: "The soul is the person’s life, which God can restore." },
+                            { text: "Psalm 146:4 - His spirit goes out, he returns to the ground; on that very day his thoughts perish.", explanation: "At death, the soul ceases to exist as a conscious entity." }
+                        ];
+                        break;
+                    case "Angels":
+                        scriptures = [
+                            { text: "Hebrews 1:14 - Are they not all spirits for holy service, sent out to minister for those who are going to inherit salvation?", explanation: "Angels are spirit beings who serve God and help humans." },
+                            { text: "Psalm 103:20 - Bless Jehovah, all you his angels, mighty in power, who carry out his word.", explanation: "Angels are powerful and obedient to Jehovah’s commands." },
+                            { text: "Matthew 18:10 - See that you do not despise one of these little ones, for I tell you that their angels in heaven always look upon the face of my Father.", explanation: "Angels watch over God’s servants." },
+                            { text: "Revelation 5:11 - And I saw, and I heard a voice of many angels around the throne.", explanation: "Angels number in the millions, worshipping Jehovah in heaven." }
+                        ];
+                        break;
+                    case "Demons":
+                        scriptures = [
+                            { text: "James 2:19 - You believe that there is one God, do you? You are doing quite well. And yet the demons believe and shudder.", explanation: "Demons are fallen angels who oppose God but know His power." },
+                            { text: "Matthew 8:31 - So the demons began to plead with him, saying: ‘If you expel us, send us into the herd of swine.’", explanation: "Demons can possess living beings but are subject to Jesus’ authority." },
+                            { text: "Ephesians 6:12 - We have a struggle, not against blood and flesh, but against the governments, against the authorities, against the world rulers of this darkness, against the wicked spirit forces in the heavenly places.", explanation: "Demons are wicked spirits we must resist." },
+                            { text: "Revelation 12:9 - So down the great dragon was hurled, the original serpent, the one called Devil and Satan, who is misleading the entire inhabited earth; he was hurled down to the earth, and his angels were hurled down with him.", explanation: "Demons were cast out of heaven with Satan." }
+                        ];
+                        break;
+                    case "Satan":
+                        scriptures = [
+                            { text: "Revelation 12:9 - So down the great dragon was hurled, the original serpent, the one called Devil and Satan, who is misleading the entire inhabited earth.", explanation: "Satan is a real spirit being who deceives the world." },
+                            { text: "John 8:44 - You are from your father the Devil, and you wish to do the desires of your father. That one was a murderer when he began.", explanation: "Satan is the source of lies and murder." },
+                            { text: "1 Peter 5:8 - Your adversary, the Devil, walks about like a roaring lion, seeking to devour someone.", explanation: "Satan actively seeks to harm God’s servants." },
+                            { text: "Job 1:7 - So Jehovah said to Satan: ‘Where have you come from?’ Satan answered Jehovah: ‘From roving about on the earth and from walking about in it.’", explanation: "Satan roams the earth to challenge God’s servants." }
+                        ];
+                        break;
+                    case "Sin":
+                        scriptures = [
+                            { text: "Romans 3:23 - For all have sinned and fall short of the glory of God.", explanation: "All humans inherit sin and need redemption." },
+                            { text: "1 John 3:4 - Everyone who practices sin is also practicing lawlessness, and sin is lawlessness.", explanation: "Sin is breaking God’s laws." },
+                            { text: "James 4:17 - Therefore, if someone knows how to do what is right and yet does not do it, it is a sin for him.", explanation: "Sin includes failing to do what is right." },
+                            { text: "Romans 6:23 - For the wages sin pays is death, but the gift God gives is everlasting life by Christ Jesus our Lord.", explanation: "Sin leads to death, but God offers life through Jesus." }
+                        ];
+                        break;
+                    case "Forgiveness":
+                        scriptures = [
+                            { text: "Ephesians 1:7 - By means of him we have the release by ransom through the blood of that one, yes, the forgiveness of our trespasses.", explanation: "Forgiveness comes through Jesus’ ransom sacrifice." },
+                            { text: "1 John 1:9 - If we confess our sins, he is faithful and righteous so as to forgive us our sins and to cleanse us from all unrighteousness.", explanation: "God forgives us when we confess our sins." },
+                            { text: "Matthew 6:14 - For if you forgive men their trespasses, your heavenly Father will also forgive you.", explanation: "We must forgive others to receive God’s forgiveness." },
+                            { text: "Colossians 3:13 - Continue putting up with one another and forgiving one another freely even if anyone has a cause for complaint against another.", explanation: "Forgiveness fosters peace among Christians." }
+                        ];
+                        break;
+                    case "Salvation":
+                        scriptures = [
+                            { text: "John 3:16 - For God loved the world so much that he gave his only-begotten Son, so that everyone exercising faith in him might not be destroyed but have everlasting life.", explanation: "Salvation comes through faith in Jesus." },
+                            { text: "Acts 4:12 - Furthermore, there is no salvation in anyone else, for there is no other name under heaven that has been given among men by which we must get saved.", explanation: "Salvation is only through Jesus." },
+                            { text: "Romans 10:9 - For if you publicly declare with your mouth that Jesus is Lord, and exercise faith in your heart that God raised him up from the dead, you will be saved.", explanation: "Faith and public declaration lead to salvation." },
+                            { text: "Titus 2:11 - For the undeserved kindness of God has been manifested, bringing salvation to all sorts of people.", explanation: "God’s kindness offers salvation to all who accept it." }
+                        ];
+                        break;
+                    case "Faith":
+                        scriptures = [
+                            { text: "Hebrews 11:1 - Faith is the assured expectation of what is hoped for, the evident demonstration of realities that are not seen.", explanation: "Faith involves trusting in God’s promises." },
+                            { text: "James 2:26 - Indeed, just as the body without spirit is dead, so also faith without works is dead.", explanation: "True faith is shown by our actions." },
+                            { text: "Ephesians 2:8 - By this undeserved kindness you have been saved through faith, and this is not of your own doing; rather, it is God’s gift.", explanation: "Faith is the means to salvation, a gift from God." },
+                            { text: "Matthew 17:20 - If you have faith the size of a mustard grain, you will say to this mountain, ‘Move from here to there,’ and it will move.", explanation: "Even small faith can accomplish great things with God’s help." }
+                        ];
+                        break;
+                    case "Works":
+                        scriptures = [
+                            { text: "James 2:17 - So, too, faith by itself, without works, is dead.", explanation: "Works demonstrate the reality of our faith." },
+                            { text: "Matthew 5:16 - Let your light shine before men, so that they may see your fine works and give glory to your Father who is in the heavens.", explanation: "Good works glorify God." },
+                            { text: "Titus 3:8 - I want you to keep stressing these things, so that those who have believed God may keep their minds focused on maintaining fine works.", explanation: "Works are a focus for true believers." },
+                            { text: "Ephesians 2:10 - For we are a product of his work and were created in union with Christ Jesus for good works.", explanation: "God created us to perform good works in Christ." }
+                        ];
+                        break;
+                    case "Ministry":
+                        scriptures = [
+                            { text: "2 Timothy 4:5 - But you, keep your senses in all things, endure hardship, do the work of an evangelizer, fully accomplish your ministry.", explanation: "All Christians are encouraged to fully accomplish their ministry." },
+                            { text: "Matthew 24:14 - And this good news of the Kingdom will be preached in all the inhabited earth for a witness to all the nations, and then the end will come.", explanation: "The ministry involves preaching the good news worldwide." },
+                            { text: "Acts 20:24 - But I do not consider my life of any account as dear to myself, if only I may finish my course and the ministry that I received from the Lord Jesus.", explanation: "Paul viewed his ministry as a sacred responsibility." },
+                            { text: "1 Peter 4:10 - According as each one has received a gift, use it in ministering to one another, as fine stewards of God’s undeserved kindness.", explanation: "Our gifts should be used to minister to others." }
+                        ];
+                        break;
+                    case "Worship":
+                        scriptures = [
+                            { text: "John 4:23 - Nevertheless, the hour is coming, and it is now, when the true worshippers will worship the Father with spirit and truth.", explanation: "True worship must be based on truth." },
+                            { text: "Revelation 4:11 - You are worthy, Jehovah our God, to receive the glory and the honor and the power.", explanation: "Jehovah alone is worthy of our worship." },
+                            { text: "Psalm 95:6 - Come, let us worship and bow down; let us kneel before Jehovah our Maker.", explanation: "Worship involves humility and reverence for Jehovah." },
+                            { text: "Hebrews 10:25 - Not forsaking our meeting together, as some have the custom, but encouraging one another.", explanation: "Worship includes gathering with others to encourage one another." }
+                        ];
+                        break;
+                    case "Bible":
+                        scriptures = [
+                            { text: "2 Timothy 3:16 - All Scripture is inspired of God and beneficial for teaching, for reproving, for setting things straight, for disciplining in righteousness.", explanation: "The Bible is God’s inspired Word for our guidance." },
+                            { text: "Psalm 119:105 - Your word is a lamp to my foot and a light to my path.", explanation: "The Bible lights our path in life." },
+                            { text: "Joshua 1:8 - This book of the Law should not depart from your mouth, and you must read it in an undertone day and night.", explanation: "Regular Bible reading helps us succeed spiritually." },
+                            { text: "John 17:17 - Sanctify them by means of the truth; your word is truth.", explanation: "The Bible is the source of truth for sanctification." }
+                        ];
+                        break;
+                    case "Prophecy":
+                        scriptures = [
+                            { text: "2 Peter 1:21 - For prophecy was at no time brought by man’s will, but men spoke from God as they were moved by holy spirit.", explanation: "Prophecy comes from God, not human origin." },
+                            { text: "Isaiah 46:10 - From the beginning I foretell the outcome, and from long ago the things that have not yet been done.", explanation: "Jehovah’s prophecies always come true." },
+                            { text: "Daniel 2:28 - But there is a God in the heavens who is a Revealer of secrets, and he has made known to King Nebuchadnezzar what is to happen in the final part of the days.", explanation: "Prophecy reveals God’s purpose for the future." },
+                            { text: "Revelation 1:1 - A revelation by Jesus Christ, which God gave him, to show his slaves the things that must shortly take place.", explanation: "Prophecy prepares us for future events." }
+                        ];
+                        break;
+                }
+                spaces.push({ type: "topic", name: topicName, points, scriptures });
+                topicIndex++;
+            }
+        }
+
+        // Handle game start
+        document.getElementById("start-button").addEventListener("click", () => {
+            // Collect players from input
+            const playerInputs = document.querySelectorAll(".player-setup > div");
+            const players = [];
+            playerInputs.forEach((div, index) => {
+                const nameInput = div.querySelector("input").value.trim();
+                const colorSelect = div.querySelector("select").value;
+                if (nameInput && colorSelect) {
+                    const player = {
+                        name: nameInput,
+                        color: colorSelect,
+                        position: 0,
+                        points: 0,
+                        token: document.createElement("div"),
+                        hasCompletedLap: false // Track if player has completed one lap
+                    };
+                    player.token.className = "token";
+                    player.token.style.backgroundColor = colorSelect;
+                    player.token.textContent = (index + 1).toString();
+                    players.push(player);
+                }
+            });
+
+            if (players.length === 0) {
+                alert("Please add at least one player with a name and color.");
+                return;
+            }
+
+            // Hide setup and show player list
+            document.querySelector(".player-setup").style.display = "none";
+            const playerList = document.querySelector(".player-list");
+            playerList.innerHTML = "";
+            players.forEach(player => {
+                const div = document.createElement("div");
+                div.textContent = `${player.name} (${player.color}): 0 points`;
+                playerList.appendChild(div);
+                player.pointDiv = div; // Store reference to update points later
+            });
+            playerList.style.display = "block";
+
+            // Place all tokens on Service Meetup (space-0)
+            const space0TokenContainer = document.getElementById("space-0").querySelector(".token-container");
+            players.forEach(player => {
+                space0TokenContainer.appendChild(player.token);
+            });
+
+            // Game state variables
+            let currentPlayerIndex = 0;
+            let completedPlayers = 0; // Track how many players have completed a lap
+
+            // Hide start button, show roll button
+            document.getElementById("start-button").style.display = "none";
+            document.getElementById("roll-button").style.display = "block";
+            const messageDiv = document.querySelector(".message");
+            messageDiv.textContent = `${players[0].name}'s turn. Click "Roll Die" to start.`;
+
+            // Handle die roll
+            document.getElementById("roll-button").addEventListener("click", () => {
+                const player = players[currentPlayerIndex];
+                const roll = Math.floor(Math.random() * 6) + 1;
+                let previousPosition = player.position;
+                player.position = (player.position + roll) % 40; // Move around the 40-space board
+                const space = spaces[player.position];
+                player.points += space.points;
+
+                // Check if the player has completed a lap (passed or landed on Service Meetup after position 0)
+                if (!player.hasCompletedLap && player.position <= previousPosition && previousPosition !== 0) {
+                    player.hasCompletedLap = true;
+                    completedPlayers++;
+                }
+
+                // Generate message
+                let message;
+                if (space.type === "topic") {
+                    const scripture = space.scriptures[Math.floor(Math.random() * 4)];
+                    message = `${space.name}: ${scripture.text}\n${scripture.explanation} (+${space.points} points)`;
+                } else {
+                    message = space.message;
+                }
+
+                // Move token to new space
+                const newSpaceTokenContainer = document.getElementById(`space-${player.position}`).querySelector(".token-container");
+                newSpaceTokenContainer.appendChild(player.token);
+
+                // Update points display
+                player.pointDiv.textContent = `${player.name} (${player.color}): ${player.points} points`;
+
+                // Display turn result
+                messageDiv.textContent = `${player.name} rolled ${roll} and landed on ${space.name}.\n${message}`;
+
+                // Check if all players have completed a lap
+                if (completedPlayers === players.length) {
+                    // End game
+                    document.getElementById("roll-button").style.display = "none";
+                    let endMessage = "Game over!\nFinal Scores:\n";
+                    players.forEach(player => {
+                        endMessage += `${player.name}: ${player.points} points\n`;
+                    });
+                    const winner = players.reduce((maxPlayer, p) => p.points > maxPlayer.points ? p : maxPlayer, players[0]);
+                    endMessage += `${winner.name} wins with ${winner.points} points!`;
+                    messageDiv.textContent = endMessage;
+                    return;
+                }
+
+                // Move to next player
+                currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+                const nextPlayer = players[currentPlayerIndex];
+                messageDiv.textContent += `\nNext: ${nextPlayer.name}'s turn.`;
+            });
+        });
+    </script>
+</body>
+</html>
