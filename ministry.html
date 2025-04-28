@@ -389,8 +389,10 @@
             </div>
         </div>
     </div>
-    <script>
-        // List of 32 topics
+ <script>
+    // Ensure the script runs after the DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", () => {
+        // List of 32 topics (unchanged)
         const topics = [
             "Gods Name", "Trinity", "Spirit", // Top: Core Beliefs
             "Heaven", "Hellfire", "Death", // Top: Afterlife Beliefs
@@ -401,12 +403,12 @@
             "Bible", "Satan", "Angels", // Bottom: Part of Christian Practices and Spiritual Challenges
             "Demons", "Sin", "Creation", // Bottom: Spiritual Challenges and Extra
             "Free Will", "Organization", // Bottom: Part of Creation and Purpose
-            "Memorial", "Forgiveness", "Prophecy", // Left: Memorial and Forgiveness
+            "Memorial  "Memorial", "Forgiveness", "Prophecy", // Left: Memorial and Forgiveness
             "Nature of Life", "Birthdays", "Holidays", // Left: Life and Traditions
             "Salvation", "Kingdom" // Left: Extra (repeated to fill space)
         ];
 
-        // Define the 40 spaces on the board
+        // Define the 40 spaces on the board (unchanged)
         const spaces = [];
         let topicIndex = 0;
         for (let i = 0; i < 40; i++) {
@@ -431,7 +433,7 @@
                     message = "You were caught trespassing! -50 points.";
                 }
                 spaces.push({ type: "corner", name, points, message });
-            } else if ([ dört, 14, 24, 34].includes(i)) {
+            } else if ([4, 14, 24, 34].includes(i)) {
                 // Negative spaces
                 let name, points, message;
                 if (i === 4) {
@@ -498,7 +500,7 @@
                         scriptures = [
                             { 
                                 text: "Revelation 21:1 - Then I saw a new heaven and a new earth; for the former heaven and the former earth had passed away.", 
-                                explanation: "This verse from Revelation, written by the apostle John while exiled on Patmos around 96 CE, describes a vision of God’s future purpose for humanity. Theავ: "The phrase ‘new heaven and new earth’ signifies a new system under God’s Kingdom, where His heavenly government (the ‘new heaven’) will transform the earth into a paradise (the ‘new earth’). The ‘former heaven and earth’—the current corrupt systems—will be replaced, fulfilling God’s promise to eradicate wickedness. For players, this scripture offers hope, motivating them to share the good news of God’s Kingdom, which will bring peace and righteousness globally, encouraging others to prepare for this future by living in harmony with God’s will." 
+                                explanation: "This verse from Revelation, written by the apostle John while exiled on Patmos around 96 CE, describes a vision of God’s future purpose for humanity. The phrase ‘new heaven and new earth’ signifies a new system under God’s Kingdom, where His heavenly government (the ‘new heaven’) will transform the earth into a paradise (the ‘new earth’). The ‘former heaven and earth’—the current corrupt systems—will be replaced, fulfilling God’s promise to eradicate wickedness. For players, this scripture offers hope, motivating them to share the good news of God’s Kingdom, which will bring peace and righteousness globally, encouraging others to prepare for this future by living in harmony with God’s will." 
                             },
                             { 
                                 text: "Matthew 5:3 - Happy are those conscious of their spiritual need, since the Kingdom of the heavens belongs to them.", 
@@ -734,15 +736,15 @@
                             }
                         ];
                         break;
-                                       case "Organization":
+                    case "Organization":
                         scriptures = [
                             { 
                                 text: "John 4:23 - Nevertheless, the hour is coming, and it is now, when the true worshippers will worship the Father with spirit and truth.", 
-                                explanation: "Jesus spoke these words to a Samaritan woman in Sychar around 30 CE, as recorded in John’s Gospel. Addressing her question about the correct place of worship, Jesus emphasizes that true worship is not about location but about ‘spirit and truth’—sincere devotion based on accurate knowledge. This teaching countered the Samaritans’ syncretism and the Jews’ focus on temple rituals. For early Christians, this meant worshipping within a unified organization guided by truth, as seen in the first-century congregations led by apostles. For Ministry Monopoly players, this scripture highlights the importance of being part of God’s organized people today, encouraging them to worship Jehovah in unity and truth, and to help others find this same organized worship through their ministry efforts."
+                                explanation: "Jesus spoke these words to a Samaritan woman in Sychar around 30 CE, as recorded in John’s Gospel. Addressing her question about the correct place of worship, Jesus emphasizes that true worship is not about location but about ‘spirit and truth’—sincere devotion based on accurate knowledge. This teaching countered the Samaritans’ syncretism and the Jews’ focus on temple rituals. For early Christians, this meant worshipping within a unified organization guided by truth, as seen in the first-century congregations led by apostles. For Ministry Monopoly players, this scripture highlights the importance of being part of God’s organized people today, encouraging them to worship Jehovah in unity and truth, and to help others find this same organized worship through their ministry efforts." 
                             },
                             { 
                                 text: "Ephesians 4:5 - One Lord, one faith, one baptism.", 
-                                explanation: "Paul wrote this to the Ephesians around 60 CE, during his imprisonment in Rome, to encourage unity among Christians in a city known for its worship of Artemis. The phrase ‘one Lord, one faith, one baptism’ underscores the singularity of true Christianity—centered on Jesus as Lord, a shared faith based on Scripture, and a unified baptism symbolizing dedication to God. This countered the division caused by false teachers and pagan influences in Ephesus. For Ministry Monopoly players, this scripture emphasizes the importance of unity within God’s organization, encouraging them to promote one faith in their ministry, helping others avoid divisive teachings and join a unified brotherhood that honors Jehovah."
+                                explanation: "Paul wrote this to the Ephesians around 60 CE, during his imprisonment in Rome, to encourage unity among Christians in a city known for its worship of Artemis. The phrase ‘one Lord, one faith, one baptism’ underscores the singularity of true Christianity—centered on Jesus as Lord, a shared faith based on Scripture, and a unified baptism symbolizing dedication to God. This countered the division caused by false teachers and pagan influences in Ephesus. For Ministry Monopoly players, this scripture emphasizes the importance of unity within God’s organization, encouraging them to promote one faith in their ministry, helping others avoid divisive teachings and join a unified brotherhood that honors Jehovah." 
                             }
                         ];
                         break;
@@ -750,11 +752,11 @@
                         scriptures = [
                             { 
                                 text: "Luke 22:19 - Also, he took a loaf, gave thanks, broke it, and gave it to them, saying: ‘This means my body, which is to be given in your behalf. Keep doing this in remembrance of me.’", 
-                                explanation: "This verse, recorded in Luke’s Gospel around 60 CE, captures Jesus’ institution of the Memorial on the night before his death in 33 CE. During the Passover meal in Jerusalem, Jesus used bread to symbolize his body, soon to be sacrificed for humanity’s sins. His command to ‘keep doing this in remembrance’ established an annual observance for his followers, focusing on his ransom sacrifice. Unlike the Jewish Passover, which recalled deliverance from Egypt, the Memorial honors Jesus’ greater deliverance from sin and death. For Ministry Monopoly players, this scripture underscores the significance of the Memorial, encouraging them to share its meaning in their ministry, helping others appreciate Christ’s sacrifice and participate in this sacred event."
+                                explanation: "This verse, recorded in Luke’s Gospel around 60 CE, captures Jesus’ institution of the Memorial on the night before his death in 33 CE. During the Passover meal in Jerusalem, Jesus used bread to symbolize his body, soon to be sacrificed for humanity’s sins. His command to ‘keep doing this in remembrance’ established an annual observance for his followers, focusing on his ransom sacrifice. Unlike the Jewish Passover, which recalled deliverance from Egypt, the Memorial honors Jesus’ greater deliverance from sin and death. For Ministry Monopoly players, this scripture underscores the significance of the Memorial, encouraging them to share its meaning in their ministry, helping others appreciate Christ’s sacrifice and participate in this sacred event." 
                             },
                             { 
                                 text: "1 Corinthians 11:25 - ‘This cup means the new covenant by virtue of my blood. Keep doing this, whenever you drink it, in remembrance of me.’", 
-                                explanation: "Paul wrote this to the Corinthians around 55 CE, addressing issues in their congregation, including improper conduct during the Memorial. Quoting Jesus’ words from the Last Supper, Paul explains that the cup of wine symbolizes the ‘new covenant’—a relationship with God made possible through Jesus’ blood, fulfilling Jeremiah 31:31-34. This covenant replaced the old Mosaic Law, offering forgiveness and a closer bond with Jehovah. In the first century, this observance united Christians, reminding them of Jesus’ sacrifice. For Ministry Monopoly players, this scripture deepens their understanding of the Memorial, motivating them to explain its significance in their ministry, encouraging others to attend and reflect on the new covenant’s benefits."
+                                explanation: "Paul wrote this to the Corinthians around 55 CE, addressing issues in their congregation, including improper conduct during the Memorial. Quoting Jesus’ words from the Last Supper, Paul explains that the cup of wine symbolizes the ‘new covenant’—a relationship with God made possible through Jesus’ blood, fulfilling Jeremiah 31:31-34. This covenant replaced the old Mosaic Law, offering forgiveness and a closer bond with Jehovah. In the first century, this observance united Christians, reminding them of Jesus’ sacrifice. For Ministry Monopoly players, this scripture deepens their understanding of the Memorial, motivating them to explain its significance in their ministry, encouraging others to attend and reflect on the new covenant’s benefits." 
                             }
                         ];
                         break;
@@ -762,11 +764,11 @@
                         scriptures = [
                             { 
                                 text: "Ephesians 1:7 - By means of him we have the release by ransom through the blood of that one, yes, the forgiveness of our trespasses.", 
-                                explanation: "Paul wrote this to the Ephesians around 60 CE, highlighting the role of Jesus’ sacrifice in securing forgiveness. The ‘release by ransom’ refers to Jesus’ death, which paid the price for humanity’s sins, inherited from Adam (Romans 5:12). Through his ‘blood,’ believers receive ‘forgiveness of trespasses,’ restoring their relationship with God. In Ephesus, a city steeped in pagan practices, this message offered hope to Gentiles who felt alienated from God. For Ministry Monopoly players, this scripture emphasizes the foundation of forgiveness, encouraging them to share the good news of Jesus’ ransom in their ministry, helping others seek God’s mercy and experience the freedom that comes from forgiveness."
+                                explanation: "Paul wrote this to the Ephesians around 60 CE, highlighting the role of Jesus’ sacrifice in securing forgiveness. The ‘release by ransom’ refers to Jesus’ death, which paid the price for humanity’s sins, inherited from Adam (Romans 5:12). Through his ‘blood,’ believers receive ‘forgiveness of trespasses,’ restoring their relationship with God. In Ephesus, a city steeped in pagan practices, this message offered hope to Gentiles who felt alienated from God. For Ministry Monopoly players, this scripture emphasizes the foundation of forgiveness, encouraging them to share the good news of Jesus’ ransom in their ministry, helping others seek God’s mercy and experience the freedom that comes from forgiveness." 
                             },
                             { 
                                 text: "1 John 1:9 - If we confess our sins, he is faithful and righteous so as to forgive us our sins and to cleanse us from all unrighteousness.", 
-                                explanation: "John wrote this letter around 98 CE to Christians facing false teachings, such as Gnosticism, which denied the seriousness of sin. He assures believers that God is ‘faithful and righteous’ to forgive those who sincerely confess their sins, cleansing them from ‘all unrighteousness.’ This reflects God’s mercy and justice, as He forgives based on Jesus’ ransom while maintaining His standards. In the first century, this encouraged Christians to maintain a clean conscience before God. For Ministry Monopoly players, this scripture provides a comforting message to share, encouraging others to approach God with honest confession, trust in His forgiveness, and strive to live righteously in their daily lives."
+                                explanation: "John wrote this letter around 98 CE to Christians facing false teachings, such as Gnosticism, which denied the seriousness of sin. He assures believers that God is ‘faithful and righteous’ to forgive those who sincerely confess their sins, cleansing them from ‘all unrighteousness.’ This reflects God’s mercy and justice, as He forgives based on Jesus’ ransom while maintaining His standards. In the first century, this encouraged Christians to maintain a clean conscience before God. For Ministry Monopoly players, this scripture provides a comforting message to share, encouraging others to approach God with honest confession, trust in His forgiveness, and strive to live righteously in their daily lives." 
                             }
                         ];
                         break;
@@ -774,11 +776,11 @@
                         scriptures = [
                             { 
                                 text: "2 Peter 1:21 - For prophecy was at no time brought by man’s will, but men spoke from God as they were moved by holy spirit.", 
-                                explanation: "Peter wrote this letter around 64 CE, shortly before his martyrdom, to strengthen Christians facing false teachers. He emphasizes that biblical prophecy originates from God, not human imagination, as prophets were ‘moved by holy spirit’ to convey divine messages. This distinguishes true prophecy from pagan oracles, like those at Delphi, which were human-driven and often ambiguous. Examples include Isaiah’s predictions of the Messiah (Isaiah 7:14) and Daniel’s vision of world powers (Daniel 2). For Ministry Monopoly players, this scripture affirms the reliability of Bible prophecy, encouraging them to share fulfilled prophecies in their ministry, helping others build trust in God’s Word and its promises for the future."
+                                explanation: "Peter wrote this letter around 64 CE, shortly before his martyrdom, to strengthen Christians facing false teachers. He emphasizes that biblical prophecy originates from God, not human imagination, as prophets were ‘moved by holy spirit’ to convey divine messages. This distinguishes true prophecy from pagan oracles, like those at Delphi, which were human-driven and often ambiguous. Examples include Isaiah’s predictions of the Messiah (Isaiah 7:14) and Daniel’s vision of world powers (Daniel 2). For Ministry Monopoly players, this scripture affirms the reliability of Bible prophecy, encouraging them to share fulfilled prophecies in their ministry, helping others build trust in God’s Word and its promises for the future." 
                             },
                             { 
                                 text: "Isaiah 46:10 - From the beginning I foretell the outcome, and from long ago the things that have not yet been done.", 
-                                explanation: "Isaiah recorded this prophecy around 732 BCE, during a time when Judah faced threats from Assyria and later Babylon. Jehovah declares His ability to ‘foretell the outcome,’ proving His sovereignty over history, unlike the lifeless idols worshipped by surrounding nations (Isaiah 46:5-7). Examples include His prediction of Cyrus as Judah’s deliverer (Isaiah 44:28), fulfilled over 150 years later. This demonstrates God’s control over time and events, giving assurance of His future promises, like the establishment of His Kingdom. For Ministry Monopoly players, this scripture inspires confidence in God’s prophetic word, motivating them to share these prophecies in their ministry, helping others see Jehovah’s power and reliability."
+                                explanation: "Isaiah recorded this prophecy around 732 BCE, during a time when Judah faced threats from Assyria and later Babylon. Jehovah declares His ability to ‘foretell the outcome,’ proving His sovereignty over history, unlike the lifeless idols worshipped by surrounding nations (Isaiah 46:5-7). Examples include His prediction of Cyrus as Judah’s deliverer (Isaiah 44:28), fulfilled over 150 years later. This demonstrates God’s control over time and events, giving assurance of His future promises, like the establishment of His Kingdom. For Ministry Monopoly players, this scripture inspires confidence in God’s prophetic word, motivating them to share these prophecies in their ministry, helping others see Jehovah’s power and reliability." 
                             }
                         ];
                         break;
@@ -786,11 +788,11 @@
                         scriptures = [
                             { 
                                 text: "Genesis 2:7 - And Jehovah God went on to form the man out of dust from the ground and to blow into his nostrils the breath of life, and the man became a living soul.", 
-                                explanation: "This verse, written by Moses around 1513 BCE, describes the creation of Adam in Eden, as part of the Genesis account given to the Israelites in the wilderness. Jehovah forms man from ‘dust,’ highlighting humanity’s humble origin, and breathes the ‘breath of life’ into him, making him a ‘living soul.’ This shows that a soul is not an immortal entity but a living person, countering Egyptian and later Greek beliefs in an immortal soul. For Ministry Monopoly players, this scripture clarifies the biblical definition of a soul, encouraging them to share this truth in their ministry, helping others understand the nature of life and death according to God’s Word."
+                                explanation: "This verse, written by Moses around 1513 BCE, describes the creation of Adam in Eden, as part of the Genesis account given to the Israelites in the wilderness. Jehovah forms man from ‘dust,’ highlighting humanity’s humble origin, and breathes the ‘breath of life’ into him, making him a ‘living soul.’ This shows that a soul is not an immortal entity but a living person, countering Egyptian and later Greek beliefs in an immortal soul. For Ministry Monopoly players, this scripture clarifies the biblical definition of a soul, encouraging them to share this truth in their ministry, helping others understand the nature of life and death according to God’s Word." 
                             },
                             { 
                                 text: "Ecclesiastes 12:7 - Then the dust returns to the earth, just as it was, and the spirit returns to the true God who gave it.", 
-                                explanation: "Solomon wrote this in Ecclesiastes around 1000 BCE, reflecting on life’s meaning during his reign in Israel. He describes death: the body (‘dust’) returns to the earth, as in Genesis 3:19, and the ‘spirit’—the life force or breath given by God—returns to Him, ceasing to animate the person. This aligns with the Hebrew view of death as a return to nonexistence, not an afterlife, unlike Babylonian beliefs in a shadowy underworld. For Ministry Monopoly players, this scripture provides a clear view of death, encouraging them to share the hope of resurrection in their ministry, helping others find comfort in God’s promise to restore life."
+                                explanation: "Solomon wrote this in Ecclesiastes around 1000 BCE, reflecting on life’s meaning during his reign in Israel. He describes death: the body (‘dust’) returns to the earth, as in Genesis 3:19, and the ‘spirit’—the life force or breath given by God—returns to Him, ceasing to animate the person. This aligns with the Hebrew view of death as a return to nonexistence, not an afterlife, unlike Babylonian beliefs in a shadowy underworld. For Ministry Monopoly players, this scripture provides a clear view of death, encouraging them to share the hope of resurrection in their ministry, helping others find comfort in God’s promise to restore life." 
                             }
                         ];
                         break;
@@ -798,11 +800,11 @@
                         scriptures = [
                             { 
                                 text: "Ecclesiastes 7:1 - A good name is better than good oil, and the day of death than the day of birth.", 
-                                explanation: "Solomon wrote this in Ecclesiastes around 1000 BCE, during a time of reflection on life’s value as king of Israel. He contrasts a ‘good name’—a reputation for integrity and godliness—with ‘good oil,’ a symbol of luxury often used in celebrations like birthdays. He notes that the ‘day of death’ is better than the ‘day of birth’ for a righteous person, as it marks the completion of a faithful life, unlike birth, which begins a journey of uncertainty. This perspective discourages self-focused celebrations like birthdays, common in cultures like Egypt. For Ministry Monopoly players, this scripture encourages focusing on a life that honors God, helping others prioritize spiritual values over worldly traditions."
+                                explanation: "Solomon wrote this in Ecclesiastes around 1000 BCE, during a time of reflection on life’s value as king of Israel. He contrasts a ‘good name’—a reputation for integrity and godliness—with ‘good oil,’ a symbol of luxury often used in celebrations like birthdays. He notes that the ‘day of death’ is better than the ‘day of birth’ for a righteous person, as it marks the completion of a faithful life, unlike birth, which begins a journey of uncertainty. This perspective discourages self-focused celebrations like birthdays, common in cultures like Egypt. For Ministry Monopoly players, this scripture encourages focusing on a life that honors God, helping others prioritize spiritual values over worldly traditions." 
                             },
                             { 
                                 text: "Job 1:4 - His sons used to hold a banquet at the house of each one on his own day.", 
-                                explanation: "This verse from Job, likely written by Moses around 1473 BCE, describes the lifestyle of Job’s children before their tragic deaths. ‘His own day’ may refer to each son’s birthday, as some interpret, reflecting a cultural practice in Uz, possibly influenced by surrounding nations like the Edomites. However, the Bible neither endorses nor commands such celebrations, and Job later expresses concern over his children’s conduct (Job 1:5), possibly due to the pagan origins of birthday customs, like those in Egypt involving astrology. For Ministry Monopoly players, this scripture provides insight into biblical neutrality on birthdays, encouraging them to explain why some Christians avoid such celebrations, focusing instead on honoring Jehovah."
+                                explanation: "This verse from Job, likely written by Moses around 1473 BCE, describes the lifestyle of Job’s children before their tragic deaths. ‘His own day’ may refer to each son’s birthday, as some interpret, reflecting a cultural practice in Uz, possibly influenced by surrounding nations like the Edomites. However, the Bible neither endorses nor commands such celebrations, and Job later expresses concern over his children’s conduct (Job 1:5), possibly due to the pagan origins of birthday customs, like those in Egypt involving astrology. For Ministry Monopoly players, this scripture provides insight into biblical neutrality on birthdays, encouraging them to explain why some Christians avoid such celebrations, focusing instead on honoring Jehovah." 
                             }
                         ];
                         break;
@@ -810,11 +812,11 @@
                         scriptures = [
                             { 
                                 text: "Colossians 2:16 - So let no man judge you in eating and drinking or in respect of a festival or an observance of the Sabbath.", 
-                                explanation: "Paul wrote this to the Colossians around 60 CE, addressing pressures from Jewish Christians who insisted on observing Mosaic Law practices, like dietary laws and festivals. Paul emphasizes that Christians are not bound to these, as the Law was fulfilled in Christ (Colossians 2:14). This freedom also applies to holidays with pagan origins, like Saturnalia, prevalent in the Roman world. While the Law’s festivals pointed to Christ, many modern holidays stem from false worship, which Christians avoid. For Ministry Monopoly players, this scripture supports their choice to abstain from unbiblical holidays, encouraging them to explain this stance in their ministry, helping others focus on true worship."
+                                explanation: "Paul wrote this to the Colossians around 60 CE, addressing pressures from Jewish Christians who insisted on observing Mosaic Law practices, like dietary laws and festivals. Paul emphasizes that Christians are not bound to these, as the Law was fulfilled in Christ (Colossians 2:14). This freedom also applies to holidays with pagan origins, like Saturnalia, prevalent in the Roman world. While the Law’s festivals pointed to Christ, many modern holidays stem from false worship, which Christians avoid. For Ministry Monopoly players, this scripture supports their choice to abstain from unbiblical holidays, encouraging them to explain this stance in their ministry, helping others focus on true worship." 
                             },
                             { 
                                 text: "Jeremiah 10:2-4 - This is what Jehovah says: ‘Do not learn the way of the nations... For the customs of the peoples are a delusion.’", 
-                                explanation: "Jeremiah delivered this message around 620 BCE, during Judah’s decline before the Babylonian exile. Jehovah warns against adopting the ‘way of the nations,’ specifically their idolatrous customs, like decorating trees, a practice linked to pagan worship of fertility gods, such as in Assyrian or Babylonian rituals. These customs are called a ‘delusion’ because they honor false gods, not Jehovah. Many modern holidays, like Christmas, have similar pagan roots, including tree decorating. For Ministry Monopoly players, this scripture provides a clear basis to avoid such holidays, encouraging them to share this truth in their ministry, helping others worship Jehovah in a way that is pure and acceptable to Him."
+                                explanation: "Jeremiah delivered this message around 620 BCE, during Judah’s decline before the Babylonian exile. Jehovah warns against adopting the ‘way of the nations,’ specifically their idolatrous customs, like decorating trees, a practice linked to pagan worship of fertility gods, such as in Assyrian or Babylonian rituals. These customs are called a ‘delusion’ because they honor false gods, not Jehovah. Many modern holidays, like Christmas, have similar pagan roots, including tree decorating. For Ministry Monopoly players, this scripture provides a clear basis to avoid such holidays, encouraging them to share this truth in their ministry, helping others worship Jehovah in a way that is pure and acceptable to Him." 
                             }
                         ];
                         break;
@@ -824,14 +826,31 @@
             }
         }
 
-        // Handle game start
-        document.getElementById("start-button").addEventListener("click", () => {
+        // Handle game start with debugging
+        const startButton = document.getElementById("start-button");
+        if (!startButton) {
+            console.error("Start button not found in the DOM!");
+            return;
+        }
+
+        startButton.addEventListener("click", () => {
+            console.log("Start button clicked!");
+
             const playerInputs = document.querySelectorAll(".player-setup > div");
+            if (!playerInputs || playerInputs.length === 0) {
+                console.error("Player inputs not found!");
+                alert("Error: Player input fields not found. Please refresh the page and try again.");
+                return;
+            }
+
             const players = [];
             playerInputs.forEach((div, index) => {
                 const nameInput = div.querySelector("input").value.trim();
                 const colorSelect = div.querySelector("select").value;
-                if (nameInput && colorSelect) {
+                console.log(`Player ${index + 1}: Name = "${nameInput}", Color = "${colorSelect}"`);
+
+                // Adjusted condition to ensure both name and color are valid
+                if (nameInput && colorSelect && colorSelect !== "") {
                     const player = {
                         name: nameInput,
                         color: colorSelect,
@@ -844,16 +863,28 @@
                     player.token.style.backgroundColor = colorSelect;
                     player.token.textContent = (index + 1).toString();
                     players.push(player);
+                    console.log(`Added player: ${player.name} (${player.color})`);
                 }
             });
 
             if (players.length === 0) {
-                alert("Please add at least one player with a name and color.");
+                console.warn("No valid players added.");
+                alert("Please add at least one player with a name and a color.");
                 return;
             }
 
-            document.querySelector(".player-setup").style.display = "none";
+            const playerSetup = document.querySelector(".player-setup");
             const playerList = document.querySelector(".player-list");
+            const messageDiv = document.querySelector(".message");
+            const rollButton = document.getElementById("roll-button");
+
+            if (!playerSetup || !playerList || !messageDiv || !rollButton) {
+                console.error("Required DOM elements missing!");
+                alert("Error: Required game elements not found. Please refresh the page and try again.");
+                return;
+            }
+
+            playerSetup.style.display = "none";
             playerList.innerHTML = "";
             players.forEach(player => {
                 const div = document.createElement("div");
@@ -863,7 +894,13 @@
             });
             playerList.style.display = "block";
 
-            const space20TokenContainer = document.getElementById("space-20").querySelector(".token-container");
+            const space20TokenContainer = document.getElementById("space-20")?.querySelector(".token-container");
+            if (!space20TokenContainer) {
+                console.error("Space 20 token container not found!");
+                alert("Error: Starting space not found. Please refresh the page and try again.");
+                return;
+            }
+
             players.forEach(player => {
                 space20TokenContainer.appendChild(player.token);
             });
@@ -871,12 +908,13 @@
             let currentPlayerIndex = 0;
             let completedPlayers = 0;
 
-            document.getElementById("start-button").style.display = "none";
-            document.getElementById("roll-button").style.display = "block";
-            const messageDiv = document.querySelector(".message");
+            startButton.style.display = "none";
+            rollButton.style.display = "block";
             messageDiv.textContent = `${players[0].name}'s turn. Click "Roll Die" to start.`;
+            console.log("Game setup complete. Ready for first turn.");
 
-            document.getElementById("roll-button").addEventListener("click", () => {
+            rollButton.addEventListener("click", () => {
+                console.log(`${players[currentPlayerIndex].name} is rolling the die...`);
                 const player = players[currentPlayerIndex];
                 const roll = Math.floor(Math.random() * 6) + 1;
                 let previousPosition = player.position;
@@ -897,14 +935,19 @@
                     message = space.message;
                 }
 
-                const newSpaceTokenContainer = document.getElementById(`space-${player.position}`).querySelector(".token-container");
+                const newSpaceTokenContainer = document.getElementById(`space-${player.position}`)?.querySelector(".token-container");
+                if (!newSpaceTokenContainer) {
+                    console.error(`Token container for space-${player.position} not found!`);
+                    return;
+                }
                 newSpaceTokenContainer.appendChild(player.token);
 
                 player.pointDiv.textContent = `${player.name} (${player.color}): ${player.points} points`;
                 messageDiv.textContent = `${player.name} rolled ${roll} and landed on ${space.name}.\n${message}`;
+                console.log(`${player.name} moved to ${space.name} (position ${player.position}) with ${player.points} points.`);
 
                 if (completedPlayers === players.length) {
-                    document.getElementById("roll-button").style.display = "none";
+                    rollButton.style.display = "none";
                     let endMessage = "Game over!\nFinal Scores:\n";
                     players.forEach(player => {
                         endMessage += `${player.name}: ${player.points} points\n`;
@@ -912,14 +955,17 @@
                     const winner = players.reduce((maxPlayer, p) => p.points > maxPlayer.points ? p : maxPlayer, players[0]);
                     endMessage += `${winner.name} wins with ${winner.points} points!`;
                     messageDiv.textContent = endMessage;
+                    console.log("Game ended. Winner:", winner.name);
                     return;
                 }
 
                 currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
                 const nextPlayer = players[currentPlayerIndex];
                 messageDiv.textContent += `\nNext: ${nextPlayer.name}'s turn.`;
+                console.log(`Next turn: ${nextPlayer.name}`);
             });
         });
-    </script>
+    });
+</script>
 </body>
 </html>
