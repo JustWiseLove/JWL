@@ -15,7 +15,6 @@
         padding: 0;
         height: 100%;
         width: 100%;
-        overflow: hidden;
         font-family: Arial, sans-serif;
         background-color: #e0e0e0;
     }
@@ -23,11 +22,12 @@
     body {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start; /* Changed to start to prevent bottom cutoff */
         align-items: center;
         min-height: 100vh;
         box-sizing: border-box;
-        padding-top: 90px; /* Adjusted as per your requirement */
+        padding-top: 90px; /* For the fixed header */
+        overflow-y: auto; /* Allow scrolling to ensure visibility */
     }
 
     header {
@@ -68,7 +68,6 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: 100%;
         padding: 5px;
         box-sizing: border-box;
     }
@@ -86,7 +85,7 @@
         width: 90vmin;
         height: 90vmin;
         max-width: 90vw;
-        max-height: calc(100vh - 130px); /* 90px for header + 40px for title */
+        max-height: calc(100vh - 150px); /* Increased offset to ensure fit */
         margin: 0 auto;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         background-color: #d0d0d0;
@@ -271,10 +270,10 @@
             padding: 2px;
         }
         .board {
-            width: 98vmin;
-            height: 98vmin;
-            max-width: 98vw;
-            max-height: calc(100vh - 130px); /* Adjusted for header and title */
+            width: 95vmin; /* Slightly reduced to fit better */
+            height: 95vmin;
+            max-width: 95vw;
+            max-height: calc(100vh - 150px); /* Adjusted for header and title */
         }
         .space {
             font-size: clamp(6px, 0.8vmin, 10px);
@@ -315,10 +314,10 @@
     /* Tablets and Smaller Desktops */
     @media (min-width: 601px) and (max-width: 1024px) {
         .board {
-            width: 80vmin; /* Reduced to fit better */
-            height: 80vmin;
+            width: 75vmin; /* Further reduced to ensure fit */
+            height: 75vmin;
             max-width: 90vw;
-            max-height: calc(100vh - 130px); /* Adjusted for header and title */
+            max-height: calc(100vh - 150px); /* Adjusted for header and title */
         }
         .space {
             font-size: clamp(7px, 0.9vmin, 11px);
@@ -346,10 +345,10 @@
     /* Desktops */
     @media (min-width: 1025px) {
         .board {
-            width: 70vmin; /* Further reduced for larger screens */
-            height: 70vmin;
+            width: 65vmin; /* Further reduced for larger screens */
+            height: 65vmin;
             max-width: 90vw;
-            max-height: calc(100vh - 130px); /* Adjusted for header and title */
+            max-height: calc(100vh - 150px); /* Adjusted for header and title */
         }
         .space {
             font-size: clamp(8px, 1vmin, 12px);
@@ -374,12 +373,13 @@
         }
     }
 
+    /* Low Height Devices */
     @media (max-height: 600px) {
         .board {
-            width: 98vmin;
-            height: 98vmin;
-            max-width: 98vw;
-            max-height: calc(100vh - 130px); /* Adjusted for header and title */
+            width: 90vmin;
+            height: 90vmin;
+            max-width: 90vw;
+            max-height: calc(100vh - 150px); /* Adjusted for header and title */
         }
     }
 </style>
