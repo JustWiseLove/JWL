@@ -27,7 +27,7 @@
             left: 0;
             z-index: 1000;
         }
-        #menu, #difficulty-menu {
+        #menu, #difficulty-menu, #name-entry {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -35,7 +35,7 @@
             margin-top: 110px; /* Increased to avoid header overlap */
             text-align: center;
         }
-        #menu h1, #difficulty-menu h1 {
+        #menu h1, #difficulty-menu h1, #name-entry h1 {
             font-family: 'Audiowide', sans-serif;
             font-size: 2.5em;
             margin-bottom: 20px;
@@ -57,7 +57,7 @@
             margin: 10px 0;
             flex-wrap: wrap; /* Allow wrapping if needed */
         }
-        #menu button, #difficulty-menu button {
+        #menu button, #difficulty-menu button, #name-entry button {
             margin: 0; /* Remove individual margins since gap handles spacing */
             padding: 12px 25px; /* Adjusted padding for better fit */
             font-size: 1.2em;
@@ -69,9 +69,21 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease;
         }
-        #menu button:hover, #difficulty-menu button:hover {
+        #menu button:hover, #difficulty-menu button:hover, #name-entry button:hover {
             background-color: #777;
             transform: scale(1.05);
+        }
+        #name-entry input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+            background-color: #444;
+            color: #ccc;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
         }
         #game-container {
             display: none;
@@ -116,13 +128,14 @@
         .teachers-piece {
             filter: brightness(0) invert(1); /* White for Teachers */
         }
-        .
-
-selected {
+        .selected {
             background-color: #a9a999 !important;
         }
         .highlight {
             background-color: #b0b0b0 !important;
+        }
+        .in-check {
+            background-color: #FFD700 !important; /* Gold for check */
         }
         #turn-indicator {
             margin-top: 10px;
@@ -130,14 +143,22 @@ selected {
             font-size: 1.2em;
             font-family: 'Audiowide', sans-serif;
         }
+        #game-over {
+            display: none;
+            margin-top: 10px;
+            color: #ccc;
+            font-size: 1.5em;
+            font-family: 'Audiowide', sans-serif;
+            text-align: center;
+        }
         @media (max-width: 400px) { /* Adjusted to a smaller breakpoint */
             .square {
                 font-size: min(5vw, 5vh);
             }
-            #menu, #difficulty-menu, #game-container {
+            #menu, #difficulty-menu, #name-entry, #game-container {
                 margin-top: 100px; /* Adjusted for smaller screens */
             }
-            #menu h1, #difficulty-menu h1 {
+            #menu h1, #difficulty-menu h1, #name-entry h1 {
                 font-size: 2em;
             }
             #menu .scripture {
@@ -148,9 +169,12 @@ selected {
                 flex-direction: column; /* Stack buttons vertically on very small screens */
                 gap: 10px;
             }
-            #menu button, #difficulty-menu button {
+            #menu button, #difficulty-menu button, #name-entry button {
                 padding: 10px 20px; /* Further reduced padding for small screens */
                 font-size: 1em;
+            }
+            #name-entry input {
+                width: 150px;
             }
         }
     </style>
@@ -162,6 +186,7 @@ selected {
         </div>
     </header>
     <div id="menu">
+        <h1>SCRIPT</h1>
         <div class="scripture">
             <div class="scripture-ref">“Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.” 2 Timothy 4:2</div>
         </div>
@@ -169,6 +194,12 @@ selected {
             <button onclick="startTwoPlayer()">Two Players</button>
             <button onclick="showDifficultyMenu()">One Player</button>
         </div>
+    </div>
+    <div id="name-entry" style="display: none;">
+        <h1>Enter Player Names</h1>
+        <input type="text" id="player1-name" placeholder="Player 1 Name" maxlength="20">
+        <input type="text" id="player2-name" placeholder="Player 2 Name" maxlength="20">
+        <button onclick="submitNames()">Start Game</button>
     </div>
     <div id="difficulty-menu" style="display: none;">
         <h1>Select Difficulty</h1>
@@ -181,23 +212,46 @@ selected {
     <div id="game-container">
         <div id="board"></div>
         <div id="turn-indicator">Preachers' Turn</div>
+        <div id="game-over"></div>
     </div>
     <script>
         const menu = document.getElementById('menu');
         const difficultyMenu = document.getElementById('difficulty-menu');
+        const nameEntry = document.getElementById('name-entry');
         const gameContainer = document.getElementById('game-container');
         const board = document.getElementById('board');
         const turnIndicator = document.getElementById('turn-indicator');
+        const gameOver = document.getElementById('game-over');
         let gameState = null;
         let selectedSquare = null;
         let currentPlayer = 'preachers';
         let gameMode = null; // 'single' or 'two'
         let difficulty = null; // 'easy', 'medium', 'hard'
+        let playerNames = { preachers: 'Player 1', teachers: 'Player 2' };
+        let gameEnded = false;
 
         function startTwoPlayer() {
             gameMode = 'two';
             menu.style.display = 'none';
             difficultyMenu.style.display = 'none';
+            nameEntry.style.display = 'flex';
+        }
+
+        function submitNames() {
+            const player1Name = document.getElementById('player1-name').value.trim() || 'Player 1';
+            const player2Name = document.getElementById('player2-name').value.trim() || 'Player 2';
+            
+            // Randomly assign teams
+            const random = Math.random() < 0.5;
+            playerNames = {
+                teachers: random ? player1Name : player2Name,
+                preachers: random ? player2Name : player1Name
+            };
+            
+            // White team (Teachers) goes first
+            currentPlayer = 'teachers';
+            
+            nameEntry.style.display = 'none';
             gameContainer.style.display = 'flex';
             gameState = initializeBoard();
             renderBoard();
@@ -213,6 +267,7 @@ selected {
             difficulty = diff;
             difficultyMenu.style.display = 'none';
             gameContainer.style.display = 'flex';
+            playerNames = { preachers: 'Player', teachers: 'Computer' };
             gameState = initializeBoard();
             renderBoard();
         }
@@ -254,6 +309,8 @@ selected {
         }
 
         function renderBoard() {
+            if (gameEnded) return;
+
             board.innerHTML = '';
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
@@ -264,9 +321,13 @@ selected {
                     if (piece.piece) {
                         const pieceSpan = document.createElement('span');
                         pieceSpan.textContent = getPieceSymbol(piece.piece);
-                        // Add team-specific class for coloring
                         pieceSpan.classList.add(piece.team === 'preachers' ? 'preachers-piece' : 'teachers-piece');
                         square.appendChild(pieceSpan);
+
+                        // Highlight Kingdom Hall in check
+                        if (piece.piece === 'kingdomhall' && isSquareThreatened(rank, file, piece.team)) {
+                            square.classList.add('in-check');
+                        }
                     }
                     square.dataset.rank = rank;
                     square.dataset.file = file;
@@ -285,7 +346,7 @@ selected {
                     piece.style.transform = 'rotate(0deg)';
                 });
             }
-            turnIndicator.textContent = `${currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}' Turn`;
+            turnIndicator.textContent = `${playerNames[currentPlayer]}'s Turn (${currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)})`;
         }
 
         function getPieceSymbol(piece) {
@@ -301,7 +362,8 @@ selected {
         }
 
         function handleSquareClick(event) {
-            if (gameMode === 'single' && currentPlayer === 'teachers') return; // Prevent clicking during computer's turn
+            if (gameEnded) return;
+            if (gameMode === 'single' && currentPlayer === 'teachers') return;
 
             const rank = parseInt(event.target.dataset.rank || event.target.parentElement.dataset.rank);
             const file = parseInt(event.target.dataset.file || event.target.parentElement.dataset.file);
@@ -309,13 +371,21 @@ selected {
 
             if (selectedSquare) {
                 if (isValidMove(selectedSquare.rank, selectedSquare.file, rank, file)) {
+                    const targetPiece = gameState[rank][file];
                     movePiece(selectedSquare.rank, selectedSquare.file, rank, file);
+                    
+                    // Check if a Kingdom Hall was captured
+                    if (targetPiece.piece === 'kingdomhall') {
+                        endGame(currentPlayer);
+                        return;
+                    }
+
                     currentPlayer = currentPlayer === 'preachers' ? 'teachers' : 'preachers';
                     selectedSquare = null;
                     clearHighlights();
                     renderBoard();
                     if (gameMode === 'single' && currentPlayer === 'teachers') {
-                        setTimeout(computerMove, 500); // Delay for better UX
+                        setTimeout(computerMove, 500);
                     }
                 } else {
                     clearHighlights();
@@ -329,6 +399,13 @@ selected {
             }
         }
 
+        function endGame(winner) {
+            gameEnded = true;
+            turnIndicator.style.display = 'none';
+            gameOver.style.display = 'block';
+            gameOver.textContent = `${playerNames[winner]} Wins! (${winner.charAt(0).toUpperCase() + winner.slice(1)})`;
+        }
+
         function selectSquare(rank, file) {
             selectedSquare = { rank, file };
             document.querySelector(`[data-rank="${rank}"][data-file="${file}"]`).classList.add('selected');
@@ -338,6 +415,9 @@ selected {
         function clearHighlights() {
             document.querySelectorAll('.square').forEach(square => {
                 square.classList.remove('selected', 'highlight');
+                if (!square.querySelector('span') || gameState[square.dataset.rank][square.dataset.file].piece !== 'kingdomhall') {
+                    square.classList.remove('in-check');
+                }
             });
         }
 
@@ -442,8 +522,9 @@ selected {
         }
 
         function computerMove() {
+            if (gameEnded) return;
+
             const allMoves = [];
-            // Collect all possible moves for the computer (Teachers team)
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
                     const square = gameState[rank][file];
@@ -463,15 +544,13 @@ selected {
                 }
             }
 
-            if (allMoves.length === 0) return; // No moves available
+            if (allMoves.length === 0) return;
 
             let chosenMove = null;
 
             if (difficulty === 'easy') {
-                // Random move
                 chosenMove = allMoves[Math.floor(Math.random() * allMoves.length)];
             } else if (difficulty === 'medium') {
-                // Prioritize capturing any piece
                 const capturingMoves = allMoves.filter(move => move.capturedPiece);
                 if (capturingMoves.length > 0) {
                     chosenMove = capturingMoves[Math.floor(Math.random() * capturingMoves.length)];
@@ -479,7 +558,6 @@ selected {
                     chosenMove = allMoves[Math.floor(Math.random() * allMoves.length)];
                 }
             } else if (difficulty === 'hard') {
-                // Assign values to pieces for evaluation
                 const pieceValues = {
                     kingdomhall: 100,
                     pioneer: 9,
@@ -488,15 +566,13 @@ selected {
                     servant: 3,
                     biblestudy: 1
                 };
-                // Prioritize capturing higher-value pieces, or protect own pieces
                 let bestScore = -Infinity;
                 allMoves.forEach(move => {
                     let score = 0;
                     if (move.capturedPiece) {
                         score += pieceValues[move.capturedPiece] || 0;
                     }
-                    // Bonus for protecting own Kingdom Hall
-                    if (move.piece === 'kingdomhall' && !isSquareThreatened(move.toRank, move.toFile)) {
+                    if (move.piece === 'kingdomhall' && !isSquareThreatened(move.toRank, move.toFile, 'teachers')) {
                         score += 10;
                     }
                     if (score > bestScore) {
@@ -504,7 +580,6 @@ selected {
                         chosenMove = move;
                     }
                 });
-                // If no captures or strategic moves, pick randomly
                 if (!chosenMove) {
                     chosenMove = allMoves[Math.floor(Math.random() * allMoves.length)];
                 }
@@ -512,16 +587,21 @@ selected {
 
             if (chosenMove) {
                 movePiece(chosenMove.fromRank, chosenMove.fromFile, chosenMove.toRank, chosenMove.toFile);
+                if (gameState[chosenMove.toRank][chosenMove.toFile].piece === 'kingdomhall') {
+                    endGame('teachers');
+                    return;
+                }
                 currentPlayer = 'preachers';
                 renderBoard();
             }
         }
 
-        function isSquareThreatened(rank, file) {
+        function isSquareThreatened(rank, file, team) {
+            const opponent = team === 'preachers' ? 'teachers' : 'preachers';
             for (let r = 0; r < 8; r++) {
                 for (let f = 0; f < 8; f++) {
                     const square = gameState[r][f];
-                    if (square.piece && square.team === 'preachers') {
+                    if (square.piece && square.team === opponent) {
                         const moves = getValidMoves(r, f);
                         if (moves.some(move => move.rank === rank && move.file === file)) {
                             return true;
