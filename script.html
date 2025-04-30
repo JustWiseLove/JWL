@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faithful vs Devoted</title>
+    <title>Script</title>
     <style>
         body {
             display: flex;
@@ -62,11 +62,11 @@
             transform: rotate(0deg);
             transition: transform 0.5s ease;
         }
-        .faithful-square {
+        .preachers-square {
             background-color: #d3d3d3;
             color: #000;
         }
-        .devoted-square {
+        .teachers-square {
             background-color: #808080;
             color: #fff;
         }
@@ -90,7 +90,7 @@
 </head>
 <body>
     <div id="menu">
-        <h1>Faithful vs Devoted</h1>
+        <h1>Script</h1>
         <button onclick="startTwoPlayer()">2P (Two Players)</button>
         <button onclick="showDifficultyMenu()">1P (Vs Computer)</button>
     </div>
@@ -102,7 +102,7 @@
     </div>
     <div id="game-container">
         <div id="board"></div>
-        <div id="turn-indicator">Faithful's Turn</div>
+        <div id="turn-indicator">Preachers' Turn</div>
     </div>
     <script>
         const menu = document.getElementById('menu');
@@ -112,7 +112,7 @@
         const turnIndicator = document.getElementById('turn-indicator');
         let gameState = null;
         let selectedSquare = null;
-        let currentPlayer = 'faithful';
+        let currentPlayer = 'preachers';
         let gameMode = null; // 'single' or 'two'
         let difficulty = null; // 'easy', 'medium', 'hard'
 
@@ -148,29 +148,29 @@
                 }
                 board.push(row);
             }
-            // Faithful team (player in 1P, first player in 2P)
-            board[7][0] = { piece: 'watchtower', team: 'faithful' };
-            board[7][1] = { piece: 'servant', team: 'faithful' };
-            board[7][2] = { piece: 'elder', team: 'faithful' };
-            board[7][3] = { piece: 'pioneer', team: 'faithful' };
-            board[7][4] = { piece: 'kingdomhall', team: 'faithful' };
-            board[7][5] = { piece: 'elder', team: 'faithful' };
-            board[7][6] = { piece: 'servant', team: 'faithful' };
-            board[7][7] = { piece: 'watchtower', team: 'faithful' };
+            // Preachers team (player in 1P, first player in 2P)
+            board[7][0] = { piece: 'watchtower', team: 'preachers' };
+            board[7][1] = { piece: 'servant', team: 'preachers' };
+            board[7][2] = { piece: 'elder', team: 'preachers' };
+            board[7][3] = { piece: 'pioneer', team: 'preachers' };
+            board[7][4] = { piece: 'kingdomhall', team: 'preachers' };
+            board[7][5] = { piece: 'elder', team: 'preachers' };
+            board[7][6] = { piece: 'servant', team: 'preachers' };
+            board[7][7] = { piece: 'watchtower', team: 'preachers' };
             for (let i = 0; i < 8; i++) {
-                board[6][i] = { piece: 'biblestudy', team: 'faithful' };
+                board[6][i] = { piece: 'biblestudy', team: 'preachers' };
             }
-            // Devoted team (computer in 1P, second player in 2P)
-            board[0][0] = { piece: 'watchtower', team: 'devoted' };
-            board[0][1] = { piece: 'servant', team: 'devoted' };
-            board[0][2] = { piece: 'elder', team: 'devoted' };
-            board[0][3] = { piece: 'pioneer', team: 'devoted' };
-            board[0][4] = { piece: 'kingdomhall', team: 'devoted' };
-            board[0][5] = { piece: 'elder', team: 'devoted' };
-            board[0][6] = { piece: 'servant', team: 'devoted' };
-            board[0][7] = { piece: 'watchtower', team: 'devoted' };
+            // Teachers team (computer in 1P, second player in 2P)
+            board[0][0] = { piece: 'watchtower', team: 'teachers' };
+            board[0][1] = { piece: 'servant', team: 'teachers' };
+            board[0][2] = { piece: 'elder', team: 'teachers' };
+            board[0][3] = { piece: 'pioneer', team: 'teachers' };
+            board[0][4] = { piece: 'kingdomhall', team: 'teachers' };
+            board[0][5] = { piece: 'elder', team: 'teachers' };
+            board[0][6] = { piece: 'servant', team: 'teachers' };
+            board[0][7] = { piece: 'watchtower', team: 'teachers' };
             for (let i = 0; i < 8; i++) {
-                board[1][i] = { piece: 'biblestudy', team: 'devoted' };
+                board[1][i] = { piece: 'biblestudy', team: 'teachers' };
             }
             return board;
         }
@@ -181,7 +181,7 @@
                 for (let file = 0; file < 8; file++) {
                     const square = document.createElement('div');
                     square.classList.add('square');
-                    square.classList.add((rank + file) % 2 === 0 ? 'faithful-square' : 'devoted-square');
+                    square.classList.add((rank + file) % 2 === 0 ? 'preachers-square' : 'teachers-square');
                     const piece = gameState[rank][file];
                     if (piece.piece) {
                         const pieceSpan = document.createElement('span');
@@ -195,9 +195,9 @@
                 }
             }
             if (gameMode === 'two') {
-                board.style.transform = currentPlayer === 'faithful' ? 'rotate(0deg)' : 'rotate(180deg)';
+                board.style.transform = currentPlayer === 'preachers' ? 'rotate(0deg)' : 'rotate(180deg)';
                 document.querySelectorAll('.square span').forEach(piece => {
-                    piece.style.transform = currentPlayer === 'faithful' ? 'rotate(0deg)' : 'rotate(-180deg)';
+                    piece.style.transform = currentPlayer === 'preachers' ? 'rotate(0deg)' : 'rotate(-180deg)';
                 });
             } else {
                 board.style.transform = 'rotate(0deg)';
@@ -205,7 +205,7 @@
                     piece.style.transform = 'rotate(0deg)';
                 });
             }
-            turnIndicator.textContent = `${currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn`;
+            turnIndicator.textContent = `${currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}' Turn`;
         }
 
         function getPieceSymbol(piece) {
@@ -221,7 +221,7 @@
         }
 
         function handleSquareClick(event) {
-            if (gameMode === 'single' && currentPlayer === 'devoted') return; // Prevent clicking during computer's turn
+            if (gameMode === 'single' && currentPlayer === 'teachers') return; // Prevent clicking during computer's turn
 
             const rank = parseInt(event.target.dataset.rank || event.target.parentElement.dataset.rank);
             const file = parseInt(event.target.dataset.file || event.target.parentElement.dataset.file);
@@ -230,11 +230,11 @@
             if (selectedSquare) {
                 if (isValidMove(selectedSquare.rank, selectedSquare.file, rank, file)) {
                     movePiece(selectedSquare.rank, selectedSquare.file, rank, file);
-                    currentPlayer = currentPlayer === 'faithful' ? 'devoted' : 'faithful';
+                    currentPlayer = currentPlayer === 'preachers' ? 'teachers' : 'preachers';
                     selectedSquare = null;
                     clearHighlights();
                     renderBoard();
-                    if (gameMode === 'single' && currentPlayer === 'devoted') {
+                    if (gameMode === 'single' && currentPlayer === 'teachers') {
                         setTimeout(computerMove, 500); // Delay for better UX
                     }
                 } else {
@@ -304,10 +304,10 @@
             };
 
             if (piece === 'biblestudy') {
-                const dir = team === 'faithful' ? -1 : 1;
+                const dir = team === 'preachers' ? -1 : 1;
                 if (rank + dir >= 0 && rank + dir < 8 && !gameState[rank + dir][file].piece) {
                     moves.push({ rank: rank + dir, file });
-                    if ((team === 'faithful' && rank === 6) || (team === 'devoted' && rank === 1)) {
+                    if ((team === 'preachers' && rank === 6) || (team === 'teachers' && rank === 1)) {
                         if (!gameState[rank + 2 * dir][file].piece) {
                             moves.push({ rank: rank + 2 * dir, file });
                         }
@@ -363,11 +363,11 @@
 
         function computerMove() {
             const allMoves = [];
-            // Collect all possible moves for the computer (Devoted team)
+            // Collect all possible moves for the computer (Teachers team)
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
                     const square = gameState[rank][file];
-                    if (square.piece && square.team === 'devoted') {
+                    if (square.piece && square.team === 'teachers') {
                         const moves = getValidMoves(rank, file);
                         moves.forEach(move => {
                             allMoves.push({
@@ -432,7 +432,7 @@
 
             if (chosenMove) {
                 movePiece(chosenMove.fromRank, chosenMove.fromFile, chosenMove.toRank, chosenMove.toFile);
-                currentPlayer = 'faithful';
+                currentPlayer = 'preachers';
                 renderBoard();
             }
         }
@@ -441,7 +441,7 @@
             for (let r = 0; r < 8; r++) {
                 for (let f = 0; f < 8; f++) {
                     const square = gameState[r][f];
-                    if (square.piece && square.team === 'faithful') {
+                    if (square.piece && square.team === 'preachers') {
                         const moves = getValidMoves(r, f);
                         if (moves.some(move => move.rank === rank && move.file === file)) {
                             return true;
