@@ -186,7 +186,7 @@
         </div>
     </header>
     <div id="menu">
-        <h1>Gods Kingdom</h1>
+        <h1>SCRIPT</h1>
         <div class="scripture">
             <div class="scripture-ref">“Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.” 2 Timothy 4:2</div>
         </div>
@@ -371,11 +371,12 @@
 
             if (selectedSquare) {
                 if (isValidMove(selectedSquare.rank, selectedSquare.file, rank, file)) {
+                    // Store the piece at the target square before moving
                     const targetPiece = gameState[rank][file];
                     movePiece(selectedSquare.rank, selectedSquare.file, rank, file);
                     
                     // Check if a Kingdom Hall was captured
-                    if (targetPiece.piece === 'kingdomhall') {
+                    if (targetPiece && targetPiece.piece === 'kingdomhall') {
                         endGame(currentPlayer);
                         return;
                     }
@@ -403,7 +404,7 @@
             gameEnded = true;
             turnIndicator.style.display = 'none';
             gameOver.style.display = 'block';
-            gameOver.textContent = `${playerNames[winner]} Wins! (${winner.charAt(0).toUpperCase() + winner.slice(1)})`;
+            gameOver.textContent = `${playerNames[winner]} WINS! (${winner.charAt(0).toUpperCase() + winner.slice(1)})`;
         }
 
         function selectSquare(rank, file) {
@@ -537,7 +538,8 @@
                                 toRank: move.rank,
                                 toFile: move.file,
                                 piece: square.piece,
-                                capturedPiece: gameState[move.rank][move.file].piece || null
+                                capturedPiece: gameState[move.rank][move.file] ? gameState[move.rank][move.file].piece : null,
+                                capturedTeam: gameState[move.rank][move.file] ? gameState[move.rank][move.file].team : null
                             });
                         });
                     }
@@ -586,8 +588,10 @@
             }
 
             if (chosenMove) {
+                // Check if the move captures a Kingdom Hall before moving
+                const capturedPiece = gameState[chosenMove.toRank][chosenMove.toFile];
                 movePiece(chosenMove.fromRank, chosenMove.fromFile, chosenMove.toRank, chosenMove.toFile);
-                if (gameState[chosenMove.toRank][chosenMove.toFile].piece === 'kingdomhall') {
+                if (capturedPiece && capturedPiece.piece === 'kingdomhall') {
                     endGame('teachers');
                     return;
                 }
