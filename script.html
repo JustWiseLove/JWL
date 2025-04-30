@@ -51,14 +51,15 @@
         }
         .button-group {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
+            flex-direction: row; /* Ensure buttons are side by side */
+            justify-content: center; /* Center the buttons */
             gap: 20px; /* Spacing between buttons */
             margin: 10px 0;
+            flex-wrap: wrap; /* Allow wrapping if needed */
         }
         #menu button, #difficulty-menu button {
             margin: 0; /* Remove individual margins since gap handles spacing */
-            padding: 12px 25px; /* Slightly reduced padding for better fit */
+            padding: 12px 25px; /* Adjusted padding for better fit */
             font-size: 1.2em;
             font-family: 'Audiowide', sans-serif;
             background-color: #555;
@@ -115,7 +116,9 @@
         .teachers-piece {
             filter: brightness(0) invert(1); /* White for Teachers */
         }
-        .selected {
+        .
+
+selected {
             background-color: #a9a999 !important;
         }
         .highlight {
@@ -127,7 +130,7 @@
             font-size: 1.2em;
             font-family: 'Audiowide', sans-serif;
         }
-        @media (max-width: 600px) {
+        @media (max-width: 400px) { /* Adjusted to a smaller breakpoint */
             .square {
                 font-size: min(5vw, 5vh);
             }
@@ -142,7 +145,7 @@
                 max-width: 90%;
             }
             .button-group {
-                flex-direction: column; /* Stack buttons vertically on small screens */
+                flex-direction: column; /* Stack buttons vertically on very small screens */
                 gap: 10px;
             }
             #menu button, #difficulty-menu button {
@@ -159,6 +162,7 @@
         </div>
     </header>
     <div id="menu">
+        <h1>SCRIPT</h1> <!-- Restored the header -->
         <div class="scripture">
             <div class="scripture-ref">“Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.” 2 Timothy 4:2</div>
         </div>
