@@ -3,39 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Script</title>
+    <title>Script - Just Wise Love</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts link for Audiowide -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Browser tab favicon -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png"> <!-- iOS home screen icon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png"> <!-- Android home screen icon -->
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
             background-color: #333;
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
         #menu, #difficulty-menu {
             display: flex;
             flex-direction: column;
             align-items: center;
             color: #ccc;
+            margin-top: 110px; /* Increased to avoid header overlap */
+            text-align: center;
+        }
+        #menu h1, #difficulty-menu h1 {
+            font-family: 'Audiowide', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        #menu .scripture {
+            /* Styles now come from style.css */
+            max-width: 80%;
+            line-height: 1.5;
+        }
+        #menu .scripture-ref {
+            font-size: 0.9em;
+            color: #666; /* Darker for readability */
         }
         #menu button, #difficulty-menu button {
             margin: 10px;
-            padding: 10px 20px;
+            padding: 15px 30px;
             font-size: 1.2em;
+            font-family: 'Audiowide', sans-serif;
             background-color: #555;
             color: #ccc;
             border: none;
+            border-radius: 25px;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
         }
         #menu button:hover, #difficulty-menu button:hover {
-            background-color: #666;
+            background-color: #777;
+            transform: scale(1.05);
         }
         #game-container {
             display: none;
             flex-direction: column;
             align-items: center;
+            margin-top: 110px; /* Increased to avoid header overlap */
         }
         #board {
             display: grid;
@@ -64,14 +98,18 @@
         }
         .preachers-square {
             background-color: #d3d3d3;
-            color: #000;
         }
         .teachers-square {
             background-color: #808080;
-            color: #fff;
+        }
+        .preachers-piece {
+            filter: brightness(0); /* Black for Preachers */
+        }
+        .teachers-piece {
+            filter: brightness(0) invert(1); /* White for Teachers */
         }
         .selected {
-            background-color: #a9a9a9 !important;
+            background-color: #a9a999 !important;
         }
         .highlight {
             background-color: #b0b0b0 !important;
@@ -80,19 +118,43 @@
             margin-top: 10px;
             color: #ccc;
             font-size: 1.2em;
+            font-family: 'Audiowide', sans-serif;
         }
         @media (max-width: 600px) {
             .square {
                 font-size: min(5vw, 5vh);
             }
+            #menu, #difficulty-menu, #game-container {
+                margin-top: 90px; /* Adjusted for smaller screens */
+            }
+            #menu h1, #difficulty-menu h1 {
+                font-size: 2em;
+            }
+            #menu .scripture {
+                font-size: 1em;
+                max-width: 90%;
+            }
+            #menu button, #difficulty-menu button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <h1><a href="index.html">Script</a></h1>
+        </div>
+    </header>
     <div id="menu">
         <h1>Script</h1>
-        <button onclick="startTwoPlayer()">2P (Two Players)</button>
-        <button onclick="showDifficultyMenu()">1P (Vs Computer)</button>
+        <div class="scripture">
+            “Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.”
+            <div class="scripture-ref">— 2 Timothy 4:2 (NWT)</div>
+        </div>
+        <button onclick="startTwoPlayer()">Two Players</button>
+        <button onclick="showDifficultyMenu()">One Player</button>
     </div>
     <div id="difficulty-menu" style="display: none;">
         <h1>Select Difficulty</h1>
@@ -186,6 +248,8 @@
                     if (piece.piece) {
                         const pieceSpan = document.createElement('span');
                         pieceSpan.textContent = getPieceSymbol(piece.piece);
+                        // Add team-specific class for coloring
+                        pieceSpan.classList.add(piece.team === 'preachers' ? 'preachers-piece' : 'teachers-piece');
                         square.appendChild(pieceSpan);
                     }
                     square.dataset.rank = rank;
