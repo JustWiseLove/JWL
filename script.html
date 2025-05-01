@@ -27,7 +27,7 @@
             left: 0;
             z-index: 1000;
         }
-        #menu, #difficulty-menu, #name-entry, #single-name-entry, #tournament-menu {
+        #menu, #name-entry {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -35,7 +35,7 @@
             margin-top: 110px;
             text-align: center;
         }
-        #menu h1, #difficulty-menu h1, #name-entry h1, #single-name-entry h1, #tournament-menu h1 {
+        #menu h1, #name-entry h1 {
             font-family: 'Audiowide', sans-serif;
             font-size: 2.5em;
             margin-bottom: 20px;
@@ -48,11 +48,6 @@
             font-size: 0.9em;
             color: #666;
         }
-        #menu .stats, #menu .awards {
-            margin-top: 10px;
-            font-size: 1em;
-            color: #ccc;
-        }
         .button-group {
             display: flex;
             flex-direction: row;
@@ -61,7 +56,7 @@
             margin: 10px 0;
             flex-wrap: wrap;
         }
-        #menu button, #difficulty-menu button, #name-entry button, #single-name-entry button, #tournament-menu button {
+        #menu button, #name-entry button {
             margin: 0;
             padding: 12px 25px;
             font-size: 1.2em;
@@ -73,11 +68,11 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease;
         }
-        #menu button:hover, #difficulty-menu button:hover, #name-entry button:hover, #single-name-entry button:hover, #tournament-menu button:hover {
+        #menu button:hover, #name-entry button:hover {
             background-color: #777;
             transform: scale(1.05);
         }
-        #name-entry input, #single-name-entry input, #tournament-menu input {
+        #name-entry input {
             margin: 10px 0;
             padding: 10px;
             font-size: 1em;
@@ -107,7 +102,7 @@
             background-color: #555;
             color: #ccc;
             border: none;
-            border-radius: 25px;
+            border-radius:25px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease;
         }
@@ -147,10 +142,10 @@
             background-color: #808080;
         }
         .white-piece {
-            filter: brightness(0) invert(1); /* White pieces appear white */
+            filter: brightness(0) invert(1);
         }
         .black-piece {
-            filter: brightness(0); /* Black pieces appear black */
+            filter: brightness(0);
         }
         .selected {
             background-color: #a9a999 !important;
@@ -179,10 +174,10 @@
             .square {
                 font-size: min(5vw, 5vh);
             }
-            #menu, #difficulty-menu, #name-entry, #single-name-entry, #tournament-menu, #game-container {
+            #menu, #name-entry, #game-container {
                 margin-top: 100px;
             }
-            #menu h1, #difficulty-menu h1, #name-entry h1, #single-name-entry h1, #tournament-menu h1 {
+            #menu h1, #name-entry h1 {
                 font-size: 2em;
             }
             #menu .scripture {
@@ -193,11 +188,11 @@
                 flex-direction: column;
                 gap: 10px;
             }
-            #menu button, #difficulty-menu button, #name-entry button, #single-name-entry button, #tournament-menu button {
+            #menu button, #name-entry button {
                 padding: 10px 20px;
                 font-size: 1em;
             }
-            #name-entry input, #single-name-entry input, #tournament-menu input {
+            #name-entry input {
                 width: 150px;
             }
         }
@@ -214,27 +209,9 @@
         <div class="scripture">
             <div class="scripture-ref">“Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.” 2 Timothy 4:2</div>
         </div>
-        <div class="stats" id="stats-display"></div>
-        <div class="awards" id="awards-display"></div>
         <div class="button-group">
-            <button onclick="showSingleNameEntry()">One Player</button>
             <button onclick="startTwoPlayer()">Two Players</button>
-            <button onclick="showTournamentMenu()">Tournament</button>
         </div>
-        <div class="button-group">
-            <button onclick="loadGame()" id="load-game-btn" style="display: none;">Load Game</button>
-            <button onclick="loadTournament()" id="load-tournament-btn" style="display: none;">Continue Tournament</button>
-        </div>
-    </div>
-    <div id="single-name-entry" style="display: none;">
-        <h1>Enter Your Name</h1>
-        <input type="text" id="single-player-name" placeholder="Player Name" maxlength="20">
-        <button onclick="submitSingleName()">Continue</button>
-    </div>
-    <div id="tournament-menu" style="display: none;">
-        <h1>Enter Your Name</h1>
-        <input type="text" id="tournament-player-name" placeholder="Player Name" maxlength="20">
-        <button onclick="startTournament()">Start Tournament</button>
     </div>
     <div id="name-entry" style="display: none;">
         <h1>Enter Player Names</h1>
@@ -242,18 +219,9 @@
         <input type="text" id="player2-name" placeholder="Player 2 Name" maxlength="20">
         <button onclick="submitNames()">Start Game</button>
     </div>
-    <div id="difficulty-menu" style="display: none;">
-        <h1>Select Difficulty</h1>
-        <div class="button-group">
-            <button onclick="startSinglePlayer('easy')">Easy</button>
-            <button onclick="startSinglePlayer('medium')">Medium</button>
-            <button onclick="startSinglePlayer('hard')">Hard</button>
-        </div>
-    </div>
     <div id="game-container">
         <div id="board"></div>
         <div id="game-controls">
-            <button onclick="saveGame()" id="save-game-btn">Save Game</button>
             <button onclick="returnToMenu()">Return to Menu</button>
         </div>
         <div id="turn-indicator"></div>
@@ -261,251 +229,37 @@
     </div>
     <script>
         const menu = document.getElementById('menu');
-        const singleNameEntry = document.getElementById('single-name-entry');
-        const tournamentMenu = document.getElementById('tournament-menu');
-        const difficultyMenu = document.getElementById('difficulty-menu');
         const nameEntry = document.getElementById('name-entry');
         const gameContainer = document.getElementById('game-container');
         const board = document.getElementById('board');
         const turnIndicator = document.getElementById('turn-indicator');
         const gameOver = document.getElementById('game-over');
-        const statsDisplay = document.getElementById('stats-display');
-        const awardsDisplay = document.getElementById('awards-display');
-        const loadGameBtn = document.getElementById('load-game-btn');
-        const loadTournamentBtn = document.getElementById('load-tournament-btn');
-        const saveGameBtn = document.getElementById('save-game-btn');
         let gameState = null;
         let selectedSquare = null;
-        let currentPlayer = 'white'; // White always goes first
-        let gameMode = null;
-        let difficulty = null;
+        let currentPlayer = 'white';
         let playerNames = { white: '', black: '' };
         let gameEnded = false;
-        let singlePlayerName = localStorage.getItem('scriptPlayerName') || '';
         let moveHistory = [];
-        let isTournament = false;
-        let playerIsWhite = true; // Tracks if the player is White in single-player mode
-        let tournamentState = JSON.parse(localStorage.getItem('scriptTournament')) || {
-            playerName: '',
-            wins: 0,
-            currentDifficulty: 'easy',
-            award: ''
-        };
-
-        // Stats and awards for regular mode
-        let stats = JSON.parse(localStorage.getItem('scriptStats')) || { wins: 0, losses: 0 };
-        const awards = [
-            { wins: 5, title: "Novice" },
-            { wins: 10, title: "Disciple" },
-            { wins: 20, title: "Missionary" },
-            { wins: 50, title: "Apostle" },
-            { wins: 100, title: "Prophet" }
-        ];
-        let currentAward = localStorage.getItem('scriptAward') || '';
-        updateStatsDisplay();
-        updateAwardsDisplay();
-
-        // Check for saved game or tournament
-        if (localStorage.getItem('scriptSavedGame')) {
-            loadGameBtn.style.display = 'block';
-        }
-        if (tournamentState.playerName) {
-            loadTournamentBtn.style.display = 'block';
-        }
-
-        function updateStatsDisplay() {
-            if (isTournament) {
-                statsDisplay.textContent = `Tournament Wins: ${tournamentState.wins}`;
-            } else {
-                statsDisplay.textContent = `Wins: ${stats.wins}, Losses: ${stats.losses}`;
-            }
-        }
-
-        function updateAwardsDisplay() {
-            let newAward = '';
-            const winsToCheck = isTournament ? tournamentState.wins : stats.wins;
-            for (const award of awards) {
-                if (winsToCheck >= award.wins) {
-                    newAward = award.title;
-                } else {
-                    break;
-                }
-            }
-            if (isTournament) {
-                if (newAward !== tournamentState.award) {
-                    tournamentState.award = newAward;
-                    localStorage.setItem('scriptTournament', JSON.stringify(tournamentState));
-                }
-                awardsDisplay.textContent = tournamentState.award ? `Tournament Award: ${tournamentState.award}` : '';
-            } else {
-                if (newAward !== currentAward) {
-                    currentAward = newAward;
-                    localStorage.setItem('scriptAward', currentAward);
-                }
-                awardsDisplay.textContent = currentAward ? `Award: ${currentAward}` : '';
-            }
-        }
-
-        function showSingleNameEntry() {
-            if (singlePlayerName) {
-                document.getElementById('single-player-name').value = singlePlayerName;
-            }
-            menu.style.display = 'none';
-            singleNameEntry.style.display = 'flex';
-        }
-
-        function submitSingleName() {
-            singlePlayerName = document.getElementById('single-player-name').value.trim() || 'Player';
-            localStorage.setItem('scriptPlayerName', singlePlayerName);
-            singleNameEntry.style.display = 'none';
-            difficultyMenu.style.display = 'flex';
-            isTournament = false;
-            saveGameBtn.style.display = 'block';
-        }
-
-        function showTournamentMenu() {
-            if (tournamentState.playerName) {
-                document.getElementById('tournament-player-name').value = tournamentState.playerName;
-            }
-            menu.style.display = 'none';
-            tournamentMenu.style.display = 'flex';
-        }
-
-        function startTournament() {
-            tournamentState.playerName = document.getElementById('tournament-player-name').value.trim() || 'Player';
-            if (!tournamentState.wins) tournamentState.wins = 0;
-            if (!tournamentState.currentDifficulty) tournamentState.currentDifficulty = 'easy';
-            localStorage.setItem('scriptTournament', JSON.stringify(tournamentState));
-            loadTournamentBtn.style.display = 'block';
-            tournamentMenu.style.display = 'none';
-            gameContainer.style.display = 'flex';
-            gameMode = 'single';
-            difficulty = tournamentState.currentDifficulty;
-            // Randomly decide who goes first
-            playerIsWhite = Math.random() < 0.5;
-            playerNames = playerIsWhite
-                ? { white: tournamentState.playerName, black: 'AI' }
-                : { white: 'AI', black: tournamentState.playerName };
-            gameState = initializeBoard();
-            moveHistory = [];
-            isTournament = true;
-            saveGameBtn.style.display = 'none';
-            currentPlayer = 'white'; // White always goes first
-            renderBoard();
-            if (!playerIsWhite) {
-                setTimeout(computerMove, 500); // AI moves first if it's White
-            }
-            updateStatsDisplay();
-            updateAwardsDisplay();
-        }
-
-        function loadTournament() {
-            menu.style.display = 'none';
-            gameContainer.style.display = 'flex';
-            gameMode = 'single';
-            difficulty = tournamentState.currentDifficulty;
-            // Randomly decide who goes first
-            playerIsWhite = Math.random() < 0.5;
-            playerNames = playerIsWhite
-                ? { white: tournamentState.playerName, black: 'AI' }
-                : { white: 'AI', black: tournamentState.playerName };
-            gameState = initializeBoard();
-            moveHistory = [];
-            isTournament = true;
-            saveGameBtn.style.display = 'none';
-            currentPlayer = 'white'; // White always goes first
-            renderBoard();
-            if (!playerIsWhite) {
-                setTimeout(computerMove, 500); // AI moves first if it's White
-            }
-            updateStatsDisplay();
-            updateAwardsDisplay();
-        }
 
         function startTwoPlayer() {
-            gameMode = 'two';
             menu.style.display = 'none';
-            difficultyMenu.style.display = 'none';
-            singleNameEntry.style.display = 'none';
             nameEntry.style.display = 'flex';
-            isTournament = false;
-            saveGameBtn.style.display = 'none';
         }
 
         function submitNames() {
             const player1Name = document.getElementById('player1-name').value.trim() || 'Player 1';
             const player2Name = document.getElementById('player2-name').value.trim() || 'Player 2';
-            // Randomly assign who is White and who is Black
             const random = Math.random() < 0.5;
             playerNames = {
                 white: random ? player1Name : player2Name,
                 black: random ? player2Name : player1Name
             };
-            currentPlayer = 'white'; // White always goes first
+            currentPlayer = 'white';
             nameEntry.style.display = 'none';
             gameContainer.style.display = 'flex';
             gameState = initializeBoard();
             moveHistory = [];
             renderBoard();
-        }
-
-        function startSinglePlayer(diff) {
-            gameMode = 'single';
-            difficulty = diff;
-            difficultyMenu.style.display = 'none';
-            gameContainer.style.display = 'flex';
-            // Randomly decide who goes first
-            playerIsWhite = Math.random() < 0.5;
-            playerNames = playerIsWhite
-                ? { white: singlePlayerName, black: 'AI' }
-                : { white: 'AI', black: singlePlayerName };
-            gameState = initializeBoard();
-            moveHistory = [];
-            currentPlayer = 'white'; // White always goes first
-            renderBoard();
-            if (!playerIsWhite) {
-                setTimeout(computerMove, 500); // AI moves first if it's White
-            }
-        }
-
-        function saveGame() {
-            if (gameMode !== 'single' || isTournament || gameEnded) return;
-            const gameData = {
-                gameState: gameState,
-                currentPlayer: currentPlayer,
-                difficulty: difficulty,
-                playerName: singlePlayerName,
-                playerIsWhite: playerIsWhite,
-                moveHistory: moveHistory
-            };
-            localStorage.setItem('scriptSavedGame', JSON.stringify(gameData));
-            loadGameBtn.style.display = 'block';
-            alert('Game saved!');
-        }
-
-        function loadGame() {
-            const savedGame = localStorage.getItem('scriptSavedGame');
-            if (!savedGame) return;
-            const gameData = JSON.parse(savedGame);
-            gameMode = 'single';
-            gameState = gameData.gameState;
-            currentPlayer = gameData.currentPlayer;
-            difficulty = gameData.difficulty;
-            singlePlayerName = gameData.playerName;
-            playerIsWhite = gameData.playerIsWhite;
-            playerNames = playerIsWhite
-                ? { white: singlePlayerName, black: 'AI' }
-                : { white: 'AI', black: singlePlayerName };
-            moveHistory = gameData.moveHistory || [];
-            gameEnded = false;
-            isTournament = false;
-            saveGameBtn.style.display = 'block';
-            menu.style.display = 'none';
-            gameContainer.style.display = 'flex';
-            renderBoard();
-            if (!playerIsWhite && currentPlayer === 'white') {
-                setTimeout(computerMove, 500); // AI moves first if it's White
-            }
         }
 
         function returnToMenu() {
@@ -554,12 +308,12 @@
 
         function renderBoard() {
             if (gameEnded) return;
-
-            board.innerHTML = '';
+            board.innerHTML = ''; // Clear the board
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
                     const square = document.createElement('div');
                     square.classList.add('square');
+                    // Apply checkered pattern
                     square.classList.add((rank + file) % 2 === 0 ? 'white-square' : 'black-square');
                     const piece = gameState[rank][file];
                     if (piece.piece) {
@@ -567,7 +321,6 @@
                         pieceSpan.textContent = getPieceSymbol(piece.piece);
                         pieceSpan.classList.add(piece.team === 'white' ? 'white-piece' : 'black-piece');
                         square.appendChild(pieceSpan);
-
                         if (piece.piece === 'kingdomhall' && isSquareThreatened(rank, file, piece.team)) {
                             square.classList.add('in-check');
                         }
@@ -578,34 +331,15 @@
                     board.appendChild(square);
                 }
             }
-
-            // Board orientation
-            if (gameMode === 'two') {
-                // In two-player mode, rotate the board based on the current player
-                board.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(180deg)';
-                document.querySelectorAll('.square span').forEach(piece => {
-                    piece.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(-180deg)';
-                });
-            } else {
-                // In single-player mode, orient the board based on the player's team
-                if (playerIsWhite) {
-                    board.style.transform = 'rotate(0deg)';
-                    document.querySelectorAll('.square span').forEach(piece => {
-                        piece.style.transform = 'rotate(0deg)';
-                    });
-                } else {
-                    board.style.transform = 'rotate(180deg)';
-                    document.querySelectorAll('.square span').forEach(piece => {
-                        piece.style.transform = 'rotate(-180deg)';
-                    });
-                }
-            }
-
-            turnIndicator.textContent = `${playerNames[currentPlayer]}'s Turn`;
+            // Rotate board based on current player
+            board.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(180deg)';
+            document.querySelectorAll('.square span').forEach(piece => {
+                piece.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(-180deg)';
+            });
+            turnIndicator.textContent = `${playerNames[currentPlayer]}'s Turn (${currentPlayer === 'white' ? 'White' : 'Black'})`;
         }
 
         function getPieceSymbol(piece) {
-            // All teams use the custom pieces
             const scriptSymbols = {
                 kingdomhall: '📡',
                 pioneer: '📣',
@@ -619,12 +353,9 @@
 
         function handleSquareClick(event) {
             if (gameEnded) return;
-            if (gameMode === 'single' && playerNames[currentPlayer] === 'AI') return;
-
             const rank = parseInt(event.target.dataset.rank || event.target.parentElement.dataset.rank);
             const file = parseInt(event.target.dataset.file || event.target.parentElement.dataset.file);
             const square = gameState[rank][file];
-
             if (selectedSquare) {
                 if (isValidMove(selectedSquare.rank, selectedSquare.file, rank, file)) {
                     const targetPiece = gameState[rank][file];
@@ -634,43 +365,18 @@
                         toRank: rank,
                         toFile: file,
                         piece: gameState[selectedSquare.rank][selectedSquare.file].piece,
-                        positionKey: JSON.stringify(gameState) // Track board position for repetition
+                        positionKey: JSON.stringify(gameState)
                     };
                     movePiece(selectedSquare.rank, selectedSquare.file, rank, file);
                     moveHistory.push(move);
-                    
                     if (targetPiece && targetPiece.piece === 'kingdomhall') {
-                        if (gameMode === 'single') {
-                            if (isTournament) {
-                                if (playerNames[currentPlayer] !== 'AI') {
-                                    tournamentState.wins++;
-                                    if (tournamentState.wins >= 3 && tournamentState.currentDifficulty === 'easy') {
-                                        tournamentState.currentDifficulty = 'medium';
-                                    } else if (tournamentState.wins >= 6 && tournamentState.currentDifficulty === 'medium') {
-                                        tournamentState.currentDifficulty = 'hard';
-                                    }
-                                    localStorage.setItem('scriptTournament', JSON.stringify(tournamentState));
-                                }
-                            } else {
-                                if (playerNames[currentPlayer] !== 'AI') {
-                                    stats.wins++;
-                                    localStorage.setItem('scriptStats', JSON.stringify(stats));
-                                }
-                            }
-                            updateStatsDisplay();
-                            updateAwardsDisplay();
-                        }
                         endGame(currentPlayer);
                         return;
                     }
-
                     currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
                     selectedSquare = null;
                     clearHighlights();
                     renderBoard();
-                    if (gameMode === 'single' && playerNames[currentPlayer] === 'AI') {
-                        setTimeout(computerMove, 500);
-                    }
                 } else {
                     clearHighlights();
                     selectedSquare = null;
@@ -687,17 +393,7 @@
             gameEnded = true;
             turnIndicator.style.display = 'none';
             gameOver.style.display = 'block';
-            gameOver.textContent = `${playerNames[winner]} WINS!`;
-            if (gameMode === 'single' && playerNames[winner] === 'AI') {
-                if (isTournament) {
-                    // No loss tracking in tournament mode; just end the game
-                } else {
-                    stats.losses++;
-                    localStorage.setItem('scriptStats', JSON.stringify(stats));
-                    updateStatsDisplay();
-                    updateAwardsDisplay();
-                }
-            }
+            gameOver.textContent = `${playerNames[winner]} (${winner === 'white' ? 'White' : 'Black'}) WINS!`;
         }
 
         function selectSquare(rank, file) {
@@ -709,7 +405,9 @@
         function clearHighlights() {
             document.querySelectorAll('.square').forEach(square => {
                 square.classList.remove('selected', 'highlight');
-                if (!square.querySelector('span') || gameState[square.dataset.rank][square.dataset.file].piece !== 'kingdomhall') {
+                const rank = parseInt(square.dataset.rank);
+                const file = parseInt(square.dataset.file);
+                if (!square.querySelector('span') || gameState[rank][file].piece !== 'kingdomhall') {
                     square.classList.remove('in-check');
                 }
             });
@@ -815,10 +513,6 @@
             gameState[fromRank][fromFile] = { piece: null, team: null };
         }
 
-        function deepCopyBoard(board) {
-            return board.map(row => row.map(square => ({ ...square })));
-        }
-
         function isSquareThreatened(rank, file, team) {
             const opponent = team === 'white' ? 'black' : 'white';
             for (let r = 0; r < 8; r++) {
@@ -833,511 +527,6 @@
                 }
             }
             return false;
-        }
-
-        function countPieces(board, team) {
-            let count = 0;
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = board[rank][file];
-                    if (square.piece && square.team === team) {
-                        count++;
-                    }
-                }
-            }
-            return count;
-        }
-
-        function evaluateBoard(board, team) {
-            const pieceValues = {
-                kingdomhall: 1000,
-                pioneer: 9,
-                watchtower: 5,
-                elder: 3,
-                servant: 3,
-                biblestudy: 1
-            };
-            const opponent = team === 'black' ? 'white' : 'black';
-            let score = 0;
-
-            // Material score
-            let blackMaterial = 0;
-            let whiteMaterial = 0;
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = board[rank][file];
-                    if (square.piece) {
-                        const value = pieceValues[square.piece] || 0;
-                        if (square.team === 'black') {
-                            blackMaterial += value;
-                        } else {
-                            whiteMaterial += value;
-                        }
-                    }
-                }
-            }
-            score += (blackMaterial - whiteMaterial) * (team === 'black' ? 1 : -1);
-
-            // Find the opponent’s Kingdom Hall
-            let opponentKingRank = -1, opponentKingFile = -1;
-            let ownKingRank = -1, ownKingFile = -1;
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = board[rank][file];
-                    if (square.piece === 'kingdomhall') {
-                        if (square.team === opponent) {
-                            opponentKingRank = rank;
-                            opponentKingFile = file;
-                        } else if (square.team === team) {
-                            ownKingRank = rank;
-                            ownKingFile = file;
-                        }
-                    }
-                }
-            }
-
-            // Piece advancement: Reward pieces closer to the opponent’s Kingdom Hall
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = board[rank][file];
-                    if (square.piece && square.team === team && opponentKingRank !== -1) {
-                        const distance = Math.max(Math.abs(rank - opponentKingRank), Math.abs(file - opponentKingFile));
-                        let advancementBonus = 0;
-                        if (square.piece === 'biblestudy') {
-                            advancementBonus = (8 - distance) * 15; // Increased bonus for Bible Studies
-                        } else if (square.piece === 'pioneer' || square.piece === 'watchtower' || square.piece === 'elder') {
-                            advancementBonus = (8 - distance) * 8; // Increased bonus for major pieces
-                        } else if (square.piece === 'servant') {
-                            advancementBonus = (8 - distance) * 5;
-                        }
-                        score += advancementBonus;
-                    }
-                }
-            }
-
-            // Protect own Kingdom Hall
-            if (ownKingRank !== -1) {
-                const originalBoard = gameState;
-                gameState = board;
-                if (isSquareThreatened(ownKingRank, ownKingFile, team)) {
-                    score -= 100; // Heavier penalty for Kingdom Hall in check
-                }
-                for (let rank = 0; rank < 8; rank++) {
-                    for (let file = 0; file < 8; file++) {
-                        const square = board[rank][file];
-                        if (square.piece && square.team === team && square.piece !== 'kingdomhall') {
-                            const distance = Math.max(Math.abs(rank - ownKingRank), Math.abs(file - ownKingFile));
-                            if (distance <= 2) {
-                                score += 15; // Increased bonus for nearby defenders
-                            }
-                        }
-                    }
-                }
-                gameState = originalBoard;
-            }
-
-            // Piece mobility
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = board[rank][file];
-                    if (square.piece && square.team === team) {
-                        const originalBoard = gameState;
-                        gameState = board;
-                        const moves = getValidMoves(rank, file);
-                        gameState = originalBoard;
-                        score += moves.length * 2; // Increased mobility bonus
-                    }
-                }
-            }
-
-            // Pawn structure
-            const pawnFiles = Array(8).fill(0);
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = board[rank][file];
-                    if (square.piece === 'biblestudy' && square.team === team) {
-                        pawnFiles[file]++;
-                        const advancement = team === 'black' ? (7 - rank) : rank;
-                        score += advancement * 5;
-                    }
-                }
-            }
-            pawnFiles.forEach(count => {
-                if (count > 1) score -= (count - 1) * 10;
-            });
-
-            // Development bonus (early game)
-            if (moveHistory.length < 10) {
-                for (let rank = 0; rank < 8; rank++) {
-                    for (let file = 0; file < 8; file++) {
-                        const square = board[rank][file];
-                        if (square.team === team) {
-                            if (square.piece === 'servant' && rank === (team === 'black' ? 0 : 7)) {
-                                score -= 30; // Stronger penalty for undeveloped servants
-                            }
-                            if (square.piece === 'elder' && rank === (team === 'black' ? 0 : 7)) {
-                                score -= 30; // Stronger penalty for undeveloped elders
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Attacking coordination
-            const attackMap = Array(8).fill().map(() => Array(8).fill(0));
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = board[rank][file];
-                    if (square.piece && square.team === team) {
-                        const originalBoard = gameState;
-                        gameState = board;
-                        const moves = getValidMoves(rank, file);
-                        gameState = originalBoard;
-                        moves.forEach(move => {
-                            attackMap[move.rank][move.file]++;
-                        });
-                    }
-                }
-            }
-            if (opponentKingRank !== -1) {
-                for (let rank = 0; rank < 8; rank++) {
-                    for (let file = 0; file < 8; file++) {
-                        const distance = Math.max(Math.abs(rank - opponentKingRank), Math.abs(file - opponentKingFile));
-                        if (attackMap[rank][file] > 1 && distance <= 2) {
-                            score += attackMap[rank][file] * 20; // Increased bonus for coordinated attacks
-                        }
-                    }
-                }
-            }
-
-            // Exponential repetition penalty
-            const positionKey = JSON.stringify(board);
-            const repetitionCount = moveHistory.filter(move => move.positionKey === positionKey).length;
-            score -= (repetitionCount ** 2) * 50; // Exponential penalty for repetition
-
-            // Endgame strategy
-            const totalPieces = countPieces(board, team) + countPieces(board, opponent);
-            if (totalPieces < 10 && ownKingRank !== -1 && opponentKingRank !== -1) {
-                const distanceToCenter = Math.max(Math.abs(ownKingRank - 3.5), Math.abs(ownKingFile - 3.5));
-                score -= distanceToCenter * 5;
-                const kingDistance = Math.max(Math.abs(ownKingRank - opponentKingRank), Math.abs(ownKingFile - opponentKingFile));
-                score -= kingDistance * 15; // Increased bonus for approaching opponent’s Kingdom Hall
-            }
-
-            return score;
-        }
-
-        function getAllMoves(team) {
-            const moves = [];
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = gameState[rank][file];
-                    if (square.piece && square.team === team) {
-                        const validMoves = getValidMoves(rank, file);
-                        validMoves.forEach(move => {
-                            moves.push({
-                                fromRank: rank,
-                                fromFile: file,
-                                toRank: move.rank,
-                                toFile: move.file
-                            });
-                        });
-                    }
-                }
-            }
-            return moves;
-        }
-
-        function computerMove() {
-            if (gameEnded) return;
-
-            let aiTeam = playerIsWhite ? 'black' : 'white';
-            let allMoves = getAllMoves(aiTeam);
-            if (allMoves.length === 0) return;
-
-            // Find the opponent’s and own Kingdom Hall for move prioritization
-            let opponentKingRank = -1, opponentKingFile = -1;
-            let ownKingRank = -1, ownKingFile = -1;
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = gameState[rank][file];
-                    if (square.piece === 'kingdomhall') {
-                        if (square.team !== aiTeam) {
-                            opponentKingRank = rank;
-                            opponentKingFile = file;
-                        } else {
-                            ownKingRank = rank;
-                            ownKingFile = file;
-                        }
-                    }
-                }
-            }
-
-            // Filter out repetitive moves (check last 6 moves, i.e., 3 full turns)
-            const recentMoves = moveHistory.slice(-6);
-            allMoves = allMoves.filter(move => {
-                const isRepetitive = recentMoves.some(m =>
-                    m.fromRank === move.fromRank &&
-                    m.fromFile === move.fromFile &&
-                    m.toRank === move.toRank &&
-                    m.toFile === move.toFile
-                );
-                return !isRepetitive;
-            });
-
-            if (allMoves.length === 0) {
-                // If all moves are repetitive, fall back to the original move list
-                console.log("All moves are repetitive, falling back to original move list");
-                allMoves = getAllMoves(aiTeam);
-            }
-
-            // Move ordering: Prioritize advancing, captures, checks, and protecting own Kingdom Hall
-            allMoves = allMoves.map(move => {
-                const tempBoard = deepCopyBoard(gameState);
-                tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                let priority = 0;
-
-                // Priority for captures
-                if (gameState[move.toRank][move.toFile].piece) {
-                    priority += 30; // Increased priority for captures
-                }
-
-                // Priority for checks
-                const originalBoard = gameState;
-                gameState = tempBoard;
-                if (opponentKingRank !== -1 && isSquareThreatened(opponentKingRank, opponentKingFile, aiTeam === 'black' ? 'white' : 'black')) {
-                    priority += 20; // Increased priority for checks
-                }
-
-                // Priority for advancing toward opponent’s Kingdom Hall
-                if (opponentKingRank !== -1) {
-                    const fromDistance = Math.max(Math.abs(move.fromRank - opponentKingRank), Math.abs(move.fromFile - opponentKingFile));
-                    const toDistance = Math.max(Math.abs(move.toRank - opponentKingRank), Math.abs(move.toFile - opponentKingFile));
-                    if (toDistance < fromDistance) {
-                        const piece = gameState[move.fromRank][move.fromFile].piece;
-                        if (piece === 'biblestudy') {
-                            priority += 15; // Increased priority for advancing Bible Studies
-                        } else if (piece === 'pioneer' || piece === 'watchtower' || piece === 'elder') {
-                            priority += 10;
-                        } else if (piece === 'servant') {
-                            priority += 8;
-                        }
-                    }
-                }
-
-                // Priority for protecting own Kingdom Hall
-                if (ownKingRank !== -1 && isSquareThreatened(ownKingRank, ownKingFile, aiTeam)) {
-                    const toDistanceToOwnKing = Math.max(Math.abs(move.toRank - ownKingRank), Math.abs(move.toFile - ownKingFile));
-                    if (toDistanceToOwnKing <= 2) {
-                        priority += 15; // Increased priority for defense
-                    }
-                }
-
-                gameState = originalBoard;
-                return { ...move, priority };
-            });
-            allMoves.sort((a, b) => b.priority - a.priority);
-
-            let chosenMove = null;
-
-            if (difficulty === 'easy') {
-                // 70% chance to pick a prioritized move, 30% random
-                console.log("Easy AI: Evaluating moves", allMoves);
-                if (Math.random() < 0.7) {
-                    const prioritizedMoves = allMoves.filter(move => move.priority > 0);
-                    if (prioritizedMoves.length > 0) {
-                        chosenMove = prioritizedMoves[Math.floor(Math.random() * prioritizedMoves.length)];
-                        console.log("Easy AI: Chose prioritized move", chosenMove);
-                    }
-                }
-                if (!chosenMove) {
-                    chosenMove = allMoves[Math.floor(Math.random() * allMoves.length)];
-                    console.log("Easy AI: Chose random move", chosenMove);
-                }
-            } else if (difficulty === 'medium') {
-                // Use minimax with depth 2, prioritizing advancing, captures, and checks
-                console.log("Medium AI: Evaluating moves", allMoves);
-                let bestScore = -Infinity;
-                for (const move of allMoves) {
-                    const tempBoard = deepCopyBoard(gameState);
-                    tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                    tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                    const score = minimax(tempBoard, 2, -Infinity, Infinity, false, aiTeam);
-                    if (score > bestScore) {
-                        bestScore = score;
-                        chosenMove = move;
-                    }
-                }
-                console.log("Medium AI: Chose move", chosenMove, "with score", bestScore);
-                // Development bonus: Prefer moving servants and elders early
-                if (moveHistory.length < 10 && (!chosenMove || chosenMove.priority === 0)) {
-                    const developmentMoves = allMoves.filter(move => {
-                        const piece = gameState[move.fromRank][move.fromFile].piece;
-                        return (piece === 'servant' || piece === 'elder') && move.fromRank === (aiTeam === 'black' ? 0 : 7);
-                    });
-                    if (developmentMoves.length > 0) {
-                        chosenMove = developmentMoves[Math.floor(Math.random() * developmentMoves.length)];
-                        console.log("Medium AI: Chose development move", chosenMove);
-                    }
-                }
-            } else if (difficulty === 'hard') {
-                // Use minimax with depth 5
-                console.log("Hard AI: Evaluating moves", allMoves);
-                let bestScore = -Infinity;
-                const depth = 5;
-                for (const move of allMoves) {
-                    const tempBoard = deepCopyBoard(gameState);
-                    tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                    tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                    if (tempBoard[move.toRank][move.toFile].piece && tempBoard[move.toRank][move.toFile].piece === 'kingdomhall') {
-                        chosenMove = move;
-                        console.log("Hard AI: Found winning move", chosenMove);
-                        break;
-                    }
-                    const score = minimax(tempBoard, depth - 1, -Infinity, Infinity, false, aiTeam);
-                    if (score > bestScore) {
-                        bestScore = score;
-                        chosenMove = move;
-                    }
-                }
-                console.log("Hard AI: Chose move", chosenMove, "with score", bestScore);
-            }
-
-            if (chosenMove) {
-                const move = {
-                    fromRank: chosenMove.fromRank,
-                    fromFile: chosenMove.fromFile,
-                    toRank: chosenMove.toRank,
-                    toFile: chosenMove.toFile,
-                    piece: gameState[chosenMove.fromRank][chosenMove.fromFile].piece,
-                    positionKey: JSON.stringify(gameState)
-                };
-                moveHistory.push(move);
-                const capturedPiece = gameState[chosenMove.toRank][chosenMove.toFile];
-                movePiece(chosenMove.fromRank, chosenMove.fromFile, chosenMove.toRank, chosenMove.toFile);
-                if (capturedPiece && capturedPiece.piece === 'kingdomhall') {
-                    endGame(aiTeam);
-                    return;
-                }
-                currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
-                renderBoard();
-            } else {
-                console.log("No valid moves available for AI");
-            }
-        }
-
-        function minimax(board, depth, alpha, beta, maximizingPlayer, team) {
-            if (depth === 0) {
-                return evaluateBoard(board, team);
-            }
-
-            const currentTeam = maximizingPlayer ? team : (team === 'black' ? 'white' : 'black');
-            let allMoves = getAllMoves(currentTeam);
-
-            // Filter out repetitive moves in minimax
-            const recentMoves = moveHistory.slice(-6);
-            allMoves = allMoves.filter(move => {
-                const isRepetitive = recentMoves.some(m =>
-                    m.fromRank === move.fromRank &&
-                    m.fromFile === move.fromFile &&
-                    m.toRank === move.toRank &&
-                    m.toFile === move.toFile
-                );
-                return !isRepetitive;
-            });
-
-            if (allMoves.length === 0) {
-                allMoves = getAllMoves(currentTeam); // Fallback if all moves are repetitive
-            }
-
-            // Move ordering for performance
-            allMoves = allMoves.map(move => {
-                const tempBoard = deepCopyBoard(board);
-                tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                let priority = 0;
-                if (board[move.toRank][move.toFile].piece) {
-                    priority += 30;
-                }
-                const originalBoard = gameState;
-                gameState = tempBoard;
-                let opponentKingRank = -1, opponentKingFile = -1;
-                let ownKingRank = -1, ownKingFile = -1;
-                for (let rank = 0; rank < 8; rank++) {
-                    for (let file = 0; file < 8; file++) {
-                        const square = tempBoard[rank][file];
-                        if (square.piece === 'kingdomhall') {
-                            if (square.team !== currentTeam) {
-                                opponentKingRank = rank;
-                                opponentKingFile = file;
-                            } else {
-                                ownKingRank = rank;
-                                ownKingFile = file;
-                            }
-                        }
-                    }
-                }
-                if (opponentKingRank !== -1 && isSquareThreatened(opponentKingRank, opponentKingFile, currentTeam === 'black' ? 'white' : 'black')) {
-                    priority += 20;
-                }
-                if (opponentKingRank !== -1) {
-                    const fromDistance = Math.max(Math.abs(move.fromRank - opponentKingRank), Math.abs(move.fromFile - opponentKingFile));
-                    const toDistance = Math.max(Math.abs(move.toRank - opponentKingRank), Math.abs(move.toFile - opponentKingFile));
-                    if (toDistance < fromDistance) {
-                        priority += 15;
-                    }
-                }
-                if (ownKingRank !== -1 && isSquareThreatened(ownKingRank, ownKingFile, currentTeam)) {
-                    const toDistanceToOwnKing = Math.max(Math.abs(move.toRank - ownKingRank), Math.abs(move.toFile - ownKingFile));
-                    if (toDistanceToOwnKing <= 2) {
-                        priority += 15;
-                    }
-                }
-                gameState = originalBoard;
-                return { ...move, priority };
-            });
-            allMoves.sort((a, b) => b.priority - a.priority);
-
-            if (allMoves.length === 0) {
-                return evaluateBoard(board, team);
-            }
-
-            if (maximizingPlayer) {
-                let maxEval = -Infinity;
-                for (const move of allMoves) {
-                    const tempBoard = deepCopyBoard(board);
-                    tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                    tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                    if (tempBoard[move.toRank][move.toFile].piece && tempBoard[move.toRank][move.toFile].piece === 'kingdomhall') {
-                        return 1000;
-                    }
-                    const evalScore = minimax(tempBoard, depth - 1, alpha, beta, false, team);
-                    maxEval = Math.max(maxEval, evalScore);
-                    alpha = Math.max(alpha, evalScore);
-                    if (beta <= alpha) {
-                        break;
-                    }
-                }
-                return maxEval;
-            } else {
-                let minEval = Infinity;
-                for (const move of allMoves) {
-                    const tempBoard = deepCopyBoard(board);
-                    tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                    tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                    if (tempBoard[move.toRank][move.toFile].piece && tempBoard[move.toRank][move.toFile].piece === 'kingdomhall') {
-                        return -1000;
-                    }
-                    const evalScore = minimax(tempBoard, depth - 1, alpha, beta, true, team);
-                    minEval = Math.min(minEval, evalScore);
-                    beta = Math.min(beta, evalScore);
-                    if (beta <= alpha) {
-                        break;
-                    }
-                }
-                return minEval;
-            }
         }
     </script>
 </body>
