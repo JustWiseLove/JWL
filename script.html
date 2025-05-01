@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Script - Just Wise Love</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts link for Audiowide -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
     <style>
         body {
             margin: 0;
@@ -210,14 +206,14 @@
             <div class="scripture-ref">“Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.” 2 Timothy 4:2</div>
         </div>
         <div class="button-group">
+            <button onclick="startOnePlayer()">One Player</button>
             <button onclick="startTwoPlayer()">Two Players</button>
         </div>
     </div>
     <div id="name-entry" style="display: none;">
-        <h1>Enter Player Names</h1>
-        <input type="text" id="player1-name" placeholder="Player 1 Name" maxlength="20">
-        <input type="text" id="player2-name" placeholder="Player 2 Name" maxlength="20">
-        <button onclick="submitNames()">Start Game</button>
+        <h1>Enter Player Name</h1>
+        <input type="text" id="player-name" placeholder="Your Name" maxlength="20">
+        <button onclick="submitName()">Start Game</button>
     </div>
     <div id="game-container">
         <div id="board"></div>
@@ -240,27 +236,74 @@
         let playerNames = { white: '', black: '' };
         let gameEnded = false;
         let moveHistory = [];
+        let gameMode = ''; // 'one-player' or 'two-player'
 
-        function startTwoPlayer() {
+        function startOnePlayer() {
+            gameMode = 'one-player';
             menu.style.display = 'none';
             nameEntry.style.display = 'flex';
+            document.getElementById('name-entry').querySelector('h1').textContent = 'Enter Your Name';
+            document.getElementById('player-name').style.display = 'block';
+            document.getElementById('player-name').placeholder = 'Your Name';
+            if (document.getElementById('player2-name')) {
+                document.getElementById('player2-name').remove();
+            }
         }
 
-        function submitNames() {
-            const player1Name = document.getElementById('player1-name').value.trim() || 'Player 1';
-            const player2Name = document.getElementById('player2-name').value.trim() || 'Player 2';
-            // Randomly assign who is White and who is Black
-            const random = Math.random() < 0.5;
-            playerNames = {
-                white: random ? player1Name : player2Name,
-                black: random ? player2Name : player1Name
-            };
-            currentPlayer = 'white'; // White always goes first
-            nameEntry.style.display = 'none';
-            gameContainer.style.display = 'flex';
-            gameState = initializeBoard();
-            moveHistory = [];
-            renderBoard();
+        function startTwoPlayer() {
+            gameMode = 'two-player';
+            menu.style.display = 'none';
+            nameEntry.style.display = 'flex';
+            document.getElementById('name-entry').querySelector('h1').textContent = 'Enter Player Names';
+            const player1Input = document.getElementById('player-name');
+            player1Input.placeholder = 'Player 1 Name';
+            if (!document.getElementById('player2-name')) {
+                const player2Input = document.createElement('input');
+                player2Input.type = 'text';
+                player2Input.id = 'player2-name';
+                player2Input.placeholder = 'Player 2 Name';
+                player2Input.maxLength = 20;
+                player2Input.style.margin = '10px 0';
+                player2Input.style.padding = '10px';
+                player2Input.style.fontSize = '1em';
+                player2Input.style.fontFamily = 'Arial, sans-serif';
+                player2Input.style.backgroundColor = '#444';
+                player2Input.style.color = '#ccc';
+                player2Input.style.border = 'none';
+                player2Input.style.borderRadius = '5px';
+                player2Input.style.width = '200px';
+                player2Input.style.textAlign = 'center';
+                player1Input.after(player2Input);
+            }
+        }
+
+        function submitName() {
+            if (gameMode === 'one-player') {
+                const playerName = document.getElementById('player-name').value.trim() || 'Player';
+                playerNames = { white: playerName, black: 'Chess Master' };
+                currentPlayer = 'white';
+                nameEntry.style.display = 'none';
+                gameContainer.style.display = 'flex';
+                gameState = initializeBoard();
+                moveHistory = [];
+                gameEnded = false;
+                renderBoard();
+            } else {
+                const player1Name = document.getElementById('player-name').value.trim() || 'Player 1';
+                const player2Name = document.getElementById('player2-name').value.trim() || 'Player 2';
+                const random = Math.random() < 0.5;
+                playerNames = {
+                    white: random ? player1Name : player2Name,
+                    black: random ? player2Name : player1Name
+                };
+                currentPlayer = 'white';
+                nameEntry.style.display = 'none';
+                gameContainer.style.display = 'flex';
+                gameState = initializeBoard();
+                moveHistory = [];
+                gameEnded = false;
+                renderBoard();
+            }
         }
 
         function returnToMenu() {
@@ -280,7 +323,7 @@
                 }
                 board.push(row);
             }
-            // White pieces (bottom of the board, custom pieces)
+            // White pieces
             board[7][0] = { piece: 'watchtower', team: 'white' };
             board[7][1] = { piece: 'servant', team: 'white' };
             board[7][2] = { piece: 'elder', team: 'white' };
@@ -292,7 +335,7 @@
             for (let i = 0; i < 8; i++) {
                 board[6][i] = { piece: 'biblestudy', team: 'white' };
             }
-            // Black pieces (top of the board, also custom pieces)
+            // Black pieces
             board[0][0] = { piece: 'watchtower', team: 'black' };
             board[0][1] = { piece: 'servant', team: 'black' };
             board[0][2] = { piece: 'elder', team: 'black' };
@@ -309,12 +352,36 @@
 
         function renderBoard() {
             if (gameEnded) return;
-            board.innerHTML = ''; // Clear the board
+            board.innerHTML = '';
+            let whiteKingdomHallExists = false;
+            let blackKingdomHallExists = false;
+
+            // Check if Kingdom Halls still exist
+            for (let rank = 0; rank < 8; rank++) {
+                for (let file = 0; file < 8; file++) {
+                    const piece = gameState[rank][file];
+                    if (piece.piece === 'kingdomhall') {
+                        if (piece.team === 'white') whiteKingdomHallExists = true;
+                        if (piece.team === 'black') blackKingdomHallExists = true;
+                    }
+                }
+            }
+
+            // If a Kingdom Hall is missing, end the game
+            if (!whiteKingdomHallExists) {
+                endGame('black'); // Black wins if white's Kingdom Hall is gone
+                return;
+            }
+            if (!blackKingdomHallExists) {
+                endGame('white'); // White wins if black's Kingdom Hall is gone
+                return;
+            }
+
+            // Render the board
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
                     const square = document.createElement('div');
                     square.classList.add('square');
-                    // Apply checkered pattern
                     square.classList.add((rank + file) % 2 === 0 ? 'white-square' : 'black-square');
                     const piece = gameState[rank][file];
                     if (piece.piece) {
@@ -332,12 +399,11 @@
                     board.appendChild(square);
                 }
             }
-            // Rotate board based on current player
-            board.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(180deg)';
+            // Rotate board only in two-player mode
+            board.style.transform = gameMode === 'two-player' && currentPlayer === 'black' ? 'rotate(180deg)' : 'rotate(0deg)';
             document.querySelectorAll('.square span').forEach(piece => {
-                piece.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(-180deg)';
+                piece.style.transform = gameMode === 'two-player' && currentPlayer === 'black' ? 'rotate(-180deg)' : 'rotate(0deg)';
             });
-            // Removed the (White)/(Black) tags
             turnIndicator.textContent = `${playerNames[currentPlayer]}'s Turn`;
         }
 
@@ -360,7 +426,6 @@
             const square = gameState[rank][file];
             if (selectedSquare) {
                 if (isValidMove(selectedSquare.rank, selectedSquare.file, rank, file)) {
-                    const targetPiece = gameState[rank][file];
                     const move = {
                         fromRank: selectedSquare.rank,
                         fromFile: selectedSquare.file,
@@ -371,14 +436,13 @@
                     };
                     movePiece(selectedSquare.rank, selectedSquare.file, rank, file);
                     moveHistory.push(move);
-                    if (targetPiece && targetPiece.piece === 'kingdomhall') {
-                        endGame(currentPlayer);
-                        return;
-                    }
                     currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
                     selectedSquare = null;
                     clearHighlights();
-                    renderBoard();
+                    renderBoard(); // This will check for Kingdom Hall capture and end the game if needed
+                    if (gameMode === 'one-player' && currentPlayer === 'black' && !gameEnded) {
+                        setTimeout(computerMove, 500);
+                    }
                 } else {
                     clearHighlights();
                     selectedSquare = null;
@@ -391,12 +455,159 @@
             }
         }
 
+        function computerMove() {
+            if (gameEnded) return;
+            const bestMove = findBestMove();
+            if (bestMove) {
+                movePiece(bestMove.fromRank, bestMove.fromFile, bestMove.toRank, bestMove.toFile);
+                moveHistory.push({
+                    fromRank: bestMove.fromRank,
+                    fromFile: bestMove.fromFile,
+                    toRank: bestMove.toRank,
+                    toFile: bestMove.toFile,
+                    piece: gameState[bestMove.toRank][bestMove.toFile].piece,
+                    positionKey: JSON.stringify(gameState)
+                });
+                currentPlayer = 'white';
+                renderBoard(); // This will check for Kingdom Hall capture and end the game if needed
+            }
+        }
+
+        function findBestMove() {
+            const moves = getAllPossibleMoves('black');
+            if (moves.length === 0) return null;
+            let bestScore = -Infinity;
+            let bestMove = null;
+            const depth = 3;
+            for (const move of moves) {
+                const tempState = JSON.parse(JSON.stringify(gameState));
+                movePiece(move.fromRank, move.fromFile, move.toRank, move.toFile);
+                const score = minimax(depth - 1, -Infinity, Infinity, false);
+                gameState = tempState;
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMove = move;
+                }
+            }
+            return bestMove;
+        }
+
+        function minimax(depth, alpha, beta, isMaximizing) {
+            if (depth === 0 || isGameOver()) {
+                return evaluateBoard();
+            }
+            const player = isMaximizing ? 'black' : 'white';
+            const moves = getAllPossibleMoves(player);
+            if (isMaximizing) {
+                let maxEval = -Infinity;
+                for (const move of moves) {
+                    const tempState = JSON.parse(JSON.stringify(gameState));
+                    movePiece(move.fromRank, move.fromFile, move.toRank, move.toFile);
+                    const evalScore = minimax(depth - 1, alpha, beta, false);
+                    gameState = tempState;
+                    maxEval = Math.max(maxEval, evalScore);
+                    alpha = Math.max(alpha, evalScore);
+                    if (beta <= alpha) break;
+                }
+                return maxEval;
+            } else {
+                let minEval = Infinity;
+                for (const move of moves) {
+                    const tempState = JSON.parse(JSON.stringify(gameState));
+                    movePiece(move.fromRank, move.fromFile, move.toRank, move.toFile);
+                    const evalScore = minimax(depth - 1, alpha, beta, true);
+                    gameState = tempState;
+                    minEval = Math.min(minEval, evalScore);
+                    beta = Math.min(beta, evalScore);
+                    if (beta <= alpha) break;
+                }
+                return minEval;
+            }
+        }
+
+        function evaluateBoard() {
+            const pieceValues = {
+                biblestudy: 1,
+                servant: 3,
+                elder: 3,
+                watchtower: 5,
+                pioneer: 9,
+                kingdomhall: 1000
+            };
+            let score = 0;
+            for (let rank = 0; rank < 8; rank++) {
+                for (let file = 0; file < 8; file++) {
+                    const square = gameState[rank][file];
+                    if (square.piece) {
+                        const value = pieceValues[square.piece];
+                        score += square.team === 'black' ? value : -value;
+                        if ([3, 4].includes(rank) && [3, 4].includes(file)) {
+                            score += square.team === 'black' ? 0.1 : -0.1;
+                        }
+                    }
+                }
+            }
+            return score;
+        }
+
+        function getAllPossibleMoves(team) {
+            const moves = [];
+            for (let rank = 0; rank < 8; rank++) {
+                for (let file = 0; file < 8; file++) {
+                    if (gameState[rank][file].piece && gameState[rank][file].team === team) {
+                        const validMoves = getValidMoves(rank, file);
+                        validMoves.forEach(move => {
+                            moves.push({
+                                fromRank: rank,
+                                fromFile: file,
+                                toRank: move.rank,
+                                toFile: move.file
+                            });
+                        });
+                    }
+                }
+            }
+            return moves;
+        }
+
+        function isGameOver() {
+            let whiteKingdomHall = false;
+            let blackKingdomHall = false;
+            for (let rank = 0; rank < 8; rank++) {
+                for (let file = 0; file < 8; file++) {
+                    if (gameState[rank][file].piece === 'kingdomhall') {
+                        if (gameState[rank][file].team === 'white') whiteKingdomHall = true;
+                        if (gameState[rank][file].team === 'black') blackKingdomHall = true;
+                    }
+                }
+            }
+            return !(whiteKingdomHall && blackKingdomHall);
+        }
+
         function endGame(winner) {
             gameEnded = true;
             turnIndicator.style.display = 'none';
             gameOver.style.display = 'block';
-            // Removed the (White)/(Black) tags
             gameOver.textContent = `${playerNames[winner]} WINS!`;
+            // Ensure the board is updated to reflect the final state
+            board.innerHTML = '';
+            for (let rank = 0; rank < 8; rank++) {
+                for (let file = 0; file < 8; file++) {
+                    const square = document.createElement('div');
+                    square.classList.add('square');
+                    square.classList.add((rank + file) % 2 === 0 ? 'white-square' : 'black-square');
+                    const piece = gameState[rank][file];
+                    if (piece.piece) {
+                        const pieceSpan = document.createElement('span');
+                        pieceSpan.textContent = getPieceSymbol(piece.piece);
+                        pieceSpan.classList.add(piece.team === 'white' ? 'white-piece' : 'black-piece');
+                        square.appendChild(pieceSpan);
+                    }
+                    square.dataset.rank = rank;
+                    square.dataset.file = file;
+                    board.appendChild(square);
+                }
+            }
         }
 
         function selectSquare(rank, file) {
