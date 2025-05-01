@@ -607,92 +607,98 @@
         </footer>
 
         <script>
-            // Family Worship Schedule Data
-            const schedule = [
-                { date: "January 3, 2025", topics: ["Cain & Abel", "Reincarnation", "Faith"] },
-                { date: "January 10, 2025", topics: ["Broadcast"] },
-                { date: "January 17, 2025", topics: ["Noah", "Endurance", "Preaching"] },
-                { date: "January 24, 2025", topics: ["Babel", "Pride", "Humility"] },
-                { date: "January 31, 2025", topics: ["Valentine's Day", "Marriage"] },
-                { date: "February 7, 2025", topics: ["Broadcast"] },
-                { date: "February 14, 2025", topics: ["Lot", "Immortality", "Homosexuality", "Obedience"] },
-                { date: "February 21, 2025", topics: ["Jacob & Esau", "Content", "Thankful"] },
-                { date: "February 28, 2025", topics: ["Moses", "God’s Name", "Trinity"] },
-                { date: "March 7, 2025", topics: ["Broadcast"] },
-                { date: "March 14, 2025", topics: ["Pioneer Meeting/Assembly", "St. Patrick’s Day"] },
-                { date: "March 21, 2025", topics: ["Ezekiel Vision", "Purgatory", "Rapture"] },
-                { date: "March 28, 2025", topics: ["Gog of Magog", "False Teachings"] },
-                { date: "April 4, 2025", topics: ["Jesus Last Supper", "Memorial"] },
-                { date: "April 6, 2025", topics: ["Memorial Bible Reading"] },
-                { date: "April 11, 2025", topics: ["Broadcast"] },
-                { date: "April 18, 2025", topics: ["Jesus Resurrection", "Easter", "Mass"] },
-                { date: "April 25, 2025", topics: ["Jesus Returns to Heaven", "Rapture"] },
-                { date: "May 2, 2025", topics: ["Jonah", "Compassion", "Hades", "Gehenna"] },
-                { date: "May 9, 2025", topics: ["Mother’s Day", "Honor"] },
-                { date: "May 16, 2025", topics: ["Broadcast"] },
-                { date: "May 23, 2025", topics: ["Memorial Day", "Unity", "War"] },
-                { date: "May 30, 2025", topics: ["Josiah Loved God’s Law", "Idolatry", "Family Opposition"] },
-                { date: "June 6, 2025", topics: ["Broadcast"] },
-                { date: "June 13, 2025", topics: ["Father’s Day"] },
-                { date: "June 20, 2025", topics: ["Nebuchadnezzar Dream", "God’s Kingdom"] },
-                { date: "June 27, 2025", topics: ["4th of July", "Nationalism", "Neutrality", "Love of Neighbor", "Love of Enemy"] },
-                { date: "July 4, 2025", topics: ["1914", "Heaven", "144,000"] },
-                { date: "July 11, 2025", topics: ["Broadcast"] },
-                { date: "July 18, 2025", topics: ["Convention"] },
-                { date: "July 25, 2025", topics: ["Daniel Lions Pit", "Courage"] },
-                { date: "August 1, 2025", topics: ["Nehemiah", "Faith", "Drifting Away From Jehovah"] },
-                { date: "August 8, 2025", topics: ["Broadcast"] },
-                { date: "August 15, 2025", topics: ["Paul & Timothy Educated Men", "Philosophy"] },
-                { date: "August 22, 2025", topics: ["Paul & Timothy", "Youth", "Make It Your Own"] },
-                { date: "August 29, 2025", topics: ["Labor Day"] },
-                { date: "September 5, 2025", topics: ["Broadcast"] },
-                { date: "September 12, 2025", topics: ["4 Horsemen", "What Do You Look Forward To?"] },
-                { date: "September 19, 2025", topics: ["666", "Numerology", "Spiritism"] },
-                { date: "September 26, 2025", topics: ["The Great Prostitute", "False Religion"] },
-                { date: "October 3, 2025", topics: ["New Jerusalem", "Paradise"] },
-                { date: "October 10, 2025", topics: ["Broadcast"] },
-                { date: "October 17, 2025", topics: ["Fruitage of the Spirit"] },
-                { date: "October 24, 2025", topics: ["Halloween", "Spirit of the Flesh"] },
-                { date: "October 31, 2025", topics: ["Suit of Armor"] },
-                { date: "November 7, 2025", topics: ["Broadcast"] },
-                { date: "November 14, 2025", topics: ["Your Word Is Truth", "Consequences"] },
-                { date: "November 21, 2025", topics: ["Thanksgiving"] },
-                { date: "November 28, 2025", topics: ["Birth of Jesus", "Christmas", "Advent"] },
-                { date: "December 5, 2025", topics: ["Broadcast"] },
-                { date: "December 12, 2025", topics: ["Jesus’ Childhood", "Youth", "Obedience"] },
-                { date: "December 19, 2025", topics: ["John the Baptizer", "Courage", "Preaching"] },
-                { date: "December 26, 2025", topics: ["New Years", "Goals", "Change"] }
-            ];
+// Family Worship Schedule Data
+const schedule = [
+    { date: "January 3, 2025", topics: ["Cain & Abel", "Reincarnation", "Faith"] },
+    { date: "January 10, 2025", topics: ["Broadcast"] },
+    { date: "January 17, 2025", topics: ["Noah", "Endurance", "Preaching"] },
+    { date: "January 24, 2025", topics: ["Babel", "Pride", "Humility"] },
+    { date: "January 31, 2025", topics: ["Valentine's Day", "Marriage"] },
+    { date: "February 7, 2025", topics: ["Broadcast"] },
+    { date: "February 14, 2025", topics: ["Lot", "Immortality", "Homosexuality", "Obedience"] },
+    { date: "February 21, 2025", topics: ["Jacob & Esau", "Content", "Thankful"] },
+    { date: "February 28, 2025", topics: ["Moses", "God’s Name", "Trinity"] },
+    { date: "March 7, 2025", topics: ["Broadcast"] },
+    { date: "March 14, 2025", topics: ["Pioneer Meeting/Assembly", "St. Patrick’s Day"] },
+    { date: "March 21, 2025", topics: ["Ezekiel Vision", "Purgatory", "Rapture"] },
+    { date: "March 28, 2025", topics: ["Gog of Magog", "False Teachings"] },
+    { date: "April 4, 2025", topics: ["Jesus Last Supper", "Memorial"] },
+    { date: "April 6, 2025", topics: ["Memorial Bible Reading"] },
+    { date: "April 11, 2025", topics: ["Broadcast"] },
+    { date: "April 18, 2025", topics: ["Jesus Resurrection", "Easter", "Mass"] },
+    { date: "April 25, 2025", topics: ["Jesus Returns to Heaven", "Rapture"] },
+    { date: "May 2, 2025", topics: ["Jonah", "Compassion", "Hades", "Gehenna"] },
+    { date: "May 9, 2025", topics: ["Mother’s Day", "Honor"] },
+    { date: "May 16, 2025", topics: ["Broadcast"] },
+    { date: "May 23, 2025", topics: ["Memorial Day", "Unity", "War"] },
+    { date: "May 30, 2025", topics: ["Josiah Loved God’s Law", "Idolatry", "Family Opposition"] },
+    { date: "June 6, 2025", topics: ["Broadcast"] },
+    { date: "June 13, 2025", topics: ["Father’s Day"] },
+    { date: "June 20, 2025", topics: ["Nebuchadnezzar Dream", "God’s Kingdom"] },
+    { date: "June 27, 2025", topics: ["4th of July", "Nationalism", "Neutrality", "Love of Neighbor", "Love of Enemy"] },
+    { date: "July 4, 2025", topics: ["1914", "Heaven", "144,000"] },
+    { date: "July 11, 2025", topics: ["Broadcast"] },
+    { date: "July 18, 2025", topics: ["Convention"] },
+    { date: "July 25, 2025", topics: ["Daniel Lions Pit", "Courage"] },
+    { date: "August 1, 2025", topics: ["Nehemiah", "Faith", "Drifting Away From Jehovah"] },
+    { date: "August 8, 2025", topics: ["Broadcast"] },
+    { date: "August 15, 2025", topics: ["Paul & Timothy Educated Men", "Philosophy"] },
+    { date: "August 22, 2025", topics: ["Paul & Timothy", "Youth", "Make It Your Own"] },
+    { date: "August 29, 2025", topics: ["Labor Day"] },
+    { date: "September 5, 2025", topics: ["Broadcast"] },
+    { date: "September 12, 2025", topics: ["4 Horsemen", "What Do You Look Forward To?"] },
+    { date: "September 19, 2025", topics: ["666", "Numerology", "Spiritism"] },
+    { date: "September 26, 2025", topics: ["The Great Prostitute", "False Religion"] },
+    { date: "October 3, 2025", topics: ["New Jerusalem", "Paradise"] },
+    { date: "October 10, 2025", topics: ["Broadcast"] },
+    { date: "October 17, 2025", topics: ["Fruitage of the Spirit"] },
+    { date: "October 24, 2025", topics: ["Halloween", "Spirit of the Flesh"] },
+    { date: "October 31, 2025", topics: ["Suit of Armor"] },
+    { date: "November 7, 2025", topics: ["Broadcast"] },
+    { date: "November 14, 2025", topics: ["Your Word Is Truth", "Consequences"] },
+    { date: "November 21, 2025", topics: ["Thanksgiving"] },
+    { date: "November 28, 2025", topics: ["Birth of Jesus", "Christmas", "Advent"] },
+    { date: "December 5, 2025", topics: ["Broadcast"] },
+    { date: "December 12, 2025", topics: ["Jesus’ Childhood", "Youth", "Obedience"] },
+    { date: "December 19, 2025", topics: ["John the Baptizer", "Courage", "Preaching"] },
+    { date: "December 26, 2025", topics: ["New Years", "Goals", "Change"] }
+];
 
-            // Function to find the current week's topics
-            function getCurrentTopic() {
-                const today = new Date();
-                const currentYear = today.getFullYear();
-                let closestDate = null;
-                let currentTopics = "No topics scheduled for this week.";
+// Function to find the upcoming week's topics
+function getCurrentTopic() {
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 6 = Saturday
+    let nextFriday = null;
+    let currentTopics = "No topics scheduled for this week.";
 
-                schedule.forEach(item => {
-                    const itemDate = new Date(item.date);
-                    // Check if the item is in the current year
-                    if (itemDate.getFullYear() === currentYear) {
-                        // Find the closest Friday on or before today
-                        if (itemDate <= today && (!closestDate || itemDate > closestDate)) {
-                            closestDate = itemDate;
-                            currentTopics = `${item.date} - ${item.topics.join(", ")}`;
-                        }
-                    }
-                });
+    // If today is Saturday (6) or later, look for the next week's Friday
+    const daysToAdd = dayOfWeek >= 6 ? (12 - dayOfWeek) : (5 - dayOfWeek);
+    const nextFridayDate = new Date(today);
+    nextFridayDate.setDate(today.getDate() + daysToAdd);
 
-                // If no date was found (e.g., before the first Friday), default to the first topics
-                if (!closestDate && schedule.length > 0) {
-                    currentTopics = `${schedule[0].date} - ${schedule[0].topics.join(", ")}`;
-                }
-
-                return currentTopics;
+    schedule.forEach(item => {
+        const itemDate = new Date(item.date);
+        // Check if the item is in the current year
+        if (itemDate.getFullYear() === currentYear) {
+            // Find the closest Friday after today
+            if (itemDate >= today && (!nextFriday || itemDate < nextFriday)) {
+                nextFriday = itemDate;
+                currentTopics = item.topics.join(", ");
             }
+        }
+    });
 
-            // Update the current topic display
-            document.getElementById("current-topic").textContent = getCurrentTopic();
-        </script>
+    // If no future date found, default to the first topics of next year or current schedule
+    if (!nextFriday && schedule.length > 0) {
+        currentTopics = schedule[0].topics.join(", ");
+    }
+
+    return currentTopics;
+}
+
+// Update the current topic display
+document.getElementById("current-topic").textContent = getCurrentTopic();
+</script>
     </body>
 </html>
