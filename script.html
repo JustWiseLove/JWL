@@ -257,7 +257,7 @@
             nameEntry.style.display = 'none';
             gameContainer.style.display = 'flex';
             gameState = initializeBoard();
-            moveHistory = [];
+            console.log('Game state after initialization:', gameState); // Debugging log
             renderBoard();
         }
 
@@ -278,6 +278,7 @@
                 }
                 board.push(row);
             }
+            // White pieces
             board[7][0] = { piece: 'watchtower', team: 'white' };
             board[7][1] = { piece: 'servant', team: 'white' };
             board[7][2] = { piece: 'elder', team: 'white' };
@@ -289,6 +290,7 @@
             for (let i = 0; i < 8; i++) {
                 board[6][i] = { piece: 'biblestudy', team: 'white' };
             }
+            // Black pieces
             board[0][0] = { piece: 'watchtower', team: 'black' };
             board[0][1] = { piece: 'servant', team: 'black' };
             board[0][2] = { piece: 'elder', team: 'black' };
@@ -306,14 +308,15 @@
         function renderBoard() {
             if (gameEnded) return;
 
-            board.innerHTML = '';
+            console.log('Rendering board with gameState:', gameState); // Debugging log
+            board.innerHTML = ''; // Clear the board
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
                     const square = document.createElement('div');
                     square.classList.add('square');
                     square.classList.add((rank + file) % 2 === 0 ? 'white-square' : 'black-square');
                     const piece = gameState[rank][file];
-                    if (piece.piece) {
+                    if (piece && piece.piece) { // Ensure piece exists
                         const pieceSpan = document.createElement('span');
                         pieceSpan.textContent = getPieceSymbol(piece.piece);
                         pieceSpan.classList.add(piece.team === 'white' ? 'white-piece' : 'black-piece');
@@ -330,12 +333,17 @@
                 }
             }
 
+            // Rotate the board based on the current player
             board.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(180deg)';
             document.querySelectorAll('.square span').forEach(piece => {
                 piece.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(-180deg)';
             });
 
+            // Ensure turn indicator is visible and updated
+            turnIndicator.style.display = 'block';
             turnIndicator.textContent = `${playerNames[currentPlayer]}'s Turn`;
+            console.log('Turn indicator updated to:', turnIndicator.textContent); // Debugging log
+
             checkGameState();
         }
 
@@ -348,7 +356,7 @@
                 servant: '👟',
                 biblestudy: '📜'
             };
-            return scriptSymbols[piece];
+            return scriptSymbols[piece] || '';
         }
 
         function handleSquareClick(event) {
@@ -384,11 +392,11 @@
                 } else {
                     clearHighlights();
                     selectedSquare = null;
-                    if (square.piece && square.team === currentPlayer) {
+                    if (square && square.piece && square.team === currentPlayer) {
                         selectSquare(rank, file);
                     }
                 }
-            } else if (square.piece && square.team === currentPlayer) {
+            } else if (square && square.piece && square.team === currentPlayer) {
                 selectSquare(rank, file);
             }
         }
@@ -410,7 +418,7 @@
             let opponentKingRank = -1, opponentKingFile = -1;
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
-                    if (gameState[rank][file].piece === 'kingdomhall' && gameState[rank][file].team === opponent) {
+                    if (gameState[rank][file] && gameState[rank][file].piece === 'kingdomhall' && gameState[rank][file].team === opponent) {
                         opponentKingRank = rank;
                         opponentKingFile = file;
                         break;
@@ -549,14 +557,14 @@
                 let kingRank = -1, kingFile = -1;
                 for (let r = 0; r < 8; r++) {
                     for (let f = 0; f < 8; f++) {
-                        if (gameState[r][f].piece === 'kingdomhall' && gameState[r][f].team === team) {
+                        if (gameState[r][f] && gameState[r][f].piece === 'kingdomhall' && gameState[r][f].team === team) {
                             kingRank = r;
                             kingFile = f;
                             break;
                         }
                     }
                 }
-                if (!isSquareThreatened(kingRank, kingFile, team)) {
+                if (kingRank !== -1 && !isSquareThreatened(kingRank, kingFile, team)) {
                     validMoves.push(move);
                 }
                 gameState = originalBoard;
@@ -579,13 +587,13 @@
             for (let r = 0; r < 8; r++) {
                 for (let f = 0; f < 8; f++) {
                     const square = gameState[r][f];
-                    if (square.piece && square.team === opponent) {
+                    if (square && square.piece && square.team === opponent) {
                         const moves = getValidMoves(r, f);
                         if (moves.some(move => move.rank === rank && move.file === file)) {
                             return true;
                         }
                     }
-                }
+                    }
             }
             return false;
         }
@@ -595,7 +603,7 @@
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
                     const square = gameState[rank][file];
-                    if (square.piece && square.team === team) {
+                    if (square && square.piece && square.team === team) {
                         const validMoves = getValidMoves(rank, file);
                         validMoves.forEach(move => {
                             moves.push({
