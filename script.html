@@ -32,7 +32,7 @@
             flex-direction: column;
             align-items: center;
             color: #ccc;
-            margin-top: 110px; /* Increased to avoid header overlap */
+            margin-top: 110px;
             text-align: center;
         }
         #menu h1, #difficulty-menu h1, #name-entry h1 {
@@ -41,25 +41,24 @@
             margin-bottom: 20px;
         }
         #menu .scripture {
-            /* Styles now come from style.css */
             max-width: 80%;
             line-height: 1.5;
         }
         #menu .scripture-ref {
             font-size: 0.9em;
-            color: #666; /* Darker for readability */
+            color: #666;
         }
         .button-group {
             display: flex;
-            flex-direction: row; /* Ensure buttons are side by side */
-            justify-content: center; /* Center the buttons */
-            gap: 20px; /* Spacing between buttons */
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
             margin: 10px 0;
-            flex-wrap: wrap; /* Allow wrapping if needed */
+            flex-wrap: wrap;
         }
         #menu button, #difficulty-menu button, #name-entry button {
-            margin: 0; /* Remove individual margins since gap handles spacing */
-            padding: 12px 25px; /* Adjusted padding for better fit */
+            margin: 0;
+            padding: 12px 25px;
             font-size: 1.2em;
             font-family: 'Audiowide', sans-serif;
             background-color: #555;
@@ -89,7 +88,7 @@
             display: none;
             flex-direction: column;
             align-items: center;
-            margin-top: 110px; /* Increased to avoid header overlap */
+            margin-top: 110px;
         }
         #board {
             display: grid;
@@ -123,10 +122,10 @@
             background-color: #808080;
         }
         .preachers-piece {
-            filter: brightness(0); /* Black for Preachers */
+            filter: brightness(0);
         }
         .teachers-piece {
-            filter: brightness(0) invert(1); /* White for Teachers */
+            filter: brightness(0) invert(1);
         }
         .selected {
             background-color: #a9a999 !important;
@@ -135,7 +134,7 @@
             background-color: #b0b0b0 !important;
         }
         .in-check {
-            background-color: #FFD700 !important; /* Gold for check */
+            background-color: #FFD700 !important;
         }
         #turn-indicator {
             margin-top: 10px;
@@ -151,12 +150,12 @@
             font-family: 'Audiowide', sans-serif;
             text-align: center;
         }
-        @media (max-width: 400px) { /* Adjusted to a smaller breakpoint */
+        @media (max-width: 400px) {
             .square {
                 font-size: min(5vw, 5vh);
             }
             #menu, #difficulty-menu, #name-entry, #game-container {
-                margin-top: 100px; /* Adjusted for smaller screens */
+                margin-top: 100px;
             }
             #menu h1, #difficulty-menu h1, #name-entry h1 {
                 font-size: 2em;
@@ -166,11 +165,11 @@
                 max-width: 90%;
             }
             .button-group {
-                flex-direction: column; /* Stack buttons vertically on very small screens */
+                flex-direction: column;
                 gap: 10px;
             }
             #menu button, #difficulty-menu button, #name-entry button {
-                padding: 10px 20px; /* Further reduced padding for small screens */
+                padding: 10px 20px;
                 font-size: 1em;
             }
             #name-entry input {
@@ -186,7 +185,7 @@
         </div>
     </header>
     <div id="menu">
-        <h1>SCRIPT</h1>
+        <h1>Gods Kingdom</h1>
         <div class="scripture">
             <div class="scripture-ref">“Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.” 2 Timothy 4:2</div>
         </div>
@@ -225,8 +224,8 @@
         let gameState = null;
         let selectedSquare = null;
         let currentPlayer = 'preachers';
-        let gameMode = null; // 'single' or 'two'
-        let difficulty = null; // 'easy', 'medium', 'hard'
+        let gameMode = null;
+        let difficulty = null;
         let playerNames = { preachers: 'Player 1', teachers: 'Player 2' };
         let gameEnded = false;
 
@@ -241,14 +240,12 @@
             const player1Name = document.getElementById('player1-name').value.trim() || 'Player 1';
             const player2Name = document.getElementById('player2-name').value.trim() || 'Player 2';
             
-            // Randomly assign teams
             const random = Math.random() < 0.5;
             playerNames = {
                 teachers: random ? player1Name : player2Name,
                 preachers: random ? player2Name : player1Name
             };
             
-            // White team (Teachers) goes first
             currentPlayer = 'teachers';
             
             nameEntry.style.display = 'none';
@@ -281,7 +278,6 @@
                 }
                 board.push(row);
             }
-            // Preachers team (player in 1P, first player in 2P)
             board[7][0] = { piece: 'watchtower', team: 'preachers' };
             board[7][1] = { piece: 'servant', team: 'preachers' };
             board[7][2] = { piece: 'elder', team: 'preachers' };
@@ -293,7 +289,6 @@
             for (let i = 0; i < 8; i++) {
                 board[6][i] = { piece: 'biblestudy', team: 'preachers' };
             }
-            // Teachers team (computer in 1P, second player in 2P)
             board[0][0] = { piece: 'watchtower', team: 'teachers' };
             board[0][1] = { piece: 'servant', team: 'teachers' };
             board[0][2] = { piece: 'elder', team: 'teachers' };
@@ -324,7 +319,6 @@
                         pieceSpan.classList.add(piece.team === 'preachers' ? 'preachers-piece' : 'teachers-piece');
                         square.appendChild(pieceSpan);
 
-                        // Highlight Kingdom Hall in check
                         if (piece.piece === 'kingdomhall' && isSquareThreatened(rank, file, piece.team)) {
                             square.classList.add('in-check');
                         }
@@ -524,18 +518,6 @@
             return board.map(row => row.map(square => ({ ...square })));
         }
 
-        function findKingdomHall(team) {
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = gameState[rank][file];
-                    if (square.piece === 'kingdomhall' && square.team === team) {
-                        return { rank, file };
-                    }
-                }
-            }
-            return null;
-        }
-
         function isSquareThreatened(rank, file, team) {
             const opponent = team === 'preachers' ? 'teachers' : 'preachers';
             for (let r = 0; r < 8; r++) {
@@ -552,7 +534,7 @@
             return false;
         }
 
-        function evaluateThreatsAfterMove(fromRank, fromFile, toRank, toFile, team) {
+        function evaluateBoard(board, team) {
             const pieceValues = {
                 kingdomhall: 100,
                 pioneer: 9,
@@ -561,63 +543,163 @@
                 servant: 3,
                 biblestudy: 1
             };
-            // Simulate the move on a copy of the board
-            const tempBoard = deepCopyBoard(gameState);
-            tempBoard[toRank][toFile] = tempBoard[fromRank][fromFile];
-            tempBoard[fromRank][fromFile] = { piece: null, team: null };
-            
-            let threatScore = 0;
-            const opponent = team === 'preachers' ? 'teachers' : 'preachers';
-            
-            // Check threats to own high-value pieces (Kingdom Hall and Pioneer)
+            const opponent = team === 'teachers' ? 'preachers' : 'teachers';
+            let score = 0;
+
+            // Material score
+            let teachersMaterial = 0;
+            let preachersMaterial = 0;
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
-                    const square = tempBoard[rank][file];
-                    if (square.piece && square.team === team && (square.piece === 'kingdomhall' || square.piece === 'pioneer')) {
-                        for (let r = 0; r < 8; r++) {
-                            for (let f = 0; f < 8; f++) {
-                                const oppSquare = tempBoard[r][f];
-                                if (oppSquare.piece && oppSquare.team === opponent) {
-                                    const originalBoard = gameState;
-                                    gameState = tempBoard;
-                                    const moves = getValidMoves(r, f);
-                                    gameState = originalBoard;
-                                    if (moves.some(move => move.rank === rank && move.file === file)) {
-                                        threatScore -= pieceValues[square.piece]; // Penalty for exposing the piece
-                                    }
-                                }
-                            }
+                    const square = board[rank][file];
+                    if (square.piece) {
+                        const value = pieceValues[square.piece] || 0;
+                        if (square.team === 'teachers') {
+                            teachersMaterial += value;
+                        } else {
+                            preachersMaterial += value;
                         }
                     }
                 }
             }
-            
-            return threatScore;
+            score += (teachersMaterial - preachersMaterial) * (team === 'teachers' ? 1 : -1);
+
+            // Piece activity
+            for (let rank = 0; rank < 8; rank++) {
+                for (let file = 0; file < 8; file++) {
+                    const square = board[rank][file];
+                    if (square.piece && square.team === team) {
+                        // Bonus for advancing Bible Studies
+                        if (square.piece === 'biblestudy') {
+                            const advancement = team === 'teachers' ? (7 - rank) : rank;
+                            score += advancement * 10; // +10 per rank advanced
+                        }
+                        // Bonus for controlling the center
+                        if ((rank === 3 || rank === 4) && (file === 3 || file === 4)) {
+                            score += 5;
+                        }
+                    }
+                }
+            }
+
+            // King safety
+            for (let rank = 0; rank < 8; rank++) {
+                for (let file = 0; file < 8; file++) {
+                    const square = board[rank][file];
+                    if (square.piece === 'kingdomhall') {
+                        const originalBoard = gameState;
+                        gameState = board;
+                        const inCheck = isSquareThreatened(rank, file, square.team);
+                        gameState = originalBoard;
+                        if (square.team === team) {
+                            if (inCheck) {
+                                score -= 50; // Penalty for being in check
+                            }
+                            // Bonus for being surrounded by own pieces
+                            let protection = 0;
+                            for (let dr = -1; dr <= 1; dr++) {
+                                for (let df = -1; df <= 1; df++) {
+                                    if (dr === 0 && df === 0) continue;
+                                    const r = rank + dr, f = file + df;
+                                    if (r >= 0 && r < 8 && f >= 0 && f < 8 && board[r][f].piece && board[r][f].team === team) {
+                                        protection += 5;
+                                    }
+                                }
+                            }
+                            score += protection;
+                        } else {
+                            const originalBoard = gameState;
+                            gameState = board;
+                            if (isSquareThreatened(rank, file, square.team)) {
+                                score += 100; // Large bonus for putting opponent's Kingdom Hall in check
+                            }
+                            gameState = originalBoard;
+                        }
+                    }
+                }
+            }
+
+            return score;
         }
 
-        function computerMove() {
-            if (gameEnded) return;
-
-            const allMoves = [];
+        function getAllMoves(team) {
+            const moves = [];
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
                     const square = gameState[rank][file];
-                    if (square.piece && square.team === 'teachers') {
-                        const moves = getValidMoves(rank, file);
-                        moves.forEach(move => {
-                            allMoves.push({
+                    if (square.piece && square.team === team) {
+                        const validMoves = getValidMoves(rank, file);
+                        validMoves.forEach(move => {
+                            moves.push({
                                 fromRank: rank,
                                 fromFile: file,
                                 toRank: move.rank,
-                                toFile: move.file,
-                                piece: square.piece,
-                                capturedPiece: gameState[move.rank][move.file] ? gameState[move.rank][move.file].piece : null,
-                                capturedTeam: gameState[move.rank][move.file] ? gameState[move.rank][move.file].team : null
+                                toFile: move.file
                             });
                         });
                     }
                 }
             }
+            return moves;
+        }
+
+        function minimax(board, depth, alpha, beta, maximizingPlayer, team) {
+            if (depth === 0) {
+                return evaluateBoard(board, team);
+            }
+
+            const currentTeam = maximizingPlayer ? team : (team === 'teachers' ? 'preachers' : 'teachers');
+            const moves = getAllMoves(currentTeam);
+
+            if (moves.length === 0) {
+                return evaluateBoard(board, team);
+            }
+
+            if (maximizingPlayer) {
+                let maxEval = -Infinity;
+                for (const move of moves) {
+                    const tempBoard = deepCopyBoard(board);
+                    tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
+                    tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
+
+                    if (tempBoard[move.toRank][move.toFile].piece === 'kingdomhall') {
+                        return 1000; // Immediate win
+                    }
+
+                    const evalScore = minimax(tempBoard, depth - 1, alpha, beta, false, team);
+                    maxEval = Math.max(maxEval, evalScore);
+                    alpha = Math.max(alpha, evalScore);
+                    if (beta <= alpha) {
+                        break; // Alpha-beta pruning
+                    }
+                }
+                return maxEval;
+            } else {
+                let minEval = Infinity;
+                for (const move of moves) {
+                    const tempBoard = deepCopyBoard(board);
+                    tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
+                    tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
+
+                    if (tempBoard[move.toRank][move.toFile].piece === 'kingdomhall') {
+                        return -1000; // Immediate loss
+                    }
+
+                    const evalScore = minimax(tempBoard, depth - 1, alpha, beta, true, team);
+                    minEval = Math.min(minEval, evalScore);
+                    beta = Math.min(beta, evalScore);
+                    if (beta <= alpha) {
+                        break; // Alpha-beta pruning
+                    }
+                }
+                return minEval;
+            }
+        }
+
+        function computerMove() {
+            if (gameEnded) return;
+
+            const allMoves = getAllMoves('teachers');
 
             if (allMoves.length === 0) return;
 
@@ -626,106 +708,30 @@
             if (difficulty === 'easy') {
                 chosenMove = allMoves[Math.floor(Math.random() * allMoves.length)];
             } else if (difficulty === 'medium') {
-                const capturingMoves = allMoves.filter(move => move.capturedPiece);
+                const capturingMoves = allMoves.filter(move => gameState[move.toRank][move.toFile].piece);
                 if (capturingMoves.length > 0) {
                     chosenMove = capturingMoves[Math.floor(Math.random() * capturingMoves.length)];
                 } else {
                     chosenMove = allMoves[Math.floor(Math.random() * allMoves.length)];
                 }
             } else if (difficulty === 'hard') {
-                const pieceValues = {
-                    kingdomhall: 100,
-                    pioneer: 9,
-                    watchtower: 5,
-                    elder: 3,
-                    servant: 3,
-                    biblestudy: 1
-                };
-
-                // Find the positions of both Kingdom Halls
-                const teachersKingdomHall = findKingdomHall('teachers');
-                const preachersKingdomHall = findKingdomHall('preachers');
-
                 let bestScore = -Infinity;
-                allMoves.forEach(move => {
-                    let score = 0;
+                const depth = 3; // Look 3 moves ahead
 
-                    // 1. Score for capturing pieces
-                    if (move.capturedPiece) {
-                        score += pieceValues[move.capturedPiece] || 0;
-                    }
-
-                    // 2. Bonus for putting opponent's Kingdom Hall in check
+                for (const move of allMoves) {
                     const tempBoard = deepCopyBoard(gameState);
                     tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
                     tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                    const originalBoard = gameState;
-                    gameState = tempBoard;
-                    if (preachersKingdomHall && isSquareThreatened(preachersKingdomHall.rank, preachersKingdomHall.file, 'preachers')) {
-                        score += 50; // Large bonus for putting opponent in check
-                    }
-                    gameState = originalBoard;
 
-                    // 3. Bonus for moving closer to opponent's Kingdom Hall (for Pioneer, Watchtower, Elder)
-                    if (preachersKingdomHall && (move.piece === 'pioneer' || move.piece === 'watchtower' || move.piece === 'elder')) {
-                        const oldDistance = Math.abs(move.fromRank - preachersKingdomHall.rank) + Math.abs(move.fromFile - preachersKingdomHall.file);
-                        const newDistance = Math.abs(move.toRank - preachersKingdomHall.rank) + Math.abs(move.toFile - preachersKingdomHall.file);
-                        if (newDistance < oldDistance) {
-                            score += 10; // Bonus for getting closer
-                        }
+                    if (tempBoard[move.toRank][move.toFile].piece === 'kingdomhall') {
+                        chosenMove = move;
+                        break;
                     }
 
-                    // 4. Bonus for advancing Bible Studies safely
-                    if (move.piece === 'biblestudy' && move.toRank > move.fromRank) { // Moving down the board
-                        if (!isSquareThreatened(move.toRank, move.toFile, 'teachers')) {
-                            score += 5;
-                        }
-                        // Bonus for moving toward the center (files 3 and 4)
-                        if (move.toFile >= 3 && move.toFile <= 4) {
-                            score += 3;
-                        }
-                    }
-
-                    // 5. Bonus for keeping Bible Studies in front of Kingdom Hall
-                    if (teachersKingdomHall && move.piece === 'biblestudy' && move.fromRank === 1 && move.fromFile === teachersKingdomHall.file) {
-                        score -= 10; // Penalty for moving a Bible Study that’s blocking the Kingdom Hall
-                    }
-
-                    // 6. Bonus for keeping Kingdom Hall near starting position (row 0) if safe
-                    if (teachersKingdomHall && move.piece === 'kingdomhall' && move.toRank === 0 && !isSquareThreatened(move.toRank, move.toFile, 'teachers')) {
-                        score += 20;
-                    }
-
-                    // 7. Penalty for exposing high-value pieces (Kingdom Hall or Pioneer)
-                    const threatPenalty = evaluateThreatsAfterMove(move.fromRank, move.fromFile, move.toRank, move.toFile, 'teachers');
-                    score += threatPenalty;
-
-                    // Update best move
+                    const score = minimax(tempBoard, depth - 1, -Infinity, Infinity, false, 'teachers');
                     if (score > bestScore) {
                         bestScore = score;
                         chosenMove = move;
-                    }
-                });
-
-                // If no move has a positive score, pick a safe move (e.g., advance a Bible Study or move a piece to the center)
-                if (bestScore <= 0) {
-                    const safeMoves = allMoves.filter(move => {
-                        const threatPenalty = evaluateThreatsAfterMove(move.fromRank, move.fromFile, move.toRank, move.toFile, 'teachers');
-                        return threatPenalty >= 0; // Only consider moves that don’t expose high-value pieces
-                    });
-                    if (safeMoves.length > 0) {
-                        chosenMove = safeMoves.reduce((best, move) => {
-                            let score = 0;
-                            if (move.piece === 'biblestudy' && move.toRank > move.fromRank) {
-                                score += 5;
-                            }
-                            if (move.toFile >= 3 && move.toFile <= 4) {
-                                score += 3;
-                            }
-                            return score > (best.score || 0) ? { ...move, score } : best;
-                        }, safeMoves[0]);
-                    } else {
-                        chosenMove = allMoves[Math.floor(Math.random() * allMoves.length)]; // Fallback to random if no safe moves
                     }
                 }
             }
