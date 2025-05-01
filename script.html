@@ -26,7 +26,7 @@
             left: 0;
             z-index: 1000;
         }
-        #menu, #difficulty-menu, #name-entry, #single-name-entry {
+        #menu, #name-entry {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -34,7 +34,7 @@
             margin-top: 110px;
             text-align: center;
         }
-        #menu h1, #difficulty-menu h1, #name-entry h1, #single-name-entry h1 {
+        #menu h1, #name-entry h1 {
             font-family: 'Audiowide', sans-serif;
             font-size: 2.5em;
             margin-bottom: 20px;
@@ -47,11 +47,6 @@
             font-size: 0.9em;
             color: #666;
         }
-        #menu .stats, #menu .awards {
-            margin-top: 10px;
-            font-size: 1em;
-            color: #ccc;
-        }
         .button-group {
             display: flex;
             flex-direction: row;
@@ -60,7 +55,7 @@
             margin: 10px 0;
             flex-wrap: wrap;
         }
-        #menu button, #difficulty-menu button, #name-entry button, #single-name-entry button {
+        #menu button, #name-entry button {
             margin: 0;
             padding: 12px 25px;
             font-size: 1.2em;
@@ -72,11 +67,11 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease;
         }
-        #menu button:hover, #difficulty-menu button:hover, #name-entry button:hover, #single-name-entry button:hover {
+        #menu button:hover, #name-entry button:hover {
             background-color: #777;
             transform: scale(1.05);
         }
-        #name-entry input, #single-name-entry input {
+        #name-entry input {
             margin: 10px 0;
             padding: 10px;
             font-size: 1em;
@@ -178,10 +173,10 @@
             .square {
                 font-size: min(5vw, 5vh);
             }
-            #menu, #difficulty-menu, #name-entry, #single-name-entry, #game-container {
+            #menu, #name-entry, #game-container {
                 margin-top: 100px;
             }
-            #menu h1, #difficulty-menu h1, #name-entry h1, #single-name-entry h1 {
+            #menu h1, #name-entry h1 {
                 font-size: 2em;
             }
             #menu .scripture {
@@ -192,11 +187,11 @@
                 flex-direction: column;
                 gap: 10px;
             }
-            #menu button, #difficulty-menu button, #name-entry button, #single-name-entry button {
+            #menu button, #name-entry button {
                 padding: 10px 20px;
                 font-size: 1em;
             }
-            #name-entry input, #single-name-entry input {
+            #name-entry input {
                 width: 150px;
             }
         }
@@ -209,24 +204,13 @@
         </div>
     </header>
     <div id="menu">
-        <h1>Gods Kingdom</h1>
+        <h1>SCRIPT</h1>
         <div class="scripture">
             <div class="scripture-ref">“Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.” 2 Timothy 4:2</div>
         </div>
-        <div class="stats" id="stats-display"></div>
-        <div class="awards" id="awards-display"></div>
         <div class="button-group">
-            <button onclick="showSingleNameEntry()">One Player</button>
-            <button onclick="startTwoPlayer()">Two Players</button>
+            <button onclick="startTwoPlayer()">Start Game</button>
         </div>
-        <div class="button-group">
-            <button onclick="loadGame()" id="load-game-btn" style="display: none;">Load Game</button>
-        </div>
-    </div>
-    <div id="single-name-entry" style="display: none;">
-        <h1>Enter Your Name</h1>
-        <input type="text" id="single-player-name" placeholder="Player Name" maxlength="20">
-        <button onclick="submitSingleName()">Continue</button>
     </div>
     <div id="name-entry" style="display: none;">
         <h1>Enter Player Names</h1>
@@ -234,18 +218,9 @@
         <input type="text" id="player2-name" placeholder="Player 2 Name" maxlength="20">
         <button onclick="submitNames()">Start Game</button>
     </div>
-    <div id="difficulty-menu" style="display: none;">
-        <h1>Select Difficulty</h1>
-        <div class="button-group">
-            <button onclick="startSinglePlayer('easy')">Easy</button>
-            <button onclick="startSinglePlayer('medium')">Medium</button>
-            <button onclick="startSinglePlayer('hard')">Hard</button>
-        </div>
-    </div>
     <div id="game-container">
         <div id="board"></div>
         <div id="game-controls">
-            <button onclick="saveGame()" id="save-game-btn">Save Game</button>
             <button onclick="returnToMenu()">Return to Menu</button>
         </div>
         <div id="turn-indicator"></div>
@@ -253,87 +228,21 @@
     </div>
     <script>
         const menu = document.getElementById('menu');
-        const singleNameEntry = document.getElementById('single-name-entry');
-        const difficultyMenu = document.getElementById('difficulty-menu');
         const nameEntry = document.getElementById('name-entry');
         const gameContainer = document.getElementById('game-container');
         const board = document.getElementById('board');
         const turnIndicator = document.getElementById('turn-indicator');
         const gameOver = document.getElementById('game-over');
-        const statsDisplay = document.getElementById('stats-display');
-        const awardsDisplay = document.getElementById('awards-display');
-        const loadGameBtn = document.getElementById('load-game-btn');
-        const saveGameBtn = document.getElementById('save-game-btn');
         let gameState = null;
         let selectedSquare = null;
         let currentPlayer = 'white';
-        let gameMode = null;
-        let difficulty = null;
         let playerNames = { white: '', black: '' };
         let gameEnded = false;
-        let singlePlayerName = localStorage.getItem('scriptPlayerName') || '';
         let moveHistory = [];
-        let playerIsWhite = true;
-
-        let stats = JSON.parse(localStorage.getItem('scriptStats')) || { wins: 0, losses: 0 };
-        const awards = [
-            { wins: 5, title: "Novice" },
-            { wins: 10, title: "Disciple" },
-            { wins: 20, title: "Missionary" },
-            { wins: 50, title: "Apostle" },
-            { wins: 100, title: "Prophet" }
-        ];
-        let currentAward = localStorage.getItem('scriptAward') || '';
-        updateStatsDisplay();
-        updateAwardsDisplay();
-
-        if (localStorage.getItem('scriptSavedGame')) {
-            loadGameBtn.style.display = 'block';
-        }
-
-        function updateStatsDisplay() {
-            statsDisplay.textContent = `Wins: ${stats.wins}, Losses: ${stats.losses}`;
-        }
-
-        function updateAwardsDisplay() {
-            let newAward = '';
-            for (const award of awards) {
-                if (stats.wins >= award.wins) {
-                    newAward = award.title;
-                } else {
-                    break;
-                }
-            }
-            if (newAward !== currentAward) {
-                currentAward = newAward;
-                localStorage.setItem('scriptAward', currentAward);
-            }
-            awardsDisplay.textContent = currentAward ? `Award: ${currentAward}` : '';
-        }
-
-        function showSingleNameEntry() {
-            if (singlePlayerName) {
-                document.getElementById('single-player-name').value = singlePlayerName;
-            }
-            menu.style.display = 'none';
-            singleNameEntry.style.display = 'flex';
-        }
-
-        function submitSingleName() {
-            singlePlayerName = document.getElementById('single-player-name').value.trim() || 'Player';
-            localStorage.setItem('scriptPlayerName', singlePlayerName);
-            singleNameEntry.style.display = 'none';
-            difficultyMenu.style.display = 'flex';
-            saveGameBtn.style.display = 'block';
-        }
 
         function startTwoPlayer() {
-            gameMode = 'two';
             menu.style.display = 'none';
-            difficultyMenu.style.display = 'none';
-            singleNameEntry.style.display = 'none';
             nameEntry.style.display = 'flex';
-            saveGameBtn.style.display = 'none';
         }
 
         function submitNames() {
@@ -350,63 +259,6 @@
             gameState = initializeBoard();
             moveHistory = [];
             renderBoard();
-        }
-
-        function startSinglePlayer(diff) {
-            gameMode = 'single';
-            difficulty = diff;
-            difficultyMenu.style.display = 'none';
-            gameContainer.style.display = 'flex';
-            playerIsWhite = Math.random() < 0.5;
-            playerNames = playerIsWhite
-                ? { white: singlePlayerName, black: 'AI' }
-                : { white: 'AI', black: singlePlayerName };
-            gameState = initializeBoard();
-            moveHistory = [];
-            currentPlayer = 'white';
-            renderBoard();
-            if (!playerIsWhite) {
-                setTimeout(computerMove, 500);
-            }
-        }
-
-        function saveGame() {
-            if (gameMode !== 'single' || gameEnded) return;
-            const gameData = {
-                gameState: gameState,
-                currentPlayer: currentPlayer,
-                difficulty: difficulty,
-                playerName: singlePlayerName,
-                playerIsWhite: playerIsWhite,
-                moveHistory: moveHistory
-            };
-            localStorage.setItem('scriptSavedGame', JSON.stringify(gameData));
-            loadGameBtn.style.display = 'block';
-            alert('Game saved!');
-        }
-
-        function loadGame() {
-            const savedGame = localStorage.getItem('scriptSavedGame');
-            if (!savedGame) return;
-            const gameData = JSON.parse(savedGame);
-            gameMode = 'single';
-            gameState = gameData.gameState;
-            currentPlayer = gameData.currentPlayer;
-            difficulty = gameData.difficulty;
-            singlePlayerName = gameData.playerName;
-            playerIsWhite = gameData.playerIsWhite;
-            playerNames = playerIsWhite
-                ? { white: singlePlayerName, black: 'AI' }
-                : { white: 'AI', black: singlePlayerName };
-            moveHistory = gameData.moveHistory || [];
-            gameEnded = false;
-            saveGameBtn.style.display = 'block';
-            menu.style.display = 'none';
-            gameContainer.style.display = 'flex';
-            renderBoard();
-            if (!playerIsWhite && currentPlayer === 'white') {
-                setTimeout(computerMove, 500);
-            }
         }
 
         function returnToMenu() {
@@ -478,24 +330,10 @@
                 }
             }
 
-            if (gameMode === 'two') {
-                board.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(180deg)';
-                document.querySelectorAll('.square span').forEach(piece => {
-                    piece.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(-180deg)';
-                });
-            } else {
-                if (playerIsWhite) {
-                    board.style.transform = 'rotate(0deg)';
-                    document.querySelectorAll('.square span').forEach(piece => {
-                        piece.style.transform = 'rotate(0deg)';
-                    });
-                } else {
-                    board.style.transform = 'rotate(180deg)';
-                    document.querySelectorAll('.square span').forEach(piece => {
-                        piece.style.transform = 'rotate(-180deg)';
-                    });
-                }
-            }
+            board.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(180deg)';
+            document.querySelectorAll('.square span').forEach(piece => {
+                piece.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(-180deg)';
+            });
 
             turnIndicator.textContent = `${playerNames[currentPlayer]}'s Turn`;
             checkGameState();
@@ -515,7 +353,6 @@
 
         function handleSquareClick(event) {
             if (gameEnded) return;
-            if (gameMode === 'single' && playerNames[currentPlayer] === 'AI') return;
 
             const rank = parseInt(event.target.dataset.rank || event.target.parentElement.dataset.rank);
             const file = parseInt(event.target.dataset.file || event.target.parentElement.dataset.file);
@@ -536,12 +373,6 @@
                     moveHistory.push(move);
 
                     if (targetPiece && targetPiece.piece === 'kingdomhall') {
-                        if (gameMode === 'single' && playerNames[currentPlayer] !== 'AI') {
-                            stats.wins++;
-                            localStorage.setItem('scriptStats', JSON.stringify(stats));
-                            updateStatsDisplay();
-                            updateAwardsDisplay();
-                        }
                         endGame(currentPlayer);
                         return;
                     }
@@ -550,9 +381,6 @@
                     selectedSquare = null;
                     clearHighlights();
                     renderBoard();
-                    if (gameMode === 'single' && playerNames[currentPlayer] === 'AI') {
-                        setTimeout(computerMove, 500);
-                    }
                 } else {
                     clearHighlights();
                     selectedSquare = null;
@@ -571,12 +399,6 @@
             gameOver.style.display = 'block';
             if (winner) {
                 gameOver.textContent = `${playerNames[winner]} WINS!`;
-                if (gameMode === 'single' && playerNames[winner] === 'AI') {
-                    stats.losses++;
-                    localStorage.setItem('scriptStats', JSON.stringify(stats));
-                    updateStatsDisplay();
-                    updateAwardsDisplay();
-                }
             } else {
                 gameOver.textContent = "STALEMATE!";
             }
@@ -788,323 +610,6 @@
                 }
             }
             return moves;
-        }
-
-        function evaluateMove(move, team) {
-            const pieceValues = {
-                kingdomhall: 1000,
-                pioneer: 9,
-                watchtower: 5,
-                elder: 3,
-                servant: 3,
-                biblestudy: 1
-            };
-            const opponent = team === 'black' ? 'white' : 'black';
-            let score = 0;
-
-            // Capture bonus
-            const target = gameState[move.toRank][move.toFile];
-            if (target.piece) {
-                score += pieceValues[target.piece] * 10;
-                if (target.piece === 'kingdomhall') {
-                    return 10000;
-                }
-            }
-
-            // Center control bonus
-            const centerSquares = [
-                [3, 3], [3, 4], [4, 3], [4, 4]
-            ];
-            const inCenter = centerSquares.some(([r, f]) => move.toRank === r && move.toFile === f);
-            if (inCenter) {
-                score += 20;
-            }
-
-            // Development bonus
-            if (moveHistory.length < 10 && move.piece !== 'biblestudy' && move.piece !== 'kingdomhall') {
-                if (move.fromRank === (team === 'black' ? 0 : 7)) {
-                    score += 30;
-                }
-            }
-
-            // Simulate move to evaluate position
-            const tempBoard = deepCopyBoard(gameState);
-            tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-            tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-            const originalBoard = gameState;
-            gameState = tempBoard;
-
-            // Find opponent’s Kingdom Hall
-            let opponentKingRank = -1, opponentKingFile = -1;
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    if (gameState[rank][file].piece === 'kingdomhall' && gameState[rank][file].team === opponent) {
-                        opponentKingRank = rank;
-                        opponentKingFile = file;
-                        break;
-                    }
-                }
-            }
-
-            // Check bonus
-            if (opponentKingRank !== -1 && isSquareThreatened(opponentKingRank, opponentKingFile, opponent)) {
-                score += 50;
-            }
-
-            // Mobility bonus
-            const mobility = getAllMoves(team).length;
-            score += mobility * 2;
-
-            gameState = originalBoard;
-            return score;
-        }
-
-        function computerMove() {
-            if (gameEnded) return;
-
-            const aiTeam = playerIsWhite ? 'black' : 'white';
-            let allMoves = getAllMoves(aiTeam);
-            if (allMoves.length === 0) {
-                console.log("No moves available for AI");
-                checkGameState();
-                return;
-            }
-
-            // Filter out repetitive moves
-            const recentMoves = moveHistory.slice(-6);
-            allMoves = allMoves.filter(move => {
-                const isRepetitive = recentMoves.some(m =>
-                    m.fromRank === move.fromRank &&
-                    m.fromFile === move.fromFile &&
-                    m.toRank === move.toRank &&
-                    m.toFile === move.toFile
-                );
-                return !isRepetitive;
-            });
-
-            if (allMoves.length === 0) {
-                console.log("All moves areV2 are repetitive, falling back to original move list");
-                allMoves = getAllMoves(aiTeam);
-            }
-
-            let chosenMove = null;
-
-            if (difficulty === 'easy') {
-                console.log("Easy AI: Evaluating moves", allMoves);
-                allMoves = allMoves.map(move => ({
-                    ...move,
-                    score: evaluateMove(move, aiTeam)
-                }));
-                allMoves.sort((a, b) => b.score - a.score);
-
-                if (Math.random() < 0.6) {
-                    const captureMoves = allMoves.filter(move => gameState[move.toRank][move.toFile].piece);
-                    if (captureMoves.length > 0) {
-                        chosenMove = captureMoves[Math.floor(Math.random() * captureMoves.length)];
-                        console.log("Easy AI: Chose capture move", chosenMove);
-                    }
-                }
-                if (!chosenMove) {
-                    chosenMove = allMoves[Math.floor(Math.random() * allMoves.length)];
-                    console.log("Easy AI: Chose random move", chosenMove);
-                }
-            } else if (difficulty === 'medium') {
-                console.log("Medium AI: Evaluating moves", allMoves);
-                let bestScore = -Infinity;
-                allMoves = allMoves.map(move => ({
-                    ...move,
-                    score: evaluateMove(move, aiTeam)
-                }));
-                allMoves.sort((a, b) => b.score - a.score);
-
-                for (const move of allMoves) {
-                    const tempBoard = deepCopyBoard(gameState);
-                    tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                    tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                    const score = minimax(tempBoard, 2, -Infinity, Infinity, false, aiTeam);
-                    if (score > bestScore) {
-                        bestScore = score;
-                        chosenMove = move;
-                    }
-                }
-                console.log("Medium AI: Chose move", chosenMove, "with score", bestScore);
-            } else if (difficulty === 'hard') {
-                console.log("Hard AI: Evaluating moves", allMoves);
-                let bestScore = -Infinity;
-                allMoves = allMoves.map(move => ({
-                    ...move,
-                    score: evaluateMove(move, aiTeam)
-                }));
-                allMoves.sort((a, b) => b.score - a.score);
-
-                // Opening book for Hard AI (simple example)
-                if (moveHistory.length === 0 && aiTeam === 'white') {
-                    // 1. e4
-                    chosenMove = { fromRank: 6, fromFile: 4, toRank: 4, toFile: 4, piece: 'biblestudy' };
-                    console.log("Hard AI: Opening move e4", chosenMove);
-                } else if (moveHistory.length === 1 && aiTeam === 'black') {
-                    // 1...e5
-                    chosenMove = { fromRank: 1, fromFile: 4, toRank: 3, toFile: 4, piece: 'biblestudy' };
-                    console.log("Hard AI: Opening move e5", chosenMove);
-                } else {
-                    for (const move of allMoves) {
-                        const tempBoard = deepCopyBoard(gameState);
-                        tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                        tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                        if (tempBoard[move.toRank][move.toFile].piece === 'kingdomhall') {
-                            chosenMove = move;
-                            console.log("Hard AI: Found winning move", chosenMove);
-                            break;
-                        }
-                        const score = minimax(tempBoard, 4, -Infinity, Infinity, false, aiTeam);
-                        if (score > bestScore) {
-                            bestScore = score;
-                            chosenMove = move;
-                        }
-                    }
-                    console.log("Hard AI: Chose move", chosenMove, "with score", bestScore);
-                }
-            }
-
-            if (chosenMove) {
-                const move = {
-                    fromRank: chosenMove.fromRank,
-                    fromFile: chosenMove.fromFile,
-                    toRank: chosenMove.toRank,
-                    toFile: chosenMove.toFile,
-                    piece: gameState[chosenMove.fromRank][chosenMove.fromFile].piece,
-                    positionKey: JSON.stringify(gameState)
-                };
-                moveHistory.push(move);
-                const capturedPiece = gameState[chosenMove.toRank][chosenMove.toFile];
-                movePiece(chosenMove.fromRank, chosenMove.fromFile, chosenMove.toRank, chosenMove.toFile);
-                if (capturedPiece && capturedPiece.piece === 'kingdomhall') {
-                    endGame(aiTeam);
-                    return;
-                }
-                currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
-                renderBoard();
-            } else {
-                console.log("No valid moves available for AI");
-                checkGameState();
-            }
-        }
-
-        function minimax(board, depth, alpha, beta, maximizingPlayer, team) {
-            if (depth === 0) {
-                return evaluateBoard(board, team);
-            }
-
-            const currentTeam = maximizingPlayer ? team : (team === 'black' ? 'white' : 'black');
-            let allMoves = getAllMoves(currentTeam);
-
-            const recentMoves = moveHistory.slice(-6);
-            allMoves = allMoves.filter(move => {
-                const isRepetitive = recentMoves.some(m =>
-                    m.fromRank === move.fromRank &&
-                    m.fromFile === move.fromFile &&
-                    m.toRank === move.toRank &&
-                    m.toFile === move.toFile
-                );
-                return !isRepetitive;
-            });
-
-            if (allMoves.length === 0) {
-                allMoves = getAllMoves(currentTeam);
-            }
-
-            allMoves = allMoves.map(move => ({
-                ...move,
-                score: evaluateMove(move, currentTeam)
-            }));
-            allMoves.sort((a, b) => b.score - a.score);
-
-            if (allMoves.length === 0) {
-                return evaluateBoard(board, team);
-            }
-
-            if (maximizingPlayer) {
-                let maxEval = -Infinity;
-                for (const move of allMoves) {
-                    const tempBoard = deepCopyBoard(board);
-                    tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                    tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                    if (tempBoard[move.toRank][move.toFile].piece === 'kingdomhall') {
-                        return 10000;
-                    }
-                    const evalScore = minimax(tempBoard, depth - 1, alpha, beta, false, team);
-                    maxEval = Math.max(maxEval, evalScore);
-                    alpha = Math.max(alpha, evalScore);
-                    if (beta <= alpha) break;
-                }
-                return maxEval;
-            } else {
-                let minEval = Infinity;
-                for (const move of allMoves) {
-                    const tempBoard = deepCopyBoard(board);
-                    tempBoard[move.toRank][move.toFile] = tempBoard[move.fromRank][move.fromFile];
-                    tempBoard[move.fromRank][move.fromFile] = { piece: null, team: null };
-                    if (tempBoard[move.toRank][move.toFile].piece === 'kingdomhall') {
-                        return -10000;
-                    }
-                    const evalScore = minimax(tempBoard, depth - 1, alpha, beta, true, team);
-                    minEval = Math.min(minEval, evalScore);
-                    beta = Math.min(beta, evalScore);
-                    if (beta <= alpha) break;
-                }
-                return minEval;
-            }
-        }
-
-        function evaluateBoard(board, team) {
-            const pieceValues = {
-                kingdomhall: 1000,
-                pioneer: 9,
-                watchtower: 5,
-                elder: 3,
-                servant: 3,
-                biblestudy: 1
-            };
-            const opponent = team === 'black' ? 'white' : 'black';
-            let score = 0;
-
-            // Material score
-            let teamMaterial = 0;
-            let opponentMaterial = 0;
-            for (let rank = 0; rank < 8; rank++) {
-                for (let file = 0; file < 8; file++) {
-                    const square = board[rank][file];
-                    if (square.piece) {
-                        const value = pieceValues[square.piece] || 0;
-                        if (square.team === team) {
-                            teamMaterial += value;
-                        } else {
-                            opponentMaterial += value;
-                        }
-                    }
-                }
-            }
-            score += teamMaterial - opponentMaterial;
-
-            // Center control
-            const centerSquares = [
-                [3, 3], [3, 4], [4, 3], [4, 4]
-            ];
-            for (const [r, f] of centerSquares) {
-                if (board[r][f].piece && board[r][f].team === team) {
-                    score += 10;
-                }
-            }
-
-            // Mobility
-            const originalBoard = gameState;
-            gameState = board;
-            const teamMoves = getAllMoves(team).length;
-            const opponentMoves = getAllMoves(opponent).length;
-            score += (teamMoves - opponentMoves) * 2;
-
-            gameState = originalBoard;
-            return score;
         }
     </script>
 </body>
