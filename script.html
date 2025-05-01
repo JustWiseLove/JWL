@@ -102,7 +102,7 @@
             background-color: #555;
             color: #ccc;
             border: none;
-            border-radius:25px;
+            border-radius: 25px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease;
         }
@@ -205,7 +205,7 @@
         </div>
     </header>
     <div id="menu">
-        <h1>Gods Kingdom</h1>
+        <h1>SCRIPT</h1>
         <div class="scripture">
             <div class="scripture-ref">“Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.” 2 Timothy 4:2</div>
         </div>
@@ -249,12 +249,13 @@
         function submitNames() {
             const player1Name = document.getElementById('player1-name').value.trim() || 'Player 1';
             const player2Name = document.getElementById('player2-name').value.trim() || 'Player 2';
+            // Randomly assign who is White and who is Black
             const random = Math.random() < 0.5;
             playerNames = {
                 white: random ? player1Name : player2Name,
                 black: random ? player2Name : player1Name
             };
-            currentPlayer = 'white';
+            currentPlayer = 'white'; // White always goes first
             nameEntry.style.display = 'none';
             gameContainer.style.display = 'flex';
             gameState = initializeBoard();
@@ -336,7 +337,8 @@
             document.querySelectorAll('.square span').forEach(piece => {
                 piece.style.transform = currentPlayer === 'white' ? 'rotate(0deg)' : 'rotate(-180deg)';
             });
-            turnIndicator.textContent = `${playerNames[currentPlayer]}'s Turn (${currentPlayer === 'white' ? 'White' : 'Black'})`;
+            // Removed the (White)/(Black) tags
+            turnIndicator.textContent = `${playerNames[currentPlayer]}'s Turn`;
         }
 
         function getPieceSymbol(piece) {
@@ -393,7 +395,8 @@
             gameEnded = true;
             turnIndicator.style.display = 'none';
             gameOver.style.display = 'block';
-            gameOver.textContent = `${playerNames[winner]} (${winner === 'white' ? 'White' : 'Black'}) WINS!`;
+            // Removed the (White)/(Black) tags
+            gameOver.textContent = `${playerNames[winner]} WINS!`;
         }
 
         function selectSquare(rank, file) {
