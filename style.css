@@ -35,6 +35,19 @@ header {
     color: #fff;
 }
 
+.logos h1 {
+    font-family: 'Audiowide', sans-serif;
+    color: #fff;
+    font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+.logos a {
+    text-decoration: none;
+    color: #fff;
+}
+
 /* Hamburger Menu */
 .hamburger {
     display: block;
