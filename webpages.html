@@ -3,242 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpages - Just Wise Love</title>
+    <meta name="description" content="Build spiritual webpages with Just Wise Love, featuring scripture-based content.">
+    <meta name="keywords" content="Jehovah, scripture, webpage builder, Just Wise Love">
+    <title>Webpage Builder - Just Wise Love</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
         /* Form-specific styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
         .builder-container {
-            max-width: 1000px;
-            margin: 20px auto;
-            background: #fff;
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 20px;
+            background: linear-gradient(135deg, #f0f0f0, #d3d3d3);
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 {
+        .builder-container h2 {
             font-family: 'Audiowide', sans-serif;
-            color: #333;
+            color: #2a6626;
+            margin-bottom: 20px;
+            text-align: center;
         }
         label {
             display: block;
             margin: 10px 0 5px;
             font-weight: bold;
+            color: #333;
         }
         input, textarea, select {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 5px;
             box-sizing: border-box;
-            color: #000 !important;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: #fff;
         }
         select option {
-            color: #000 !important;
+            color: #333;
         }
         .section-group, .article-group {
-            border: 1px solid #ccc;
-            padding: 10px;
+            padding: 15px;
             margin-bottom: 20px;
-            border-radius: 4px;
-            background: #f9f9f9;
+            border-radius: 5px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .element-group {
-            border: 1px solid #ddd;
             padding: 10px;
             margin: 10px 0;
-            border-radius: 4px;
-            background: #fff;
+            border-radius: 5px;
+            background: #f0f0f0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
         .element-list {
             margin-bottom: 20px;
         }
         button {
             padding: 10px 20px;
-            background-color: #333;
+            background: linear-gradient(135deg, #2a6626, #6b9e31);
             color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
+            font-family: 'Audiowide', sans-serif;
             margin: 5px;
+            transition: background 0.3s;
         }
         button:hover {
-            background-color: #555;
+            background: linear-gradient(135deg, #1e4b1c, #5a8a27);
         }
         .remove-btn, .copy-btn {
-            padding: 5px 10px;
-            font-size: 12px;
+            padding: 8px 15px;
+            font-size: 14px;
         }
         .remove-btn {
-            background-color: #FFD800;
-            color: #000;
+            background: linear-gradient(135deg, #d4af37, #b8972e);
+            color: #333;
         }
         .remove-btn:hover {
-            background-color: #E6C200;
+            background: linear-gradient(135deg, #b8972e, #a68327);
         }
         .copy-btn {
-            background-color: #28a745; /* Green */
+            background: linear-gradient(135deg, #2a6626, #6b9e31);
         }
         .copy-btn:hover {
-            background-color: #218838; /* Darker green */
+            background: linear-gradient(135deg, #1e4b1c, #5a8a27);
         }
         #preview {
-            margin-top: 20px;
-            border: 1px solid #ccc;
+            margin-top: 30px;
             padding: 20px;
             background: #fff;
             border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         #html-output {
-            margin-top: 10px;
             width: 100%;
             height: 300px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            margin-top: 10px;
             padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             font-family: monospace;
-            background: #f9f9f9;
+            background: #f0f0f0;
+            color: #333;
         }
         .element-group textarea {
-            width: 100%;
-            min-height: 50px;
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            min-height: 60px;
             resize: vertical;
-            background: #fff;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
         }
-        .element-group textarea:focus {
-            border-color: #333;
-            outline: none;
-            background: #f9f9f9;
-        }
-
-        /* CSS for the generated page and builder page header/footer */
-        header {
-            background-color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 2px solid #333;
-        }
-        .logo h1 {
-            font-family: 'Audiowide', sans-serif;
-            color: #000;
-            font-size: 48px;
-            margin: 0;
-        }
-        .logo a {
-            text-decoration: none !important;
-            color: #000 !important;
-        }
-        footer {
-            background-color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            border-top: 2px solid #333;
-            color: #000;
-            font-size: 14px;
-        }
-        main {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        .intro {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            text-align: center;
-        }
-        .article {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .item {
-            width: 100%;
-            margin-bottom: 10px; /* Reduced gap between articles */
-        }
-        details[open] .item-content {
-            display: block;
-        }
-        .item-button {
-            display: block;
-            width: 100%;
-            padding: 15px 20px;
-            font-size: 14px;
-            background-color: #d3d3d3;
-            border: none;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 5px 5px 0 0;
-            transition: background-color 0.3s;
-            box-sizing: border-box;
-        }
-        .item-button:hover {
-            background-color: #b0b0b0;
-        }
-        .item-button::-webkit-details-marker {
+        .subheading-level {
             display: none;
         }
-        .item-button::marker {
-            display: none;
-        }
-        .item-content {
-            display: none;
-            padding: 20px;
-            background-color: #e0e0e0;
-            border-radius: 0 0 5px 5px;
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center !important;
-        }
-        .item-content p,
-        .item-content li,
-        .item-content strong,
-        .item-content .scripture,
-        .item-content .scripture p {
-            text-align: center !important;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .item-content ul {
-            list-style-position: inside;
-            padding: 0;
-            margin: 0 auto;
-            text-align: center !important;
-        }
-        .item-content ul li {
+        .subheading-level.active {
             display: block;
-            text-align: center !important;
-            margin: 10px 0;
-        }
-        .scripture {
-            background-color: #c0c0c0;
-            padding: 10px;
-            margin-top: 10px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        .scripture p {
-            font-style: italic;
-            margin: 5px 0;
-        }
-        .article h3, .article h4 {
-            font-family: 'Audiowide', sans-serif;
-            color: #000;
-            margin: 1rem 0;
-            text-align: center;
         }
     </style>
 </head>
@@ -250,65 +131,62 @@
             </a>
         </div>
     </header>
-    <div class="builder-container">
+    <main>
+        <div class="builder-container">
+            <!-- Header Section -->
+            <h2>Header</h2>
+            <div class="section-group">
+                <label for="logo-text">Logo Text (e.g., JWL):</label>
+                <input type="text" id="logo-text" value="JWL">
+                <label for="logo-link">Logo Link (e.g., index.html):</label>
+                <input type="text" id="logo-link" value="index.html">
+            </div>
 
-        <!-- Header Section -->
-        <h2>Header</h2>
-        <div class="section-group">
-            <label for="logo-text">Logo Text (e.g., JWL):</label>
-            <input type="text" id="logo-text" value="JWL">
-            <label for="logo-link">Logo Link (e.g., index.html):</label>
-            <input type="text" id="logo-link" value="index.html">
-        </div>
+            <!-- Intro Scripture Section -->
+            <h2>Intro Scripture</h2>
+            <div class="section-group">
+                <label for="intro-scripture">Intro Scripture:</label>
+                <textarea id="intro-scripture" rows="3"></textarea>
+            </div>
 
-        <!-- Intro Scripture Section -->
-        <h2>Intro Scripture</h2>
-        <div class="section-group">
-            <label for="intro-scripture">Intro Scripture:</label>
-            <textarea id="intro-scripture" rows="3"></textarea>
-        </div>
-
-        <!-- Article Sections (Dropdowns) -->
-        <h2>Article Sections</h2>
-        <div id="article-container">
-            <div class="article-group" data-index="0">
-                <label for="article-title-0">Article Title:</label>
-                <input type="text" id="article-title-0" value="Paradise Restored">
-                
-                <!-- Element List (for added elements) -->
-                <h3>Article Content</h3>
-                <div class="element-list" data-index="0"></div>
-                
-                <!-- Element Input -->
-                <div class="element-input">
-                    <label for="element-type-0">Element Type:</label>
-                    <select id="element-type-0">
-                        <option value="subheading">Heading</option>
-                        <option value="content">Content</option>
-                        <option value="scripture">Scripture</option>
-                    </select>
-                    <label for="element-text-0">Text:</label>
-                    <textarea id="element-text-0" rows="3"></textarea>
-                    <label for="subheading-level-0" class="subheading-level" style="display: none;">Header Level:</label>
-                    <select id="subheading-level-0" class="subheading-level" style="display: none;">
-                        <option value="h3">H3</option>
-                        <option value="h4">H4</option>
-                    </select>
-                    <button onclick="addElement(0)">Add Element</button>
+            <!-- Article Sections (Dropdowns) -->
+            <h2>Article Sections</h2>
+            <div id="article-container">
+                <div class="article-group" data-index="0">
+                    <label for="article-title-0">Article Title (Dropdown Label):</label>
+                    <input type="text" id="article-title-0" value="Paradise Restored">
+                    <h3>Article Content</h3>
+                    <div class="element-list" data-index="0"></div>
+                    <div class="element-input">
+                        <label for="element-type-0">Element Type:</label>
+                        <select id="element-type-0">
+                            <option value="subheading">Heading</option>
+                            <option value="content">Content</option>
+                            <option value="scripture">Scripture</option>
+                        </select>
+                        <label for="element-text-0">Text:</label>
+                        <textarea id="element-text-0" rows="3"></textarea>
+                        <label for="subheading-level-0" class="subheading-level">Header Level:</label>
+                        <select id="subheading-level-0" class="subheading-level">
+                            <option value="h2">H2</option>
+                            <option value="h3">H3</option>
+                        </select>
+                        <button onclick="addElement(0)">Add Element</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <button onclick="addArticleSection()">Add Another Article Section</button>
+            <button onclick="addArticleSection()">Add Another Article Section</button>
 
-        <!-- Generate and Preview -->
-        <button onclick="generatePage()">Generate Webpage</button>
-        <div>
-            <h3>Webpage HTML</h3>
-            <button class="copy-btn" onclick="copyHtml()">Copy HTML</button>
-            <textarea id="html-output" readonly></textarea>
+            <!-- Generate and Preview -->
+            <button onclick="generatePage()">Generate Webpage</button>
+            <div>
+                <h3>Webpage HTML</h3>
+                <button class="copy-btn" onclick="copyHtml()">Copy HTML</button>
+                <textarea id="html-output" readonly></textarea>
+            </div>
+            <div id="preview"></div>
         </div>
-        <div id="preview"></div>
-    </div>
+    </main>
     <footer>
         <p>© Just Wise Love</p>
     </footer>
@@ -317,6 +195,12 @@
         let articleCount = 1;
         let elementCounts = { 0: 0 };
         let elements = { 0: [] };
+
+        // Hamburger menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
 
         function copyHtml() {
             const htmlOutput = document.getElementById('html-output');
@@ -341,16 +225,16 @@
                 <div class="element-input">
                     <label for="element-type-${index}">Element Type:</label>
                     <select id="element-type-${index}">
-                        <option value="subheading">Subheading</option>
+                        <option value="subheading">Heading</option>
                         <option value="content">Content</option>
                         <option value="scripture">Scripture</option>
                     </select>
                     <label for="element-text-${index}">Text:</label>
                     <textarea id="element-text-${index}" rows="3"></textarea>
-                    <label for="subheading-level-${index}" class="subheading-level" style="display: none;">Subheading Level:</label>
-                    <select id="subheading-level-${index}" class="subheading-level" style="display: none;">
+                    <label for="subheading-level-${index}" class="subheading-level">Header Level:</label>
+                    <select id="subheading-level-${index}" class="subheading-level">
+                        <option value="h2">H2</option>
                         <option value="h3">H3</option>
-                        <option value="h4">H4</option>
                     </select>
                     <button onclick="addElement(${index})">Add Element</button>
                 </div>
@@ -373,7 +257,7 @@
             const value = e.target.value;
             const subheadingFields = document.querySelectorAll(`#subheading-level-${index}, label[for="subheading-level-${index}"]`);
             subheadingFields.forEach(field => {
-                field.style.display = value === 'subheading' ? 'block' : 'none';
+                field.classList.toggle('active', value === 'subheading');
             });
         }
 
@@ -399,7 +283,7 @@
                 updatePreview();
             } else {
                 alert('Text cannot be empty.');
-                renderElementList(articleIndex); // Re-render to restore previous text
+                renderElementList(articleIndex);
             }
         }
 
@@ -448,6 +332,15 @@
                             <h1>${logoText}</h1>
                         </a>
                     </div>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="webpages.html">Webpage Builder</a></li>
+                    </ul>
                 </header>
                 <main>
                     ${introScripture ? `
@@ -511,9 +404,7 @@
     <title>Just Wise Love</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <style>
-        ${document.querySelector('style').innerText}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -522,6 +413,15 @@
                 <h1>${logoText}</h1>
             </a>
         </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="webpages.html">Webpage Builder</a></li>
+        </ul>
     </header>
     <main>
         ${introScripture ? `
@@ -557,6 +457,12 @@
     <footer>
         <p>© Just Wise Love</p>
     </footer>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
             `;
@@ -566,6 +472,9 @@
             const htmlOutput = document.getElementById('html-output');
             htmlOutput.value = html;
         }
+
+        // Initialize element type listeners
+        updateElementTypeListeners();
     </script>
 </body>
 </html>
