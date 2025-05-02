@@ -6,44 +6,33 @@
     <title>Script - Just Wise Love</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
     <style>
-        body {
-            margin: 0;
-            background-color: #333;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        header {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
+        /* Game-specific styles embedded here */
         #menu, #name-entry {
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #ccc;
+            color: #333;
             margin-top: 110px;
             text-align: center;
         }
+
         #menu h1, #name-entry h1 {
             font-family: 'Audiowide', sans-serif;
             font-size: 2.5em;
+            color: #2a6626;
             margin-bottom: 20px;
+            text-transform: uppercase;
         }
-        #menu .scripture {
-            max-width: 80%;
-            line-height: 1.5;
-        }
+
         #menu .scripture-ref {
             font-size: 0.9em;
-            color: #666;
+            color: #f0f0f0;
         }
+
         .button-group {
             display: flex;
             flex-direction: row;
@@ -52,71 +41,92 @@
             margin: 10px 0;
             flex-wrap: wrap;
         }
+
         #menu button, #name-entry button {
-            margin: 0;
-            padding: 12px 25px;
-            font-size: 1.2em;
+            display: block;
+            width: 200px;
+            padding: 15px;
             font-family: 'Audiowide', sans-serif;
-            background-color: #555;
-            color: #ccc;
+            background: linear-gradient(135deg, #2a6626, #6b9e31);
             border: none;
-            border-radius: 25px;
+            color: #fff;
+            text-align: center;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+            font-size: 1.2em;
         }
+
         #menu button:hover, #name-entry button:hover {
-            background-color: #777;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #1e4b1c, #5a8a27);
+            transform: translateY(-5px);
         }
+
         #name-entry input {
             margin: 10px 0;
             padding: 10px;
             font-size: 1em;
             font-family: Arial, sans-serif;
-            background-color: #444;
-            color: #ccc;
+            background: linear-gradient(135deg, #f0f0f0, #d3d3d3);
+            color: #333;
             border: none;
             border-radius: 5px;
             width: 200px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         #game-container {
             display: none;
             flex-direction: column;
             align-items: center;
             margin-top: 110px;
+            width: 100%;
+            max-width: 800px;
         }
+
         #game-controls {
             margin-top: 10px;
             display: flex;
             gap: 10px;
+            width: 100%;
+            justify-content: center;
         }
+
         #game-controls button {
-            padding: 8px 16px;
-            font-size: 1em;
+            display: block;
+            width: 200px;
+            padding: 15px;
             font-family: 'Audiowide', sans-serif;
-            background-color: #555;
-            color: #ccc;
+            background: linear-gradient(135deg, #2a6626, #6b9e31);
             border: none;
-            border-radius: 25px;
+            color: #fff;
+            text-align: center;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+            font-size: 1em;
         }
+
         #game-controls button:hover {
-            background-color: #777;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #1e4b1c, #5a8a27);
+            transform: translateY(-5px);
         }
+
         #board {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             width: min(90vw, 90vh);
+            max-width: 600px;
             height: min(90vw, 90vh);
-            border: 2px solid #555;
-            background-color: #222;
+            border: 2px solid #2a6626;
+            background: linear-gradient(135deg, #f0f0f0, #d3d3d3);
             transform: rotate(0deg);
             transition: transform 0.5s ease;
             aspect-ratio: 1 / 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
         .square {
             display: flex;
             justify-content: center;
@@ -126,46 +136,59 @@
             user-select: none;
             aspect-ratio: 1 / 1;
         }
+
         .square span {
             display: inline-block;
             transform: rotate(0deg);
             transition: transform 0.5s ease;
         }
+
         .white-square {
             background-color: #d3d3d3;
         }
+
         .black-square {
             background-color: #808080;
         }
+
         .white-piece {
             filter: brightness(0) invert(1);
         }
+
         .black-piece {
             filter: brightness(0);
         }
+
         .selected {
             background-color: #a9a999 !important;
         }
+
         .highlight {
             background-color: #b0b0b0 !important;
         }
+
         .in-check {
-            background-color: #FFD700 !important;
+            background-color: #d4af37 !important;
         }
+
         #turn-indicator {
             margin-top: 10px;
-            color: #ccc;
+            color: #2a6626;
             font-size: 1.2em;
             font-family: 'Audiowide', sans-serif;
+            text-transform: uppercase;
         }
+
         #game-over {
             display: none;
             margin-top: 10px;
-            color: #ccc;
+            color: #2a6626;
             font-size: 1.5em;
             font-family: 'Audiowide', sans-serif;
             text-align: center;
+            text-transform: uppercase;
         }
+
         @media (max-width: 400px) {
             .square {
                 font-size: min(5vw, 5vh);
@@ -175,10 +198,6 @@
             }
             #menu h1, #name-entry h1 {
                 font-size: 2em;
-            }
-            #menu .scripture {
-                font-size: 1em;
-                max-width: 90%;
             }
             .button-group {
                 flex-direction: column;
@@ -191,6 +210,9 @@
             #name-entry input {
                 width: 150px;
             }
+            #board {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -199,6 +221,14 @@
         <div class="logo">
             <h1><a href="index.html">SCRIPT</a></h1>
         </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+        </ul>
     </header>
     <div id="menu">
         <h1>SCRIPT</h1>
@@ -236,7 +266,7 @@
         let playerNames = { white: '', black: '' };
         let gameEnded = false;
         let moveHistory = [];
-        let gameMode = ''; // 'one-player' or 'two-player'
+        let gameMode = '';
 
         function startOnePlayer() {
             gameMode = 'one-player';
@@ -267,12 +297,13 @@
                 player2Input.style.padding = '10px';
                 player2Input.style.fontSize = '1em';
                 player2Input.style.fontFamily = 'Arial, sans-serif';
-                player2Input.style.backgroundColor = '#444';
-                player2Input.style.color = '#ccc';
+                player2Input.style.background = 'linear-gradient(135deg, #f0f0f0, #d3d3d3)';
+                player2Input.style.color = '#333';
                 player2Input.style.border = 'none';
                 player2Input.style.borderRadius = '5px';
                 player2Input.style.width = '200px';
                 player2Input.style.textAlign = 'center';
+                player2Input.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
                 player1Input.after(player2Input);
             }
         }
@@ -323,7 +354,6 @@
                 }
                 board.push(row);
             }
-            // White pieces
             board[7][0] = { piece: 'watchtower', team: 'white' };
             board[7][1] = { piece: 'servant', team: 'white' };
             board[7][2] = { piece: 'elder', team: 'white' };
@@ -335,7 +365,6 @@
             for (let i = 0; i < 8; i++) {
                 board[6][i] = { piece: 'biblestudy', team: 'white' };
             }
-            // Black pieces
             board[0][0] = { piece: 'watchtower', team: 'black' };
             board[0][1] = { piece: 'servant', team: 'black' };
             board[0][2] = { piece: 'elder', team: 'black' };
@@ -356,7 +385,6 @@
             let whiteKingdomHallExists = false;
             let blackKingdomHallExists = false;
 
-            // Check if Kingdom Halls still exist
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
                     const piece = gameState[rank][file];
@@ -367,17 +395,15 @@
                 }
             }
 
-            // If a Kingdom Hall is missing, end the game
             if (!whiteKingdomHallExists) {
-                endGame('black'); // Black wins if white's Kingdom Hall is gone
+                endGame('black');
                 return;
             }
             if (!blackKingdomHallExists) {
-                endGame('white'); // White wins if black's Kingdom Hall is gone
+                endGame('white');
                 return;
             }
 
-            // Render the board
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
                     const square = document.createElement('div');
@@ -399,7 +425,6 @@
                     board.appendChild(square);
                 }
             }
-            // Rotate board only in two-player mode
             board.style.transform = gameMode === 'two-player' && currentPlayer === 'black' ? 'rotate(180deg)' : 'rotate(0deg)';
             document.querySelectorAll('.square span').forEach(piece => {
                 piece.style.transform = gameMode === 'two-player' && currentPlayer === 'black' ? 'rotate(-180deg)' : 'rotate(0deg)';
@@ -439,7 +464,7 @@
                     currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
                     selectedSquare = null;
                     clearHighlights();
-                    renderBoard(); // This will check for Kingdom Hall capture and end the game if needed
+                    renderBoard();
                     if (gameMode === 'one-player' && currentPlayer === 'black' && !gameEnded) {
                         setTimeout(computerMove, 500);
                     }
@@ -469,7 +494,7 @@
                     positionKey: JSON.stringify(gameState)
                 });
                 currentPlayer = 'white';
-                renderBoard(); // This will check for Kingdom Hall capture and end the game if needed
+                renderBoard();
             }
         }
 
@@ -589,7 +614,6 @@
             turnIndicator.style.display = 'none';
             gameOver.style.display = 'block';
             gameOver.textContent = `${playerNames[winner]} WINS!`;
-            // Ensure the board is updated to reflect the final state
             board.innerHTML = '';
             for (let rank = 0; rank < 8; rank++) {
                 for (let file = 0; file < 8; file++) {
