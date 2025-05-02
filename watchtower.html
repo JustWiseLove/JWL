@@ -32,13 +32,25 @@
             margin-bottom: 20px;
             text-align: left;
         }
-        .article-preview h3, .article-preview h4 {
+        .article-preview h3 {
             font-family: 'Audiowide', sans-serif;
             color: #2a6626;
             margin-bottom: 15px;
+            text-align: center; /* Center the Extracted Elements title */
         }
-        .article-preview p {
+        .article-preview p:not(.question) {
             color: #333;
+            margin-bottom: 15px;
+            text-align: center; /* Center the paragraph below Extracted Elements */
+        }
+        .article-preview p.question {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: left; /* Keep questions left-aligned */
+        }
+        .article-preview h4 {
+            font-family: 'Audiowide', sans-serif;
+            color: #2a6626;
             margin-bottom: 15px;
         }
         .read-more, .action-btn, .copy-btn {
@@ -116,21 +128,9 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <h1>JWL</h1>
+                <h1>WATCHTOWER</h1>
             </a>
         </div>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="activities.html">Activities</a></li>
-            <li><a href="foundation.html">Foundation</a></li>
-            <li><a href="webpages.html">Webpage Builder</a></li>
-            <li><a href="watchtower.html">Watchtower</a></li>
-        </ul>
     </header>
     <main>
         <section class="intro">
@@ -154,7 +154,6 @@
             </div>
             <div>
                 <button class="copy-btn" onclick="copyOutput()">Copy Output</button>
-                <p><a href="https://www.jw.org/en/library/magazines/" class="read-more" target="_blank">View Latest Watchtower Editions</a></p>
             </div>
         </div>
     </main>
@@ -190,7 +189,6 @@
                 !line.startsWith('FOCUS') && 
                 !line.match(/^\d+-?\d*\./) && 
                 !line.includes('Your answer') && 
-                !line.startsWith('WHEN SOMEONE OFFENDS YOU') && 
                 !line.match(/^[A-Z\s]+$/m) // Avoids section headers like "DO NOT IGNORE YOUR FEELINGS"
             );
             articleContent.title = titleCandidates[0] || '';
@@ -200,12 +198,11 @@
             articleContent.focus = focusMatch ? focusMatch[1].trim() : '';
 
             // Extract numerical questions (refined regex to capture only questions)
-            const numericalQuestionRegex = /(\d+-?\d*\.\s*(?:\([a-b]\)\s*)?(.*?)(?:\?|(?=\d+-?\d*\.|WHEN SOMEONE OFFENDS YOU|$)))/g;
+            const numericalQuestionRegex = /(\d+-?\d*\.\s*(?:\([a-b]\)\s*)?(.*?)(?:\?|(?=\d+-?\d*\.|$)))/g;
             const numericalQuestions = [];
             let match;
             while ((match = numericalQuestionRegex.exec(rawText)) !== null) {
                 let question = match[0].trim();
-                // Avoid capturing narrative lines or sub-items unless they end with a question
                 if (question.match(/\?$/) || question.includes('?')) {
                     if (!numericalQuestions.includes(question)) {
                         numericalQuestions.push(question);
@@ -214,16 +211,29 @@
             }
             articleContent.numericalQuestions = numericalQuestions;
 
-            // Extract review questions (text after "WHEN SOMEONE OFFENDS YOU, . . .")
-            const reviewQuestionRegex = /WHEN SOMEONE OFFENDS YOU, \. \. \.\s*([\s\S]*?)(?=$)/;
+            // Extract review questions (dynamic detection of the last section with questions)
             const reviewQuestions = [];
-            const reviewMatch = rawText.match(reviewQuestionRegex);
-            if (reviewMatch) {
-                reviewMatch[1].split('\n').forEach(q => {
-                    if (q.trim().endsWith('?')) reviewQuestions.push(q.trim());
-                });
+            const linesAfterQuestions = lines.slice(numericalQuestions.length > 0 ? lines.indexOf(numericalQuestions[numericalQuestions.length - 1].split('.')[0] + '.') + 1 : 0);
+            let reviewSectionStarted = false;
+            let reviewTitle = '';
+
+            for (let line of linesAfterQuestions) {
+                if (line && !line.match(/^\d+-?\d*\./) && !line.includes('Your answer') && !reviewSectionStarted) {
+                    reviewTitle = line;
+                    reviewSectionStarted = true;
+                } else if (reviewSectionStarted && line.trim().endsWith('?')) {
+                    reviewQuestions.push(line.trim());
+                }
             }
-            articleContent.reviewQuestions = reviewQuestions;
+
+            // Only set review questions if we found a valid section with at least one question
+            if (reviewTitle && reviewQuestions.length > 0) {
+                articleContent.reviewQuestions = reviewQuestions;
+                articleContent.reviewTitle = reviewTitle;
+            } else {
+                articleContent.reviewQuestions = [];
+                articleContent.reviewTitle = '';
+            }
 
             // Render preview
             renderPreview();
@@ -233,16 +243,18 @@
         function renderPreview() {
             const preview = document.getElementById('article-preview');
             preview.innerHTML = `
-                <h3>${articleContent.title}</h3>
-                <p><strong>Focus:</strong> ${articleContent.focus}</p>
+                <h3>Extracted Elements</h3>
+                <p>Paste the article text above to extract the title, focus, numerical questions, and review questions.</p>
+                ${articleContent.title ? `<h3>${articleContent.title}</h3>` : ''}
+                ${articleContent.focus ? `<p><strong>Focus:</strong> ${articleContent.focus}</p>` : ''}
                 <h4>Numerical Questions</h4>
                 ${articleContent.numericalQuestions.length ? articleContent.numericalQuestions.map(q => `
-                    <p>${q}</p>
+                    <p class="question">${q}</p>
                 `).join('') : '<p>No numerical questions extracted.</p>'}
                 <div class="review-questions">
-                    <h4>WHEN SOMEONE OFFENDS YOU, . . .</h4>
+                    <h4>${articleContent.reviewTitle || 'Review Questions'}</h4>
                     ${articleContent.reviewQuestions.length ? articleContent.reviewQuestions.map(q => `
-                        <p>${q}</p>
+                        <p class="question">${q}</p>
                     `).join('') : '<p>No review questions extracted.</p>'}
                 </div>
             `;
@@ -256,10 +268,11 @@ Title: ${articleContent.title || '[Not provided]'}
 Focus: ${articleContent.focus || '[Not provided]'}
 
 Numerical Questions:
-${articleContent.numericalQuestions.length ? articleContent.numericalQuestions.map(q => `  - ${q}`).join('\n') : '  - None'}
+${articleContent.numericalQuestions.length ? articleContent.numericalQuestions.map(q => `  ${q}`).join('\n') : '  None'}
 
 Review Questions:
-${articleContent.reviewQuestions.length ? 'WHEN SOMEONE OFFENDS YOU, . . .\n' + articleContent.reviewQuestions.map(q => `  - ${q}`).join('\n') : 'WHEN SOMEONE OFFENDS YOU, . . .\n  - None'}
+${articleContent.reviewTitle || 'Review Questions'}
+${articleContent.reviewQuestions.length ? articleContent.reviewQuestions.map(q => `  ${q}`).join('\n') : '  None'}
             `.trim();
 
             navigator.clipboard.writeText(outputText).then(() => {
