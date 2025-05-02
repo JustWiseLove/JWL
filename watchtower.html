@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Extract Watchtower article elements with Just Wise Love.">
+    <meta name="keywords" content="Watchtower, Jehovah’s Witnesses, JW.ORG, Just Wise Love">
+    <title>Watchtower Study - Just Wise Love</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .watchtower-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0f0f0, #d3d3d3);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .watchtower-container h2 {
+            font-family: 'Audiowide', sans-serif;
+            color: #2a6626;
+            margin-bottom: 20px;
+        }
+        .article-preview {
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .article-preview h3, .article-preview h4 {
+            font-family: 'Audiowide', sans-serif;
+            color: #2a6626;
+            margin-bottom: 15px;
+        }
+        .article-preview p {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .read-more, .action-btn, .copy-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #2a6626, #6b9e31);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Audiowide', sans-serif;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .copy-btn {
+            background: linear-gradient(135deg, #d4af37, #b8972e);
+            color: #333;
+        }
+        .read-more:hover, .action-btn:hover {
+            background: linear-gradient(135deg, #1e4b1c, #5a8a27);
+        }
+        .copy-btn:hover {
+            background: linear-gradient(135deg, #b8972e, #a68327);
+        }
+        .update-form {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .update-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .update-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: #fff;
+            min-height: 200px;
+        }
+        .review-questions {
+            margin-top: 20px;
+        }
+        .review-questions h4 {
+            font-family: 'Audiowide', sans-serif;
+            color: #2a6626;
+            text-transform: uppercase;
+        }
+        @media (max-width: 768px) {
+            .watchtower-container {
+                margin: 20px;
+                padding: 15px;
+            }
+            .update-form textarea {
+                min-height: 150px;
+            }
+            .action-btn, .copy-btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <h1>JWL</h1>
+            </a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="activities.html">Activities</a></li>
+            <li><a href="foundation.html">Foundation</a></li>
+            <li><a href="webpages.html">Webpage Builder</a></li>
+            <li><a href="watchtower.html">Watchtower</a></li>
+        </ul>
+    </header>
+    <main>
+        <section class="intro">
+            <div class="scripture">
+                <p><em>“Just as Jehovah freely forgave you, you must also do the same.” —Colossians 3:13</em></p>
+            </div>
+        </section>
+        <div class="watchtower-container">
+            <h2>Watchtower Study</h2>
+            <!-- Article Input -->
+            <div class="update-form">
+                <h3>Paste Watchtower Article</h3>
+                <label for="article-text">Article Text (Include Title, Focus, Questions, and Review Questions):</label>
+                <textarea id="article-text" rows="10" placeholder="Paste the full article text here"></textarea>
+                <button class="action-btn" onclick="processArticle()">Process Article</button>
+            </div>
+            <!-- Extracted Elements Preview -->
+            <div class="article-preview" id="article-preview">
+                <h3>Extracted Elements</h3>
+                <p>Paste the article text above to extract the title, focus, numerical questions, and review questions.</p>
+            </div>
+            <div>
+                <button class="copy-btn" onclick="copyOutput()">Copy Output</button>
+                <p><a href="https://www.jw.org/en/library/magazines/" class="read-more" target="_blank">View Latest Watchtower Editions</a></p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>© Just Wise Love</p>
+    </footer>
+    <script>
+        let articleContent = {
+            title: '',
+            focus: '',
+            numericalQuestions: [],
+            reviewQuestions: []
+        };
+
+        // Hamburger menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Process article text
+        function processArticle() {
+            const rawText = document.getElementById('article-text').value;
+            if (!rawText) {
+                alert('Please paste the article text.');
+                return;
+            }
+
+            // Extract title (first non-empty line, avoiding duplicates)
+            const lines = rawText.split('\n').map(line => line.trim());
+            const titleCandidates = lines.filter(line => 
+                line && 
+                !line.startsWith('FOCUS') && 
+                !line.match(/^\d+-?\d*\./) && 
+                !line.includes('Your answer') && 
+                !line.startsWith('WHEN SOMEONE OFFENDS YOU') && 
+                !line.match(/^[A-Z\s]+$/m) // Avoids section headers like "DO NOT IGNORE YOUR FEELINGS"
+            );
+            articleContent.title = titleCandidates[0] || '';
+
+            // Extract focus (text after "FOCUS" until first question, avoiding duplicates)
+            const focusMatch = rawText.match(/FOCUS\s*([\s\S]*?)(?=\d+-?\d*\.|$\n)/);
+            articleContent.focus = focusMatch ? focusMatch[1].trim() : '';
+
+            // Extract numerical questions (refined regex to capture only questions)
+            const numericalQuestionRegex = /(\d+-?\d*\.\s*(?:\([a-b]\)\s*)?(.*?)(?:\?|(?=\d+-?\d*\.|WHEN SOMEONE OFFENDS YOU|$)))/g;
+            const numericalQuestions = [];
+            let match;
+            while ((match = numericalQuestionRegex.exec(rawText)) !== null) {
+                let question = match[0].trim();
+                // Avoid capturing narrative lines or sub-items unless they end with a question
+                if (question.match(/\?$/) || question.includes('?')) {
+                    if (!numericalQuestions.includes(question)) {
+                        numericalQuestions.push(question);
+                    }
+                }
+            }
+            articleContent.numericalQuestions = numericalQuestions;
+
+            // Extract review questions (text after "WHEN SOMEONE OFFENDS YOU, . . .")
+            const reviewQuestionRegex = /WHEN SOMEONE OFFENDS YOU, \. \. \.\s*([\s\S]*?)(?=$)/;
+            const reviewQuestions = [];
+            const reviewMatch = rawText.match(reviewQuestionRegex);
+            if (reviewMatch) {
+                reviewMatch[1].split('\n').forEach(q => {
+                    if (q.trim().endsWith('?')) reviewQuestions.push(q.trim());
+                });
+            }
+            articleContent.reviewQuestions = reviewQuestions;
+
+            // Render preview
+            renderPreview();
+        }
+
+        // Render extracted elements preview (title, focus, numerical questions, review questions only)
+        function renderPreview() {
+            const preview = document.getElementById('article-preview');
+            preview.innerHTML = `
+                <h3>${articleContent.title}</h3>
+                <p><strong>Focus:</strong> ${articleContent.focus}</p>
+                <h4>Numerical Questions</h4>
+                ${articleContent.numericalQuestions.length ? articleContent.numericalQuestions.map(q => `
+                    <p>${q}</p>
+                `).join('') : '<p>No numerical questions extracted.</p>'}
+                <div class="review-questions">
+                    <h4>WHEN SOMEONE OFFENDS YOU, . . .</h4>
+                    ${articleContent.reviewQuestions.length ? articleContent.reviewQuestions.map(q => `
+                        <p>${q}</p>
+                    `).join('') : '<p>No review questions extracted.</p>'}
+                </div>
+            `;
+        }
+
+        // Copy output to clipboard with improved formatting
+        function copyOutput() {
+            const outputText = `
+Title: ${articleContent.title || '[Not provided]'}
+
+Focus: ${articleContent.focus || '[Not provided]'}
+
+Numerical Questions:
+${articleContent.numericalQuestions.length ? articleContent.numericalQuestions.map(q => `  - ${q}`).join('\n') : '  - None'}
+
+Review Questions:
+${articleContent.reviewQuestions.length ? 'WHEN SOMEONE OFFENDS YOU, . . .\n' + articleContent.reviewQuestions.map(q => `  - ${q}`).join('\n') : 'WHEN SOMEONE OFFENDS YOU, . . .\n  - None'}
+            `.trim();
+
+            navigator.clipboard.writeText(outputText).then(() => {
+                alert('Output copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>
