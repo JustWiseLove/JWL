@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Extract Watchtower article elements with Just Wise Love.">
     <meta name="keywords" content="Watchtower, Jehovah’s Witnesses, JW.ORG, Just Wise Love">
-    <title>Watchtower - Just Wise Love</title>
+    <title>Watchtower Study - Just Wise Love</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -128,9 +128,21 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <h1>WATCHTOWER</h1>
+                <h1>JWL</h1>
             </a>
         </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="activities.html">Activities</a></li>
+            <li><a href="foundation.html">Foundation</a></li>
+            <li><a href="webpages.html">Webpage Builder</a></li>
+            <li><a href="watchtower.html">Watchtower</a></li>
+        </ul>
     </header>
     <main>
         <section class="intro">
@@ -154,6 +166,7 @@
             </div>
             <div>
                 <button class="copy-btn" onclick="copyOutput()">Copy Output</button>
+                <p><a href="https://www.jw.org/en/library/magazines/" class="read-more" target="_blank">View Latest Watchtower Editions</a></p>
             </div>
         </div>
     </main>
@@ -216,13 +229,17 @@
             const linesAfterQuestions = lines.slice(numericalQuestions.length > 0 ? lines.indexOf(numericalQuestions[numericalQuestions.length - 1].split('.')[0] + '.') + 1 : 0);
             let reviewSectionStarted = false;
             let reviewTitle = '';
+            let questionCount = 0;
 
             for (let line of linesAfterQuestions) {
-                if (line && !line.match(/^\d+-?\d*\./) && !line.includes('Your answer') && !reviewSectionStarted) {
+                if (line && !line.match(/^\d+-?\d*\./) && !line.includes('Your answer') && !reviewSectionStarted && line.match(/[A-Z][A-Z\s]+/)) {
                     reviewTitle = line;
                     reviewSectionStarted = true;
-                } else if (reviewSectionStarted && line.trim().endsWith('?')) {
+                } else if (reviewSectionStarted && line.trim().endsWith('?') && questionCount < 4) { // Limit to 4 questions to avoid narrative
                     reviewQuestions.push(line.trim());
+                    questionCount++;
+                } else if (reviewSectionStarted && !line.trim().endsWith('?')) {
+                    break; // Stop at narrative or empty line
                 }
             }
 
