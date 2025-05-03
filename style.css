@@ -74,7 +74,6 @@ header {
     display: none;
     position: absolute;
     top: 80px;
-    background: linear-gradient(135deg, #2a6626, #6b9e31);
     width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
@@ -82,10 +81,12 @@ header {
 
 .nav-menu-left {
     left: 20px;
+    background: linear-gradient(135deg, #2a6626, #6b9e31);
 }
 
 .nav-menu-right {
     right: 20px;
+    background: linear-gradient(135deg, #6b9e31, #2a6626);
 }
 
 .nav-menu-left.active, .nav-menu-right.active {
