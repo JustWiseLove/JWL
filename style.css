@@ -170,7 +170,7 @@ main {
     }
 }
 
-.category {
+/*.category {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -181,6 +181,20 @@ main {
     flex-direction: column;
     justify-content: center;
     background: linear-gradient(90deg, #2a6626, #6b9e31);
+}*/
+
+.category {
+    background-color: #2a6626; /* Fallback in case the gradient fails */
+    background-image: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626); /* Use background-image for the gradient */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .category:hover {
