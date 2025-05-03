@@ -222,7 +222,7 @@ main {
     width: 100%;
     padding: 15px;
     font-family: 'Audiowide', Arial, sans-serif;
-    background: linear-gradient(90deg, #2a6626, #6b9e31);
+    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     border: none;
     color: #fff;
     text-align: center;
