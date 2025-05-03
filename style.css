@@ -180,7 +180,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: linear-gradient(90deg, #2a6626, #6b9e31);
+    background: linear-gradient(90deg, #2a6626, #6b9e31 #2a6626);
 }
 
 .category:hover {
