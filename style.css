@@ -87,6 +87,7 @@ header {
 .nav-menu-right {
     right: 20px;
     background: linear-gradient(135deg, #6b9e31, #2a6626);
+    text-align: right;
 }
 
 .nav-menu-left.active, .nav-menu-right.active {
