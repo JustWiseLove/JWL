@@ -293,6 +293,17 @@ main {
     text-align: center;
 }
 
+.describe {
+    background: linear-gradient(135deg, #2a6626, #6b9e31); /* Same green gradient as header */
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 8px;
+    font-style: italic;
+    color: #fff;
+    max-width: 800px;
+    text-align: center;
+}
+
 footer {
     background: linear-gradient(135deg, #2a6626, #6b9e31); /* Same green gradient as header */
     text-align: center;
