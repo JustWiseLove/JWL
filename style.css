@@ -12,7 +12,7 @@ body {
 }
 
 header {
-    background: linear-gradient(90deg, #2a6626, #6b9e31 #2a6626) !important;
+    background: linear-gradient(90deg, #2a6626, #6b9e31);
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -81,12 +81,12 @@ header {
 
 .nav-menu-left {
     left: 20px;
-    background: linear-gradient(90deg, #2a6626, #6b9e31) !important;
+    background: linear-gradient(90deg, #2a6626, #6b9e31);
 }
 
 .nav-menu-right {
     right: 20px;
-    background: linear-gradient(90deg, #6b9e31, #2a6626) !important;
+    background: linear-gradient(90deg, #6b9e31, #2a6626);
     text-align: right;
 }
 
@@ -118,7 +118,7 @@ main {
 }
 
 .intro {
-    background: linear-gradient(90deg, #f0f0f0, #d3d3d3, #f0f0f0) !important;
+    background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
     padding: 20px 0;
     margin-bottom: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -180,7 +180,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: linear-gradient(90deg, #2a6626, #6b9e31 #2a6626) !important;
+    background: linear-gradient(90deg, #2a6626, #6b9e31);
 }
 
 .category:hover {
@@ -222,7 +222,7 @@ main {
     width: 100%;
     padding: 15px;
     font-family: 'Audiowide', Arial, sans-serif;
-    background: linear-gradient(90deg, #2a6626, #6b9e31 #2a6626) !important;
+    background: linear-gradient(90deg, #2a6626, #6b9e31);
     border: none;
     color: #fff;
     text-align: center;
@@ -232,12 +232,12 @@ main {
 }
 
 .item-button:hover {
-    background: linear-gradient(90deg, #1e4b1c, #5a8a27, #1e4b1c) !important;
+    background: linear-gradient(90deg, #1e4b1c, #5a8a27);
 }
 
 .item-content {
     padding: 20px;
-    background: linear-gradient(90deg, #f0f0f0, #d3d3d3, #f0f0f0) !important;
+    background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
     border-radius: 0 0 5px 5px;
     text-align: center;
 }
@@ -287,7 +287,7 @@ main {
 }
 
 .scripture {
-    background: linear-gradient(90deg, #2a6626, #6b9e31 #2a6626) !important;
+    background: linear-gradient(90deg, #2a6626, #6b9e31);
     padding: 15px;
     margin: 10px auto;
     border-radius: 8px;
@@ -298,7 +298,7 @@ main {
 }
 
 .describe {
-    background: linear-gradient(90deg, #f0f0f0, #d3d3d3, #f0f0f0) !important;
+    background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
     padding: 15px;
     margin: 10px auto;
     border-radius: 8px;
@@ -309,7 +309,7 @@ main {
 }
 
 footer {
-    background: linear-gradient(90deg, #2a6626, #6b9e31 #2a6626) !important;
+    background: linear-gradient(90deg, #2a6626, #6b9e31);
     text-align: center;
     padding: 20px;
     color: #fff;
