@@ -39,7 +39,7 @@ header {
     font-family: 'Audiowide', sans-serif;
     color: #fff;
     font-size: 48px;
-    text-align: center;
+    text-align: center!important;
     margin: 0;
 }
 
