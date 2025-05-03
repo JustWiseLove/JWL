@@ -35,17 +35,23 @@ header {
     color: #fff;
 }
 
+.logos {
+  display: flex;
+  justify-content: center; /* Centers the logo horizontally */
+  width: 100%; /* Ensures it takes full width to allow centering */
+}
+
 .logos h1 {
-    font-family: 'Audiowide', sans-serif;
-    color: #fff;
-    font-size: 48px;
-    text-align: center!important;
-    margin: 0;
+  font-family: 'Audiowide', sans-serif;
+  color: #fff;
+  font-size: 48px;
+  text-align: center; /* Centers text within h1 */
+  margin: 0;
 }
 
 .logos a {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 
 /* Hamburger Menu */
