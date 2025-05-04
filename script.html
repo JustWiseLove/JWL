@@ -83,6 +83,7 @@
             margin-top: 50px;
             width: 100%;
             max-width: 800px;
+            padding: 20px; /* Added padding to contain the board */
         }
 
         #game-controls {
@@ -116,15 +117,16 @@
         #board {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
-            width: min(90vw, 90vh);
+            width: min(90vw, 90vh, 600px); /* Constrain width */
             max-width: 600px;
-            height: min(90vw, 90vh);
+            height: min(90vw, 90vh, 600px); /* Constrain height */
             border: 2px solid #2a6626;
             background: linear-gradient(135deg, #f0f0f0, #d3d3d3);
             transform: rotate(0deg);
             transition: transform 0.5s ease;
             aspect-ratio: 1 / 1;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto; /* Center horizontally */
         }
 
         .square {
