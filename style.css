@@ -324,9 +324,10 @@ main {
     margin-left: 0;
     margin-right: 0;
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #2a6626;
+    color: #2a6626 !important;
     font-size: 1.5em;
     text-transform: uppercase;
+    text-decoration: none;
 }
 
 .item-content h2:first-of-type {
