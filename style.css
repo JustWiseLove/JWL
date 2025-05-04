@@ -75,7 +75,6 @@ header {
     position: absolute;
     top: 80px;
     width: 200px;
-    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
     border-radius: 5px;
 }
 
@@ -147,14 +146,9 @@ main {
     text-align: center;
 }
 
-.featured-article .item-content {
-    color: #333; /* Or any dark color that contrasts with the background */
-}
-
 .article-preview {
     max-width: 800px;
     margin: 0 auto;
-    color: #fff;
 }
 
 .article-preview i {
@@ -168,9 +162,11 @@ main {
     font-size: 28px;
     margin-bottom: 15px;
     text-transform: uppercase;
+    color: #fff;
 }
 
-.article-preview p {
+/* New class for the specific <p> in article-preview */
+.preview-text {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 20px;
@@ -180,7 +176,7 @@ main {
 .read-more {
     display: inline-block;
     padding: 10px 20px;
-    background: linear-gradient(90deg, #5a8a27, #1e4b1c, #5a8a27);
+    background: linear-gradient(90deg, #1e4b1c, #5a8a27);
     color: #fff;
     text-decoration: none;
     font-family: 'Audiowide', Arial, sans-serif;
@@ -189,7 +185,7 @@ main {
 }
 
 .read-more:hover {
-    background: linear-gradient(90deg, #6b9e31);
+    background: linear-gradient(90deg, #2a6626, #6b9e31);
     transform: translateY(-2px);
 }
 
@@ -202,7 +198,7 @@ main {
         font-size: 24px;
     }
 
-    .article-preview p {
+    .preview-text {
         font-size: 14px;
     }
 
@@ -244,8 +240,8 @@ main {
 }
 
 .category {
-    background-color: #2a6626; /* Fallback in case the gradient fails */
-    background-image: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626); /* Use background-image for the gradient */
+    background-color: #2a6626;
+    background-image: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -306,7 +302,7 @@ main {
 }
 
 .item-button:hover {
-    background: linear-gradient(90deg, #6b9e31);
+    background: linear-gradient(90deg, #1e4b1c, #5a8a27);
 }
 
 .item-content {
@@ -314,6 +310,11 @@ main {
     background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
     border-radius: 0 0 5px 5px;
     text-align: center;
+    color: #333; /* Ensure default text color */
+}
+
+.item-content p {
+    color: #333; /* Explicitly set for <p> elements */
 }
 
 .item-content h2 {
@@ -369,6 +370,10 @@ main {
     color: #fff;
     max-width: 800px;
     text-align: center;
+}
+
+.item-content .scripture {
+    color: #333; /* Override white text for scripture inside item-content */
 }
 
 .describe {
