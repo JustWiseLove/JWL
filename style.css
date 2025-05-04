@@ -147,6 +147,10 @@ main {
     text-align: center;
 }
 
+.featured-article .item-content {
+    color: #333; /* Or any dark color that contrasts with the background */
+}
+
 .article-preview {
     max-width: 800px;
     margin: 0 auto;
