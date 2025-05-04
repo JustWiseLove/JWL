@@ -47,27 +47,30 @@ header {
     background: none;
     border: none;
     outline: none;
+    width: 25px; /* Match the original width */
+    text-align: center;
 }
 
+.hamburger-left i, .hamburger-right i {
+    font-size: 24px; /* Adjust size to match the original hamburger */
+    color: #fff; /* Match your header text color */
+    transition: transform 0.3s; /* Optional: for animation */
+}
+
+.hamburger-left.active i, .hamburger-right.active i {
+    transform: rotate(90deg); /* Optional: rotate on click for animation */
+}
+
+/* Remove span-specific styling since we're using Font Awesome icons */
 .hamburger-left span, .hamburger-right span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    margin: 5px 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: none;
 }
 
-.hamburger-left.active span:nth-child(1), .hamburger-right.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger-left.active span:nth-child(2), .hamburger-right.active span:nth-child(2) {
-    opacity: 0;
-}
-
+/* Remove the animations for the hamburger lines since we're using icons */
+.hamburger-left.active span:nth-child(1), .hamburger-right.active span:nth-child(1),
+.hamburger-left.active span:nth-child(2), .hamburger-right.active span:nth-child(2),
 .hamburger-left.active span:nth-child(3), .hamburger-right.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
+    display: none;
 }
 
 .nav-menu-left, .nav-menu-right {
@@ -324,16 +327,9 @@ main {
     margin-left: 0;
     margin-right: 0;
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #2a6626 !important;
+    color: #2a6626;
     font-size: 1.5em;
     text-transform: uppercase;
-    text-decoration: none;
-}
-
-.item-content pre {
-    font-family: 'Audiowide', Arial, sans-serif;
-    font-size: 1.5rem;
-    color: #2a6626 !important;
 }
 
 .item-content h2:first-of-type {
