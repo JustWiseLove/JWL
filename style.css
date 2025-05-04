@@ -180,7 +180,7 @@ main {
 .read-more {
     display: inline-block;
     padding: 10px 20px;
-    background: linear-gradient(90deg, #1e4b1c, #5a8a27);
+    background: linear-gradient(90deg, #5a8a27, #1e4b1c, #5a8a27);
     color: #fff;
     text-decoration: none;
     font-family: 'Audiowide', Arial, sans-serif;
@@ -189,7 +189,7 @@ main {
 }
 
 .read-more:hover {
-    background: linear-gradient(90deg, #2a6626, #6b9e31);
+    background: linear-gradient(90deg, #6b9e31);
     transform: translateY(-2px);
 }
 
@@ -242,19 +242,6 @@ main {
         grid-template-columns: repeat(4, 1fr);
     }
 }
-
-/*.category {
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: linear-gradient(90deg, #2a6626, #6b9e31);
-}*/
 
 .category {
     background-color: #2a6626; /* Fallback in case the gradient fails */
@@ -319,7 +306,7 @@ main {
 }
 
 .item-button:hover {
-    background: linear-gradient(90deg, #1e4b1c, #5a8a27);
+    background: linear-gradient(90deg, #6b9e31);
 }
 
 .item-content {
