@@ -367,13 +367,14 @@ main {
     margin: 10px auto;
     border-radius: 8px;
     font-style: italic;
-    color: #fff;
+    color: #fff; /* Default white text */
     max-width: 800px;
     text-align: center;
 }
 
+/* Ensure scripture text inside item-content remains white */
 .item-content .scripture {
-    color: #333; /* Override white text for scripture inside item-content */
+    color: #fff;
 }
 
 .describe {
@@ -382,7 +383,7 @@ main {
     margin: 10px auto;
     border-radius: 8px;
     font-style: italic;
-    color: #000000;
+    color: #333; /* Updated to match item-content */
     max-width: 800px;
     text-align: center;
 }
