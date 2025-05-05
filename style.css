@@ -205,6 +205,10 @@ main {
     .read-more {
         padding: 8px 16px;
     }
+
+    .logo h1 {
+        font-size: 42px;
+    }
 }
 
 .categories-container {
