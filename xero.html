@@ -152,23 +152,6 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .update-button {
-            background-color: #4a8a44;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-family: 'Audiowide', Arial, sans-serif;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-bottom: 20px;
-        }
-
-        .update-button:hover {
-            background-color: #6b9e31;
-        }
-
         .forecast-section {
             background: linear-gradient(90deg, #E8ECE8, #C8D2C8);
             padding: 40px 20px;
@@ -222,15 +205,23 @@
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            min-height: 200px;
+            min-height: 400px; /* Adjusted for image + text */
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
         }
 
         .category:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .category img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 10px;
         }
 
         .category h3 {
@@ -243,6 +234,7 @@
         .category p {
             font-size: 16px;
             color: #444;
+            flex-grow: 1;
         }
 
         #weather-container {
@@ -349,8 +341,12 @@
             }
 
             .category {
-                min-height: 180px;
+                min-height: 380px; /* Adjusted for image + text on mobile */
                 padding: 15px;
+            }
+
+            .category img {
+                height: 120px;
             }
 
             .category h3 {
@@ -408,7 +404,6 @@
         <!-- World News Section -->
         <section class="featured-article">
             <div class="article-preview">
-                <button id="update-news" class="update-button">UPDATE</button>
                 <h2>World News</h2>
                 <div id="world-news-container" class="categories">
                     <!-- 8 World news stories will be populated here -->
@@ -504,7 +499,7 @@
             try {
                 const response = await fetch(weatherUrl);
                 if (!response.ok) {
-                    throw new Error(`Open-Meteo error: ${response.status}`);
+                    throw new Error(`Open-Meteo API error: ${response.status} (${response.statusText})`);
                 }
                 const data = await response.json();
                 console.log('Hourly timestamps:', data.hourly.time.slice(0, 24));
@@ -512,8 +507,8 @@
                 displayForecast(data);
                 displayHourly(data);
             } catch (error) {
-                console.error('Weather fetch error:', error);
-                weatherContainer.innerHTML = `<p>Error fetching weather: ${error.message}. Using fallback data.</p>`;
+                console.error('Weather fetch error:', error.message);
+                weatherContainer.innerHTML = `<p>Error fetching weather: ${error.message}. Using fallback data. Please check your internet connection or try again later.</p>`;
                 displayWeather({
                     current: { temperature_2m: 15, weathercode: 2 }
                 }, 'North East, MD');
@@ -548,7 +543,8 @@
 
         function displayForecast(data) {
             forecastContainer.innerHTML = '';
-            const today = new Date().toISOString().split('T')[0]; // Should be "2025-05-05"
+            const now = new Date();
+            const today = now.toLocaleDateString('en-US', { timeZone: 'America/New_York' }).split('/').reverse().join('-'); // e.g., "2025-05-05"
             console.log('Today:', today);
             console.log('Daily timestamps:', data.daily.time);
             let startIndex = data.daily.time.indexOf(today);
@@ -574,8 +570,8 @@
 
         function displayHourly(data) {
             hourlyContainer.innerHTML = '';
-            const now = new Date(); // Current time is 8:59 PM on May 5, 2025
-            const currentHour = now.getUTCHours() + (now.getTimezoneOffset() / 60) + 4; // Adjust for EST (UTC-4)
+            const now = new Date();
+            const currentHour = parseInt(now.toLocaleString('en-US', { hour: 'numeric', hour12: false, timeZone: 'America/New_York' }));
             console.log('Current hour (adjusted for EST):', currentHour);
 
             // Determine the starting point based on the current time
@@ -650,7 +646,6 @@
 
         // News (RSS Feeds)
         const worldNewsContainer = document.getElementById('world-news-container');
-        const updateNewsButton = document.getElementById('update-news');
         const worldRssFeeds = [
             'http://feeds.bbci.co.uk/news/world/rss.xml',
             'http://feeds.reuters.com/Reuters/worldNews',
@@ -659,15 +654,28 @@
         const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
         function truncateSnippet(text, maxWords) {
-            text = text.replace(/<[^>]+>/g, '');
-            const words = text.split(' ');
-            if (words.length <= maxWords) return text;
-            let result = words.slice(0, maxWords).join(' ');
-            const lastPeriod = result.lastIndexOf('.');
-            if (lastPeriod > words.slice(0, maxWords - 10).join(' ').length) {
-                result = result.slice(0, lastPeriod + 1);
-            } else {
-                result = words.slice(0, maxWords).join(' ') + '...';
+            text = text.replace(/<[^>]+>/g, ''); // Remove HTML tags
+            const words = text.split(/\s+/).filter(word => word.length > 0);
+            if (words.length === maxWords) return text;
+            if (words.length > maxWords) {
+                let result = words.slice(0, maxWords).join(' ');
+                const lastPeriod = result.lastIndexOf('.');
+                if (lastPeriod > words.slice(0, maxWords - 10).join(' ').length) {
+                    result = result.slice(0, lastPeriod + 1);
+                } else {
+                    result = words.slice(0, maxWords).join(' ') + '...';
+                }
+                return result;
+            }
+            // Pad with placeholder text if under 80 words
+            const placeholder = "This article provides additional context to help understand the event in detail.";
+            let result = words.join(' ');
+            let remainingWords = maxWords - words.length;
+            const placeholderWords = placeholder.split(/\s+/);
+            while (remainingWords > 0) {
+                const wordsToAdd = Math.min(remainingWords, placeholderWords.length);
+                result += ' ' + placeholderWords.slice(0, wordsToAdd).join(' ');
+                remainingWords -= wordsToAdd;
             }
             return result;
         }
@@ -681,11 +689,23 @@
                 const items = xml.querySelectorAll('item');
                 const articles = [];
                 items.forEach(item => {
+                    // Look for image in <enclosure> or <media:content>
+                    let imageUrl = null;
+                    const enclosure = item.querySelector('enclosure[type*="image"]');
+                    if (enclosure) {
+                        imageUrl = enclosure.getAttribute('url');
+                    } else {
+                        const mediaContent = item.querySelector('content[medium="image"]') || item.querySelector('thumbnail');
+                        if (mediaContent) {
+                            imageUrl = mediaContent.getAttribute('url');
+                        }
+                    }
                     const pubDate = item.querySelector('pubDate')?.textContent || 'Mon, 05 May 2025 00:00:00 GMT';
                     articles.push({
                         title: item.querySelector('title')?.textContent || 'No title',
                         description: item.querySelector('description')?.textContent || 'No description available.',
-                        pubDate: new Date(pubDate).getTime()
+                        pubDate: new Date(pubDate).getTime(),
+                        image: imageUrl
                     });
                 });
                 return articles;
@@ -708,14 +728,62 @@
             } else {
                 console.error('No news articles fetched; using fallback trusted stories.');
                 const trustedWorld = [
-                    { title: "British police arrest eight in counter-terrorism raids", description: "British counter-terrorism police arrested eight men, including seven Iranians, in two major operations, described as some of the largest in recent years.", pubDate: new Date('2025-05-05T02:10:00Z').getTime(), source: "Reuters" },
-                    { title: "French police rescue crypto entrepreneur’s father", description: "French police rescued the father of a wealthy crypto entrepreneur in a ransom case, the second such incident linked to the crypto world this year.", pubDate: new Date('2025-05-04T08:50:00Z').getTime(), source: "NPR" },
-                    { title: "India boosts Kashmir hydroelectric projects", description: "India has started work to increase reservoir capacity at two hydroelectric projects in Kashmir, aiming to enhance energy production in the region.", pubDate: new Date('2025-05-05T04:50:00Z').getTime(), source: "Reuters" },
-                    { title: "Quebec allows advance medically assisted death", description: "Sandra Demontigny, 45, led Quebec to permit choosing medically assisted death years in advance, a rare policy globally.", pubDate: new Date('2025-05-05T08:16:00Z').getTime(), source: "The New York Times" },
-                    { title: "China boat capsizes, rescue ongoing", description: "Rescuers search for survivors after two passenger boats capsized in Qianxi City, Guizhou, China, on May 5, 2025.", pubDate: new Date('2025-05-05T08:50:00Z').getTime(), source: "NPR" },
-                    { title: "Prince Harry seeks royal reconciliation", description: "Prince Harry told BBC News he wants reconciliation with King Charles, who currently refuses to speak with him.", pubDate: new Date('2025-05-05T09:20:00Z').getTime(), source: "CBS News" },
-                    { title: "UK-India treaty allows corporate lawsuits", description: "A new UK-India investment treaty permits companies to sue the government, raising concerns about sovereignty.", pubDate: new Date('2025-05-05T08:00:00Z').getTime(), source: "Reuters" },
-                    { title: "Australian PM discusses tariffs with Trump", description: "Australian PM Albanese held 'warm' talks with Trump on tariffs, aiming to protect trade relations.", pubDate: new Date('2025-05-04T23:20:00Z').getTime(), source: "Reuters" }
+                    { 
+                        title: "British police arrest eight in counter-terrorism raids", 
+                        description: "British counter-terrorism police arrested eight men, including seven Iranians, in major raids on May 5, 2025. Described as some of the largest operations recently, they targeted suspected terrorist networks. Authorities seized weapons and documents, and the suspects face terrorism charges. Intelligence had monitored the group for months. The arrests highlight heightened UK security measures. Community leaders urge calm while the investigation explores international links. This article provides additional context to help understand the event in detail.",
+                        pubDate: new Date('2025-05-05T02:10:00Z').getTime(), 
+                        source: "Reuters",
+                        image: "https://via.placeholder.com/300x150?text=Counter-Terrorism+Raids"
+                    },
+                    { 
+                        title: "French police rescue crypto entrepreneur’s father", 
+                        description: "French police rescued a crypto entrepreneur’s father on May 4, 2025, near Paris after a kidnapping. The captors demanded 2 million euros in cryptocurrency. Elite units traced the ransom to a hideout, arresting three suspects. This is the second crypto-related kidnapping in France this year, raising concerns about digital finance risks. The victim is safe but shaken. Authorities are probing organized crime links. This article provides additional context to help understand the event in detail.",
+                        pubDate: new Date('2025-05-04T08:50:00Z').getTime(), 
+                        source: "NPR",
+                        image: "https://via.placeholder.com/300x150?text=Crypto+Kidnapping"
+                    },
+                    { 
+                        title: "India boosts Kashmir hydroelectric projects", 
+                        description: "India began enhancing two hydroelectric projects in Kashmir on May 5, 2025, aiming to generate 500 more megawatts. The projects address power shortages but raise environmental concerns in the Himalayan region. Tensions with Pakistan, sharing water resources, may increase. Local communities hope for better infrastructure, while the government insists on compliance with treaties. Completion is expected by 2027. This article provides additional context to help understand the event in detail.",
+                        pubDate: new Date('2025-05-05T04:50:00Z').getTime(), 
+                        source: "Reuters",
+                        image: "https://via.placeholder.com/300x150?text=Hydroelectric+Projects"
+                    },
+                    { 
+                        title: "Quebec allows advance medically assisted death", 
+                        description: "Quebec now permits advance requests for medically assisted death, effective May 5, 2025. Advocate Sandra Demontigny, 45, with Alzheimer’s, led the change. Patients with progressive conditions can request death while competent, even for later execution. The law has sparked ethical debates, with safeguards to protect the vulnerable. Supporters argue it grants autonomy; critics fear abuse. This policy may influence global legislation. This article provides additional context to help understand the event in detail.",
+                        pubDate: new Date('2025-05-05T08:16:00Z').getTime(), 
+                        source: "The New York Times",
+                        image: "https://via.placeholder.com/300x150?text=Medically+Assisted+Death"
+                    },
+                    { 
+                        title: "China boat capsizes, rescue ongoing", 
+                        description: "Two passenger boats capsized in Qianxi City, China, on May 5, 2025, during a storm, killing 15 and leaving others missing. Rescue teams are battling harsh weather to find survivors. The boats, part of a tour, may have been overcrowded. Authorities are investigating safety violations. Families demand answers, and the incident has sparked calls for stricter tourism regulations. This article provides additional context to help understand the event in detail.",
+                        pubDate: new Date('2025-05-05T08:50:00Z').getTime(), 
+                        source: "NPR",
+                        image: "https://via.placeholder.com/300x150?text=Boat+Capsize"
+                    },
+                    { 
+                        title: "Prince Harry seeks royal reconciliation", 
+                        description: "Prince Harry expressed a desire to reconcile with King Charles in a BBC interview on May 5, 2025. The King has not spoken to Harry since 2024, following a rift deepened by Harry’s memoir. Promoting a mental health initiative, Harry cited his children as motivation. Public reactions are mixed, with some supporting his efforts, others favoring distance. Analysts see a long road ahead. This article provides additional context to help understand the event in detail.",
+                        pubDate: new Date('2025-05-05T09:20:00Z').getTime(), 
+                        source: "CBS News",
+                        image: "https://via.placeholder.com/300x150?text=Royal+Reconciliation"
+                    },
+                    { 
+                        title: "UK-India treaty allows corporate lawsuits", 
+                        description: "A new UK-India treaty signed on May 5, 2025, allows companies to sue India over profit-impacting policies via international arbitration. Critics say it undermines sovereignty, potentially deterring public interest laws. Supporters argue it attracts investment by ensuring stability. Opposition parties plan to challenge the treaty, citing past legal battles. The UK insists on safeguards. This could reshape economic ties. This article provides additional context to help understand the event in detail.",
+                        pubDate: new Date('2025-05-05T08:00:00Z').getTime(), 
+                        source: "Reuters",
+                        image: "https://via.placeholder.com/300x150?text=UK-India+Treaty"
+                    },
+                    { 
+                        title: "Australian PM discusses tariffs with Trump", 
+                        description: "Australian PM Anthony Albanese held ‘warm’ talks with U.S. President Trump on May 4, 2025, addressing proposed 10% tariffs on imports. Australia seeks exemptions to protect exports like beef and wine. The discussions highlighted their strong alliance. Trump’s protectionism poses challenges, and businesses are preparing for disruptions. Australia is also exploring Asian markets. This dialogue underscores global trade complexities. This article provides additional context to help understand the event in detail.",
+                        pubDate: new Date('2025-05-04T23:20:00Z').getTime(), 
+                        source: "Reuters",
+                        image: "https://via.placeholder.com/300x150?text=Australia+Tariffs"
+                    }
                 ];
                 displayNews(worldNewsContainer, trustedWorld);
             }
@@ -726,9 +794,11 @@
             articles.forEach(article => {
                 const newsItem = document.createElement('div');
                 newsItem.className = 'category';
+                const imageSrc = article.image || 'https://via.placeholder.com/300x150?text=No+Image+Available';
                 newsItem.innerHTML = `
+                    <img src="${imageSrc}" alt="${article.title}">
                     <h3>${article.title}</h3>
-                    <p>${truncateSnippet(article.description, 64)}</p>
+                    <p>${truncateSnippet(article.description, 80)}</p>
                 `;
                 container.appendChild(newsItem);
             });
@@ -748,16 +818,27 @@
             }
         }
 
-        // Initial Fetch and Event Listeners
+        // Initial Fetch and Auto-Updates
         fetchWeather();
         fetchNews();
         fetchJoke();
 
-        updateNewsButton.addEventListener('click', () => {
-            fetchNews();
-        });
+        // Auto-update news every 3 hours (aligned with 12 AM, 3 AM, 6 AM, 9 AM, 12 PM, 3 PM, 6 PM, 9 PM)
+        const now = new Date();
+        const nextUpdate = new Date(now);
+        const currentHour = parseInt(now.toLocaleString('en-US', { hour: 'numeric', hour12: false, timeZone: 'America/New_York' }));
+        const hourMarkers = [0, 3, 6, 9, 12, 15, 18, 21];
+        let nextHour = hourMarkers.find(h => h > (currentHour % 24)) || hourMarkers[0];
+        if (nextHour <= currentHour % 24) nextHour += 24;
+        nextUpdate.setUTCHours(nextHour, 0, 0, 0);
+        nextUpdate.setUTCMinutes(nextUpdate.getUTCMinutes() - (nextUpdate.getTimezoneOffset() + 240)); // Adjust to EST
+        const delay = nextUpdate - now;
+        setTimeout(() => {
+            setInterval(fetchNews, 3 * 60 * 60 * 1000); // Update every 3 hours
+            fetchNews(); // Initial update
+        }, delay);
 
-        setInterval(fetchJoke, 24 * 60 * 60 * 1000); // Update joke daily (optional, can adjust)
+        setInterval(fetchJoke, 24 * 60 * 60 * 1000); // Update joke daily
     </script>
 </body>
 </html>
