@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Command Center - Just Wise Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+        th {
+            background: linear-gradient(90deg, #2a6626, #6b9e31);
+            color: #fff;
+            font-family: 'Audiowide', Arial, sans-serif;
+        }
+
+        tr:nth-child(even) {
+            background: #e8e8e8;
+        }
+
+        .good {
+            color: green;
+            font-weight: bold;
+        }
+
+        .caution {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .danger {
+            color: red;
+            font-weight: bold;
+        }
+
+        #safety-content {
+            display: none; /* Hidden by default */
+        }
+
+        #safety-content.active {
+            display: block; /* Shown when toggled */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="hamburger-left">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="logo">
+            <a href="/"><h1>DCS</h1></a>
+        </div>
+        <button class="hamburger-right">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu-left">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="nav-menu-right">
+            <li><a href="#">Weather Tips</a></li>
+            <li><a href="#">Drone Safety</a></li>
+            <li><a href="#">FAQ</a></li>
+        </ul>
+    </header>
+    <main>
+        <section class="intro">
+            <div class="intro-content">
+                <h2>Welcome to Your Drone Command Center</h2>
+                <p>Fly your drone with confidence in Port Deposit, MD, using our real-time weather reports. Stay informed about wind speeds, gusts, and severe weather alerts to ensure safe and successful flights.</p>
+            </div>
+        </section>
+        <div class="item">
+            <div class="item-content">
+                <h2>Weather Advisory</h2>
+                <p><strong>NWS Alert:</strong> <span id="advisory-text">Loading...</span></p>
+                <p><strong>Drone Flying Impact:</strong> <span id="advisory-impact">Loading...</span></p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-content">
+                <h2>Current Conditions</h2>
+                <p><strong>Wind Speed:</strong> <span id="wind-speed">Loading...</span> mph</p>
+                <p><strong>Wind Gusts:</strong> <span id="wind-gusts">Loading...</span> mph</p>
+                <p><strong>Wind Direction:</strong> <span id="wind-direction">Loading...</span></p>
+                <p><strong>Drone Flight Recommendation:</strong> <span id="flight-recommendation">Loading...</span></p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-content">
+                <h2>Hourly Forecast (Next 12 Hours)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Wind Speed (mph)</th>
+                            <th>Wind Gusts (mph)</th>
+                            <th>Flight Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hourly-body"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-content">
+                <h2>10-Day Forecast</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Wind Speed (mph)</th>
+                            <th>Flight Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="daily-body"></tbody>
+                </table>
+            </div>
+        </div>
+        <section class="featured-article">
+            <div class="article-preview">
+                <i class="fas fa-cloud-showers-heavy"></i>
+                <h2>Drone Flying Safety Tips</h2>
+                <p class="preview-text">Ensure safe drone operations with these key tips: Always check wind conditions with a local anemometer, avoid flying during thunderstorms or heavy rain, and use our 10-day forecast to plan flights on calm days.</p>
+                <button class="read-more" onclick="toggleSafetyContent()">Read More</button>
+            </div>
+        </section>
+        <div class="item" id="safety-content">
+            <div class="item-content">
+                <h2>FAA Drone Safety Guidelines</h2>
+                <h3>Airspace Regulations</h3>
+                <p>Operate in Class G (uncontrolled) airspace unless you obtain FAA authorization for Class B, C, D, or E airspace. Use apps like B4UFLY to check airspace restrictions and avoid airports, heliports, or restricted areas like stadiums and military zones.</p>
+                <h3>Operational Limits</h3>
+                <p>Keep your drone below 400 feet above ground level, maintain visual line-of-sight at all times, and avoid flying over people, moving vehicles, or at night without a waiver. Maximum speed is 100 mph, and drones must weigh less than 55 lbs (including payload).</p>
+                <h3>Preflight Inspections</h3>
+                <p>Before every flight, check your drone’s battery, propellers, motors, and sensors for damage. Verify weather conditions (e.g., wind, visibility) and ensure no Temporary Flight Restrictions (TFRs) are in effect. Register drones over 250 grams with the FAA.</p>
+                <h3>Emergency Procedures</h3>
+                <p>In case of lost link or low battery, set your drone to Return-to-Home (RTH) mode if available, or land safely in a clear area. Avoid flying near emergency response activities (e.g., wildfires, accidents). Report any incidents causing injury or over $500 in damage to the FAA within 10 days.</p>
+                <h3>Pilot Responsibilities</h3>
+                <p>Maintain your Part 107 Remote Pilot Certificate by passing recurrent training every 24 months. Never operate recklessly or under the influence of drugs/alcohol. Yield right-of-way to manned aircraft and prioritize safety in all operations.</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Data provided by <a href="https://www.weather.gov/" style="color: #d4af37; text-decoration: none;">National Weather Service</a> and <a href="https://open-meteo.com/" style="color: #d4af37; text-decoration: none;">Open-Meteo</a>. Always verify conditions with a local anemometer before flying.</p>
+    </footer>
+    <script>
+        // Coordinates for Port Deposit, MD
+        const LAT = 39.6048;
+        const LNG = -76.1152;
+
+        // Hamburger menu toggle
+        document.querySelector('.hamburger-left').addEventListener('click', () => {
+            document.querySelector('.nav-menu-left').classList.toggle('active');
+            document.querySelector('.hamburger-left').classList.toggle('active');
+        });
+
+        document.querySelector('.hamburger-right').addEventListener('click', () => {
+            document.querySelector('.nav-menu-right').classList.toggle('active');
+            document.querySelector('.hamburger-right').classList.toggle('active');
+        });
+
+        // Toggle safety content
+        function toggleSafetyContent() {
+            const safetyContent = document.getElementById('safety-content');
+            safetyContent.classList.toggle('active');
+        }
+
+        // Function to convert wind direction to cardinal direction
+        function degreesToDirection(direction) {
+            if (typeof direction === 'string' || !direction) {
+                return direction || 'Unknown'; // Handle undefined or string input
+            }
+            const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+            const index = Math.round(direction / 22.5) % 16;
+            return directions[index] || 'Unknown';
+        }
+
+        // Function to determine drone flight recommendation
+        function getFlightRecommendation(windSpeed, windGusts = null, hasSevereWeather = false) {
+            if (hasSevereWeather) {
+                return { text: 'Not Safe to Fly (Severe Weather)', class: 'danger' };
+            }
+            if (windGusts !== null && windGusts !== 'N/A' && !isNaN(windGusts)) {
+                if (windSpeed <= 15 && windGusts <= 20) {
+                    return { text: 'Good to Fly', class: 'good' };
+                } else if (windSpeed <= 24 && windGusts <= 30) {
+                    return { text: 'Fly with Caution', class: 'caution' };
+                } else {
+                    return { text: 'Not Safe to Fly', class: 'danger' };
+                }
+            } else if (!isNaN(windSpeed)) {
+                if (windSpeed <= 15) {
+                    return { text: 'Good to Fly', class: 'good' };
+                } else if (windSpeed <= 24) {
+                    return { text: 'Fly with Caution', class: 'caution' };
+                } else {
+                    return { text: 'Not Safe to Fly', class: 'danger' };
+                }
+            }
+            return { text: 'Unable to Assess', class: '' }; // Fallback for invalid data
+        }
+
+        // Function to check if advisory applies to Port Deposit
+        function checkAdvisoryRelevance(forecastData) {
+            const severeTerms = ['thunderstorm', 'heavy rain', 'tornado', 'flooding'];
+            let isRelevant = false;
+            let advisoryImpact = 'The advisory for heavy rain and severe weather in the Deep South and Lower Mississippi Valley is unlikely to affect Port Deposit, MD. However, always check local conditions before flying.';
+
+            if (forecastData && forecastData.properties && forecastData.properties.periods) {
+                for (let i = 0; i < Math.min(12, forecastData.properties.periods.length); i++) {
+                    const period = forecastData.properties.periods[i];
+                    const shortForecast = period.shortForecast?.toLowerCase() || '';
+                    if (severeTerms.some(term => shortForecast.includes(term))) {
+                        isRelevant = true;
+                        advisoryImpact = 'Severe weather (e.g., thunderstorms or heavy rain) is forecast, making drone flying unsafe. Avoid flying until conditions improve.';
+                        break;
+                    }
+                }
+            } else {
+                console.warn('No periods data in forecastData:', forecastData);
+            }
+
+            return { isRelevant, advisoryImpact };
+        }
+
+        // Function to get the current time in EST and determine start hour
+        function getStartHour() {
+            try {
+                const now = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+                const currentHour = new Date(now).getHours();
+                return currentHour < 14 ? 13 : 14; // 1 PM or 2 PM
+            } catch (e) {
+                console.error('Error getting start hour:', e);
+                return 13; // Default to 1 PM on error
+            }
+        }
+
+        // Fetch weather data from NWS and Open-Meteo
+        async function fetchWeather() {
+            try {
+                // Step 1: Fetch NWS gridpoint
+                const pointResponse = await fetch(`https://api.weather.gov/points/${LAT},${LNG}`, {
+                    headers: { 'User-Agent': 'your-email@example.com' } // Replace with your email
+                });
+                if (!pointResponse.ok) throw new Error(`NWS gridpoint fetch failed: ${pointResponse.statusText}`);
+                const pointData = await pointResponse.json();
+                console.log('NWS Point Data:', pointData);
+                const hourlyForecastUrl = pointData.properties.forecastHourly;
+                const dailyForecastUrl = pointData.properties.forecast;
+
+                // Step 2: Fetch NWS hourly forecast
+                const hourlyResponse = await fetch(hourlyForecastUrl, {
+                    headers: { 'User-Agent': 'your-email@example.com' }
+                });
+                if (!hourlyResponse.ok) throw new Error(`NWS hourly fetch failed: ${hourlyResponse.statusText}`);
+                const hourlyData = await hourlyResponse.json();
+                console.log('NWS Hourly Data:', hourlyData);
+
+                // Step 3: Fetch Open-Meteo for wind gusts
+                const openMeteoResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LNG}&hourly=windgust_10m&timezone=America%2FNew_York`);
+                if (!openMeteoResponse.ok) throw new Error(`Open-Meteo fetch failed: ${openMeteoResponse.statusText}`);
+                const openMeteoData = await openMeteoResponse.json();
+                console.log('Open-Meteo Data:', openMeteoData);
+
+                // Process advisory
+                const advisory = checkAdvisoryRelevance(hourlyData);
+                document.getElementById('advisory-text').textContent = 'Heavy rain and severe weather forecast for the Deep South and Lower Mississippi Valley, with potential for flash flooding, large hail, and tornadoes.';
+                const advisoryImpactElement = document.getElementById('advisory-impact');
+                advisoryImpactElement.textContent = advisory.advisoryImpact || 'Unable to assess impact';
+                if (advisory.isRelevant) {
+                    advisoryImpactElement.className = 'danger';
+                } else {
+                    advisoryImpactElement.className = '';
+                }
+
+                // Process current conditions
+                const current = hourlyData.properties?.periods?.[0] || {};
+                const windSpeed = parseInt(current.windSpeed) || 0;
+                const windDirection = current.windDirection || 'Unknown';
+                const hasSevereWeather = advisory.isRelevant;
+
+                // Get current gust from Open-Meteo
+                const now = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+                const currentHour = new Date(now).toISOString().slice(0, 13);
+                let windGusts = 'N/A';
+                if (openMeteoData.hourly?.time && openMeteoData.hourly?.windgust_10m) {
+                    const gustIndex = openMeteoData.hourly.time.findIndex(time => time.startsWith(currentHour));
+                    if (gustIndex !== -1) {
+                        windGusts = Math.round(openMeteoData.hourly.windgust_10m[gustIndex] * 0.621371); // km/h to mph
+                    }
+                } else {
+                    console.warn('Open-Meteo hourly data missing:', openMeteoData.hourly);
+                }
+
+                // Update current weather
+                document.getElementById('wind-speed').textContent = isNaN(windSpeed) ? 'Error' : windSpeed;
+                document.getElementById('wind-gusts').textContent = windGusts === 'N/A' || isNaN(windGusts) ? 'Error' : windGusts;
+                document.getElementById('wind-direction').textContent = windDirection || 'Error';
+                const recommendation = getFlightRecommendation(windSpeed, windGusts, hasSevereWeather);
+                const recommendationElement = document.getElementById('flight-recommendation');
+                recommendationElement.textContent = recommendation.text;
+                recommendationElement.className = recommendation.class;
+
+                // Process 12-hour hourly forecast
+                const hourlyBody = document.getElementById('hourly-body');
+                hourlyBody.innerHTML = '';
+                const startHour = getStartHour();
+                const currentDate = new Date(now);
+
+                let periods = hourlyData.properties?.periods || [];
+                let selectedPeriods = [];
+                let periodsAdded = 0;
+
+                for (let period of periods) {
+                    const periodTime = new Date(period.startTime);
+                    const periodHour = periodTime.getHours();
+                    const periodDate = periodTime.getDate();
+
+                    if (periodDate === currentDate.getDate() && periodHour >= startHour && periodsAdded < 12) {
+                        selectedPeriods.push(period);
+                        periodsAdded++;
+                    } else if (periodDate > currentDate.getDate() && periodsAdded < 12) {
+                        selectedPeriods.push(period);
+                        periodsAdded++;
+                    }
+                }
+
+                for (let i = 0; i < selectedPeriods.length; i++) {
+                    const period = selectedPeriods[i];
+                    const time = new Date(period.startTime).toLocaleTimeString([], { hour: 'numeric', hour12: true });
+                    const periodWindSpeed = parseInt(period.windSpeed) || 0;
+                    const periodHasSevereWeather = period.shortForecast?.toLowerCase().includes('thunderstorm') || period.shortForecast?.toLowerCase().includes('heavy rain');
+
+                    // Match Open-Meteo gust to period timestamp
+                    const periodHour = period.startTime.slice(0, 13);
+                    let periodWindGusts = 'N/A';
+                    if (openMeteoData.hourly?.time && openMeteoData.hourly?.windgust_10m) {
+                        const periodGustIndex = openMeteoData.hourly.time.findIndex(time => time.startsWith(periodHour));
+                        if (periodGustIndex !== -1) {
+                            periodWindGusts = Math.round(openMeteoData.hourly.windgust_10m[periodGustIndex] * 0.621371);
+                        }
+                    }
+
+                    const periodRecommendation = getFlightRecommendation(periodWindSpeed, periodWindGusts, periodHasSevereWeather);
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${time}</td>
+                        <td>${isNaN(periodWindSpeed) ? 'Error' : periodWindSpeed}</td>
+                        <td>${periodWindGusts === 'N/A' || isNaN(periodWindGusts) ? 'Error' : periodWindGusts}</td>
+                        <td class="${periodRecommendation.class}">${periodRecommendation.text}</td>
+                    `;
+                    hourlyBody.appendChild(row);
+                }
+
+                // Process 10-day forecast
+                const dailyResponse = await fetch(dailyForecastUrl, {
+                    headers: { 'User-Agent': 'your-email@example.com' }
+                });
+                if (!dailyResponse.ok) throw new Error(`NWS daily fetch failed: ${dailyResponse.statusText}`);
+                const dailyData = await dailyResponse.json();
+                console.log('NWS Daily Data:', dailyData);
+
+                const dailyBody = document.getElementById('daily-body');
+                dailyBody.innerHTML = '';
+                const dailyPeriods = dailyData.properties?.periods?.slice(0, 20) || [];
+                for (let i = 0; i < dailyPeriods.length; i += 2) {
+                    const period = dailyPeriods[i];
+                    const date = new Date(period.startTime).toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+                    const periodWindSpeed = parseInt(period.windSpeed) || 0;
+                    const periodHasSevereWeather = period.shortForecast?.toLowerCase().includes('thunderstorm') || period.shortForecast?.toLowerCase().includes('heavy rain');
+                    const periodRecommendation = getFlightRecommendation(periodWindSpeed, null, periodHasSevereWeather);
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${date}</td>
+                        <td>${isNaN(periodWindSpeed) ? 'Error' : periodWindSpeed}</td>
+                        <td class="${periodRecommendation.class}">${periodRecommendation.text}</td>
+                    `;
+                    dailyBody.appendChild(row);
+                }
+            } catch (error) {
+                console.error('Error fetching weather:', error);
+                document.getElementById('advisory-text').textContent = 'Error loading advisory';
+                document.getElementById('advisory-impact').textContent = 'Unable to assess impact';
+                document.getElementById('wind-speed').textContent = 'Error';
+                document.getElementById('wind-gusts').textContent = 'Error';
+                document.getElementById('wind-direction').textContent = 'Error';
+                document.getElementById('flight-recommendation').textContent = 'Unable to assess';
+            }
+        }
+
+        // Fetch weather data on page load
+        fetchWeather();
+
+        // Check time every minute to update hourly forecast if needed
+        setInterval(() => {
+            const previousStartHour = getStartHour();
+            fetchWeather();
+            const newStartHour = getStartHour();
+            if (newStartHour !== previousStartHour) {
+                console.log(`Time crossed 2 PM EST, updating forecast to start at ${newStartHour}:00`);
+            }
+        }, 60000); // Check every 60 seconds
+    </script>
+</body>
+</html>
