@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World News & Weather</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f0f2f0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(90deg, #2a6626, #6b9e31);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            flex: 1;
+            text-align: center;
+        }
+
+        .logo h1 {
+            font-family: 'Audiowide', Arial, sans-serif;
+            color: #fff;
+            font-size: 48px;
+            margin: 0;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .hamburger-left, .hamburger-right {
+            display: block;
+            cursor: pointer;
+            padding: 5px;
+            background: none;
+            border: none;
+            outline: none;
+        }
+
+        .hamburger-left span, .hamburger-right span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger-left.active span:nth-child(1), .hamburger-right.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger-left.active span:nth-child(2), .hamburger-right.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-left.active span:nth-child(3), .hamburger-right.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-menu-left, .nav-menu-right {
+            display: none;
+            position: absolute;
+            top: 80px;
+            width: 200px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu-left {
+            left: 20px;
+            background: linear-gradient(90deg, #2a6626, #6b9e31);
+        }
+
+        .nav-menu-right {
+            right: 20px;
+            background: linear-gradient(90deg, #6b9e31, #2a6626);
+            text-align: right;
+        }
+
+        .nav-menu-left.active, .nav-menu-right.active {
+            display: block;
+        }
+
+        .nav-menu-left li, .nav-menu-right li {
+            list-style: none;
+            padding: 15px 20px;
+        }
+
+        .nav-menu-left li a, .nav-menu-right li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Audiowide', Arial, sans-serif;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu-left li a:hover, .nav-menu-right li a:hover {
+            color: #d4af37;
+        }
+
+        main {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .featured-article {
+            background: linear-gradient(90deg, #2a6626, #6b9e31);
+            padding: 40px 20px;
+            margin: 40px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .article-preview {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .article-preview h2 {
+            font-family: 'Audiowide', Arial, sans-serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #fff;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .update-button {
+            background-color: #4a8a44;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Audiowide', Arial, sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .update-button:hover {
+            background-color: #6b9e31;
+        }
+
+        .forecast-section {
+            background: linear-gradient(90deg, #E8ECE8, #C8D2C8);
+            padding: 40px 20px;
+            margin: 40px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .forecast-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .forecast-section h2 {
+            font-family: 'Audiowide', Arial, sans-serif;
+            color: #2a6626;
+            font-size: 32px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .forecast-section h3 {
+            font-family: 'Audiowide', Arial, sans-serif;
+            color: #2a6626;
+            font-size: 24px;
+            margin: 20px 0 10px;
+        }
+
+        .current-time-date {
+            font-family: 'Roboto', Arial, sans-serif;
+            font-size: 18px;
+            color: #2a6626;
+            margin-bottom: 20px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #4a8a44;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .category h3 {
+            font-family: 'Audiowide', Arial, sans-serif;
+            color: #2a6626;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .category p {
+            font-size: 16px;
+            color: #444;
+        }
+
+        #weather-container {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #weather-data {
+            margin: 20px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .forecast-bar, .hourly-bar {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, #2a6626, #6b9e31);
+            padding: 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #4a8a44;
+            color: #fff;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .forecast-bar i, .hourly-bar i {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        .forecast-bar span, .hourly-bar span {
+            flex: 1;
+            text-align: left;
+        }
+
+        #jokes-container {
+            background: linear-gradient(90deg, #E8ECE8, #C8D2C8);
+            padding: 40px 20px;
+            margin: 40px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #jokes-container h2 {
+            font-family: 'Audiowide', Arial, sans-serif;
+            color: #2a6626;
+            font-size: 32px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        #jokes-container p {
+            font-size: 16px;
+            color: #444;
+            font-style: italic;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #2a6626, #6b9e31);
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        footer p {
+            margin: 10px 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .featured-article, .forecast-section, #jokes-container {
+                padding: 30px 15px;
+                margin: 30px 0;
+            }
+
+            .article-preview h2, .forecast-section h2, #jokes-container h2 {
+                font-size: 28px;
+            }
+
+            .forecast-section h3 {
+                font-size: 20px;
+            }
+
+            .logo h1 {
+                font-size: 42px;
+            }
+
+            #weather-data {
+                font-size: 14px;
+            }
+
+            .forecast-bar, .hourly-bar {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .forecast-bar i, .hourly-bar i {
+                font-size: 20px;
+                margin-right: 10px;
+            }
+
+            .category {
+                min-height: 180px;
+                padding: 15px;
+            }
+
+            .category h3 {
+                font-size: 16px;
+            }
+
+            .category p {
+                font-size: 14px;
+            }
+
+            #jokes-container p {
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .categories {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="hamburger-left" aria-label="Toggle left menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="logo">
+            <a href="index.html"><h1>XEROCAST</h1></a>
+        </div>
+        <button class="hamburger-right" aria-label="Toggle right menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-menu-left">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="news.html">News</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-menu-right">
+            <ul>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- World News Section -->
+        <section class="featured-article">
+            <div class="article-preview">
+                <button id="update-news" class="update-button">UPDATE</button>
+                <h2>World News</h2>
+                <div id="world-news-container" class="categories">
+                    <!-- 8 World news stories will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Forecast Section -->
+        <section class="forecast-section">
+            <div class="forecast-content">
+                <h2>Forecast</h2>
+                <div id="current-time-date" class="current-time-date"></div>
+                <div id="weather-container">
+                    <div id="weather-data"></div>
+                    <h3>Weekly Forecast</h3>
+                    <div id="forecast-data"></div>
+                    <h3>Hourly Forecast (Next 24 Hours)</h3>
+                    <div id="hourly-data"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Humor Section -->
+        <section id="jokes-container">
+            <h2>Humor</h2>
+            <p id="joke-text">Loading your daily dose of humor...</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 News & Weather. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        document.querySelector('.hamburger-left').addEventListener('click', () => {
+            document.querySelector('.nav-menu-left').classList.toggle('active');
+            document.querySelector('.hamburger-left').classList.toggle('active');
+        });
+
+        document.querySelector('.hamburger-right').addEventListener('click', () => {
+            document.querySelector('.nav-menu-right').classList.toggle('active');
+            document.querySelector('.hamburger-right').classList.toggle('active');
+        });
+
+        // Display Current Time and Date
+        const timeDateContainer = document.getElementById('current-time-date');
+        function updateTimeDate() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                timeZone: 'America/New_York'
+            };
+            timeDateContainer.textContent = now.toLocaleString('en-US', options);
+        }
+        updateTimeDate();
+        setInterval(updateTimeDate, 60000); // Update every minute
+
+        // Weather API (Open-Meteo, no key required)
+        const weatherContainer = document.getElementById('weather-data');
+        const forecastContainer = document.getElementById('forecast-data');
+        const hourlyContainer = document.getElementById('hourly-data');
+
+        function celsiusToFahrenheit(celsius) {
+            return (celsius * 9 / 5 + 32).toFixed(1);
+        }
+
+        function getWeatherIcon(condition) {
+            const conditions = {
+                '0': 'fa-sun',
+                '1': 'fa-cloud-sun',
+                '2': 'fa-cloud',
+                '3': 'fa-cloud',
+                '45': 'fa-smog',
+                '51': 'fa-cloud-showers-heavy',
+                '61': 'fa-cloud-rain',
+                '80': 'fa-cloud-showers-heavy',
+                '95': 'fa-bolt'
+            };
+            return conditions[condition] || 'fa-cloud';
+        }
+
+        async function fetchWeather() {
+            const lat = 39.6001;
+            const lon = -75.9474;
+            const displayCity = 'North East, MD';
+            const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}¤t=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode&hourly=temperature_2m,weathercode&timezone=America%2FNew_York`;
+            try {
+                const response = await fetch(weatherUrl);
+                if (!response.ok) {
+                    throw new Error(`Open-Meteo error: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Hourly timestamps:', data.hourly.time.slice(0, 24));
+                displayWeather(data, displayCity);
+                displayForecast(data);
+                displayHourly(data);
+            } catch (error) {
+                console.error('Weather fetch error:', error);
+                weatherContainer.innerHTML = `<p>Error fetching weather: ${error.message}. Using fallback data.</p>`;
+                displayWeather({
+                    current: { temperature_2m: 15, weathercode: 2 }
+                }, 'North East, MD');
+                displayForecast({
+                    daily: {
+                        time: ['2025-05-05', '2025-05-06', '2025-05-07', '2025-05-08', '2025-05-09', '2025-05-10', '2025-05-11', '2025-05-12'],
+                        temperature_2m_max: [18, 20, 22, 19, 21, 23, 20, 22],
+                        temperature_2m_min: [12, 14, 15, 13, 14, 16, 15, 13],
+                        weathercode: [2, 61, 3, 1, 0, 2, 51, 3]
+                    }
+                });
+                displayHourly({
+                    hourly: {
+                        time: Array.from({length: 24}, (_, i) => `2025-05-05T${String(i).padStart(2, '0')}:00`),
+                        temperature_2m: [14, 14.2, 14.5, 14.8, 15, 15.5, 16, 16.5, 17, 17.2, 17.5, 17.8, 18, 17.8, 17.5, 17, 16.5, 16, 15.5, 15, 14.8, 14.5, 14.3, 14],
+                        weathercode: [2, 2, 2, 1, 1, 0, 0, 3, 3, 61, 61, 51, 51, 2, 2, 2, 1, 1, 0, 0, 3, 3, 2, 2]
+                    }
+                });
+            }
+        }
+
+        function displayWeather(data, city) {
+            const tempF = celsiusToFahrenheit(data.current.temperature_2m);
+            const iconClass = getWeatherIcon(data.current.weathercode);
+            weatherContainer.innerHTML = `
+                <i class="fas ${iconClass}"></i>
+                <h3>${city}</h3>
+                <p>Temperature: ${tempF}°F</p>
+                <p>Weather: ${weatherCodeToText(data.current.weathercode)}</p>
+            `;
+        }
+
+        function displayForecast(data) {
+            forecastContainer.innerHTML = '';
+            const today = new Date().toISOString().split('T')[0]; // Should be "2025-05-05"
+            console.log('Today:', today);
+            console.log('Daily timestamps:', data.daily.time);
+            let startIndex = data.daily.time.indexOf(today);
+            if (startIndex === -1) {
+                console.error('Today\'s date not found in daily forecast data. Using first available date.');
+                startIndex = 0;
+            }
+            const indices = Array.from({ length: 8 }, (_, i) => startIndex + i).filter(i => i < data.daily.time.length);
+            for (let i of indices) {
+                const date = new Date(data.daily.time[i]);
+                const formattedDate = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'America/New_York' });
+                const maxF = celsiusToFahrenheit(data.daily.temperature_2m_max[i]);
+                const minF = celsiusToFahrenheit(data.daily.temperature_2m_min[i]);
+                const iconClass = getWeatherIcon(data.daily.weathercode[i]);
+                forecastContainer.innerHTML += `
+                    <div class="forecast-bar">
+                        <i class="fas ${iconClass}"></i>
+                        <span>${formattedDate}: ${maxF}°F / ${minF}°F, ${weatherCodeToText(data.daily.weathercode[i])}</span>
+                    </div>
+                `;
+            }
+        }
+
+        function displayHourly(data) {
+            hourlyContainer.innerHTML = '';
+            const now = new Date(); // Current time is 8:59 PM on May 5, 2025
+            const currentHour = now.getUTCHours() + (now.getTimezoneOffset() / 60) + 4; // Adjust for EST (UTC-4)
+            console.log('Current hour (adjusted for EST):', currentHour);
+
+            // Determine the starting point based on the current time
+            const hourMarkers = [0, 3, 6, 9, 12, 15, 18, 21]; // 12 AM, 3 AM, 6 AM, 9 AM, 12 PM, 3 PM, 6 PM, 9 PM
+            let startHour;
+            if (currentHour >= 21 || currentHour < 0) startHour = 21; // 9 PM to 12 AM
+            else if (currentHour >= 0 && currentHour < 3) startHour = 0; // 12 AM to 3 AM
+            else if (currentHour >= 3 && currentHour < 6) startHour = 3; // 3 AM to 6 AM
+            else if (currentHour >= 6 && currentHour < 9) startHour = 6; // 6 AM to 9 AM
+            else if (currentHour >= 9 && currentHour < 12) startHour = 9; // 9 AM to 12 PM
+            else if (currentHour >= 12 && currentHour < 15) startHour = 12; // 12 PM to 3 PM
+            else if (currentHour >= 15 && currentHour < 18) startHour = 15; // 3 PM to 6 PM
+            else startHour = 18; // 6 PM to 9 PM
+            console.log('Starting hour:', startHour);
+
+            // Find the closest past marker
+            const currentDate = new Date(now);
+            const pastMarker = new Date(currentDate);
+            pastMarker.setUTCHours(startHour, 0, 0, 0);
+            pastMarker.setUTCMinutes(pastMarker.getUTCMinutes() - (pastMarker.getTimezoneOffset() + 240)); // Adjust to EST
+            if (currentHour < startHour) {
+                pastMarker.setUTCDate(pastMarker.getUTCDate() - 1);
+            }
+            console.log('Closest past marker:', pastMarker.toISOString());
+
+            // Generate the 8 time slots starting from the marker
+            const fixedTimes = [];
+            for (let i = 0; i < 8; i++) {
+                const time = new Date(pastMarker.getTime() + (i * 3) * 60 * 60 * 1000);
+                fixedTimes.push(time);
+            }
+            console.log('Fixed times:', fixedTimes.map(t => t.toLocaleString('en-US', { timeZone: 'America/New_York' })));
+
+            // Match with hourly data
+            fixedTimes.forEach(time => {
+                const hour = time.getUTCHours();
+                const minute = time.getUTCMinutes();
+                const index = data.hourly.time.findIndex(t => {
+                    const tDate = new Date(t);
+                    return tDate.getUTCHours() === hour && tDate.getUTCMinutes() === minute;
+                });
+                if (index !== -1) {
+                    const formattedTime = time.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' });
+                    const tempF = celsiusToFahrenheit(data.hourly.temperature_2m[index]);
+                    const iconClass = getWeatherIcon(data.hourly.weathercode[index]);
+                    hourlyContainer.innerHTML += `
+                        <div class="hourly-bar">
+                            <i class="fas ${iconClass}"></i>
+                            <span>${formattedTime}: ${tempF}°F, ${weatherCodeToText(data.hourly.weathercode[index])}</span>
+                        </div>
+                    `;
+                } else {
+                    console.warn(`No data found for ${time.toLocaleString('en-US', { timeZone: 'America/New_York' })}`);
+                }
+            });
+        }
+
+        function weatherCodeToText(code) {
+            const codes = {
+                '0': 'Clear sky',
+                '1': 'Mainly clear',
+                '2': 'Partly cloudy',
+                '3': 'Overcast',
+                '45': 'Fog',
+                '51': 'Light drizzle',
+                '61': 'Rain',
+                '80': 'Showers',
+                '95': 'Thunderstorm'
+            };
+            return codes[code] || 'Unknown';
+        }
+
+        // News (RSS Feeds)
+        const worldNewsContainer = document.getElementById('world-news-container');
+        const updateNewsButton = document.getElementById('update-news');
+        const worldRssFeeds = [
+            'http://feeds.bbci.co.uk/news/world/rss.xml',
+            'http://feeds.reuters.com/Reuters/worldNews',
+            'https://www.aljazeera.com/xml/rss/all.xml'
+        ];
+        const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+
+        function truncateSnippet(text, maxWords) {
+            text = text.replace(/<[^>]+>/g, '');
+            const words = text.split(' ');
+            if (words.length <= maxWords) return text;
+            let result = words.slice(0, maxWords).join(' ');
+            const lastPeriod = result.lastIndexOf('.');
+            if (lastPeriod > words.slice(0, maxWords - 10).join(' ').length) {
+                result = result.slice(0, lastPeriod + 1);
+            } else {
+                result = words.slice(0, maxWords).join(' ') + '...';
+            }
+            return result;
+        }
+
+        async function fetchRSS(url) {
+            try {
+                const response = await fetch(corsProxy + url);
+                const text = await response.text();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(text, 'application/xml');
+                const items = xml.querySelectorAll('item');
+                const articles = [];
+                items.forEach(item => {
+                    const pubDate = item.querySelector('pubDate')?.textContent || 'Mon, 05 May 2025 00:00:00 GMT';
+                    articles.push({
+                        title: item.querySelector('title')?.textContent || 'No title',
+                        description: item.querySelector('description')?.textContent || 'No description available.',
+                        pubDate: new Date(pubDate).getTime()
+                    });
+                });
+                return articles;
+            } catch (error) {
+                console.error('Error fetching RSS:', url, error);
+                return [];
+            }
+        }
+
+        async function fetchNews() {
+            let worldArticles = [];
+            for (const feed of worldRssFeeds) {
+                const articles = await fetchRSS(feed);
+                worldArticles = [...worldArticles, ...articles];
+            }
+            worldArticles = worldArticles.sort((a, b) => b.pubDate - a.pubDate).slice(0, 8);
+
+            if (worldArticles.length > 0) {
+                displayNews(worldNewsContainer, worldArticles);
+            } else {
+                console.error('No news articles fetched; using fallback trusted stories.');
+                const trustedWorld = [
+                    { title: "British police arrest eight in counter-terrorism raids", description: "British counter-terrorism police arrested eight men, including seven Iranians, in two major operations, described as some of the largest in recent years.", pubDate: new Date('2025-05-05T02:10:00Z').getTime(), source: "Reuters" },
+                    { title: "French police rescue crypto entrepreneur’s father", description: "French police rescued the father of a wealthy crypto entrepreneur in a ransom case, the second such incident linked to the crypto world this year.", pubDate: new Date('2025-05-04T08:50:00Z').getTime(), source: "NPR" },
+                    { title: "India boosts Kashmir hydroelectric projects", description: "India has started work to increase reservoir capacity at two hydroelectric projects in Kashmir, aiming to enhance energy production in the region.", pubDate: new Date('2025-05-05T04:50:00Z').getTime(), source: "Reuters" },
+                    { title: "Quebec allows advance medically assisted death", description: "Sandra Demontigny, 45, led Quebec to permit choosing medically assisted death years in advance, a rare policy globally.", pubDate: new Date('2025-05-05T08:16:00Z').getTime(), source: "The New York Times" },
+                    { title: "China boat capsizes, rescue ongoing", description: "Rescuers search for survivors after two passenger boats capsized in Qianxi City, Guizhou, China, on May 5, 2025.", pubDate: new Date('2025-05-05T08:50:00Z').getTime(), source: "NPR" },
+                    { title: "Prince Harry seeks royal reconciliation", description: "Prince Harry told BBC News he wants reconciliation with King Charles, who currently refuses to speak with him.", pubDate: new Date('2025-05-05T09:20:00Z').getTime(), source: "CBS News" },
+                    { title: "UK-India treaty allows corporate lawsuits", description: "A new UK-India investment treaty permits companies to sue the government, raising concerns about sovereignty.", pubDate: new Date('2025-05-05T08:00:00Z').getTime(), source: "Reuters" },
+                    { title: "Australian PM discusses tariffs with Trump", description: "Australian PM Albanese held 'warm' talks with Trump on tariffs, aiming to protect trade relations.", pubDate: new Date('2025-05-04T23:20:00Z').getTime(), source: "Reuters" }
+                ];
+                displayNews(worldNewsContainer, trustedWorld);
+            }
+        }
+
+        function displayNews(container, articles) {
+            container.innerHTML = '';
+            articles.forEach(article => {
+                const newsItem = document.createElement('div');
+                newsItem.className = 'category';
+                newsItem.innerHTML = `
+                    <h3>${article.title}</h3>
+                    <p>${truncateSnippet(article.description, 64)}</p>
+                `;
+                container.appendChild(newsItem);
+            });
+        }
+
+        // Dad Joke API
+        const jokeContainer = document.getElementById('joke-text');
+        async function fetchJoke() {
+            try {
+                const response = await fetch('https://icanhazdadjoke.com/', {
+                    headers: { 'Accept': 'application/json' }
+                });
+                const data = await response.json();
+                jokeContainer.textContent = data.joke;
+            } catch (error) {
+                jokeContainer.textContent = 'Why did the scarecrow become a motivational speaker? Because he was outstanding in his field!';
+            }
+        }
+
+        // Initial Fetch and Event Listeners
+        fetchWeather();
+        fetchNews();
+        fetchJoke();
+
+        updateNewsButton.addEventListener('click', () => {
+            fetchNews();
+        });
+
+        setInterval(fetchJoke, 24 * 60 * 60 * 1000); // Update joke daily (optional, can adjust)
+    </script>
+</body>
+</html>
