@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Real-time weather for North East, MD, with forecasts and world news.">
-    <meta name="keywords" content="weather, North East MD, forecast, news">
+    <meta name="description" content="Real-time weather for North East, MD, with forecasts and news.">
+    <meta name="keywords" content="weather, North East MD, forecast, news, US news">
     <title>Weather - North East, MD</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -188,20 +188,7 @@
             object-fit: cover;
             border-radius: 5px;
             margin-bottom: 10px;
-            display: block; /* Ensure image is visible */
-        }
-
-        .news-article .image-fallback {
-            width: 100%;
-            height: 150px;
-            background: #ccc;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: #333;
+            display: block;
         }
 
         .news-article h3 {
@@ -307,12 +294,22 @@
                     <p id="current-condition">Loading...</p>
                 </div>
             </div>
+        </section>
+        <section class="news-container">
+            <h2>World News</h2>
+            <div class="news-grid" id="world-news-articles">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+        <section class="weather-container">
             <div class="weather-forecast">
-                <h3>7-Day Forecast</h3>
-                <div class="forecast-grid" id="daily-forecast">
+                <h3>Weekly Forecast</h3>
+                <div class="forecast-grid" id="weekly-forecast">
                     <!-- Populated by JS -->
                 </div>
             </div>
+        </section>
+        <section class="weather-container">
             <div class="weather-hourly">
                 <h3>Hourly Forecast</h3>
                 <div class="hourly-grid" id="hourly-forecast">
@@ -321,8 +318,8 @@
             </div>
         </section>
         <section class="news-container">
-            <h2>World News</h2>
-            <div class="news-grid" id="news-articles">
+            <h2>Local News</h2>
+            <div class="news-grid" id="local-news-articles">
                 <!-- Populated by JS -->
             </div>
         </section>
@@ -351,17 +348,20 @@
             95: { description: 'Thunderstorm', icon: 'fas fa-bolt' }
         };
 
-        // Fallback weather data for May 06, 2025
+        // Fallback weather data for May 06-15, 2025 with wind speed and gusts
         const fallbackWeather = {
             current: { temperature: 15, weathercode: 2 }, // 15°C = 59°F, Partly cloudy
             daily: [
-                { date: '2025-05-06', maxTemp: 20, minTemp: 10, weathercode: 2 }, // 68°F / 50°F
-                { date: '2025-05-07', maxTemp: 22, minTemp: 12, weathercode: 1 }, // 72°F / 54°F
-                { date: '2025-05-08', maxTemp: 21, minTemp: 11, weathercode: 3 }, // 70°F / 52°F
-                { date: '2025-05-09', maxTemp: 20, minTemp: 10, weathercode: 61 }, // 68°F / 50°F
-                { date: '2025-05-10', maxTemp: 19, minTemp: 9, weathercode: 0 }, // 66°F / 48°F
-                { date: '2025-05-11', maxTemp: 23, minTemp: 13, weathercode: 2 }, // 73°F / 55°F
-                { date: '2025-05-12', maxTemp: 24, minTemp: 14, weathercode: 1 }  // 75°F / 57°F
+                { date: '2025-05-06', maxTemp: 20, minTemp: 10, weathercode: 2, windspeed: 10, windgusts: 15 }, // 68°F / 50°F
+                { date: '2025-05-07', maxTemp: 22, minTemp: 12, weathercode: 1, windspeed: 12, windgusts: 18 }, // 72°F / 54°F
+                { date: '2025-05-08', maxTemp: 21, minTemp: 11, weathercode: 3, windspeed: 15, windgusts: 20 }, // 70°F / 52°F
+                { date: '2025-05-09', maxTemp: 20, minTemp: 10, weathercode: 61, windspeed: 8, windgusts: 12 }, // 68°F / 50°F
+                { date: '2025-05-10', maxTemp: 19, minTemp: 9, weathercode: 0, windspeed: 10, windgusts: 14 }, // 66°F / 48°F
+                { date: '2025-05-11', maxTemp: 23, minTemp: 13, weathercode: 2, windspeed: 13, windgusts: 17 }, // 73°F / 55°F
+                { date: '2025-05-12', maxTemp: 24, minTemp: 14, weathercode: 1, windspeed: 11, windgusts: 16 }, // 75°F / 57°F
+                { date: '2025-05-13', maxTemp: 25, minTemp: 15, weathercode: 3, windspeed: 14, windgusts: 19 }, // 77°F / 59°F
+                { date: '2025-05-14', maxTemp: 22, minTemp: 12, weathercode: 2, windspeed: 9, windgusts: 13 }, // 72°F / 54°F
+                { date: '2025-05-15', maxTemp: 21, minTemp: 11, weathercode: 1, windspeed: 10, windgusts: 15 }  // 70°F / 52°F
             ],
             hourly: [
                 { time: '2025-05-06T09:00', temperature: 14, weathercode: 2 }, // 57°F
@@ -375,55 +375,107 @@
             ]
         };
 
-        // Predefined news articles with alternative image URLs
-        const newsArticles = [
+        // Predefined World News articles
+        const worldNewsArticles = [
             {
                 title: 'Global Climate Summit Concludes',
-                description: 'The recent global climate summit in Paris ended with new commitments to reduce carbon emissions by 2030. Leaders from 50 countries signed an agreement to invest in renewable energy, aiming to limit global warming to 1.5°C. Environmentalists celebrate the progress, though some call for stricter measures.',
+                description: 'The recent global climate summit in Paris ended with new commitments to reduce carbon emissions by 2030. Leaders from 50 countries signed an agreement to invest in renewable energy, aiming to limit global warming to 1.5°C.',
                 link: 'https://example.com/climate',
                 image: 'https://picsum.photos/300/150?random=1'
             },
             {
                 title: 'Tech Breakthrough in AI Research',
-                description: 'A major tech firm unveiled a new AI model capable of human-like reasoning, sparking debates on ethics and employment. The model, trained on 10 petabytes of data, could revolutionize industries but raises concerns about job displacement.',
+                description: 'A major tech firm unveiled a new AI model capable of human-like reasoning, sparking debates on ethics and employment. The model could revolutionize industries but raises job displacement concerns.',
                 link: 'https://example.com/ai',
                 image: 'https://picsum.photos/300/150?random=2'
             },
             {
                 title: 'SpaceX Launches New Satellite',
-                description: 'SpaceX successfully launched a new satellite into orbit, enhancing global internet coverage. The mission marks the 100th launch this year, with plans for a lunar mission in 2026. Space enthusiasts are thrilled by the progress.',
+                description: 'SpaceX successfully launched a new satellite into orbit, enhancing global internet coverage. The mission marks the 100th launch this year, with plans for a lunar mission in 2026.',
                 link: 'https://example.com/spacex',
                 image: 'https://picsum.photos/300/150?random=3'
             },
             {
                 title: 'Economic Recovery Gains Momentum',
-                description: 'Global economies show signs of recovery post-pandemic, with GDP growth projected at 3.5% in 2025. Central banks are cautiously optimistic, though inflation remains a concern. Analysts predict a stable year ahead.',
+                description: 'Global economies show signs of recovery post-pandemic, with GDP growth projected at 3.5% in 2025. Central banks are cautiously optimistic, though inflation remains a concern.',
                 link: 'https://example.com/economy',
                 image: 'https://picsum.photos/300/150?random=4'
             },
             {
                 title: 'New Vaccine Approved Worldwide',
-                description: 'A new vaccine against a rare disease has been approved by the WHO, offering hope to millions. Clinical trials showed 95% efficacy, and distribution begins next month. Health experts call it a medical milestone.',
+                description: 'A new vaccine against a rare disease has been approved by the WHO, offering hope to millions. Clinical trials showed 95% efficacy, with distribution starting next month.',
                 link: 'https://example.com/vaccine',
                 image: 'https://picsum.photos/300/150?random=5'
             },
             {
                 title: 'Wildfires Threaten Western Regions',
-                description: 'Unprecedented wildfires are ravaging western states, fueled by dry conditions and strong winds. Thousands have been evacuated, and firefighters are struggling to contain the blaze. Climate change is cited as a key factor.',
+                description: 'Unprecedented wildfires are ravaging western states, fueled by dry conditions and strong winds. Thousands have been evacuated as firefighters struggle to contain the blaze.',
                 link: 'https://example.com/wildfires',
                 image: 'https://picsum.photos/300/150?random=6'
             },
             {
                 title: 'International Peace Talks Resume',
-                description: 'Peace talks between two nations resumed after a year-long hiatus, mediated by the UN. Both sides agreed to a ceasefire, raising hopes for a lasting resolution. The global community watches closely.',
+                description: 'Peace talks between two nations resumed after a year-long hiatus, mediated by the UN. Both sides agreed to a ceasefire, raising hopes for a lasting resolution.',
                 link: 'https://example.com/peace',
                 image: 'https://picsum.photos/300/150?random=7'
             },
             {
                 title: 'Breakthrough in Quantum Computing',
-                description: 'Scientists achieved a breakthrough in quantum computing, solving a complex problem in minutes. The technology could transform cryptography and simulations, though commercial use is years away. Experts are excited.',
+                description: 'Scientists achieved a breakthrough in quantum computing, solving a complex problem in minutes. The technology could transform cryptography, though commercial use is years away.',
                 link: 'https://example.com/quantum',
                 image: 'https://picsum.photos/300/150?random=8'
+            }
+        ];
+
+        // Predefined Local News articles (US-focused)
+        const localNewsArticles = [
+            {
+                title: 'New Tornado Warnings Issued in Midwest',
+                description: 'Severe weather alerts have been issued across the Midwest as tornadoes threaten several states. Residents are urged to seek shelter as the storm system moves eastward.',
+                link: 'https://example.com/tornado',
+                image: 'https://picsum.photos/300/150?random=9'
+            },
+            {
+                title: 'Congress Approves New Infrastructure Bill',
+                description: 'A $1.2 trillion infrastructure bill passed Congress, focusing on roads, bridges, and broadband. The legislation aims to boost job creation across the US.',
+                link: 'https://example.com/infrastructure',
+                image: 'https://picsum.photos/300/150?random=10'
+            },
+            {
+                title: 'Tech Layoffs Hit Silicon Valley',
+                description: 'Major tech companies announced layoffs affecting thousands in Silicon Valley, citing economic slowdown. Workers are seeking support as the industry adjusts.',
+                link: 'https://example.com/layoffs',
+                image: 'https://picsum.photos/300/150?random=11'
+            },
+            {
+                title: 'Florida Prepares for Hurricane Season',
+                description: 'Florida officials are gearing up for the 2025 hurricane season, with new evacuation plans and emergency supplies distributed to coastal areas.',
+                link: 'https://example.com/hurricane',
+                image: 'https://picsum.photos/300/150?random=12'
+            },
+            {
+                title: 'Record Heatwave Hits Southwest',
+                description: 'A record-breaking heatwave is sweeping the Southwest, with temperatures exceeding 110°F. Authorities advise residents to stay hydrated and indoors.',
+                link: 'https://example.com/heatwave',
+                image: 'https://picsum.photos/300/150?random=13'
+            },
+            {
+                title: 'New York City Subway Expansion Approved',
+                description: 'A long-awaited subway expansion project in New York City has been greenlit, promising improved transit for millions in the coming years.',
+                link: 'https://example.com/subway',
+                image: 'https://picsum.photos/300/150?random=14'
+            },
+            {
+                title: 'California Wildfires Under Control',
+                description: 'Firefighters have gained control over several wildfires in California, though thousands remain displaced as cleanup efforts begin.',
+                link: 'https://example.com/wildfires-ca',
+                image: 'https://picsum.photos/300/150?random=15'
+            },
+            {
+                title: 'Presidential Visit to Texas Announced',
+                description: 'The President will visit Texas next week to address border security and economic issues, marking a key political event for 2025.',
+                link: 'https://example.com/president',
+                image: 'https://picsum.photos/300/150?random=16'
             }
         ];
 
@@ -457,7 +509,6 @@
                 Math.abs(curr - currentHour) < Math.abs(prev - currentHour) ? curr : prev
             );
 
-            // If the closest hour is in the future, go back to the previous marker
             if (closestHour > currentHour) {
                 const index = hours.indexOf(closestHour);
                 closestHour = hours[index - 1] || hours[hours.length - 1];
@@ -476,7 +527,7 @@
 
         // Fetch weather data (using fallback for now)
         function fetchWeather() {
-            const data = fallbackWeather; // Using fallback data since no API call is made
+            const data = fallbackWeather;
             console.log('Using fallback weather data');
 
             // Current weather
@@ -489,22 +540,23 @@
             document.getElementById('current-condition').textContent = currentCondition;
             document.getElementById('current-icon').className = currentIcon;
 
-            // 7-day forecast
-            const dailyForecast = document.getElementById('daily-forecast');
-            dailyForecast.innerHTML = '';
+            // Weekly forecast (10 days)
+            const weeklyForecast = document.getElementById('weekly-forecast');
+            weeklyForecast.innerHTML = '';
             data.daily.forEach(day => {
                 const maxTemp = celsiusToFahrenheit(day.maxTemp);
                 const minTemp = celsiusToFahrenheit(day.minTemp);
                 const condition = weatherCodeMap[day.weathercode].description;
                 const icon = weatherCodeMap[day.weathercode].icon;
 
-                dailyForecast.innerHTML += `
+                weeklyForecast.innerHTML += `
                     <div class="forecast-day">
                         <h4>${formatDate(day.date)}</h4>
                         <i class="${icon}"></i>
                         <p>High: ${maxTemp}°F</p>
                         <p>Low: ${minTemp}°F</p>
                         <p>${condition}</p>
+                        <p>Wind: ${day.windspeed} mph (Gusts: ${day.windgusts} mph)</p>
                     </div>
                 `;
             });
@@ -513,9 +565,7 @@
             const hourlyForecast = document.getElementById('hourly-forecast');
             hourlyForecast.innerHTML = '';
             const startHour = getClosestHourMarker();
-            const currentDay = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
-
-            // Filter hourly data to only include entries for the current day (2025-05-06)
+            const currentDay = new Date().toISOString().split('T')[0];
             const todayHourly = data.hourly.filter(h => h.time.startsWith(currentDay));
             const startIndex = todayHourly.findIndex(h => {
                 const date = new Date(h.time);
@@ -557,15 +607,30 @@
             }
         }
 
-        // Display news articles with image error handling
-        function displayNews() {
-            const newsGrid = document.getElementById('news-articles');
+        // Display World News
+        function displayWorldNews() {
+            const newsGrid = document.getElementById('world-news-articles');
             newsGrid.innerHTML = '';
-            newsArticles.forEach(article => {
+            worldNewsArticles.forEach(article => {
                 newsGrid.innerHTML += `
                     <div class="news-article">
-                        <img src="${article.image}" alt="${article.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="image-fallback" style="display: none;">Image Not Available</div>
+                        <img src="${article.image}" alt="${article.title}" loading="lazy">
+                        <h3>${article.title}</h3>
+                        <p>${article.description}</p>
+                        <a href="${article.link}" target="_blank">Read More</a>
+                    </div>
+                `;
+            });
+        }
+
+        // Display Local News
+        function displayLocalNews() {
+            const newsGrid = document.getElementById('local-news-articles');
+            newsGrid.innerHTML = '';
+            localNewsArticles.forEach(article => {
+                newsGrid.innerHTML += `
+                    <div class="news-article">
+                        <img src="${article.image}" alt="${article.title}" loading="lazy">
                         <h3>${article.title}</h3>
                         <p>${article.description}</p>
                         <a href="${article.link}" target="_blank">Read More</a>
@@ -576,7 +641,8 @@
 
         // Initialize
         fetchWeather();
-        displayNews();
+        displayWorldNews();
+        displayLocalNews();
 
         // Hamburger menu toggle
         const hamburgerLeft = document.querySelector('.hamburger-left');
