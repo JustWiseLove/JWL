@@ -46,6 +46,14 @@
             color: red;
             font-weight: bold;
         }
+
+        #safety-content {
+            display: none; /* Hidden by default */
+        }
+
+        #safety-content.active {
+            display: block; /* Shown when toggled */
+        }
     </style>
 </head>
 <body>
@@ -133,9 +141,24 @@
                 <i class="fas fa-cloud-showers-heavy"></i>
                 <h2>Drone Flying Safety Tips</h2>
                 <p class="preview-text">Ensure safe drone operations with these key tips: Always check wind conditions with a local anemometer, avoid flying during thunderstorms or heavy rain, and use our 10-day forecast to plan flights on calm days.</p>
-                <a href="#" class="read-more">Learn More</a>
+                <button class="read-more" onclick="toggleSafetyContent()">Read More</button>
             </div>
         </section>
+        <div class="item" id="safety-content">
+            <div class="item-content">
+                <h2>FAA Drone Safety Guidelines</h2>
+                <h3>Airspace Regulations</h3>
+                <p>Operate in Class G (uncontrolled) airspace unless you obtain FAA authorization for Class B, C, D, or E airspace. Use apps like B4UFLY to check airspace restrictions and avoid airports, heliports, or restricted areas like stadiums and military zones.</p>
+                <h3>Operational Limits</h3>
+                <p>Keep your drone below 400 feet above ground level, maintain visual line-of-sight at all times, and avoid flying over people, moving vehicles, or at night without a waiver. Maximum speed is 100 mph, and drones must weigh less than 55 lbs (including payload).</p>
+                <h3>Preflight Inspections</h3>
+                <p>Before every flight, check your drone’s battery, propellers, motors, and sensors for damage. Verify weather conditions (e.g., wind, visibility) and ensure no Temporary Flight Restrictions (TFRs) are in effect. Register drones over 250 grams with the FAA.</p>
+                <h3>Emergency Procedures</h3>
+                <p>In case of lost link or low battery, set your drone to Return-to-Home (RTH) mode if available, or land safely in a clear area. Avoid flying near emergency response activities (e.g., wildfires, accidents). Report any incidents causing injury or over $500 in damage to the FAA within 10 days.</p>
+                <h3>Pilot Responsibilities</h3>
+                <p>Maintain your Part 107 Remote Pilot Certificate by passing recurrent training every 24 months. Never operate recklessly or under the influence of drugs/alcohol. Yield right-of-way to manned aircraft and prioritize safety in all operations.</p>
+            </div>
+        </div>
     </main>
     <footer>
         <p>Data provided by <a href="https://www.weather.gov/" style="color: #d4af37; text-decoration: none;">National Weather Service</a>. Always verify conditions with a local anemometer before flying.</p>
@@ -155,6 +178,12 @@
             document.querySelector('.nav-menu-right').classList.toggle('active');
             document.querySelector('.hamburger-right').classList.toggle('active');
         });
+
+        // Toggle safety content
+        function toggleSafetyContent() {
+            const safetyContent = document.getElementById('safety-content');
+            safetyContent.classList.toggle('active');
+        }
 
         // Function to convert wind direction to cardinal direction
         function degreesToDirection(direction) {
@@ -208,6 +237,15 @@
             }
 
             return { isRelevant, advisoryImpact };
+        }
+
+        // Function to get the current time in EST and determine start hour
+        function getStartHour() {
+            // Create a date object in EST
+            const now = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+            const currentHour = new Date(now).getHours();
+            // If before 2 PM (14:00), start at 1 PM (13:00); otherwise, start at 2 PM (14:00)
+            return currentHour < 14 ? 13 : 14;
         }
 
         // Fetch weather data from NWS API
@@ -267,11 +305,36 @@
                 recommendationElement.textContent = recommendation.text;
                 recommendationElement.className = recommendation.class;
 
-                // Process 12-hour hourly forecast
+                // Process 12-hour hourly forecast starting at 1 PM or 2 PM
                 const hourlyBody = document.getElementById('hourly-body');
                 hourlyBody.innerHTML = ''; // Clear previous data
-                for (let i = 0; i < 12; i++) {
-                    const period = hourlyData.properties.periods[i];
+                const startHour = getStartHour();
+                const now = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+                const currentDate = new Date(now);
+
+                // Filter hourly periods to start at the desired hour
+                let periods = hourlyData.properties.periods;
+                let selectedPeriods = [];
+                let periodsAdded = 0;
+
+                for (let period of periods) {
+                    const periodTime = new Date(period.startTime);
+                    const periodHour = periodTime.getHours();
+                    const periodDate = periodTime.getDate();
+
+                    // Check if the period matches the start hour or later on the current date
+                    if (periodDate === currentDate.getDate() && periodHour >= startHour && periodsAdded < 12) {
+                        selectedPeriods.push(period);
+                        periodsAdded++;
+                    } else if (periodDate > currentDate.getDate() && periodsAdded < 12) {
+                        // Include periods from the next day if needed to reach 12
+                        selectedPeriods.push(period);
+                        periodsAdded++;
+                    }
+                }
+
+                // Display the selected periods
+                for (let period of selectedPeriods) {
                     const time = new Date(period.startTime).toLocaleTimeString([], { hour: 'numeric', hour12: true });
                     const periodWindSpeed = parseInt(period.windSpeed) || 0;
                     let periodWindGusts = 'N/A';
@@ -324,6 +387,16 @@
 
         // Fetch weather data on page load
         fetchWeather();
+
+        // Check time every minute to update hourly forecast if needed
+        setInterval(() => {
+            const previousStartHour = getStartHour();
+            fetchWeather();
+            const newStartHour = getStartHour();
+            if (newStartHour !== previousStartHour) {
+                console.log(`Time crossed 2 PM EST, updating forecast to start at ${newStartHour}:00`);
+            }
+        }, 60000); // Check every 60 seconds
     </script>
 </body>
 </html>
