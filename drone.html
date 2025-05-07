@@ -161,7 +161,7 @@
         </div>
     </main>
     <footer>
-        <p>Data provided by <a href="https://www.weather.gov/" style="color: #d4af37; text-decoration: none;">National Weather Service</a> and <a href="https://open-meteo.com/" style="color: #d4af37; text-decoration: none;">Open-Meteo</a>. Always verify conditions with a local anemometer before flying.</p>
+        <p>Data provided by <a href="https://www.weather.gov/" style="color: #d4af37; text-decoration: none;">National Weather Service</a>. Always verify conditions with a local anemometer before flying.</p>
     </footer>
     <script>
         // Coordinates for Port Deposit, MD
@@ -187,12 +187,12 @@
 
         // Function to convert wind direction to cardinal direction
         function degreesToDirection(direction) {
-            if (typeof direction === 'string' || !direction) {
-                return direction || 'Unknown'; // Handle undefined or string input
+            if (typeof direction === 'string') {
+                return direction; // NWS provides direction as text (e.g., "North")
             }
             const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
             const index = Math.round(direction / 22.5) % 16;
-            return directions[index] || 'Unknown';
+            return directions[index];
         }
 
         // Function to determine drone flight recommendation
@@ -200,7 +200,7 @@
             if (hasSevereWeather) {
                 return { text: 'Not Safe to Fly (Severe Weather)', class: 'danger' };
             }
-            if (windGusts !== null && windGusts !== 'N/A' && !isNaN(windGusts)) {
+            if (windGusts !== null && windGusts !== 'N/A') {
                 if (windSpeed <= 15 && windGusts <= 20) {
                     return { text: 'Good to Fly', class: 'good' };
                 } else if (windSpeed <= 24 && windGusts <= 30) {
@@ -208,7 +208,7 @@
                 } else {
                     return { text: 'Not Safe to Fly', class: 'danger' };
                 }
-            } else if (!isNaN(windSpeed)) {
+            } else {
                 if (windSpeed <= 15) {
                     return { text: 'Good to Fly', class: 'good' };
                 } else if (windSpeed <= 24) {
@@ -217,7 +217,6 @@
                     return { text: 'Not Safe to Fly', class: 'danger' };
                 }
             }
-            return { text: 'Unable to Assess', class: '' }; // Fallback for invalid data
         }
 
         // Function to check if advisory applies to Port Deposit
@@ -226,108 +225,90 @@
             let isRelevant = false;
             let advisoryImpact = 'The advisory for heavy rain and severe weather in the Deep South and Lower Mississippi Valley is unlikely to affect Port Deposit, MD. However, always check local conditions before flying.';
 
-            if (forecastData && forecastData.properties && forecastData.properties.periods) {
-                for (let i = 0; i < Math.min(12, forecastData.properties.periods.length); i++) {
-                    const period = forecastData.properties.periods[i];
-                    const shortForecast = period.shortForecast?.toLowerCase() || '';
-                    if (severeTerms.some(term => shortForecast.includes(term))) {
-                        isRelevant = true;
-                        advisoryImpact = 'Severe weather (e.g., thunderstorms or heavy rain) is forecast, making drone flying unsafe. Avoid flying until conditions improve.';
-                        break;
-                    }
+            // Check current and next 12 hours for severe weather
+            for (let i = 0; i < Math.min(12, forecastData.properties.periods.length); i++) {
+                const period = forecastData.properties.periods[i];
+                const shortForecast = period.shortForecast.toLowerCase();
+                if (severeTerms.some(term => shortForecast.includes(term))) {
+                    isRelevant = true;
+                    advisoryImpact = 'Severe weather (e.g., thunderstorms or heavy rain) is forecast, making drone flying unsafe. Avoid flying until conditions improve.';
+                    break;
                 }
-            } else {
-                console.warn('No periods data in forecastData:', forecastData);
             }
 
             return { isRelevant, advisoryImpact };
         }
 
-        // Function to get the current time in EST and determine start hour
-        function getStartHour() {
-            try {
-                const now = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
-                const currentHour = new Date(now).getHours();
-                return currentHour < 14 ? 13 : 14; // 1 PM or 2 PM
-            } catch (e) {
-                console.error('Error getting start hour:', e);
-                return 13; // Default to 1 PM on error
-            }
-        }
-
-        // Fetch weather data from NWS and Open-Meteo
+        // Fetch weather data from NWS API
         async function fetchWeather() {
             try {
-                // Step 1: Fetch NWS gridpoint
+                // Step 1: Get gridpoint for Port Deposit, MD
                 const pointResponse = await fetch(`https://api.weather.gov/points/${LAT},${LNG}`, {
-                    headers: { 'User-Agent': 'your-email@example.com' } // Replace with your email
+                    headers: { 'User-Agent': 'DroneWeatherApp (your-email@example.com)' }
                 });
-                if (!pointResponse.ok) throw new Error(`NWS gridpoint fetch failed: ${pointResponse.statusText}`);
+                if (!pointResponse.ok) throw new Error('Failed to fetch gridpoint');
                 const pointData = await pointResponse.json();
-                console.log('NWS Point Data:', pointData);
                 const hourlyForecastUrl = pointData.properties.forecastHourly;
                 const dailyForecastUrl = pointData.properties.forecast;
 
-                // Step 2: Fetch NWS hourly forecast
+                // Step 2: Fetch hourly forecast (for advisory check, current conditions, and 12-hour forecast)
                 const hourlyResponse = await fetch(hourlyForecastUrl, {
-                    headers: { 'User-Agent': 'your-email@example.com' }
+                    headers: { 'User-Agent': 'DroneWeatherApp (your-email@example.com)' }
                 });
-                if (!hourlyResponse.ok) throw new Error(`NWS hourly fetch failed: ${hourlyResponse.statusText}`);
+                if (!hourlyResponse.ok) throw new Error('Failed to fetch hourly forecast');
                 const hourlyData = await hourlyResponse.json();
-                console.log('NWS Hourly Data:', hourlyData);
 
-                // Step 3: Fetch Open-Meteo for wind gusts
-                const openMeteoResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LNG}&hourly=windgust_10m&timezone=America%2FNew_York`);
-                if (!openMeteoResponse.ok) throw new Error(`Open-Meteo fetch failed: ${openMeteoResponse.statusText}`);
-                const openMeteoData = await openMeteoResponse.json();
-                console.log('Open-Meteo Data:', openMeteoData);
+                // Step 3: Fetch daily forecast (for 10-day forecast)
+                const dailyResponse = await fetch(dailyForecastUrl, {
+                    headers: { 'User-Agent': 'DroneWeatherApp (your-email@example.com)' }
+                });
+                if (!dailyResponse.ok) throw new Error('Failed to fetch daily forecast');
+                const dailyData = await dailyResponse.json();
 
                 // Process advisory
                 const advisory = checkAdvisoryRelevance(hourlyData);
                 document.getElementById('advisory-text').textContent = 'Heavy rain and severe weather forecast for the Deep South and Lower Mississippi Valley, with potential for flash flooding, large hail, and tornadoes.';
                 const advisoryImpactElement = document.getElementById('advisory-impact');
-                advisoryImpactElement.textContent = advisory.advisoryImpact || 'Unable to assess impact';
+                advisoryImpactElement.textContent = advisory.advisoryImpact;
                 if (advisory.isRelevant) {
                     advisoryImpactElement.className = 'danger';
-                } else {
-                    advisoryImpactElement.className = '';
                 }
 
-                // Process current conditions
-                const current = hourlyData.properties?.periods?.[0] || {};
-                const windSpeed = parseInt(current.windSpeed) || 0;
+                // Process current conditions (first hourly period)
+                const current = hourlyData.properties.periods[0];
+                const windSpeed = parseInt(current.windSpeed) || 0; // e.g., "10 mph"
+                let windGusts = null; // Default to null
                 const windDirection = current.windDirection || 'Unknown';
                 const hasSevereWeather = advisory.isRelevant;
 
-                // Get current gust from Open-Meteo
-                const now = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
-                const currentHour = new Date(now).toISOString().slice(0, 13);
-                let windGusts = 'N/A';
-                if (openMeteoData.hourly?.time && openMeteoData.hourly?.windgust_10m) {
-                    const gustIndex = openMeteoData.hourly.time.findIndex(time => time.startsWith(currentHour));
-                    if (gustIndex !== -1) {
-                        windGusts = Math.round(openMeteoData.hourly.windgust_10m[gustIndex] * 0.621371); // km/h to mph
-                    }
+                // Attempt to extract gusts from shortForecast or detailedForecast
+                const forecastText = (current.shortForecast || '') + ' ' + (current.detailedForecast || '');
+                const gustMatch = forecastText.match(/gust(s|ing)? (to|as high as) (\d+) mph/i);
+                if (gustMatch) {
+                    windGusts = parseInt(gustMatch[3]);
                 } else {
-                    console.warn('Open-Meteo hourly data missing:', openMeteoData.hourly);
+                    // Fallback: Estimate gusts as 1.5x wind speed
+                    windGusts = Math.round(windSpeed * 1.5);
                 }
 
                 // Update current weather
-                document.getElementById('wind-speed').textContent = isNaN(windSpeed) ? 'Error' : windSpeed;
-                document.getElementById('wind-gusts').textContent = windGusts === 'N/A' || isNaN(windGusts) ? 'Error' : windGusts;
-                document.getElementById('wind-direction').textContent = windDirection || 'Error';
+                document.getElementById('wind-speed').textContent = windSpeed;
+                document.getElementById('wind-gusts').textContent = windGusts;
+                document.getElementById('wind-direction').textContent = degreesToDirection(windDirection);
                 const recommendation = getFlightRecommendation(windSpeed, windGusts, hasSevereWeather);
                 const recommendationElement = document.getElementById('flight-recommendation');
                 recommendationElement.textContent = recommendation.text;
                 recommendationElement.className = recommendation.class;
 
-                // Process 12-hour hourly forecast
+                // Process 12-hour hourly forecast starting at the current hour
                 const hourlyBody = document.getElementById('hourly-body');
-                hourlyBody.innerHTML = '';
-                const startHour = getStartHour();
+                hourlyBody.innerHTML = ''; // Clear previous data
+                const now = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+                const currentHour = new Date(now).getHours();
                 const currentDate = new Date(now);
 
-                let periods = hourlyData.properties?.periods || [];
+                // Select the next 12 hours starting from the current hour
+                let periods = hourlyData.properties.periods;
                 let selectedPeriods = [];
                 let periodsAdded = 0;
 
@@ -336,65 +317,56 @@
                     const periodHour = periodTime.getHours();
                     const periodDate = periodTime.getDate();
 
-                    if (periodDate === currentDate.getDate() && periodHour >= startHour && periodsAdded < 12) {
-                        selectedPeriods.push(period);
-                        periodsAdded++;
-                    } else if (periodDate > currentDate.getDate() && periodsAdded < 12) {
-                        selectedPeriods.push(period);
-                        periodsAdded++;
+                    // Include periods starting from the current hour or later
+                    if ((periodDate === currentDate.getDate() && periodHour >= currentHour) || periodDate > currentDate.getDate()) {
+                        if (periodsAdded < 12) {
+                            selectedPeriods.push(period);
+                            periodsAdded++;
+                        }
                     }
                 }
 
-                for (let i = 0; i < selectedPeriods.length; i++) {
-                    const period = selectedPeriods[i];
+                // Display the selected periods
+                for (let period of selectedPeriods) {
                     const time = new Date(period.startTime).toLocaleTimeString([], { hour: 'numeric', hour12: true });
                     const periodWindSpeed = parseInt(period.windSpeed) || 0;
-                    const periodHasSevereWeather = period.shortForecast?.toLowerCase().includes('thunderstorm') || period.shortForecast?.toLowerCase().includes('heavy rain');
-
-                    // Match Open-Meteo gust to period timestamp
-                    const periodHour = period.startTime.slice(0, 13);
-                    let periodWindGusts = 'N/A';
-                    if (openMeteoData.hourly?.time && openMeteoData.hourly?.windgust_10m) {
-                        const periodGustIndex = openMeteoData.hourly.time.findIndex(time => time.startsWith(periodHour));
-                        if (periodGustIndex !== -1) {
-                            periodWindGusts = Math.round(openMeteoData.hourly.windgust_10m[periodGustIndex] * 0.621371);
-                        }
+                    let periodWindGusts = null;
+                    const forecastText = (period.shortForecast || '') + ' ' + (period.detailedForecast || '');
+                    const gustMatch = forecastText.match(/gust(s|ing)? (to|as high as) (\d+) mph/i);
+                    if (gustMatch) {
+                        periodWindGusts = parseInt(gustMatch[3]);
+                    } else {
+                        // Fallback: Estimate gusts as 1.5x wind speed
+                        periodWindGusts = Math.round(periodWindSpeed * 1.5);
                     }
-
+                    const periodHasSevereWeather = period.shortForecast.toLowerCase().includes('thunderstorm') || period.shortForecast.toLowerCase().includes('heavy rain');
                     const periodRecommendation = getFlightRecommendation(periodWindSpeed, periodWindGusts, periodHasSevereWeather);
 
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${time}</td>
-                        <td>${isNaN(periodWindSpeed) ? 'Error' : periodWindSpeed}</td>
-                        <td>${periodWindGusts === 'N/A' || isNaN(periodWindGusts) ? 'Error' : periodWindGusts}</td>
+                        <td>${periodWindSpeed}</td>
+                        <td>${periodWindGusts}</td>
                         <td class="${periodRecommendation.class}">${periodRecommendation.text}</td>
                     `;
                     hourlyBody.appendChild(row);
                 }
 
-                // Process 10-day forecast
-                const dailyResponse = await fetch(dailyForecastUrl, {
-                    headers: { 'User-Agent': 'your-email@example.com' }
-                });
-                if (!dailyResponse.ok) throw new Error(`NWS daily fetch failed: ${dailyResponse.statusText}`);
-                const dailyData = await dailyResponse.json();
-                console.log('NWS Daily Data:', dailyData);
-
+                // Process 10-day forecast (limited to available periods, typically 7 days)
                 const dailyBody = document.getElementById('daily-body');
-                dailyBody.innerHTML = '';
-                const dailyPeriods = dailyData.properties?.periods?.slice(0, 20) || [];
-                for (let i = 0; i < dailyPeriods.length; i += 2) {
+                dailyBody.innerHTML = ''; // Clear previous data
+                const dailyPeriods = dailyData.properties.periods.slice(0, 20); // Up to 10 days (day + night)
+                for (let i = 0; i < dailyPeriods.length; i += 2) { // Day periods only
                     const period = dailyPeriods[i];
                     const date = new Date(period.startTime).toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
                     const periodWindSpeed = parseInt(period.windSpeed) || 0;
-                    const periodHasSevereWeather = period.shortForecast?.toLowerCase().includes('thunderstorm') || period.shortForecast?.toLowerCase().includes('heavy rain');
+                    const periodHasSevereWeather = period.shortForecast.toLowerCase().includes('thunderstorm') || period.shortForecast.toLowerCase().includes('heavy rain');
                     const periodRecommendation = getFlightRecommendation(periodWindSpeed, null, periodHasSevereWeather);
 
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${date}</td>
-                        <td>${isNaN(periodWindSpeed) ? 'Error' : periodWindSpeed}</td>
+                        <td>${periodWindSpeed}</td>
                         <td class="${periodRecommendation.class}">${periodRecommendation.text}</td>
                     `;
                     dailyBody.appendChild(row);
@@ -406,22 +378,17 @@
                 document.getElementById('wind-speed').textContent = 'Error';
                 document.getElementById('wind-gusts').textContent = 'Error';
                 document.getElementById('wind-direction').textContent = 'Error';
-                document.getElementById('flight-recommendation').textContent = 'Unable to assess';
+                document.getElementById('flight-recommendation').textContent = 'Unable to load data';
             }
         }
 
         // Fetch weather data on page load
         fetchWeather();
 
-        // Check time every minute to update hourly forecast if needed
+        // Refresh every 5 minutes to update hourly forecast
         setInterval(() => {
-            const previousStartHour = getStartHour();
             fetchWeather();
-            const newStartHour = getStartHour();
-            if (newStartHour !== previousStartHour) {
-                console.log(`Time crossed 2 PM EST, updating forecast to start at ${newStartHour}:00`);
-            }
-        }, 60000); // Check every 60 seconds
+        }, 300000); // Check every 5 minutes
     </script>
 </body>
 </html>
