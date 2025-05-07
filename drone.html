@@ -235,26 +235,31 @@
                 <i class="fas fa-cloud-showers-heavy"></i>
                 <h2>FAA Drone Safety Guidelines</h2>
                 <p class="preview-text">Ensure safe drone operations with these key tips: Always check wind conditions with a local anemometer, avoid flying during thunderstorms or heavy rain, and use our weekly forecast to plan flights on calm days.</p>
-                <button class="read-more" onclick="toggleSafetySection()">Read More</button>
-            </div>
-        </section>
-        <div class="item" id="safety-content">
-            <div class="item-content">
-                <h3>Airspace Regulations</h3>
-                <p>Operate in Class G (uncontrolled) airspace unless you obtain FAA authorization for Class B, C, D, or E airspace. Use apps like B4UFLY to check airspace restrictions and avoid airports, heliports, or restricted areas like stadiums and military zones.</p>
-                <h3>Operational Limits</h3>
-                <p>Keep your drone below 400 feet above ground level, maintain visual line-of-sight at all times, and avoid flying over people, moving vehicles, or at night without a waiver. Maximum speed is 100 mph, and drones must weigh less than 55 lbs (including payload).</p>
-                <h3>Preflight Inspections</h3>
-                <p>Before every flight, check your drone’s battery, propellers, motors, and sensors for damage. Verify weather conditions (e.g., wind, visibility) and ensure no Temporary Flight Restrictions (TFRs) are in effect. Register drones over 250 grams with the FAA.</p>
-                <h3>Emergency Procedures</h3>
-                <p>In case of lost link or low battery, set your drone to Return-to-Home (RTH) mode if available, or land safely in a clear area. Avoid flying near emergency response activities (e.g., wildfires, accidents). Report any incidents causing injury or over $500 in damage to the FAA within 10 days.</p>
-                <h3>Pilot Responsibilities</h3>
-                <p>Maintain your Part 107 Remote Pilot Certificate by passing recurrent training every 24 months. Never operate recklessly or under the influence of drugs/alcohol. Yield right-of-way to manned aircraft and prioritize safety in all operations.</p>
+                <details class="item">
+                <summary class="item-button">Read More</summary>
+                <div class="item-content">
+            <div class="item">
+                <details>
+                    <div class="item-content">
+                    <h3>Airspace Regulations</h3>
+                    <p>Operate in Class G (uncontrolled) airspace unless you obtain FAA authorization for Class B, C, D, or E airspace. Use apps like B4UFLY to check airspace restrictions and avoid airports, heliports, or restricted areas like stadiums and military zones.</p>
+                    <h3>Operational Limits</h3>
+                    <p>Keep your drone below 400 feet above ground level, maintain visual line-of-sight at all times, and avoid flying over people, moving vehicles, or at night without a waiver. Maximum speed is 100 mph, and drones must weigh less than 55 lbs (including payload).</p>
+                    <h3>Preflight Inspections</h3>
+                    <p>Before every flight, check your drone’s battery, propellers, motors, and sensors for damage. Verify weather conditions (e.g., wind, visibility) and ensure no Temporary Flight Restrictions (TFRs) are in effect. Register drones over 250 grams with the FAA.</p>
+                    <h3>Emergency Procedures</h3>
+                    <p>In case of lost link or low battery, set your drone to Return-to-Home (RTH) mode if available, or land safely in a clear area. Avoid flying near emergency response activities (e.g., wildfires, accidents). Report any incidents causing injury or over $500 in damage to the FAA within 10 days.</p>
+                    <h3>Pilot Responsibilities</h3>
+                    <p>Maintain your Part 107 Remote Pilot Certificate by passing recurrent training every 24 months. Never operate recklessly or under the influence of drugs/alcohol. Yield right-of-way to manned aircraft and prioritize safety in all operations.</p>
+                    </div>
+                </details>
             </div>
         </div>
+            </div>
+        </section>
     </main>
     <footer>
-            <br><p>Data provided by <a href="https://www.weather.gov/">National Weather Service</a> and <a href="https://www.windy.com/">Windy.com</a>. 
+            <p>Data provided by <a href="https://www.weather.gov/">National Weather Service</a> and <a href="https://www.windy.com/">Windy.com</a>. 
                 Wind data is sourced from METAR observations (KILG, Wilmington, DE). <span id="data-source" class="nws-fallback"></span>
                 Click the Windy.com map for real-time wind and gust visuals. Always verify conditions with a local anemometer before flying.</p>
     </footer>
