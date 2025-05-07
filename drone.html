@@ -84,12 +84,6 @@
             border: none;
         }
 
-        /* Warning for NWS fallback */
-        .nws-fallback {
-            color: orange;
-            font-style: italic;
-        }
-
         /* Ensure featured article text is visible */
         .featured-article .article-preview {
             color: #fff;
@@ -260,7 +254,6 @@
     </main>
     <footer>
         <p>Data provided by <a href="https://www.weather.gov/">National Weather Service</a> and <a href="https://www.windy.com/">Windy.com</a>. 
-            Wind data is sourced from METAR observations (KILG, Wilmington, DE). <span id="data-source" class="nws-fallback"></span>
             Click the Windy.com map for real-time wind and gust visuals. Always verify conditions with a local anemometer before flying.</p>
     </footer>
     <script>
@@ -282,7 +275,7 @@
         // Function to convert wind direction to cardinal direction
         function degreesToDirection(direction) {
             if (typeof direction === 'string') {
-                return direction; // NWS or METAR 'Variable'
+                return direction; // NWS 'Variable' or other string directions
             }
             const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
             const index = Math.round(direction / 22.5) % 16;
@@ -332,101 +325,9 @@
             return { isRelevant, advisoryImpact };
         }
 
-        // Function to fetch and parse METAR data (KILG primary, KPHL backup)
-        async function fetchMETAR(retries = 2, delay = 1000) {
-            // Check cached METAR data
-            const cachedData = localStorage.getItem('metarData');
-            let cachedMetar = null;
-            if (cachedData) {
-                try {
-                    cachedMetar = JSON.parse(cachedData);
-                    if (Date.now() - cachedMetar.timestamp < 3600000) {
-                        console.log('Using cached METAR data');
-                        return cachedMetar.data;
-                    }
-                } catch (e) {
-                    console.warn('Invalid cached METAR data, fetching new');
-                }
-            }
-
-            // Try KILG, then KPHL
-            const stations = [
-                { id: 'KILG', url: 'https://tgftp.nws.noaa.gov/data/observations/metar/stations/KILG.TXT' },
-                { id: 'KPHL', url: 'https://tgftp.nws.noaa.gov/data/observations/metar/stations/KPHL.TXT' }
-            ];
-
-            for (const station of stations) {
-                for (let attempt = 0; attempt <= retries; attempt++) {
-                    try {
-                        const response = await fetch(station.url, {
-                            headers: { 'User-Agent': 'DroneWeatherApp (your-email@example.com)' }
-                        });
-                        if (!response.ok) {
-                            throw new Error(`HTTP ${response.status}: Failed to fetch METAR data for ${station.id}`);
-                        }
-                        const text = await response.text();
-                        const lines = text.split('\n').filter(line => line.trim());
-                        if (lines.length < 2) {
-                            throw new Error(`Empty or invalid METAR response for ${station.id}`);
-                        }
-                        const metar = lines[lines.length - 1].trim();
-
-                        // Parse METAR for wind speed, gusts, and direction
-                        const windMatch = metar.match(/(VRB|\d{3})(\d{2})(G(\d{2}))?KT/);
-                        if (!windMatch) {
-                            console.warn(`No valid wind data in METAR for ${station.id}: ${metar}`);
-                            throw new Error(`No valid wind data for ${station.id}`);
-                        }
-
-                        const windDirectionRaw = windMatch[1];
-                        const windDirection = windDirectionRaw === 'VRB' ? 'Variable' : parseInt(windDirectionRaw);
-                        const windSpeedKnots = parseInt(windMatch[2]);
-                        const windGustsKnots = windMatch[4] ? parseInt(windMatch[4]) : null;
-
-                        // Convert knots to mph
-                        const windSpeed = Math.round(windSpeedKnots * 1.15078);
-                        const windGusts = windGustsKnots ? Math.round(windGustsKnots * 1.15078) : Math.round(windSpeed * 1.8);
-
-                        const metarData = {
-                            windSpeed,
-                            windGusts,
-                            windDirection: windDirection === 'Variable' ? windDirection : degreesToDirection(windDirection)
-                        };
-
-                        // Cache the successful fetch
-                        localStorage.setItem('metarData', JSON.stringify({
-                            data: metarData,
-                            timestamp: Date.now()
-                        }));
-
-                        console.log(`Successfully fetched METAR from ${station.id}`);
-                        return metarData;
-                    } catch (error) {
-                        console.error(`METAR fetch attempt ${attempt + 1} for ${station.id} failed:`, error.message);
-                        if (attempt < retries) {
-                            console.log(`Retrying ${station.id} in ${delay}ms...`);
-                            await new Promise(resolve => setTimeout(resolve, delay));
-                        }
-                    }
-                }
-            }
-
-            // All fetches failed, use cached data if available
-            if (cachedMetar) {
-                console.log('All METAR fetches failed, using cached METAR data');
-                return cachedMetar.data;
-            }
-
-            console.error('All METAR fetches failed, no valid cached data');
-            return null;
-        }
-
-        // Fetch weather data from METAR and NWS API
+        // Fetch weather data from NWS API
         async function fetchWeather() {
             try {
-                // Fetch METAR data for current conditions
-                const metarData = await fetchMETAR();
-
                 // Step 1: Get gridpoint for Port Deposit, MD
                 const pointResponse = await fetch(`https://api.weather.gov/points/${LAT},${LNG}`, {
                     headers: { 'User-Agent': 'DroneWeatherApp (your-email@example.com)' }
@@ -459,22 +360,14 @@
                     advisoryImpactElement.className = 'danger';
                 }
 
-                // Process current conditions (prefer METAR, fallback to NWS)
-                let windSpeed, windGusts, windDirection, hasSevereWeather = advisory.isRelevant;
-                let usingNWS = false;
-                if (metarData) {
-                    windSpeed = metarData.windSpeed;
-                    windGusts = metarData.windGusts;
-                    windDirection = metarData.windDirection;
-                } else {
-                    usingNWS = true;
-                    const current = hourlyData.properties.periods[0];
-                    windSpeed = parseInt(current.windSpeed) || 0;
-                    windDirection = current.windDirection || 'Unknown';
-                    const forecastText = (current.shortForecast || '') + ' ' + (current.detailedForecast || '');
-                    const gustMatch = forecastText.match(/gust(s|ing)? (to|as high as) (\d+) mph/i);
-                    windGusts = gustMatch ? parseInt(gustMatch[3]) : Math.round(windSpeed * 1.8);
-                }
+                // Process current conditions using NWS data
+                const current = hourlyData.properties.periods[0];
+                const windSpeed = parseInt(current.windSpeed) || 0;
+                const windDirection = current.windDirection || 'Unknown';
+                const forecastText = (current.shortForecast || '') + ' ' + (current.detailedForecast || '');
+                const gustMatch = forecastText.match(/gust(s|ing)? (to|as high as) (\d+) mph/i);
+                const windGusts = gustMatch ? parseInt(gustMatch[3]) : Math.round(windSpeed * 1.8);
+                const hasSevereWeather = advisory.isRelevant;
 
                 // Update current weather
                 document.getElementById('wind-speed').textContent = windSpeed;
@@ -484,9 +377,6 @@
                 const recommendationElement = document.getElementById('flight-recommendation');
                 recommendationElement.textContent = recommendation.text;
                 recommendationElement.className = recommendation.class;
-
-                // Update data source note in footer
-                document.getElementById('data-source').textContent = usingNWS ? 'Warning: Using NWS data due to METAR unavailability. ' : '';
 
                 // Process 12-hour hourly forecast
                 const hourlyBody = document.getElementById('hourly-body');
@@ -536,7 +426,7 @@
                     hourlyBody.appendChild(row);
                 }
 
-                // Process weekly forecast
+                // Process weekly прогноз
                 const dailyBody = document.getElementById('daily-body');
                 dailyBody.innerHTML = '';
                 const dailyPeriods = dailyData.properties.periods.slice(0, 20);
@@ -563,7 +453,6 @@
                 document.getElementById('wind-gusts').textContent = 'Error';
                 document.getElementById('wind-direction').textContent = 'Error';
                 document.getElementById('flight-recommendation').textContent = 'Unable to load data';
-                document.getElementById('data-source').textContent = 'Error: Unable to load weather data';
             }
         }
 
