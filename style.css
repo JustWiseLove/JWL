@@ -239,20 +239,9 @@ main {
 
 @media (min-width: 1024px) {
     .categories {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        justify-content: center;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-}
-
-/*@media (min-width: 1024px) {
-    .categories {
         grid-template-columns: repeat(4, 1fr);
     }
-}*/
+}
 
 .category {
     background-color: #2a6626;
