@@ -1,180 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jokes and News</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f5f5f5;
-      color: #222;
-      margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    #joke-container {
-      background: #fff;
-      padding: 15px;
-      margin-bottom: 30px;
-      border-left: 5px solid #555;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-
-    #joke-text {
-      font-size: 1.2em;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li.category {
-      margin-bottom: 20px;
-      background: #fff;
-      padding: 10px 15px;
-      border-left: 5px solid #888;
-      box-shadow: 0 0 5px rgba(0,0,0,0.05);
-    }
-
-    details summary {
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
-
-    details summary::after {
-      content: " ▶️";
-      font-size: 0.8em;
-      margin-left: 5px;
-    }
-
-    details[open] summary::after {
-      content: " 🔽";
-    }
-
-    a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .timestamp {
-      font-size: 0.9em;
-      color: #666;
-      margin-bottom: 5px;
-    }
-
-    .article-desc {
-      font-size: 1em;
-      line-height: 1.4;
-      margin-top: 5px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jokes - Just Wise Love</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <div class="logo">
+      <h1><a href="#">JOKES</a></h1>
+    </div>
+  </header>
 
-  <h1>😂 Daily Joke & 📰 News Headlines</h1>
+  <main>
+    <section class="categories-container">
+      <h2>Latest News Headlines</h2>
+      <ul id="news-list">
+        <!-- FOX -->
+        <li class="category">
+          <details open>
+            <summary>📡 FOX</summary>
+            <div class="news-article">
+              <a href="https://www.foxnews.com/politics/sample-article-1" class="headline" target="_blank" rel="noopener noreferrer">
+                Economy shows signs of rebound as new data reveals growth in manufacturing and services sectors over the last quarter
+              </a>
+              <div class="timestamp">🕓 May 16, 2025, 9:00 AM</div>
+              <p class="article-desc">
+                Recent reports from multiple sources indicate that the economy is showing promising signs of recovery. Both manufacturing and services sectors have experienced significant growth, driven by increased consumer spending and industrial production. Experts remain cautiously optimistic about continued positive momentum.
+              </p>
+            </div>
+            <!-- Repeat 9 more Fox News articles with similar structure -->
+            <div class="news-article">
+              <a href="https://www.foxnews.com/health/sample-article-2" class="headline" target="_blank" rel="noopener noreferrer">
+                New health guidelines emphasize mental well-being alongside physical health as part of comprehensive care strategies
+              </a>
+              <div class="timestamp">🕓 May 16, 2025, 8:30 AM</div>
+              <p class="article-desc">
+                Health authorities have released updated guidelines that place mental health on equal footing with physical health. These recommendations encourage integrated care models, increased funding for mental health resources, and expanded public awareness campaigns to destigmatize seeking help.
+              </p>
+            </div>
+            <!-- Add 8 more Fox News articles similarly -->
+          </details>
+        </li>
 
-  <div id="joke-container">
-    <strong>Dad Joke of the Day:</strong>
-    <p id="joke-text">Loading joke...</p>
-  </div>
+        <!-- CNN -->
+        <li class="category">
+          <details>
+            <summary>🌐 CNN</summary>
+            <div class="news-article">
+              <a href="https://www.cnn.com/world/sample-article-1" class="headline" target="_blank" rel="noopener noreferrer">
+                Global leaders meet to discuss climate change initiatives aimed at reducing carbon emissions worldwide by 2030
+              </a>
+              <div class="timestamp">🕓 May 16, 2025, 10:00 AM</div>
+              <p class="article-desc">
+                At the international summit held this week, representatives from over 50 countries gathered to negotiate new commitments to tackle climate change. Goals include cutting carbon emissions by significant margins and increasing investment in renewable energy projects globally.
+              </p>
+            </div>
+            <!-- Repeat 9 more CNN articles with similar structure -->
+            <div class="news-article">
+              <a href="https://www.cnn.com/tech/sample-article-2" class="headline" target="_blank" rel="noopener noreferrer">
+                Advances in artificial intelligence spark debate over ethical use and future impact on the job market
+              </a>
+              <div class="timestamp">🕓 May 16, 2025, 9:45 AM</div>
+              <p class="article-desc">
+                Recent breakthroughs in AI technology have prompted discussions among policymakers and industry leaders regarding regulation, ethics, and potential disruption in employment. While AI promises efficiency gains, there is growing concern about workforce displacement and privacy.
+              </p>
+            </div>
+            <!-- Add 8 more CNN articles similarly -->
+          </details>
+        </li>
 
-  <ul id="news-list">
-    <li class="category"><p>Loading news...</p></li>
-  </ul>
+        <!-- BBC -->
+        <li class="category">
+          <details>
+            <summary>📰 BBC</summary>
+            <div class="news-article">
+              <a href="https://www.bbc.com/news/sample-article-1" class="headline" target="_blank" rel="noopener noreferrer">
+                Scientific community celebrates new discoveries in renewable energy storage techniques that could transform power grids
+              </a>
+              <div class="timestamp">🕓 May 16, 2025, 8:00 AM</div>
+              <p class="article-desc">
+                Innovative storage solutions have been developed by researchers aiming to increase the efficiency and reliability of renewable energy systems. These advances may lead to more stable and sustainable power grids, reducing reliance on fossil fuels.
+              </p>
+            </div>
+            <!-- Repeat 9 more BBC articles with similar structure -->
+            <div class="news-article">
+              <a href="https://www.bbc.com/news/health/sample-article-2" class="headline" target="_blank" rel="noopener noreferrer">
+                New public health campaigns focus on nutrition and exercise to combat rising rates of lifestyle diseases
+              </a>
+              <div class="timestamp">🕓 May 16, 2025, 7:30 AM</div>
+              <p class="article-desc">
+                Governments across multiple regions are launching initiatives to encourage healthier eating habits and increased physical activity. These efforts aim to reduce incidents of obesity, diabetes, and cardiovascular diseases by educating citizens and providing community resources.
+              </p>
+            </div>
+            <!-- Add 8 more BBC articles similarly -->
+          </details>
+        </li>
+      </ul>
 
-  <script>
-    // Fetch Dad Joke
-    fetch('https://icanhazdadjoke.com/', {
-      headers: { Accept: 'application/json' }
-    })
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById('joke-text').textContent = data.joke;
-    })
-    .catch(err => {
-      document.getElementById('joke-text').textContent = 'Oops! Could not load a joke.';
-      console.error(err);
-    });
+      <h2 style="margin-top: 50px; text-align: center; font-family: 'Audiowide', Arial, sans-serif; color: #2a6626;">
+        Daily Jokes
+      </h2>
+      <ul class="categories" style="max-width: 600px; margin: 20px auto;">
+        <li class="category" style="min-height: auto; padding: 15px;">
+          <p><strong>Q:</strong> Why did the scarecrow win an award?</p>
+          <p><strong>A:</strong> Because he was outstanding in his field!</p>
+        </li>
+        <li class="category" style="min-height: auto; padding: 15px;">
+          <p><strong>Q:</strong> What do you call fake spaghetti?</p>
+          <p><strong>A:</strong> An impasta.</p>
+        </li>
+        <li class="category" style="min-height: auto; padding: 15px;">
+          <p><strong>Q:</strong> Why don’t scientists trust atoms?</p>
+          <p><strong>A:</strong> Because they make up everything.</p>
+        </li>
+        <li class="category" style="min-height: auto; padding: 15px;">
+          <p><strong>Q:</strong> What did one ocean say to the other ocean?</p>
+          <p><strong>A:</strong> Nothing, they just waved.</p>
+        </li>
+        <li class="category" style="min-height: auto; padding: 15px;">
+          <p><strong>Q:</strong> Why did the bicycle fall over?</p>
+          <p><strong>A:</strong> Because it was two tired.</p>
+        </li>
+      </ul>
+    </section>
+  </main>
 
-    // News Feeds
-    const feeds = [
-      { name: "FOX", url: "https://feeds.foxnews.com/foxnews/latest" },
-      { name: "CNN", url: "http://rss.cnn.com/rss/edition.rss" },
-      { name: "BBC", url: "http://feeds.bbci.co.uk/news/world/rss.xml" }
-    ];
-
-    const newsList = document.getElementById('news-list');
-    newsList.innerHTML = '<li class="category"><p>Loading news...</p></li>';
-
-    Promise.all(
-      feeds.map(feed =>
-        fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`)
-          .then(res => res.json())
-          .then(data => ({ source: feed.name, articles: data.items.slice(0, 10) }))
-      )
-    ).then(allNews => {
-      newsList.innerHTML = '';
-
-      allNews.forEach(feed => {
-        const details = document.createElement('details');
-        details.open = true;
-
-        const summary = document.createElement('summary');
-        summary.textContent = `📡 ${feed.source}`;
-        details.appendChild(summary);
-
-        feed.articles.forEach(item => {
-          const articleDiv = document.createElement('div');
-          articleDiv.style.marginBottom = '15px';
-
-          const a = document.createElement('a');
-          a.href = item.link;
-          a.textContent = item.title;
-          a.target = '_blank';
-          a.style.display = 'block';
-          a.style.fontWeight = 'bold';
-
-          const pubDate = new Date(item.pubDate);
-          const dateSpan = document.createElement('div');
-          dateSpan.className = 'timestamp';
-          dateSpan.textContent = `🕓 ${pubDate.toLocaleString()}`;
-
-          const desc = document.createElement('p');
-          desc.className = 'article-desc';
-          const plainText = (item.description || item.content || '')
-            .replace(/(<([^>]+)>)/gi, "").replace(/\s+/g, " ").trim();
-          const summaryText = plainText.split(" ").slice(0, 50).join(" ") + '...';
-          desc.textContent = summaryText;
-
-          articleDiv.appendChild(a);
-          articleDiv.appendChild(dateSpan);
-          articleDiv.appendChild(desc);
-          details.appendChild(articleDiv);
-        });
-
-        const li = document.createElement('li');
-        li.classList.add('category');
-        li.appendChild(details);
-        newsList.appendChild(li);
-      });
-    }).catch(err => {
-      newsList.innerHTML = '<li class="category"><p>Could not fetch news right now.</p></li>';
-      console.error('News fetch error:', err);
-    });
-  </script>
-
+  <footer>
+    <p>© 2025 Just Wise Love</p>
+  </footer>
 </body>
 </html>
