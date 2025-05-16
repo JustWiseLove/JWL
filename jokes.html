@@ -3,117 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Dad Jokes & News</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .dad-joke, .news-section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .dad-joke h2, .news-section h2 {
-      font-family: 'Audiowide', Arial, sans-serif;
-      color: #2a6626;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    .dad-joke p {
-      font-size: 1.2rem;
-      color: #333;
-      text-align: center;
-    }
-
-    .news-section ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .news-section li {
-      margin-bottom: 10px;
-    }
-
-    .news-section a {
-      text-decoration: none;
-      color: #2a6626;
-      font-weight: bold;
-    }
-
-    .news-section a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <title>Jokes & Headlines</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+
   <header>
+    <button class="hamburger-left">
+      <span></span><span></span><span></span>
+    </button>
     <div class="logo">
-      <h1><a href="#">Dad Jokes & News</a></h1>
+      <a href="#"><h1>Jokes Daily</h1></a>
     </div>
+    <button class="hamburger-right">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <main>
-    <section class="dad-joke">
-      <h2>😂 Today's Dad Joke</h2>
-      <p id="joke">Loading joke...</p>
+    <section class="intro">
+      <div class="intro-content">
+        <h2>Start Your Day Laughing</h2>
+        <p>Enjoy a fresh dad joke and the latest news headlines — every time you refresh!</p>
+      </div>
     </section>
 
-    <section class="news-section">
-      <h2>📰 Latest News Headlines</h2>
-      <ul id="news-list">
-        <li>Loading news...</li>
+    <section class="featured-article">
+      <div class="article-preview">
+        <i>😂</i>
+        <h2>Dad Joke of the Day</h2>
+        <p class="preview-text" id="joke-text">Loading joke...</p>
+      </div>
+    </section>
+
+    <section class="categories-container">
+      <h2>Top News Headlines</h2>
+      <ul id="news-list" class="categories">
+        <li class="category"><p>Loading news...</p></li>
       </ul>
     </section>
   </main>
 
   <footer>
-    <p>Stay updated with a smile! &copy; 2025</p>
+    <p>&copy; 2025 Jokes Daily. All rights reserved.</p>
   </footer>
 
   <script>
-    // Fetch a random dad joke
+    // Fetch dad joke
     fetch('https://icanhazdadjoke.com/', {
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('joke').textContent = data.joke;
-    })
-    .catch(error => {
-      document.getElementById('joke').textContent = 'Oops! Couldn\'t fetch a joke right now.';
-      console.error('Error fetching joke:', error);
-    });
-
-    // Fetch latest news headlines from Google News RSS
-    fetch('https://cors-anywhere.herokuapp.com/https://news.google.com/rss', {
-      headers: { 'X-Requested-With': 'XMLHttpRequest' }
-    })
-    .then(response => response.text())
-    .then(str => {
-      const parser = new window.DOMParser();
-      const doc = parser.parseFromString(str, "application/xml");
-      const items = doc.querySelectorAll("item");
-      const newsList = document.getElementById('news-list');
-      newsList.innerHTML = '';
-      for (let i = 0; i < 5; i++) {
-        const title = items[i].querySelector("title").textContent;
-        const link = items[i].querySelector("link").textContent;
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = link;
-        a.textContent = title;
-        a.target = '_blank';
-        li.appendChild(a);
-        newsList.appendChild(li);
+      headers: {
+        Accept: 'application/json'
       }
     })
-    .catch(error => {
-      document.getElementById('news-list').innerHTML = '<li>Oops! Couldn\'t fetch news right now.</li>';
-      console.error('Error fetching news:', error);
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('joke-text').textContent = data.joke;
+    })
+    .catch(err => {
+      document.getElementById('joke-text').textContent = 'Oops! Could not load a joke.';
+      console.error(err);
     });
+
+    // Fetch news headlines
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss')
+      .then(response => response.json())
+      .then(data => {
+        const newsList = document.getElementById('news-list');
+        newsList.innerHTML = '';
+        data.items.slice(0, 5).forEach(item => {
+          const li = document.createElement('li');
+          li.classList.add('category');
+          const a = document.createElement('a');
+          a.href = item.link;
+          a.textContent = item.title;
+          a.target = '_blank';
+          li.appendChild(a);
+          newsList.appendChild(li);
+        });
+      })
+      .catch(error => {
+        document.getElementById('news-list').innerHTML = '<li class="category"><p>Could not fetch news right now.</p></li>';
+        console.error('Error fetching news:', error);
+      });
   </script>
 </body>
 </html>
