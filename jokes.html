@@ -3,249 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JOKES News & Weather</title>
+  <title>News- Just Wise Love</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #f0f2f0;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      flex: 1;
-      text-align: center;
-    }
-
-    .logo h1 {
-      font-family: 'Audiowide', Arial, sans-serif;
-      color: #fff;
-      font-size: 48px;
-      margin: 0;
-    }
-
-    .hamburger-left, .hamburger-right {
-      display: block;
-      cursor: pointer;
-      padding: 5px;
-      background: none;
-      border: none;
-      outline: none;
-    }
-
-    .hamburger-left span, .hamburger-right span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      background: #fff;
-      margin: 5px 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .hamburger-left.active span:nth-child(1), .hamburger-right.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .hamburger-left.active span:nth-child(2), .hamburger-right.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger-left.active span:nth-child(3), .hamburger-right.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-
-    .nav-menu-left, .nav-menu-right {
-      display: none;
-      position: absolute;
-      top: 80px;
-      width: 200px;
-      border-radius: 5px;
-    }
-
-    .nav-menu-left {
-      left: 20px;
-      background: linear-gradient(90deg, #2a6626, #6b9e31);
-    }
-
-    .nav-menu-right {
-      right: 20px;
-      background: linear-gradient(90deg, #6b9e31, #2a6626);
-      text-align: right;
-    }
-
-    .nav-menu-left.active, .nav-menu-right.active {
-      display: block;
-    }
-
-    .nav-menu-left li, .nav-menu-right li {
-      list-style: none;
-      padding: 15px 20px;
-    }
-
-    .nav-menu-left li a, .nav-menu-right li a {
-      color: #fff;
-      text-decoration: none;
-      font-family: 'Audiowide', Arial, sans-serif;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-
-    .nav-menu-left li a:hover, .nav-menu-right li a:hover {
-      color: #d4af37;
-    }
-
-    main {
-      max-width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    .intro {
-      background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
-      padding: 20px 0;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-    }
-
-    .intro-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    .intro h2 {
-      font-family: 'Audiowide', Arial, sans-serif;
-      color: #2a6626;
-      margin-bottom: 10px;
-    }
-
-    .item {
-      margin-bottom: 20px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .item-content {
-      padding: 20px;
-      background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
-      border-radius: 5px;
-      text-align: center;
-      color: #333;
-    }
-
-    .item-content p {
-      color: #333;
-    }
-
-    .item-content h2 {
-      margin-top: 40px;
-      margin-bottom: 15px;
-      font-family: 'Audiowide', Arial, sans-serif;
-      color: #2a6626 !important;
-      font-size: 1.5em;
-      text-transform: uppercase;
-    }
-
-    .item-content h2:first-of-type {
-      margin-top: 20px;
-    }
-
-    .item-content h3 {
-      margin-top: 40px;
-      margin-bottom: 15px;
-      font-family: 'Audiowide', Arial, sans-serif;
-      color: #2a6626;
-      font-size: 1.5em;
-      text-transform: uppercase;
-    }
-
-    .item-content h3:first-of-type {
-      margin-top: 20px;
-    }
-
-    .scripture {
-      background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
-      padding: 15px;
-      margin: 10px auto;
-      border-radius: 8px;
-      font-style: italic;
-      color: #fff;
-      max-width: 800px;
-      text-align: center;
-    }
-
-    .item-content .scripture {
-      color: #fff;
-    }
-
-    .describe {
-      background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
-      padding: 15px;
-      margin: 10px auto;
-      border-radius: 8px;
-      font-style: italic;
-      color: #333;
-      max-width: 800px;
-      text-align: left;
-    }
-
-    .joke-section .describe {
-      text-align: center;
-    }
-
-    .news-section .item-content h3 {
-      margin-top: 0;
-    }
-
-    .news-section img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 15px;
-      object-fit: cover;
-    }
-
-    .news-section a {
-      color: #6b9e31;
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    .news-section a:hover {
-      text-decoration: underline;
-    }
-
-    .weather-box {
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
     .weather-hourly,
     .weather-daily {
       display: flex;
@@ -278,24 +40,33 @@
       margin: 10px 0;
     }
 
-    footer {
-      background: linear-gradient(90deg, #2a6626, #6b9e31);
-      text-align: center;
-      padding: 20px;
-      color: #fff;
-      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-      width: 100%;
+    .news-section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      object-fit: cover;
     }
 
-    footer p {
-      margin: 10px 0 0;
+    .news-section a {
+      color: #6b9e31;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .news-section a:hover {
+      text-decoration: underline;
+    }
+
+    .weather-box {
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     @media (max-width: 768px) {
-      .logo h1 {
-        font-size: 42px;
-      }
-
       .hour, .day {
         flex: 1 1 100px;
       }
@@ -311,7 +82,7 @@
     <span></span>
   </button>
   <div class="logo">
-    <h1>JOKES</h1>
+    <h1><a href="index.html">NEWS</a></h1>
   </div>
   <button class="hamburger-right">
     <span></span>
@@ -333,15 +104,15 @@
 <main>
   <section class="intro">
     <div class="intro-content">
-      <h2>Welcome to JOKES News & Weather</h2>
-      <p class="describe">Stay updated with live BBC News, real-time weather forecasts for North East, MD, and a fresh dad joke on every refresh!</p>
+      <h2>Current Events</h2>
+      <p class="describe">Stay updated with live News, real-time weather forecasts and a fresh dad joke on every refresh!</p>
     </div>
   </section>
 
   <section id="joke" class="joke-section">
     <div class="item">
       <div class="item-content">
-        <h2>Dad Joke of the Moment</h2>
+        <h2>Dad Joke</h2>
         <div id="joke-content"></div>
       </div>
     </div>
@@ -350,7 +121,7 @@
   <section id="news" class="news-section">
     <div class="item">
       <div class="item-content">
-        <h2>BBC News - Live Updates</h2>
+        <h2>News - Live</h2>
         <div id="bbc-news"></div>
       </div>
     </div>
@@ -370,7 +141,7 @@
 </main>
 
 <footer>
-  <p>© 2025 JOKES News & Weather</p>
+  <p>© 2025 Just Wise Love</p>
 </footer>
 
 <script>
@@ -423,9 +194,19 @@ async function fetchNews() {
       const articleDiv = document.createElement("div");
       articleDiv.className = "item";
       const fullDesc = cleanDescription(item.description);
+      const pubDate = new Date(item.pubDate).toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
       articleDiv.innerHTML = `
         <div class="item-content">
           <h3>${item.title}</h3>
+          <p class="describe">${pubDate}</p>
           ${item.thumbnail ? `<img src="${item.thumbnail}" alt="BBC News image">` : 
             (item.description.match(/<img[^>]+src="([^">]+)"/)?.[1] ? 
               `<img src="${item.description.match(/<img[^>]+src="([^">]+)"/)[1]}" alt="BBC News image">` : '')}
@@ -458,10 +239,6 @@ function cToF(c) {
   return Math.round(c * 9/5 + 32);
 }
 
-function msToMph(ms) {
-  return Math.round(ms * 2.237);
-}
-
 function getIcon(code) {
   return weatherIcons[code] || "fa-question";
 }
@@ -491,7 +268,6 @@ function showHourly(hourly) {
     const code = hourly.weathercode[i];
     const iconClass = getIcon(code);
     const precip = hourly.precipitation_probability[i];
-    const wind = msToMph(hourly.windspeed_10m[i]);
     const humidity = hourly.relativehumidity_2m[i];
 
     const div = document.createElement("div");
@@ -501,7 +277,6 @@ function showHourly(hourly) {
       <strong>${hourStr}</strong><br/>
       ${tempF}°F<br/>
       Precip: ${precip}%<br/>
-      Wind: ${wind} mph<br/>
       Humidity: ${humidity}%
     `;
     container.appendChild(div);
@@ -541,7 +316,6 @@ function showDaily(daily) {
     const code = daily.weathercode[i];
     const iconClass = getIcon(code);
     const precip = daily.precipitation_probability_max[i];
-    const wind = msToMph(daily.windspeed_10m_max[i]);
 
     const div = document.createElement("div");
     div.className = "day";
@@ -550,8 +324,7 @@ function showDaily(daily) {
       <strong>${dayStr}</strong><br/>
       High: ${maxF}°F<br/>
       Low: ${minF}°F<br/>
-      Precip: ${precip}%<br/>
-      Wind: ${wind} mph
+      Precip: ${precip}%
     `;
     container.appendChild(div);
   }
@@ -577,7 +350,7 @@ async function fetchWithRetry(url, options, retries = 3, delay = 2000) {
 async function fetchWeather() {
   const weatherBox = document.querySelector(".weather-box");
   try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode,precipitation_probability,windspeed_10m,relativehumidity_2m&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max,windspeed_10m_max&forecast_days=11&current_weather=true&timezone=${encodeURIComponent(timezone)}`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode,precipitation_probability,relativehumidity_2m&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max&forecast_days=11&current_weather=true&timezone=${encodeURIComponent(timezone)}`;
     console.log("Fetching weather from:", url);
     const res = await fetchWithRetry(url, { cache: "no-store" });
     const data = await res.json();
