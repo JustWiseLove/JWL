@@ -1,133 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dad Jokes Galore</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Dad Jokes & News</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .dad-joke, .news-section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dad-joke h2, .news-section h2 {
+      font-family: 'Audiowide', Arial, sans-serif;
+      color: #2a6626;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .dad-joke p {
+      font-size: 1.2rem;
+      color: #333;
+      text-align: center;
+    }
+
+    .news-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .news-section li {
+      margin-bottom: 10px;
+    }
+
+    .news-section a {
+      text-decoration: none;
+      color: #2a6626;
+      font-weight: bold;
+    }
+
+    .news-section a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <button class="hamburger-left" aria-label="Toggle Left Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="logo">
-            <a href="jokes.html"><h1>Dad Jokes Galore</h1></a>
-        </div>
-        <button class="hamburger-right" aria-label="Toggle Right Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="nav-menu-left">
-            <li><a href="#joke">Today's Joke</a></li>
-            <li><a href="#news">Latest News</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
-        <ul class="nav-menu-right">
-            <li><a href="#share">Share a Joke</a></li>
-            <li><a href="#contact">Contact Us</a></li>
-            <li><a href="#archive">Joke Archive</a></li>
-        </ul>
-    </header>
+  <header>
+    <div class="logo">
+      <h1><a href="#">Dad Jokes & News</a></h1>
+    </div>
+  </header>
 
-    <main>
-        <section class="intro">
-            <div class="intro-content">
-                <h2>Welcome to Dad Jokes Galore!</h2>
-                <p>Get ready for a chuckle with a fresh dad joke every time you visit. Stay entertained with our curated news headlines!</p>
-            </div>
-        </section>
+  <main>
+    <section class="dad-joke">
+      <h2>😂 Today's Dad Joke</h2>
+      <p id="joke">Loading joke...</p>
+    </section>
 
-        <section class="featured-article" id="joke">
-            <div class="article-preview">
-                <i class="fas fa-laugh"></i>
-                <h2>Today's Dad Joke</h2>
-                <p class="preview-text" id="joke-text"></p>
-                <a href="#joke" class="read-more" onclick="location.reload()">Get Another Joke</a>
-            </div>
-        </section>
+    <section class="news-section">
+      <h2>📰 Latest News Headlines</h2>
+      <ul id="news-list">
+        <li>Loading news...</li>
+      </ul>
+    </section>
+  </main>
 
-        <section class="categories-container" id="news">
-            <h2>Latest News Headlines</h2>
-            <div class="categories">
-                <div class="category">
-                    <i class="fas fa-newspaper"></i>
-                    <h3>Tech Breakthrough</h3>
-                    <p>New AI model writes dad jokes that are actually funny!</p>
-                </div>
-                <div class="category">
-                    <i class="fas fa-globe"></i>
-                    <h3>World News</h3>
-                    <p>Global pun competition announces 2025 dates.</p>
-                </div>
-                <div class="category">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Science</h3>
-                    <p>Study finds laughter extends battery life of devices.</p>
-                </div>
-                <div class="category">
-                    <i class="fas fa-star"></i>
-                    <h3>Entertainment</h3>
-                    <p>Comedian launches "Dad Joke" movie trilogy.</p>
-                </div>
-            </div>
-        </section>
+  <footer>
+    <p>Stay updated with a smile! &copy; 2025</p>
+  </footer>
 
-        <section class="item">
-            <button class="item-button">Why Share a Joke?</button>
-            <div class="item-content">
-                <p>Laughter is the best medicine, and dad jokes are the perfect dose! Share a joke with friends to brighten their day.</p>
-                <div class="scripture">
-                    <p>"A cheerful heart is good medicine." - Proverbs 17:22</p>
-                </div>
-            </div>
-        </section>
-    </main>
+  <script>
+    // Fetch a random dad joke
+    fetch('https://icanhazdadjoke.com/', {
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('joke').textContent = data.joke;
+    })
+    .catch(error => {
+      document.getElementById('joke').textContent = 'Oops! Couldn\'t fetch a joke right now.';
+      console.error('Error fetching joke:', error);
+    });
 
-    <footer>
-        <p>&copy; 2025 Dad Jokes Galore. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Array of dad jokes
-        const jokes = [
-            "Why did the scarecrow become a motivational speaker? Because he was outstanding in his field!",
-            "Why don't eggs tell jokes? They'd crack up.",
-            "What do you call a dinosaur that takes care of its teeth? A Flossiraptor!",
-            "Why can't basketball players go on vacation? Because they would get called for traveling.",
-            "What do you call a bear with no socks on? Barefoot!",
-            "Why did the tomato turn red? Because it saw the salad dressing!",
-            "What do you call cheese that isn't yours? Nacho cheese!",
-            "Why did the math book look sad? Because it had too many problems.",
-            "What do you call a sleeping bull? A bulldozer!",
-            "Why was the broom late? It swept in."
-        ];
-
-        // Select a random joke
-        const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
-        document.getElementById('joke-text').textContent = randomJoke;
-
-        // Hamburger menu toggle
-        document.querySelector('.hamburger-left').addEventListener('click', () => {
-            document.querySelector('.nav-menu-left').classList.toggle('active');
-            document.querySelector('.hamburger-left').classList.toggle('active');
-        });
-
-        document.querySelector('.hamburger-right').addEventListener('click', () => {
-            document.querySelector('.nav-menu-right').classList.toggle('active');
-            document.querySelector('.hamburger-right').classList.toggle('active');
-        });
-
-        // Accordion for "Why Share a Joke?" section
-        document.querySelector('.item-button').addEventListener('click', () => {
-            const content = document.querySelector('.item-content');
-            content.style.display = content.style.display === 'none' ? 'block' : 'none';
-        });
-    </script>
+    // Fetch latest news headlines from Google News RSS
+    fetch('https://cors-anywhere.herokuapp.com/https://news.google.com/rss', {
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(response => response.text())
+    .then(str => {
+      const parser = new window.DOMParser();
+      const doc = parser.parseFromString(str, "application/xml");
+      const items = doc.querySelectorAll("item");
+      const newsList = document.getElementById('news-list');
+      newsList.innerHTML = '';
+      for (let i = 0; i < 5; i++) {
+        const title = items[i].querySelector("title").textContent;
+        const link = items[i].querySelector("link").textContent;
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = link;
+        a.textContent = title;
+        a.target = '_blank';
+        li.appendChild(a);
+        newsList.appendChild(li);
+      }
+    })
+    .catch(error => {
+      document.getElementById('news-list').innerHTML = '<li>Oops! Couldn\'t fetch news right now.</li>';
+      console.error('Error fetching news:', error);
+    });
+  </script>
 </body>
 </html>
