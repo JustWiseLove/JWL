@@ -212,6 +212,10 @@
       text-align: left;
     }
 
+    .joke-section .describe {
+      text-align: center;
+    }
+
     .news-section .item-content h3 {
       margin-top: 0;
     }
@@ -330,7 +334,16 @@
   <section class="intro">
     <div class="intro-content">
       <h2>Welcome to JOKES News & Weather</h2>
-      <p class="describe">Stay updated with live BBC News directly from the source and real-time weather forecasts for North East, MD, including temperature, precipitation, wind, and humidity.</p>
+      <p class="describe">Stay updated with live BBC News, real-time weather forecasts for North East, MD, and a fresh dad joke on every refresh!</p>
+    </div>
+  </section>
+
+  <section id="joke" class="joke-section">
+    <div class="item">
+      <div class="item-content">
+        <h2>Dad Joke of the Moment</h2>
+        <div id="joke-content"></div>
+      </div>
     </div>
   </section>
 
@@ -372,12 +385,29 @@ document.querySelector('.hamburger-right').addEventListener('click', function() 
   document.querySelector('.nav-menu-right').classList.toggle('active');
 });
 
+// Joke fetch
+const jokeContainer = document.getElementById("joke-content");
+
+async function fetchJoke() {
+  try {
+    const res = await fetch('https://official-joke-api.appspot.com/jokes/random');
+    if (!res.ok) throw new Error(`Failed to fetch joke: ${res.status} ${res.statusText}`);
+    const data = await res.json();
+    jokeContainer.innerHTML = `
+      <p class="describe">${data.setup}</p>
+      <p class="describe">${data.punchline}</p>
+    `;
+  } catch (err) {
+    jokeContainer.innerHTML = `<p class="error-message">Failed to load joke: ${err.message}</p>`;
+    console.error("Error loading joke:", err);
+  }
+}
+
 // News feed setup
 const bbcFeedUrl = "https://feeds.bbci.co.uk/news/rss.xml";
 const newsContainer = document.getElementById("bbc-news");
 
 function cleanDescription(html) {
-  // Remove HTML tags and normalize whitespace, preserving full text
   const div = document.createElement("div");
   div.innerHTML = html;
   let text = div.textContent || div.innerText || "";
@@ -392,7 +422,7 @@ async function fetchNews() {
     data.items.slice(0, 10).forEach(item => {
       const articleDiv = document.createElement("div");
       articleDiv.className = "item";
-      const fullDesc = cleanDescription(item.description); // Use full description without modification
+      const fullDesc = cleanDescription(item.description);
       articleDiv.innerHTML = `
         <div class="item-content">
           <h3>${item.title}</h3>
@@ -488,8 +518,8 @@ function showDaily(daily) {
     const dt = new Date(t);
     return (
       dt.getFullYear() === today.getFullYear() &&
-      dt.getMonth() === now.getMonth() &&
-      dt.getDate() === now.getDate()
+      dt.getMonth() === today.getMonth() &&
+      dt.getDate() === today.getDate()
     );
   });
 
@@ -527,12 +557,29 @@ function showDaily(daily) {
   }
 }
 
+async function fetchWithRetry(url, options, retries = 3, delay = 2000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const res = await fetch(url, options);
+      if (!res.ok) throw new Error(`HTTP error: ${res.status} ${res.statusText}`);
+      return res;
+    } catch (e) {
+      if (i < retries - 1) {
+        console.warn(`Weather fetch attempt ${i + 1} failed: ${e.message}. Retrying in ${delay}ms...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      } else {
+        throw e;
+      }
+    }
+  }
+}
+
 async function fetchWeather() {
   const weatherBox = document.querySelector(".weather-box");
   try {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode,precipitation_probability,windspeed_10m,relativehumidity_2m&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max,windspeed_10m_max&forecast_days=11&current_weather=true&timezone=${encodeURIComponent(timezone)}`;
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP error: ${res.status} ${res.statusText}`);
+    console.log("Fetching weather from:", url);
+    const res = await fetchWithRetry(url, { cache: "no-store" });
     const data = await res.json();
     
     if (!data.hourly || !data.daily) {
@@ -542,12 +589,14 @@ async function fetchWeather() {
     showHourly(data.hourly);
     showDaily(data.daily);
   } catch (e) {
-    weatherBox.innerHTML += `<p class="error-message">Weather data not available: ${e.message}. Please try again later.</p>`;
+    const errorMsg = `Weather data not available: ${e.message}. Please check your connection or try again later.`;
+    weatherBox.innerHTML += `<p class="error-message">${errorMsg}</p>`;
     console.error("Weather fetch error:", e);
   }
 }
 
-// Run both
+// Run all
+fetchJoke();
 fetchNews();
 fetchWeather();
 </script>
