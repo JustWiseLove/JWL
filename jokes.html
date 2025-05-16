@@ -1,59 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jokes & Headlines</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jokes and News</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      color: #222;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    #joke-container {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 30px;
+      border-left: 5px solid #555;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #joke-text {
+      font-size: 1.2em;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li.category {
+      margin-bottom: 20px;
+      background: #fff;
+      padding: 10px 15px;
+      border-left: 5px solid #888;
+      box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    details summary::after {
+      content: " ▶️";
+      font-size: 0.8em;
+      margin-left: 5px;
+    }
+
+    details[open] summary::after {
+      content: " 🔽";
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .timestamp {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .article-desc {
+      font-size: 1em;
+      line-height: 1.4;
+      margin-top: 5px;
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <button class="hamburger-left">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="logo">
-      <a href="#"><h1>Jokes Daily</h1></a>
-    </div>
-    <button class="hamburger-right">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
+  <h1>😂 Daily Joke & 📰 News Headlines</h1>
 
-  <main>
-    <section class="intro">
-      <div class="intro-content">
-        <h2>Start Your Day Laughing</h2>
-        <p>Enjoy a fresh dad joke and the latest news headlines — every time you refresh!</p>
-      </div>
-    </section>
+  <div id="joke-container">
+    <strong>Dad Joke of the Day:</strong>
+    <p id="joke-text">Loading joke...</p>
+  </div>
 
-    <section class="featured-article">
-      <div class="article-preview">
-        <i>😂</i>
-        <h2>Dad Joke of the Day</h2>
-        <p class="preview-text" id="joke-text">Loading joke...</p>
-      </div>
-    </section>
-
-    <section class="categories-container">
-      <h2>Top News Headlines</h2>
-      <ul id="news-list" class="categories">
-        <li class="category"><p>Loading news...</p></li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Jokes Daily. All rights reserved.</p>
-  </footer>
+  <ul id="news-list">
+    <li class="category"><p>Loading news...</p></li>
+  </ul>
 
   <script>
-    // Fetch dad joke
+    // Fetch Dad Joke
     fetch('https://icanhazdadjoke.com/', {
-      headers: {
-        Accept: 'application/json'
-      }
+      headers: { Accept: 'application/json' }
     })
     .then(res => res.json())
     .then(data => {
@@ -64,27 +109,72 @@
       console.error(err);
     });
 
-    // Fetch news headlines
-    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss')
-      .then(response => response.json())
-      .then(data => {
-        const newsList = document.getElementById('news-list');
-        newsList.innerHTML = '';
-        data.items.slice(0, 5).forEach(item => {
-          const li = document.createElement('li');
-          li.classList.add('category');
+    // News Feeds
+    const feeds = [
+      { name: "FOX", url: "https://feeds.foxnews.com/foxnews/latest" },
+      { name: "CNN", url: "http://rss.cnn.com/rss/edition.rss" },
+      { name: "BBC", url: "http://feeds.bbci.co.uk/news/world/rss.xml" }
+    ];
+
+    const newsList = document.getElementById('news-list');
+    newsList.innerHTML = '<li class="category"><p>Loading news...</p></li>';
+
+    Promise.all(
+      feeds.map(feed =>
+        fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`)
+          .then(res => res.json())
+          .then(data => ({ source: feed.name, articles: data.items.slice(0, 10) }))
+      )
+    ).then(allNews => {
+      newsList.innerHTML = '';
+
+      allNews.forEach(feed => {
+        const details = document.createElement('details');
+        details.open = true;
+
+        const summary = document.createElement('summary');
+        summary.textContent = `📡 ${feed.source}`;
+        details.appendChild(summary);
+
+        feed.articles.forEach(item => {
+          const articleDiv = document.createElement('div');
+          articleDiv.style.marginBottom = '15px';
+
           const a = document.createElement('a');
           a.href = item.link;
           a.textContent = item.title;
           a.target = '_blank';
-          li.appendChild(a);
-          newsList.appendChild(li);
+          a.style.display = 'block';
+          a.style.fontWeight = 'bold';
+
+          const pubDate = new Date(item.pubDate);
+          const dateSpan = document.createElement('div');
+          dateSpan.className = 'timestamp';
+          dateSpan.textContent = `🕓 ${pubDate.toLocaleString()}`;
+
+          const desc = document.createElement('p');
+          desc.className = 'article-desc';
+          const plainText = (item.description || item.content || '')
+            .replace(/(<([^>]+)>)/gi, "").replace(/\s+/g, " ").trim();
+          const summaryText = plainText.split(" ").slice(0, 50).join(" ") + '...';
+          desc.textContent = summaryText;
+
+          articleDiv.appendChild(a);
+          articleDiv.appendChild(dateSpan);
+          articleDiv.appendChild(desc);
+          details.appendChild(articleDiv);
         });
-      })
-      .catch(error => {
-        document.getElementById('news-list').innerHTML = '<li class="category"><p>Could not fetch news right now.</p></li>';
-        console.error('Error fetching news:', error);
+
+        const li = document.createElement('li');
+        li.classList.add('category');
+        li.appendChild(details);
+        newsList.appendChild(li);
       });
+    }).catch(err => {
+      newsList.innerHTML = '<li class="category"><p>Could not fetch news right now.</p></li>';
+      console.error('News fetch error:', err);
+    });
   </script>
+
 </body>
 </html>
