@@ -7,135 +7,293 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: auto;
-      background: #f9f9f9;
-      color: #222;
-      padding: 20px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f0f2f0;
+      color: #333;
+      line-height: 1.6;
+    }
+
     header {
+      background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+      padding: 20px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      background-color: #fff;
-      padding: 10px 20px;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
     }
-    .logo h1 {
-      font-family: 'Audiowide', cursive;
-      font-size: 2.5rem;
-      margin: 0;
-      color: #2a6626;
-      user-select: none;
-    }
-    h2, h3 {
-      font-family: 'Audiowide', cursive;
-      color: #2a6626;
-    }
-    .news-section {
-      margin-bottom: 40px;
-    }
-    .news-source {
-      font-family: 'Audiowide', cursive;
-      font-size: 28px;
-      color: #2a6626;
+
+    .logo {
+      flex: 1;
       text-align: center;
-      margin-bottom: 30px;
-      user-select: none;
     }
-    .news-articles {
-      display: flex;
-      flex-direction: column;
-      gap: 35px;
+
+    .logo h1 {
+      font-family: 'Audiowide', Arial, sans-serif;
+      color: #fff;
+      font-size: 48px;
+      margin: 0;
     }
-    .news-article {
+
+    .hamburger-left, .hamburger-right {
+      display: block;
+      cursor: pointer;
+      padding: 5px;
+      background: none;
+      border: none;
+      outline: none;
+    }
+
+    .hamburger-left span, .hamburger-right span {
+      display: block;
+      width: 25px;
+      height: 3px;
       background: #fff;
+      margin: 5px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger-left.active span:nth-child(1), .hamburger-right.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger-left.active span:nth-child(2), .hamburger-right.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-left.active span:nth-child(3), .hamburger-right.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .nav-menu-left, .nav-menu-right {
+      display: none;
+      position: absolute;
+      top: 80px;
+      width: 200px;
+      border-radius: 5px;
+    }
+
+    .nav-menu-left {
+      left: 20px;
+      background: linear-gradient(90deg, #2a6626, #6b9e31);
+    }
+
+    .nav-menu-right {
+      right: 20px;
+      background: linear-gradient(90deg, #6b9e31, #2a6626);
+      text-align: right;
+    }
+
+    .nav-menu-left.active, .nav-menu-right.active {
+      display: block;
+    }
+
+    .nav-menu-left li, .nav-menu-right li {
+      list-style: none;
+      padding: 15px 20px;
+    }
+
+    .nav-menu-left li a, .nav-menu-right li a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Audiowide', Arial, sans-serif;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .nav-menu-left li a:hover, .nav-menu-right li a:hover {
+      color: #d4af37;
+    }
+
+    main {
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .intro {
+      background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
+      padding: 20px 0;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+
+    .intro-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .intro h2 {
+      font-family: 'Audiowide', Arial, sans-serif;
+      color: #2a6626;
+      margin-bottom: 10px;
+    }
+
+    .item {
+      margin-bottom: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .item-content {
       padding: 20px;
+      background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
+      border-radius: 5px;
+      text-align: center;
+      color: #333;
+    }
+
+    .item-content p {
+      color: #333;
+    }
+
+    .item-content h2 {
+      margin-top: 40px;
+      margin-bottom: 15px;
+      font-family: 'Audiowide', Arial, sans-serif;
+      color: #2a6626 !important;
+      font-size: 1.5em;
+      text-transform: uppercase;
+    }
+
+    .item-content h2:first-of-type {
+      margin-top: 20px;
+    }
+
+    .item-content h3 {
+      margin-top: 40px;
+      margin-bottom: 15px;
+      font-family: 'Audiowide', Arial, sans-serif;
+      color: #2a6626;
+      font-size: 1.5em;
+      text-transform: uppercase;
+    }
+
+    .item-content h3:first-of-type {
+      margin-top: 20px;
+    }
+
+    .scripture {
+      background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+      padding: 15px;
+      margin: 10px auto;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: box-shadow 0.3s ease;
+      font-style: italic;
+      color: #fff;
+      max-width: 800px;
+      text-align: center;
     }
-    .news-article:hover {
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+
+    .item-content .scripture {
+      color: #fff;
     }
-    .news-article img {
+
+    .describe {
+      background: linear-gradient(90deg, #f0f0f0, #d3d3d3);
+      padding: 15px;
+      margin: 10px auto;
+      border-radius: 8px;
+      font-style: italic;
+      color: #333;
+      max-width: 800px;
+      text-align: left;
+    }
+
+    .news-section .item-content h3 {
+      margin-top: 0;
+    }
+
+    .news-section img {
       max-width: 100%;
       height: auto;
       border-radius: 5px;
       margin-bottom: 15px;
       object-fit: cover;
     }
-    .news-article h3 {
-      margin: 0 0 15px 0;
-      font-size: 1.4rem;
-    }
-    .news-article p {
-      margin: 0 0 15px 0;
-      color: #444;
-      line-height: 1.5;
-      white-space: pre-wrap;
-    }
-    .news-article a {
+
+    .news-section a {
       color: #6b9e31;
       text-decoration: none;
       font-weight: bold;
-      user-select: none;
+      display: inline-block;
+      margin-top: 10px;
     }
-    .news-article a:hover {
+
+    .news-section a:hover {
       text-decoration: underline;
     }
+
     .weather-box {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 15px;
-      margin-bottom: 25px;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+
     .weather-hourly,
     .weather-daily {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
+      justify-content: center;
     }
+
     .hour,
     .day {
       flex: 1 1 150px;
-      background: #e6f0d4;
+      background: linear-gradient(90deg, #2a6626, #6b9e31);
+      color: #fff;
       border-radius: 6px;
       padding: 10px;
       text-align: center;
+      min-width: 120px;
     }
+
     .weather-icon {
       font-size: 30px;
       margin-bottom: 8px;
-      color: #2a6626;
+      color: #fff;
     }
+
     .error-message {
       color: #d32f2f;
       font-weight: bold;
       text-align: center;
       margin: 10px 0;
     }
+
     footer {
+      background: linear-gradient(90deg, #2a6626, #6b9e31);
       text-align: center;
-      color: #666;
-      font-size: 0.9rem;
-      margin-top: 50px;
-      padding: 15px 10px;
-      border-top: 1px solid #ddd;
-      user-select: none;
+      padding: 20px;
+      color: #fff;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
     }
-    @media (max-width: 600px) {
-      .news-source {
-        font-size: 22px;
+
+    footer p {
+      margin: 10px 0 0;
+    }
+
+    @media (max-width: 768px) {
+      .logo h1 {
+        font-size: 42px;
       }
-      .news-article h3 {
-        font-size: 1.2rem;
+
+      .hour, .day {
+        flex: 1 1 100px;
       }
     }
   </style>
@@ -143,128 +301,141 @@
 <body>
 
 <header>
-  <div class="logo"><h1>JOKES</h1></div>
+  <button class="hamburger-left">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="logo">
+    <h1>JOKES</h1>
+  </div>
+  <button class="hamburger-right">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-menu-left">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">News</a></li>
+    <li><a href="#">Weather</a></li>
+  </ul>
+  <ul class="nav-menu-right">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Settings</a></li>
+  </ul>
 </header>
 
 <main>
-  <section id="news" class="news-section">
-    <h2 class="news-source">BBC News</h2>
-    <div class="news-articles" id="bbc-news"></div>
+  <section class="intro">
+    <div class="intro-content">
+      <h2>Welcome to JOKES News & Weather</h2>
+      <p class="describe">Stay updated with live BBC News directly from the source and real-time weather forecasts for North East, MD, including temperature, precipitation, wind, and humidity.</p>
+    </div>
   </section>
 
-  <section id="weather">
-    <h2>Port Deposit, MD Weather (EST, °F)</h2>
-    <div class="weather-box">
-      <h3>Hourly Forecast (Next 12 Hours)</h3>
-      <div class="weather-hourly"></div>
-      <h3>Weekly Forecast</h3>
-      <div class="weather-daily"></div>
+  <section id="news" class="news-section">
+    <div class="item">
+      <div class="item-content">
+        <h2>BBC News - Live Updates</h2>
+        <div id="bbc-news"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="weather" class="weather-section">
+    <div class="item">
+      <div class="item-content weather-box">
+        <h2>North East, MD Weather (EST, °F)</h2>
+        <div class="scripture">Hourly Forecast (Next 12 Hours)</div>
+        <div class="weather-hourly"></div>
+        <div class="scripture">11-Day Forecast</div>
+        <div class="weather-daily"></div>
+      </div>
     </div>
   </section>
 </main>
 
-<footer>© 2025 JOKES News & Weather</footer>
+<footer>
+  <p>© 2025 JOKES News & Weather</p>
+</footer>
 
 <script>
+// Hamburger menu toggle
+document.querySelector('.hamburger-left').addEventListener('click', function() {
+  this.classList.toggle('active');
+  document.querySelector('.nav-menu-left').classList.toggle('active');
+});
+
+document.querySelector('.hamburger-right').addEventListener('click', function() {
+  this.classList.toggle('active');
+  document.querySelector('.nav-menu-right').classList.toggle('active');
+});
+
 // News feed setup
 const bbcFeedUrl = "https://feeds.bbci.co.uk/news/rss.xml";
 const newsContainer = document.getElementById("bbc-news");
 
-// Helper to strip HTML and limit text to approx 200 words
-function extractText(html, maxWords = 200) {
+function cleanDescription(html) {
+  // Remove HTML tags and normalize whitespace, preserving full text
   const div = document.createElement("div");
   div.innerHTML = html;
   let text = div.textContent || div.innerText || "";
-  text = text.replace(/\s+/g, " ").trim();
-  const words = text.split(" ").slice(0, maxWords);
-  return words.join(" ") + (words.length >= maxWords ? "..." : "");
+  return text.replace(/\s+/g, " ").trim();
 }
 
-// Fetch and display BBC news
 async function fetchNews() {
   try {
     const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(bbcFeedUrl)}`);
     if (!res.ok) throw new Error(`Failed to fetch news: ${res.status} ${res.statusText}`);
     const data = await res.json();
-    data.items.slice(0, 20).forEach(item => {
+    data.items.slice(0, 10).forEach(item => {
       const articleDiv = document.createElement("div");
-      articleDiv.className = "news-article";
-
-      const title = document.createElement("h3");
-      title.textContent = item.title;
-      articleDiv.appendChild(title);
-
-      let imageUrl = item.thumbnail;
-      if (!imageUrl) {
-        const match = item.description.match(/<img[^>]+src="([^">]+)"/);
-        if (match && match[1]) {
-          imageUrl = match[1];
-        }
-      }
-      if (imageUrl) {
-        const img = document.createElement("img");
-        img.src = imageUrl;
-        img.alt = "BBC News image";
-        articleDiv.insertBefore(img, title);
-      }
-
-      const description = document.createElement("p");
-      description.textContent = extractText(item.description, 200);
-      articleDiv.appendChild(description);
-
-      const link = document.createElement("a");
-      link.href = item.link;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "Read more";
-      articleDiv.appendChild(link);
-
+      articleDiv.className = "item";
+      const fullDesc = cleanDescription(item.description); // Use full description without modification
+      articleDiv.innerHTML = `
+        <div class="item-content">
+          <h3>${item.title}</h3>
+          ${item.thumbnail ? `<img src="${item.thumbnail}" alt="BBC News image">` : 
+            (item.description.match(/<img[^>]+src="([^">]+)"/)?.[1] ? 
+              `<img src="${item.description.match(/<img[^>]+src="([^">]+)"/)[1]}" alt="BBC News image">` : '')}
+          <p class="describe">${fullDesc}</p>
+          <a href="${item.link}" target="_blank" rel="noopener noreferrer">Read more</a>
+        </div>
+      `;
       newsContainer.appendChild(articleDiv);
     });
   } catch (err) {
-    newsContainer.textContent = "Failed to load BBC News feed.";
+    newsContainer.innerHTML = `<p class="error-message">Failed to load BBC News feed: ${err.message}</p>`;
     console.error("Error loading BBC feed:", err);
   }
 }
 
 // Weather setup
-const lat = 39.52;
-const lon = -76.06;
+const lat = 39.60; // North East, MD
+const lon = -75.94; // North East, MD
 const timezone = "America/New_York";
 
-// Weather code to FontAwesome icon mapping
 const weatherIcons = {
-  0: "fa-sun", // Clear sky
-  1: "fa-sun", // Mainly clear
-  2: "fa-cloud-sun", // Partly cloudy
-  3: "fa-cloud", // Overcast
-  45: "fa-smog", // Fog
-  48: "fa-smog", // Depositing rime fog
-  51: "fa-cloud-rain", // Light drizzle
-  53: "fa-cloud-rain", // Moderate drizzle
-  55: "fa-cloud-showers-heavy", // Dense drizzle
-  61: "fa-cloud-showers-heavy", // Slight rain
-  63: "fa-cloud-showers-heavy", // Moderate rain
-  65: "fa-cloud-showers-heavy", // Heavy rain
-  71: "fa-snowflake", // Slight snow
-  73: "fa-snowflake", // Moderate snow
-  75: "fa-snowflake", // Heavy snow
-  80: "fa-cloud-showers-heavy", // Slight rain showers
-  81: "fa-cloud-showers-heavy", // Moderate rain showers
-  82: "fa-cloud-showers-heavy", // Violent rain showers
-  95: "fa-bolt", // Thunderstorm
-  99: "fa-bolt" // Heavy thunderstorm
+  0: "fa-sun", 1: "fa-sun", 2: "fa-cloud-sun", 3: "fa-cloud", 45: "fa-smog", 48: "fa-smog",
+  51: "fa-cloud-rain", 53: "fa-cloud-rain", 55: "fa-cloud-showers-heavy", 61: "fa-cloud-showers-heavy",
+  63: "fa-cloud-showers-heavy", 65: "fa-cloud-showers-heavy", 71: "fa-snowflake", 73: "fa-snowflake",
+  75: "fa-snowflake", 80: "fa-cloud-showers-heavy", 81: "fa-cloud-showers-heavy", 82: "fa-cloud-showers-heavy",
+  95: "fa-bolt", 99: "fa-bolt"
 };
 
 function cToF(c) {
   return Math.round(c * 9/5 + 32);
 }
 
+function msToMph(ms) {
+  return Math.round(ms * 2.237);
+}
+
 function getIcon(code) {
   return weatherIcons[code] || "fa-question";
 }
 
-// Show hourly weather
 function showHourly(hourly) {
   const container = document.querySelector(".weather-hourly");
   container.innerHTML = "";
@@ -289,29 +460,58 @@ function showHourly(hourly) {
     const tempF = cToF(hourly.temperature_2m[i]);
     const code = hourly.weathercode[i];
     const iconClass = getIcon(code);
+    const precip = hourly.precipitation_probability[i];
+    const wind = msToMph(hourly.windspeed_10m[i]);
+    const humidity = hourly.relativehumidity_2m[i];
 
     const div = document.createElement("div");
     div.className = "hour";
     div.innerHTML = `
       <i class="fas ${iconClass} weather-icon"></i>
       <strong>${hourStr}</strong><br/>
-      ${tempF}°F
+      ${tempF}°F<br/>
+      Precip: ${precip}%<br/>
+      Wind: ${wind} mph<br/>
+      Humidity: ${humidity}%
     `;
     container.appendChild(div);
   }
 }
 
-// Show daily weather
 function showDaily(daily) {
   const container = document.querySelector(".weather-daily");
   container.innerHTML = "";
-  for (let i = 0; i < daily.time.length && i < 7; i++) {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  
+  const startIndex = daily.time.findIndex(t => {
+    const dt = new Date(t);
+    return (
+      dt.getFullYear() === today.getFullYear() &&
+      dt.getMonth() === now.getMonth() &&
+      dt.getDate() === now.getDate()
+    );
+  });
+
+  if (startIndex === -1) {
+    container.innerHTML = "<p class='error-message'>No forecast data available for current day.</p>";
+    return;
+  }
+
+  for (let i = startIndex; i < startIndex + 11 && i < daily.time.length; i++) {
     const dt = new Date(daily.time[i]);
-    const dayStr = dt.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", timeZone: timezone });
+    const dayStr = dt.toLocaleDateString("en-US", { 
+      weekday: "short", 
+      month: "short", 
+      day: "numeric", 
+      timeZone: timezone 
+    });
     const maxF = cToF(daily.temperature_2m_max[i]);
     const minF = cToF(daily.temperature_2m_min[i]);
     const code = daily.weathercode[i];
     const iconClass = getIcon(code);
+    const precip = daily.precipitation_probability_max[i];
+    const wind = msToMph(daily.windspeed_10m_max[i]);
 
     const div = document.createElement("div");
     div.className = "day";
@@ -319,18 +519,18 @@ function showDaily(daily) {
       <i class="fas ${iconClass} weather-icon"></i>
       <strong>${dayStr}</strong><br/>
       High: ${maxF}°F<br/>
-      Low: ${minF}°F
+      Low: ${minF}°F<br/>
+      Precip: ${precip}%<br/>
+      Wind: ${wind} mph
     `;
     container.appendChild(div);
   }
 }
 
-// Fetch weather data from Open-Meteo
 async function fetchWeather() {
-  const weatherSection = document.getElementById("weather");
-  const weatherBox = weatherSection.querySelector(".weather-box");
+  const weatherBox = document.querySelector(".weather-box");
   try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode&current_weather=true&timezone=${encodeURIComponent(timezone)}`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode,precipitation_probability,windspeed_10m,relativehumidity_2m&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max,windspeed_10m_max&forecast_days=11&current_weather=true&timezone=${encodeURIComponent(timezone)}`;
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP error: ${res.status} ${res.statusText}`);
     const data = await res.json();
