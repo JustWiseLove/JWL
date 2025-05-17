@@ -12,10 +12,9 @@
         :root {
             --dark-green: #2a6626 !important;
             --light-green: #6b9e31 !important;
-            --light-gray: #f0f0f0 !important;
             --gray: #d3d3d3 !important;
             --white: #fff !important;
-            --dark-gray: #333 !important;
+            --black: #000 !important;
             --gold: #d4af37 !important;
         }
 
@@ -27,8 +26,8 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif !important;
-            background-color: var(--light-gray) !important;
-            color: var(--dark-gray) !important;
+            background-color: var(--black) !important;
+            color: var(--black) !important;
             line-height: 1.6 !important;
         }
 
@@ -46,14 +45,14 @@
 
         .logo h1 {
             font-family: 'Audiowide', sans-serif !important;
-            color: var(--white) !important;
+            color: var(--black) !important;
             font-size: 48px !important;
             margin: 0 !important;
         }
 
         .logo a {
             text-decoration: none !important;
-            color: var(--white) !important;
+            color: var(--black) !important;
         }
 
         .input-section {
@@ -67,10 +66,10 @@
             width: 100% !important;
             margin: 10px 0 !important;
             padding: 8px !important;
-            border: 1px solid var(--dark-gray) !important;
+            border: 1px solid var(--white) !important;
             border-radius: 4px !important;
-            background-color: var(--white) !important;
-            color: var(--dark-gray) !important;
+            background-color: var(--black) !important;
+            color: var(--white) !important;
         }
 
         .search-section {
@@ -96,7 +95,7 @@
             margin: 0 auto 2rem auto !important;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
             padding: 1rem !important;
-            background: var(--white) !important;
+            background: var(--black) !important;
         }
 
         .note h2 {
@@ -107,7 +106,7 @@
         }
 
         .note .notes-preview {
-            color: var(--dark-gray) !important;
+            color: var(--white) !important;
             margin: 0 0 0.5rem 0 !important;
         }
 
@@ -150,7 +149,7 @@
 
         .btn-study#saveBtn, .btn-study#backupBtn, .btn-study#restoreBtn {
             background: linear-gradient(90deg, var(--dark-green), var(--light-green)) !important;
-            color: var(--white) !important;
+            color: var(--black) !important;
             padding: 8px 16px !important;
             border: none !important;
             border-radius: 4px !important;
@@ -168,7 +167,7 @@
 
         .btn-study#deleteBtn {
             background: linear-gradient(90deg, #ff4d4d, #cc0000, #ff4d4d) !important;
-            color: var(--white) !important;
+            color: var(--black) !important;
             padding: 8px 16px !important;
             border: none !important;
             border-radius: 4px !important;
@@ -238,10 +237,10 @@
         .format-btn {
             width: 40px !important;
             height: 40px !important;
-            border: 1px solid var(--dark-gray) !important;
+            border: 1px solid var(--black) !important;
             border-radius: 4px !important;
             background: linear-gradient(90deg, var(--dark-green), var(--light-green)) !important;
-            color: var(--white) !important;
+            color: var(--black) !important;
             font-size: 16px !important;
             cursor: pointer !important;
             display: flex !important;
@@ -649,7 +648,7 @@
             formatted = formatted.replace(/__(.*?)__/g, '<u>$1</u>'); // Underline
             formatted = formatted.replace(/~~(.*?)~~/g, '<s>$1</s>'); // Strikethrough
             formatted = formatted.replace(/##(.*?)##/g, '<span style="color: #2a6626">$1</span>'); // Text Color
-            formatted = formatted.replace(/\^\^(.*?)\^\^/g, '<span style="background-color: #d3d3d3">$1</span>'); // Highlight
+            formatted = formatted.replace(/\^\^(.*?)\^\^/g, '<span style="background-color: #6b9e31">$1</span>'); // Highlight
             formatted = formatted.replace(/---/g, '<hr>'); // Horizontal line
 
             // Replace newlines with HTML line breaks
