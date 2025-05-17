@@ -820,6 +820,193 @@ const characters = [
         name: "Priscilla",
         description: "Priscilla, with her husband Aquila, hosted Paul in Corinth and instructed Apollos in the way of Jehovah more accurately. They later hosted a congregation in their home, showing teamwork in service. Priscilla’s dedication teaches us to teach others Jehovah’s truth, working unitedly as we climb with love (Acts 18:2-3, 18-26; Romans 16:3-5)."
     },
+    const characters = [
     {
         name: "Queen of Sheba",
-        description: "The Queen of Sheba visited Solomon
+        description: "The Queen of Sheba traveled to Jerusalem to test Solomon’s wisdom with hard questions, bringing gifts of gold and spices. Amazed by his wisdom and Jehovah’s blessings, she praised God. Her journey teaches us to seek Jehovah’s wisdom, recognizing His glory, as we climb with humility and awe (1 Kings 10:1-13)."
+    },
+    {
+        name: "Rachel",
+        description: "Rachel, Jacob’s beloved wife, was barren for years but bore Joseph and Benjamin, dying in Benjamin’s childbirth. Her love and patience teach us to trust Jehovah’s timing, cherishing His blessings as we climb with faith (Genesis 29:16-30; 35:16-20)."
+    },
+    {
+        name: "Rahab",
+        description: "Rahab, a Canaanite prostitute in Jericho, hid Israel’s spies, believing in Jehovah’s power. She and her family were spared when Jericho fell, and she became an ancestor of Jesus. Rahab’s faith teaches us that Jehovah accepts all who trust Him, urging us to act with courage as we climb with devotion (Joshua 2:1-21; 6:22-25)."
+    },
+    {
+        name: "Rebekah",
+        description: "Rebekah, chosen as Isaac’s wife, showed kindness at a well and left her family to marry him. She favored Jacob, helping him secure Isaac’s blessing. Rebekah’s faith and initiative teach us to trust Jehovah’s guidance, acting with purpose as we climb with devotion (Genesis 24:15-67; 27:5-17)."
+    },
+    {
+        name: "Rehoboam",
+        description: "Rehoboam, Solomon’s son, became king but rejected wise counsel, imposing harsh rule. This led to Israel’s division, with only Judah remaining loyal. Rehoboam’s folly teaches us to seek Jehovah’s wisdom and listen to sound advice, avoiding pride as we climb with humility (1 Kings 12:1-24)."
+    },
+    {
+        name: "Reuben",
+        description: "Reuben, Jacob’s firstborn, lost his birthright due to sin but tried to save Joseph from his brothers’ plot. His tribe remained faithful at times. Reuben’s mixed record teaches us to strive for consistent loyalty to Jehovah, learning from failures as we climb with repentance (Genesis 35:22; 37:21-29)."
+    },
+    {
+        name: "Rhoda",
+        description: "Rhoda, a servant in Mary’s house, joyfully announced Peter’s miraculous release from prison but was initially disbelieved. Her excitement teaches us to share Jehovah’s works with enthusiasm, trusting His power, as we climb with faith (Acts 12:12-16)."
+    },
+    {
+        name: "Ruth",
+        description: "Ruth, a Moabitess, showed loyalty to Naomi, returning with her to Bethlehem. Her humility led to marriage with Boaz, making her David’s great-grandmother. Ruth’s devotion teaches us to trust Jehovah’s provision, showing love across boundaries as we climb with faith (Ruth 1:16-17; 2:1-4:22)."
+    },
+    {
+        name: "Samson",
+        description: "Samson, a Nazarite judge, had great strength from Jehovah but fell to temptation with Delilah, losing his power. In captivity, he repented, destroying Philistine lords in his final act. Samson’s life teaches us to guard our dedication to Jehovah, seeking His strength in weakness as we climb with repentance (Judges 13:1-16:31)."
+    },
+    {
+        name: "Samuel",
+        description: "Samuel, a prophet and judge, was dedicated to Jehovah by Hannah. He anointed Saul and David, guiding Israel faithfully despite their demands for a king. Samuel’s obedience teaches us to serve Jehovah wholeheartedly, speaking His truth as we climb with devotion (1 Samuel 1:24-28; 3:1-21; 16:1-13)."
+    },
+    {
+        name: "Sanballat",
+        description: "Sanballat, a Samaritan leader, opposed Nehemiah’s efforts to rebuild Jerusalem’s walls, mocking and plotting against the Jews. His resistance was thwarted by Jehovah’s support. Sanballat’s hostility teaches us to expect opposition in Jehovah’s work, trusting His protection as we climb with perseverance (Nehemiah 2:10-20; 4:1-23)."
+    },
+    {
+        name: "Sapphira",
+        description: "Sapphira, with her husband Ananias, lied about the proceeds from a land sale, pretending to give all to the congregation. Jehovah struck her dead for hypocrisy. Sapphira’s deceit teaches us to worship Jehovah with honesty, ensuring sincerity as we climb with truthfulness (Acts 5:1-11)."
+    },
+    {
+        name: "Sarah",
+        description: "Sarah, Abraham’s wife, bore Isaac in old age, fulfilling Jehovah’s promise despite initial doubt. She showed hospitality and submission but also harshness toward Hagar. Sarah’s faith teaches us to trust Jehovah’s promises, growing in devotion as we climb with hope (Genesis 18:1-15; 21:1-7)."
+    },
+    {
+        name: "Saul (king of Israel)",
+        description: "Saul, Israel’s first king, was anointed by Samuel but disobeyed Jehovah, sparing Amalek’s king and offering unauthorized sacrifices. His jealousy of David led to his downfall, and he died in battle. Saul’s disobedience teaches us to obey Jehovah fully, avoiding pride as we climb with humility (1 Samuel 9:1-31:13)."
+    },
+    {
+        name: "Sennacherib",
+        description: "Sennacherib, king of Assyria, invaded Judah and mocked Jehovah, threatening Jerusalem. Hezekiah’s prayer led to Jehovah’s angel destroying his army, and Sennacherib was later killed by his sons. His arrogance teaches us that no power can stand against Jehovah, urging us to trust His deliverance as we climb with faith (2 Kings 18:13-19:37)."
+    },
+    {
+        name: "Seth",
+        description: "Seth, Adam and Eve’s son, was born after Abel’s murder, carrying on the godly line through which Noah and Abraham came. His righteousness teaches us to remain faithful to Jehovah amidst a corrupt world, passing down faith as we climb with devotion (Genesis 4:25-26)."
+    },
+    {
+        name: "Shadrach",
+        description: "Shadrach, with Meshach and Abednego, refused to worship Nebuchadnezzar’s idol, trusting Jehovah to deliver them from the fiery furnace. Their faith was rewarded with miraculous protection. Shadrach’s courage teaches us to stand firm against idolatry, trusting Jehovah’s power as we climb with devotion (Daniel 3:1-30)."
+    },
+    {
+        name: "Sheba",
+        description: "Sheba, a Benjamite, led a rebellion against David after Absalom’s death, seeking to divide Israel. Joab’s forces crushed the revolt, and Sheba was executed. His disloyalty teaches us to support Jehovah’s anointed, avoiding division, as we climb with unity (2 Samuel 20:1-22)."
+    },
+    {
+        name: "Shem",
+        description: "Shem, Noah’s son, survived the Flood and was blessed for honoring his father, becoming an ancestor of Abraham. His faithfulness teaches us to respect Jehovah’s order, trusting His promises, as we climb with devotion (Genesis 9:18-27)."
+    },
+    {
+        name: "Shimei",
+        description: "Shimei, a Benjamite, cursed David during Absalom’s rebellion but later sought mercy. Solomon executed him for breaking an oath. Shimei’s bitterness teaches us to guard our words and honor Jehovah’s anointed, acting with humility as we climb with repentance (2 Samuel 16:5-13; 1 Kings 2:36-46)."
+    },
+    {
+        name: "Silas",
+        description: "Silas, a prophet and companion of Paul, preached in Philippi, enduring imprisonment but singing praises to Jehovah, leading to their release. His faithfulness teaches us to share the good news boldly, trusting Jehovah in trials as we climb with endurance (Acts 15:22-40; 16:16-40)."
+    },
+    {
+        name: "Simeon",
+        description: "Simeon, Jacob’s son, avenged Dinah’s violation with Levi, showing zeal but also violence. His tribe received a scattered inheritance. Simeon’s actions teach us to channel zeal for Jehovah’s justice, avoiding vengeance, as we climb with righteousness (Genesis 34:25-31; 49:5-7)."
+    },
+    {
+        name: "Simon (the Zealot)",
+        description: "Simon, called the Zealot, was one of Jesus’ 12 apostles, leaving his political fervor to follow Christ. His commitment teaches us to redirect our passion to Jehovah’s Kingdom, serving humbly as we climb with devotion (Matthew 10:4)."
+    },
+    {
+        name: "Sisera",
+        description: "Sisera, a Canaanite commander, oppressed Israel until Deborah and Barak defeated his army. He fled but was killed by Jael. Sisera’s defeat shows Jehovah’s power over enemies, teaching us to trust His deliverance as we climb with faith (Judges 4:1-22)."
+    },
+    {
+        name: "Solomon",
+        description: "Solomon, David’s son, ruled Israel with wisdom from Jehovah, building the temple and writing Proverbs. His later idolatry led to division. Solomon’s wisdom and failure teach us to seek Jehovah’s guidance, remaining faithful, as we climb with devotion (1 Kings 3:5-28; 11:1-13)."
+    },
+    {
+        name: "Syntyche",
+        description: "Syntyche, a Christian in Philippi, disputed with Euodia, prompting Paul’s call for unity. Her faith teaches us to resolve conflicts, maintaining peace in Jehovah’s congregation as we climb with love (Philippians 4:2-3)."
+    },
+    {
+        name: "Tabitha",
+        description: "Tabitha (Dorcas), a Christian in Joppa, was known for her charitable deeds, sewing garments for widows. Peter raised her from death, strengthening the congregation. Her kindness teaches us to serve Jehovah’s people, using our skills for His glory as we climb with love (Acts 9:36-42)."
+    },
+    {
+        name: "Tamar",
+        description: "Tamar, Judah’s daughter-in-law, secured her rights through deception after being wronged, bearing Perez, an ancestor of Jesus. Her determination teaches us to seek justice within Jehovah’s standards, trusting His purpose as we climb with faith (Genesis 38:6-30)."
+    },
+    {
+        name: "Thomas",
+        description: "Thomas, an apostle, doubted Jesus’ resurrection until he saw Him, then declared faith. His journey teaches us to trust Jehovah’s promises, overcoming doubt as we climb with conviction (John 20:24-29)."
+    },
+    {
+        name: "Timothy",
+        description: "Timothy, a young Christian, was mentored by Paul, serving as a missionary and leader despite his youth. His faith, taught by Eunice and Lois, teaches us to serve Jehovah diligently, growing in faith as we climb with dedication (Acts 16:1-5; 2 Timothy 1:5)."
+    },
+    {
+        name: "Titus",
+        description: "Titus, a Greek Christian, worked with Paul, organizing congregations in Crete and delivering letters. His reliability teaches us to serve Jehovah faithfully, strengthening others as we climb with devotion (2 Corinthians 8:6-23; Titus 1:4-5)."
+    },
+    {
+        name: "Tobiah",
+        description: "Tobiah, an Ammonite, opposed Nehemiah’s wall-building in Jerusalem, mocking and plotting against the Jews. Jehovah thwarted his efforts. Tobiah’s hostility teaches us to persevere in Jehovah’s work despite opposition, trusting His support as we climb with endurance (Nehemiah 2:10-20; 6:1-14)."
+    },
+    {
+        name: "Uriah",
+        description: "Uriah, a Hittite and loyal soldier of David, was betrayed when David took his wife Bathsheba and ordered his death in battle. Uriah’s integrity teaches us to remain faithful to Jehovah’s standards, even when others fail, as we climb with honor (2 Samuel 11:6-17)."
+    },
+    {
+        name: "Uzziah",
+        description: "Uzziah, king of Judah, sought Jehovah early, prospering greatly, but pride led him to unlawfully burn incense, resulting in leprosy. His rise and fall teach us to remain humble, obeying Jehovah’s boundaries, as we climb with devotion (2 Chronicles 26:1-23)."
+    },
+    {
+        name: "Vashti",
+        description: "Vashti, queen of Persia, refused King Ahasuerus’ command to display her beauty, leading to her replacement by Esther. Her dignity, though costly, teaches us to uphold personal integrity, trusting Jehovah’s purpose, as we climb with courage (Esther 1:10-22)."
+    },
+    {
+        name: "Zacchaeus",
+        description: "Zacchaeus, a wealthy tax collector, climbed a tree to see Jesus, who called him. Repenting, he restored ill-gotten gains fourfold. Zacchaeus’ change teaches us to seek Jehovah’s forgiveness, making amends as we climb with repentance (Luke 19:1-10)."
+    },
+    {
+        name: "Zachariah",
+        description: "Zachariah, father of John the Baptist, doubted Gabriel’s promise of a son, becoming mute until John’s birth. His restored faith led him to praise Jehovah. Zachariah’s journey teaches us to trust Jehovah’s promises, rejoicing in His works as we climb with faith (Luke 1:5-25, 57-79)."
+    },
+    {
+        name: "Zadok",
+        description: "Zadok, a priest, remained loyal to David during Absalom’s rebellion and helped crown Solomon. His faithfulness teaches us to support Jehovah’s anointed, serving with integrity as we climb with devotion (2 Samuel 15:24-36; 1 Kings 1:32-45)."
+    },
+    {
+        name: "Zebulun",
+        description: "Zebulun, Jacob’s son by Leah, founded a tribe blessed for trade and supporting Israel’s battles. His diligence teaches us to use our abilities for Jehovah’s purpose, serving faithfully as we climb with devotion (Genesis 30:20; 49:13)."
+    },
+    {
+        name: "Zechariah",
+        description: "Zechariah, a prophet during the temple’s rebuilding, encouraged Zerubbabel and Joshua with visions of Jehovah’s restoration and coming Messiah. His prophecies teach us to trust Jehovah’s promises, working for His purpose as we climb with hope (Zechariah 1:1-6; 8:1-23)."
+    },
+    {
+        name: "Zedekiah",
+        description: "Zedekiah, Judah’s last king, rebelled against Babylon despite Jeremiah’s warnings, leading to Jerusalem’s destruction. His sons were killed, and he was blinded. Zedekiah’s disobedience teaches us to heed Jehovah’s prophets, submitting to His will as we climb with obedience (2 Kings 24:18-25:7)."
+    },
+    {
+        name: "Zephaniah",
+        description: "Zephaniah, a prophet, warned Judah of Jehovah’s day of judgment, urging repentance, while promising restoration for the humble. His message teaches us to seek Jehovah’s righteousness, trusting His mercy, as we climb with humility (Zephaniah 1:1-3:20)."
+    },
+    {
+        name: "Zerubbabel",
+        description: "Zerubbabel, a governor, led the Jews back to Jerusalem, rebuilding the temple despite opposition, as encouraged by Haggai and Zechariah. His leadership teaches us to persevere in Jehovah’s work, trusting His strength, as we climb with devotion (Ezra 3:1-13; Haggai 1:12-15)."
+    },
+    {
+        name: "Zilpah",
+        description: "Zilpah, Leah’s servant, bore Jacob’s sons Gad and Asher, contributing to Israel’s tribes. Her humble role shows Jehovah’s purpose in all lives, teaching us to serve faithfully, trusting His plan as we climb with obedience (Genesis 30:9-13)."
+    },
+    {
+        name: "Zimri",
+        description: "Zimri, a commander, murdered King Elah to seize Israel’s throne but ruled only seven days before Omri defeated him, leading to his suicide. Zimri’s treachery teaches us to reject selfish ambition, honoring Jehovah’s order as we climb with integrity (1 Kings 16:9-20)."
+    },
+    {
+        name: "Zipporah",
+        description: "Zipporah, Moses’ wife, circumcised their son to avert Jehovah’s wrath, showing quick action to obey God. Her decisiveness teaches us to act promptly in obedience to Jehovah, ensuring our family’s devotion as we climb with faith (Exodus 4:24-26)."
+    },
+    {
+        name: "Zophar",
+        description: "Zophar, one of Job’s friends, wrongly accused Job of sin to explain his suffering, lacking compassion. Jehovah rebuked him for misrepresenting His justice. Zophar’s error teaches us to comfort, not condemn, those in distress, reflecting Jehovah’s love as we climb with empathy (Job 2:11; 11:1-20; 42:7-9)."
+    }
+];
