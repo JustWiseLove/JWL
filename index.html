@@ -51,11 +51,13 @@
         <section class="featured-article">
             <div class="article-preview">
                 <i class="fa-solid fa-user-secret"></i>
-                <h2>JUST WISE LOVE</h2>
+                <button class="toggle-categories" aria-expanded="false" aria-controls="categories">
+                    JUST WISE LOVE
+                </button>
                 <p class="preview-text">Divine justice upholds righteousness, boundless love offers mercy, profound wisdom shapes perfect plans, and unmatched power overcomes all challenges, guiding believers to a life of faith, hope, and devotion rooted in sacred scriptures.</p>
             </div>
         </section>
-        <section class="categories-container">
+        <section class="categories-container" id="categories">
             <div class="categories">
                 <div class="category">
                     <a href="accuracy.html">
@@ -284,6 +286,16 @@
                 navMenuRight.classList.remove('active');
                 hamburgerRight.setAttribute('aria-expanded', 'false');
             });
+        });
+
+        // Categories toggle
+        const toggleButton = document.querySelector('.toggle-categories');
+        const categoriesContainer = document.querySelector('.categories-container');
+
+        toggleButton.addEventListener('click', () => {
+            categoriesContainer.classList.toggle('expanded');
+            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+            toggleButton.setAttribute('aria-expanded', !isExpanded);
         });
     </script>
 </body>
