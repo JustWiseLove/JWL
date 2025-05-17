@@ -59,7 +59,7 @@
         <section class="featured-article">
             <div class="article-preview">
                 <i class="fa-solid fa-gamepad"></i>
-                <button class="toggle-categories" aria-expanded="false" aria-controls="categories">
+                <button class="toggle-categories" aria-expanded="true" aria-controls="categories">
                     PUSH TO PLAY
                 </button>
                 <p class="preview-text">Enjoy recreational activities inspired by spiritual wisdom, offering fun and reflection for all ages.</p>
@@ -163,9 +163,16 @@
         const categoriesContainer = document.querySelector('.categories-container');
         const categories = document.querySelector('.categories');
 
+        // Ensure categories are expanded on page load
+        categoriesContainer.classList.add('expanded');
+        toggleButton.classList.add('active');
+        toggleButton.setAttribute('aria-expanded', 'true');
+        const height = categories.scrollHeight;
+        categoriesContainer.style.maxHeight = `${height}px`;
+
         toggleButton.addEventListener('click', () => {
             categoriesContainer.classList.toggle('expanded');
-            toggleButton.classList.toggle('active'); // Add active class for darker gold
+            toggleButton.classList.toggle('active');
             const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
             toggleButton.setAttribute('aria-expanded', !isExpanded);
 
