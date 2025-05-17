@@ -150,6 +150,9 @@ main {
 .article-preview {
     max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .article-preview i {
@@ -158,12 +161,32 @@ main {
     margin-bottom: 15px;
 }
 
-.article-preview h2 {
+/* Style the toggle button */
+.toggle-categories {
     font-family: 'Audiowide', Arial, sans-serif;
     font-size: 28px;
     margin-bottom: 15px;
     text-transform: uppercase;
-    color: #000000; /* Was #fff */
+    color: #d4af37; /* Default gold color */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s;
+}
+
+.toggle-categories:hover {
+    color: #b8860b; /* Darker gold on hover */
+}
+
+.toggle-categories:focus {
+    outline: 2px solid #b8860b;
+    outline-offset: 2px;
+}
+
+/* Darker gold when categories are expanded */
+.categories-container.expanded ~ .featured-article .toggle-categories {
+    color: #b8860b; /* Darker gold when expanded */
 }
 
 /* New class for the specific <p> in article-preview */
@@ -195,7 +218,7 @@ main {
         padding: 20px;
     }
 
-    .article-preview h2 {
+    .toggle-categories {
         font-size: 24px;
     }
 
@@ -212,18 +235,20 @@ main {
     }
 }
 
+/* Categories container collapsed state */
 .categories-container {
     margin: 40px 0;
     padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
 }
 
-.categories-container h2 {
-    font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff; /* Was #2a6626 */
-    text-align: center;
-    margin-bottom: 20px;
+.categories-container.expanded {
+    max-height: 4000px; /* Large enough to accommodate all categories */
 }
 
+/* Ensure categories grid remains styled */
 .categories {
     display: grid;
     grid-template-columns: 1fr;
