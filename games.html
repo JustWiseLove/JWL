@@ -15,11 +15,37 @@
 </head>
 <body>
     <header>
+        <nav class="nav-left">
+            <button class="hamburger-left" aria-expanded="false" aria-controls="nav-menu-left" aria-label="Toggle left navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-menu-left" class="nav-menu-left">
+                <li><a href="trust.html">TRUST</a></li>
+                <li><a href="walk.html">WALK</a></li>
+                <li><a href="games.html">GAMES</a></li>
+                <li><a href="news.html">NEWS</a></li>
+            </ul>
+        </nav>
         <div class="logo">
             <a href="index.html">
                 <h1>GAMES</h1>
             </a>
         </div>
+        <nav class="nav-right">
+            <button class="hamburger-right" aria-expanded="false" aria-controls="nav-menu-right" aria-label="Toggle right navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-menu-right" class="nav-menu-right">
+                <li><a href="truth.html">TRUTH</a></li>
+                <li><a href="wise.html">WISE</a></li>
+                <li><a href="drone.html">DRONE</a></li>
+                <li><a href="note.html">NOTE</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -36,6 +62,7 @@
                 <button class="toggle-categories" aria-expanded="false" aria-controls="categories">
                     PUSH TO PLAY
                 </button>
+                <p class="preview-text">Enjoy recreational activities inspired by spiritual wisdom, offering fun and reflection for all ages.</p>
             </div>
         </section>
         <section class="categories-container" id="categories">
@@ -91,21 +118,65 @@
     </footer>
 
     <script>
-        // Hamburger menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+        // Hamburger menu toggle for left menu
+        const hamburgerLeft = document.querySelector('.hamburger-left');
+        const navMenuLeft = document.querySelector('.nav-menu-left');
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+        hamburgerLeft.addEventListener('click', () => {
+            hamburgerLeft.classList.toggle('active');
+            navMenuLeft.classList.toggle('active');
+            const isExpanded = hamburgerLeft.getAttribute('aria-expanded') === 'true';
+            hamburgerLeft.setAttribute('aria-expanded', !isExpanded);
         });
 
-        // Close dropdown when clicking a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
+        // Hamburger menu toggle for right menu
+        const hamburgerRight = document.querySelector('.hamburger-right');
+        const navMenuRight = document.querySelector('.nav-menu-right');
+
+        hamburgerRight.addEventListener('click', () => {
+            hamburgerRight.classList.toggle('active');
+            navMenuRight.classList.toggle('active');
+            const isExpanded = hamburgerRight.getAttribute('aria-expanded') === 'true';
+            hamburgerRight.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Close left menu when clicking a link
+        document.querySelectorAll('.nav-menu-left a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+                hamburgerLeft.classList.remove('active');
+                navMenuLeft.classList.remove('active');
+                hamburgerLeft.setAttribute('aria-expanded', 'false');
             });
+        });
+
+        // Close right menu when clicking a link
+        document.querySelectorAll('.nav-menu-right a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerRight.classList.remove('active');
+                navMenuRight.classList.remove('active');
+                hamburgerRight.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Categories toggle with dynamic height
+        const toggleButton = document.querySelector('.toggle-categories');
+        const categoriesContainer = document.querySelector('.categories-container');
+        const categories = document.querySelector('.categories');
+
+        toggleButton.addEventListener('click', () => {
+            categoriesContainer.classList.toggle('expanded');
+            toggleButton.classList.toggle('active'); // Add active class for darker gold
+            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+            toggleButton.setAttribute('aria-expanded', !isExpanded);
+
+            if (categoriesContainer.classList.contains('expanded')) {
+                // Set max-height to the actual height of the categories content
+                const height = categories.scrollHeight;
+                categoriesContainer.style.maxHeight = `${height}px`;
+            } else {
+                // Collapse back to 0
+                categoriesContainer.style.maxHeight = '0px';
+            }
         });
     </script>
 </body>
