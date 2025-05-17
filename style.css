@@ -167,7 +167,7 @@ main {
     font-size: 28px;
     margin-bottom: 15px;
     text-transform: uppercase;
-    color: #000000; /* Default gold color */
+    color: #000000; /* Default color */
     background: none;
     border: none;
     cursor: pointer;
@@ -185,8 +185,8 @@ main {
 }
 
 /* Darker gold when categories are expanded */
-.categories-container.expanded ~ .featured-article .toggle-categories {
-    color: #ffd800; /* Darker gold when expanded */
+.toggle-categories.active {
+    color: #ffd800; /* Darker gold when active */
 }
 
 /* New class for the specific <p> in article-preview */
@@ -244,9 +244,7 @@ main {
     transition: max-height 0.5s ease-in-out;
 }
 
-.categories-container.expanded {
-    max-height: 4000px; /* Large enough to accommodate all categories */
-}
+/* Removed fixed max-height from .expanded to allow dynamic height via JavaScript */
 
 /* Ensure categories grid remains styled */
 .categories {
