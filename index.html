@@ -288,14 +288,24 @@
             });
         });
 
-        // Categories toggle
+        // Categories toggle with dynamic height
         const toggleButton = document.querySelector('.toggle-categories');
         const categoriesContainer = document.querySelector('.categories-container');
+        const categories = document.querySelector('.categories');
 
         toggleButton.addEventListener('click', () => {
             categoriesContainer.classList.toggle('expanded');
             const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
             toggleButton.setAttribute('aria-expanded', !isExpanded);
+
+            if (categoriesContainer.classList.contains('expanded')) {
+                // Set max-height to the actual height of the categories content
+                const height = categories.scrollHeight;
+                categoriesContainer.style.maxHeight = `${height}px`;
+            } else {
+                // Collapse back to 0
+                categoriesContainer.style.maxHeight = '0px';
+            }
         });
     </script>
 </body>
