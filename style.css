@@ -135,6 +135,7 @@ main > :where(.intro, .featured-article, .categories-container, .item, .scriptur
     padding: 20px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
+    text-align: center;
 }
 
 .featured-article {
