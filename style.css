@@ -6,8 +6,8 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #000000; /* Pure black background */
-    color: #fff; /* Default text color for visibility */
+    background-color: #000000;
+    color: #fff;
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -31,14 +31,14 @@ header {
 
 .logo h1 {
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #000000; /* Was #fff */
+    color: #000000;
     font-size: 48px;
     margin: 0;
 }
 
 .logo a {
     text-decoration: none;
-    color: #000000; /* Was #fff */
+    color: #000000;
 }
 
 .hamburger-left, .hamburger-right {
@@ -54,7 +54,7 @@ header {
     display: block;
     width: 25px;
     height: 3px;
-    background: #000000; /* Was #fff */
+    background: #000000;
     margin: 5px 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -100,7 +100,7 @@ header {
 }
 
 .nav-menu-left li a, .nav-menu-right li a {
-    color: #000000; /* Was #fff */
+    color: #000000;
     text-decoration: none;
     font-family: 'Audiowide', Arial, sans-serif;
     font-size: 16px;
@@ -115,10 +115,11 @@ main {
     max-width: 100%;
     margin: 0;
     padding: 0;
+    min-height: auto;
 }
 
 .intro {
-    background: #000000; /* Was #f0f0f0, #d3d3d3 */
+    background: #000000;
     padding: 20px 0;
     margin-bottom: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -134,15 +135,14 @@ main {
 
 .intro h2 {
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff; /* Was #2a6626 */
+    color: #fff;
     margin-bottom: 10px;
 }
 
-/* Featured Article Section */
 .featured-article {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
-    padding: 40px 20px;
-    margin: 20px 0;
+    padding: 20px 20px;
+    margin: 10px 0 10px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -157,17 +157,16 @@ main {
 
 .article-preview i {
     font-size: 32px;
-    color: #000000; /* Was #fff */
+    color: #000000;
     margin-bottom: 15px;
 }
 
-/* Style the toggle button */
 .toggle-categories {
     font-family: 'Audiowide', Arial, sans-serif;
     font-size: 28px;
     margin-bottom: 15px;
     text-transform: uppercase;
-    color: #000000; /* Default color */
+    color: #000000;
     background: none;
     border: none;
     cursor: pointer;
@@ -176,7 +175,7 @@ main {
 }
 
 .toggle-categories:hover {
-    color: #ffd800; /* Darker gold on hover */
+    color: #ffd800;
 }
 
 .toggle-categories:focus {
@@ -184,24 +183,22 @@ main {
     outline-offset: 2px;
 }
 
-/* Darker gold when categories are expanded */
 .toggle-categories.active {
-    color: #ffd800; /* Darker gold when active */
+    color: #ffd800;
 }
 
-/* New class for the specific <p> in article-preview */
 .preview-text {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 20px;
-    color: #000000; /* Was #f0f0f0 */
+    color: #000000;
 }
 
 .read-more {
     display: inline-block;
     padding: 10px 20px;
     background: linear-gradient(90deg, #1e4b1c, #5a8a27);
-    color: #000000; /* Was #fff */
+    color: #000000;
     text-decoration: none;
     font-family: 'Audiowide', Arial, sans-serif;
     border-radius: 5px;
@@ -215,7 +212,8 @@ main {
 
 @media (max-width: 768px) {
     .featured-article {
-        padding: 20px;
+        padding: 10px;
+        margin-bottom: 5px;
     }
 
     .toggle-categories {
@@ -235,18 +233,22 @@ main {
     }
 }
 
-/* Categories container collapsed state */
 .categories-container {
-    margin: 40px 0;
+    margin: 20px 0 40px 0;
     padding: 0 20px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-in-out;
 }
 
-/* Removed fixed max-height from .expanded to allow dynamic height via JavaScript */
+.categories-container:not(.expanded) {
+    margin: 0 0 0 0; /* Remove bottom margin when collapsed */
+}
 
-/* Ensure categories grid remains styled */
+.categories-container.expanded {
+    margin: 20px 0 40px 0;
+}
+
 .categories {
     display: grid;
     grid-template-columns: 1fr;
@@ -288,24 +290,24 @@ main {
 
 .category a {
     text-decoration: none;
-    color: #fff; /* Was #333 */
+    color: #fff;
 }
 
 .category i {
     font-size: 24px;
-    color: #000000; /* Was #fff */
+    color: #000000;
     margin-bottom: 10px;
 }
 
 .category h3 {
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #000000; /* Was #fff */
+    color: #000000;
     margin-bottom: 10px;
 }
 
 .category p {
     font-size: 14px;
-    color: #000000; /* Was #f0f0f0 */
+    color: #000000;
 }
 
 .item {
@@ -322,7 +324,7 @@ main {
     font-family: 'Audiowide', Arial, sans-serif;
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     border: none;
-    color: #000000; /* Was #fff */
+    color: #000000;
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
@@ -335,14 +337,14 @@ main {
 
 .item-content {
     padding: 20px;
-    background: #000000; /* Was #f0f0f0, #d3d3d3 */
+    background: #000000;
     border-radius: 0 0 5px 5px;
     text-align: center;
-    color: #fff; /* Was #333 */
+    color: #fff;
 }
 
 .item-content p {
-    color: #fff; /* Was #333 */
+    color: #fff;
 }
 
 .item-content h2 {
@@ -352,7 +354,7 @@ main {
     margin-left: 0;
     margin-right: 0;
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff !important; /* Was #2a6626 */
+    color: #fff;
     font-size: 1.5em;
     text-transform: uppercase;
     text-decoration: none;
@@ -361,7 +363,7 @@ main {
 .item-content pre {
     font-family: 'Audiowide', Arial, sans-serif;
     font-size: 1.5rem;
-    color: #fff !important; /* Was #2a6626 */
+    color: #fff;
 }
 
 .item-content h3 {
@@ -371,7 +373,7 @@ main {
     margin-left: 0;
     margin-right: 0;
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff; /* Was #2a6626 */
+    color: #fff;
     font-size: 1.5em;
     text-transform: uppercase;
 }
@@ -383,7 +385,7 @@ main {
     margin-left: 0;
     margin-right: 0;
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff; /* Was #2a6626 */
+    color: #fff;
     font-size: 1.5em;
     text-transform: uppercase;
 }
@@ -394,22 +396,22 @@ main {
     margin: 10px auto;
     border-radius: 8px;
     font-style: italic;
-    color: #000000; /* Was #fff */
+    color: #000000;
     max-width: 800px;
     text-align: center;
 }
 
 .item-content .scripture {
-    color: #000000; /* Was #fff */
+    color: #000000;
 }
 
 .describe {
-    background: #000000; /* Was #f0f0f0, #d3d3d3 */
+    background: #000000;
     padding: 15px;
     margin: 10px auto;
     border-radius: 8px;
     font-style: italic;
-    color: #fff; /* Was #333 */
+    color: #fff;
     max-width: 800px;
     text-align: center;
 }
@@ -417,8 +419,8 @@ main {
 footer {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     text-align: center;
-    padding: 20px;
-    color: #000000; /* Was #fff */
+    padding: 10px;
+    color: #000000;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
 }
