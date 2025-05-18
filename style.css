@@ -22,6 +22,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    margin-bottom: 10px; /* 10px gap below header */
+    border-bottom: 1px solid transparent; /* Prevent margin collapsing */
 }
 
 .logo {
@@ -31,14 +33,13 @@ header {
 
 .logo h1 {
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #000000; /* Was #fff */
+    color: #000000;
     font-size: 48px;
-    margin: 0;
 }
 
 .logo a {
     text-decoration: none;
-    color: #000000; /* Was #fff */
+    color: #000000;
 }
 
 .hamburger-left, .hamburger-right {
@@ -54,7 +55,7 @@ header {
     display: block;
     width: 25px;
     height: 3px;
-    background: #000000; /* Was #fff */
+    background: #000000;
     margin: 5px 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -100,7 +101,7 @@ header {
 }
 
 .nav-menu-left li a, .nav-menu-right li a {
-    color: #000000; /* Was #fff */
+    color: #000000;
     text-decoration: none;
     font-family: 'Audiowide', Arial, sans-serif;
     font-size: 16px;
@@ -113,36 +114,34 @@ header {
 
 main {
     max-width: 100%;
-    margin: 0;
-    padding: 0;
+}
+
+/* Apply a consistent 10px gap between all major elements inside main */
+main > :where(.intro, .featured-article, .categories-container, .item, .scripture, .describe):not(:last-child) {
+    margin-bottom: 10px; /* 10px gap below each element */
+    border-bottom: 1px solid transparent; /* Prevent margin collapsing */
+}
+
+main > :where(.intro, .featured-article, .categories-container, .item, .scripture, .describe):first-child {
+    margin-top: 0; /* No extra margin above the first element */
+    border-top: 1px solid transparent; /* Prevent margin collapsing */
+}
+
+main > :where(.intro, .featured-article, .categories-container, .item, .scripture, .describe) {
+    border-top: 1px solid transparent; /* Ensure consistency for all elements */
 }
 
 .intro {
-    background: #000000; /* Was #f0f0f0, #d3d3d3 */
+    background: #000000;
     padding: 20px 0;
-    margin-bottom: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-}
-
-.intro-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-.intro h2 {
-    font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff; /* Was #2a6626 */
-    margin-bottom: 10px;
 }
 
 /* Featured Article Section */
 .featured-article {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     padding: 40px 20px;
-    margin: 20px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -157,21 +156,23 @@ main {
 
 .article-preview i {
     font-size: 32px;
-    color: #000000; /* Was #fff */
-    margin-bottom: 15px;
+    color: #000000;
+    margin: 0; /* Reset margin */
+    padding-bottom: 10px; /* Use padding for internal spacing */
 }
 
 /* Style the toggle button */
 .toggle-categories {
     font-family: 'Audiowide', Arial, sans-serif;
     font-size: 28px;
-    margin-bottom: 15px;
+    margin: 0; /* Reset margin */
+    padding-bottom: 10px; /* Use padding for internal spacing */
     text-transform: uppercase;
     color: #000000; /* Default color */
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 0 0 10px 0; /* Ensure consistent internal spacing */
     transition: color 0.3s;
 }
 
@@ -189,23 +190,25 @@ main {
     color: #ffd800; /* Darker gold when active */
 }
 
-/* New class for the specific <p> in article-preview */
+/* Reset margins for internal elements to prevent interference */
 .preview-text {
     font-size: 16px;
     line-height: 1.5;
-    margin-bottom: 20px;
-    color: #000000; /* Was #f0f0f0 */
+    color: #000000;
+    margin: 0; /* Reset margin */
+    padding-bottom: 10px; /* Use padding for internal spacing */
 }
 
 .read-more {
     display: inline-block;
     padding: 10px 20px;
     background: linear-gradient(90deg, #1e4b1c, #5a8a27);
-    color: #000000; /* Was #fff */
+    color: #000000;
     text-decoration: none;
     font-family: 'Audiowide', Arial, sans-serif;
     border-radius: 5px;
     transition: background 0.3s, transform 0.3s;
+    margin: 0; /* Reset margin */
 }
 
 .read-more:hover {
@@ -237,14 +240,11 @@ main {
 
 /* Categories container collapsed state */
 .categories-container {
-    margin: 40px 0;
-    padding: 0 20px;
+    padding: 0 10px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-in-out;
 }
-
-/* Removed fixed max-height from .expanded to allow dynamic height via JavaScript */
 
 /* Ensure categories grid remains styled */
 .categories {
@@ -288,28 +288,30 @@ main {
 
 .category a {
     text-decoration: none;
-    color: #fff; /* Was #333 */
+    color: #fff;
 }
 
 .category i {
     font-size: 24px;
-    color: #000000; /* Was #fff */
-    margin-bottom: 10px;
+    color: #000000;
+    margin: 0; /* Reset margin */
+    padding-bottom: 10px; /* Use padding for internal spacing */
 }
 
 .category h3 {
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #000000; /* Was #fff */
-    margin-bottom: 10px;
+    color: #000000;
+    margin: 0; /* Reset margin */
+    padding-bottom: 10px; /* Use padding for internal spacing */
 }
 
 .category p {
     font-size: 14px;
-    color: #000000; /* Was #f0f0f0 */
+    color: #000000;
+    margin: 0; /* Reset margin */
 }
 
 .item {
-    margin-bottom: 20px;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -322,11 +324,12 @@ main {
     font-family: 'Audiowide', Arial, sans-serif;
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     border: none;
-    color: #000000; /* Was #fff */
+    color: #000000;
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
     transition: background 0.3s;
+    margin: 0; /* Reset margin */
 }
 
 .item-button:hover {
@@ -335,81 +338,77 @@ main {
 
 .item-content {
     padding: 20px;
-    background: #000000; /* Was #f0f0f0, #d3d3d3 */
+    background: #000000;
     border-radius: 0 0 5px 5px;
     text-align: center;
-    color: #fff; /* Was #333 */
+    color: #fff;
 }
 
 .item-content p {
-    color: #fff; /* Was #333 */
+    color: #fff;
+    margin: 0; /* Reset margin */
+    padding-bottom: 10px; /* Use padding for internal spacing */
 }
 
 .item-content h2 {
     display: block;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    margin-left: 0;
-    margin-right: 0;
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff !important; /* Was #2a6626 */
+    color: #fff !important;
     font-size: 1.5em;
     text-transform: uppercase;
     text-decoration: none;
+    margin: 0; /* Reset margin */
+    padding-bottom: 10px; /* Use padding for internal spacing */
 }
 
 .item-content pre {
     font-family: 'Audiowide', Arial, sans-serif;
     font-size: 1.5rem;
-    color: #fff !important; /* Was #2a6626 */
+    color: #fff !important;
+    margin: 0; /* Reset margin */
+    padding-bottom: 10px; /* Use padding for internal spacing */
 }
 
 .item-content h3 {
     display: block;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    margin-left: 0;
-    margin-right: 0;
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff; /* Was #2a6626 */
+    color: #fff;
     font-size: 1.5em;
     text-transform: uppercase;
+    margin: 0; /* Reset margin */
+    padding-bottom: 10px; /* Use padding for internal spacing */
 }
 
 .item-content p strong {
     display: block;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    margin-left: 0;
-    margin-right: 0;
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff; /* Was #2a6626 */
+    color: #fff;
     font-size: 1.5em;
     text-transform: uppercase;
+    margin: 0; 
+    padding-bottom: 10px; 
 }
 
 .scripture {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     padding: 15px;
-    margin: 10px auto;
     border-radius: 8px;
     font-style: italic;
-    color: #000000; /* Was #fff */
+    color: #000000;
     max-width: 800px;
     text-align: center;
 }
 
 .item-content .scripture {
-    color: #000000; /* Was #fff */
+    color: #000000;
 }
 
 .describe {
-    background: #000000; /* Was #f0f0f0, #d3d3d3 */
+    background: #000000;
     padding: 15px;
-    margin: 10px auto;
     border-radius: 8px;
     font-style: italic;
-    color: #fff; /* Was #333 */
+    color: #fff;
     max-width: 800px;
     text-align: center;
 }
@@ -418,11 +417,13 @@ footer {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     text-align: center;
     padding: 20px;
-    color: #000000; /* Was #fff */
+    color: #000000;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px; 
+    border-top: 1px solid transparent; 
 }
 
 footer p {
-    margin: 10px 0 0;
-}
+    margin: 0; 
