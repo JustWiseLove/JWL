@@ -24,6 +24,11 @@ header {
     z-index: 100;
 }
 
+.spacer {
+    height: 5px; /* Adds 5px gap between header and main */
+    background: transparent;
+}
+
 .logo {
     flex: 1;
     text-align: center;
@@ -39,6 +44,10 @@ header {
 .logo a {
     text-decoration: none;
     color: #000000;
+}
+
+.nav-left, .nav-right {
+    position: relative;
 }
 
 .hamburger-left, .hamburger-right {
@@ -80,12 +89,12 @@ header {
 }
 
 .nav-menu-left {
-    left: 20px;
+    left: 0;
     background: linear-gradient(90deg, #2a6626, #6b9e31);
 }
 
 .nav-menu-right {
-    right: 20px;
+    right: 0;
     background: linear-gradient(90deg, #6b9e31, #2a6626);
     text-align: right;
 }
@@ -141,8 +150,8 @@ main {
 
 .featured-article {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
-    padding: 20px 20px;
-    margin: 10px 0 10px 0;
+    padding: 20px;
+    margin: 5px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -213,7 +222,6 @@ main {
 @media (max-width: 768px) {
     .featured-article {
         padding: 10px;
-        margin-bottom: 5px;
     }
 
     .toggle-categories {
@@ -233,8 +241,14 @@ main {
     }
 }
 
+@media (min-width: 769px) {
+    .featured-article {
+        margin: 10px 0;
+    }
+}
+
 .categories-container {
-    margin: 20px 0 40px 0;
+    margin: 0;
     padding: 0 20px;
     max-height: 0;
     overflow: hidden;
@@ -242,11 +256,17 @@ main {
 }
 
 .categories-container:not(.expanded) {
-    margin: 0 0 0 0; /* Remove bottom margin when collapsed */
+    margin: 0;
 }
 
 .categories-container.expanded {
-    margin: 20px 0 40px 0;
+    margin: 5px 0;
+}
+
+@media (min-width: 769px) {
+    .categories-container.expanded {
+        margin: 10px 0;
+    }
 }
 
 .categories {
@@ -310,112 +330,6 @@ main {
     color: #000000;
 }
 
-.item {
-    margin-bottom: 20px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.item-button {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    font-family: 'Audiowide', Arial, sans-serif;
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
-    border: none;
-    color: #000000;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.item-button:hover {
-    background: linear-gradient(90deg, #6b9e31);
-}
-
-.item-content {
-    padding: 20px;
-    background: #000000;
-    border-radius: 0 0 5px 5px;
-    text-align: center;
-    color: #fff;
-}
-
-.item-content p {
-    color: #fff;
-}
-
-.item-content h2 {
-    display: block;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    margin-left: 0;
-    margin-right: 0;
-    font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    text-decoration: none;
-}
-
-.item-content pre {
-    font-family: 'Audiowide', Arial, sans-serif;
-    font-size: 1.5rem;
-    color: #fff;
-}
-
-.item-content h3 {
-    display: block;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    margin-left: 0;
-    margin-right: 0;
-    font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff;
-    font-size: 1.5em;
-    text-transform: uppercase;
-}
-
-.item-content p strong {
-    display: block;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    margin-left: 0;
-    margin-right: 0;
-    font-family: 'Audiowide', Arial, sans-serif;
-    color: #fff;
-    font-size: 1.5em;
-    text-transform: uppercase;
-}
-
-.scripture {
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
-    padding: 15px;
-    margin: 10px auto;
-    border-radius: 8px;
-    font-style: italic;
-    color: #000000;
-    max-width: 800px;
-    text-align: center;
-}
-
-.item-content .scripture {
-    color: #000000;
-}
-
-.describe {
-    background: #000000;
-    padding: 15px;
-    margin: 10px auto;
-    border-radius: 8px;
-    font-style: italic;
-    color: #fff;
-    max-width: 800px;
-    text-align: center;
-}
-
 footer {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     text-align: center;
@@ -423,6 +337,13 @@ footer {
     color: #000000;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
+    margin-top: 5px;
+}
+
+@media (min-width: 769px) {
+    footer {
+        margin-top: 10px;
+    }
 }
 
 footer p {
