@@ -12,6 +12,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .categories-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .categories-container.expanded {
+            max-height: 1000px; /* Adjust based on content */
+        }
+        /* Style for the SVG icon to match Font Awesome sizing */
+        .svg-icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.125em;
+            fill: currentColor; /* Allows color to be controlled by CSS */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,12 +39,12 @@
                 <span></span>
             </button>
             <ul id="nav-menu-left" class="nav-menu-left">
-                <li><a href="games.html">GAMES</a></li>
-                <li><a href="news.html">NEWS</a></li>
+                <li><a href="games.html" aria-label="Games page">GAMES</a></li>
+                <li><a href="news.html" aria-label="News page">NEWS</a></li>
             </ul>
         </nav>
         <div class="logo">
-            <a href="index.html">
+            <a href="index.html" aria-label="Just Wise Love home">
                 <h1><a href="jwl.html">JWL</a></h1>
             </a>
         </div>
@@ -38,289 +55,292 @@
                 <span></span>
             </button>
             <ul id="nav-menu-right" class="nav-menu-right">
-                <li><a href="drone.html">DRONE</a></li>
-                <li><a href="note.html">NOTE</a></li>
+                <li><a href="drone.html" aria-label="Drone page">DRONE</a></li>
+                <li><a href="note.html" aria-label="Note page">NOTE</a></li>
             </ul>
         </nav>
-    </header
+    </header>
     <main>
         <section class="featured-article">
             <div class="article-preview">
                 <i class="fa-solid fa-user-secret"></i>
-                <button class="toggle-categories" aria-expanded="false" aria-controls="categories">
+                <button class="toggle-categories" aria-expanded="false" aria-controls="categories-jwl" aria-label="Toggle Just Wise Love categories">
                     JUST WISE LOVE
                 </button>
-                <p class="preview-text">Divine justice upholds righteousness, boundless love offers mercy, profound wisdom shapes perfect plans, and unmatched power overcomes all challenges, guiding believers to a life of faith, hope, and devotion rooted in sacred scriptures.</p>
+                <p class="preview-text">Divine justice, boundless love, profound wisdom, and unmatched power guide believers to faith, hope, and devotion through sacred scriptures.</p>
             </div>
         </section>
-        <section class="categories-container" id="categories">
+        <section class="categories-container" id="categories-jwl">
             <div class="categories">
                 <div class="category">
-                    <a href="god-or-government.html">
-                        <i class="fas fa-landmark"></i>
-                        <h3>God or Government?</h3>
-                        <p>Relying on human governments often leads to disappointment and instability, as they struggle to address mankind’s deepest problems like war, poverty, and injustice. Trusting in Jehovah’s Kingdom, however, offers a divine solution—bringing hope for lasting justice, peace, and a restored paradise earth, as promised in Daniel 2:44 and Revelation 21:4. Explore this contrast and decide where true authority lies.</p>
-                    </a>
+                    <i class="fas fa-landmark"></i>
+                    <h3>God or Government?</h3>
+                    <p>Relying on human governments often leads to disappointment and instability, as they struggle to address mankind’s deepest problems like war, poverty, and injustice. Trusting in Jehovah’s Kingdom, however, offers a divine solution—bringing hope for lasting justice, peace, and a restored paradise earth, as promised in Daniel 2:44 and Revelation 21:4.</p>
                 </div>
                 <div class="category">
-                    <a href="spirituality-or-wealth.html">
-                        <i class="fas fa-coins"></i>
-                        <h3>Spirituality or Wealth?</h3>
-                        <p>Chasing money and material wealth can breed anxiety, envy, and a hollow existence, leaving individuals trapped in an endless cycle of desire. In contrast, cultivating spiritual qualities like love, faith, and generosity—guided by Matthew 6:24—yields deep contentment and eternal rewards. Discover how prioritizing spirituality over wealth transforms your life.</p>
-                    </a>
+                    <i class="fas fa-coins"></i>
+                    <h3>Spirituality or Wealth?</h3>
+                    <p>Chasing money and material wealth can breed anxiety, envy, and a hollow existence, leaving individuals trapped in an endless cycle of desire. In contrast, cultivating spiritual qualities like love, faith, and generosity—guided by Matthew 6:24—yields deep contentment and eternal rewards.</p>
                 </div>
                 <div class="category">
-                    <a href="morality-or-immorality.html">
-                        <i class="fas fa-heart-broken"></i>
-                        <h3>Morality or Immorality?</h3>
-                        <p>Immorality, fueled by lust, selfishness, and societal pressures, erodes relationships, self-respect, and inner peace, leading to regret and brokenness. Embracing Bible-based morality, as outlined in 1 Corinthians 6:18, fosters dignity, love, and Jehovah’s approval, building a foundation for meaningful connections. Dive into this choice and its lasting impact.</p>
-                    </a>
+                    <i class="fas fa-heart-broken"></i>
+                    <h3>Morality or Immorality?</h3>
+                    <p>Immorality, fueled by lust, selfishness, and societal pressures, erodes relationships, self-respect, and inner peace, leading to regret and brokenness. Embracing Bible-based morality, as outlined in 1 Corinthians 6:18, fosters dignity, love, and Jehovah’s approval.</p>
                 </div>
                 <div class="category">
-                    <a href="hope-or-hopelessness.html">
-                        <i class="fas fa-cloud"></i>
-                        <h3>Hope or Hopelessness?</h3>
-                        <p>The world’s “you only live once” mindset often leads to despair, as fleeting pleasures fade and mortality looms large. Jehovah’s promise of a paradise earth, detailed in Revelation 21:4, offers enduring hope, purpose, and the removal of suffering. Explore how this divine hope can anchor your life against hopelessness.</p>
-                    </a>
+                    <i class="fas fa-cloud"></i>
+                    <h3>Hope or Hopelessness?</h3>
+                    <p>The world’s “you only live once” mindset often leads to despair, as fleeting pleasures fade and mortality looms large. Jehovah’s promise of a paradise earth, detailed in Revelation 21:4, offers enduring hope, purpose, and the removal of suffering.</p>
                 </div>
                 <div class="category">
-                    <a href="sobriety-or-drugs.html">
-                        <i class="fas fa-pills"></i>
-                        <h3>Sobriety or Drugs?</h3>
-                        <p>Drugs and substance abuse enslave the mind and body, causing health decline, broken relationships, and spiritual disconnection. Living by Bible principles, as encouraged in 2 Timothy 1:7, promotes self-control, clarity, and a strong conscience. Learn how sobriety aligns with a life of purpose and divine guidance.</p>
-                    </a>
+                    <i class="fas fa-pills"></i>
+                    <h3>Sobriety or Drugs?</h3>
+                    <p>Drugs and substance abuse enslave the mind and body, causing health decline, broken relationships, and spiritual disconnection. Living by Bible principles, as encouraged in 2 Timothy 1:7, promotes self-control, clarity, and a strong conscience.</p>
                 </div>
                 <div class="category">
-                    <a href="worship-or-partying.html">
-                        <i class="fas fa-glass-cheers"></i>
-                        <h3>Worship or Partying?</h3>
-                        <p>Endless partying offers fleeting thrills and temporary excitement, but it often leaves a void of emptiness and unfulfillment. Worshiping Jehovah, as inspired by Psalm 100:2, brings lasting joy through meaningful service, community, and a connection to the divine. Compare these paths and their lasting effects.</p>
-                    </a>
+                    <i class="fas fa-glass-cheers"></i>
+                    <h3>Worship or Partying?</h3>
+                    <p>Endless partying offers fleeting thrills and temporary excitement, but it often leaves a void of emptiness and unfulfillment. Worshiping Jehovah, as inspired by Psalm 100:2, brings lasting joy through meaningful service, community, and a connection to the divine.</p>
                 </div>
                 <div class="category">
-                    <a href="truth-or-deception.html">
-                        <i class="fas fa-mask"></i>
-                        <h3>Truth or Deception?</h3>
-                        <p>The world is rife with lies, misinformation, and moral confusion, leading to spiritual blindness and lost direction. Jehovah’s truth, revealed in the Bible (John 17:17), illuminates the path to life, offering clarity and salvation. Uncover how choosing truth over deception shapes your spiritual journey.</p>
-                    </a>
+                    <i class="fas fa-mask"></i>
+                    <h3>Truth or Deception?</h3>
+                    <p>The world is rife with lies, misinformation, and moral confusion, leading to spiritual blindness and lost direction. Jehovah’s truth, revealed in the Bible (John 17:17), illuminates the path to life, offering clarity and salvation.</p>
                 </div>
                 <div class="category">
-                    <a href="purpose-or-aimlessness.html">
-                        <i class="fas fa-road"></i>
-                        <h3>Purpose or Aimlessness?</h3>
-                        <p>Worldly pursuits like fame or pleasure often lead to a life without direction, leaving individuals adrift in uncertainty. Serving Jehovah, as guided by Ecclesiastes 12:13, provides a clear purpose centered on love, service, and eternal life. Explore how this choice brings stability and fulfillment.</p>
-                    </a>
+                    <i class="fas fa-road"></i>
+                    <h3>Purpose or Aimlessness?</h3>
+                    <p>Worldly pursuits like fame or pleasure often lead to a life without direction, leaving individuals adrift in uncertainty. Serving Jehovah, as guided by Ecclesiastes 12:13, provides a clear purpose centered on love, service, and eternal life.</p>
                 </div>
             </div>
         </section>
         <section class="featured-article">
             <div class="article-preview">
                 <i class="fa-solid fa-hands-praying"></i>
-                <button class="toggle-categories" aria-expanded="false" aria-controls="categories">
+                <button class="toggle-categories" aria-expanded="false" aria-controls="categories-tnt" aria-label="Toggle Trust N Truth categories">
                     TRUST N TRUTH
                 </button>
-                <p class="preview-text">Will you let life carry you aimlessly like waves crashing on the shore, blown by the shifting winds of worldly trends? Alternatively, choose a stable, constant direction guided by Bible standards—where divine wisdom offers a path of purpose, peace, and unshakable hope. Which path will you walk?</p>
+                <p class="preview-text">Prayer strengthens trust in Jehovah’s promises, offering peace and guidance through life’s uncertainties, as inspired by Psalm 25:5.</p>
             </div>
         </section>
-        <section class="categories-container" id="categories">
+        <section class="categories-container" id="categories-tnt">
             <div class="categories">
                 <div class="category">
-                    <a href="god-or-government.html">
-                        <i class="fas fa-landmark"></i>
-                        <h3>God or Government?</h3>
-                        <p>Relying on human governments often leads to disappointment and instability, as they struggle to address mankind’s deepest problems like war, poverty, and injustice. Trusting in Jehovah’s Kingdom, however, offers a divine solution—bringing hope for lasting justice, peace, and a restored paradise earth, as promised in Daniel 2:44 and Revelation 21:4. Explore this contrast and decide where true authority lies.</p>
-                    </a>
+                    <i class="fa-solid fa-book"></i>
+                    <h3>Trust in Jehovah’s Sovereignty</h3>
+                    <p>Trusting Jehovah’s supreme authority brings peace and purpose. Unlike human rulers, His perfect rule ensures justice and love, as Psalm 103:19 declares: “Jehovah has established his throne in the heavens.” Relying on His sovereignty frees us from fear, offering hope for a righteous new world.</p>
+                </div>
+                <div class="category">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <h3>Truth Through Scripture</h3>
+                    <p>The Bible, Jehovah’s inspired Word, reveals absolute truth, guiding us to salvation. John 17:17 says, “Your word is truth.” Studying scriptures diligently protects against deception, builds faith, and aligns our lives with divine will, ensuring clarity amidst worldly confusion.</p>
+                </div>
+                <div class="category">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    <h3>Faith in Jehovah’s Promises</h3>
+                    <p>Jehovah’s promises, like the paradise earth in Revelation 21:4, are certain. Faith in His unbreakable word strengthens us through trials, fostering resilience and joy. Trusting His guarantees, unlike fleeting human assurances, anchors our hope in eternal life and divine love.</p>
+                </div>
+                <div class="category">
+                    <i class="fa-solid fa-pray"></i>
+                    <h3>Prayer as a Lifeline</h3>
+                    <p>Prayer connects us to Jehovah, offering strength and guidance. Philippians 4:6 urges, “Do not be anxious about anything, but in every situation, by prayer… present your requests to God.” Heartfelt prayer deepens trust, calms fears, and aligns us with His purpose.</p>
                 </div>
             </div>
         </section>
         <section class="featured-article">
             <div class="article-preview">
-                <i class="fa-solid fa-hands-praying"></i>
-                <button class="toggle-categories" aria-expanded="false" aria-controls="categories">
+                <!-- Replaced Font Awesome icon with Flaticon SVG -->
+                <svg class="svg-icon" aria-hidden="true" role="img" viewBox="0 0 512 512">
+                    <!-- Placeholder SVG path; replace with actual Flaticon SVG path -->
+                    <path d="M0 0h512v512H0z" fill="none"/>
+                    <!-- Example path (replace with Flaticon hiking boots SVG path) -->
+                    <path d="M256 48c-110.3 0-200 89.7-200 200s89.7 200 200 200 200-89.7 200-200-89.7-200-200-200zm0 360c-88.4 0-160-71.6-160-160s71.6-160 160-160 160 71.6 160 160-71.6 160-160 160z"/>
+                </svg>
+                <button class="toggle-categories" aria-expanded="false" aria-controls="categories-ww" aria-label="Toggle Walk Wise categories">
                     WALK WISE
                 </button>
-                <p class="preview-text">Will you let life carry you aimlessly like waves crashing on the shore, blown by the shifting winds of worldly trends? Alternatively, choose a stable, constant direction guided by Bible standards—where divine wisdom offers a path of purpose, peace, and unshakable hope. Which path will you walk?</p>
+                <p class="preview-text">Choose a stable path guided by Bible standards, where divine wisdom offers purpose, peace, and unshakable hope, unlike worldly trends.</p>
             </div>
         </section>
-        <section class="categories-container" id="categories">
+        <section class="categories-container" id="categories-ww">
             <div class="categories">
                 <div class="category">
-                    <a href="accuracy.html">
+                    <a href="accuracy.html" aria-label="Accuracy article">
                         <i class="fas fa-book-open"></i>
                         <h3>Accuracy</h3>
                         <p>Affirm precise scriptural truths gaining accurate knowledge for steadfast devotion with divine clarity.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="blasphemy.html">
+                    <a href="blasphemy.html" aria-label="Blasphemy article">
                         <i class="fas fa-ban"></i>
                         <h3>Blasphemy</h3>
                         <p>Expose lies that dishonor sacred teachings, replacing traditions of men with clear scriptural truth.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="characters.html">
+                    <a href="characters.html" aria-label="Characters article">
                         <i class="fas fa-users"></i>
                         <h3>Characters</h3>
                         <p>Explore Bible figures’ faith and errors to inspire steadfast commitment to righteous principles.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="discernment.html">
+                    <a href="discernment.html" aria-label="Discernment article">
                         <i class="fas fa-balance-scale"></i>
                         <h3>Discernment</h3>
                         <p>Sharpen insight to choose paths aligned with sacred values, rejecting harmful influences.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="endurance.html">
+                    <a href="endurance.html" aria-label="Endurance article">
                         <i class="fas fa-shield-alt"></i>
                         <h3>Endurance</h3>
                         <p>Memorize scriptures to share truth, building resilience against trials with divine strength.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="faithful.html">
+                    <a href="faithful.html" aria-label="Faithful article">
                         <i class="fas fa-gem"></i>
                         <h3>Faithful</h3>
                         <p>Draw inspiration from loyal servants whose devotion strengthens resolve in pure worship.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="guidance.html">
+                    <a href="guidance.html" aria-label="Guidance article">
                         <i class="fas fa-compass"></i>
                         <h3>Guidance</h3>
                         <p>Nurture traits reflecting divine love, leading to a life of integrity and purpose.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="homeschool.html">
+                    <a href="homeschool.html" aria-label="Homeschool article">
                         <i class="fas fa-school"></i>
                         <h3>Homeschool</h3>
                         <p>Use printable resources to teach children sacred values, fostering their spiritual growth.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="inspiration.html">
+                    <a href="inspiration.html" aria-label="Inspiration article">
                         <i class="fa-solid fa-pen-fancy"></i>
                         <h3>Inspiration</h3>
                         <p>Uncover evidence affirming the Bible’s authenticity, deepening confidence in its divine origin.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="jehovah.html">
+                    <a href="jehovah.html" aria-label="Jehovah article">
                         <i class="fa-solid fa-hand-holding"></i>
                         <h3>Jehovah</h3>
                         <p>Appreciate the Creator’s personal identity and supreme authority as the source of life.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="kingdom.html">
+                    <a href="kingdom.html" aria-label="Kingdom article">
                         <i class="fas fa-crown"></i>
                         <h3>Kingdom</h3>
                         <p>Learn about the divine government that will restore paradise through perfect, righteous rule.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="lifestyle.html">
+                    <a href="lifestyle.html" aria-label="Lifestyle article">
                         <i class="fas fa-heart"></i>
                         <h3>Lifestyle</h3>
                         <p>Adopt a way of life grounded in biblical standards, yielding joy and blessings.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="memorial.html">
+                    <a href="memorial.html" aria-label="Memorial article">
                         <i class="fas fa-wine-glass"></i>
                         <h3>Memorial</h3>
                         <p>Honor the ransom sacrifice of Jesus, celebrating the hope of eternal salvation.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="neutrality.html">
+                    <a href="neutrality.html" aria-label="Neutrality article">
                         <i class="fa-solid fa-handshake"></i>
                         <h3>Neutrality</h3>
                         <p>Stay separate from worldly conflicts, showing allegiance to the divine Kingdom’s cause.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="organization.html">
+                    <a href="organization.html" aria-label="Organization article">
                         <i class="fa-solid fa-briefcase"></i>
                         <h3>Organization</h3>
                         <p>Contrast false religions’ flaws with the true path of unified, scripture-based worship.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="prophecy.html">
+                    <a href="prophecy.html" aria-label="Prophecy article">
                         <i class="fas fa-bullhorn"></i>
                         <h3>Prophecy</h3>
                         <p>Study biblical prophecies to understand divine purposes and bolster faith in sacred promises.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="questions.html">
+                    <a href="questions.html" aria-label="Questions article">
                         <i class="fas fa-question-circle"></i>
                         <h3>Questions</h3>
                         <p>Seek answers to life’s deepest questions through the wisdom of inspired scriptures.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="reasoning.html">
+                    <a href="reasoning.html" aria-label="Reasoning article">
                         <i class="fas fa-lightbulb"></i>
                         <h3>Reasoning</h3>
                         <p>Navigate a topic index to defend beliefs and reason confidently on biblical truths.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="scriptures.html">
+                    <a href="scriptures.html" aria-label="Scriptures article">
                         <i class="fas fa-scroll"></i>
                         <h3>Scriptures</h3>
                         <p>Delve into the Bible’s timeless guidance to shape decisions and strengthen devotion.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="translation.html">
+                    <a href="translation.html" aria-label="Translation article">
                         <i class="fas fa-book"></i>
                         <h3>Translation</h3>
                         <p>Verify the reliability of ancient manuscripts, confirming the Bible’s accuracy and trustworthiness.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="unshakable.html">
+                    <a href="unshakable.html" aria-label="Unshakable article">
                         <i class="fas fa-anchor"></i>
                         <h3>Unshakable</h3>
                         <p>Stand firm amid opposition, drawing strength from sacred truths and divine promises.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="vindicated.html">
+                    <a href="vindicated.html" aria-label="Vindicated article">
                         <i class="fa-solid fa-landmark"></i>
                         <h3>Vindicated</h3>
                         <p>Examine evidence affirming the divine name’s significance, reinforcing faith in sacred sovereignty.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="watchtower.html">
+                    <a href="watchtower.html" aria-label="Watchtower article">
                         <i class="fa-solid fa-chess-rook"></i>
                         <h3>Watchtower</h3>
                         <p>Support the global effort to revive pure worship, guided by biblical truth and unity.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="xenophobia.html">
+                    <a href="xenophobia.html" aria-label="Xenophobia article">
                         <i class="fa-solid fa-globe"></i>
                         <h3>Xenophobia</h3>
                         <p>Embrace unity across nations, rejecting division to reflect the divine vision of love.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="youthful.html">
+                    <a href="youthful.html" aria-label="Youthful article">
                         <i class="fas fa-child"></i>
                         <h3>Youthful</h3>
                         <p>Guide young ones to build a strong foundation in faith and moral integrity.</p>
                     </a>
                 </div>
                 <div class="category">
-                    <a href="zealous.html">
+                    <a href="zealous.html" aria-label="Zealous article">
                         <i class="fa-solid fa-shoe-prints"></i>
                         <h3>Zealous</h3>
                         <p>Proclaim the good news worldwide with enthusiasm, fulfilling the call to share truth.</p>
@@ -355,58 +375,35 @@
             hamburgerRight.setAttribute('aria-expanded', !isExpanded);
         });
 
-        // Close left menu when clicking a link
-        document.querySelectorAll('.nav-menu-left a').forEach(link => {
+        // Close menus when clicking a link
+        document.querySelectorAll('.nav-menu-left a, .nav-menu-right a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburgerLeft.classList.remove('active');
                 navMenuLeft.classList.remove('active');
                 hamburgerLeft.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        // Close right menu when clicking a link
-        document.querySelectorAll('.nav-menu-right a').forEach(link => {
-            link.addEventListener('click', () => {
                 hamburgerRight.classList.remove('active');
                 navMenuRight.classList.remove('active');
                 hamburgerRight.setAttribute('aria-expanded', 'false');
             });
         });
 
-        // Categories toggle for JUST WISE LOVE
-        const toggleButtonJWL = document.querySelector('.toggle-categories[aria-controls="categories"]');
-        const categoriesContainerJWL = document.querySelector('#categories');
-        const categoriesJWL = categoriesContainerJWL.querySelector('.categories');
+        // Categories toggle for all sections
+        document.querySelectorAll('.toggle-categories').forEach(button => {
+            const targetId = button.getAttribute('aria-controls');
+            const container = document.getElementById(targetId);
+            const categories = container.querySelector('.categories');
 
-        toggleButtonJWL.addEventListener('click', () => {
-            categoriesContainerJWL.classList.toggle('expanded');
-            const isExpanded = toggleButtonJWL.getAttribute('aria-expanded') === 'true';
-            toggleButtonJWL.setAttribute('aria-expanded', !isExpanded);
+            button.addEventListener('click', () => {
+                container.classList.toggle('expanded');
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', !isExpanded);
 
-            if (categoriesContainerJWL.classList.contains('expanded')) {
-                const height = categoriesJWL.scrollHeight;
-                categoriesContainerJWL.style.maxHeight = `${height}px`;
-            } else {
-                categoriesContainerJWL.style.maxHeight = '0px';
-            }
-        });
-
-        // Categories toggle for TRUST N TRUTH
-        const toggleButtonTNT = document.querySelector('.toggle-categories[aria-controls="trust-truth-categories"]');
-        const categoriesContainerTNT = document.querySelector('#trust-truth-categories');
-        const categoriesTNT = categoriesContainerTNT.querySelector('.categories');
-
-        toggleButtonTNT.addEventListener('click', () => {
-            categoriesContainerTNT.classList.toggle('expanded');
-            const isExpanded = toggleButtonTNT.getAttribute('aria-expanded') === 'true';
-            toggleButtonTNT.setAttribute('aria-expanded', !isExpanded);
-
-            if (categoriesContainerTNT.classList.contains('expanded')) {
-                const height = categoriesTNT.scrollHeight;
-                categoriesContainerTNT.style.maxHeight = `${height}px`;
-            } else {
-                categoriesContainerTNT.style.maxHeight = '0px';
-            }
+                if (container.classList.contains('expanded')) {
+                    container.style.maxHeight = `${categories.scrollHeight}px`;
+                } else {
+                    container.style.maxHeight = '0px';
+                }
+            });
         });
     </script>
 </body>
