@@ -243,6 +243,75 @@
                 </div>
             </div>
         </section>
+        <section class="featured-article">
+            <div class="article-preview">
+                <i class="fa-solid fa-hands-praying"></i>
+                <button class="toggle-categories" aria-expanded="false" aria-controls="trust-truth-categories">
+                    READ MORE
+                </button>
+                <p class="preview-text">Will you let life carry you aimlessly like waves crashing on the shore, or be blown by the shifting winds of worldly trends? Alternatively, choose a stable, constant direction guided by Bible standards—where divine wisdom offers a path of purpose, peace, and unshakable hope. Which path will you walk?</p>
+            </div>
+        </section>
+        <section class="categories-container" id="trust-truth-categories">
+            <div class="categories">
+                <div class="category">
+                    <a href="god-or-government.html">
+                        <i class="fas fa-landmark"></i>
+                        <h3>God or Government?</h3>
+                        <p>Relying on human governments often leads to disappointment and instability, as they struggle to address mankind’s deepest problems like war, poverty, and injustice. Trusting in Jehovah’s Kingdom, however, offers a divine solution—bringing hope for lasting justice, peace, and a restored paradise earth, as promised in Daniel 2:44 and Revelation 21:4. Explore this contrast and decide where true authority lies.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="spirituality-or-wealth.html">
+                        <i class="fas fa-coins"></i>
+                        <h3>Spirituality or Wealth?</h3>
+                        <p>Chasing money and material wealth can breed anxiety, envy, and a hollow existence, leaving individuals trapped in an endless cycle of desire. In contrast, cultivating spiritual qualities like love, faith, and generosity—guided by Matthew 6:24—yields deep contentment and eternal rewards. Discover how prioritizing spirituality over wealth transforms your life.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="morality-or-immorality.html">
+                        <i class="fas fa-heart-broken"></i>
+                        <h3>Morality or Immorality?</h3>
+                        <p>Immorality, fueled by lust, selfishness, and societal pressures, erodes relationships, self-respect, and inner peace, leading to regret and brokenness. Embracing Bible-based morality, as outlined in 1 Corinthians 6:18, fosters dignity, love, and Jehovah’s approval, building a foundation for meaningful connections. Dive into this choice and its lasting impact.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="hope-or-hopelessness.html">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Hope or Hopelessness?</h3>
+                        <p>The world’s “you only live once” mindset often leads to despair, as fleeting pleasures fade and mortality looms large. Jehovah’s promise of a paradise earth, detailed in Revelation 21:4, offers enduring hope, purpose, and the removal of suffering. Explore how this divine hope can anchor your life against hopelessness.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="sobriety-or-drugs.html">
+                        <i class="fas fa-pills"></i>
+                        <h3>Sobriety or Drugs?</h3>
+                        <p>Drugs and substance abuse enslave the mind and body, causing health decline, broken relationships, and spiritual disconnection. Living by Bible principles, as encouraged in 2 Timothy 1:7, promotes self-control, clarity, and a strong conscience. Learn how sobriety aligns with a life of purpose and divine guidance.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="worship-or-partying.html">
+                        <i class="fas fa-glass-cheers"></i>
+                        <h3>Worship or Partying?</h3>
+                        <p>Endless partying offers fleeting thrills and temporary excitement, but it often leaves a void of emptiness and unfulfillment. Worshiping Jehovah, as inspired by Psalm 100:2, brings lasting joy through meaningful service, community, and a connection to the divine. Compare these paths and their lasting effects.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="truth-or-deception.html">
+                        <i class="fas fa-mask"></i>
+                        <h3>Truth or Deception?</h3>
+                        <p>The world is rife with lies, misinformation, and moral confusion, leading to spiritual blindness and lost direction. Jehovah’s truth, revealed in the Bible (John 17:17), illuminates the path to life, offering clarity and salvation. Uncover how choosing truth over deception shapes your spiritual journey.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="purpose-or-aimlessness.html">
+                        <i class="fas fa-road"></i>
+                        <h3>Purpose or Aimlessness?</h3>
+                        <p>Worldly pursuits like fame or pleasure often lead to a life without direction, leaving individuals adrift in uncertainty. Serving Jehovah, as guided by Ecclesiastes 12:13, provides a clear purpose centered on love, service, and eternal life. Explore how this choice brings stability and fulfillment.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <p>© 2025 Just Wise Love</p>
@@ -288,23 +357,39 @@
             });
         });
 
-        // Categories toggle with dynamic height
-        const toggleButton = document.querySelector('.toggle-categories');
-        const categoriesContainer = document.querySelector('.categories-container');
-        const categories = document.querySelector('.categories');
+        // Categories toggle for JUST WISE LOVE
+        const toggleButtonJWL = document.querySelector('.toggle-categories[aria-controls="categories"]');
+        const categoriesContainerJWL = document.querySelector('#categories');
+        const categoriesJWL = categoriesContainerJWL.querySelector('.categories');
 
-        toggleButton.addEventListener('click', () => {
-            categoriesContainer.classList.toggle('expanded');
-            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
-            toggleButton.setAttribute('aria-expanded', !isExpanded);
+        toggleButtonJWL.addEventListener('click', () => {
+            categoriesContainerJWL.classList.toggle('expanded');
+            const isExpanded = toggleButtonJWL.getAttribute('aria-expanded') === 'true';
+            toggleButtonJWL.setAttribute('aria-expanded', !isExpanded);
 
-            if (categoriesContainer.classList.contains('expanded')) {
-                // Set max-height to the actual height of the categories content
-                const height = categories.scrollHeight;
-                categoriesContainer.style.maxHeight = `${height}px`;
+            if (categoriesContainerJWL.classList.contains('expanded')) {
+                const height = categoriesJWL.scrollHeight;
+                categoriesContainerJWL.style.maxHeight = `${height}px`;
             } else {
-                // Collapse back to 0
-                categoriesContainer.style.maxHeight = '0px';
+                categoriesContainerJWL.style.maxHeight = '0px';
+            }
+        });
+
+        // Categories toggle for TRUST N TRUTH
+        const toggleButtonTNT = document.querySelector('.toggle-categories[aria-controls="trust-truth-categories"]');
+        const categoriesContainerTNT = document.querySelector('#trust-truth-categories');
+        const categoriesTNT = categoriesContainerTNT.querySelector('.categories');
+
+        toggleButtonTNT.addEventListener('click', () => {
+            categoriesContainerTNT.classList.toggle('expanded');
+            const isExpanded = toggleButtonTNT.getAttribute('aria-expanded') === 'true';
+            toggleButtonTNT.setAttribute('aria-expanded', !isExpanded);
+
+            if (categoriesContainerTNT.classList.contains('expanded')) {
+                const height = categoriesTNT.scrollHeight;
+                categoriesContainerTNT.style.maxHeight = `${height}px`;
+            } else {
+                categoriesContainerTNT.style.maxHeight = '0px';
             }
         });
     </script>
