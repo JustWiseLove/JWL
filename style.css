@@ -214,6 +214,19 @@ main {
     transform: translateY(-2px);
 }
 
+.fa-icon {
+  display: inline-block;
+  width: 1em; /* Matches font size for scalability */
+  height: 1em;
+  line-height: 1; /* Ensures vertical centering */
+  vertical-align: middle; /* Aligns with text */
+  object-fit: contain; /* Ensures image fits without distortion */
+  font-size: inherit; /* Inherits font size from parent */
+  color: inherit; /* Inherits text color */
+  margin: 0 auto; /* Centers horizontally */
+  text-align: center; /* Ensures centering in block containers */
+}
+
 @media (max-width: 768px) {
     .featured-article {
         padding: 10px;
