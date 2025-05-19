@@ -215,15 +215,11 @@ main {
 }
 
 .fa-icon {
-  display: inline-block;
-  width: 50px; /* Matches font size for scalability */
+  display: flex;
+  width: 50px;
   height: 50px;
-  line-height: 1; /* Ensures vertical centering */
-  vertical-align: middle; /* Aligns with text */
-  object-fit: contain; /* Ensures image fits without
-  margin: 0 auto; /* Centers horizontally */
-  text-align: center; /* Ensures centering in block containers */
   justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
