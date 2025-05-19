@@ -147,6 +147,10 @@ main {
     text-align: center;
 }
 
+.featured-article:last-child {
+    margin-bottom: 10px;
+}
+
 .article-preview {
     max-width: 800px;
     margin: 0 auto;
