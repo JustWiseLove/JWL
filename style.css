@@ -216,15 +216,14 @@ main {
 
 .fa-icon {
   display: inline-block;
-  width: 1em; /* Matches font size for scalability */
-  height: 1em;
+  width: 50px; /* Matches font size for scalability */
+  height: 50px;
   line-height: 1; /* Ensures vertical centering */
   vertical-align: middle; /* Aligns with text */
-  object-fit: contain; /* Ensures image fits without distortion */
-  font-size: inherit; /* Inherits font size from parent */
-  color: inherit; /* Inherits text color */
+  object-fit: contain; /* Ensures image fits without
   margin: 0 auto; /* Centers horizontally */
   text-align: center; /* Ensures centering in block containers */
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
