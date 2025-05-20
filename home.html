@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore spiritual wisdom and truth through Noble Minds, with scripture-based guidance.">
     <meta name="keywords" content="Jehovah, scripture, spiritual guidance, Noble Minds">
-    <title>Noble Minds</title>
+    <title>Just Wise Love</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
@@ -37,8 +37,8 @@
             </ul>
         </nav>
         <div class="logo">
-            <a href="index.html" aria-label="Noble Minds home">
-                <h1><a href="jwl.html">NOBLE MINDS</a></h1>
+            <a href="index.html" aria-label="Just Wise Love home">
+                <h1><a href="jwl.html">JWL</a></h1>
             </a>
         </div>
         <nav class="nav-right">
@@ -315,4 +315,103 @@
                     <a href="unshakable.html" aria-label="Unshakable article">
                         <i class="fas fa-anchor"></i>
                         <h3>Unshakable</h3>
-                        <p>Stand firm amid opposition, drawing strength from sacred
+                        <p>Stand firm amid opposition, drawing strength from sacred truths and divine promises.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="vindicated.html" aria-label="Vindicated article">
+                        <i class="fa-solid fa-landmark"></i>
+                        <h3>Vindicated</h3>
+                        <p>Examine evidence affirming the divine name’s significance, reinforcing faith in sacred sovereignty.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="watchtower.html" aria-label="Watchtower article">
+                        <i class="fa-solid fa-chess-rook"></i>
+                        <h3>Watchtower</h3>
+                        <p>Support the global effort to revive pure worship, guided by biblical truth and unity.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="xenophobia.html" aria-label="Xenophobia article">
+                        <i class="fa-solid fa-globe"></i>
+                        <h3>Xenophobia</h3>
+                        <p>Embrace unity across nations, rejecting division to reflect the divine vision of love.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="youthful.html" aria-label="Youthful article">
+                        <i class="fas fa-child"></i>
+                        <h3>Youthful</h3>
+                        <p>Guide young ones to build a strong foundation in faith and moral integrity.</p>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="zealous.html" aria-label="Zealous article">
+                        <i class="fa-solid fa-shoe-prints"></i>
+                        <h3>Zealous</h3>
+                        <p>Proclaim the good news worldwide with enthusiasm, fulfilling the call to share truth.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Noble Minds</p>
+    </footer>
+    <script>
+        // Hamburger menu toggle for left menu
+        const hamburgerLeft = document.querySelector('.hamburger-left');
+        const navMenuLeft = document.querySelector('.nav-menu-left');
+
+        hamburgerLeft.addEventListener('click', () => {
+            hamburgerLeft.classList.toggle('active');
+            navMenuLeft.classList.toggle('active');
+            const isExpanded = hamburgerLeft.getAttribute('aria-expanded') === 'true';
+            hamburgerLeft.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Hamburger menu toggle for right menu
+        const hamburgerRight = document.querySelector('.hamburger-right');
+        const navMenuRight = document.querySelector('.nav-menu-right');
+
+        hamburgerRight.addEventListener('click', () => {
+            hamburgerRight.classList.toggle('active');
+            navMenuRight.classList.toggle('active');
+            const isExpanded = hamburgerRight.getAttribute('aria-expanded') === 'true';
+            hamburgerRight.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Close menus when clicking a link
+        document.querySelectorAll('.nav-menu-left a, .nav-menu-right a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerLeft.classList.remove('active');
+                navMenuLeft.classList.remove('active');
+                hamburgerLeft.setAttribute('aria-expanded', 'false');
+                hamburgerRight.classList.remove('active');
+                navMenuRight.classList.remove('active');
+                hamburgerRight.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Categories toggle for all sections
+        document.querySelectorAll('.toggle-categories').forEach(button => {
+            const targetId = button.getAttribute('aria-controls');
+            const container = document.getElementById(targetId);
+            const categories = container.querySelector('.categories');
+
+            button.addEventListener('click', () => {
+                container.classList.toggle('expanded');
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', !isExpanded);
+
+                if (container.classList.contains('expanded')) {
+                    container.style.maxHeight = `${categories.scrollHeight}px`;
+                } else {
+                    container.style.maxHeight = '0px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
