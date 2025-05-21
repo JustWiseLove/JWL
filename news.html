@@ -85,16 +85,7 @@
   <section class="intro">
     <div class="intro-content">
       <h2>Current Events</h2>
-      <p class="describe">Stay updated with live news, real-time weather forecasts and a fresh dad joke on every refresh!</p>
-    </div>
-  </section>
-
-  <section id="joke" class="joke-section">
-    <div class="item">
-      <div class="item-content">
-        <h2>Dad Joke</h2>
-        <div id="joke-content"></div>
-      </div>
+      <p class="describe">Stay updated with live news and weather forecasts</p>
     </div>
   </section>
 
@@ -125,24 +116,6 @@
 </footer>
 
 <script>
-// Joke fetch
-const jokeContainer = document.getElementById("joke-content");
-
-async function fetchJoke() {
-  try {
-    const res = await fetch('https://official-joke-api.appspot.com/jokes/random');
-    if (!res.ok) throw new Error(`Failed to fetch joke: ${res.status} ${res.statusText}`);
-    const data = await res.json();
-    jokeContainer.innerHTML = `
-      <p class="describe">${data.setup}</p>
-      <p class="describe">${data.punchline}</p>
-    `;
-  } catch (err) {
-    jokeContainer.innerHTML = `<p class="error-message">Failed to load joke: ${err.message}</p>`;
-    console.error("Error loading joke:", err);
-  }
-}
-
 // News feed setup
 const bbcFeedUrl = "https://feeds.bbci.co.uk/news/rss.xml";
 const newsContainer = document.getElementById("bbc-news");
@@ -338,7 +311,6 @@ async function fetchWeather() {
 }
 
 // Run all
-fetchJoke();
 fetchNews();
 fetchWeather();
 </script>
