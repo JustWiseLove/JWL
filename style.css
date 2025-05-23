@@ -139,11 +139,6 @@ main {
     margin-bottom: 10px;
 }
 
-.section-title {
-    font-family: 'Audiowide', Arial, sans-serif;
-    color: #000;
-}
-    
 .featured-article {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     padding: 20px 10px;
@@ -194,6 +189,11 @@ main {
 
 .toggle-categories.active {
     color: #ffd800;
+}
+
+.section-title {
+    font-family: 'Audiowide', Arial, sans-serif;
+    color: #000;
 }
 
 .preview-text {
@@ -487,8 +487,7 @@ footer p {
 
 .carousel-prev, .carousel-next {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 10px; /* Position at the top */
     background: rgba(0, 0, 0, 0.5);
     border: none;
     color: #fff;
