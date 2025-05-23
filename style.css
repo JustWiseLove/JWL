@@ -139,6 +139,11 @@ main {
     margin-bottom: 10px;
 }
 
+.section-title {
+    font-family: 'Audiowide', Arial, sans-serif;
+    color: #000;
+}
+    
 .featured-article {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     padding: 20px 10px;
