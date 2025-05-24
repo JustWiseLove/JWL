@@ -5,19 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore spiritual wisdom and truth through Noble Minds, with scripture-based guidance.">
     <meta name="keywords" content="Jehovah, scripture, spiritual guidance, Noble Minds">
-    <title>Just Wise Love</title>
+    <title>JWL Watchtower</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Timeline event styling */
+        .timeline-event {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .timeline-event p {
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .timeline-event .read-more {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #1e4b1c, #5a8a27);
+            color: #000;
+            text-decoration: none;
+            font-family: 'Audiowide', Arial, sans-serif;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .timeline-event .read-more:hover {
+            background: linear-gradient(90deg, #2a6626, #6b9e31);
+            transform: translateY(-2px);
+        }
+
+        /* Timeline labels styling */
+        .timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .timeline-labels span {
+            font-size: 12px;
+            color: #fff;
+            margin: 0 5px;
+        }
+
+        /* DMA slider content styling */
+        .dma-slider-content {
+            background: #000;
+            padding: 20px;
+            border-radius: 5px;
+            color: #fff;
+            text-align: center;
+        }
+        .dma-slider-content p {
+            margin-bottom: 15px;
+        }
+        .dma-slider-content .scripture {
+            font-style: italic;
+            color: #6b9e31;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="nav-left">
             <button class="hamburger-left" aria-expanded="false" aria-controls="nav-menu-left" aria-label="Toggle left navigation">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
             <ul id="nav-menu-left" class="nav-menu-left">
                 <li><a href="games.html" aria-label="Games page">GAMES</a></li>
@@ -25,11 +82,15 @@
             </ul>
         </nav>
         <div class="logo">
-            <a href="index.html" aria-label="Just Wise Love home"><h1>JWL</h1></a>
+            <a href="index.html" aria-label="JWL Watchtower home">
+                <h1>JWL Watchtower</h1>
+            </a>
         </div>
         <nav class="nav-right">
             <button class="hamburger-right" aria-expanded="false" aria-controls="nav-menu-right" aria-label="Toggle right navigation">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
             <ul id="nav-menu-right" class="nav-menu-right">
                 <li><a href="drone.html" aria-label="Drone page">DRONE</a></li>
@@ -38,626 +99,932 @@
         </nav>
     </header>
     <main>
+        <section class="banner">
+            <div class="banner-content">
+                "Your word is a lamp to my foot, And a light for my path."
+            </div>
+        </section>
+
+        <!-- "Paradise Restored" Timeline Section -->
+        <section class="timeline-section" id="timeline-section">
+            <h2 class="section-title">Paradise Restored</h2>
+            <button class="timeline-prev" aria-label="Previous event"><i class="fas fa-chevron-left"></i></button>
+            <div class="timeline-line">
+                <span class="timeline-dot active" style="left: 0%;" data-index="0"></span>
+                <span class="timeline-dot" style="left: 4%;" data-index="1"></span>
+                <span class="timeline-dot" style="left: 8%;" data-index="2"></span>
+                <span class="timeline-dot" style="left: 12%;" data-index="3"></span>
+                <span class="timeline-dot" style="left: 16%;" data-index="4"></span>
+                <span class="timeline-dot" style="left: 20%;" data-index="5"></span>
+                <span class="timeline-dot" style="left: 24%;" data-index="6"></span>
+                <span class="timeline-dot" style="left: 28%;" data-index="7"></span>
+                <span class="timeline-dot" style="left: 32%;" data-index="8"></span>
+                <span class="timeline-dot" style="left: 36%;" data-index="9"></span>
+                <span class="timeline-dot" style="left: 40%;" data-index="10"></span>
+                <span class="timeline-dot" style="left: 44%;" data-index="11"></span>
+                <span class="timeline-dot" style="left: 48%;" data-index="12"></span>
+                <span class="timeline-dot" style="left: 52%;" data-index="13"></span>
+                <span class="timeline-dot" style="left: 56%;" data-index="14"></span>
+                <span class="timeline-dot" style="left: 60%;" data-index="15"></span>
+                <span class="timeline-dot" style="left: 64%;" data-index="16"></span>
+                <span class="timeline-dot" style="left: 68%;" data-index="17"></span>
+                <span class="timeline-dot" style="left: 72%;" data-index="18"></span>
+                <span class="timeline-dot" style="left: 76%;" data-index="19"></span>
+                <span class="timeline-dot" style="left: 80%;" data-index="20"></span>
+                <span class="timeline-dot" style="left: 84%;" data-index="21"></span>
+                <span class="timeline-dot" style="left: 88%;" data-index="22"></span>
+                <span class="timeline-dot" style="left: 92%;" data-index="23"></span>
+                <span class="timeline-dot" style="left: 96%;" data-index="24"></span>
+                <span class="timeline-dot" style="left: 100%;" data-index="25"></span>
+            </div>
+            <div class="timeline-labels">
+                <span>Creation</span>
+                <span>Perfection Lost</span>
+                <span>First Prophecy</span>
+                <span>Flood</span>
+                <span>Abraham’s Covenant</span>
+                <span>12 Tribes Form</span>
+                <span>Enslavement</span>
+                <span>Exodus</span>
+                <span>Disobedience</span>
+                <span>Judges Rule</span>
+                <span>Kings Rule</span>
+                <span>Kingdom Split</span>
+                <span>Exile</span>
+                <span>Return</span>
+                <span>Messiah Prophecy</span>
+                <span>Jesus’ Birth</span>
+                <span>Baptism</span>
+                <span>Ministry Begins</span>
+                <span>Sermon</span>
+                <span>Miracles</span>
+                <span>Rejection</span>
+                <span>New Covenant</span>
+                <span>Ransom</span>
+                <span>Resurrection</span>
+                <span>144,000 Form</span>
+                <span>Kingdom Returned</span>
+            </div>
+            <div class="timeline-event" id="timeline-event">
+                <p id="timeline-description">Jehovah created Adam and Eve perfect, placing them in the Garden of Eden with the prospect of eternal life. This act established humanity’s original purpose to live in harmony with God’s will. Their perfection reflected Jehovah’s creative power and love, setting the stage for His divine plan.</p>
+                <a href="https://www.jw.org/en/bible-teachings/questions/original-purpose-earth/" class="read-more">Read More</a>
+            </div>
+            <button class="timeline-next" aria-label="Next event"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
         <section class="featured-article">
             <div class="article-preview">
                 <img src="detective.PNG" class="fa-icon" alt="detective icon">
-                <button class="toggle-categories" aria-expanded="false" aria-controls="categories-jwl" aria-label="Toggle Noble Minds categories">
-                    NOBLE MINDS
-                </button>
+                <h2 class="section-title">NOBLE MINDS</h2>
                 <p class="preview-text">Reflect on life’s big questions and make meaningful choices. This section invites deep self-examination through Scripture, guiding you to decide: Will you follow divine wisdom or your government?</p>
             </div>
         </section>
-        <section class="categories-container" id="categories-jwl">
-            <div class="categories"></div>
+        <section class="carousel-container" id="categories-jwl">
+            <div class="carousel">
+                <div class="carousel-track">
+                    <div class="category">
+                        <i class="fas fa-landmark"></i>
+                        <h3>God or Government?</h3>
+                        <p>Relying on human governments often leads to disappointment. Trusting in divine guidance offers hope for lasting peace.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-coins"></i>
+                        <h3>Spirituality or Wealth?</h3>
+                        <p>Chasing wealth can breed anxiety. Cultivating spiritual qualities yields deep contentment.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-heart-broken"></i>
+                        <h3>Morality or Immorality?</h3>
+                        <p>Immorality erodes relationships. Embracing moral principles fosters dignity and approval.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Hope or Hopelessness?</h3>
+                        <p>Worldly mindsets lead to despair. Divine promises offer enduring hope and purpose.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-pills"></i>
+                        <h3>Sobriety or Drugs?</h3>
+                        <p>Drugs enslave the mind. Living with self-control promotes clarity and strength.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-glass-cheers"></i>
+                        <h3>Worship or Partying?</h3>
+                        <p>Partying leaves a void. Worship brings lasting joy through meaningful service.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-mask"></i>
+                        <h3>Truth or Deception?</h3>
+                        <p>Lies cause spiritual blindness. Truth illuminates the path to life.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-compass"></i>
+                        <h3>Purpose or Aimlessness?</h3>
+                        <p>Worldly pursuits leave uncertainty. Serving with purpose provides clear direction.</p>
+                    </div>
+                </div>
+                <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                <div class="carousel-dots"></div>
+            </div>
         </section>
         <section class="featured-article">
             <div class="article-preview">
                 <img src="belt.PNG" class="fa-icon" alt="bag icon">
-                <button class="toggle-categories" aria-expanded="false" aria-controls="categories-tnt" aria-label="Toggle Trust N Truth categories">
-                    TRUST N TRUTH
-                </button>
-                <p class="preview-text">Is the Bible trustworthy? This section explores the Historical, scientific, and spiritual evidence so you can build solid trust in God’s Word through honest inquiry and prayerful study.</p>
+                <h2 class="section-title">TRUST N TRUTH</h2>
+                <p class="preview-text">Is the Bible trustworthy? This section explores evidence to build solid trust through honest inquiry.</p>
             </div>
         </section>
-        <section class="categories-container" id="categories-tnt">
-            <div class="categories"></div>
+        <section class="carousel-container" id="categories-tnt">
+            <div class="carousel">
+                <div class="carousel-track">
+                    <div class="category">
+                        <i class="fa-solid fa-book"></i>
+                        <h3>Historical Support</h3>
+                        <p>The Bible’s historical accuracy is confirmed by archaeology and records.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <h3>Scientific Evidence</h3>
+                        <p>The Bible aligns with scientific discoveries, showing divine insight.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-scroll"></i>
+                        <h3>Manuscript Survivability</h3>
+                        <p>The text is preserved through ancient manuscripts with minimal variation.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Divine Inspiration</h3>
+                        <p>The unified message across centuries reveals a divine author.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Prophecy Fulfilled</h3>
+                        <p>Precise predictions about empires and events have come true.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Moral Consistency</h3>
+                        <p>Timeless moral standards remain relevant across cultures.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fa-solid fa-pray"></i>
+                        <h3>Answered Prayers</h3>
+                        <p>Guidance and strength through prayer confirm its promises.</p>
+                    </div>
+                    <div class="category">
+                        <i class="fas fa-heart"></i>
+                        <h3>Transformative Power</h3>
+                        <p>Its teachings inspire hope and change lives worldwide.</p>
+                    </div>
+                </div>
+                <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                <div class="carousel-dots"></div>
+            </div>
         </section>
         <section class="featured-article">
             <div class="article-preview">
                 <img src="boots.png" class="fa-icon" alt="boot icon">
-                <button class="toggle-categories" aria-expanded="false" aria-controls="categories-ww" aria-label="Toggle Walk Wise categories">
-                    WALK WISE
-                </button>
-                <p class="preview-text">Ready to live what you learn? Here you’ll explore practical topics, faithful examples, and scriptural insight to help you walk wisely with purpose, peace, and strength that comes from divine truth.</p>
+                <h2 class="section-title">WALK WISE</h2>
+                <p class="preview-text">Ready to live what you learn? Explore practical topics and scriptural insight for a wise life.</p>
             </div>
         </section>
-        <section class="categories-container" id="categories-ww">
-            <div class="categories"></div>
+        <section class="carousel-container" id="categories-ww">
+            <div class="carousel">
+                <div class="carousel-track">
+                    <div class="category">
+                        <a href="accuracy.html" aria-label="Accuracy article">
+                            <i class="fas fa-book-open"></i>
+                            <h3>Accuracy</h3>
+                            <p>Affirm precise truths for steadfast devotion.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="blasphemy.html" aria-label="Blasphemy article">
+                            <i class="fas fa-ban"></i>
+                            <h3>Blasphemy</h3>
+                            <p>Expose lies that dishonor sacred teachings.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="characters.html" aria-label="Characters article">
+                            <i class="fas fa-users"></i>
+                            <h3>Characters</h3>
+                            <p>Explore figures’ faith to inspire commitment.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="discernment.html" aria-label="Discernment article">
+                            <i class="fas fa-balance-scale"></i>
+                            <h3>Discernment</h3>
+                            <p>Sharpen insight to choose aligned paths.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="endurance.html" aria-label="Endurance article">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Endurance</h3>
+                            <p>Memorize scriptures to build resilience.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="faithful.html" aria-label="Faithful article">
+                            <i class="fas fa-gem"></i>
+                            <h3>Faithful</h3>
+                            <p>Draw inspiration from loyal servants.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="guidance.html" aria-label="Guidance article">
+                            <i class="fas fa-compass"></i>
+                            <h3>Guidance</h3>
+                            <p>Nurture traits reflecting divine love.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="homeschool.html" aria-label="Homeschool article">
+                            <i class="fas fa-school"></i>
+                            <h3>Homeschool</h3>
+                            <p>Teach children sacred values with resources.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="inspiration.html" aria-label="Inspiration article">
+                            <i class="fa-solid fa-pen-fancy"></i>
+                            <h3>Inspiration</h3>
+                            <p>Uncover evidence affirming its authenticity.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="jehovah.html" aria-label="Jehovah article">
+                            <i class="fa-solid fa-hand-holding"></i>
+                            <h3>Jehovah</h3>
+                            <p>Appreciate the Creator’s supreme authority.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="kingdom.html" aria-label="Kingdom article">
+                            <i class="fas fa-crown"></i>
+                            <h3>Kingdom</h3>
+                            <p>Learn about the divine government’s restoration.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="lifestyle.html" aria-label="Lifestyle article">
+                            <i class="fas fa-heart"></i>
+                            <h3>Lifestyle</h3>
+                            <p>Adopt a life grounded in biblical standards.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="memorial.html" aria-label="Memorial article">
+                            <i class="fas fa-wine-glass"></i>
+                            <h3>Memorial</h3>
+                            <p>Honor the ransom sacrifice of Jesus.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="neutrality.html" aria-label="Neutrality article">
+                            <i class="fa-solid fa-handshake"></i>
+                            <h3>Neutrality</h3>
+                            <p>Stay separate from worldly conflicts.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="organization.html" aria-label="Organization article">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <h3>Organization</h3>
+                            <p>Contrast flaws of false religions with true worship.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="prophecy.html" aria-label="Prophecy article">
+                            <i class="fas fa-bullhorn"></i>
+                            <h3>Prophecy</h3>
+                            <p>Study prophecies to understand divine purposes.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="questions.html" aria-label="Questions article">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>Questions</h3>
+                            <p>Seek answers to life’s deepest questions.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="reasoning.html" aria-label="Reasoning article">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>Reasoning</h3>
+                            <p>Defend beliefs with confident reasoning.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="scriptures.html" aria-label="Scriptures article">
+                            <i class="fas fa-scroll"></i>
+                            <h3>Scriptures</h3>
+                            <p>Delve into timeless guidance to shape decisions.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="translation.html" aria-label="Translation article">
+                            <i class="fas fa-book"></i>
+                            <h3>Translation</h3>
+                            <p>Verify the reliability of ancient manuscripts.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="unshakable.html" aria-label="Unshakable article">
+                            <i class="fas fa-anchor"></i>
+                            <h3>Unshakable</h3>
+                            <p>Stand firm amid opposition with strength.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="vindicated.html" aria-label="Vindicated article">
+                            <i class="fa-solid fa-landmark"></i>
+                            <h3>Vindicated</h3>
+                            <p>Examine evidence affirming the divine name’s significance.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="watchtower.html" aria-label="Watchtower article">
+                            <i class="fa-solid fa-chess-rook"></i>
+                            <h3>Watchtower</h3>
+                            <p>Support the global effort to revive pure worship.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="xenophobia.html" aria-label="Xenophobia article">
+                            <i class="fa-solid fa-globe"></i>
+                            <h3>Xenophobia</h3>
+                            <p>Embrace unity across nations, rejecting division.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="youthful.html" aria-label="Youthful article">
+                            <i class="fas fa-child"></i>
+                            <h3>Youthful</h3>
+                            <p>Guide young ones to build a strong foundation.</p>
+                        </a>
+                    </div>
+                    <div class="category">
+                        <a href="zealous.html" aria-label="Zealous article">
+                            <i class="fa-solid fa-shoe-prints"></i>
+                            <h3>Zealous</h3>
+                            <p>Proclaim the good news with enthusiasm.</p>
+                        </a>
+                    </div>
+                </div>
+                <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                <div class="carousel-dots"></div>
+            </div>
         </section>
-        <div class="random-article-container">
-            <button id="random-article" class="read-more">Discover a Random Article</button>
-        </div>
-        <div class="search-container">
-            <input type="text" id="search-bar" placeholder="Search articles, scriptures..." aria-label="Search articles">
-            <button id="search-button" aria-label="Search"><i class="fas fa-search"></i></button>
-        </div>
+
+        <!-- "Dominant Mental Attitude" Section -->
+        <section class="dma-section" id="dma-section">
+            <h2 class="section-title">Dominant Mental Attitude</h2>
+            <div class="dma-tabs">
+                <div class="dma-tab active" data-tab="inspiration">Inspiration</div>
+                <div class="dma-tab" data-tab="translation">Translation</div>
+                <div class="dma-tab" data-tab="organization">Organization</div>
+                <div class="dma-tab" data-tab="restoration">Restoration</div>
+            </div>
+            <div class="dma-tab-content active" id="inspiration-content">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-track">
+                            <div class="category">
+                                <h3>Unified Message</h3>
+                                <div class="dma-slider-content">
+                                    <p>The Bible’s unified message across 40 writers and 1,600 years reveals divine guidance. From Genesis to Revelation, it consistently points to God’s purpose for humanity, emphasizing love, justice, and redemption. This harmony is a testament to its divine origin, as no human effort could achieve such consistency over centuries.</p>
+                                    <p class="scripture">"All Scripture is inspired of God and beneficial for teaching, for reproving, for setting things straight." – 2 Timothy 3:16 (NWT 2013)</p>
+                                    <p class="scripture">"The word of God is alive and exerts power." – Hebrews 4:12 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Prophecy Fulfilled</h3>
+                                <div class="dma-slider-content">
+                                    <p>Accurate prophecies, such as the fall of Babylon and the Messiah’s birth, confirm the Bible’s divine origin. These predictions, written centuries in advance, demonstrate God’s ability to see and control the future. The fulfillment of these prophecies strengthens faith in the Bible as God’s word.</p>
+                                    <p class="scripture">"Remember the former things of long ago, that I am God, and there is no other." – Isaiah 46:9 (NWT 2013)</p>
+                                    <p class="scripture">"The one who calls the things that are not yet done as though they were." – Isaiah 48:7 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Scientific Harmony</h3>
+                                <div class="dma-slider-content">
+                                    <p>The Bible’s statements about the earth’s shape, water cycle, and hygiene align with modern science, despite being written millennia ago. This harmony shows divine insight, as ancient writers could not have known these facts without guidance. It reinforces the Bible’s credibility as a source of truth.</p>
+                                    <p class="scripture">"He stretches out the north over empty space; he hangs the earth upon nothing." – Job 26:7 (NWT 2013)</p>
+                                    <p class="scripture">"He draws up the drops of water; they distill as rain from his mist." – Job 36:27 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Historical Accuracy</h3>
+                                <div class="dma-slider-content">
+                                    <p>Archaeological discoveries, such as the Tel Dan Stele and Dead Sea Scrolls, confirm the Bible’s historical accounts. These findings validate events like the reign of King David and the existence of ancient cities. This accuracy builds trust in the Bible as a reliable historical document.</p>
+                                    <p class="scripture">"The word of our God endures forever." – Isaiah 40:8 (NWT 2013)</p>
+                                    <p class="scripture">"The stone that the builders rejected has become the chief cornerstone." – Psalm 118:22 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Manuscript Preservation</h3>
+                                <div class="dma-slider-content">
+                                    <p>Thousands of ancient manuscripts, such as the Codex Sinaiticus, ensure the Bible’s text has been preserved with minimal variation. This preservation across centuries and languages attests to its divine protection. It allows modern readers to access the original message with confidence.</p>
+                                    <p class="scripture">"The word of Jehovah endures forever." – 1 Peter 1:25 (NWT 2013)</p>
+                                    <p class="scripture">"Heaven and earth will pass away, but my words will by no means pass away." – Matthew 24:35 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Moral Guidance</h3>
+                                <div class="dma-slider-content">
+                                    <p>The Bible’s moral principles, such as love, honesty, and forgiveness, remain relevant across cultures and eras. These timeless standards promote peace and justice, guiding ethical living. They reflect divine wisdom, offering a path to a fulfilling life.</p>
+                                    <p class="scripture">"Love your neighbor as yourself." – Matthew 22:39 (NWT 2013)</p>
+                                    <p class="scripture">"Let your love be without hypocrisy." – Romans 12:9 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Transformative Impact</h3>
+                                <div class="dma-slider-content">
+                                    <p>The Bible’s teachings inspire hope, resilience, and positive change in millions of lives. Its message of redemption and purpose empowers individuals to overcome challenges. This transformative power is a hallmark of its divine origin.</p>
+                                    <p class="scripture">"The word of God is alive and exerts power." – Hebrews 4:12 (NWT 2013)</p>
+                                    <p class="scripture">"Your word is truth." – John 17:17 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Spiritual Insight</h3>
+                                <div class="dma-slider-content">
+                                    <p>The Bible reveals profound spiritual truths, such as God’s nature, human purpose, and the path to salvation. Its depth and wisdom surpass human philosophy, offering answers to life’s deepest questions. This insight guides believers to a closer relationship with God.</p>
+                                    <p class="scripture">"The unfolding of your words gives light." – Psalm 119:130 (NWT 2013)</p>
+                                    <p class="scripture">"Your word is a lamp to my foot." – Psalm 119:105 (NWT 2013)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="dma-tab-content" id="translation-content">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-track">
+                            <div class="category">
+                                <h3>Restoring the Name</h3>
+                                <div class="dma-slider-content">
+                                    <p>The New World Translation restores Jehovah’s name over 7,000 times, reflecting the original Tetragrammaton in ancient manuscripts. This effort ensures accuracy in conveying God’s identity to modern readers. The translation process involved meticulous comparison with Hebrew and Greek texts to uphold biblical truth. It stands as a tool for pure worship globally.</p>
+                                    <p class="scripture">"Everyone who calls on the name of Jehovah will be saved." – Romans 10:13 (NWT 2013)</p>
+                                    <p class="scripture">"You must not take away from or add to the words of this scroll." – Revelation 22:19 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Original Meaning</h3>
+                                <div class="dma-slider-content">
+                                    <p>Translations reflect the earliest manuscripts to preserve the Bible’s original meaning. Scholars use texts like the Dead Sea Scrolls to verify accuracy. This ensures that modern readers receive the same message as ancient audiences. The result is a faithful rendering of God’s word.</p>
+                                    <p class="scripture">"The word of Jehovah endures forever." – 1 Peter 1:25 (NWT 2013)</p>
+                                    <p class="scripture">"Your word is truth." – John 17:17 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Clear Phrasing</h3>
+                                <div class="dma-slider-content">
+                                    <p>Accurate wording enhances understanding of complex spiritual concepts. Translators strive to convey the original intent without distortion. This clarity helps readers grasp the Bible’s message with ease. It supports effective study and application of its teachings.</p>
+                                    <p class="scripture">"Let your words always be gracious, seasoned with salt." – Colossians 4:6 (NWT 2013)</p>
+                                    <p class="scripture">"The unfolding of your words gives light." – Psalm 119:130 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Textual Integrity</h3>
+                                <div class="dma-slider-content">
+                                    <p>Preservation of the text through centuries ensures its authenticity. Thousands of manuscripts confirm the Bible’s reliability. This integrity allows readers to trust its message. It reflects divine protection over God’s word.</p>
+                                    <p class="scripture">"The word of our God endures forever." – Isaiah 40:8 (NWT 2013)</p>
+                                    <p class="scripture">"Heaven and earth will pass away, but my words will by no means pass away." – Matthew 24:35 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Language Accuracy</h3>
+                                <div class="dma-slider-content">
+                                    <p>Translations align with ancient languages to maintain precision. Hebrew, Aramaic, and Greek terms are carefully rendered. This accuracy ensures the Bible’s message remains unchanged. It supports a deeper understanding of its teachings.</p>
+                                    <p class="scripture">"The word of Jehovah is refined." – Psalm 18:30 (NWT 2013)</p>
+                                    <p class="scripture">"Your word is truth." – John 17:17 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Cultural Context</h3>
+                                <div class="dma-slider-content">
+                                    <p>Understanding cultural context preserves the intended meaning of biblical passages. Translators consider historical settings to avoid misinterpretation. This approach ensures the Bible’s message remains relevant and accurate. It enhances the reader’s connection to the text.</p>
+                                    <p class="scripture">"The word of God is alive and exerts power." – Hebrews 4:12 (NWT 2013)</p>
+                                    <p class="scripture">"Your word is a lamp to my foot." – Psalm 119:105 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Theological Clarity</h3>
+                                <div class="dma-slider-content">
+                                    <p>Clear distinctions in translation avoid confusion about key doctrines. Terms like "soul," "hell," and "spirit" are rendered accurately to reflect their original meanings. This clarity supports sound biblical understanding. It helps readers grasp the truth without distortion.</p>
+                                    <p class="scripture">"The truth will set you free." – John 8:32 (NWT 2013)</p>
+                                    <p class="scripture">"Sanctify them by means of the truth; your word is truth." – John 17:17 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Readable Style</h3>
+                                <div class="dma-slider-content">
+                                    <p>Modern language aids comprehension while maintaining accuracy. The New World Translation uses clear, contemporary phrasing to reach a global audience. This readability makes the Bible accessible to all. It supports effective study and application of its principles.</p>
+                                    <p class="scripture">"Let your words always be gracious." – Colossians 4:6 (NWT 2013)</p>
+                                    <p class="scripture">"The unfolding of your words gives light." – Psalm 119:130 (NWT 2013)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="dma-tab-content" id="organization-content">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-track">
+                            <div class="category">
+                                <h3>False Teachings</h3>
+                                <div class="dma-slider-content">
+                                    <p>Some claim divine authority but lead astray, as it says, "Get out of her, my people." False teachings distort the truth and mislead believers. True worship requires discernment to avoid deception. Scripture warns against following teachings that contradict God’s word.</p>
+                                    <p class="scripture">"Get out of her, my people, if you do not want to share with her in her sins." – Revelation 18:4 (NWT 2013)</p>
+                                    <p class="scripture">"Beloved ones, do not believe every inspired statement, but test the inspired statements to see whether they originate with God." – 1 John 4:1 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Idolatry</h3>
+                                <div class="dma-slider-content">
+                                    <p>Worshipping images is condemned, with the warning, "Guard yourselves from idols." Idolatry dishonors God and leads to spiritual corruption. True worship focuses on Jehovah alone, rejecting all forms of idolatry. Scripture emphasizes the importance of pure, undivided devotion.</p>
+                                    <p class="scripture">"Little children, guard yourselves from idols." – 1 John 5:21 (NWT 2013)</p>
+                                    <p class="scripture">"You must not make for yourself a carved image or a form like anything that is in the heavens above or on the earth below." – Exodus 20:4 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Empty Rituals</h3>
+                                <div class="dma-slider-content">
+                                    <p>Hypocrisy in worship is rejected, as noted, "Not everyone saying ‘Lord, Lord’ will enter." Empty rituals without genuine faith are meaningless. True worship requires sincerity and obedience to God’s will. Scripture calls for worship that comes from the heart.</p>
+                                    <p class="scripture">"Not everyone saying to me, ‘Lord, Lord,’ will enter into the Kingdom of the heavens, but only the one doing the will of my Father." – Matthew 7:21 (NWT 2013)</p>
+                                    <p class="scripture">"This people honor me with their lips, but their hearts are far removed from me." – Matthew 15:8 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Pagan Practices</h3>
+                                <div class="dma-slider-content">
+                                    <p>Blending pagan customs with worship is forbidden, as it states, "You must not learn to imitate." Pagan practices corrupt pure worship and dishonor God. True worship remains separate from worldly traditions. Scripture calls for purity in devotion to Jehovah.</p>
+                                    <p class="scripture">"You must not learn to imitate the detestable practices of those nations." – Deuteronomy 18:9 (NWT 2013)</p>
+                                    <p class="scripture">"Do not become unevenly yoked with unbelievers." – 2 Corinthians 6:14 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Divisive Doctrines</h3>
+                                <div class="dma-slider-content">
+                                    <p>Teachings causing division are warned against, with the call, "Keep testing whether you are in the faith." Divisive doctrines disrupt unity and lead to confusion. True worship promotes harmony and adherence to biblical truth. Scripture encourages believers to remain steadfast in sound doctrine.</p>
+                                    <p class="scripture">"Keep testing whether you are in the faith; keep proving what you yourselves are." – 2 Corinthians 13:5 (NWT 2013)</p>
+                                    <p class="scripture">"There should be no division in the body, but its members should have mutual concern for one another." – 1 Corinthians 12:25 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Material Focus</h3>
+                                <div class="dma-slider-content">
+                                    <p>Prioritizing wealth over spirit is cautioned, as it says, "You cannot serve God and riches." A material focus distracts from spiritual growth and leads to discontent. True worship emphasizes spiritual riches and contentment. Scripture teaches that God’s kingdom is the ultimate treasure.</p>
+                                    <p class="scripture">"You cannot slave for God and for Riches." – Matthew 6:24 (NWT 2013)</p>
+                                    <p class="scripture">"The love of money is a root of all sorts of injurious things." – 1 Timothy 6:10 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Human Traditions</h3>
+                                <div class="dma-slider-content">
+                                    <p>Traditions of men are criticized, with the teaching, "You make the word of God invalid." Human traditions can overshadow biblical truth and lead to false worship. True worship adheres strictly to God’s word. Scripture warns against elevating human ideas above divine commands.</p>
+                                    <p class="scripture">"You have made the word of God invalid because of your tradition." – Matthew 15:6 (NWT 2013)</p>
+                                    <p class="scripture">"Beware that no one takes you captive through philosophy and empty deception." – Colossians 2:8 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>False Prophets</h3>
+                                <div class="dma-slider-content">
+                                    <p>Deceptive leaders are exposed, as it warns, "False prophets will arise and mislead many." False prophets distort the truth and exploit believers. True worship requires vigilance and adherence to God’s word. Scripture provides guidance to identify and avoid such deception.</p>
+                                    <p class="scripture">"False prophets will arise and mislead many." – Matthew 24:11 (NWT 2013)</p>
+                                    <p class="scripture">"Beloved ones, do not believe every inspired statement, but test the inspired statements to see whether they originate with God." – 1 John 4:1 (NWT 2013)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="dma-tab-content" id="restoration-content">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-track">
+                            <div class="category">
+                                <h3>Truth Revealed</h3>
+                                <div class="dma-slider-content">
+                                    <p>Scripture unveils divine truth, guiding to life. Through its pages, God’s purpose for humanity is made clear, offering hope and direction. This truth is a beacon for those seeking spiritual enlightenment. It leads to a deeper understanding of God’s will.</p>
+                                    <p class="scripture">"Your word is truth." – John 17:17 (NWT 2013)</p>
+                                    <p class="scripture">"The truth will set you free." – John 8:32 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Jehovah’s Name Restored</h3>
+                                <div class="dma-slider-content">
+                                    <p>The divine name is returned to its rightful place in the Scriptures. This restoration honors God’s identity and emphasizes His sovereignty. It also fulfills the prophecy of God’s name being declared to all nations. The use of Jehovah’s name strengthens the bond between God and His worshippers.</p>
+                                    <p class="scripture">"Everyone who calls on the name of Jehovah will be saved." – Romans 10:13 (NWT 2013)</p>
+                                    <p class="scripture">"I will make my holy name known among my people Israel." – Ezekiel 39:7 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>True Worship</h3>
+                                <div class="dma-slider-content">
+                                    <p>Pure worship is restored through scriptural guidance. This worship is free from pagan influences and human traditions. It focuses on honoring Jehovah with sincerity and truth. True worship unites believers in a global brotherhood.</p>
+                                    <p class="scripture">"God is a Spirit, and those worshipping him must worship with spirit and truth." – John 4:24 (NWT 2013)</p>
+                                    <p class="scripture">"Let us worship him in holy array." – Psalm 29:2 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Spiritual Renewal</h3>
+                                <div class="dma-slider-content">
+                                    <p>Renewal comes through understanding and applying divine will. This process involves transforming the mind and heart to align with God’s standards. It leads to spiritual growth and a closer relationship with Jehovah. Renewal is essential for enduring trials and remaining faithful.</p>
+                                    <p class="scripture">"Be transformed by making your mind over." – Romans 12:2 (NWT 2013)</p>
+                                    <p class="scripture">"Create in me a pure heart, O God." – Psalm 51:10 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Kingdom Hope</h3>
+                                <div class="dma-slider-content">
+                                    <p>The promise of a divine kingdom restores hope for a better future. This kingdom will bring peace, justice, and righteousness to the earth. It is the ultimate solution to humanity’s problems. Believers look forward to its establishment with eager expectation.</p>
+                                    <p class="scripture">"Your kingdom come. Your will be done on earth as it is in heaven." – Matthew 6:10 (NWT 2013)</p>
+                                    <p class="scripture">"The God of heaven will set up a kingdom that will never be destroyed." – Daniel 2:44 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Covenant Fulfillment</h3>
+                                <div class="dma-slider-content">
+                                    <p>The new covenant brings salvation to all who accept it. This covenant, mediated by Jesus Christ, offers forgiveness and reconciliation with God. It fulfills the promises made to Abraham and establishes a new relationship between God and humanity. It is the foundation of Christian hope.</p>
+                                    <p class="scripture">"I will make a new covenant with the house of Israel." – Jeremiah 31:31 (NWT 2013)</p>
+                                    <p class="scripture">"This cup means the new covenant by virtue of my blood." – 1 Corinthians 11:25 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Global Unity</h3>
+                                <div class="dma-slider-content">
+                                    <p>Truth unites people in love and purpose, transcending national and cultural barriers. This unity is a hallmark of true worship and a fulfillment of Jesus’ prayer for his followers. It demonstrates the power of God’s spirit to bring diverse people together. Global unity reflects the love and peace of God’s kingdom.</p>
+                                    <p class="scripture">"That they may all be one, just as you, Father, are in union with me." – John 17:21 (NWT 2013)</p>
+                                    <p class="scripture">"There is neither Jew nor Greek, there is neither slave nor freeman, there is neither male nor female; for you are all one in union with Christ Jesus." – Galatians 3:28 (NWT 2013)</p>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Eternal Promise</h3>
+                                <div class="dma-slider-content">
+                                    <p>Restoration leads to eternal life on a paradise earth. This promise is the ultimate reward for faithfulness and obedience. It fulfills God’s original purpose for humanity and brings an end to suffering and death. The eternal promise is the hope that sustains believers through trials.</p>
+                                    <p class="scripture">"The righteous will possess the earth, and they will live forever on it." – Psalm 37:29 (NWT 2013)</p>
+                                    <p class="scripture">"He will wipe out every tear from their eyes, and death will be no more." – Revelation 21:4 (NWT 2013)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
-        <p>© 2025 Just Wise Love</p>
+        <p>© 2025 JWL Watchtower</p>
     </footer>
     <script>
-        // Embedded article data with all initial content
-        const articles = [
-            // Noble Minds Articles
-            {
-                category: "Noble Minds",
-                title: "God or Government?",
-                icon: "fas fa-landmark",
-                description: "Relying on human governments often leads to disappointment and instability, as they struggle to address mankind’s deepest problems like war, poverty, and injustice. Trusting in Jehovah’s Kingdom, however, offers a divine solution—bringing hope for lasting justice, peace, and a restored paradise earth, as promised in Daniel 2:44 and Revelation 21:4.",
-                content: "Human governments promise solutions but often fall short, leading to war, poverty, and injustice. Jehovah’s Kingdom, as described in Daniel 2:44, will 'crush all these kingdoms' and establish eternal peace. Revelation 21:4 assures us that God will wipe out every tear, ending death and suffering. Choosing divine wisdom over human rule brings lasting hope.",
-                scripture: ["Daniel 2:44", "Revelation 21:4"]
-            },
-            {
-                category: "Noble Minds",
-                title: "Spirituality or Wealth?",
-                icon: "fas fa-coins",
-                description: "Chasing money and material wealth can breed anxiety, envy, and a hollow existence, leaving individuals trapped in an endless cycle of desire. In contrast, cultivating spiritual qualities like love, faith, and generosity—guided by Matthew 6:24—yields deep contentment and eternal rewards.",
-                content: "Pursuing wealth often leads to stress and emptiness. Matthew 6:24 reminds us that we cannot serve both God and money. By focusing on spiritual treasures—love, faith, and generosity—we find true contentment. Jehovah rewards those who seek Him with eternal blessings.",
-                scripture: ["Matthew 6:24"]
-            },
-            {
-                category: "Noble Minds",
-                title: "Morality or Immorality?",
-                icon: "fas fa-heart-broken",
-                description: "Immorality, fueled by lust, selfishness, and societal pressures, erodes relationships, self-respect, and inner peace, leading to regret and brokenness. Embracing Bible-based morality, as outlined in 1 Corinthians 6:18, fosters dignity, love, and Jehovah’s approval.",
-                content: "Immorality often stems from societal pressures, leading to broken relationships and regret. 1 Corinthians 6:18 urges us to 'flee from sexual immorality,' preserving our dignity and peace. Choosing Bible-based morality ensures Jehovah’s approval and a life of love.",
-                scripture: ["1 Corinthians 6:18"]
-            },
-            {
-                category: "Noble Minds",
-                title: "Hope or Hopelessness?",
-                icon: "fas fa-cloud",
-                description: "The world’s “you only live once” mindset often leads to despair, as fleeting pleasures fade and mortality looms large. Jehovah’s promise of a paradise earth, detailed in Revelation 21:4, offers enduring hope, purpose, and the removal of suffering.",
-                content: "A 'you only live once' mindset can lead to despair as pleasures fade. Revelation 21:4 promises a paradise where God will wipe away all tears, offering true hope and purpose. Trusting in Jehovah’s promises removes suffering and brings eternal joy.",
-                scripture: ["Revelation 21:4"]
-            },
-            {
-                category: "Noble Minds",
-                title: "Sobriety or Drugs?",
-                icon: "fas fa-pills",
-                description: "Drugs and substance abuse enslave the mind and body, causing health decline, broken relationships, and spiritual disconnection. Living by Bible principles, as encouraged in 2 Timothy 1:7, promotes self-control, clarity, and a strong conscience.",
-                content: "Substance abuse destroys health, relationships, and spirituality. 2 Timothy 1:7 reminds us that God gives us a spirit of self-control. By living according to Bible principles, we maintain clarity and a strong conscience, honoring Jehovah.",
-                scripture: ["2 Timothy 1:7"]
-            },
-            {
-                category: "Noble Minds",
-                title: "Worship or Partying?",
-                icon: "fas fa-glass-cheers",
-                description: "Endless partying offers fleeting thrills and temporary excitement, but it often leaves a void of emptiness and unfulfillment. Worshiping Jehovah, as inspired by Psalm 100:2, brings lasting joy through meaningful service, community, and a connection to the divine.",
-                content: "Partying may bring temporary thrills, but it often leads to emptiness. Psalm 100:2 encourages us to 'serve Jehovah with rejoicing.' Worshiping God brings lasting joy through community and divine connection, fulfilling our deepest needs.",
-                scripture: ["Psalm 100:2"]
-            },
-            {
-                category: "Noble Minds",
-                title: "Truth or Deception?",
-                icon: "fas fa-mask",
-                description: "The world is filled with lies, misinformation, and moral confusion, leading to spiritual blindness and lost direction. Jehovah’s truth, revealed in the Bible (John 17:17), illuminates the path to life, offering clarity and salvation.",
-                content: "Lies and misinformation can lead to spiritual blindness. John 17:17 declares that God’s word is truth, guiding us to salvation. By embracing Jehovah’s truth, we find clarity and a clear path to life everlasting.",
-                scripture: ["John 17:17"]
-            },
-            {
-                category: "Noble Minds",
-                title: "Purpose or Aimlessness?",
-                icon: "fas fa-compass",
-                description: "Worldly pursuits like fame or pleasure often lead to a life without direction, leaving individuals adrift in uncertainty. Serving Jehovah, as guided by Ecclesiastes 12:13, provides a clear purpose centered on love, service, and eternal life.",
-                content: "Worldly pursuits often leave us directionless. Ecclesiastes 12:13 states that the whole duty of man is to fear God and keep His commandments. Serving Jehovah gives us a clear purpose centered on love, service, and eternal life.",
-                scripture: ["Ecclesiastes 12:13"]
-            },
-            // Trust N Truth Articles
-            {
-                category: "Trust N Truth",
-                title: "Historical Support",
-                icon: "fa-solid fa-book",
-                description: "The Bible’s historical accuracy, confirmed by archaeology and ancient records, builds trust in its truth. Places like Jerusalem and events like the Babylonian exile, as noted in 2 Kings 25:8-11, align with secular history, proving scripture’s reliability as a factual source for divine guidance and wisdom.",
-                content: "Archaeological findings, like the Tel Dan Stele, confirm biblical accounts such as the existence of King David. The Babylonian exile, detailed in 2 Kings 25:8-11, matches historical records. This alignment strengthens trust in the Bible as a reliable source of divine truth.",
-                scripture: ["2 Kings 25:8-11"]
-            },
-            {
-                category: "Trust N Truth",
-                title: "Scientific Evidence",
-                icon: "fa-solid fa-lightbulb",
-                description: "The Bible aligns with scientific discoveries, enhancing its trustworthiness. Statements like Job 26:7, describing the earth suspended in space, predate modern astronomy. Its harmony with proven facts about creation and health laws demonstrates divine insight, making scripture a reliable guide for truth-seekers.",
-                content: "Job 26:7 states that God 'hangs the earth on nothing,' a fact confirmed by modern astronomy. The Bible’s health laws, such as quarantine practices in Leviticus, align with scientific principles. This harmony proves the Bible’s divine insight and reliability.",
-                scripture: ["Job 26:7"]
-            },
-            {
-                category: "Trust N Truth",
-                title: "Manuscript Survivability",
-                icon: "fas fa-scroll",
-                description: "The Bible’s text, preserved through thousands of ancient manuscripts, proves its reliability. As 2 Peter 1:21 notes, its words were divinely inspired and meticulously copied. Comparisons of texts like the Dead Sea Scrolls show minimal variation, ensuring trust in scripture’s unaltered, truthful message.",
-                content: "The Dead Sea Scrolls, dating back over 2,000 years, show the Bible’s text has been preserved with minimal changes. 2 Peter 1:21 confirms that the scriptures were inspired by God. This reliability ensures we can trust the Bible’s message as true.",
-                scripture: ["2 Peter 1:21"]
-            },
-            {
-                category: "Trust N Truth",
-                title: "Divine Inspiration",
-                icon: "fas fa-cloud",
-                description: "The Bible’s divine inspiration, affirmed by 2 Timothy 3:16, underscores its trustworthiness. Its unified message across 40 writers over centuries reveals a divine author. This coherence, despite diverse human pens, builds confidence in scripture as God’s true word, guiding faith and life reliably.",
-                content: "2 Timothy 3:16 declares that all scripture is inspired by God. Written by 40 authors over centuries, the Bible’s unified message reveals a divine author. This coherence builds trust in the Bible as God’s true word for guidance.",
-                scripture: ["2 Timothy 3:16"]
-            },
-            {
-                category: "Trust N Truth",
-                title: "Prophecy Fulfilled",
-                icon: "fas fa-bullhorn",
-                description: "Fulfilled prophecies, like those in Isaiah 46:10, prove the Bible’s divine truth. Predictions about empires and Jesus’ life, detailed in Daniel 8:20-22 and Micah 5:2, came true precisely. This accuracy strengthens trust in scripture’s promises, offering hope and certainty in God’s word.",
-                content: "Isaiah 46:10 states that God declares the end from the beginning. Prophecies like Daniel 8:20-22 about empires and Micah 5:2 about Jesus’ birthplace were fulfilled exactly. This accuracy proves the Bible’s divine truth and reliability.",
-                scripture: ["Isaiah 46:10", "Daniel 8:20-22", "Micah 5:2"]
-            },
-            {
-                category: "Trust N Truth",
-                title: "Moral Consistency",
-                icon: "fas fa-balance-scale",
-                description: "The Bible’s timeless moral standards, as Psalm 119:160 declares, provide a trustworthy ethical foundation. Its principles on love, justice, and integrity remain relevant across cultures and eras. This consistency fosters confidence in scripture as a true guide for righteous living and divine approval.",
-                content: "Psalm 119:160 states that God’s word is true from the beginning. The Bible’s principles of love, justice, and integrity are timeless, guiding us across cultures. This consistency makes scripture a reliable guide for righteous living.",
-                scripture: ["Psalm 119:160"]
-            },
-            {
-                category: "Trust N Truth",
-                title: "Answered Prayers",
-                icon: "fa-solid fa-pray",
-                description: "Answered prayers, as encouraged by James 1:5, demonstrate the Bible’s living truth. Believers experience guidance and strength through prayer, confirming scripture’s promises. This personal evidence of God’s responsiveness builds trust in the Bible as a reliable source of divine wisdom and comfort.",
-                content: "James 1:5 encourages us to ask God for wisdom, promising He will answer. Many believers experience answered prayers, confirming the Bible’s promises. This personal evidence builds trust in scripture as a source of divine wisdom.",
-                scripture: ["James 1:5"]
-            },
-            {
-                category: "Trust N Truth",
-                title: "Transformative Power",
-                icon: "fas fa-heart",
-                description: "The Bible’s ability to transform lives, per Romans 12:2, proves its divine truth. Its teachings inspire hope, purpose, and moral growth, changing hearts worldwide. This power to uplift and guide fosters unwavering trust in scripture as God’s true word, offering eternal hope and direction.",
-                content: "Romans 12:2 urges us to be transformed by renewing our minds. The Bible’s teachings inspire hope, purpose, and moral growth worldwide. This transformative power proves its divine truth, offering eternal hope and direction.",
-                scripture: ["Romans 12:2"]
-            },
-            // Walk Wise Articles
-            {
-                category: "Walk Wise",
-                title: "Accuracy",
-                icon: "fas fa-book-open",
-                description: "Affirm precise scriptural truths gaining accurate knowledge for steadfast devotion with divine clarity.",
-                content: "Accurate knowledge of the Bible, as encouraged by 2 Timothy 2:15, equips us to live with clarity and devotion. Studying scriptures carefully ensures our worship aligns with Jehovah’s truth, strengthening our faith.",
-                scripture: ["2 Timothy 2:15"],
-                link: "accuracy.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Blasphemy",
-                icon: "fas fa-ban",
-                description: "Expose lies that dishonor sacred teachings, replacing traditions of men with clear scriptural truth.",
-                content: "Blasphemy misrepresents Jehovah’s teachings. Mark 7:7-8 warns against traditions of men that obscure divine truth. By studying scripture, we can reject falsehoods and honor God with pure worship.",
-                scripture: ["Mark 7:7-8"],
-                link: "blasphemy.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Characters",
-                icon: "fas fa-users",
-                description: "Explore Bible figures’ faith and errors to inspire steadfast commitment to righteous principles.",
-                content: "Studying Bible characters like David and Peter shows us both their faith and flaws. Their examples, as seen in scriptures like 1 Samuel 17 and John 21, inspire us to remain committed to righteous principles.",
-                scripture: ["1 Samuel 17", "John 21"],
-                link: "characters.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Discernment",
-                icon: "fas fa-balance-scale",
-                description: "Sharpen insight to choose paths aligned with sacred values, rejecting harmful influences.",
-                content: "Discernment helps us choose paths aligned with Jehovah’s values. Hebrews 5:14 encourages training our senses to distinguish right from wrong, protecting us from harmful influences.",
-                scripture: ["Hebrews 5:14"],
-                link: "discernment.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Endurance",
-                icon: "fas fa-shield-alt",
-                description: "Memorize scriptures to share truth, building resilience against trials with divine strength.",
-                content: "Endurance in trials is strengthened by scripture. James 1:12 promises a crown of life to those who endure. Memorizing God’s word equips us to share truth and remain resilient.",
-                scripture: ["James 1:12"],
-                link: "endurance.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Faithful",
-                icon: "fas fa-gem",
-                description: "Draw inspiration from loyal servants whose devotion strengthens resolve in pure worship.",
-                content: "Loyal servants like Daniel inspire us. Daniel 6:10 shows his unwavering devotion despite opposition. Such examples strengthen our resolve to engage in pure worship.",
-                scripture: ["Daniel 6:10"],
-                link: "faithful.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Guidance",
-                icon: "fas fa-compass",
-                description: "Nurture traits reflecting divine love, leading to a life of integrity and purpose.",
-                content: "Psalm 32:8 promises that Jehovah will guide us with His eye. Nurturing traits like love and integrity, as guided by scripture, leads to a purposeful life.",
-                scripture: ["Psalm 32:8"],
-                link: "guidance.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Homeschool",
-                icon: "fas fa-school",
-                description: "Use printable resources to teach children sacred values, fostering their spiritual growth.",
-                content: "Deuteronomy 6:7 instructs us to teach our children diligently. Using printable resources to impart sacred values helps foster their spiritual growth and love for Jehovah.",
-                scripture: ["Deuteronomy 6:7"],
-                link: "homeschool.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Inspiration",
-                icon: "fa-solid fa-pen-fancy",
-                description: "Uncover evidence affirming the Bible’s authenticity, deepening confidence in its divine origin.",
-                content: "Evidence like fulfilled prophecies in Isaiah 53 affirms the Bible’s authenticity. Such findings deepen our confidence in its divine origin, as inspired by God.",
-                scripture: ["Isaiah 53"],
-                link: "inspiration.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Jehovah",
-                icon: "fa-solid fa-hand-holding",
-                description: "Appreciate the Creator’s personal identity and supreme authority as the source of life.",
-                content: "Exodus 3:14 reveals Jehovah’s name and identity. Understanding His supreme authority as the source of life deepens our appreciation and worship.",
-                scripture: ["Exodus 3:14"],
-                link: "jehovah.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Kingdom",
-                icon: "fas fa-crown",
-                description: "Learn about the divine government that will restore paradise through perfect, righteous rule.",
-                content: "Daniel 2:44 describes God’s Kingdom as a government that will never be destroyed. It will restore paradise, bringing perfect, righteous rule to the earth.",
-                scripture: ["Daniel 2:44"],
-                link: "kingdom.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Lifestyle",
-                icon: "fas fa-heart",
-                description: "Adopt a way of life grounded in biblical standards, yielding joy and blessings.",
-                content: "A lifestyle grounded in biblical standards brings joy. Psalm 1:1-3 compares the righteous to a tree yielding fruit, blessed by Jehovah.",
-                scripture: ["Psalm 1:1-3"],
-                link: "lifestyle.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Memorial",
-                icon: "fas fa-wine-glass",
-                description: "Honor the ransom sacrifice of Jesus, celebrating the hope of eternal salvation.",
-                content: "Luke 22:19 instructs us to observe the Memorial of Jesus’ sacrifice. This celebration honors His ransom and the hope of eternal salvation.",
-                scripture: ["Luke 22:19"],
-                link: "memorial.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Neutrality",
-                icon: "fa-solid fa-handshake",
-                description: "Stay separate from worldly conflicts, showing allegiance to the divine Kingdom’s cause.",
-                content: "John 17:16 shows Jesus’ followers are no part of the world. Staying neutral in conflicts shows our allegiance to Jehovah’s Kingdom.",
-                scripture: ["John 17:16"],
-                link: "neutrality.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Organization",
-                icon: "fa-solid fa-briefcase",
-                description: "Contrast false religions’ flaws with the true path of unified, scripture-based worship.",
-                content: "False religions often lack unity, but Matthew 7:16 says we’ll know true worship by its fruits. Scripture-based worship unifies us in truth.",
-                scripture: ["Matthew 7:16"],
-                link: "organization.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Prophecy",
-                icon: "fas fa-bullhorn",
-                description: "Study biblical prophecies to understand divine purposes and bolster faith in sacred promises.",
-                content: "Prophecies like those in Revelation 21:4 reveal God’s purpose to end suffering. Studying them, as encouraged by 2 Peter 1:19, bolsters our faith.",
-                scripture: ["Revelation 21:4", "2 Peter 1:19"],
-                link: "prophecy.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Questions",
-                icon: "fas fa-question-circle",
-                description: "Seek answers to life’s deepest questions through the wisdom of inspired scriptures.",
-                content: "Proverbs 2:3-5 encourages us to seek wisdom, promising understanding of God. The Bible answers life’s deepest questions with divine wisdom.",
-                scripture: ["Proverbs 2:3-5"],
-                link: "questions.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Reasoning",
-                icon: "fas fa-lightbulb",
-                description: "Navigate a topic index to defend beliefs and reason confidently on biblical truths.",
-                content: "Acts 17:2-3 shows Paul reasoning from the scriptures. A topic index helps us defend our beliefs with confidence in biblical truths.",
-                scripture: ["Acts 17:2-3"],
-                link: "reasoning.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Scriptures",
-                icon: "fas fa-scroll",
-                description: "Delve into the Bible’s timeless guidance to shape decisions and strengthen devotion.",
-                content: "Psalm 119:105 says God’s word is a lamp to our feet. Delving into scriptures shapes our decisions and strengthens our devotion to Jehovah.",
-                scripture: ["Psalm 119:105"],
-                link: "scriptures.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Translation",
-                icon: "fas fa-book",
-                description: "Verify the reliability of ancient manuscripts, confirming the Bible’s accuracy and trustworthiness.",
-                content: "The accuracy of Bible translations is verified by manuscripts like the Dead Sea Scrolls. 2 Timothy 3:16 confirms scripture’s trustworthiness.",
-                scripture: ["2 Timothy 3:16"],
-                link: "translation.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Unshakable",
-                icon: "fas fa-anchor",
-                description: "Stand firm amid opposition, drawing strength from sacred truths and divine promises.",
-                content: "1 Corinthians 16:13 urges us to stand firm in faith. Drawing strength from sacred truths helps us remain unshakable amid opposition.",
-                scripture: ["1 Corinthians 16:13"],
-                link: "unshakable.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Vindicated",
-                icon: "fa-solid fa-landmark",
-                description: "Examine evidence affirming the divine name’s significance, reinforcing faith in sacred sovereignty.",
-                content: "Evidence like the Tetragrammaton in ancient texts affirms Jehovah’s name. Psalm 83:18 reinforces faith in His sacred sovereignty.",
-                scripture: ["Psalm 83:18"],
-                link: "vindicated.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Watchtower",
-                icon: "fa-solid fa-chess-rook",
-                description: "Support the global effort to revive pure worship, guided by biblical truth and unity.",
-                content: "The global effort to revive pure worship aligns with Matthew 24:14, preaching the good news worldwide. Unity in truth guides this mission.",
-                scripture: ["Matthew 24:14"],
-                link: "watchtower.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Xenophobia",
-                icon: "fa-solid fa-globe",
-                description: "Embrace unity across nations, rejecting division to reflect the divine vision of love.",
-                content: "Galatians 3:28 teaches that in Christ, there is no distinction between nations. Embracing unity reflects Jehovah’s vision of love.",
-                scripture: ["Galatians 3:28"],
-                link: "xenophobia.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Youthful",
-                icon: "fas fa-child",
-                description: "Guide young ones to build a strong foundation in faith and moral integrity.",
-                content: "Ecclesiastes 12:1 urges the young to remember their Creator. Guiding them builds a strong foundation in faith and moral integrity.",
-                scripture: ["Ecclesiastes 12:1"],
-                link: "youthful.html"
-            },
-            {
-                category: "Walk Wise",
-                title: "Zealous",
-                icon: "fa-solid fa-shoe-prints",
-                description: "Proclaim the good news worldwide with enthusiasm, fulfilling the call to share truth.",
-                content: "Romans 10:14-15 highlights the importance of preaching the good news. Zealous proclamation fulfills our call to share Jehovah’s truth.",
-                scripture: ["Romans 10:14-15"],
-                link: "zealous.html"
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hamburger menu toggle
+            const hamburgerLeft = document.querySelector('.hamburger-left');
+            const navMenuLeft = document.querySelector('.nav-menu-left');
+            if (hamburgerLeft && navMenuLeft) {
+                hamburgerLeft.addEventListener('click', () => {
+                    hamburgerLeft.classList.toggle('active');
+                    navMenuLeft.classList.toggle('active');
+                    const isExpanded = hamburgerLeft.getAttribute('aria-expanded') === 'true';
+                    hamburgerLeft.setAttribute('aria-expanded', !isExpanded);
+                });
             }
-        ];
 
-        // Hamburger menu toggle for left menu
-        const hamburgerLeft = document.querySelector('.hamburger-left');
-        const navMenuLeft = document.querySelector('.nav-menu-left');
-        hamburgerLeft.addEventListener('click', () => {
-            hamburgerLeft.classList.toggle('active');
-            navMenuLeft.classList.toggle('active');
-            const isExpanded = hamburgerLeft.getAttribute('aria-expanded') === 'true';
-            hamburgerLeft.setAttribute('aria-expanded', !isExpanded);
-        });
+            const hamburgerRight = document.querySelector('.hamburger-right');
+            const navMenuRight = document.querySelector('.nav-menu-right');
+            if (hamburgerRight && navMenuRight) {
+                hamburgerRight.addEventListener('click', () => {
+                    hamburgerRight.classList.toggle('active');
+                    navMenuRight.classList.toggle('active');
+                    const isExpanded = hamburgerRight.getAttribute('aria-expanded') === 'true';
+                    hamburgerRight.setAttribute('aria-expanded', !isExpanded);
+                });
+            }
 
-        // Hamburger menu toggle for right menu
-        const hamburgerRight = document.querySelector('.hamburger-right');
-        const navMenuRight = document.querySelector('.nav-menu-right');
-        hamburgerRight.addEventListener('click', () => {
-            hamburgerRight.classList.toggle('active');
-            navMenuRight.classList.toggle('active');
-            const isExpanded = hamburgerRight.getAttribute('aria-expanded') === 'true';
-            hamburgerRight.setAttribute('aria-expanded', !isExpanded);
-        });
-
-        // Close menus when clicking a link
-        document.querySelectorAll('.nav-menu-left a, .nav-menu-right a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburgerLeft.classList.remove('active');
-                navMenuLeft.classList.remove('active');
-                hamburgerLeft.setAttribute('aria-expanded', 'false');
-                hamburgerRight.classList.remove('active');
-                navMenuRight.classList.remove('active');
-                hamburgerRight.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        // Populate categories dynamically
-        const sections = [
-            { id: 'categories-jwl', title: 'NOBLE MINDS', articles: articles.filter(a => a.category === 'Noble Minds') },
-            { id: 'categories-tnt', title: 'TRUST N TRUTH', articles: articles.filter(a => a.category === 'Trust N Truth') },
-            { id: 'categories-ww', title: 'WALK WISE', articles: articles.filter(a => a.category === 'Walk Wise') }
-        ];
-
-        sections.forEach(section => {
-            const container = document.getElementById(section.id);
-            const button = document.querySelector(`[aria-controls="${section.id}"]`);
-            const categories = container.querySelector('.categories');
-
-            // Populate categories
-            section.articles.forEach(article => {
-                const categoryDiv = document.createElement('div');
-                categoryDiv.className = 'category';
-                categoryDiv.innerHTML = `
-                    <i class="${article.icon}"></i>
-                    <h3>${article.title}</h3>
-                    <p>${article.description}</p>
-                    <a href="#" class="read-more" data-title="${article.title}" ${article.link ? `data-link="${article.link}"` : ''}>Read More</a>
-                `;
-                categories.appendChild(categoryDiv);
-            });
-
-            // Toggle functionality
-            button.addEventListener('click', () => {
-                container.classList.toggle('expanded');
-                const isExpanded = button.getAttribute('aria-expanded') === 'true';
-                button.setAttribute('aria-expanded', !isExpanded);
-                container.style.maxHeight = isExpanded ? '0px' : `${categories.scrollHeight}px`;
-            });
-
-            // Handle "Read More" clicks
-            categories.addEventListener('click', (e) => {
-                if (e.target.classList.contains('read-more')) {
-                    e.preventDefault();
-                    const title = e.target.getAttribute('data-title');
-                    const link = e.target.getAttribute('data-link');
-                    if (link) {
-                        window.location.href = link; // Redirect to external article page if link exists
-                    } else {
-                        const article = articles.find(a => a.title === title);
-                        displayArticle(article);
+            // Close menus when clicking a link
+            document.querySelectorAll('.nav-menu-left a, .nav-menu-right a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (hamburgerLeft && navMenuLeft) {
+                        hamburgerLeft.classList.remove('active');
+                        navMenuLeft.classList.remove('active');
+                        hamburgerLeft.setAttribute('aria-expanded', 'false');
                     }
-                }
-            });
-        });
-
-        // Search functionality
-        const searchBar = document.getElementById('search-bar');
-        const searchButton = document.getElementById('search-button');
-        searchButton.addEventListener('click', () => {
-            const query = searchBar.value.toLowerCase();
-            const results = articles.filter(article =>
-                article.title.toLowerCase().includes(query) ||
-                article.description.toLowerCase().includes(query) ||
-                article.scripture.some(script => script.toLowerCase().includes(query))
-            );
-            displaySearchResults(results);
-        });
-
-        // Handle Enter key press
-        searchBar.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') searchButton.click();
-        });
-
-        // Random article button
-        document.getElementById('random-article').addEventListener('click', () => {
-            const randomArticle = articles[Math.floor(Math.random() * articles.length)];
-            if (randomArticle.link) {
-                window.location.href = randomArticle.link;
-            } else {
-                displayArticle(randomArticle);
-            }
-        });
-
-        // Display search results
-        function displaySearchResults(results) {
-            const main = document.querySelector('main');
-            main.innerHTML = '<h2>Search Results</h2>';
-            if (results.length === 0) {
-                main.innerHTML += '<p>No results found.</p>';
-                return;
-            }
-            const resultsContainer = document.createElement('div');
-            resultsContainer.className = 'categories';
-            results.forEach(article => {
-                const articleCard = document.createElement('div');
-                articleCard.className = 'category';
-                articleCard.innerHTML = `
-                    <i class="${article.icon}"></i>
-                    <h3>${article.title}</h3>
-                    <p>${article.description}</p>
-                    <a href="#" class="read-more" data-title="${article.title}" ${article.link ? `data-link="${article.link}"` : ''}>Read More</a>
-                `;
-                resultsContainer.appendChild(articleCard);
-            });
-            main.appendChild(resultsContainer);
-            main.innerHTML += `
-                <div class="random-article-container">
-                    <button id="random-article" class="read-more">Discover a Random Article</button>
-                </div>
-                <div class="search-container">
-                    <input type="text" id="search-bar" placeholder="Search articles, scriptures..." aria-label="Search articles">
-                    <button id="search-button" aria-label="Search"><i class="fas fa-search"></i></button>
-                </div>
-            `;
-
-            // Re-attach click handlers for "Read More" in search results
-            resultsContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('read-more')) {
-                    e.preventDefault();
-                    const title = e.target.getAttribute('data-title');
-                    const link = e.target.getAttribute('data-link');
-                    if (link) {
-                        window.location.href = link;
-                    } else {
-                        const article = articles.find(a => a.title === title);
-                        displayArticle(article);
+                    if (hamburgerRight && navMenuRight) {
+                        hamburgerRight.classList.remove('active');
+                        navMenuRight.classList.remove('active');
+                        hamburgerRight.setAttribute('aria-expanded', 'false');
                     }
-                }
-            });
-
-            // Re-attach random article handler
-            document.getElementById('random-article').addEventListener('click', () => {
-                const randomArticle = articles[Math.floor(Math.random() * articles.length)];
-                if (randomArticle.link) {
-                    window.location.href = randomArticle.link;
-                } else {
-                    displayArticle(randomArticle);
-                }
-            });
-
-            // Re-attach search handler
-            const newSearchBar = document.getElementById('search-bar');
-            const newSearchButton = document.getElementById('search-button');
-            newSearchButton.addEventListener('click', () => {
-                const query = newSearchBar.value.toLowerCase();
-                const results = articles.filter(article =>
-                    article.title.toLowerCase().includes(query) ||
-                    article.description.toLowerCase().includes(query) ||
-                    article.scripture.some(script => script.toLowerCase().includes(query))
-                );
-                displaySearchResults(results);
-            });
-            newSearchBar.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') newSearchButton.click();
-            });
-        }
-
-        // Display full article
-        function displayArticle(article) {
-            const main = document.querySelector('main');
-            main.innerHTML = `
-                <section class="item">
-                    <div class="item-content">
-                        <h2>${article.title}</h2>
-                        <p>${article.content}</p>
-                        ${article.scripture.map(script => `<div class="scripture" data-scripture="${script}">${script}</div>`).join('')}
-                        <a href="index.html" class="read-more">Back to Home</a>
-                    </div>
-                </section>
-            `;
-            // Add scripture popup (simulated without API)
-            document.querySelectorAll('.scripture').forEach(script => {
-                script.addEventListener('click', () => {
-                    alert(`Scripture Reference: ${script.getAttribute('data-scripture')}\n(Note: Full text requires an external Bible API or local data.)`);
                 });
             });
-        }
+
+            // Timeline functionality
+            const timelineDots = document.querySelectorAll('.timeline-dot');
+            const timelineDescription = document.querySelector('#timeline-description');
+            const timelineEventContainer = document.querySelector('#timeline-event');
+            const timelinePrev = document.querySelector('.timeline-prev');
+            const timelineNext = document.querySelector('.timeline-next');
+            const events = [
+                {
+                    text: 'Jehovah created Adam and Eve perfect, placing them in the Garden of Eden with the prospect of eternal life. This act established humanity’s original purpose to live in harmony with God’s will. Their perfection reflected Jehovah’s creative power and love, setting the stage for His divine plan. <a href="https://www.jw.org/en/bible-teachings/questions/original-purpose-earth/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'The introduction of sin through disobedience disrupted humanity’s perfect state, leading to spiritual and physical death. This pivotal event, driven by Satan’s deception, had lasting consequences for all generations. It marked the beginning of humankind’s need for redemption. <a href="https://www.jw.org/en/bible-teachings/questions/why-do-we-grow-old-and-die/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jehovah promised a seed to crush the serpent, the first prophecy of restoration. This promise set the stage for the unfolding of God’s purpose to redeem humanity. It introduced the hope of a future deliverer who would undo the damage caused by sin. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-messianic-kingdom/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'The global flood allowed a new start through Noah’s family, preserving the line of the promised seed. This event demonstrated God’s judgment on wickedness and His mercy toward the righteous. It also served as a warning for future generations. <a href="https://www.jw.org/en/bible-teachings/questions/the-global-flood-why/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jehovah made a covenant with Abraham, promising a seed to bless all nations. This covenant marked a significant step in God’s plan to restore humanity. It established Abraham’s descendants as the chosen people through whom the seed would come. <a href="https://www.jw.org/en/bible-teachings/questions/abraham-gods-friend/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jacob’s 12 sons formed the 12 tribes of Israel, a nation for Jehovah’s purpose. This structure laid the foundation for God’s dealings with His chosen people. It also fulfilled the promise made to Abraham regarding his descendants. <a href="https://www.jw.org/en/bible-teachings/questions/who-were-the-patriarchs/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'The tribes were enslaved in Egypt, testing their faith and reliance on Jehovah. This period of hardship prepared them for deliverance and the establishment of the Law Covenant. It also highlighted the need for divine intervention in human affairs. <a href="https://www.jw.org/en/bible-teachings/questions/moses-gods-deliverer/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jehovah delivered Israel from Egypt, giving the Law Covenant to guide them. This event marked the beginning of Israel’s role as God’s chosen nation. The Law provided a framework for worship and moral living, setting Israel apart from other nations. <a href="https://www.jw.org/en/bible-teachings/questions/what-was-the-mosaic-law/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Israel’s disobedience delayed blessings and led to wandering in the wilderness. This period of testing revealed the consequences of unfaithfulness. It also underscored the importance of obedience to God’s commands. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-the-israelites-wander-for-40-years/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jehovah raised judges to guide Israel, delivering them from oppressors. These leaders served as instruments of God’s justice and mercy. Their stories illustrate the cycle of apostasy and restoration in Israel’s history. <a href="https://www.jw.org/en/bible-teachings/questions/who-were-the-judges-of-israel/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Israel demanded kings, but many led them astray from true worship. This shift from theocracy to monarchy had profound spiritual consequences. It highlighted the dangers of human rule without divine guidance. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-israel-want-a-king/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'The kingdom split into two, weakening their covenant with Jehovah. This division resulted from disobedience and led to spiritual decline. It set the stage for further prophetic warnings and eventual exile. <a href="https://www.jw.org/en/bible-teachings/questions/what-happened-to-solomons-kingdom/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Israel’s unfaithfulness led to exile in Babylon, a period of discipline. This exile fulfilled prophetic warnings and served as a turning point for repentance. It also preserved a remnant faithful to Jehovah. <a href="https://www.jw.org/en/bible-teachings/questions/why-were-the-jews-exiled-to-babylon/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'A remnant returned from exile but struggled to restore pure worship. This period of rebuilding tested their faith and commitment. It also prepared the way for the coming of the Messiah. <a href="https://www.jw.org/en/bible-teachings/questions/what-happened-after-the-exile/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Daniel foretold the Messiah’s arrival, providing a timeline for his appearance. This prophecy gave hope to the faithful and confirmed God’s control over history. It also pointed to the establishment of God’s kingdom. <a href="https://www.jw.org/en/bible-teachings/questions/does-bible-prophecy-point-to-jesus/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jesus, the promised seed, was born in Bethlehem, fulfilling prophecy. His birth marked the beginning of the fulfillment of God’s promise to Abraham. It also introduced the Savior who would redeem humanity. <a href="https://www.jw.org/en/bible-teachings/questions/who-is-jesus-christ/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jesus began his ministry with baptism, showing humility and obedience. This act set an example for all believers and marked the start of his public work. It also fulfilled the requirements for the Messiah. <a href="https://www.jw.org/en/bible-teachings/questions/why-was-jesus-baptized/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jesus started preaching, teaching the Kingdom’s nearness and God’s will. His ministry focused on repentance and faith in God’s promises. It also laid the foundation for the Christian congregation. <a href="https://www.jw.org/en/bible-teachings/questions/what-did-jesus-teach/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jesus gave the Sermon on the Mount, teaching true worship principles. This discourse outlined the qualities of kingdom citizens and the importance of love and mercy. It remains a cornerstone of Christian ethics. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-sermon-on-the-mount/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jesus performed miracles, proving his divine role and compassion. These acts demonstrated God’s power and confirmed Jesus’ identity as the Messiah. They also foreshadowed the blessings of God’s kingdom. <a href="https://www.jw.org/en/bible-teachings/questions/what-do-jesus-miracles-teach-us/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'The Jews rejected Jesus, fulfilling prophecy and leading to his sacrifice. This rejection opened the way for Gentiles to receive God’s favor. It also marked a pivotal moment in God’s dealings with humanity. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-the-jews-reject-jesus/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jesus instituted the new covenant, open to all nations through faith. This covenant replaced the Law Covenant and offered forgiveness through Jesus’ sacrifice. It established a new relationship between God and believers. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-new-covenant/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jesus’ death provided the ransom for all, paying the price for sin. This act of love and obedience fulfilled God’s justice and opened the way for salvation. It remains the central event of Christian faith. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-jesus-die/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'Jesus’ resurrection and ascension confirmed his role as the Messiah and King. These events provided hope for believers and established Jesus’ authority in heaven. They also marked the beginning of his heavenly reign. <a href="https://www.jw.org/en/bible-teachings/questions/what-does-jesus-resurrection-mean-for-us/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'The new covenant anointed 144,000 from all nations to rule with Christ. These individuals are chosen to serve as kings and priests in God’s kingdom. Their selection fulfills God’s promise to Abraham. <a href="https://www.jw.org/en/bible-teachings/questions/who-are-the-144000/" class="read-more">Read More</a>',
+                },
+                {
+                    text: 'After the Millennial Reign, Christ hands the Kingdom to Jehovah, restoring paradise. This final act completes God’s purpose for humanity and the earth. It ushers in an eternity of peace and righteousness. <a href="https://www.jw.org/en/bible-teachings/questions/what-happens-after-the-1000-year-reign/" class="read-more">Read More</a>',
+                },
+            ];
+
+            let currentEventIndex = 0;
+            function updateTimeline() {
+                timelineDots.forEach(dot => dot.classList.remove('active'));
+                timelineDots[currentEventIndex].classList.add('active');
+                timelineEventContainer.style.opacity = 0;
+                setTimeout(() => {
+                    timelineDescription.innerHTML = events[currentEventIndex].text;
+                    timelineEventContainer.style.opacity = 1;
+                }, 300);
+            }
+
+            timelinePrev.addEventListener('click', () => {
+                currentEventIndex = (currentEventIndex - 1 + events.length) % events.length;
+                updateTimeline();
+            });
+
+            timelineNext.addEventListener('click', () => {
+                currentEventIndex = (currentEventIndex + 1) % events.length;
+                updateTimeline();
+            });
+
+            timelineDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    currentEventIndex = parseInt(dot.getAttribute('data-index'));
+                    updateTimeline();
+                });
+            });
+
+            // DMA tab functionality
+            const dmaTabs = document.querySelectorAll('.dma-tab');
+            const dmaTabContents = document.querySelectorAll('.dma-tab-content');
+            dmaTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    dmaTabs.forEach(t => t.classList.remove('active'));
+                    dmaTabContents.forEach(c => c.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.getElementById(`${tab.getAttribute('data-tab')}-content`).classList.add('active');
+                });
+            });
+
+            // Carousel functionality for all carousels
+            document.querySelectorAll('.carousel').forEach(carousel => {
+                const track = carousel.querySelector('.carousel-track');
+                const items = Array.from(carousel.querySelectorAll('.category'));
+                const prevBtn = carousel.querySelector('.carousel-prev');
+                const nextBtn = carousel.querySelector('.carousel-next');
+                const dotsContainer = carousel.querySelector('.carousel-dots');
+
+                if (!track || !items.length || !prevBtn || !nextBtn || !dotsContainer) {
+                    console.error('Carousel setup failed:', { track, items: items.length, prevBtn, nextBtn, dotsContainer });
+                    return;
+                }
+
+                let currentIndex = 0;
+                const totalItems = items.length;
+
+                const updateHeight = () => {
+                    const currentItem = items[currentIndex];
+                    if (currentItem) {
+                        track.style.height = `${currentItem.offsetHeight}px`;
+                    }
+                };
+                updateHeight();
+
+                for (let i = 0; i < totalItems; i++) {
+                    const dot = document.createElement('span');
+                    dot.classList.add('carousel-dot');
+                    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                    if (i === 0) dot.classList.add('active');
+                    dotsContainer.appendChild(dot);
+                }
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+                function updateCarousel() {
+                    const offset = -currentIndex * 100;
+                    track.style.transform = `translateX(${offset}%)`;
+                    track.style.transition = 'transform 0.5s ease';
+                    dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentIndex));
+                    updateHeight();
+                }
+
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % totalItems;
+                    updateCarousel();
+                });
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                    updateCarousel();
+                });
+
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                    });
+                });
+
+                updateCarousel();
+            });
+        });
     </script>
 </body>
 </html>
