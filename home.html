@@ -12,134 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Inline styles for timeline navigation adjustments */
-        .timeline-section {
-            padding: 20px;
-            background: #000000;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-line {
-            height: 2px;
-            background: #6b9e31;
-            position: relative;
-            margin: 20px 0;
-        }
-
-        .timeline-dot {
-            width: 12px;
-            height: 12px;
-            background: #ffffff;
-            border: 2px solid #6b9e31;
-            border-radius: 50%;
-            position: absolute;
-            top: -5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-dot.active {
-            background: #6b9e31;
-            transform: scale(1.2);
-            box-shadow: 0 0 10px #6b9e31;
-        }
-
-        .timeline-label {
-            position: absolute;
-            top: -30px;
-            font-size: 12px;
-            color: #ffffff;
-            text-shadow: 0 0 5px #6b9e31;
-            white-space: nowrap;
-        }
-
-        .timeline-description {
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        .timeline-prev, .timeline-next {
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 20px;
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .timeline-prev {
-            left: 10px;
-        }
-
-        .timeline-next {
-            right: 10px;
-        }
-
-        /* DMA section adjustments */
-        .dma-section {
-            padding: 20px;
-            background: #000000;
-        }
-
-        .dma-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .dma-tab {
-            padding: 10px 20px;
-            background: #333;
-            color: #ffffff;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .dma-tab.active {
-            background: #6b9e31;
-            box-shadow: 0 0 10px #6b9e31;
-        }
-
-        .dma-tab-content {
-            display: none;
-        }
-
-        .dma-tab-content.active {
-            display: block;
-            animation: slideIn 0.5s ease;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .timeline-label {
-                font-size: 10px;
-            }
-            .timeline-description {
-                font-size: 14px;
-            }
-            .dma-tab {
-                font-size: 14px;
-                padding: 8px 15px;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -172,12 +44,6 @@
         </nav>
     </header>
     <main>
-        <section class="banner">
-            <div class="banner-content">
-                "Your word is a lamp to my foot, And a light for my path."
-            </div>
-        </section>
-
         <!-- "Paradise Restored" Timeline Section -->
         <section class="timeline-section" id="timeline-section">
             <h2 class="section-title">Paradise Restored</h2>
@@ -210,37 +76,9 @@
                 <span class="timeline-dot" style="left: 96%;" data-index="24"></span>
                 <span class="timeline-dot" style="left: 100%;" data-index="25"></span>
             </div>
-            <div class="timeline-labels">
-                <span style="left: 0%;">Creation</span>
-                <span style="left: 4%;">Perfection Lost</span>
-                <span style="left: 8%;">First Prophecy</span>
-                <span style="left: 12%;">Flood</span>
-                <span style="left: 16%;">Abraham’s Covenant</span>
-                <span style="left: 20%;">12 Tribes Form</span>
-                <span style="left: 24%;">Enslavement</span>
-                <span style="left: 28%;">Exodus</span>
-                <span style="left: 32%;">Disobedience</span>
-                <span style="left: 36%;">Judges Rule</span>
-                <span style="left: 40%;">Kings Rule</span>
-                <span style="left: 44%;">Kingdom Split</span>
-                <span style="left: 48%;">Exile</span>
-                <span style="left: 52%;">Return</span>
-                <span style="left: 56%;">Messiah Prophecy</span>
-                <span style="left: 60%;">Jesus’ Birth</span>
-                <span style="left: 64%;">Baptism</span>
-                <span style="left: 68%;">Ministry Begins</span>
-                <span style="left: 72%;">Sermon</span>
-                <span style="left: 76%;">Miracles</span>
-                <span style="left: 80%;">Rejection</span>
-                <span style="left: 84%;">New Covenant</span>
-                <span style="left: 88%;">Ransom</span>
-                <span style="left: 92%;">Resurrection</span>
-                <span style="left: 96%;">144,000 Form</span>
-                <span style="left: 100%;">Kingdom Returned</span>
-            </div>
             <div class="timeline-description describe" id="timeline-description">
-                Jehovah created Adam and Eve perfect, placing them in Eden with the prospect of eternal life.
-                <a href="https://www.jw.org/en/bible-teachings/questions/original-purpose-earth/" class="read-more">Read More</a>
+                <h3 class="timeline-event-title">The Beginning of Creation</h3>
+                Jehovah created Adam and Eve in his image, perfect and with free will, placing them in the Garden of Eden to enjoy eternal life in paradise, as Genesis 1:27-28 states, "God created man in his image... and said to them: ‘Be fruitful and become many.’"
             </div>
             <button class="timeline-next" aria-label="Next event"><i class="fas fa-chevron-right"></i></button>
         </section>
@@ -556,219 +394,30 @@
             </div>
         </section>
 
-        <!-- "Dominant Mental Attitude" Section -->
-        <section class="dma-section" id="dma-section">
-            <h2 class="section-title">Dominant Mental Attitude</h2>
-            <div class="dma-tabs">
-                <div class="dma-tab active" data-tab="inspiration">Inspiration</div>
-                <div class="dma-tab" data-tab="translation">Translation</div>
-                <div class="dma-tab" data-tab="organization">Organization</div>
-                <div class="dma-tab" data-tab="restoration">Restoration</div>
+        <!-- "Spotlight" Section -->
+        <section class="timeline-section" id="spotlight-section">
+            <div class="spotlight-tabs">
+                <div class="spotlight-tab active" data-tab="inspiration">Inspiration</div>
+                <div class="spotlight-tab" data-tab="translation">Translation</div>
+                <div class="spotlight-tab" data-tab="organization">Organization</div>
+                <div class="spotlight-tab" data-tab="restoration">Restoration</div>
             </div>
-            <div class="dma-tab-content active" id="inspiration-content">
-                <div class="carousel-container">
-                    <div class="carousel">
-                        <div class="carousel-track">
-                            <div class="category">
-                                <h3>Unified Message</h3>
-                                <p>The Bible’s consistent message across writers shows divine guidance.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/is-the-bible-really-from-god/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Prophecy Fulfilled</h3>
-                                <p>Accurate predictions confirm its divine origin.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/does-bible-prophecy-point-to-jesus/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Scientific Harmony</h3>
-                                <p>Its statements align with modern discoveries.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/is-the-bible-a-book-of-science/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Historical Accuracy</h3>
-                                <p>Archaeological evidence supports its accounts.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/does-archaeology-support-the-bible/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Manuscript Preservation</h3>
-                                <p>Ancient copies ensure its reliability.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/how-was-the-bible-written-and-transmitted/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Moral Guidance</h3>
-                                <p>Timeless principles guide ethical living.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-true-worship/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Transformative Impact</h3>
-                                <p>It changes lives with hope and purpose.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/how-does-the-bible-help-us/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Spiritual Insight</h3>
-                                <p>Deep wisdom reveals divine truths.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-the-bible-say-about-god-and-jesus/" class="read-more">Read More</a>
-                            </div>
-                        </div>
-                        <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
-                        <div class="carousel-dots"></div>
-                    </div>
-                </div>
+            <button class="timeline-prev" aria-label="Previous event"><i class="fas fa-chevron-left"></i></button>
+            <div class="timeline-line">
+                <span class="timeline-dot active" style="left: 0%;" data-index="0"></span>
+                <span class="timeline-dot" style="left: 14.2857%;" data-index="1"></span>
+                <span class="timeline-dot" style="left: 28.5714%;" data-index="2"></span>
+                <span class="timeline-dot" style="left: 42.8571%;" data-index="3"></span>
+                <span class="timeline-dot" style="left: 57.1428%;" data-index="4"></span>
+                <span class="timeline-dot" style="left: 71.4285%;" data-index="5"></span>
+                <span class="timeline-dot" style="left: 85.7142%;" data-index="6"></span>
+                <span class="timeline-dot" style="left: 100%;" data-index="7"></span>
             </div>
-            <div class="dma-tab-content" id="translation-content">
-                <div class="carousel-container">
-                    <div class="carousel">
-                        <div class="carousel-track">
-                            <div class="category">
-                                <h3>Restoring the Name</h3>
-                                <p>The divine name is restored in the text.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/why-does-the-new-world-translation-use-the-name-jehovah/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Original Meaning</h3>
-                                <p>Translations reflect the earliest manuscripts.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/how-was-the-bible-written-and-transmitted/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Clear Phrasing</h3>
-                                <p>Accurate wording enhances understanding.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-the-bible-say-about-god-and-jesus/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Textual Integrity</h3>
-                                <p>Preservation ensures authenticity.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/how-was-the-bible-written-and-transmitted/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Language Accuracy</h3>
-                                <p>Translations align with ancient languages.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/why-does-the-new-world-translation-use-the-name-jehovah/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Cultural Context</h3>
-                                <p>Context preserves intended meaning.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/how-was-the-bible-written-and-transmitted/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Theological Clarity</h3>
-                                <p>Clear distinctions avoid confusion.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-the-bible-say-about-god-and-jesus/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Readable Style</h3>
-                                <p>Modern language aids comprehension.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/why-was-the-new-world-translation-produced/" class="read-more">Read More</a>
-                            </div>
-                        </div>
-                        <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
-                        <div class="carousel-dots"></div>
-                    </div>
-                </div>
+            <div class="timeline-description describe" id="spotlight-description">
+                <h3 class="timeline-event-title">Spiritual Insight</h3>
+                <p>The Bible’s profound wisdom, like Proverbs 2:6, “Jehovah himself gives wisdom,” reveals a divine mind guiding its authors.</p>
             </div>
-            <div class="dma-tab-content" id="organization-content">
-                <div class="carousel-container">
-                    <div class="carousel">
-                        <div class="carousel-track">
-                            <div class="category">
-                                <h3>False Teachings</h3>
-                                <p>Some claim divine authority but lead astray, as it says, "Get out of her, my people."</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-babylon-the-great/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Idolatry</h3>
-                                <p>Worshipping images is condemned, with the warning, "Guard yourselves from idols."</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/should-christians-celebrate-holidays/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Empty Rituals</h3>
-                                <p>Hypocrisy in worship is rejected, as noted, "Not everyone saying ‘Lord, Lord’ will enter."</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/are-all-religions-acceptable-to-god/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Pagan Practices</h3>
-                                <p>Blending pagan customs with worship is forbidden, as it states, "You must not learn to imitate."</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/should-christians-celebrate-holidays/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Divisive Doctrines</h3>
-                                <p>Teachings causing division are warned against, with the call, "Keep testing whether you are in the faith."</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-true-worship/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Material Focus</h3>
-                                <p>Prioritizing wealth over spirit is cautioned, as it says, "You cannot serve God and riches."</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-the-bible-say-about-money/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Human Traditions</h3>
-                                <p>Traditions of men are criticized, with the teaching, "You make the word of God invalid."</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/are-all-religions-acceptable-to-god/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>False Prophets</h3>
-                                <p>Deceptive leaders are exposed, as it warns, "False prophets will arise and mislead many."</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/how-can-you-protect-yourself-from-false-teaching/" class="read-more">Read More</a>
-                            </div>
-                        </div>
-                        <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
-                        <div class="carousel-dots"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="dma-tab-content" id="restoration-content">
-                <div class="carousel-container">
-                    <div class="carousel">
-                        <div class="carousel-track">
-                            <div class="category">
-                                <h3>Truth Revealed</h3>
-                                <p>Scripture unveils divine truth, guiding to life.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-true-worship/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Jehovah’s Name Restored</h3>
-                                <p>The divine name is returned to its rightful place.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/why-does-the-new-world-translation-use-the-name-jehovah/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>True Worship</h3>
-                                <p>Pure worship is restored through scriptural guidance.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-true-worship/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Spiritual Renewal</h3>
-                                <p>Renewal comes through understanding divine will.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/how-can-you-draw-close-to-god/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Kingdom Hope</h3>
-                                <p>The promise of a divine kingdom restores hope.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-kingdom-of-god/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Covenant Fulfillment</h3>
-                                <p>The new covenant brings salvation to all.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-new-covenant/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Global Unity</h3>
-                                <p>Truth unites people in love and purpose.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-it-mean-to-be-part-of-a-global-brotherhood/" class="read-more">Read More</a>
-                            </div>
-                            <div class="category">
-                                <h3>Eternal Promise</h3>
-                                <p>Restoration leads to eternal life on a paradise earth.</p>
-                                <a href="https://www.jw.org/en/bible-teachings/questions/what-happens-after-the-1000-year-reign/" class="read-more">Read More</a>
-                            </div>
-                        </div>
-                        <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
-                        <div class="carousel-dots"></div>
-                    </div>
-                </div>
-            </div>
+            <button class="timeline-next" aria-label="Next event"><i class="fas fa-chevron-right"></i></button>
         </section>
     </main>
     <footer>
@@ -815,38 +464,38 @@
                 });
             });
 
-            // Timeline functionality
-            const timelineDots = document.querySelectorAll('.timeline-dot');
+            // Timeline functionality for "Paradise Restored"
+            const timelineDots = document.querySelectorAll('#timeline-section .timeline-dot');
             const timelineDescription = document.querySelector('#timeline-description');
-            const timelinePrev = document.querySelector('.timeline-prev');
-            const timelineNext = document.querySelector('.timeline-next');
+            const timelinePrev = document.querySelector('#timeline-section .timeline-prev');
+            const timelineNext = document.querySelector('#timeline-section .timeline-next');
             const events = [
-                { text: 'Jehovah created Adam and Eve perfect, placing them in Eden with the prospect of eternal life. <a href="https://www.jw.org/en/bible-teachings/questions/original-purpose-earth/" class="read-more">Read More</a>' },
-                { text: 'Adam’s disobedience introduced sin and death, breaking perfection. <a href="https://www.jw.org/en/bible-teachings/questions/why-do-we-grow-old-and-die/" class="read-more">Read More</a>' },
-                { text: 'Jehovah promised a seed to crush the serpent, the first prophecy of restoration. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-messianic-kingdom/" class="read-more">Read More</a>' },
-                { text: 'The global flood allowed a new start through Noah’s family. <a href="https://www.jw.org/en/bible-teachings/questions/the-global-flood-why/" class="read-more">Read More</a>' },
-                { text: 'Jehovah made a covenant with Abraham, promising a seed to bless all nations. <a href="https://www.jw.org/en/bible-teachings/questions/abraham-gods-friend/" class="read-more">Read More</a>' },
-                { text: 'Jacob’s 12 sons formed the 12 tribes of Israel, a nation for Jehovah’s purpose. <a href="https://www.jw.org/en/bible-teachings/questions/who-were-the-patriarchs/" class="read-more">Read More</a>' },
-                { text: 'The tribes were enslaved in Egypt, testing their faith. <a href="https://www.jw.org/en/bible-teachings/questions/moses-gods-deliverer/" class="read-more">Read More</a>' },
-                { text: 'Jehovah delivered Israel, giving the Law Covenant to guide them. <a href="https://www.jw.org/en/bible-teachings/questions/what-was-the-mosaic-law/" class="read-more">Read More</a>' },
-                { text: 'Israel’s disobedience delayed blessings. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-the-israelites-wander-for-40-years/" class="read-more">Read More</a>' },
-                { text: 'Jehovah raised judges to guide Israel. <a href="https://www.jw.org/en/bible-teachings/questions/who-were-the-judges-of-israel/" class="read-more">Read More</a>' },
-                { text: 'Israel demanded kings, but many led them astray. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-israel-want-a-king/" class="read-more">Read More</a>' },
-                { text: 'The kingdom split into two, weakening their covenant. <a href="https://www.jw.org/en/bible-teachings/questions/what-happened-to-solomons-kingdom/" class="read-more">Read More</a>' },
-                { text: 'Israel’s unfaithfulness led to exile in Babylon. <a href="https://www.jw.org/en/bible-teachings/questions/why-were-the-jews-exiled-to-babylon/" class="read-more">Read More</a>' },
-                { text: 'A remnant returned from exile but struggled. <a href="https://www.jw.org/en/bible-teachings/questions/what-happened-after-the-exile/" class="read-more">Read More</a>' },
-                { text: 'Daniel foretold the Messiah’s arrival. <a href="https://www.jw.org/en/bible-teachings/questions/does-bible-prophecy-point-to-jesus/" class="read-more">Read More</a>' },
-                { text: 'Jesus, the promised seed, was born. <a href="https://www.jw.org/en/bible-teachings/questions/who-is-jesus-christ/" class="read-more">Read More</a>' },
-                { text: 'Jesus began his ministry with baptism, showing humility. <a href="https://www.jw.org/en/bible-teachings/questions/why-was-jesus-baptized/" class="read-more">Read More</a>' },
-                { text: 'Jesus started preaching, teaching the Kingdom’s nearness. <a href="https://www.jw.org/en/bible-teachings/questions/what-did-jesus-teach/" class="read-more">Read More</a>' },
-                { text: 'Jesus gave the Sermon on the Mount, teaching true worship principles. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-sermon-on-the-mount/" class="read-more">Read More</a>' },
-                { text: 'Jesus performed miracles, proving his divine role. <a href="https://www.jw.org/en/bible-teachings/questions/what-do-jesus-miracles-teach-us/" class="read-more">Read More</a>' },
-                { text: 'The Jews rejected Jesus, fulfilling prophecy. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-the-jews-reject-jesus/" class="read-more">Read More</a>' },
-                { text: 'Jesus instituted the new covenant, open to all nations. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-new-covenant/" class="read-more">Read More</a>' },
-                { text: 'Jesus’ death provided the ransom for all. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-jesus-die/" class="read-more">Read More</a>' },
-                { text: 'Jesus’ resurrection and ascension confirmed his role. <a href="https://www.jw.org/en/bible-teachings/questions/what-does-jesus-resurrection-mean-for-us/" class="read-more">Read More</a>' },
-                { text: 'The new covenant anointed 144,000 from all nations. <a href="https://www.jw.org/en/bible-teachings/questions/who-are-the-144000/" class="read-more">Read More</a>' },
-                { text: 'After the Millennial Reign, Christ hands the Kingdom to Jehovah, restoring paradise. <a href="https://www.jw.org/en/bible-teachings/questions/what-happens-after-the-1000-year-reign/" class="read-more">Read More</a>' }
+                { title: "The Beginning of Creation", text: 'Jehovah created Adam and Eve in his image, perfect and with free will, placing them in the Garden of Eden to enjoy eternal life in paradise, as Genesis 1:27-28 states, "God created man in his image... and said to them: ‘Be fruitful and become many.’"' },
+                { title: "The Fall of Perfection", text: 'Adam and Eve’s disobedience by eating the forbidden fruit introduced sin and death, breaking the perfection of humanity, as Romans 5:12 explains, "Through one man sin entered into the world, and death through sin."'},
+                { title: "The First Promise", text: 'Jehovah’s first prophecy in Genesis 3:15 promised a seed to crush the serpent, foretelling a deliverer who would restore humanity’s relationship with God.' },
+                { title: "The Great Flood", text: 'A global flood destroyed the wicked, preserving Noah’s family to start anew, as Genesis 7:23 says, "Only Noah and those with him in the ark survived."'},
+                { title: "The Covenant with Abraham", text: 'Jehovah’s covenant with Abraham promised a seed through whom all nations would be blessed, as Genesis 22:18 states, "By means of your seed all nations of the earth will be blessed."'},
+                { title: "Formation of the Twelve Tribes", text: 'Jacob’s 12 sons became the foundation of Israel’s 12 tribes, chosen to fulfill Jehovah’s purpose, as Genesis 49:28 describes, "All these are the twelve tribes of Israel."'},
+                { title: "Enslavement in Egypt", text: 'Israel’s enslavement in Egypt tested their faith, yet Jehovah remembered his covenant, as Exodus 2:24 says, "God heard their groaning... and God remembered his covenant with Abraham."'},
+                { title: "The Exodus and Law Covenant", text: 'Jehovah delivered Israel from Egypt through Moses, establishing the Law Covenant to guide them, as Exodus 19:5 states, "If you will strictly obey my voice... you will become my special property."'},
+                { title: "Disobedience and Delay", text: 'Israel’s repeated disobedience, including worship of false gods, delayed their blessings, as Deuteronomy 9:6 notes, "You are a stiff-necked people."'},
+                { title: "The Era of Judges", text: 'Jehovah appointed judges to deliver Israel from enemies and guide them back to true worship, as Judges 2:16 says, "Jehovah would raise up judges who would save them."'},
+                { title: "The Reign of Kings", text: 'Israel’s demand for a human king led to mixed outcomes, with many kings leading them astray, as 1 Samuel 8:7 states, "They have rejected me from being king over them."'},
+                { title: "The Kingdom Divided", text: 'After Solomon, the kingdom split into Judah and Israel, weakening their unity, as 1 Kings 12:20 notes, "Only the tribe of Judah remained loyal to the house of David."'},
+                { title: "Exile to Babylon", text: 'Israel’s persistent unfaithfulness led to exile in Babylon, fulfilling warnings like Jeremiah 25:11, "This whole land will become a desolate ruin."'},
+                { title: "Return from Exile", text: 'A faithful remnant returned to Jerusalem to rebuild, as Ezra 1:5 says, "Everyone whose heart God had stirred got ready to go up and rebuild the house of Jehovah."'},
+                { title: "Prophecy of the Messiah", text: 'Daniel’s prophecy in Daniel 9:24-27 pinpointed the Messiah’s arrival, preparing the faithful for the coming deliverer.'},
+                { title: "The Birth of Jesus", text: 'Jesus, the promised seed, was born in Bethlehem, fulfilling Micah 5:2, "From you will come out the one to be ruler in Israel."'},
+                { title: "Jesus’ Baptism", text: 'Jesus’ baptism marked the start of his role as Messiah, with Jehovah declaring in Matthew 3:17, "This is my Son, the beloved, whom I have approved."'},
+                { title: "The Start of Ministry", text: 'Jesus began preaching the good news of the Kingdom, as Matthew 4:17 says, "Repent, for the Kingdom of the heavens has drawn near."'},
+                { title: "The Sermon on the Mount", text: 'The Sermon on the Mount in Matthew 5-7 taught principles of true worship, emphasizing love, humility, and faith.'},
+                { title: "Miracles of Jesus", text: 'Jesus’ miracles, like healing the sick and raising the dead, confirmed his divine authority, as John 20:30-31 states, "These have been written down so that you may believe that Jesus is the Christ."'},
+                { title: "Rejection by the Jews", text: 'The Jews’ rejection of Jesus fulfilled prophecy, as John 1:11 notes, "His own people did not accept him."'},
+                { title: "The New Covenant", text: 'Jesus established the new covenant at the Last Supper, open to all nations, as Luke 22:20 says, "This cup means the new covenant by virtue of my blood."'},
+                { title: "The Ransom Sacrifice", text: 'Jesus’ sacrificial death provided the ransom for humanity’s sins, as Matthew 20:28 states, "The Son of man came... to give his life as a ransom for many."'},
+                { title: "The Resurrection", text: 'Jesus’ resurrection and ascension validated his role as King, as Acts 2:32-33 says, "This Jesus God resurrected... exalted to the right hand of God."'},
+                { title: "The 144,000 Anointed", text: 'The new covenant anointed 144,000 to rule with Christ, as Revelation 14:1 describes, "The Lamb standing on Mount Zion, and with him 144,000."'},
+                { title: "The Kingdom Restored", text: 'After the Millennial Reign, Christ hands the Kingdom to Jehovah, fulfilling 1 Corinthians 15:24, "Then comes the end, when he hands over the Kingdom to his God and Father," restoring paradise.'}
             ];
 
             let currentEventIndex = 0;
@@ -855,7 +504,7 @@
                 timelineDots[currentEventIndex].classList.add('active');
                 timelineDescription.style.opacity = 0;
                 setTimeout(() => {
-                    timelineDescription.innerHTML = events[currentEventIndex].text;
+                    timelineDescription.innerHTML = `<h3 class="timeline-event-title">${events[currentEventIndex].title}</h3><p>${events[currentEventIndex].text}</p>`;
                     timelineDescription.style.opacity = 1;
                 }, 300);
             }
@@ -877,19 +526,98 @@
                 });
             });
 
-            // DMA tab functionality
-            const dmaTabs = document.querySelectorAll('.dma-tab');
-            const dmaTabContents = document.querySelectorAll('.dma-tab-content');
-            dmaTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    dmaTabs.forEach(t => t.classList.remove('active'));
-                    dmaTabContents.forEach(c => c.classList.remove('active'));
-                    tab.classList.add('active');
-                    document.getElementById(`${tab.getAttribute('data-tab')}-content`).classList.add('active');
+            // Spotlight timeline functionality
+            const spotlightDots = document.querySelectorAll('#spotlight-section .timeline-dot');
+            const spotlightDescription = document.querySelector('#spotlight-description');
+            const spotlightPrev = document.querySelector('#spotlight-section .timeline-prev');
+            const spotlightNext = document.querySelector('#spotlight-section .timeline-next');
+            const spotlightTabs = document.querySelectorAll('.spotlight-tab');
+
+            const spotlightEvents = {
+                inspiration: [
+                    { title: "Spiritual Insight", text: 'The Bible’s profound wisdom, like Proverbs 2:6, “Jehovah himself gives wisdom,” reveals a divine mind guiding its authors.' },
+                    { title: "Unified Themes", text: 'Its consistent focus on love and justice, as in 1 John 4:8, “God is love,” shows a single divine purpose across its books.' },
+                    { title: "Inner Transformation", text: 'It changes hearts, as Psalm 19:7 says, “The law of Jehovah is perfect, restoring the soul,” offering personal renewal.' },
+                    { title: "Divine Guidance", text: 'The Holy Spirit inspired its writers, as 2 Peter 1:21 affirms, “Men spoke from God as they were borne along by holy spirit.”' },
+                    { title: "Eternal Relevance", text: 'Its teachings remain timeless, as Isaiah 40:8 declares, “The word of our God endures forever,” speaking to all generations.' },
+                    { title: "Moral Integrity", text: 'It promotes righteousness, as Psalm 119:105 states, “Your word is a lamp to my foot,” guiding ethical living.' },
+                    { title: "Peaceful Influence", text: 'Its message fosters peace, as Philippians 4:7 promises, “The peace of God will guard your hearts,” beyond human understanding.' },
+                    { title: "Spiritual Strength", text: 'It builds endurance, as Romans 15:4 notes, “Through the comfort from the Scriptures we might have hope,” strengthening faith.' }
+                ],
+                translation: [
+                    { title: "Restoring Jehovah’s Name", text: 'The NWT restores “Jehovah” over 7,000 times, fulfilling Psalm 83:18, “You, whose name is Jehovah, you alone are the Most High,” correcting centuries of omission.' },
+                    { title: "Original Language Fidelity", text: 'It returns to Hebrew and Greek texts, as Matthew 5:18 insists, “Not a letter or part of a letter will pass away until all things take place,” ensuring accuracy.' },
+                    { title: "Removing Tradition", text: 'It rejects trinitarian bias, rendering John 1:1 as “the Word was a god,” aligning with the original anarthrous Greek structure.' },
+                    { title: "Preserving Context", text: 'It reflects first-century intent, like “sheol” in Ecclesiastes 9:10, “There is no work... in Sheol,” avoiding misinterpretations of hell.' },
+                    { title: "Correcting Errors", text: 'It fixes mistranslations, as Acts 20:28 adjusts to “with the blood of his own [Son],” clarifying Jesus’ role, not God’s nature.' },
+                    { title: "Simplifying for Truth", text: 'It uses clear terms, like “soul” in Ezekiel 18:4, “The soul that is sinning—it will die,” rejecting immortal soul doctrines.' },
+                    { title: "Manuscript Basis", text: 'It relies on the oldest manuscripts, like the Dead Sea Scrolls, supporting 1 Timothy 4:1, “The spirit expressly says some will fall away,” for textual purity.' },
+                    { title: "Divine Authority", text: 'It honors Jehovah’s command in Isaiah 42:8, “I am Jehovah... I give my glory to no one else,” by prioritizing His name and intent.' }
+                ],
+                organization: [
+                    { title: "Catholic Hierarchy", text: 'The Catholic Church’s papal system contradicts 1 Timothy 2:5, “There is one mediator... Christ Jesus,” imposing human authority over Christ.' },
+                    { title: "Protestant Divisions", text: 'Thousands of denominations, like Baptists and Methodists, defy 1 Corinthians 1:10, “That you may all speak in agreement,” causing spiritual confusion.' },
+                    { title: "Eastern Orthodoxy", text: 'Its veneration of icons violates Exodus 20:4, “You must not make a carved image,” promoting idolatry over true worship.' },
+                    { title: "Islamic Clergy", text: 'Imams’ authority over Quranic interpretation clashes with John 4:23, “True worshippers will worship the Father with spirit and truth,” sidelining Jehovah.' },
+                    { title: "Hindu Priesthood", text: 'Priests mediating to multiple gods oppose Isaiah 42:8, “I am Jehovah... I give my glory to no one else,” fostering polytheism.' },
+                    { title: "Buddhist Sangha", text: 'The monastic structure ignores Matthew 6:7, “When praying, do not say the same things over and over,” promoting ritual over faith.' },
+                    { title: "Jewish Rabbinate", text: 'Rabbis’ oral traditions overshadow scripture, contradicting Deuteronomy 4:2, “You must not add to the word that I am commanding you.”' },
+                    { title: "New Age Groups", text: 'Their eclectic beliefs reject John 17:3, “This means everlasting life, their knowing you, the only true God,” diluting worship of Jehovah.' }
+                ],
+                restoration: [
+                    { title: "Obedience to Jehovah", text: 'Serving Jehovah requires following His commands, as Deuteronomy 10:12 urges, “To walk in all his ways and to love him,” not personal whims.' },
+                    { title: "Rejecting Human Traditions", text: 'We must forsake man-made practices, as Matthew 15:9 warns, “They teach commands of men as doctrines,” to honor Jehovah’s will.' },
+                    { title: "Pure Worship", text: 'True worship aligns with John 4:24, “Worship with spirit and truth,” rejecting individual deviations from Jehovah’s standards.' },
+                    { title: "Scriptural Authority", text: 'God’s Word, not personal choice, guides us, as 2 Timothy 3:16 states, “All Scripture is inspired of God and beneficial,” as our foundation.' },
+                    { title: "Unified Standards", text: 'Serving Jehovah unites us, as 1 Corinthians 1:10 calls, “That you may all speak in agreement,” not fragmented personal beliefs.' },
+                    { title: "Faithful Adherence", text: 'We must cling to Jehovah’s laws, as Psalm 119:30 affirms, “I have chosen the way of faithfulness,” over self-styled worship.' },
+                    { title: "Rejecting Idolatry", text: 'Personal idols must be abandoned, as 1 John 5:21 commands, “Guard yourselves from idols,” to serve Jehovah purely.' },
+                    { title: "Divine Approval", text: 'Only Jehovah’s approval matters, as Colossians 3:23 urges, “Whatever you are doing, work at it whole-souled as to Jehovah,” not human preferences.' }
+                ]
+            };
+
+            let currentSpotlightIndex = 0;
+            let currentTab = 'inspiration';
+
+            function updateSpotlight() {
+                const events = spotlightEvents[currentTab];
+                spotlightDots.forEach(dot => dot.classList.remove('active'));
+                spotlightDots[currentSpotlightIndex].classList.add('active');
+                spotlightDescription.style.opacity = 0;
+                setTimeout(() => {
+                    spotlightDescription.innerHTML = `<h3 class="timeline-event-title">${events[currentSpotlightIndex].title}</h3><p>${events[currentSpotlightIndex].text}</p>`;
+                    spotlightDescription.style.opacity = 1;
+                }, 300);
+            }
+
+            spotlightPrev.addEventListener('click', () => {
+                currentSpotlightIndex = (currentSpotlightIndex - 1 + 8) % 8; // 8 events per tab
+                updateSpotlight();
+            });
+
+            spotlightNext.addEventListener('click', () => {
+                currentSpotlightIndex = (currentSpotlightIndex + 1) % 8; // 8 events per tab
+                updateSpotlight();
+            });
+
+            spotlightDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    currentSpotlightIndex = parseInt(dot.getAttribute('data-index'));
+                    updateSpotlight();
                 });
             });
 
-            // Carousel functionality for all carousels
+            spotlightTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    spotlightTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentTab = tab.getAttribute('data-tab');
+                    currentSpotlightIndex = 0; // Reset to first event when switching tabs
+                    updateSpotlight();
+                });
+            });
+
+            // Carousel functionality for other sections
             document.querySelectorAll('.carousel').forEach(carousel => {
                 const track = carousel.querySelector('.carousel-track');
                 const items = Array.from(carousel.querySelectorAll('.category'));
