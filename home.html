@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore spiritual wisdom and truth through Noble Minds, with scripture-based guidance.">
     <meta name="keywords" content="Jehovah, scripture, spiritual guidance, Noble Minds">
-    <title>JWL Watchtower</title>
+    <title>Just Wise Love</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
@@ -13,58 +13,131 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Timeline event styling */
-        .timeline-event {
-            text-align: center;
+        /* Inline styles for timeline navigation adjustments */
+        .timeline-section {
+            padding: 20px;
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-line {
+            height: 2px;
+            background: #6b9e31;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border: 2px solid #6b9e31;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-dot.active {
+            background: #6b9e31;
+            transform: scale(1.2);
+            box-shadow: 0 0 10px #6b9e31;
+        }
+
+        .timeline-label {
+            position: absolute;
+            top: -30px;
+            font-size: 12px;
+            color: #ffffff;
+            text-shadow: 0 0 5px #6b9e31;
+            white-space: nowrap;
+        }
+
+        .timeline-description {
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .timeline-prev, .timeline-next {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-prev {
+            left: 10px;
+        }
+
+        .timeline-next {
+            right: 10px;
+        }
+
+        /* DMA section adjustments */
+        .dma-section {
+            padding: 20px;
+            background: #000000;
+        }
+
+        .dma-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
             margin-bottom: 20px;
         }
-        .timeline-event p {
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        .timeline-event .read-more {
-            display: block;
-            margin: 0 auto;
+
+        .dma-tab {
             padding: 10px 20px;
-            background: linear-gradient(90deg, #1e4b1c, #5a8a27);
-            color: #000;
-            text-decoration: none;
-            font-family: 'Audiowide', Arial, sans-serif;
+            background: #333;
+            color: #ffffff;
+            cursor: pointer;
             border-radius: 5px;
-            transition: background 0.3s, transform 0.3s;
-        }
-        .timeline-event .read-more:hover {
-            background: linear-gradient(90deg, #2a6626, #6b9e31);
-            transform: translateY(-2px);
+            transition: all 0.3s;
         }
 
-        /* Timeline labels styling */
-        .timeline-labels {
-            display: flex;
-            justify-content: space-between;
-            text-align: center;
-            margin-top: 10px;
-        }
-        .timeline-labels span {
-            font-size: 12px;
-            color: #fff;
-            margin: 0 5px;
+        .dma-tab.active {
+            background: #6b9e31;
+            box-shadow: 0 0 10px #6b9e31;
         }
 
-        /* DMA slider content styling */
-        .dma-slider-content {
-            background: #000;
-            padding: 20px;
-            border-radius: 5px;
-            color: #fff;
-            text-align: center;
+        .dma-tab-content {
+            display: none;
         }
-        .dma-slider-content p {
-            margin-bottom: 15px;
+
+        .dma-tab-content.active {
+            display: block;
+            animation: slideIn 0.5s ease;
         }
-        .dma-slider-content .scripture {
-            font-style: italic;
-            color: #6b9e31;
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .timeline-label {
+                font-size: 10px;
+            }
+            .timeline-description {
+                font-size: 14px;
+            }
+            .dma-tab {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
         }
     </style>
 </head>
@@ -82,8 +155,8 @@
             </ul>
         </nav>
         <div class="logo">
-            <a href="index.html" aria-label="JWL Watchtower home">
-                <h1>JWL Watchtower</h1>
+            <a href="index.html" aria-label="Just Wise Love home">
+                <h1><a href="jwl.html">JWL</a></h1>
             </a>
         </div>
         <nav class="nav-right">
@@ -138,35 +211,35 @@
                 <span class="timeline-dot" style="left: 100%;" data-index="25"></span>
             </div>
             <div class="timeline-labels">
-                <span>Creation</span>
-                <span>Perfection Lost</span>
-                <span>First Prophecy</span>
-                <span>Flood</span>
-                <span>Abraham’s Covenant</span>
-                <span>12 Tribes Form</span>
-                <span>Enslavement</span>
-                <span>Exodus</span>
-                <span>Disobedience</span>
-                <span>Judges Rule</span>
-                <span>Kings Rule</span>
-                <span>Kingdom Split</span>
-                <span>Exile</span>
-                <span>Return</span>
-                <span>Messiah Prophecy</span>
-                <span>Jesus’ Birth</span>
-                <span>Baptism</span>
-                <span>Ministry Begins</span>
-                <span>Sermon</span>
-                <span>Miracles</span>
-                <span>Rejection</span>
-                <span>New Covenant</span>
-                <span>Ransom</span>
-                <span>Resurrection</span>
-                <span>144,000 Form</span>
-                <span>Kingdom Returned</span>
+                <span style="left: 0%;">Creation</span>
+                <span style="left: 4%;">Perfection Lost</span>
+                <span style="left: 8%;">First Prophecy</span>
+                <span style="left: 12%;">Flood</span>
+                <span style="left: 16%;">Abraham’s Covenant</span>
+                <span style="left: 20%;">12 Tribes Form</span>
+                <span style="left: 24%;">Enslavement</span>
+                <span style="left: 28%;">Exodus</span>
+                <span style="left: 32%;">Disobedience</span>
+                <span style="left: 36%;">Judges Rule</span>
+                <span style="left: 40%;">Kings Rule</span>
+                <span style="left: 44%;">Kingdom Split</span>
+                <span style="left: 48%;">Exile</span>
+                <span style="left: 52%;">Return</span>
+                <span style="left: 56%;">Messiah Prophecy</span>
+                <span style="left: 60%;">Jesus’ Birth</span>
+                <span style="left: 64%;">Baptism</span>
+                <span style="left: 68%;">Ministry Begins</span>
+                <span style="left: 72%;">Sermon</span>
+                <span style="left: 76%;">Miracles</span>
+                <span style="left: 80%;">Rejection</span>
+                <span style="left: 84%;">New Covenant</span>
+                <span style="left: 88%;">Ransom</span>
+                <span style="left: 92%;">Resurrection</span>
+                <span style="left: 96%;">144,000 Form</span>
+                <span style="left: 100%;">Kingdom Returned</span>
             </div>
-            <div class="timeline-event" id="timeline-event">
-                <p id="timeline-description">Jehovah created Adam and Eve perfect, placing them in the Garden of Eden with the prospect of eternal life. This act established humanity’s original purpose to live in harmony with God’s will. Their perfection reflected Jehovah’s creative power and love, setting the stage for His divine plan.</p>
+            <div class="timeline-description describe" id="timeline-description">
+                Jehovah created Adam and Eve perfect, placing them in Eden with the prospect of eternal life.
                 <a href="https://www.jw.org/en/bible-teachings/questions/original-purpose-earth/" class="read-more">Read More</a>
             </div>
             <button class="timeline-next" aria-label="Next event"><i class="fas fa-chevron-right"></i></button>
@@ -498,67 +571,43 @@
                         <div class="carousel-track">
                             <div class="category">
                                 <h3>Unified Message</h3>
-                                <div class="dma-slider-content">
-                                    <p>The Bible’s unified message across 40 writers and 1,600 years reveals divine guidance. From Genesis to Revelation, it consistently points to God’s purpose for humanity, emphasizing love, justice, and redemption. This harmony is a testament to its divine origin, as no human effort could achieve such consistency over centuries.</p>
-                                    <p class="scripture">"All Scripture is inspired of God and beneficial for teaching, for reproving, for setting things straight." – 2 Timothy 3:16 (NWT 2013)</p>
-                                    <p class="scripture">"The word of God is alive and exerts power." – Hebrews 4:12 (NWT 2013)</p>
-                                </div>
+                                <p>The Bible’s consistent message across writers shows divine guidance.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/is-the-bible-really-from-god/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Prophecy Fulfilled</h3>
-                                <div class="dma-slider-content">
-                                    <p>Accurate prophecies, such as the fall of Babylon and the Messiah’s birth, confirm the Bible’s divine origin. These predictions, written centuries in advance, demonstrate God’s ability to see and control the future. The fulfillment of these prophecies strengthens faith in the Bible as God’s word.</p>
-                                    <p class="scripture">"Remember the former things of long ago, that I am God, and there is no other." – Isaiah 46:9 (NWT 2013)</p>
-                                    <p class="scripture">"The one who calls the things that are not yet done as though they were." – Isaiah 48:7 (NWT 2013)</p>
-                                </div>
+                                <p>Accurate predictions confirm its divine origin.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/does-bible-prophecy-point-to-jesus/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Scientific Harmony</h3>
-                                <div class="dma-slider-content">
-                                    <p>The Bible’s statements about the earth’s shape, water cycle, and hygiene align with modern science, despite being written millennia ago. This harmony shows divine insight, as ancient writers could not have known these facts without guidance. It reinforces the Bible’s credibility as a source of truth.</p>
-                                    <p class="scripture">"He stretches out the north over empty space; he hangs the earth upon nothing." – Job 26:7 (NWT 2013)</p>
-                                    <p class="scripture">"He draws up the drops of water; they distill as rain from his mist." – Job 36:27 (NWT 2013)</p>
-                                </div>
+                                <p>Its statements align with modern discoveries.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/is-the-bible-a-book-of-science/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Historical Accuracy</h3>
-                                <div class="dma-slider-content">
-                                    <p>Archaeological discoveries, such as the Tel Dan Stele and Dead Sea Scrolls, confirm the Bible’s historical accounts. These findings validate events like the reign of King David and the existence of ancient cities. This accuracy builds trust in the Bible as a reliable historical document.</p>
-                                    <p class="scripture">"The word of our God endures forever." – Isaiah 40:8 (NWT 2013)</p>
-                                    <p class="scripture">"The stone that the builders rejected has become the chief cornerstone." – Psalm 118:22 (NWT 2013)</p>
-                                </div>
+                                <p>Archaeological evidence supports its accounts.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/does-archaeology-support-the-bible/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Manuscript Preservation</h3>
-                                <div class="dma-slider-content">
-                                    <p>Thousands of ancient manuscripts, such as the Codex Sinaiticus, ensure the Bible’s text has been preserved with minimal variation. This preservation across centuries and languages attests to its divine protection. It allows modern readers to access the original message with confidence.</p>
-                                    <p class="scripture">"The word of Jehovah endures forever." – 1 Peter 1:25 (NWT 2013)</p>
-                                    <p class="scripture">"Heaven and earth will pass away, but my words will by no means pass away." – Matthew 24:35 (NWT 2013)</p>
-                                </div>
+                                <p>Ancient copies ensure its reliability.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/how-was-the-bible-written-and-transmitted/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Moral Guidance</h3>
-                                <div class="dma-slider-content">
-                                    <p>The Bible’s moral principles, such as love, honesty, and forgiveness, remain relevant across cultures and eras. These timeless standards promote peace and justice, guiding ethical living. They reflect divine wisdom, offering a path to a fulfilling life.</p>
-                                    <p class="scripture">"Love your neighbor as yourself." – Matthew 22:39 (NWT 2013)</p>
-                                    <p class="scripture">"Let your love be without hypocrisy." – Romans 12:9 (NWT 2013)</p>
-                                </div>
+                                <p>Timeless principles guide ethical living.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-true-worship/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Transformative Impact</h3>
-                                <div class="dma-slider-content">
-                                    <p>The Bible’s teachings inspire hope, resilience, and positive change in millions of lives. Its message of redemption and purpose empowers individuals to overcome challenges. This transformative power is a hallmark of its divine origin.</p>
-                                    <p class="scripture">"The word of God is alive and exerts power." – Hebrews 4:12 (NWT 2013)</p>
-                                    <p class="scripture">"Your word is truth." – John 17:17 (NWT 2013)</p>
-                                </div>
+                                <p>It changes lives with hope and purpose.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/how-does-the-bible-help-us/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Spiritual Insight</h3>
-                                <div class="dma-slider-content">
-                                    <p>The Bible reveals profound spiritual truths, such as God’s nature, human purpose, and the path to salvation. Its depth and wisdom surpass human philosophy, offering answers to life’s deepest questions. This insight guides believers to a closer relationship with God.</p>
-                                    <p class="scripture">"The unfolding of your words gives light." – Psalm 119:130 (NWT 2013)</p>
-                                    <p class="scripture">"Your word is a lamp to my foot." – Psalm 119:105 (NWT 2013)</p>
-                                </div>
+                                <p>Deep wisdom reveals divine truths.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-the-bible-say-about-god-and-jesus/" class="read-more">Read More</a>
                             </div>
                         </div>
                         <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
@@ -573,67 +622,43 @@
                         <div class="carousel-track">
                             <div class="category">
                                 <h3>Restoring the Name</h3>
-                                <div class="dma-slider-content">
-                                    <p>The New World Translation restores Jehovah’s name over 7,000 times, reflecting the original Tetragrammaton in ancient manuscripts. This effort ensures accuracy in conveying God’s identity to modern readers. The translation process involved meticulous comparison with Hebrew and Greek texts to uphold biblical truth. It stands as a tool for pure worship globally.</p>
-                                    <p class="scripture">"Everyone who calls on the name of Jehovah will be saved." – Romans 10:13 (NWT 2013)</p>
-                                    <p class="scripture">"You must not take away from or add to the words of this scroll." – Revelation 22:19 (NWT 2013)</p>
-                                </div>
+                                <p>The divine name is restored in the text.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/why-does-the-new-world-translation-use-the-name-jehovah/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Original Meaning</h3>
-                                <div class="dma-slider-content">
-                                    <p>Translations reflect the earliest manuscripts to preserve the Bible’s original meaning. Scholars use texts like the Dead Sea Scrolls to verify accuracy. This ensures that modern readers receive the same message as ancient audiences. The result is a faithful rendering of God’s word.</p>
-                                    <p class="scripture">"The word of Jehovah endures forever." – 1 Peter 1:25 (NWT 2013)</p>
-                                    <p class="scripture">"Your word is truth." – John 17:17 (NWT 2013)</p>
-                                </div>
+                                <p>Translations reflect the earliest manuscripts.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/how-was-the-bible-written-and-transmitted/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Clear Phrasing</h3>
-                                <div class="dma-slider-content">
-                                    <p>Accurate wording enhances understanding of complex spiritual concepts. Translators strive to convey the original intent without distortion. This clarity helps readers grasp the Bible’s message with ease. It supports effective study and application of its teachings.</p>
-                                    <p class="scripture">"Let your words always be gracious, seasoned with salt." – Colossians 4:6 (NWT 2013)</p>
-                                    <p class="scripture">"The unfolding of your words gives light." – Psalm 119:130 (NWT 2013)</p>
-                                </div>
+                                <p>Accurate wording enhances understanding.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-the-bible-say-about-god-and-jesus/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Textual Integrity</h3>
-                                <div class="dma-slider-content">
-                                    <p>Preservation of the text through centuries ensures its authenticity. Thousands of manuscripts confirm the Bible’s reliability. This integrity allows readers to trust its message. It reflects divine protection over God’s word.</p>
-                                    <p class="scripture">"The word of our God endures forever." – Isaiah 40:8 (NWT 2013)</p>
-                                    <p class="scripture">"Heaven and earth will pass away, but my words will by no means pass away." – Matthew 24:35 (NWT 2013)</p>
-                                </div>
+                                <p>Preservation ensures authenticity.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/how-was-the-bible-written-and-transmitted/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Language Accuracy</h3>
-                                <div class="dma-slider-content">
-                                    <p>Translations align with ancient languages to maintain precision. Hebrew, Aramaic, and Greek terms are carefully rendered. This accuracy ensures the Bible’s message remains unchanged. It supports a deeper understanding of its teachings.</p>
-                                    <p class="scripture">"The word of Jehovah is refined." – Psalm 18:30 (NWT 2013)</p>
-                                    <p class="scripture">"Your word is truth." – John 17:17 (NWT 2013)</p>
-                                </div>
+                                <p>Translations align with ancient languages.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/why-does-the-new-world-translation-use-the-name-jehovah/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Cultural Context</h3>
-                                <div class="dma-slider-content">
-                                    <p>Understanding cultural context preserves the intended meaning of biblical passages. Translators consider historical settings to avoid misinterpretation. This approach ensures the Bible’s message remains relevant and accurate. It enhances the reader’s connection to the text.</p>
-                                    <p class="scripture">"The word of God is alive and exerts power." – Hebrews 4:12 (NWT 2013)</p>
-                                    <p class="scripture">"Your word is a lamp to my foot." – Psalm 119:105 (NWT 2013)</p>
-                                </div>
+                                <p>Context preserves intended meaning.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/how-was-the-bible-written-and-transmitted/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Theological Clarity</h3>
-                                <div class="dma-slider-content">
-                                    <p>Clear distinctions in translation avoid confusion about key doctrines. Terms like "soul," "hell," and "spirit" are rendered accurately to reflect their original meanings. This clarity supports sound biblical understanding. It helps readers grasp the truth without distortion.</p>
-                                    <p class="scripture">"The truth will set you free." – John 8:32 (NWT 2013)</p>
-                                    <p class="scripture">"Sanctify them by means of the truth; your word is truth." – John 17:17 (NWT 2013)</p>
-                                </div>
+                                <p>Clear distinctions avoid confusion.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-the-bible-say-about-god-and-jesus/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Readable Style</h3>
-                                <div class="dma-slider-content">
-                                    <p>Modern language aids comprehension while maintaining accuracy. The New World Translation uses clear, contemporary phrasing to reach a global audience. This readability makes the Bible accessible to all. It supports effective study and application of its principles.</p>
-                                    <p class="scripture">"Let your words always be gracious." – Colossians 4:6 (NWT 2013)</p>
-                                    <p class="scripture">"The unfolding of your words gives light." – Psalm 119:130 (NWT 2013)</p>
-                                </div>
+                                <p>Modern language aids comprehension.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/why-was-the-new-world-translation-produced/" class="read-more">Read More</a>
                             </div>
                         </div>
                         <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
@@ -648,67 +673,43 @@
                         <div class="carousel-track">
                             <div class="category">
                                 <h3>False Teachings</h3>
-                                <div class="dma-slider-content">
-                                    <p>Some claim divine authority but lead astray, as it says, "Get out of her, my people." False teachings distort the truth and mislead believers. True worship requires discernment to avoid deception. Scripture warns against following teachings that contradict God’s word.</p>
-                                    <p class="scripture">"Get out of her, my people, if you do not want to share with her in her sins." – Revelation 18:4 (NWT 2013)</p>
-                                    <p class="scripture">"Beloved ones, do not believe every inspired statement, but test the inspired statements to see whether they originate with God." – 1 John 4:1 (NWT 2013)</p>
-                                </div>
+                                <p>Some claim divine authority but lead astray, as it says, "Get out of her, my people."</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-babylon-the-great/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Idolatry</h3>
-                                <div class="dma-slider-content">
-                                    <p>Worshipping images is condemned, with the warning, "Guard yourselves from idols." Idolatry dishonors God and leads to spiritual corruption. True worship focuses on Jehovah alone, rejecting all forms of idolatry. Scripture emphasizes the importance of pure, undivided devotion.</p>
-                                    <p class="scripture">"Little children, guard yourselves from idols." – 1 John 5:21 (NWT 2013)</p>
-                                    <p class="scripture">"You must not make for yourself a carved image or a form like anything that is in the heavens above or on the earth below." – Exodus 20:4 (NWT 2013)</p>
-                                </div>
+                                <p>Worshipping images is condemned, with the warning, "Guard yourselves from idols."</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/should-christians-celebrate-holidays/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Empty Rituals</h3>
-                                <div class="dma-slider-content">
-                                    <p>Hypocrisy in worship is rejected, as noted, "Not everyone saying ‘Lord, Lord’ will enter." Empty rituals without genuine faith are meaningless. True worship requires sincerity and obedience to God’s will. Scripture calls for worship that comes from the heart.</p>
-                                    <p class="scripture">"Not everyone saying to me, ‘Lord, Lord,’ will enter into the Kingdom of the heavens, but only the one doing the will of my Father." – Matthew 7:21 (NWT 2013)</p>
-                                    <p class="scripture">"This people honor me with their lips, but their hearts are far removed from me." – Matthew 15:8 (NWT 2013)</p>
-                                </div>
+                                <p>Hypocrisy in worship is rejected, as noted, "Not everyone saying ‘Lord, Lord’ will enter."</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/are-all-religions-acceptable-to-god/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Pagan Practices</h3>
-                                <div class="dma-slider-content">
-                                    <p>Blending pagan customs with worship is forbidden, as it states, "You must not learn to imitate." Pagan practices corrupt pure worship and dishonor God. True worship remains separate from worldly traditions. Scripture calls for purity in devotion to Jehovah.</p>
-                                    <p class="scripture">"You must not learn to imitate the detestable practices of those nations." – Deuteronomy 18:9 (NWT 2013)</p>
-                                    <p class="scripture">"Do not become unevenly yoked with unbelievers." – 2 Corinthians 6:14 (NWT 2013)</p>
-                                </div>
+                                <p>Blending pagan customs with worship is forbidden, as it states, "You must not learn to imitate."</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/should-christians-celebrate-holidays/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Divisive Doctrines</h3>
-                                <div class="dma-slider-content">
-                                    <p>Teachings causing division are warned against, with the call, "Keep testing whether you are in the faith." Divisive doctrines disrupt unity and lead to confusion. True worship promotes harmony and adherence to biblical truth. Scripture encourages believers to remain steadfast in sound doctrine.</p>
-                                    <p class="scripture">"Keep testing whether you are in the faith; keep proving what you yourselves are." – 2 Corinthians 13:5 (NWT 2013)</p>
-                                    <p class="scripture">"There should be no division in the body, but its members should have mutual concern for one another." – 1 Corinthians 12:25 (NWT 2013)</p>
-                                </div>
+                                <p>Teachings causing division are warned against, with the call, "Keep testing whether you are in the faith."</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-true-worship/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Material Focus</h3>
-                                <div class="dma-slider-content">
-                                    <p>Prioritizing wealth over spirit is cautioned, as it says, "You cannot serve God and riches." A material focus distracts from spiritual growth and leads to discontent. True worship emphasizes spiritual riches and contentment. Scripture teaches that God’s kingdom is the ultimate treasure.</p>
-                                    <p class="scripture">"You cannot slave for God and for Riches." – Matthew 6:24 (NWT 2013)</p>
-                                    <p class="scripture">"The love of money is a root of all sorts of injurious things." – 1 Timothy 6:10 (NWT 2013)</p>
-                                </div>
+                                <p>Prioritizing wealth over spirit is cautioned, as it says, "You cannot serve God and riches."</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-the-bible-say-about-money/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Human Traditions</h3>
-                                <div class="dma-slider-content">
-                                    <p>Traditions of men are criticized, with the teaching, "You make the word of God invalid." Human traditions can overshadow biblical truth and lead to false worship. True worship adheres strictly to God’s word. Scripture warns against elevating human ideas above divine commands.</p>
-                                    <p class="scripture">"You have made the word of God invalid because of your tradition." – Matthew 15:6 (NWT 2013)</p>
-                                    <p class="scripture">"Beware that no one takes you captive through philosophy and empty deception." – Colossians 2:8 (NWT 2013)</p>
-                                </div>
+                                <p>Traditions of men are criticized, with the teaching, "You make the word of God invalid."</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/are-all-religions-acceptable-to-god/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>False Prophets</h3>
-                                <div class="dma-slider-content">
-                                    <p>Deceptive leaders are exposed, as it warns, "False prophets will arise and mislead many." False prophets distort the truth and exploit believers. True worship requires vigilance and adherence to God’s word. Scripture provides guidance to identify and avoid such deception.</p>
-                                    <p class="scripture">"False prophets will arise and mislead many." – Matthew 24:11 (NWT 2013)</p>
-                                    <p class="scripture">"Beloved ones, do not believe every inspired statement, but test the inspired statements to see whether they originate with God." – 1 John 4:1 (NWT 2013)</p>
-                                </div>
+                                <p>Deceptive leaders are exposed, as it warns, "False prophets will arise and mislead many."</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/how-can-you-protect-yourself-from-false-teaching/" class="read-more">Read More</a>
                             </div>
                         </div>
                         <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
@@ -723,67 +724,43 @@
                         <div class="carousel-track">
                             <div class="category">
                                 <h3>Truth Revealed</h3>
-                                <div class="dma-slider-content">
-                                    <p>Scripture unveils divine truth, guiding to life. Through its pages, God’s purpose for humanity is made clear, offering hope and direction. This truth is a beacon for those seeking spiritual enlightenment. It leads to a deeper understanding of God’s will.</p>
-                                    <p class="scripture">"Your word is truth." – John 17:17 (NWT 2013)</p>
-                                    <p class="scripture">"The truth will set you free." – John 8:32 (NWT 2013)</p>
-                                </div>
+                                <p>Scripture unveils divine truth, guiding to life.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-true-worship/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Jehovah’s Name Restored</h3>
-                                <div class="dma-slider-content">
-                                    <p>The divine name is returned to its rightful place in the Scriptures. This restoration honors God’s identity and emphasizes His sovereignty. It also fulfills the prophecy of God’s name being declared to all nations. The use of Jehovah’s name strengthens the bond between God and His worshippers.</p>
-                                    <p class="scripture">"Everyone who calls on the name of Jehovah will be saved." – Romans 10:13 (NWT 2013)</p>
-                                    <p class="scripture">"I will make my holy name known among my people Israel." – Ezekiel 39:7 (NWT 2013)</p>
-                                </div>
+                                <p>The divine name is returned to its rightful place.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/why-does-the-new-world-translation-use-the-name-jehovah/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>True Worship</h3>
-                                <div class="dma-slider-content">
-                                    <p>Pure worship is restored through scriptural guidance. This worship is free from pagan influences and human traditions. It focuses on honoring Jehovah with sincerity and truth. True worship unites believers in a global brotherhood.</p>
-                                    <p class="scripture">"God is a Spirit, and those worshipping him must worship with spirit and truth." – John 4:24 (NWT 2013)</p>
-                                    <p class="scripture">"Let us worship him in holy array." – Psalm 29:2 (NWT 2013)</p>
-                                </div>
+                                <p>Pure worship is restored through scriptural guidance.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-true-worship/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Spiritual Renewal</h3>
-                                <div class="dma-slider-content">
-                                    <p>Renewal comes through understanding and applying divine will. This process involves transforming the mind and heart to align with God’s standards. It leads to spiritual growth and a closer relationship with Jehovah. Renewal is essential for enduring trials and remaining faithful.</p>
-                                    <p class="scripture">"Be transformed by making your mind over." – Romans 12:2 (NWT 2013)</p>
-                                    <p class="scripture">"Create in me a pure heart, O God." – Psalm 51:10 (NWT 2013)</p>
-                                </div>
+                                <p>Renewal comes through understanding divine will.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/how-can-you-draw-close-to-god/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Kingdom Hope</h3>
-                                <div class="dma-slider-content">
-                                    <p>The promise of a divine kingdom restores hope for a better future. This kingdom will bring peace, justice, and righteousness to the earth. It is the ultimate solution to humanity’s problems. Believers look forward to its establishment with eager expectation.</p>
-                                    <p class="scripture">"Your kingdom come. Your will be done on earth as it is in heaven." – Matthew 6:10 (NWT 2013)</p>
-                                    <p class="scripture">"The God of heaven will set up a kingdom that will never be destroyed." – Daniel 2:44 (NWT 2013)</p>
-                                </div>
+                                <p>The promise of a divine kingdom restores hope.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-kingdom-of-god/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Covenant Fulfillment</h3>
-                                <div class="dma-slider-content">
-                                    <p>The new covenant brings salvation to all who accept it. This covenant, mediated by Jesus Christ, offers forgiveness and reconciliation with God. It fulfills the promises made to Abraham and establishes a new relationship between God and humanity. It is the foundation of Christian hope.</p>
-                                    <p class="scripture">"I will make a new covenant with the house of Israel." – Jeremiah 31:31 (NWT 2013)</p>
-                                    <p class="scripture">"This cup means the new covenant by virtue of my blood." – 1 Corinthians 11:25 (NWT 2013)</p>
-                                </div>
+                                <p>The new covenant brings salvation to all.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-new-covenant/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Global Unity</h3>
-                                <div class="dma-slider-content">
-                                    <p>Truth unites people in love and purpose, transcending national and cultural barriers. This unity is a hallmark of true worship and a fulfillment of Jesus’ prayer for his followers. It demonstrates the power of God’s spirit to bring diverse people together. Global unity reflects the love and peace of God’s kingdom.</p>
-                                    <p class="scripture">"That they may all be one, just as you, Father, are in union with me." – John 17:21 (NWT 2013)</p>
-                                    <p class="scripture">"There is neither Jew nor Greek, there is neither slave nor freeman, there is neither male nor female; for you are all one in union with Christ Jesus." – Galatians 3:28 (NWT 2013)</p>
-                                </div>
+                                <p>Truth unites people in love and purpose.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-does-it-mean-to-be-part-of-a-global-brotherhood/" class="read-more">Read More</a>
                             </div>
                             <div class="category">
                                 <h3>Eternal Promise</h3>
-                                <div class="dma-slider-content">
-                                    <p>Restoration leads to eternal life on a paradise earth. This promise is the ultimate reward for faithfulness and obedience. It fulfills God’s original purpose for humanity and brings an end to suffering and death. The eternal promise is the hope that sustains believers through trials.</p>
-                                    <p class="scripture">"The righteous will possess the earth, and they will live forever on it." – Psalm 37:29 (NWT 2013)</p>
-                                    <p class="scripture">"He will wipe out every tear from their eyes, and death will be no more." – Revelation 21:4 (NWT 2013)</p>
-                                </div>
+                                <p>Restoration leads to eternal life on a paradise earth.</p>
+                                <a href="https://www.jw.org/en/bible-teachings/questions/what-happens-after-the-1000-year-reign/" class="read-more">Read More</a>
                             </div>
                         </div>
                         <button class="carousel-prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
@@ -795,7 +772,7 @@
         </section>
     </main>
     <footer>
-        <p>© 2025 JWL Watchtower</p>
+        <p>© 2025 Just Wise Love</p>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -841,98 +818,45 @@
             // Timeline functionality
             const timelineDots = document.querySelectorAll('.timeline-dot');
             const timelineDescription = document.querySelector('#timeline-description');
-            const timelineEventContainer = document.querySelector('#timeline-event');
             const timelinePrev = document.querySelector('.timeline-prev');
             const timelineNext = document.querySelector('.timeline-next');
             const events = [
-                {
-                    text: 'Jehovah created Adam and Eve perfect, placing them in the Garden of Eden with the prospect of eternal life. This act established humanity’s original purpose to live in harmony with God’s will. Their perfection reflected Jehovah’s creative power and love, setting the stage for His divine plan. <a href="https://www.jw.org/en/bible-teachings/questions/original-purpose-earth/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'The introduction of sin through disobedience disrupted humanity’s perfect state, leading to spiritual and physical death. This pivotal event, driven by Satan’s deception, had lasting consequences for all generations. It marked the beginning of humankind’s need for redemption. <a href="https://www.jw.org/en/bible-teachings/questions/why-do-we-grow-old-and-die/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jehovah promised a seed to crush the serpent, the first prophecy of restoration. This promise set the stage for the unfolding of God’s purpose to redeem humanity. It introduced the hope of a future deliverer who would undo the damage caused by sin. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-messianic-kingdom/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'The global flood allowed a new start through Noah’s family, preserving the line of the promised seed. This event demonstrated God’s judgment on wickedness and His mercy toward the righteous. It also served as a warning for future generations. <a href="https://www.jw.org/en/bible-teachings/questions/the-global-flood-why/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jehovah made a covenant with Abraham, promising a seed to bless all nations. This covenant marked a significant step in God’s plan to restore humanity. It established Abraham’s descendants as the chosen people through whom the seed would come. <a href="https://www.jw.org/en/bible-teachings/questions/abraham-gods-friend/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jacob’s 12 sons formed the 12 tribes of Israel, a nation for Jehovah’s purpose. This structure laid the foundation for God’s dealings with His chosen people. It also fulfilled the promise made to Abraham regarding his descendants. <a href="https://www.jw.org/en/bible-teachings/questions/who-were-the-patriarchs/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'The tribes were enslaved in Egypt, testing their faith and reliance on Jehovah. This period of hardship prepared them for deliverance and the establishment of the Law Covenant. It also highlighted the need for divine intervention in human affairs. <a href="https://www.jw.org/en/bible-teachings/questions/moses-gods-deliverer/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jehovah delivered Israel from Egypt, giving the Law Covenant to guide them. This event marked the beginning of Israel’s role as God’s chosen nation. The Law provided a framework for worship and moral living, setting Israel apart from other nations. <a href="https://www.jw.org/en/bible-teachings/questions/what-was-the-mosaic-law/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Israel’s disobedience delayed blessings and led to wandering in the wilderness. This period of testing revealed the consequences of unfaithfulness. It also underscored the importance of obedience to God’s commands. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-the-israelites-wander-for-40-years/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jehovah raised judges to guide Israel, delivering them from oppressors. These leaders served as instruments of God’s justice and mercy. Their stories illustrate the cycle of apostasy and restoration in Israel’s history. <a href="https://www.jw.org/en/bible-teachings/questions/who-were-the-judges-of-israel/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Israel demanded kings, but many led them astray from true worship. This shift from theocracy to monarchy had profound spiritual consequences. It highlighted the dangers of human rule without divine guidance. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-israel-want-a-king/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'The kingdom split into two, weakening their covenant with Jehovah. This division resulted from disobedience and led to spiritual decline. It set the stage for further prophetic warnings and eventual exile. <a href="https://www.jw.org/en/bible-teachings/questions/what-happened-to-solomons-kingdom/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Israel’s unfaithfulness led to exile in Babylon, a period of discipline. This exile fulfilled prophetic warnings and served as a turning point for repentance. It also preserved a remnant faithful to Jehovah. <a href="https://www.jw.org/en/bible-teachings/questions/why-were-the-jews-exiled-to-babylon/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'A remnant returned from exile but struggled to restore pure worship. This period of rebuilding tested their faith and commitment. It also prepared the way for the coming of the Messiah. <a href="https://www.jw.org/en/bible-teachings/questions/what-happened-after-the-exile/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Daniel foretold the Messiah’s arrival, providing a timeline for his appearance. This prophecy gave hope to the faithful and confirmed God’s control over history. It also pointed to the establishment of God’s kingdom. <a href="https://www.jw.org/en/bible-teachings/questions/does-bible-prophecy-point-to-jesus/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jesus, the promised seed, was born in Bethlehem, fulfilling prophecy. His birth marked the beginning of the fulfillment of God’s promise to Abraham. It also introduced the Savior who would redeem humanity. <a href="https://www.jw.org/en/bible-teachings/questions/who-is-jesus-christ/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jesus began his ministry with baptism, showing humility and obedience. This act set an example for all believers and marked the start of his public work. It also fulfilled the requirements for the Messiah. <a href="https://www.jw.org/en/bible-teachings/questions/why-was-jesus-baptized/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jesus started preaching, teaching the Kingdom’s nearness and God’s will. His ministry focused on repentance and faith in God’s promises. It also laid the foundation for the Christian congregation. <a href="https://www.jw.org/en/bible-teachings/questions/what-did-jesus-teach/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jesus gave the Sermon on the Mount, teaching true worship principles. This discourse outlined the qualities of kingdom citizens and the importance of love and mercy. It remains a cornerstone of Christian ethics. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-sermon-on-the-mount/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jesus performed miracles, proving his divine role and compassion. These acts demonstrated God’s power and confirmed Jesus’ identity as the Messiah. They also foreshadowed the blessings of God’s kingdom. <a href="https://www.jw.org/en/bible-teachings/questions/what-do-jesus-miracles-teach-us/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'The Jews rejected Jesus, fulfilling prophecy and leading to his sacrifice. This rejection opened the way for Gentiles to receive God’s favor. It also marked a pivotal moment in God’s dealings with humanity. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-the-jews-reject-jesus/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jesus instituted the new covenant, open to all nations through faith. This covenant replaced the Law Covenant and offered forgiveness through Jesus’ sacrifice. It established a new relationship between God and believers. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-new-covenant/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jesus’ death provided the ransom for all, paying the price for sin. This act of love and obedience fulfilled God’s justice and opened the way for salvation. It remains the central event of Christian faith. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-jesus-die/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'Jesus’ resurrection and ascension confirmed his role as the Messiah and King. These events provided hope for believers and established Jesus’ authority in heaven. They also marked the beginning of his heavenly reign. <a href="https://www.jw.org/en/bible-teachings/questions/what-does-jesus-resurrection-mean-for-us/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'The new covenant anointed 144,000 from all nations to rule with Christ. These individuals are chosen to serve as kings and priests in God’s kingdom. Their selection fulfills God’s promise to Abraham. <a href="https://www.jw.org/en/bible-teachings/questions/who-are-the-144000/" class="read-more">Read More</a>',
-                },
-                {
-                    text: 'After the Millennial Reign, Christ hands the Kingdom to Jehovah, restoring paradise. This final act completes God’s purpose for humanity and the earth. It ushers in an eternity of peace and righteousness. <a href="https://www.jw.org/en/bible-teachings/questions/what-happens-after-the-1000-year-reign/" class="read-more">Read More</a>',
-                },
+                { text: 'Jehovah created Adam and Eve perfect, placing them in Eden with the prospect of eternal life. <a href="https://www.jw.org/en/bible-teachings/questions/original-purpose-earth/" class="read-more">Read More</a>' },
+                { text: 'Adam’s disobedience introduced sin and death, breaking perfection. <a href="https://www.jw.org/en/bible-teachings/questions/why-do-we-grow-old-and-die/" class="read-more">Read More</a>' },
+                { text: 'Jehovah promised a seed to crush the serpent, the first prophecy of restoration. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-messianic-kingdom/" class="read-more">Read More</a>' },
+                { text: 'The global flood allowed a new start through Noah’s family. <a href="https://www.jw.org/en/bible-teachings/questions/the-global-flood-why/" class="read-more">Read More</a>' },
+                { text: 'Jehovah made a covenant with Abraham, promising a seed to bless all nations. <a href="https://www.jw.org/en/bible-teachings/questions/abraham-gods-friend/" class="read-more">Read More</a>' },
+                { text: 'Jacob’s 12 sons formed the 12 tribes of Israel, a nation for Jehovah’s purpose. <a href="https://www.jw.org/en/bible-teachings/questions/who-were-the-patriarchs/" class="read-more">Read More</a>' },
+                { text: 'The tribes were enslaved in Egypt, testing their faith. <a href="https://www.jw.org/en/bible-teachings/questions/moses-gods-deliverer/" class="read-more">Read More</a>' },
+                { text: 'Jehovah delivered Israel, giving the Law Covenant to guide them. <a href="https://www.jw.org/en/bible-teachings/questions/what-was-the-mosaic-law/" class="read-more">Read More</a>' },
+                { text: 'Israel’s disobedience delayed blessings. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-the-israelites-wander-for-40-years/" class="read-more">Read More</a>' },
+                { text: 'Jehovah raised judges to guide Israel. <a href="https://www.jw.org/en/bible-teachings/questions/who-were-the-judges-of-israel/" class="read-more">Read More</a>' },
+                { text: 'Israel demanded kings, but many led them astray. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-israel-want-a-king/" class="read-more">Read More</a>' },
+                { text: 'The kingdom split into two, weakening their covenant. <a href="https://www.jw.org/en/bible-teachings/questions/what-happened-to-solomons-kingdom/" class="read-more">Read More</a>' },
+                { text: 'Israel’s unfaithfulness led to exile in Babylon. <a href="https://www.jw.org/en/bible-teachings/questions/why-were-the-jews-exiled-to-babylon/" class="read-more">Read More</a>' },
+                { text: 'A remnant returned from exile but struggled. <a href="https://www.jw.org/en/bible-teachings/questions/what-happened-after-the-exile/" class="read-more">Read More</a>' },
+                { text: 'Daniel foretold the Messiah’s arrival. <a href="https://www.jw.org/en/bible-teachings/questions/does-bible-prophecy-point-to-jesus/" class="read-more">Read More</a>' },
+                { text: 'Jesus, the promised seed, was born. <a href="https://www.jw.org/en/bible-teachings/questions/who-is-jesus-christ/" class="read-more">Read More</a>' },
+                { text: 'Jesus began his ministry with baptism, showing humility. <a href="https://www.jw.org/en/bible-teachings/questions/why-was-jesus-baptized/" class="read-more">Read More</a>' },
+                { text: 'Jesus started preaching, teaching the Kingdom’s nearness. <a href="https://www.jw.org/en/bible-teachings/questions/what-did-jesus-teach/" class="read-more">Read More</a>' },
+                { text: 'Jesus gave the Sermon on the Mount, teaching true worship principles. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-sermon-on-the-mount/" class="read-more">Read More</a>' },
+                { text: 'Jesus performed miracles, proving his divine role. <a href="https://www.jw.org/en/bible-teachings/questions/what-do-jesus-miracles-teach-us/" class="read-more">Read More</a>' },
+                { text: 'The Jews rejected Jesus, fulfilling prophecy. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-the-jews-reject-jesus/" class="read-more">Read More</a>' },
+                { text: 'Jesus instituted the new covenant, open to all nations. <a href="https://www.jw.org/en/bible-teachings/questions/what-is-the-new-covenant/" class="read-more">Read More</a>' },
+                { text: 'Jesus’ death provided the ransom for all. <a href="https://www.jw.org/en/bible-teachings/questions/why-did-jesus-die/" class="read-more">Read More</a>' },
+                { text: 'Jesus’ resurrection and ascension confirmed his role. <a href="https://www.jw.org/en/bible-teachings/questions/what-does-jesus-resurrection-mean-for-us/" class="read-more">Read More</a>' },
+                { text: 'The new covenant anointed 144,000 from all nations. <a href="https://www.jw.org/en/bible-teachings/questions/who-are-the-144000/" class="read-more">Read More</a>' },
+                { text: 'After the Millennial Reign, Christ hands the Kingdom to Jehovah, restoring paradise. <a href="https://www.jw.org/en/bible-teachings/questions/what-happens-after-the-1000-year-reign/" class="read-more">Read More</a>' }
             ];
 
             let currentEventIndex = 0;
             function updateTimeline() {
                 timelineDots.forEach(dot => dot.classList.remove('active'));
                 timelineDots[currentEventIndex].classList.add('active');
-                timelineEventContainer.style.opacity = 0;
+                timelineDescription.style.opacity = 0;
                 setTimeout(() => {
                     timelineDescription.innerHTML = events[currentEventIndex].text;
-                    timelineEventContainer.style.opacity = 1;
+                    timelineDescription.style.opacity = 1;
                 }, 300);
             }
 
