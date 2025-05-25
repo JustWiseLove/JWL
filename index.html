@@ -52,43 +52,31 @@
             </div>
         </section>
         <!-- Timeline Section -->
-        <section class="timeline-section" id="timeline-section">
-            <button class="timeline-prev" aria-label="Previous event"><i class="fas fa-chevron-left"></i></button>
-            <div class="timeline-line">
-                <span class="timeline-dot active" style="left: 0%;" data-index="0"></span>
-                <span class="timeline-dot" style="left: 4%;" data-index="1"></span>
-                <span class="timeline-dot" style="left: 8%;" data-index="2"></span>
-                <span class="timeline-dot" style="left: 12%;" data-index="3"></span>
-                <span class="timeline-dot" style="left: 16%;" data-index="4"></span>
-                <span class="timeline-dot" style="left: 20%;" data-index="5"></span>
-                <span class="timeline-dot" style="left: 24%;" data-index="6"></span>
-                <span class="timeline-dot" style="left: 28%;" data-index="7"></span>
-                <span class="timeline-dot" style="left: 32%;" data-index="8"></span>
-                <span class="timeline-dot" style="left: 36%;" data-index="9"></span>
-                <span class="timeline-dot" style="left: 40%;" data-index="10"></span>
-                <span class="timeline-dot" style="left: 44%;" data-index="11"></span>
-                <span class="timeline-dot" style="left: 48%;" data-index="12"></span>
-                <span class="timeline-dot" style="left: 52%;" data-index="13"></span>
-                <span class="timeline-dot" style="left: 56%;" data-index="14"></span>
-                <span class="timeline-dot" style="left: 60%;" data-index="15"></span>
-                <span class="timeline-dot" style="left: 64%;" data-index="16"></span>
-                <span class="timeline-dot" style="left: 68%;" data-index="17"></span>
-                <span class="timeline-dot" style="left: 72%;" data-index="18"></span>
-                <span class="timeline-dot" style="left: 76%;" data-index="19"></span>
-                <span class="timeline-dot" style="left: 80%;" data-index="20"></span>
-                <span class="timeline-dot" style="left: 84%;" data-index="21"></span>
-                <span class="timeline-dot" style="left: 88%;" data-index="22"></span>
-                <span class="timeline-dot" style="left: 92%;" data-index="23"></span>
-                <span class="timeline-dot" style="left: 96%;" data-index="24"></span>
-                <span class="timeline-dot" style="left: 100%;" data-index="25"></span>
-            </div>
-            <div class="timeline-description describe" id="timeline-description">
-                <h3 class="timeline-event-title">The Beginning of Creation</h3>
-                <p>Jehovah created Adam and Eve in his image, perfect and with free will, placing them in the Garden of Eden to enjoy eternal life in paradise, as Genesis 1:27-28 states, "God created man in his image... and said to them: ‘Be fruitful and become many.’"</p>
-            </div>
-            <button class="timeline-next" aria-label="Next event"><i class="fas fa-chevron-right"></i></button>
-        </section>
-
+        <section class="timeline-section" id="paradise-section">
+    <h2 class="section-title">Paradise Restored</h2>
+    <div class="paradise-tabs">
+        <div class="paradise-tab active" data-tab="creation">Creation</div>
+        <div class="paradise-tab" data-tab="prophecy">Prophecy</div>
+        <div class="paradise-tab" data-tab="sacrifice">Sacrifice</div>
+        <div class="paradise-tab" data-tab="paradise">Paradise</div>
+    </div>
+    <button class="timeline-prev" aria-label="Previous event"><i class="fas fa-chevron-left"></i></button>
+    <div class="timeline-line">
+        <span class="timeline-dot active" style="left: 0%;" data-index="0"></span>
+        <span class="timeline-dot" style="left: 14.2857%;" data-index="1"></span>
+        <span class="timeline-dot" style="left: 28.5714%;" data-index="2"></span>
+        <span class="timeline-dot" style="left: 42.8571%;" data-index="3"></span>
+        <span class="timeline-dot" style="left: 57.1428%;" data-index="4"></span>
+        <span class="timeline-dot" style="left: 71.4285%;" data-index="5"></span>
+        <span class="timeline-dot" style="left: 85.7142%;" data-index="6"></span>
+        <span class="timeline-dot" style="left: 100%;" data-index="7"></span>
+    </div>
+    <div class="timeline-description describe" id="paradise-description">
+        <h3 class="timeline-event-title">The Beginning of Creation</h3>
+        <p>Jehovah created Adam and Eve in his image, perfect and with free will, to live in the Garden of Eden forever. Genesis 1:27-28 states, “God created man in his image... and said to them: ‘Be fruitful and become many.’”</p>
+    </div>
+    <button class="timeline-next" aria-label="Next event"><i class="fas fa-chevron-right"></i></button>
+</section>
         <section class="featured-article">
             <div class="article-preview">
                 <img src="boots.png" class="fa-icon" alt="boot icon">
@@ -385,67 +373,96 @@
                 });
             });
 
-            // Timeline functionality for "Paradise Restored"
-            const timelineDots = document.querySelectorAll('#timeline-section .timeline-dot');
-            const timelineDescription = document.querySelector('#timeline-description');
-            const timelinePrev = document.querySelector('#timeline-section .timeline-prev');
-            const timelineNext = document.querySelector('#timeline-section .timeline-next');
-            const events = [
-                { title: "The Beginning of Creation", text: 'Jehovah created Adam and Eve in his image, perfect and with free will, placing them in the Garden of Eden to enjoy eternal life in paradise, as Genesis 1:27-28 states, "God created man in his image... and said to them: ‘Be fruitful and become many.’"' },
-                { title: "The Fall of Perfection", text: 'Adam and Eve’s disobedience by eating the forbidden fruit introduced sin and death, breaking the perfection of humanity, as Romans 5:12 explains, "Through one man sin entered into the world, and death through sin."'},
-                { title: "The First Promise", text: 'Jehovah’s first prophecy in Genesis 3:15 promised a seed to crush the serpent, foretelling a deliverer who would restore humanity’s relationship with God.' },
-                { title: "The Great Flood", text: 'A global flood destroyed the wicked, preserving Noah’s family to start anew, as Genesis 7:23 says, "Only Noah and those with him in the ark survived."'},
-                { title: "The Covenant with Abraham", text: 'Jehovah’s covenant with Abraham promised a seed through whom all nations would be blessed, as Genesis 22:18 states, "By means of your seed all nations of the earth will be blessed."'},
-                { title: "Formation of the Twelve Tribes", text: 'Jacob’s 12 sons became the foundation of Israel’s 12 tribes, chosen to fulfill Jehovah’s purpose, as Genesis 49:28 describes, "All these are the twelve tribes of Israel."'},
-                { title: "Enslavement in Egypt", text: 'Israel’s enslavement in Egypt tested their faith, yet Jehovah remembered his covenant, as Exodus 2:24 says, "God heard their groaning... and God remembered his covenant with Abraham."'},
-                { title: "The Exodus and Law Covenant", text: 'Jehovah delivered Israel from Egypt through Moses, establishing the Law Covenant to guide them, as Exodus 19:5 states, "If you will strictly obey my voice... you will become my special property."'},
-                { title: "Disobedience and Delay", text: 'Israel’s repeated disobedience, including worship of false gods, delayed their blessings, as Deuteronomy 9:6 notes, "You are a stiff-necked people."'},
-                { title: "The Era of Judges", text: 'Jehovah appointed judges to deliver Israel from enemies and guide them back to true worship, as Judges 2:16 says, "Jehovah would raise up judges who would save them."'},
-                { title: "The Reign of Kings", text: 'Israel’s demand for a human king led to mixed outcomes, with many kings leading them astray, as 1 Samuel 8:7 states, "They have rejected me from being king over them."'},
-                { title: "The Kingdom Divided", text: 'After Solomon, the kingdom split into Judah and Israel, weakening their unity, as 1 Kings 12:20 notes, "Only the tribe of Judah remained loyal to the house of David."'},
-                { title: "Exile to Babylon", text: 'Israel’s persistent unfaithfulness led to exile in Babylon, fulfilling warnings like Jeremiah 25:11, "This whole land will become a desolate ruin."'},
-                { title: "Return from Exile", text: 'A faithful remnant returned to Jerusalem to rebuild, as Ezra 1:5 says, "Everyone whose heart God had stirred got ready to go up and rebuild the house of Jehovah."'},
-                { title: "Prophecy of the Messiah", text: 'Daniel’s prophecy in Daniel 9:24-27 pinpointed the Messiah’s arrival, preparing the faithful for the coming deliverer.'},
-                { title: "The Birth of Jesus", text: 'Jesus, the promised seed, was born in Bethlehem, fulfilling Micah 5:2, "From you will come out the one to be ruler in Israel."'},
-                { title: "Jesus’ Baptism", text: 'Jesus’ baptism marked the start of his role as Messiah, with Jehovah declaring in Matthew 3:17, "This is my Son, the beloved, whom I have approved."'},
-                { title: "The Start of Ministry", text: 'Jesus began preaching the good news of the Kingdom, as Matthew 4:17 says, "Repent, for the Kingdom of the heavens has drawn near."'},
-                { title: "The Sermon on the Mount", text: 'The Sermon on the Mount in Matthew 5-7 taught principles of true worship, emphasizing love, humility, and faith.'},
-                { title: "Miracles of Jesus", text: 'Jesus’ miracles, like healing the sick and raising the dead, confirmed his divine authority, as John 20:30-31 states, "These have been written down so that you may believe that Jesus is the Christ."'},
-                { title: "Rejection by the Jews", text: 'The Jews’ rejection of Jesus fulfilled prophecy, as John 1:11 notes, "His own people did not accept him."'},
-                { title: "The New Covenant", text: 'Jesus established the new covenant at the Last Supper, open to all nations, as Luke 22:20 says, "This cup means the new covenant by virtue of my blood."'},
-                { title: "The Ransom Sacrifice", text: 'Jesus’ sacrificial death provided the ransom for humanity’s sins, as Matthew 20:28 states, "The Son of man came... to give his life as a ransom for many."'},
-                { title: "The Resurrection", text: 'Jesus’ resurrection and ascension validated his role as King, as Acts 2:32-33 says, "This Jesus God resurrected... exalted to the right hand of God."'},
-                { title: "The 144,000 Anointed", text: 'The new covenant anointed 144,000 to rule with Christ, as Revelation 14:1 describes, "The Lamb standing on Mount Zion, and with him 144,000."'},
-                { title: "The Kingdom Restored", text: 'After the Millennial Reign, Christ hands the Kingdom to Jehovah, fulfilling 1 Corinthians 15:24, "Then comes the end, when he hands over the Kingdom to his God and Father," restoring paradise.'}
-            ];
+            // Paradise timeline functionality
+const paradiseDots = document.querySelectorAll('#paradise-section .timeline-dot');
+const paradiseDescription = document.querySelector('#paradise-description');
+const paradisePrev = document.querySelector('#paradise-section .timeline-prev');
+const paradiseNext = document.querySelector('#paradise-section .timeline-next');
+const paradiseTabs = document.querySelectorAll('.paradise-tab');
 
-            let currentEventIndex = 0;
-            function updateTimeline() {
-                timelineDots.forEach(dot => dot.classList.remove('active'));
-                timelineDots[currentEventIndex].classList.add('active');
-                timelineDescription.style.opacity = 0;
-                setTimeout(() => {
-                    timelineDescription.innerHTML = `<h3 class="timeline-event-title">${events[currentEventIndex].title}</h3><p>${events[currentEventIndex].text}</p>`;
-                    timelineDescription.style.opacity = 1;
-                }, 300);
-            }
+const paradiseEvents = {
+    creation: [
+        { title: "The Beginning of Creation", text: 'Jehovah created Adam and Eve in his image, perfect and with free will, to live in the Garden of Eden forever. Genesis 1:27-28 states, “God created man in his image... and said to them: ‘Be fruitful and become many.’”' },
+        { title: "The Earth Prepared", text: 'Jehovah formed the earth to be inhabited, with perfect ecosystems for life. Isaiah 45:18 says, “Jehovah... did not create [the earth] simply for nothing, but formed it to be inhabited.”' },
+        { title: "Creation of Animals", text: 'Jehovah filled the earth with diverse creatures, each according to its kind, showcasing his wisdom. Genesis 1:24 states, “Let the earth bring forth living creatures according to their kinds.”' },
+        { title: "The Garden of Eden", text: 'Jehovah planted Eden as a paradise home for humanity, with abundant resources. Genesis 2:8 says, “Jehovah God planted a garden in Eden, and there he put the man.”' },
+        { title: "The Tree of Knowledge", text: 'Jehovah set a test of obedience with the tree of knowledge, respecting free will. Genesis 2:17 warns, “You must not eat from it, for in the day you eat from it you will die.”' },
+        { title: "Adam’s Role", text: 'Adam was tasked with naming animals and caring for Eden, reflecting Jehovah’s trust. Genesis 2:19 says, “Jehovah God... brought them to the man to see what he would call them.”' },
+        { title: "Eve’s Creation", text: 'Jehovah created Eve as Adam’s complement, establishing marriage. Genesis 2:22 states, “Jehovah God built the rib... into a woman and brought her to the man.”' },
+        { title: "Perfect Harmony", text: 'Adam and Eve lived in harmony with Jehovah, free from pain or death. Psalm 145:16 says, “You open your hand and satisfy the desire of every living thing.”' }
+    ],
+    prophecy: [
+        { title: "The First Prophecy", text: 'After sin, Jehovah promised a seed to crush the serpent, foretelling redemption. Genesis 3:15 says, “I will put enmity between you and the woman, and between your offspring and her offspring.”' },
+        { title: "Covenant with Noah", text: 'Jehovah promised never again to destroy the earth with a flood, showing mercy. Genesis 9:11 states, “Never again will all flesh be destroyed by the waters of a flood.”' },
+        { title: "Abraham’s Covenant", text: 'Jehovah promised Abraham a seed to bless all nations, pointing to the Messiah. Genesis 22:18 says, “By means of your offspring all nations of the earth will be blessed.”' },
+        { title: "The Law Covenant", text: 'Through Moses, Jehovah gave Israel the Law, preparing them for the Messiah. Exodus 19:5 states, “If you will strictly obey my voice... you will become my special property.”' },
+        { title: "David’s Kingdom", text: 'Jehovah promised David an everlasting throne, fulfilled through Christ. 2 Samuel 7:16 says, “Your house and your kingdom will be secure forever before me.”' },
+        { title: "Prophecy of Babylon", text: 'Jehovah foretold Judah’s exile and return, proving his sovereignty. Jeremiah 25:11 states, “This whole land will become a desolate ruin, and these nations will serve the king of Babylon.”' },
+        { title: "Messiah’s Arrival", text: 'Daniel’s prophecy pinpointed the Messiah’s coming, fulfilled by Jesus. Daniel 9:25 says, “From the issuing of the word to restore... until Messiah the Leader, there will be seven weeks and sixty-two weeks.”' },
+        { title: "The Suffering Servant", text: 'Isaiah foretold the Messiah’s suffering to redeem humanity. Isaiah 53:5 says, “He was pierced for our transgression... and by his wounds we are healed.”' }
+    ],
+    sacrifice: [
+        { title: "Jesus’ Birth", text: 'Jesus, the promised seed, was born in Bethlehem to save humanity. Micah 5:2 states, “From you, O Bethlehem Ephrathah... will come out one to be ruler in Israel.”' },
+        { title: "Jesus’ Baptism", text: 'Jesus’ baptism marked him as the Messiah, anointed by Jehovah. Matthew 3:17 says, “This is my Son, the beloved, whom I have approved.”' },
+        { title: "Ministry Begins", text: 'Jesus preached the Kingdom, offering hope to all. Matthew 4:17 states, “From that time on, Jesus began preaching: ‘Repent, for the Kingdom of the heavens has drawn near.’”' },
+        { title: "Miracles of Jesus", text: 'Jesus’ miracles, like healing and raising the dead, proved his divine authority. John 20:30 says, “Jesus performed many other signs... which are not written in this book.”' },
+        { title: "Sermon on the Mount", text: 'Jesus taught principles of love and faith, guiding true worship. Matthew 5:3 says, “Happy are those conscious of their spiritual need, since the Kingdom of the heavens belongs to them.”' },
+        { title: "The New Covenant", text: 'Jesus established the new covenant for salvation, open to all. Luke 22:20 says, “This cup means the new covenant by virtue of my blood, which is to be poured out.”' },
+        { title: "Jesus’ Sacrifice", text: 'Jesus’ death provided the ransom for humanity’s sins. Matthew 20:28 says, “The Son of man came... to give his life as a ransom for many.”' },
+        { title: "The Resurrection", text: 'Jesus’ resurrection confirmed his role as King, defeating death. Acts 2:32 says, “This Jesus God resurrected, of which fact we are all witnesses.”' }
+    ],
+    paradise: [
+        { title: "Pentecost 33 C.E.", text: 'Holy spirit empowered Jesus’ disciples to preach, beginning the Christian congregation. Acts 2:4 says, “They all became filled with holy spirit and started to speak in different tongues.”' },
+        { title: "Global Preaching", text: 'The good news spreads worldwide, fulfilling Jesus’ command. Matthew 24:14 says, “This good news of the Kingdom will be preached in all the inhabited earth.”' },
+        { title: "The Last Days", text: 'Signs like wars and earthquakes mark the last days, nearing God’s Kingdom. 2 Timothy 3:1 says, “In the last days critical times hard to deal with will be here.”' },
+        { title: "The Great Tribulation", text: 'A time of unprecedented distress precedes Jehovah’s intervention. Matthew 24:21 says, “There will be great tribulation such as has not occurred since the world’s beginning.”' },
+        { title: "Armageddon", text: 'Jehovah destroys wickedness, preserving the righteous. Revelation 16:16 says, “They gathered them together to the place that is called in Hebrew Armageddon.”' },
+        { title: "The Millennial Reign", text: 'Christ’s 1,000-year rule restores peace and perfection. Revelation 20:6 says, “They will be priests of God and of the Christ and will rule as kings with him for the 1,000 years.”' },
+        { title: "Satan’s Final Test", text: 'After the Millennium, Satan’s final rebellion is crushed. Revelation 20:8 says, “Satan will go out to mislead those nations in the four corners of the earth.”' },
+        { title: "Paradise Restored", text: 'Jehovah restores paradise, fulfilling his original purpose. Revelation 21:4 says, “Death will be no more, neither will mourning nor outcry nor pain be anymore.”' }
+    ]
+};
 
-            timelinePrev.addEventListener('click', () => {
-                currentEventIndex = (currentEventIndex - 1 + events.length) % events.length;
-                updateTimeline();
-            });
+let currentParadiseIndex = 0;
+let currentParadiseTab = 'creation';
 
-            timelineNext.addEventListener('click', () => {
-                currentEventIndex = (currentEventIndex + 1) % events.length;
-                updateTimeline();
-            });
+function updateParadiseTimeline() {
+    const events = paradiseEvents[currentParadiseTab];
+    paradiseDots.forEach(dot => dot.classList.remove('active'));
+    paradiseDots[currentParadiseIndex].classList.add('active');
+    paradiseDescription.style.opacity = 0;
+    setTimeout(() => {
+        paradiseDescription.innerHTML = `<h3 class="timeline-event-title">${events[currentParadiseIndex].title}</h3><p>${events[currentParadiseIndex].text}</p>`;
+        paradiseDescription.style.opacity = 1;
+    }, 300);
+}
 
-            timelineDots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    currentEventIndex = parseInt(dot.getAttribute('data-index'));
-                    updateTimeline();
-                });
-            });
+paradisePrev.addEventListener('click', () => {
+    currentParadiseIndex = (currentParadiseIndex - 1 + 8) % 8;
+    updateParadiseTimeline();
+});
+
+paradiseNext.addEventListener('click', () => {
+    currentParadiseIndex = (currentParadiseIndex + 1) % 8;
+    updateParadiseTimeline();
+});
+
+paradiseDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        currentParadiseIndex = parseInt(dot.getAttribute('data-index'));
+        updateParadiseTimeline();
+    });
+});
+
+paradiseTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        paradiseTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentParadiseTab = tab.getAttribute('data-tab');
+        currentParadiseIndex = 0;
+        updateParadiseTimeline();
+    });
+});
 
             // Timeline functionality for "Featured Section" (JUST WISE LOVE)
             const featuredDots = document.querySelectorAll('#featured-section .timeline-dot');
