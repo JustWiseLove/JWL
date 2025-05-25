@@ -264,7 +264,7 @@ main {
 }
 
 .categories-container:not(.expanded) {
-    margin: 0 0 0 0; /* Remove bottom margin when collapsed */
+    margin: 0 0 0 0;
 }
 
 .categories-container.expanded {
@@ -452,13 +452,12 @@ footer p {
     margin: 10px 0 0;
 }
 
-/* New Carousel Styles */
 .carousel-container {
     margin: 20px 0;
     padding: 0 20px;
     display: block;
     visibility: visible;
-    height: auto; /* Ensure container is always visible */
+    height: auto;
 }
 
 .carousel {
@@ -492,7 +491,7 @@ footer p {
 
 .carousel-prev, .carousel-next {
     position: absolute;
-    top: 10px; /* Position at the top */
+    top: 10px;
     background: rgba(0, 0, 0, 0.5);
     border: none;
     color: #fff;
@@ -556,7 +555,6 @@ footer p {
     }
 }
 
-/* Moved from index.html: Timeline Section Styles */
 .timeline-section {
     padding: 20px;
     background: #000000;
@@ -626,7 +624,6 @@ footer p {
     right: 10px;
 }
 
-/* Moved from index.html: Spotlight Section Styles */
 .spotlight-tabs {
     display: flex;
     justify-content: center;
@@ -657,62 +654,58 @@ footer p {
     animation: slideIn 0.5s ease;
 }
 
-        /* Inline styles for the banner (can be moved to style.css later) */
-        .banner {
-            width: 100%;
-            height: 200px;
-            background: #000000;
-            /*background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);*/
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            animation: gradientShift 10s infinite alternate;
-        }
+.banner {
+    width: 100%;
+    height: 200px;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    animation: gradientShift 10s infinite alternate;
+}
 
-        .banner-content {
-            text-align: center;
-            color: #ffffff;
-            font-family: 'Audiowide', Arial, sans-serif;
-            font-size: 28px;
-            text-shadow: 0 0 10px #6b9e31, 0 0 10px #6b9e31;
-            /*text-shadow: 0 0 10px #ffd800, 0 0 20px #ffd800;*/
-            opacity: 0;
-            animation: fadeInOut 6s infinite;
-        }
+.banner-content {
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Audiowide', Arial, sans-serif;
+    font-size: 28px;
+    text-shadow: 0 0 10px #6b9e31, 0 0 10px #6b9e31;
+    opacity: 0;
+    animation: fadeInOut 6s infinite;
+}
 
-        .banner-content:hover {
-            text-shadow: 0 0 15px #ffd800, 0 0 30px #ffd800;
-            transform: scale(1.05);
-            transition: transform 0.3s, text-shadow 0.3s;
-        }
+.banner-content:hover {
+    text-shadow: 0 0 15px #ffd800, 0 0 30px #ffd800;
+    transform: scale(1.05);
+    transition: transform 0.3s, text-shadow 0.3s;
+}
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-        @keyframes fadeInOut {
-            0% { opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { opacity: 0; }
-        }
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
 
-        @media (max-width: 768px) {
-            .banner {
-                height: 150px;
-            }
-            .banner-content {
-                font-size: 20px;
-            }
-        }
+@media (max-width: 768px) {
+    .banner {
+        height: 150px;
+    }
+    .banner-content {
+        font-size: 20px;
+    }
+}
 
-/* Moved from index.html: Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -723,7 +716,6 @@ footer p {
     to { transform: translateX(0); opacity: 1; }
 }
 
-/* Moved from index.html: Responsive Adjustments */
 @media (max-width: 768px) {
     .timeline-description {
         font-size: 14px;
@@ -734,5 +726,35 @@ footer p {
     .spotlight-tab {
         font-size: 14px;
         padding: 8px 15px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .timeline-section {
+        padding: 20px 40px;
+    }
+    .timeline-line {
+        max-width: 1200px;
+    }
+    .timeline-description {
+        max-width: 1200px;
+    }
+    .timeline-prev {
+        left: 20px;
+    }
+    .timeline-next {
+        right: 20px;
+    }
+    .carousel-container {
+        padding: 0 40px;
+    }
+    .carousel {
+        max-width: 1200px;
+    }
+    .carousel-prev {
+        left: 20px;
+    }
+    .carousel-next {
+        right: 20px;
     }
 }
