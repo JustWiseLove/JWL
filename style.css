@@ -142,7 +142,7 @@ main {
 .featured-article {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     padding: 20px 10px;
-    margin: 10px 0 10px 0;
+    margin: 5px 0 10px 0; /* Reduced top margin from 10px to 5px */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -430,7 +430,7 @@ main {
 .describe {
     background: #000000;
     padding: 15px;
-    margin: 10px auto;
+    margin: 10px auto; /* Reduced from 20px to 10px */
     border-radius: 8px;
     font-style: italic;
     color: #fff;
@@ -556,7 +556,7 @@ footer p {
 }
 
 .timeline-section {
-    padding: 20px;
+    padding: 15px; /* Reduced from 20px to 15px */
     background: #000000;
     position: relative;
     overflow: hidden;
@@ -567,7 +567,7 @@ footer p {
     height: 2px;
     background: #6b9e31;
     position: relative;
-    margin: 20px auto; /* Reduced from 40px to 20px for consistency */
+    margin: 15px auto; /* Reduced from 20px to 15px */
     max-width: 800px;
 }
 
@@ -593,7 +593,7 @@ footer p {
     opacity: 0;
     animation: fadeIn 0.5s forwards;
     max-width: 800px;
-    margin: 20px auto;
+    margin: 10px auto; /* Reduced from 20px to 10px */
 }
 
 .timeline-event-title {
@@ -628,14 +628,14 @@ footer p {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduced from 20px to 10px */
 }
 
 .paradise-tabs {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduced from 20px to 10px */
 }
 
 .paradise-tab, .spotlight-tab {
