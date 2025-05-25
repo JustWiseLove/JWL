@@ -567,7 +567,7 @@ footer p {
     height: 2px;
     background: #6b9e31;
     position: relative;
-    margin: 40px auto;
+    margin: 20px auto;
     max-width: 800px;
 }
 
@@ -612,7 +612,7 @@ footer p {
     font-size: 20px;
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: calc(50% + 40px;
     transform: translateY(-50%);
 }
 
@@ -754,7 +754,7 @@ footer p {
     .timeline-event-title {
         font-size: 1em;
     }
-    .spotlight-tab {
+    . paradise-tab, .spotlight-tab {
         font-size: 14px;
         padding: 8px 15px;
     }
