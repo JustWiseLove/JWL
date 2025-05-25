@@ -141,8 +141,8 @@ main {
 
 .featured-article {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
-    padding: 20px 10px 10px 10px;
-    margin: 5px 0 5px 0;
+    padding: 20px 10px;
+    margin: 10px 0 10px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -556,7 +556,7 @@ footer p {
 }
 
 .timeline-section {
-    padding: 15px 15px 5px; /* Reduced bottom padding from 15px to 5px */
+    padding: 20px;
     background: #000000;
     position: relative;
     overflow: hidden;
@@ -567,7 +567,7 @@ footer p {
     height: 2px;
     background: #6b9e31;
     position: relative;
-    margin: 15px auto;
+    margin: 20px auto; /* Reduced from 40px to 20px for consistency */
     max-width: 800px;
 }
 
@@ -593,7 +593,7 @@ footer p {
     opacity: 0;
     animation: fadeIn 0.5s forwards;
     max-width: 800px;
-    margin: 10px auto 5px; /* Reduced bottom margin from 10px to 5px */
+    margin: 20px auto;
 }
 
 .timeline-event-title {
@@ -612,8 +612,8 @@ footer p {
     font-size: 20px;
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    transform: translateY(0);
+    top: calc(50% + 40px); /* Adjusted to account for the tabs height + margin */
+    transform: translateY(-50%);
 }
 
 .timeline-prev {
@@ -628,14 +628,14 @@ footer p {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .paradise-tabs {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .paradise-tab, .spotlight-tab {
@@ -669,24 +669,3 @@ footer p {
     display: block;
     animation: slideIn 0.5s ease;
 }
-
-.banner {
-    width: 100%;
-    height: 200px;
-    background: #000000;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    animation: gradientShift 10s infinite alternate;
-}
-
-.banner-content {
-    text-align: center;
-    color: #ffffff;
-    font-family: 'Audiowide', Arial, sans-serif;
-    font-size: 28px;
-    text-shadow:
