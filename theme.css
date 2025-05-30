@@ -141,7 +141,7 @@ main {
 
 .featured-article {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
-    padding: 20px 10px 10px 10px;
+    padding: 20px 10px 0px 10px;
     margin: 10px 0 10px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -556,10 +556,11 @@ footer p {
 
 .timeline-section {
     padding: 20px 20px 0px 20px;
-    background: #000000;
+    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
     position: relative;
     overflow: hidden;
     text-align: center;
+    min-height: auto;
 }
 
 .timeline-line {
@@ -592,12 +593,18 @@ footer p {
     opacity: 0;
     animation: fadeIn 0.5s forwards;
     max-width: 800px;
-    margin: 20px auto;
+    margin: 20px auto 10px auto;
+    padding: 15px;
+    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    border-radius: 8px;
+    font-style: italic;
+    color: #000000;
+    text-align: center;
 }
 
 .timeline-event-title {
     font-family: 'Audiowide', Arial, sans-serif;
-    color: #ffffff;
+    color: #000000;
     font-size: 1.2em;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -667,4 +674,10 @@ footer p {
 .paradise-tab-content.active {
     display: block;
     animation: slideIn 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .paradise-tab, .spotlight-tab {
+        font-size: 14px;
+    }
 }
