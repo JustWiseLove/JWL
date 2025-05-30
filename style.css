@@ -141,7 +141,7 @@ main {
 
 .featured-article {
     background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
-    padding: 20px 10px;
+    padding: 20px 10px 10px 10px;
     margin: 10px 0 10px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -234,8 +234,7 @@ main {
 
 @media (max-width: 768px) {
     .featured-article {
-        padding: 10px;
-        margin-bottom: 5px;
+        padding: 10px 10px 0px 10px;
     }
 
     .toggle-categories {
@@ -556,7 +555,7 @@ footer p {
 }
 
 .timeline-section {
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
     background: #000000;
     position: relative;
     overflow: hidden;
@@ -567,7 +566,7 @@ footer p {
     height: 2px;
     background: #6b9e31;
     position: relative;
-    margin: 20px auto; /* Reduced from 40px to 20px for consistency */
+    margin: 20px auto;
     max-width: 800px;
 }
 
@@ -612,7 +611,7 @@ footer p {
     font-size: 20px;
     cursor: pointer;
     position: absolute;
-    top: calc(50% + 40px); /* Adjusted to account for the tabs height + margin */
+    top: calc(50% + 40px);
     transform: translateY(-50%);
 }
 
@@ -628,14 +627,14 @@ footer p {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 
 .paradise-tabs {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 
 .paradise-tab, .spotlight-tab {
