@@ -1310,6 +1310,3 @@ const items = [
     "D": "Whole-souled devotion is giving Jehovah complete loyalty and effort. Colossians 3:23, Deuteronomy 6:5, and Matthew 22:37 demand total love and service. Unlike divided loyalties in worldly or religious pursuits, the Bible teaches whole-souled devotion, ensuring Jehovah’s Witnesses glorify Him and gain eternal life."
   }
 ]
-  
-    
-  ]
