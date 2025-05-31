@@ -436,7 +436,6 @@ const items = [
             "Acts 20:28 - <em>Pay attention to yourselves and to all the flock, among which the holy spirit has appointed you overseers.</em>"
         ],
         D: "Elders are Jehovah’s appointed overseers in the congregation, and the Bible’s guidance for their role is unequivocal. 1 Timothy 3:1-7 and Titus 1:5-9 outline their qualifications: blameless, faithful, and capable of teaching. Hebrews 13:17 instructs Christians to obey elders, who watch over souls. 1 Peter 5:2, 3 calls elders to shepherd willingly, not lording it over the flock. Acts 20:28 confirms their appointment by holy spirit. Jehovah’s Witnesses are certain that elders, chosen based on scriptural standards, lead the congregation under Christ’s headship, providing spiritual guidance, discipline, and care. Their role ensures unity and purity in worship. This truth compels Jehovah’s Witnesses to respect and cooperate with elders, confident that their best interest is shepherding the flock."
-
 },
 {
     T: "Encouragement",
@@ -1185,7 +1184,7 @@ const items = [
             "2 Timothy 4:2 - <em>Preach the word; be at it urgently in favorable times and difficult times.</em>"
         ],
         D: "Preaching is a Christian duty, and the Bible’s command is undeniable. Matthew 28:19, 20 commissions disciples to teach all nations. Mark 13:10 prophesies global preaching. Acts 20:20 exemplifies house-to-house ministry. Romans 10:14 underscores preaching’s necessity. 2 Timothy 4:2 urges urgency. Jehovah’s Witnesses are certain that their worldwide ministry fulfills prophecy, sharing the good news of God’s Kingdom. Through door-to-door, public, and informal witnessing, they offer hope and warn of judgment. This truth drives their zeal, even amidst opposition, as they obey Jesus’ command. Jehovah’s Witnesses dedicate themselves to preaching, confident it honors Jehovah and prepares them for everlasting life in His Kingdom, where all will know His truth."
-    }
+    },
     {
         T: "Pride",
         S: [
@@ -1350,7 +1349,7 @@ const items = [
             "2 Peter 2:9 - <em>The Lord knows how to rescue people of godly devotion from trial.</em>"
         ],
         D: "Temptation is a challenge from Satan, and the Bible provides guidance. 1 Corinthians 10:13 assures Jehovah limits temptation, providing escape. James 1:13 clarifies God doesn’t tempt. Matthew 26:41 urges prayer to avoid temptation. Hebrews 4:15 shows Jesus overcame temptation. 2 Peter 2:9 assures Jehovah’s deliverance. Jehovah’s Witnesses are certain that temptation tests faith, but Jehovah’s strength helps them resist. By avoiding sinful situations and relying on Scripture, they stay loyal. This truth protects them from Satan’s traps, ensuring pure worship. Jehovah’s Witnesses resist temptation, confident that Jehovah’s support leads to His approval and everlasting life in His Kingdom, where temptation will cease."
-    }
+    },
     {
         T: "Trinity",
         S: [
@@ -1515,5 +1514,5 @@ const items = [
             "Galatians 4:18 - <em>It is always fine to be zealous in a good cause.</em>"
         ],
         D: "Zeal is fervent devotion to Jehovah, and the Bible encourages it. Romans 12:11 urges being aglow with spirit. Titus 2:14 praises zeal for good works. John 2:17 reflects Jesus’ zeal. Revelation 3:19 calls for zealous repentance. Galatians 4:18 supports zeal for good. Jehovah’s Witnesses are certain that zeal—shown in preaching, worship, and obedience—reflects love for Jehovah. They serve energetically, even amidst challenges. This truth ensures their ministry is vibrant, drawing others to God. Jehovah’s Witnesses cultivate zeal, confident it honors Jehovah and prepares them for everlasting life in His Kingdom, where zeal will fuel eternal worship."
-    }
+    },
 ];
