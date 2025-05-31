@@ -965,8 +965,8 @@ const items = [
             "Matthew 19:6 - <em>What God has yoked together, let no man put apart.</em>"
         ],
         D: "Marriage is Jehovah’s sacred arrangement, and the Bible’s guidance is unequivocal. Genesis 2:24 establishes it as a lifelong union between a man and woman. Hebrews 13:4 demands an honorable, undefiled marriage. Ephesians 5:25 calls husbands to love their wives sacrificially, like Christ. 1 Corinthians 7:3 emphasizes mutual respect and obligation. Matthew 19:6 declares marriage unbreakable by human authority. Jehovah’s Witnesses are certain that marriage, rooted in love and commitment, reflects Jehovah’s purpose. They uphold its sanctity, rejecting immorality and divorce except on scriptural grounds (Matthew 19:9). By building marriages on Bible principles, they strengthen families and honor Jehovah. This truth ensures stable, loving unions, confident that fidelity in marriage pleases Jehovah and prepares them for everlasting life in His Kingdom, where perfect relationships will thrive."
-    }
-      {
+    },
+    {
         T: "Materialism",
         S: [
             "Hebrews 13:5 - <em>Let your way of life be free of the love of money, while you are content with the present things.</em>",
