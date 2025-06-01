@@ -1,4 +1,4 @@
-const launch= [
+const launch = [
     {
         T: "Welcome to JWL",
         S: ["Psalm 83:18 - That people may know that you, whose name is Jehovah, you alone are the Most High over all the earth."],
