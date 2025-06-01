@@ -1,4 +1,4 @@
-const items = [
+const topics = [
   {
     "T": "1914",
     "S": [
