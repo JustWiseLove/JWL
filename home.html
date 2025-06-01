@@ -28,20 +28,57 @@
             background-color: var(--Green);
             color: #ffffff;
             padding: 1rem;
-            text-align: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            text-align: center;
+        }
+
+        .header-content {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hamburger {
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0 0.5rem;
+        }
+
+        .hamburger-menu {
+            display: none;
+            position: absolute;
+            background-color: var(--Dark);
+            border: 1px solid var(--Green);
+            border-radius: 4px;
+            min-width: 120px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+        }
+
+        .hamburger-menu a {
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-family: 'Audiowide', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .hamburger-menu a:hover {
+            background-color: var(--Green);
         }
 
         header h1 {
             font-family: 'Audiowide', sans-serif;
             font-size: 2rem;
-            margin-bottom: 0.5rem;
+            margin: 0;
         }
 
         header p {
             font-size: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         #search {
@@ -101,7 +138,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 0.5rem;
             margin-top: 1rem;
-            width: 100%;
+            width: 100;
         }
 
         .item {
@@ -137,17 +174,20 @@
         }
 
         .about-section {
+            margin: 0 auto;
             margin-top: 1rem;
-            text-align: left;
+            text-align: center;
             padding: 1rem;
-            background-color: #333;
+            background-color: var(--Dark);
             border-radius: 4px;
             color: #ffffff;
+            max-width: 600px;
         }
 
         .about-section h3 {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
         }
 
         .about-section p {
@@ -187,6 +227,10 @@
                 font-size: 0.9rem;
                 padding: 0.4rem 0.8rem;
             }
+
+            .hamburger {
+                font-size: 1.2rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -210,22 +254,42 @@
                 font-size: 0.8rem;
                 padding: 0.3rem 0.6rem;
             }
+
+            .hamburger {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>JWL</h1>
+        <div class="header-content">
+            <div class="hamburger" onclick="toggleMenu('left-menu')">☰</div>
+            <h1>JWL</h1>
+            <div class="hamburger" onclick="toggleMenu('right-menu')">☰</div>
+        </div>
         <p>Walk Wise</p>
-        <input type="text" id="search" placeholder="Search items..." onkeyup="searchItems()">
-        <div class="tabs">
-            <button class="tab-button active" onclick="showTab('launch')">LAUNCH</button>
-            <button class="tab-button" onclick="showTab('topics')">TOPICS</button>
-            <button class="tab-button" onclick="showTab('people')">PEOPLE</button>
+        <div class="about-section">
+            <h3>About</h3>
+            <p>The purpose of JWL (Walk Wise) is to restore the original pure worship Jehovah approves. We aim to provide resources, scriptures, and insights that guide you in aligning with Jehovah’s standards and principles for true worship.</p>
+        </div>
+        <div id="left-menu" class="hamburger-menu" style="left: 1rem; top: 3rem;">
+            <a href="games.html">GAMES</a>
+            <a href="news.html">NEWS</a>
+        </div>
+        <div id="right-menu" class="hamburger-menu" style="right: 1rem; top: 3rem;">
+            <a href="drone.html">DRONE</a>
+            <a href="note.html">NOTE</a>
         </div>
     </header>
+    <input type="text" id="search" placeholder="Search items..." onkeyup="searchItems()">
+    <div class="tabs">
+        <button class="tab-button" onclick="showTab('launch')">LAUNCH</button>
+        <button class="tab-button" onclick="showTab('topics')">TOPICS</button>
+        <button class="tab-button" onclick="showTab('people')">PEOPLE</button>
+    </div>
     <main>
-        <div class="list" id="launch" style="display: grid;"></div>
+        <div class="list" id="launch" style="display: none;"></div>
         <div class="list" id="topics" style="display: none;"></div>
         <div class="list" id="people" style="display: none;"></div>
     </main>
@@ -233,9 +297,28 @@
     <script src="topics.js"></script>
     <script src="people.js"></script>
     <script>
+        // Toggle hamburger menu visibility
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menus = document.querySelectorAll('.hamburger-menu');
+            const hamburgers = document.querySelectorAll('.hamburger');
+            let clickInside = false;
+            hamburgers.forEach(hamburger => {
+                if (hamburger.contains(event.target)) clickInside = true;
+            });
+            if (!clickInside) {
+                menus.forEach(menu => menu.style.display = 'none');
+            }
+        });
+
         // Sort items alphabetically by title
-        const sortedLaunch = launchItems.slice().sort((a, b) => a.T.localeCompare(b.T));
-        const sortedTopics = items.slice().sort((a, b) => a.T.localeCompare(b.T));
+        const sortedLaunch = launch.slice().sort((a, b) => a.T.localeCompare(b.T));
+        const sortedTopics = topics.slice().sort((a, b) => a.T.localeCompare(b.T));
         const sortedPeople = people.slice().sort((a, b) => a.T.localeCompare(b.T));
 
         // Define categories
@@ -274,14 +357,6 @@
                         <div class="scripture-section"><ul>${scriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
                         <div class="description-section">${description}</div>
                     `;
-                    if (category === 'launch') {
-                        content.innerHTML += `
-                            <div class="about-section">
-                                <h3>About JWL</h3>
-                                <p>The purpose of JWL (Walk Wise) is to restore the original pure worship Jehovah approves. We aim to provide resources, scriptures, and insights that guide you in aligning with Jehovah’s standards and principles for true worship.</p>
-                            </div>
-                        `;
-                    }
                     content.style.display = 'none';
                     itemDiv.appendChild(itemButton);
                     itemList.appendChild(itemDiv);
@@ -298,24 +373,55 @@
                     });
                 });
             });
-            showTab('launch');
+            // Do not show any tab by default
+            document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
         }
 
         // Tab switching functionality
         function showTab(category) {
             console.log(`Switching to tab: ${category}`);
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const searchResults = document.getElementById('search-results');
+
+            // If there's a search term, don't modify the search results
+            if (searchTerm && searchResults) {
+                // Only update the active tab button
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
+                document.querySelector(`[onclick="showTab('${category}')"]`).classList.add('active');
+
+                // Highlight matching tabs based on search term
+                const categoriesWithMatches = new Set();
+                Object.keys(categories).forEach(cat => {
+                    const items = categories[cat];
+                    items.forEach(item => {
+                        const titleMatch = item.T.toLowerCase().includes(searchTerm);
+                        const scripturesText = item.S.join(' ').toLowerCase();
+                        const descriptionText = item.D.toLowerCase();
+                        const contentMatch = scripturesText.includes(searchTerm) || descriptionText.includes(searchTerm);
+                        if (titleMatch || contentMatch) {
+                            categoriesWithMatches.add(cat);
+                        }
+                    });
+                });
+                categoriesWithMatches.forEach(cat => {
+                    const tabButton = document.querySelector(`[onclick="showTab('${cat}')"]`);
+                    if (tabButton) tabButton.classList.add('match-highlight');
+                });
+                return; // Exit to keep search results visible
+            }
+
+            // If no search term, proceed with normal tab switching
             document.querySelectorAll('.content').forEach(c => {
                 c.style.display = 'none';
             });
-            const searchResults = document.getElementById('search-results');
             if (searchResults) searchResults.remove();
             document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
             document.getElementById(category).style.display = 'grid';
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
             document.querySelector(`[onclick="showTab('${category}')"]`).classList.add('active');
 
-            // Highlight matching tabs based on search term
-            const searchTerm = document.getElementById('search').value.toLowerCase();
+            // Highlight matching tabs based on search term (if any)
             if (searchTerm) {
                 const categoriesWithMatches = new Set();
                 Object.keys(categories).forEach(cat => {
@@ -330,7 +436,6 @@
                         }
                     });
                 });
-                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('match-highlight'));
                 categoriesWithMatches.forEach(cat => {
                     const tabButton = document.querySelector(`[onclick="showTab('${cat}')"]`);
                     if (tabButton) tabButton.classList.add('match-highlight');
@@ -411,15 +516,7 @@
                         <div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
                         <div class="description-section">${highlightedDescription}</div>
                     `;
-                    if (category === 'launch') {
-                        content.innerHTML += `
-                            <div class="about-section">
-                                <h3>About JWL</h3>
-                                <p>The purpose of JWL (Walk Wise) is to restore the original pure worship Jehovah approves. We aim to provide resources, scriptures, and insights that guide you in aligning with Jehovah’s standards and principles for true worship.</p>
-                            </div>
-                        `;
-                    }
-                    content.style.display = 'block';
+                    content.style.display = 'block'; // Keep content open by default for search results
                     itemDiv.appendChild(itemButton);
                     allList.appendChild(itemDiv);
                     allList.appendChild(content);
