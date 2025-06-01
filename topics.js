@@ -1,4 +1,4 @@
-const topic = [
+const topics = [
   {
     "T": "1914",
     "S": [
