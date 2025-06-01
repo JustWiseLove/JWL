@@ -7,7 +7,7 @@
 
         :root {
             --Dark: #181A1C;
-            --Green: #1a5c38;
+            --Green: #2B5D34 /*GLENNS GREEN: #1a5c38*/;
             --Gold: #ffd800;
         }
 
@@ -20,7 +20,7 @@
         }
 
         header {
-            background-color: #2B5D34/*var(--Green)*/;
+            background-color: var(--Green);
             color: #ffffff;
             padding: 1rem; /* Restored original padding */
             position: sticky;
