@@ -40,7 +40,7 @@ const launch = [
             <br><p><strong>Non-Biblical Books and Ancestor Worship</strong></p><p>Non-biblical texts like the Quran or Vedas (Psalm 119:105), ancestor worship in Voodoo (Isaiah 8:19), and the cross symbol from Tammuz cults (Deuteronomy 4:16) contradict Scripture. These lies blaspheme Jehovah’s truth, promoting idolatry over pure worship.</p><p><em>“Your word is a lamp to my foot and a light to my path.” — Psalm 119:105</em></p>
         `
     },
-    {
+{
     T: "Discernment",
     S: [
         "Hebrews 5:14 - Solid food belongs to mature people, to those who through use have their powers of discernment trained to distinguish both right and wrong."
@@ -99,7 +99,7 @@ const launch = [
         <br><p><strong>God Hates Hypocrisy</strong></p><p>Jehovah despises hypocrisy in worship, demanding genuine devotion (Isaiah 29:13; Micah 3:11; Mark 7:6-8). Enduring in exposing false worship helps people seek true faith.</p><p><em>“This people honor me with their lips, but their hearts are far removed from me.” — Isaiah 29:13</em></p>
         <br><p><strong>Love Identifies True Religion</strong></p><p>Genuine love among worshipers marks true religion, as seen in Jehovah’s Witnesses (Micah 4:3; John 13:34, 35). Endurance in teaching this draws people to God’s people.</p><p><em>“By this all will know that you are my disciples—if you have love among yourselves.” — John 13:35</em></p>
     `
-}
+},
 {
     T: "Faithful",
     S: [
@@ -117,5 +117,6 @@ const launch = [
         <br><p><strong>Russell, Rutherford, Knorr: Modern Witnesses</strong></p><p>Modern witnesses, as treasured servants, globalized Jehovah’s truth through faith and sacrifice, as “this good news of the Kingdom will be preached” (Matthew 24:14). Charles Taze Russell, in 1870, formed a Pittsburgh Bible study, launching *Zion’s Watch Tower* (1879) to publish truth. Distributing millions of tracts amid mob violence, he founded the Watch Tower Society (1884), proclaiming Jehovah’s Kingdom, as “You are my witnesses” (Isaiah 43:10). Joseph Franklin Rutherford, succeeding Russell in 1917, faced imprisonment in 1918 for preaching truth. Naming the group Jehovah’s Witnesses in 1931, he spread Jehovah’s name via radio, as “proclaim his name among the peoples” (Psalm 105:1). Nathan H. Knorr, from 1942, trained missionaries through Gilead School (1943), sending them to 240 lands. His leadership expanded preaching, as “Your word is truth” (John 17:17).</p><p><em>“I did not hold back from preaching.” — Acts 20:20</em></p>
     `
 }
+
 
 ];
