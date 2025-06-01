@@ -1,4 +1,3 @@
-// people.js
 const people = [
   {
     "T": "Aaron",
