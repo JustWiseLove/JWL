@@ -20,7 +20,7 @@
         }
 
         header {
-            background-color: var(--Green);
+            background-color: #2B5D34/*var(--Green)*/;
             color: #ffffff;
             padding: 1rem; /* Restored original padding */
             position: sticky;
