@@ -34,19 +34,20 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .header-content {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
+            text-align: center;
+            flex-grow: 1;
         }
 
         .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
-            padding: 0 0.5rem;
+            padding: 0 1rem;
         }
 
         .hamburger-menu {
@@ -79,22 +80,57 @@
             margin: 0;
         }
 
-        header p {
-            font-size: 1rem;
+        .main-content {
+            width: 100%;
+            padding: 1rem;
+            flex: 1;
+            background-color: var(--Green);
+        }
+
+        .about-section, .search-section {
+            margin: 0 auto;
+            margin-top: 1rem;
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--Dark);
+            border-radius: 4px;
+            color: #ffffff;
+            max-width: 600px;
+        }
+
+        .about-section h3, .search-section h3 {
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
+            font-family: 'Audiowide', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .about-content, .search-content {
+            display: none;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .about-content.expanded, .search-content.expanded {
+            display: block;
         }
 
         #search {
             width: 100%;
             max-width: 600px;
             padding: 0.5rem;
-            margin: 1rem auto;
             font-size: 1rem;
             border: 1px solid var(--Dark);
             border-radius: 4px;
-            display: block;
             background-color: #ffffff;
             color: var(--Dark);
+            text-align: center;
+        }
+
+        #search::placeholder {
+            color: var(--Dark);
+            text-align: center;
         }
 
         .tabs {
@@ -133,12 +169,6 @@
             color: var(--Dark);
         }
 
-        main {
-            width: 100%;
-            padding: 1rem;
-            flex: 1;
-        }
-
         .list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -154,7 +184,7 @@
 
         .item-button {
             padding: 0.5rem;
-            background-color: var(--Green);
+            background-color: var(--Dark);
             color: #ffffff;
             border: none;
             text-align: center;
@@ -165,7 +195,8 @@
         }
 
         .item-button:hover {
-            background-color: var(--Green);
+            background-color: var(--Gold);
+            color: var(--Dark);
         }
 
         .content {
@@ -177,35 +208,6 @@
             width: 100%;
             grid-column: 1 / -1;
             color: #ffffff;
-        }
-
-        .about-section {
-            margin: 0 auto;
-            margin-top: 1rem;
-            text-align: center;
-            padding: 1rem;
-            background-color: var(--Dark);
-            border-radius: 4px;
-            color: #ffffff;
-            max-width: 600px;
-        }
-
-        .about-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            font-family: 'Audiowide', sans-serif;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        .about-content {
-            display: none;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        .about-content.expanded {
-            display: block;
         }
 
         .scripture-section {
@@ -267,7 +269,7 @@
                 font-size: 0.9rem;
             }
 
-            main {
+            .main-content {
                 padding: 0.5rem;
             }
 
@@ -284,18 +286,11 @@
 </head>
 <body>
     <header>
+        <div class="hamburger" onclick="toggleMenu('left-menu')">☰</div>
         <div class="header-content">
-            <div class="hamburger" onclick="toggleMenu('left-menu')">☰</div>
             <h1>JWL</h1>
-            <div class="hamburger" onclick="toggleMenu('right-menu')">☰</div>
         </div>
-        <p>Pure Worship Restored Through Truth and Spirit</p>
-        <div class="about-section">
-            <h3 onclick="toggleAbout()">About</h3>
-            <div id="about-content" class="about-content">
-                The purpose of JWL (Walk Wise) is to restore the original pure worship Jehovah approves. We aim to provide resources, scriptures, and insights that guide you in aligning with Jehovah’s standards and principles for true worship.
-            </div>
-        </div>
+        <div class="hamburger" onclick="toggleMenu('right-menu')">☰</div>
         <div id="left-menu" class="hamburger-menu" style="left: 1rem; top: 3rem;">
             <a href="games.html">GAMES</a>
             <a href="news.html">NEWS</a>
@@ -304,20 +299,31 @@
             <a href="drone.html">DRONE</a>
             <a href="note.html">NOTE</a>
         </div>
-        <input type="text" id="search" placeholder="Search items..." onkeyup="searchItems()">
+    </header>
+    <section class="main-content">
+        <div class="about-section">
+            <h3 onclick="toggleAbout()">About</h3>
+            <div id="about-content" class="about-content">
+                The purpose of JWL (Walk Wise) is to restore the original pure worship Jehovah approves. We aim to provide resources, scriptures, and insights that guide you in aligning with Jehovah’s standards and principles for true worship.
+            </div>
+        </div>
+        <div class="search-section">
+            <h3 onclick="toggleSearch()">Search</h3>
+            <div id="search-content" class="search-content">
+                <input type="text" id="search" placeholder="-Search For Bible Truth-" onkeyup="searchItems()">
+            </div>
+        </div>
         <div class="tabs">
             <button class="tab-button" onclick="showTab('launch')">LAUNCH</button>
             <button class="tab-button" onclick="showTab('topics')">TOPICS</button>
             <button class="tab-button" onclick="showTab('people')">PEOPLE</button>
         </div>
-    </header>
-    <main>
         <div class="list" id="launch" style="display: none;"></div>
         <div class="list" id="topics" style="display: none;"></div>
         <div class="list" id="people" style="display: none;"></div>
-    </main>
+    </section>
     <footer>
-        <p>Copyright Just Wise Love</p>
+        <p>© Just Wise Love</p>
     </footer>
     <script src="launch.js"></script>
     <script src="topics.js"></script>
@@ -345,6 +351,12 @@
         // Toggle About section
         function toggleAbout() {
             const content = document.getElementById('about-content');
+            content.classList.toggle('expanded');
+        }
+
+        // Toggle Search section
+        function toggleSearch() {
+            const content = document.getElementById('search-content');
             content.classList.toggle('expanded');
         }
 
@@ -490,7 +502,7 @@
                 const allList = document.createElement('div');
                 allList.className = 'list';
                 allList.id = 'search-results';
-                const main = document.querySelector('main');
+                const main = document.querySelector('.main-content');
                 const existingResults = document.getElementById('search-results');
                 if (existingResults) existingResults.remove();
                 main.appendChild(allList);
