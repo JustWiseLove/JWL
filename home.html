@@ -30,13 +30,13 @@
         header {
             background-color: var(--Green);
             color: #ffffff;
-            padding: 1rem;
+            padding: 1rem; /* Restored original padding */
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: center; /* Restored to center the hamburgers vertically */
         }
 
         .header-content {
@@ -59,6 +59,7 @@
             min-width: 120px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1001;
+            top: 1rem; /* Raised the dropdown menu position */
         }
 
         .hamburger-menu a {
@@ -76,8 +77,9 @@
 
         header h1 {
             font-family: 'Audiowide', sans-serif;
-            font-size: 2rem;
+            font-size: 4rem;
             margin: 0;
+            cursor: pointer;
         }
 
         .main-content {
@@ -254,6 +256,10 @@
             .hamburger {
                 font-size: 1.2rem;
             }
+
+            header h1 {
+                font-size: 3rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -262,7 +268,7 @@
             }
 
             header h1 {
-                font-size: 1.5rem;
+                font-size: 2.5rem;
             }
 
             .item-button {
@@ -288,14 +294,14 @@
     <header>
         <div class="hamburger" onclick="toggleMenu('left-menu')">☰</div>
         <div class="header-content">
-            <h1>JWL</h1>
+            <h1 onclick="goToHome()">JWL</h1>
         </div>
         <div class="hamburger" onclick="toggleMenu('right-menu')">☰</div>
-        <div id="left-menu" class="hamburger-menu" style="left: 1rem; top: 3rem;">
+        <div id="left-menu" class="hamburger-menu" style="left: 1rem; top: 1rem;">
             <a href="games.html">GAMES</a>
             <a href="news.html">NEWS</a>
         </div>
-        <div id="right-menu" class="hamburger-menu" style="right: 1rem; top: 3rem;">
+        <div id="right-menu" class="hamburger-menu" style="right: 1rem; top: 1rem;">
             <a href="drone.html">DRONE</a>
             <a href="note.html">NOTE</a>
         </div>
@@ -358,6 +364,11 @@
         function toggleSearch() {
             const content = document.getElementById('search-content');
             content.classList.toggle('expanded');
+        }
+
+        // Redirect to home.html
+        function goToHome() {
+            window.location.href = 'home.html';
         }
 
         // Sort items alphabetically by title
