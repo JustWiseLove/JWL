@@ -22,6 +22,9 @@
         body {
             background-color: var(--Dark);
             color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
@@ -103,7 +106,7 @@
 
         .tab-button {
             padding: 0.5rem 1rem;
-            background-color: var(--Green);
+            background-color: var(--Dark);
             color: #ffffff;
             border: none;
             border-radius: 4px;
@@ -115,11 +118,13 @@
         }
 
         .tab-button:hover {
-            background-color: var(--Dark);
+            background-color: var(--Gold);
+            color: var(--Dark);
         }
 
         .tab-button.active {
-            background-color: var(--Dark);
+            background-color: var(--Gold);
+            color: var(--Dark);
             border-radius: 4px 4px 0 0;
         }
 
@@ -131,6 +136,7 @@
         main {
             width: 100%;
             padding: 1rem;
+            flex: 1;
         }
 
         .list {
@@ -187,12 +193,19 @@
         .about-section h3 {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
+            font-family: 'Audiowide', sans-serif;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
-        .about-section p {
+        .about-content {
+            display: none;
             font-size: 1rem;
             line-height: 1.5;
+        }
+
+        .about-content.expanded {
+            display: block;
         }
 
         .scripture-section {
@@ -216,6 +229,14 @@
             background-color: #ffd800;
             font-weight: bold;
             color: var(--Dark);
+        }
+
+        footer {
+            background-color: var(--Green);
+            color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1rem;
         }
 
         @media (max-width: 768px) {
@@ -268,10 +289,12 @@
             <h1>JWL</h1>
             <div class="hamburger" onclick="toggleMenu('right-menu')">☰</div>
         </div>
-        <p>Walk Wise</p>
+        <p>Pure Worship Restored Through Truth and Spirit</p>
         <div class="about-section">
-            <h3>About</h3>
-            <p>The purpose of JWL (Walk Wise) is to restore the original pure worship Jehovah approves. We aim to provide resources, scriptures, and insights that guide you in aligning with Jehovah’s standards and principles for true worship.</p>
+            <h3 onclick="toggleAbout()">About</h3>
+            <div id="about-content" class="about-content">
+                The purpose of JWL (Walk Wise) is to restore the original pure worship Jehovah approves. We aim to provide resources, scriptures, and insights that guide you in aligning with Jehovah’s standards and principles for true worship.
+            </div>
         </div>
         <div id="left-menu" class="hamburger-menu" style="left: 1rem; top: 3rem;">
             <a href="games.html">GAMES</a>
@@ -281,18 +304,21 @@
             <a href="drone.html">DRONE</a>
             <a href="note.html">NOTE</a>
         </div>
+        <input type="text" id="search" placeholder="Search items..." onkeyup="searchItems()">
+        <div class="tabs">
+            <button class="tab-button" onclick="showTab('launch')">LAUNCH</button>
+            <button class="tab-button" onclick="showTab('topics')">TOPICS</button>
+            <button class="tab-button" onclick="showTab('people')">PEOPLE</button>
+        </div>
     </header>
-    <input type="text" id="search" placeholder="Search items..." onkeyup="searchItems()">
-    <div class="tabs">
-        <button class="tab-button" onclick="showTab('launch')">LAUNCH</button>
-        <button class="tab-button" onclick="showTab('topics')">TOPICS</button>
-        <button class="tab-button" onclick="showTab('people')">PEOPLE</button>
-    </div>
     <main>
         <div class="list" id="launch" style="display: none;"></div>
         <div class="list" id="topics" style="display: none;"></div>
         <div class="list" id="people" style="display: none;"></div>
     </main>
+    <footer>
+        <p>Copyright Just Wise Love</p>
+    </footer>
     <script src="launch.js"></script>
     <script src="topics.js"></script>
     <script src="people.js"></script>
@@ -315,6 +341,12 @@
                 menus.forEach(menu => menu.style.display = 'none');
             }
         });
+
+        // Toggle About section
+        function toggleAbout() {
+            const content = document.getElementById('about-content');
+            content.classList.toggle('expanded');
+        }
 
         // Sort items alphabetically by title
         const sortedLaunch = launch.slice().sort((a, b) => a.T.localeCompare(b.T));
