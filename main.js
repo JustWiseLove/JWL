@@ -154,7 +154,15 @@ function createSearchResults(input) {
     const main = document.querySelector('.main-content');
     const existingResults = document.getElementById('search-results');
     if (existingResults) existingResults.remove();
-    main.appendChild(allList);
+    
+    // Find the Bear Book image and insert the search results before it
+    const bearImage = main.querySelector('img[src="BEAR.PNG"]');
+    if (bearImage) {
+        main.insertBefore(allList, bearImage);
+    } else {
+        // Fallback: append to main content if image isn't found
+        main.appendChild(allList);
+    }
     return allList;
 }
 
