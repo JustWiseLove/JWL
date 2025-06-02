@@ -34,19 +34,6 @@ function closeMenusOnOutsideClick(event) {
     }
 }
 
-// Section Toggle Functions
-// Toggles the About section visibility
-function toggleAbout() {
-    const content = document.getElementById('about-content');
-    content.classList.toggle('expanded');
-}
-
-// Toggles the Search section visibility
-function toggleSearch() {
-    const content = document.getElementById('search-content');
-    content.classList.toggle('expanded');
-}
-
 // Navigation Functions
 // Redirects to the home page
 function goToHome() {
@@ -204,7 +191,7 @@ function filterAndSortItems(input) {
         const aText = `${a.item.T} ${a.item.S.join(' ')} ${a.item.D}`.toLowerCase();
         const bText = `${b.item.T} ${b.item.S.join(' ')} ${b.item.D}`.toLowerCase();
         const aIsExact = aText === input || a.item.T.toLowerCase() === input || a.item.S.some(s => s.toLowerCase() === input) || a.item.D.toLowerCase() === input;
-        const bIsExact = bText === input || b.item.T.toLowerCase() === input || b.item.S.some(s => s.toLowerCase() === input) || b.item.D.toLowerCase() === input;
+        const bIsExact = bText === input || b.item.T.toLowerCase() === input || b.item.S.some(s => s.toLowerCase() === input) || a.item.D.toLowerCase() === input;
         if (aIsExact && !bIsExact) return -1;
         if (!aIsExact && bIsExact) return 1;
         return a.item.T.localeCompare(b.item.T);
