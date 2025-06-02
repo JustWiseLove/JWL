@@ -312,9 +312,8 @@
 
                 document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
                 allList.style.display = 'grid';
-                const firstVisibleItem = allList.querySelector('.item');
-                if (firstVisibleItem) firstVisibleItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                else resetView();
+                // Removed: if (firstVisibleItem) firstVisibleItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (!matchingItems.length) resetView();
             }, 300);
         }
 
