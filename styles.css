@@ -81,6 +81,13 @@
             background-color: var(--Green);
         }
 
+        .main-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
         .about-section, .search-section {
             margin: 0 auto;
             margin-top: 1rem;
@@ -225,13 +232,6 @@
             background-color: #ffd800;
             font-weight: bold;
             color: var(--Dark);
-        }
-       
-        .main-content img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
         }
 
         footer {
