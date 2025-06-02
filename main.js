@@ -50,7 +50,7 @@ function toggleSearch() {
 // Navigation Functions
 // Redirects to the home page
 function goToHome() {
-    window.location.href = 'home.html';
+    window.location.href = 'index.html';
 }
 
 // Tab Management Functions
