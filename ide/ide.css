@@ -1,0 +1,366 @@
+:root {
+  --dark-blue: #181A1C;
+  --light-blue: #181A1C;
+  --green: #4a7fb2 /*#1a5c38*/;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Share Tech Mono';
+  src: url('https://www.codexedoc.com/fonts/ShareTechMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Share Tech Mono', monospace;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  height: 100vh;
+  display: flex !important;
+  flex-direction: column;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+.top-bar {
+  background-color: var(--light-blue);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--green);
+}
+
+.top-bar .logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.top-bar .top-bar-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.top-bar button {
+  padding: 8px;
+  background-color: var(--dark-blue);
+  border: 2px solid var(--green);
+  color: var(--white);
+  cursor: pointer;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.top-bar button:hover {
+  background-color: var(--green);
+  color: var(--dark-blue);
+}
+
+.main-container {
+  display: flex !important;
+  flex: 1;
+  height: calc(100vh - 50px);
+}
+
+.editor-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.tabs {
+  background-color: var(--light-blue);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--green);
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green) var(--dark-blue);
+}
+
+.tabs .tab {
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: var(--dark-blue);
+  border-right: 1px solid var(--green);
+  white-space: nowrap;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabs .tab.active {
+  background-color: var(--light-blue);
+  color: var(--green);
+}
+
+.tabs .tab:hover {
+  background-color: var(--green);
+  color: var(--dark-blue);
+}
+
+.tabs .tab i {
+  font-size: 0.8rem;
+}
+
+.tabs button#add-file {
+  padding: 10px;
+  background-color: var(--dark-blue);
+  border: 2px solid var(--green);
+  color: var(--white);
+  cursor: pointer;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
+
+.tabs button#add-file:hover {
+  background-color: var(--green);
+  color: var(--dark-blue);
+}
+
+.code-editor {
+  position: relative;
+  flex: 1;
+  background-color: var(--dark-blue);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.cm-s-monokai {
+  background-color: var(--light-blue);
+  color: var(--white);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  height: 100%;
+}
+
+.cm-s-monokai .CodeMirror-gutters {
+  background-color: var(--dark-blue);
+  border-right: 1px solid var(--green);
+}
+
+.cm-s-monokai .CodeMirror-linenumbers {
+  color: var(--green);
+  padding: 0 5px;
+}
+
+.cm-s-monokai .CodeMirror-cursor {
+  border-left: 1px solid var(--green);
+}
+
+.editor {
+  flex: 1;
+  background-color: var(--dark-blue);
+  padding: 10px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green) var(--dark-blue);
+  touch-action: none;
+}
+
+.editor .CodeMirror {
+  height: 100%;
+  width: 100%;
+}
+
+.editor textarea {
+  width: 100%;
+  height: 100%;
+  background: var(--light-blue);
+  border: 2px solid var(--green);
+  color: var(--white);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  padding: 10px 15px 10px 60px;
+  resize: none;
+  outline: none;
+  line-height: 1.5;
+  border-radius: 5px;
+}
+
+.status-bar {
+  background-color: var(--green);
+  color: var(--dark-blue);
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--light-blue);
+  padding: 20px;
+  border: 2px solid var(--green);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+}
+
+.modal-content h3 {
+  margin: 0;
+  color: var(--green);
+}
+
+.modal-content input {
+  padding: 8px;
+  background-color: var(--dark-blue);
+  border: 2px solid var(--green);
+  color: var(--white);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.modal-content button {
+  padding: 8px;
+  background-color: var(--dark-blue);
+  border: 2px solid var(--green);
+  color: var(--white);
+  cursor: pointer;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.modal-content button:hover {
+  background-color: var(--green);
+  color: var(--dark-blue);
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--green) var(--dark-blue);
+  }
+
+  .editor-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--green) var(--dark-blue);
+  }
+
+  .code-editor {
+    height: 400px;
+  }
+
+  .cm-s-monokai {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .cm-s-monokai .CodeMirror-linenumbers {
+    width: 38px;
+    padding: 0 5px;
+  }
+
+  .editor textarea {
+    height: 400px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    padding: 10px 15px 10px 50px;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar .logo {
+    font-size: 1rem;
+  }
+
+  .top-bar button {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  .tabs button#add-file {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  .code-editor {
+    height: 300px;
+  }
+
+  .cm-s-monokai {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .cm-s-monokai .CodeMirror-linenumbers {
+    width: 38px;
+    padding: 0 5px;
+  }
+
+  .editor textarea {
+    height: 300px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    padding: 10px 15px 10px 50px;
+  }
+
+  .status-bar {
+    font-size: 0.7rem;
+  }
+
+  .main-container {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--green) var(--dark-blue);
+  }
+
+  .editor-container {
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--green) var(--dark-blue);
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}
+
+/* WebKit Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3c8235;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #0a0a23;
+}
