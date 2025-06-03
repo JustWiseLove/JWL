@@ -14,9 +14,9 @@
       flex-direction: column;
       height: 100vh;
       font-size: 16px;
-      -webkit-user-select: none; /* Prevent text selection on mobile */
+      -webkit-user-select: none;
       user-select: none;
-      touch-action: manipulation; /* Prevent double-tap zoom on mobile */
+      touch-action: manipulation;
     }
 
     .top-bar {
@@ -39,9 +39,9 @@
       transition: background 0.2s, border-color 0.2s;
       font-size: 14px;
       margin-left: 8px;
-      position: relative; /* Ensure buttons are above other elements */
-      z-index: 2; /* Higher z-index to prevent overlap issues */
-      touch-action: auto; /* Ensure touch events work */
+      position: relative;
+      z-index: 2;
+      touch-action: auto;
     }
 
     .top-bar button:hover {
@@ -87,6 +87,62 @@
     .tab:hover {
       background: #2a2a2a;
       color: #d0d0d0;
+    }
+
+    .find-replace-bar {
+      background: #252525;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #333;
+    }
+
+    .find-replace-bar label {
+      color: #d0d0d0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .find-replace-bar input {
+      background: #2a2a2a;
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      outline: none;
+      width: 150px;
+    }
+
+    .find-replace-bar input:focus {
+      border-color: #5a5a5a;
+    }
+
+    .find-replace-bar button {
+      background: #3a3a3a;
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s;
+      font-size: 14px;
+      z-index: 2;
+      touch-action: auto;
+      min-width: 80px;
+    }
+
+    .find-replace-bar button:hover {
+      background: #4a4a4a;
+      border-color: #5a5a5a;
+    }
+
+    .find-replace-bar button:disabled {
+      background: #2a2a2a;
+      color: #606060;
+      cursor: not-allowed;
+      border-color: #3a3a3a;
     }
 
     .editor-area {
@@ -196,7 +252,7 @@
       transition: background 0.2s, border-color 0.2s;
       font-size: 14px;
       margin: 0 6px;
-      z-index: 12; /* Ensure modal buttons are clickable */
+      z-index: 12;
       touch-action: auto;
     }
 
@@ -226,6 +282,24 @@
         font-size: 16px;
         padding: 8px 12px;
         min-width: 70px;
+      }
+
+      .find-replace-bar {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 10px 12px;
+      }
+
+      .find-replace-bar input {
+        width: 120px;
+        font-size: 14px;
+        padding: 6px 8px;
+      }
+
+      .find-replace-bar button {
+        font-size: 16px;
+        padding: 8px 14px;
+        min-width: 80px;
       }
 
       .code-editor {
@@ -274,6 +348,17 @@
         min-width: 60px;
       }
 
+      .find-replace-bar input {
+        width: 100px;
+        font-size: 12px;
+      }
+
+      .find-replace-bar button {
+        font-size: 14px;
+        padding: 6px 10px;
+        min-width: 70px;
+      }
+
       .code-editor {
         font-size: 14px;
         padding: 8px;
@@ -293,10 +378,18 @@
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('html-index')">index.html</button>
-    <button class="tab" onclick="switchTab('css-style')">style.css</button>
-    <button class="tab" onclick="switchTab('js-script')">script.js</button>
+    <button class="tab active" data-file-id="html-index" onclick="switchTab('html-index')">index.html</button>
+    <button class="tab" data-file-id="css-style" onclick="switchTab('css-style')">style.css</button>
+    <button class="tab" data-file-id="js-script" onclick="switchTab('js-script')">script.js</button>
     <button class="tab" onclick="switchTab('browser')">Browser</button>
+  </div>
+
+  <div class="find-replace-bar">
+    <label for="findText">Find:</label>
+    <input type="text" id="findText" placeholder="Find Text">
+    <label for="replaceText">Replace:</label>
+    <input type="text" id="replaceText" placeholder="Replace With">
+    <button id="findReplaceBtn" onclick="findAndReplace()" disabled>Submit</button>
   </div>
 
   <div class="container">
@@ -378,15 +471,13 @@ console.log("Hello from JS");
   </div>
 
   <script>
-    // Add global error handler for debugging
     window.onerror = function(message, source, lineno, colno, error) {
       console.error(`Global error: ${message} at ${source}:${lineno}:${colno}`);
       alert(`A script error occurred: ${message}. Check the console for details.`);
       return true;
     };
 
-    // Initialize files object, loading from localStorage if available
-    let files = JSON.parse(localStorage.getItem('jwl-ide-files')) || {
+    let files = {
       'html-index': { type: 'html', content: document.getElementById('editor-html-index').value },
       'css-style': { type: 'css', content: document.getElementById('editor-css-style').value },
       'js-script': { type: 'js', content: document.getElementById('editor-js-script').value }
@@ -395,20 +486,20 @@ console.log("Hello from JS");
     let currentTab = 'html-index';
     let lastHtmlTab = 'html-index';
 
-    // Update button states based on current tab
     function updateButtonStates() {
       const selectAllBtn = document.getElementById('selectAllBtn');
       const saveBtn = document.getElementById('saveBtn');
       const deleteBtn = document.getElementById('deleteBtn');
+      const findReplaceBtn = document.getElementById('findReplaceBtn');
 
       const isBrowserTab = currentTab === 'browser';
       selectAllBtn.disabled = isBrowserTab;
       saveBtn.disabled = isBrowserTab;
       deleteBtn.disabled = isBrowserTab || Object.keys(files).length <= 1;
+      findReplaceBtn.disabled = isBrowserTab || !document.getElementById('findText').value;
     }
 
-    // Load saved files and create tabs/editors dynamically
-    function loadFilesFromStorage() {
+    function loadInitialFiles() {
       for (let fileId in files) {
         if (!document.getElementById(fileId)) {
           const file = files[fileId];
@@ -432,34 +523,36 @@ console.log("Hello from JS");
 
           textarea.addEventListener('input', () => {
             files[fileId].content = textarea.value;
-            saveToLocalStorage();
           });
         } else {
           const textarea = document.getElementById(`editor-${fileId}`);
           if (textarea) textarea.value = files[fileId].content;
         }
       }
+      if (!files[lastHtmlTab] || files[lastHtmlTab].type !== 'html') {
+        const htmlFiles = Object.keys(files).filter(id => files[id].type === 'html');
+        lastHtmlTab = htmlFiles.length > 0 ? htmlFiles[0] : null;
+      }
       updateButtonStates();
-    }
-
-    function saveToLocalStorage() {
-      localStorage.setItem('jwl-ide-files', JSON.stringify(files));
     }
 
     function switchTab(tab) {
       console.log(`Switching to tab: ${tab}`);
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      const tabButton = document.querySelector(`.tab[onclick="switchTab('${tab}')"]`);
+      const tabButton = document.querySelector(`.tab[data-file-id="${tab}"], .tab[onclick="switchTab('${tab}')"]`);
       if (tabButton) tabButton.classList.add('active');
+      else console.warn(`Tab button for ${tab} not found`);
 
       document.querySelectorAll('.editor-area').forEach(e => e.classList.remove('visible'));
       const editorArea = document.getElementById(tab);
-      if (editorArea) editorArea.classList.add('visible');
+      if (editorArea) editorArea.className = 'editor-area visible';
+      else console.warn(`Editor area for ${tab} not found`);
 
       currentTab = tab;
       if (files[tab]?.type === 'html') lastHtmlTab = tab;
 
       updateButtonStates();
+      updateFindReplaceButton();
 
       if (tab === 'browser') {
         runCode();
@@ -470,12 +563,13 @@ console.log("Hello from JS");
     }
 
     function runCode() {
+      console.log('Running code for browser preview');
       if (currentTab !== 'browser') {
         const editor = document.getElementById(`editor-${currentTab}`);
         if (editor) files[currentTab].content = editor.value;
       }
 
-      let htmlContent = files[lastHtmlTab]?.content || '';
+      let htmlContent = lastHtmlTab && files[lastHtmlTab]?.type === 'html' ? files[lastHtmlTab].content : '<html><body><h1>No HTML file available</h1></body></html>';
       let cssContent = '';
       let jsContent = '';
 
@@ -491,11 +585,20 @@ console.log("Hello from JS");
         </html>
       `;
 
-      const blob = new Blob([fullCode], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
       const previewIframe = document.getElementById('preview');
-      if (previewIframe.src.startsWith('blob:')) URL.revokeObjectURL(previewIframe.src);
-      previewIframe.src = url;
+      const oldSrc = previewIframe.src;
+      try {
+        const blob = new Blob([fullCode], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        previewIframe.src = url;
+        if (oldSrc.startsWith('blob:')) {
+          setTimeout(() => URL.revokeObjectURL(oldSrc), 100);
+        }
+      } catch (error) {
+        console.error('Error generating preview:', error);
+        previewIframe.src = 'about:blank';
+        previewIframe.contentDocument.body.innerHTML = '<h1>Error rendering preview</h1>';
+      }
     }
 
     function selectAllCode() {
@@ -515,7 +618,6 @@ console.log("Hello from JS");
 
       const fileName = `${currentTab.replace(/^[^-]+-/, '')}.${files[currentTab].type}`;
       console.log(`Showing delete modal for file: ${fileName}`);
-
       const deleteMessage = document.getElementById('deleteFileMessage');
       deleteMessage.textContent = `Are you sure you want to delete ${fileName}?`;
       document.getElementById('deleteFileModal').style.display = 'flex';
@@ -528,43 +630,37 @@ console.log("Hello from JS");
 
     function confirmDelete() {
       console.log(`Confirming deletion of file: ${currentTab}`);
+      if (currentTab === 'browser' || !files[currentTab]) {
+        console.warn('Delete aborted: Invalid tab or file not found');
+        closeDeleteModal();
+        return;
+      }
 
       try {
-        console.log('Current tabs:', document.querySelectorAll('.tab').length);
-        console.log('Current editor areas:', document.querySelectorAll('.editor-area').length);
-
-        let tabButton = document.querySelector(`.tab[data-file-id="${currentTab}"]`);
-        if (!tabButton) {
-          console.warn(`Initial tab button for ${currentTab} not found with data-file-id`);
-          const fileName = `${currentTab.replace(/^[^-]+-/, '')}.${files[currentTab].type}`;
-          tabButton = Array.from(document.querySelectorAll('.tab')).find(tab => tab.textContent === fileName);
-          if (!tabButton) {
-            console.error(`Tab button for ${currentTab} not found by text content either`);
-            throw new Error(`Tab button for ${currentTab} not found`);
-          }
+        const tabButton = document.querySelector(`.tab[data-file-id="${currentTab}"]`);
+        if (tabButton) {
+          console.log(`Removing tab button for ${currentTab}`);
+          tabButton.remove();
+        } else {
+          console.warn(`Tab button for ${currentTab} not found`);
         }
-        console.log(`Found tab button for ${currentTab} with onclick:`, tabButton.getAttribute('onclick'));
-        console.log(`Removing tab button for ${currentTab}`);
-        tabButton.remove();
 
         const editorArea = document.getElementById(currentTab);
-        if (!editorArea) {
-          console.error(`Editor area for ${currentTab} not found`);
-          throw new Error(`Editor area for ${currentTab} not found`);
-        }
-        console.log(`Removing editor area for ${currentTab}`);
-        editorArea.remove();
-
-        if (files[currentTab]) {
-          delete files[currentTab];
-          console.log(`File ${currentTab} deleted from files object`);
+        if (editorArea) {
+          console.log(`Removing editor area for ${currentTab}`);
+          editorArea.remove();
         } else {
-          console.error(`File ${currentTab} not found in files object`);
-          throw new Error(`File ${currentTab} not found in files object`);
+          console.warn(`Editor area for ${currentTab} not found`);
         }
 
-        saveToLocalStorage();
-        console.log('LocalStorage updated');
+        delete files[currentTab];
+        console.log(`File ${currentTab} deleted from files object`);
+
+        if (currentTab === lastHtmlTab) {
+          const htmlFiles = Object.keys(files).filter(id => files[id].type === 'html');
+          lastHtmlTab = htmlFiles.length > 0 ? htmlFiles[0] : null;
+          console.log(`Updated lastHtmlTab to: ${lastHtmlTab || 'none'}`);
+        }
 
         const remainingTabs = Object.keys(files).filter(id => id !== 'browser');
         const nextTab = remainingTabs.length > 0 ? remainingTabs[0] : 'browser';
@@ -574,7 +670,7 @@ console.log("Hello from JS");
         closeDeleteModal();
       } catch (error) {
         console.error('Error during file deletion:', error.message);
-        alert(`Failed to delete file: ${error.message}. Please try again or check the console for details.`);
+        alert(`Failed to delete file: ${error.message}. Check the console for details.`);
         closeDeleteModal();
       }
     }
@@ -626,10 +722,8 @@ console.log("Hello from JS");
 
       textarea.addEventListener('input', () => {
         files[fileId].content = textarea.value;
-        saveToLocalStorage();
       });
 
-      saveToLocalStorage();
       closeNewFileModal();
       setTimeout(() => {
         switchTab(fileId);
@@ -657,7 +751,7 @@ console.log("Hello from JS");
       const fileName = document.getElementById('saveFileName').value.trim();
       if (!fileName) return alert('Enter a file name.');
 
-      const editor = document.getElementById(`editor-${currentTab}`);
+      const editor = document.getElementById('editor-${currentTab}');
       if (editor) files[currentTab].content = editor.value;
 
       const content = files[currentTab].content;
@@ -674,16 +768,48 @@ console.log("Hello from JS");
       closeSaveFileModal();
     }
 
-    // Load files and set up input listeners
+    function findAndReplace() {
+      console.log('Find and Replace button clicked');
+      if (currentTab === 'browser') {
+        console.log('Find and Replace blocked: On browser tab');
+        return;
+      }
+
+      const findText = document.getElementById('findText').value;
+      const replaceText = document.getElementById('replaceText').value;
+
+      if (!findText) {
+        alert('Please enter text to find.');
+        return;
+      }
+
+      const editor = document.getElementById(`editor-${currentTab}`);
+      if (!editor) {
+        console.error(`Editor for ${currentTab} not found`);
+        return;
+      }
+
+      const regex = new RegExp(findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+      files[currentTab].content = editor.value = editor.value.replace(regex, replaceText);
+      console.log(`Replaced "${findText}" with "${replaceText}" in ${currentTab}`);
+    }
+
+    function updateFindReplaceButton() {
+      const findText = document.getElementById('findText').value;
+      const findReplaceBtn = document.getElementById('findReplaceBtn');
+      findReplaceBtn.disabled = currentTab === 'browser' || !findText;
+    }
+
+    document.getElementById('findText').addEventListener('input', updateFindReplaceButton);
+    document.getElementById('replaceText').addEventListener('input', updateFindReplaceButton);
+
     document.querySelectorAll('.code-editor').forEach(editor => {
       editor.addEventListener('input', () => {
         const fileId = editor.id.replace('editor-', '');
         files[fileId].content = editor.value;
-        saveToLocalStorage();
       });
     });
 
-    // Add click listeners to buttons for debugging
     document.querySelectorAll('.top-bar button').forEach(button => {
       button.addEventListener('click', () => {
         console.log(`Button clicked: ${button.id}`);
@@ -696,8 +822,7 @@ console.log("Hello from JS");
       });
     });
 
-    // Initialize by loading files from localStorage
-    loadFilesFromStorage();
+    loadInitialFiles();
     window.onload = () => {
       console.log('Window loaded');
       if (currentTab === 'browser') runCode();
