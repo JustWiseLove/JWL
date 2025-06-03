@@ -1,56 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JWL</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>IDE - Just Wise Love</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a1a;
+      color: #d0d0d0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      font-size: 16px;
+    }
+
+    .top-bar {
+      background: #252525;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      border-bottom: 1px solid #333;
+    }
+
+    .top-bar button {
+      background: #3a3a3a;
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s;
+      font-size: 14px;
+    }
+
+    .top-bar button:hover {
+      background: #4a4a4a;
+      border-color: #5a5a5a;
+    }
+
+    .tabs {
+      display: flex;
+      background: #202020;
+      overflow-x: auto;
+      border-bottom: 1px solid #333;
+    }
+
+    .tab {
+      padding: 10px 16px;
+      background: #202020;
+      border: none;
+      color: #a0a0a0;
+      cursor: pointer;
+      flex: 0 0 auto;
+      transition: background 0.2s, color 0.2s;
+      font-size: 14px;
+    }
+
+    .tab.active {
+      background: #2a2a2a;
+      color: #d0d0d0;
+      font-weight: 600;
+      border-bottom: 2px solid #4a4a4a;
+    }
+
+    .tab:hover {
+      background: #2a2a2a;
+      color: #d0d0d0;
+    }
+
+    .editor-area {
+      display: none;
+      flex-grow: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .editor-area.visible {
+      display: flex;
+    }
+
+    .code-editor {
+      background: #1e1e1e;
+      color: #d0d0d0;
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      width: 100%;
+      height: 100%;
+      resize: none;
+      border: none;
+      padding: 12px;
+      box-sizing: border-box;
+      outline: none;
+      scrollbar-color: #4a4a4a #2a2a2a;
+    }
+
+    .code-editor::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .code-editor::-webkit-scrollbar-track {
+      background: #2a2a2a;
+    }
+
+    .code-editor::-webkit-scrollbar-thumb {
+      background: #4a4a4a;
+      border-radius: 4px;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+    }
+
+    .bottom-bar {
+      background: #252525;
+      padding: 12px;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    .bottom-bar button {
+      background: #3a3a3a;
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s;
+      margin: 0 6px;
+      font-size: 14px;
+    }
+
+    .bottom-bar button:hover {
+      background: #4a4a4a;
+      border-color: #5a5a5a;
+    }
+
+    .container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .modal-content {
+      background: #252525;
+      padding: 24px;
+      border-radius: 6px;
+      text-align: center;
+      border: 1px solid #333;
+    }
+
+    .modal-content input,
+    .modal-content select {
+      margin: 12px 0;
+      padding: 8px;
+      width: 220px;
+      background: #2a2a2a;
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      border-radius: 4px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .modal-content input:focus,
+    .modal-content select:focus {
+      border-color: #5a5a5a;
+    }
+
+    .modal-content button {
+      background: #3a3a3a;
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s;
+      font-size: 14px;
+    }
+
+    .modal-content button:hover {
+      background: #4a4a4a;
+      border-color: #5a5a5a;
+    }
+
+    @media only screen and (max-width: 768px) {
+      body {
+        font-size: 18px;
+      }
+
+      .code-editor {
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .top-bar {
+        padding: 10px 12px;
+      }
+
+      .top-bar button {
+        font-size: 16px;
+        padding: 8px 14px;
+      }
+
+      .tab {
+        font-size: 16px;
+        padding: 8px 12px;
+      }
+
+      .bottom-bar button {
+        font-size: 16px;
+        padding: 8px 14px;
+      }
+
+      .modal-content {
+        padding: 20px;
+      }
+
+      .modal-content h3 {
+        font-size: 20px;
+      }
+
+      .modal-content input,
+      .modal-content select {
+        font-size: 16px;
+        padding: 10px;
+        width: 90%;
+        max-width: 300px;
+      }
+
+      .modal-content button {
+        font-size: 16px;
+        padding: 8px 14px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="hamburger" onclick="toggleMenu('left-menu')">☰</div>
-        <div class="header-content">
-            <h1 onclick="goToHome()">JWL</h1>
-        </div>
-        <div class="hamburger" onclick="toggleMenu('right-menu')">☰</div>
-        <div id="left-menu" class="hamburger-menu" style="left: 1rem; top: 1rem;">
-            <a href="family.html">FAMILY</a>
-            <a href="news.html">NEWS</a>
-        </div>
-        <div id="right-menu" class="hamburger-menu" style="right: 1rem; top: 1rem;">
-            <a href="school.html">SCHOOL</a>
-            <a href="note.html">NOTE</a>
-        </div>
-    </header>
-    <section class="main-content">
-        <div class="about-section">
-            <h3 onclick="toggleAbout()">About</h3>
-            <div id="about-content" class="about-content">
-                The purpose of Just Wise Love is to restore pure worship to its original form that Jehovah approves. We aim to provide resources, scriptures, and insights that guide you in aligning with Jehovah’s standards and principles for true worship.
-            </div>
-        </div>
-        <div class="search-section">
-            <h3 onclick="toggleSearch()">Search</h3>
-            <div id="search-content" class="search-content">
-                <input type="text" id="search" placeholder="-Search For Bible Truth-" onkeyup="searchItems()">
-            </div>
-        </div>
-        <div class="tabs">
-            <button class="tab-button" onclick="showTab('launch')">LAUNCH</button>
-            <button class="tab-button" onclick="showTab('topics')">TOPICS</button>
-            <button class="tab-button" onclick="showTab('people')">PEOPLE</button>
-        </div>
-        <div class="list" id="launch" style="display: none;"></div>
-        <div class="list" id="topics" style="display: none;"></div>
-        <div class="list" id="people" style="display: none;"></div>
-    </section>
-    <footer>
-        <p>© Just Wise Love</p>
-    </footer>
-    <script src="launch.js"></script>
-    <script src="topics.js"></script>
-    <script src="people.js"></script>
-    <script src="main.js"></script>
+  <div class="top-bar">
+    <span>JWL IDE</span>
+    <button onclick="showNewFileModal()">New File</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('html-index')">index.html</button>
+    <button class="tab" onclick="switchTab('css-style')">style.css</button>
+    <button class="tab" onclick="switchTab('js-script')">script.js</button>
+    <button class="tab" onclick="switchTab('browser')">Browser</button>
+  </div>
+
+  <div class="container">
+    <div id="html-index" class="editor-area visible">
+      <textarea id="editor-html-index" class="code-editor" spellcheck="false">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome - JWL</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Hello Coder</h1>
+    <script src="script.js"></script>
+  </body>
+</html>
+      </textarea>
+    </div>
+
+    <div id="css-style" class="editor-area">
+      <textarea id="editor-css-style" class="code-editor" spellcheck="false">
+body {
+  background-color: lightgray;
+  text-align: center;
+  font-family: sans-serif;
+}
+      </textarea>
+    </div>
+
+    <div id="js-script" class="editor-area">
+      <textarea id="editor-js-script" class="code-editor" spellcheck="false">
+console.log("Hello from JS");
+      </textarea>
+    </div>
+
+    <div id="browser" class="editor-area">
+      <iframe id="preview"></iframe>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <button onclick="runCode()">Run</button>
+    <button onclick="selectAllCode()">Select All</button>
+    <button onclick="saveToLocalStorage()">Save</button>
+  </div>
+
+  <div id="newFileModal" class="modal">
+    <div class="modal-content">
+      <h3>Create New File</h3>
+      <input type="text" id="newFileName" placeholder="Enter file name">
+      <select id="fileType">
+        <option value="html">.html</option>
+        <option value="css">.css</option>
+        <option value="js">.js</option>
+      </select>
+      <div>
+        <button onclick="createNewFile()">Create</button>
+        <button onclick="closeNewFileModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize files object, loading from localStorage if available
+    let files = JSON.parse(localStorage.getItem('jwl-ide-files')) || {
+      'html-index': { type: 'html', content: document.getElementById('editor-html-index').value },
+      'css-style': { type: 'css', content: document.getElementById('editor-css-style').value },
+      'js-script': { type: 'js', content: document.getElementById('editor-js-script').value }
+    };
+
+    let currentTab = 'html-index';
+    let lastHtmlTab = 'html-index';
+
+    // Load saved files and create tabs/editors dynamically
+    function loadFilesFromStorage() {
+      for (let fileId in files) {
+        if (!document.getElementById(fileId)) {
+          const file = files[fileId];
+          const tab = document.createElement('button');
+          tab.className = 'tab';
+          tab.textContent = `${fileId.replace(/^[^-]+-/, '')}.${file.type}`;
+          tab.onclick = () => switchTab(fileId);
+          document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
+
+          const editorArea = document.createElement('div');
+          editorArea.id = fileId;
+          editorArea.className = 'editor-area';
+          const textarea = document.createElement('textarea');
+          textarea.id = `editor-${fileId}`;
+          textarea.className = 'code-editor';
+          textarea.spellcheck = false;
+          textarea.value = file.content;
+          editorArea.appendChild(textarea);
+          document.querySelector('.container').appendChild(editorArea);
+
+          textarea.addEventListener('input', () => {
+            files[fileId].content = textarea.value;
+            saveToLocalStorage();
+          });
+        } else {
+          // Update existing textareas with saved content
+          const textarea = document.getElementById(`editor-${fileId}`);
+          if (textarea) textarea.value = files[fileId].content;
+        }
+      }
+    }
+
+    function saveToLocalStorage() {
+      localStorage.setItem('jwl-ide-files', JSON.stringify(files));
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      const tabButton = document.querySelector(`.tab[onclick="switchTab('${tab}')"]`);
+      if (tabButton) tabButton.classList.add('active');
+
+      document.querySelectorAll('.editor-area').forEach(e => e.classList.remove('visible'));
+      const editorArea = document.getElementById(tab);
+      if (editorArea) editorArea.classList.add('visible');
+
+      currentTab = tab;
+      if (files[tab]?.type === 'html') lastHtmlTab = tab;
+
+      if (tab !== 'browser') {
+        const textarea = editorArea?.querySelector('.code-editor');
+        if (textarea) setTimeout(() => textarea.focus(), 50);
+      } else {
+        runCode();
+      }
+    }
+
+    function runCode() {
+      let htmlContent = files[lastHtmlTab]?.content || '';
+      let cssContent = '';
+      let jsContent = '';
+
+      for (let id in files) {
+        if (files[id].type === 'css') cssContent += files[id].content + '\n';
+        else if (files[id].type === 'js') jsContent += files[id].content + '\n';
+      }
+
+      const fullCode = `
+        <html>
+          <head><style>${cssContent}</style></head>
+          <body>${htmlContent}<script>${jsContent}<\/script></body>
+        </html>
+      `;
+
+      const blob = new Blob([fullCode], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const previewIframe = document.getElementById('preview');
+      if (previewIframe.src.startsWith('blob:')) URL.revokeObjectURL(previewIframe.src);
+      previewIframe.src = url;
+    }
+
+    function selectAllCode() {
+      const textarea = document.querySelector(`#${currentTab} .code-editor`);
+      if (textarea) textarea.select();
+    }
+
+    function showNewFileModal() {
+      document.getElementById('newFileModal').style.display = 'flex';
+      document.getElementById('newFileName').focus();
+    }
+
+    function closeNewFileModal() {
+      document.getElementById('newFileModal').style.display = 'none';
+      document.getElementById('newFileName').value = '';
+    }
+
+    function createNewFile() {
+      const name = document.getElementById('newFileName').value.trim();
+      const type = document.getElementById('fileType').value;
+      if (!name) return alert('Enter a file name.');
+
+      const fileId = `${type}-${name.replace(/\.[^/.]+$/, '')}`;
+      if (files[fileId]) return alert('File already exists.');
+
+      const tab = document.createElement('button');
+      tab.className = 'tab';
+      tab.textContent = `${name}.${type}`;
+      tab.onclick = () => switchTab(fileId);
+      document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
+
+      const editorArea = document.createElement('div');
+      editorArea.id = fileId;
+      editorArea.className = 'editor-area';
+      const textarea = document.createElement('textarea');
+      textarea.id = `editor-${fileId}`;
+      textarea.className = 'code-editor';
+      textarea.spellcheck = false;
+      textarea.value = type === 'html' ? '<!DOCTYPE html>\n<html>\n  <head>\n    <title>New Page</title>\n  </head>\n  <body>\n  </body>\n</html>' :
+                       type === 'css' ? '/* New CSS File */\n' : '/* New JS File */\n';
+      editorArea.appendChild(textarea);
+      document.querySelector('.container').appendChild(editorArea);
+
+      files[fileId] = { type, content: textarea.value };
+
+      textarea.addEventListener('input', () => {
+        files[fileId].content = textarea.value;
+        saveToLocalStorage();
+      });
+
+      saveToLocalStorage();
+      closeNewFileModal();
+      setTimeout(() => {
+        switchTab(fileId);
+        textarea.focus();
+      }, 100);
+    }
+
+    // Load files and set up input listeners
+    document.querySelectorAll('.code-editor').forEach(editor => {
+      editor.addEventListener('input', () => {
+        const fileId = editor.id.replace('editor-', '');
+        files[fileId].content = editor.value;
+        saveToLocalStorage();
+      });
+    });
+
+    // Initialize by loading files from localStorage
+    loadFilesFromStorage();
+    window.onload = () => {
+      runCode();
+    };
+  </script>
 </body>
 </html>
