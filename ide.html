@@ -130,6 +130,7 @@
       font-size: 14px;
       z-index: 2;
       touch-action: auto;
+      min-width: 80px;
     }
 
     .find-replace-bar button:hover {
@@ -296,8 +297,9 @@
       }
 
       .find-replace-bar button {
-        font-size: 14px;
-        padding: 6px 10px;
+        font-size: 16px;
+        padding: 8px 14px;
+        min-width: 80px;
       }
 
       .code-editor {
@@ -352,8 +354,9 @@
       }
 
       .find-replace-bar button {
-        font-size: 12px;
-        padding: 5px 8px;
+        font-size: 14px;
+        padding: 6px 10px;
+        min-width: 70px;
       }
 
       .code-editor {
@@ -383,9 +386,9 @@
 
   <div class="find-replace-bar">
     <label for="findText">Find:</label>
-    <input type="text" id="findText" placeholder="Enter text to find">
+    <input type="text" id="findText" placeholder="Find Text">
     <label for="replaceText">Replace:</label>
-    <input type="text" id="replaceText" placeholder="Enter replacement text">
+    <input type="text" id="replaceText" placeholder="Replace With">
     <button id="findReplaceBtn" onclick="findAndReplace()" disabled>Submit</button>
   </div>
 
@@ -748,7 +751,7 @@ console.log("Hello from JS");
       const fileName = document.getElementById('saveFileName').value.trim();
       if (!fileName) return alert('Enter a file name.');
 
-      const editor = document.getElementById(`editor-${currentTab}`);
+      const editor = document.getElementById('editor-${currentTab}');
       if (editor) files[currentTab].content = editor.value;
 
       const content = files[currentTab].content;
