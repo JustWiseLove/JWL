@@ -14,42 +14,53 @@
       flex-direction: column;
       height: 100vh;
       font-size: 16px;
-      -webkit-user-select: none; /* Prevent text selection on mobile */
+      -webkit-user-select: none;
       user-select: none;
-      touch-action: manipulation; /* Prevent double-tap zoom on mobile */
+      touch-action: manipulation;
+    }
+
+    /* Uniform bar styling */
+    .top-bar, .tabs, .find-replace {
+      background: #252525; /* Uniform background color */
+      padding: 10px 16px; /* Uniform padding */
+      border-bottom: 1px solid #333; /* Uniform border */
+      display: flex;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .top-bar {
-      background: #252525;
-      padding: 12px 16px;
-      display: flex;
       justify-content: space-between;
-      align-items: center;
       font-weight: 600;
-      border-bottom: 1px solid #333;
     }
 
-    .top-bar button {
+    .top-bar span {
+      font-size: 16px; /* Consistent font size */
+    }
+
+    .top-bar button, .find-replace button {
       background: #3a3a3a;
       color: #d0d0d0;
       border: 1px solid #4a4a4a;
-      padding: 6px 12px;
+      padding: 6px 12px; /* Uniform padding */
       cursor: pointer;
       border-radius: 4px;
       transition: background 0.2s, border-color 0.2s;
-      font-size: 14px;
-      margin-left: 8px;
-      position: relative; /* Ensure buttons are above other elements */
-      z-index: 2; /* Higher z-index to prevent overlap issues */
-      touch-action: auto; /* Ensure touch events work */
+      font-size: 15px; /* Slightly larger but uniform */
+      margin-left: 8px; /* Consistent spacing */
+      position: relative;
+      z-index: 2;
+      touch-action: auto;
+      white-space: nowrap;
     }
 
-    .top-bar button:hover {
+    .top-bar button:hover, .find-replace button:hover {
       background: #4a4a4a;
       border-color: #5a5a5a;
     }
 
-    .top-bar button:disabled {
+    .top-bar button:disabled, .find-replace button:disabled {
       background: #2a2a2a;
       color: #606060;
       cursor: not-allowed;
@@ -57,21 +68,19 @@
     }
 
     .tabs {
-      display: flex;
-      background: #202020;
-      overflow-x: auto;
-      border-bottom: 1px solid #333;
+      overflow-x: auto; /* Scrollable tabs */
+      white-space: nowrap; /* Ensure tabs stay on one line for scrolling */
     }
 
     .tab {
-      padding: 10px 16px;
-      background: #202020;
+      padding: 6px 12px; /* Match button padding for uniformity */
+      background: #252525;
       border: none;
       color: #a0a0a0;
       cursor: pointer;
       flex: 0 0 auto;
       transition: background 0.2s, color 0.2s;
-      font-size: 14px;
+      font-size: 15px; /* Match top bar button font size */
       position: relative;
       z-index: 2;
       touch-action: auto;
@@ -87,6 +96,38 @@
     .tab:hover {
       background: #2a2a2a;
       color: #d0d0d0;
+    }
+
+    .find-replace {
+      gap: 8px; /* Slightly larger gap for readability */
+      flex-wrap: nowrap;
+    }
+
+    .find-replace label {
+      font-size: 16px; /* Larger for readability */
+      color: #d0d0d0;
+      white-space: nowrap;
+    }
+
+    .find-replace input {
+      background: #2a2a2a;
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      padding: 6px 12px; /* Match button padding */
+      border-radius: 4px;
+      font-size: 16px; /* Larger for readability */
+      outline: none;
+      width: 120px; /* Adjusted to fit larger text */
+      min-width: 100px;
+    }
+
+    .find-replace input:focus {
+      border-color: #5a5a5a;
+    }
+
+    .find-replace button {
+      font-size: 15px; /* Match top bar buttons */
+      padding: 6px 12px; /* Match top bar buttons */
     }
 
     .editor-area {
@@ -196,7 +237,7 @@
       transition: background 0.2s, border-color 0.2s;
       font-size: 14px;
       margin: 0 6px;
-      z-index: 12; /* Ensure modal buttons are clickable */
+      z-index: 12;
       touch-action: auto;
     }
 
@@ -210,22 +251,44 @@
         font-size: 18px;
       }
 
-      .top-bar {
-        padding: 10px 12px;
-        flex-wrap: wrap;
-        gap: 8px;
+      .top-bar, .tabs, .find-replace {
+        padding: 8px 12px; /* Uniform padding for tablet */
       }
 
-      .top-bar button {
-        font-size: 16px;
-        padding: 8px 14px;
+      .top-bar span {
+        font-size: 15px;
+      }
+
+      .top-bar button, .find-replace button {
+        font-size: 14px;
+        padding: 5px 10px;
         min-width: 80px;
       }
 
       .tab {
-        font-size: 16px;
-        padding: 8px 12px;
+        font-size: 14px;
+        padding: 5px 10px; /* Match button padding */
         min-width: 70px;
+      }
+
+      .find-replace {
+        gap: 6px;
+      }
+
+      .find-replace input {
+        font-size: 15px; /* Slightly smaller but readable */
+        padding: 5px 10px;
+        width: 100px;
+        min-width: 80px;
+      }
+
+      .find-replace button {
+        font-size: 14px;
+        padding: 5px 10px;
+      }
+
+      .find-replace label {
+        font-size: 15px;
       }
 
       .code-editor {
@@ -262,16 +325,44 @@
     }
 
     @media only screen and (max-width: 480px) {
-      .top-bar button {
+      .top-bar, .tabs, .find-replace {
+        padding: 6px 8px; /* Uniform padding for mobile */
+      }
+
+      .top-bar span {
         font-size: 14px;
-        padding: 6px 10px;
+      }
+
+      .top-bar button, .find-replace button {
+        font-size: 13px;
+        padding: 4px 8px;
         min-width: 70px;
       }
 
       .tab {
-        font-size: 14px;
-        padding: 6px 10px;
+        font-size: 13px;
+        padding: 4px 8px; /* Match button padding */
         min-width: 60px;
+      }
+
+      .find-replace {
+        gap: 4px;
+      }
+
+      .find-replace input {
+        font-size: 14px; /* Adjusted for mobile */
+        padding: 4px 8px;
+        width: 80px;
+        min-width: 70px;
+      }
+
+      .find-replace button {
+        font-size: 13px;
+        padding: 4px 8px;
+      }
+
+      .find-replace label {
+        font-size: 14px;
       }
 
       .code-editor {
@@ -297,6 +388,14 @@
     <button class="tab" onclick="switchTab('css-style')">style.css</button>
     <button class="tab" onclick="switchTab('js-script')">script.js</button>
     <button class="tab" onclick="switchTab('browser')">Browser</button>
+  </div>
+
+  <div class="find-replace">
+    <label for="findInput">Find:</label>
+    <input type="text" id="findInput" placeholder="Find text">
+    <label for="replaceInput">Replace:</label>
+    <input type="text" id="replaceInput" placeholder="Replace with">
+    <button id="findReplaceBtn" onclick="findAndReplace()" disabled>Submit</button>
   </div>
 
   <div class="container">
@@ -378,14 +477,12 @@ console.log("Hello from JS");
   </div>
 
   <script>
-    // Add global error handler for debugging
     window.onerror = function(message, source, lineno, colno, error) {
       console.error(`Global error: ${message} at ${source}:${lineno}:${colno}`);
       alert(`A script error occurred: ${message}. Check the console for details.`);
       return true;
     };
 
-    // Initialize files object, loading from localStorage if available
     let files = JSON.parse(localStorage.getItem('jwl-ide-files')) || {
       'html-index': { type: 'html', content: document.getElementById('editor-html-index').value },
       'css-style': { type: 'css', content: document.getElementById('editor-css-style').value },
@@ -395,19 +492,19 @@ console.log("Hello from JS");
     let currentTab = 'html-index';
     let lastHtmlTab = 'html-index';
 
-    // Update button states based on current tab
     function updateButtonStates() {
       const selectAllBtn = document.getElementById('selectAllBtn');
       const saveBtn = document.getElementById('saveBtn');
       const deleteBtn = document.getElementById('deleteBtn');
+      const findReplaceBtn = document.getElementById('findReplaceBtn');
 
       const isBrowserTab = currentTab === 'browser';
       selectAllBtn.disabled = isBrowserTab;
       saveBtn.disabled = isBrowserTab;
       deleteBtn.disabled = isBrowserTab || Object.keys(files).length <= 1;
+      findReplaceBtn.disabled = isBrowserTab;
     }
 
-    // Load saved files and create tabs/editors dynamically
     function loadFilesFromStorage() {
       for (let fileId in files) {
         if (!document.getElementById(fileId)) {
@@ -504,6 +601,40 @@ console.log("Hello from JS");
         const textarea = document.querySelector(`#${currentTab} .code-editor`);
         if (textarea) textarea.select();
       }
+    }
+
+    function findAndReplace() {
+      console.log('Find and Replace button clicked');
+      if (currentTab === 'browser') return;
+
+      const findInput = document.getElementById('findInput').value;
+      const replaceInput = document.getElementById('replaceInput').value;
+
+      if (!findInput) {
+        alert('Please enter text to find.');
+        return;
+      }
+
+      const textarea = document.getElementById(`editor-${currentTab}`);
+      if (!textarea) {
+        console.error(`Textarea for ${currentTab} not found`);
+        return;
+      }
+
+      try {
+        const regex = new RegExp(findInput.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        const originalContent = textarea.value;
+        textarea.value = originalContent.replace(regex, replaceInput);
+        files[currentTab].content = textarea.value;
+        saveToLocalStorage();
+        console.log(`Replaced "${findInput}" with "${replaceInput}" in ${currentTab}`);
+      } catch (error) {
+        console.error('Find and replace error:', error.message);
+        alert(`Error during find and replace: ${error.message}`);
+      }
+
+      document.getElementById('findInput').value = '';
+      document.getElementById('replaceInput').value = '';
     }
 
     function showDeleteModal() {
@@ -674,7 +805,6 @@ console.log("Hello from JS");
       closeSaveFileModal();
     }
 
-    // Load files and set up input listeners
     document.querySelectorAll('.code-editor').forEach(editor => {
       editor.addEventListener('input', () => {
         const fileId = editor.id.replace('editor-', '');
@@ -683,7 +813,6 @@ console.log("Hello from JS");
       });
     });
 
-    // Add click listeners to buttons for debugging
     document.querySelectorAll('.top-bar button').forEach(button => {
       button.addEventListener('click', () => {
         console.log(`Button clicked: ${button.id}`);
@@ -696,7 +825,6 @@ console.log("Hello from JS");
       });
     });
 
-    // Initialize by loading files from localStorage
     loadFilesFromStorage();
     window.onload = () => {
       console.log('Window loaded');
