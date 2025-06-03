@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Code IDE</title>
+  <!-- CodeMirror for syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/python/python.min.js"></script>
+  <!-- Pyodide for Python execution -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+  <!-- JSZip for ZIP file creation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="ide.css">
+</head>
+<body>
+  <div class="top-bar">
+    <div class="logo"><img src="codex.png" width="30px" height="30px">CODEXEDOC</div>
+    <div class="top-bar-buttons">
+      <button id="copy-code"><i class="fa-solid fa-clipboard"></i></button>
+      <button id="clear-code"><i class="fa-solid fa-snowplow"></i></button>
+      <button id="download-all"><i class="fa-solid fa-download"></i></button>
+      <button id="run-code"><i class="fa-solid fa-play"></i></button>
+      <button id="open-output"><i class="fa-solid fa-window-restore"></i></button>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="editor-container">
+      <div class="tabs">
+        <!-- Dynamically populated tabs will appear here -->
+        <button id="add-file"><i class="fa-solid fa-plus"></i></button>
+        <input type="file" id="file-import" accept=".html,.css,.js,.py,.txt" style="display: none;">
+      </div>
+      <div class="editor">
+        <textarea placeholder="Start coding..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span>Ln 1, Col 1</span>
+    <span>UTF-8 | None | Spaces: 2</span>
+  </div>
+
+  <div id="file-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h3>Add New File</h3>
+      <input type="text" id="new-file-name" placeholder="Enter file name (e.g., index.html)">
+      <button id="create-new-file">Create</button>
+      <button onclick="document.getElementById('file-import').click()">Import File</button>
+      <button id="cancel-modal">Cancel</button>
+    </div>
+  </div>
+
+  <script src="ide.js"></script>
+</body>
+</html>
