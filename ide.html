@@ -19,14 +19,21 @@
       touch-action: manipulation;
     }
 
+    .header-container {
+      background: #252525;
+      border-bottom: 1px solid #333;
+    }
+
     .top-bar {
       background: #252525;
       padding: 12px 16px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       font-weight: 600;
-      border-bottom: 1px solid #333;
+      gap: 16px;
+      height: 48px; /* Fixed height for consistency */
+      box-sizing: border-box;
     }
 
     .top-bar button {
@@ -42,6 +49,9 @@
       position: relative;
       z-index: 2;
       touch-action: auto;
+      height: 32px; /* Consistent button height */
+      line-height: 1;
+      box-sizing: border-box;
     }
 
     .top-bar button:hover {
@@ -50,6 +60,81 @@
     }
 
     .top-bar button:disabled {
+      background: #2a2a2a;
+      color: #606060;
+      cursor: not-allowed;
+      border-color: #3a3a3a;
+    }
+
+    .find-replace-bar {
+      background: #252525;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 48px; /* Same height as top-bar */
+      box-sizing: border-box;
+      flex-wrap: nowrap;
+    }
+
+    .find-replace-bar label,
+    .find-replace-bar span {
+      background: #2e2e2e; /* Slightly different background */
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      height: 32px; /* Matches top-bar button height */
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .find-replace-bar input {
+      background: #2a2a2a;
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      outline: none;
+      height: 32px; /* Matches button height */
+      width: 60px;
+      box-sizing: border-box;
+    }
+
+    .find-replace-bar input:focus {
+      border-color: #5a5a5a;
+    }
+
+    .find-replace-bar button {
+      background: #2e2e2e; /* Slightly different background */
+      color: #d0d0d0;
+      border: 1px solid #4a4a4a;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s;
+      font-size: 14px;
+      z-index: 2;
+      touch-action: auto;
+      height: 32px; /* Matches top-bar button height */
+      line-height: 1;
+      box-sizing: border-box;
+      min-width: 80px;
+    }
+
+    .find-replace-bar button:hover,
+    .find-replace-bar label:hover,
+    .find-replace-bar span:hover {
+      background: #3a3a3a; /* Lighter hover effect than top-bar */
+      border-color: #5a5a5a;
+    }
+
+    .find-replace-bar button:disabled {
       background: #2a2a2a;
       color: #606060;
       cursor: not-allowed;
@@ -75,6 +160,11 @@
       position: relative;
       z-index: 2;
       touch-action: auto;
+      margin-right: 4px; /* Added separation between tabs */
+    }
+
+    .tab:last-child {
+      margin-right: 0; /* Remove margin for the last tab */
     }
 
     .tab.active {
@@ -87,62 +177,6 @@
     .tab:hover {
       background: #2a2a2a;
       color: #d0d0d0;
-    }
-
-    .find-replace-bar {
-      background: #252525;
-      padding: 8px 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid #333;
-    }
-
-    .find-replace-bar label {
-      color: #d0d0d0;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .find-replace-bar input {
-      background: #2a2a2a;
-      color: #d0d0d0;
-      border: 1px solid #4a4a4a;
-      padding: 6px 10px;
-      border-radius: 4px;
-      font-size: 14px;
-      outline: none;
-      width: 150px;
-    }
-
-    .find-replace-bar input:focus {
-      border-color: #5a5a5a;
-    }
-
-    .find-replace-bar button {
-      background: #3a3a3a;
-      color: #d0d0d0;
-      border: 1px solid #4a4a4a;
-      padding: 6px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.2s, border-color 0.2s;
-      font-size: 14px;
-      z-index: 2;
-      touch-action: auto;
-      min-width: 80px;
-    }
-
-    .find-replace-bar button:hover {
-      background: #4a4a4a;
-      border-color: #5a5a5a;
-    }
-
-    .find-replace-bar button:disabled {
-      background: #2a2a2a;
-      color: #606060;
-      cursor: not-allowed;
-      border-color: #3a3a3a;
     }
 
     .editor-area {
@@ -261,9 +295,31 @@
       border-color: #5a5a5a;
     }
 
-    @media only screen and (max-width: 768px) {
-      body {
-        font-size: 18px;
+    /* Desktop layout (min-width: 768px) */
+    @media only screen and (min-width: 768px) {
+      .header-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .top-bar {
+        flex: 0 0 auto;
+        border-bottom: none;
+        padding-right: 0;
+      }
+
+      .find-replace-bar {
+        flex: 1;
+        border-bottom: none;
+        border-left: 1px solid #333;
+        padding-left: 16px;
+      }
+    }
+
+    /* Mobile layout (below 768px) */
+    @media only screen and (max-width: 767px) {
+      .header-container {
+        display: block;
       }
 
       .top-bar {
@@ -276,30 +332,44 @@
         font-size: 16px;
         padding: 8px 14px;
         min-width: 80px;
-      }
-
-      .tab {
-        font-size: 16px;
-        padding: 8px 12px;
-        min-width: 70px;
+        height: 36px; /* Adjusted for mobile */
       }
 
       .find-replace-bar {
-        flex-wrap: wrap;
-        gap: 6px;
+        gap: 4px;
         padding: 10px 12px;
       }
 
+      .find-replace-bar label,
+      .find-replace-bar span {
+        font-size: 16px;
+        padding: 8px 14px;
+        height: 36px; /* Matches mobile button height */
+      }
+
       .find-replace-bar input {
-        width: 120px;
+        width: 80px;
         font-size: 14px;
-        padding: 6px 8px;
+        padding: 8px 6px;
+        height: 36px; /* Matches mobile button height */
       }
 
       .find-replace-bar button {
         font-size: 16px;
         padding: 8px 14px;
         min-width: 80px;
+        height: 36px; /* Matches mobile button height */
+      }
+
+      .tab {
+        font-size: 16px;
+        padding: 8px 12px;
+        min-width: 70px;
+        margin-right: 4px; /* Maintain separation */
+      }
+
+      .tab:last-child {
+        margin-right: 0;
       }
 
       .code-editor {
@@ -340,23 +410,39 @@
         font-size: 14px;
         padding: 6px 10px;
         min-width: 70px;
+        height: 32px; /* Consistent with desktop for smaller screens */
       }
 
-      .tab {
+      .find-replace-bar label,
+      .find-replace-bar span {
         font-size: 14px;
         padding: 6px 10px;
-        min-width: 60px;
+        height: 32px;
       }
 
       .find-replace-bar input {
-        width: 100px;
+        width: 60px;
         font-size: 12px;
+        padding: 6px 4px;
+        height: 32px;
       }
 
       .find-replace-bar button {
         font-size: 14px;
         padding: 6px 10px;
         min-width: 70px;
+        height: 32px;
+      }
+
+      .tab {
+        font-size: 14px;
+        padding: 6px 10px;
+        min-width: 60px;
+        margin-right: 4px; /* Maintain separation */
+      }
+
+      .tab:last-child {
+        margin-right: 0;
       }
 
       .code-editor {
@@ -367,13 +453,22 @@
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    <span>IDE</span>
-    <div>
-      <button id="newFileBtn" onclick="showNewFileModal()">New File</button>
-      <button id="selectAllBtn" onclick="selectAllCode()" disabled>Select All</button>
-      <button id="saveBtn" onclick="saveToFile()" disabled>Save</button>
-      <button id="deleteBtn" onclick="showDeleteModal()" disabled>Delete</button>
+  <div class="header-container">
+    <div class="top-bar">
+      <span>IDE</span>
+      <div>
+        <button id="newFileBtn" onclick="showNewFileModal()">New File</button>
+        <button id="selectAllBtn" onclick="selectAllCode()" disabled>Select All</button>
+        <button id="saveBtn" onclick="saveToFile()" disabled>Save</button>
+        <button id="deleteBtn" onclick="showDeleteModal()" disabled>Delete</button>
+      </div>
+    </div>
+    <div class="find-replace-bar">
+      <span>Find:</span>
+      <input type="text" id="findText" placeholder="Text">
+      <span>Replace:</span>
+      <input type="text" id="replaceText" placeholder="With">
+      <button id="findReplaceBtn" onclick="findAndReplace()" disabled>Submit</button>
     </div>
   </div>
 
@@ -382,14 +477,6 @@
     <button class="tab" data-file-id="css-style" onclick="switchTab('css-style')">style.css</button>
     <button class="tab" data-file-id="js-script" onclick="switchTab('js-script')">script.js</button>
     <button class="tab" onclick="switchTab('browser')">Browser</button>
-  </div>
-
-  <div class="find-replace-bar">
-    <label for="findText">Find:</label>
-    <input type="text" id="findText" placeholder="Find Text">
-    <label for="replaceText">Replace:</label>
-    <input type="text" id="replaceText" placeholder="Replace With">
-    <button id="findReplaceBtn" onclick="findAndReplace()" disabled>Submit</button>
   </div>
 
   <div class="container">
@@ -751,7 +838,7 @@ console.log("Hello from JS");
       const fileName = document.getElementById('saveFileName').value.trim();
       if (!fileName) return alert('Enter a file name.');
 
-      const editor = document.getElementById('editor-${currentTab}');
+      const editor = document.getElementById(`editor-${currentTab}`);
       if (editor) files[currentTab].content = editor.value;
 
       const content = files[currentTab].content;
