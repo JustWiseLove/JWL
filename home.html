@@ -94,8 +94,9 @@
       padding: 8px 16px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px; /* Reduced from 8px to save space */
       border-bottom: 1px solid #333;
+      flex-wrap: nowrap; /* Prevent wrapping */
     }
 
     .find-replace-bar label {
@@ -108,11 +109,11 @@
       background: #2a2a2a;
       color: #d0d0d0;
       border: 1px solid #4a4a4a;
-      padding: 6px 10px;
+      padding: 6px 8px; /* Reduced padding to save space */
       border-radius: 4px;
       font-size: 14px;
       outline: none;
-      width: 150px;
+      width: 100px; /* Reduced from 150px for compactness */
     }
 
     .find-replace-bar input:focus {
@@ -285,15 +286,15 @@
       }
 
       .find-replace-bar {
-        flex-wrap: wrap;
-        gap: 6px;
+        flex-wrap: nowrap; /* Prevent wrapping */
+        gap: 4px; /* Reduced from 6px */
         padding: 10px 12px;
       }
 
       .find-replace-bar input {
-        width: 120px;
+        width: 80px; /* Reduced from 120px */
         font-size: 14px;
-        padding: 6px 8px;
+        padding: 6px 6px; /* Reduced padding */
       }
 
       .find-replace-bar button {
@@ -349,8 +350,9 @@
       }
 
       .find-replace-bar input {
-        width: 100px;
+        width: 60px; /* Reduced from 100px */
         font-size: 12px;
+        padding: 5px 4px; /* Reduced padding */
       }
 
       .find-replace-bar button {
@@ -386,9 +388,9 @@
 
   <div class="find-replace-bar">
     <label for="findText">Find:</label>
-    <input type="text" id="findText" placeholder="Find Text">
+    <input type="text" id="findText" placeholder="Text">
     <label for="replaceText">Replace:</label>
-    <input type="text" id="replaceText" placeholder="Replace With">
+    <input type="text" id="replaceText" placeholder="With">
     <button id="findReplaceBtn" onclick="findAndReplace()" disabled>Submit</button>
   </div>
 
@@ -751,7 +753,7 @@ console.log("Hello from JS");
       const fileName = document.getElementById('saveFileName').value.trim();
       if (!fileName) return alert('Enter a file name.');
 
-      const editor = document.getElementById('editor-${currentTab}');
+      const editor = document.getElementById(`editor-${currentTab}`);
       if (editor) files[currentTab].content = editor.value;
 
       const content = files[currentTab].content;
