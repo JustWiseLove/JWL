@@ -34,11 +34,19 @@
       border-radius: 4px;
       transition: background 0.2s, border-color 0.2s;
       font-size: 14px;
+      margin-left: 8px;
     }
 
     .top-bar button:hover {
       background: #4a4a4a;
       border-color: #5a5a5a;
+    }
+
+    .top-bar button:disabled {
+      background: #2a2a2a;
+      color: #606060;
+      cursor: not-allowed;
+      border-color: #3a3a3a;
     }
 
     .tabs {
@@ -118,30 +126,6 @@
       background: #ffffff;
     }
 
-    .bottom-bar {
-      background: #252525;
-      padding: 12px;
-      text-align: center;
-      border-top: 1px solid #333;
-    }
-
-    .bottom-bar button {
-      background: #3a3a3a;
-      color: #d0d0d0;
-      border: 1px solid #4a4a4a;
-      padding: 6px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.2s, border-color 0.2s;
-      margin: 0 6px;
-      font-size: 14px;
-    }
-
-    .bottom-bar button:hover {
-      background: #4a4a4a;
-      border-color: #5a5a5a;
-    }
-
     .container {
       flex-grow: 1;
       display: flex;
@@ -196,6 +180,7 @@
       border-radius: 4px;
       transition: background 0.2s, border-color 0.2s;
       font-size: 14px;
+      margin: 0 6px;
     }
 
     .modal-content button:hover {
@@ -215,6 +200,8 @@
 
       .top-bar {
         padding: 10px 12px;
+        flex-wrap: wrap;
+        gap: 8px;
       }
 
       .top-bar button {
@@ -225,11 +212,6 @@
       .tab {
         font-size: 16px;
         padding: 8px 12px;
-      }
-
-      .bottom-bar button {
-        font-size: 16px;
-        padding: 8px 14px;
       }
 
       .modal-content {
@@ -258,7 +240,12 @@
 <body>
   <div class="top-bar">
     <span>JWL IDE</span>
-    <button onclick="showNewFileModal()">New File</button>
+    <div>
+      <button id="newFileBtn" onclick="showNewFileModal()">New File</button>
+      <button id="selectAllBtn" onclick="selectAllCode()" disabled>Select All</button>
+      <button id="saveBtn" onclick="saveToFile()" disabled>Save</button>
+      <button id="deleteBtn" onclick="deleteFile()" disabled>Delete</button>
+    </div>
   </div>
 
   <div class="tabs">
@@ -306,12 +293,6 @@ console.log("Hello from JS");
     </div>
   </div>
 
-  <div class="bottom-bar">
-    <button onclick="runCode()">Run</button>
-    <button onclick="selectAllCode()">Select All</button>
-    <button onclick="saveToLocalStorage()">Save</button>
-  </div>
-
   <div id="newFileModal" class="modal">
     <div class="modal-content">
       <h3>Create New File</h3>
@@ -320,10 +301,23 @@ console.log("Hello from JS");
         <option value="html">.html</option>
         <option value="css">.css</option>
         <option value="js">.js</option>
+        <option value="jsx">.jsx</option>
+        <option value="py">.py</option>
       </select>
       <div>
         <button onclick="createNewFile()">Create</button>
         <button onclick="closeNewFileModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="saveFileModal" class="modal">
+    <div class="modal-content">
+      <h3>Save File</h3>
+      <input type="text" id="saveFileName" placeholder="Enter file name">
+      <div>
+        <button onclick="downloadFile()">Download</button>
+        <button onclick="closeSaveFileModal()">Cancel</button>
       </div>
     </div>
   </div>
@@ -338,6 +332,18 @@ console.log("Hello from JS");
 
     let currentTab = 'html-index';
     let lastHtmlTab = 'html-index';
+
+    // Update button states based on current tab
+    function updateButtonStates() {
+      const selectAllBtn = document.getElementById('selectAllBtn');
+      const saveBtn = document.getElementById('saveBtn');
+      const deleteBtn = document.getElementById('deleteBtn');
+
+      const isBrowserTab = currentTab === 'browser';
+      selectAllBtn.disabled = isBrowserTab;
+      saveBtn.disabled = isBrowserTab;
+      deleteBtn.disabled = isBrowserTab || Object.keys(files).length <= 1;
+    }
 
     // Load saved files and create tabs/editors dynamically
     function loadFilesFromStorage() {
@@ -366,11 +372,11 @@ console.log("Hello from JS");
             saveToLocalStorage();
           });
         } else {
-          // Update existing textareas with saved content
           const textarea = document.getElementById(`editor-${fileId}`);
           if (textarea) textarea.value = files[fileId].content;
         }
       }
+      updateButtonStates();
     }
 
     function saveToLocalStorage() {
@@ -389,15 +395,22 @@ console.log("Hello from JS");
       currentTab = tab;
       if (files[tab]?.type === 'html') lastHtmlTab = tab;
 
-      if (tab !== 'browser') {
+      updateButtonStates();
+
+      if (tab === 'browser') {
+        runCode();
+      } else {
         const textarea = editorArea?.querySelector('.code-editor');
         if (textarea) setTimeout(() => textarea.focus(), 50);
-      } else {
-        runCode();
       }
     }
 
     function runCode() {
+      if (currentTab !== 'browser') {
+        const editor = document.getElementById(`editor-${currentTab}`);
+        if (editor) files[currentTab].content = editor.value;
+      }
+
       let htmlContent = files[lastHtmlTab]?.content || '';
       let cssContent = '';
       let jsContent = '';
@@ -422,8 +435,34 @@ console.log("Hello from JS");
     }
 
     function selectAllCode() {
-      const textarea = document.querySelector(`#${currentTab} .code-editor`);
-      if (textarea) textarea.select();
+      if (currentTab !== 'browser') {
+        const textarea = document.querySelector(`#${currentTab} .code-editor`);
+        if (textarea) textarea.select();
+      }
+    }
+
+    function deleteFile() {
+      if (currentTab === 'browser' || Object.keys(files).length <= 1) return;
+
+      const fileName = `${currentTab.replace(/^[^-]+-/, '')}.${files[currentTab].type}`;
+      if (confirm(`Are you sure you want to delete ${fileName}?`)) {
+        // Remove tab and editor
+        const tabButton = document.querySelector(`.tab[onclick="switchTab('${currentTab}')"]`);
+        const editorArea = document.getElementById(currentTab);
+        if (tabButton) tabButton.remove();
+        if (editorArea) editorArea.remove();
+
+        // Remove from files object
+        delete files[currentTab];
+
+        // Save to localStorage
+        saveToLocalStorage();
+
+        // Switch to another tab
+        const remainingTabs = Object.keys(files).filter(id => id !== 'browser');
+        const nextTab = remainingTabs.length > 0 ? remainingTabs[0] : 'browser';
+        switchTab(nextTab);
+      }
     }
 
     function showNewFileModal() {
@@ -458,7 +497,10 @@ console.log("Hello from JS");
       textarea.className = 'code-editor';
       textarea.spellcheck = false;
       textarea.value = type === 'html' ? '<!DOCTYPE html>\n<html>\n  <head>\n    <title>New Page</title>\n  </head>\n  <body>\n  </body>\n</html>' :
-                       type === 'css' ? '/* New CSS File */\n' : '/* New JS File */\n';
+                       type === 'css' ? '/* New CSS File */\n' :
+                       type === 'js' ? '/* New JS File */\n' :
+                       type === 'jsx' ? 'import React from "react";\n\nfunction Component() {\n  return (\n    <div>\n      <h1>Hello, React!</h1>\n    </div>\n  );\n}\n\nexport default Component;\n' :
+                       type === 'py' ? '# New Python File\n\nprint("Hello, Python!")\n' : '';
       editorArea.appendChild(textarea);
       document.querySelector('.container').appendChild(editorArea);
 
@@ -477,6 +519,40 @@ console.log("Hello from JS");
       }, 100);
     }
 
+    function saveToFile() {
+      if (currentTab === 'browser') return;
+      const fileName = `${currentTab.replace(/^[^-]+-/, '')}.${files[currentTab].type}`;
+      document.getElementById('saveFileName').value = fileName;
+      document.getElementById('saveFileModal').style.display = 'flex';
+      document.getElementById('saveFileName').focus();
+    }
+
+    function closeSaveFileModal() {
+      document.getElementById('saveFileModal').style.display = 'none';
+      document.getElementById('saveFileName').value = '';
+    }
+
+    function downloadFile() {
+      const fileName = document.getElementById('saveFileName').value.trim();
+      if (!fileName) return alert('Enter a file name.');
+
+      const editor = document.getElementById(`editor-${currentTab}`);
+      if (editor) files[currentTab].content = editor.value;
+
+      const content = files[currentTab].content;
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      closeSaveFileModal();
+    }
+
     // Load files and set up input listeners
     document.querySelectorAll('.code-editor').forEach(editor => {
       editor.addEventListener('input', () => {
@@ -489,7 +565,7 @@ console.log("Hello from JS");
     // Initialize by loading files from localStorage
     loadFilesFromStorage();
     window.onload = () => {
-      runCode();
+      if (currentTab === 'browser') runCode();
     };
   </script>
 </body>
