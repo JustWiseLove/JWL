@@ -12,6 +12,7 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
+      font-size: 16px; /* Base font size for desktop */
     }
 
     .top-bar {
@@ -32,6 +33,7 @@
       cursor: pointer;
       border-radius: 4px;
       transition: background 0.2s, border-color 0.2s;
+      font-size: 14px;
     }
 
     .top-bar button:hover {
@@ -54,6 +56,7 @@
       cursor: pointer;
       flex: 0 0 auto;
       transition: background 0.2s, color 0.2s;
+      font-size: 14px;
     }
 
     .tab.active {
@@ -131,6 +134,7 @@
       border-radius: 4px;
       transition: background 0.2s, border-color 0.2s;
       margin: 0 6px;
+      font-size: 14px;
     }
 
     .bottom-bar button:hover {
@@ -175,6 +179,7 @@
       border: 1px solid #4a4a4a;
       border-radius: 4px;
       outline: none;
+      font-size: 14px;
     }
 
     .modal-content input:focus,
@@ -190,11 +195,64 @@
       cursor: pointer;
       border-radius: 4px;
       transition: background 0.2s, border-color 0.2s;
+      font-size: 14px;
     }
 
     .modal-content button:hover {
       background: #4a4a4a;
       border-color: #5a5a5a;
+    }
+
+    /* Media query for mobile devices */
+    @media only screen and (max-width: 768px) {
+      body {
+        font-size: 18px; /* Larger base font size for mobile */
+      }
+
+      .code-editor {
+        font-size: 16px; /* Larger font for code editor */
+        padding: 10px; /* Slightly adjust padding for better touch interaction */
+      }
+
+      .top-bar {
+        padding: 10px 12px;
+      }
+
+      .top-bar button {
+        font-size: 16px; /* Larger button text */
+        padding: 8px 14px; /* Slightly larger padding for touch */
+      }
+
+      .tab {
+        font-size: 16px; /* Larger tab text */
+        padding: 8px 12px; /* Adjust padding for touch */
+      }
+
+      .bottom-bar button {
+        font-size: 16px; /* Larger button text */
+        padding: 8px 14px; /* Slightly larger padding for touch */
+      }
+
+      .modal-content {
+        padding: 20px;
+      }
+
+      .modal-content h3 {
+        font-size: 20px; /* Larger modal heading */
+      }
+
+      .modal-content input,
+      .modal-content select {
+        font-size: 16px; /* Larger input/select text */
+        padding: 10px; /* Adjust padding for touch */
+        width: 90%; /* Wider input for smaller screens */
+        max-width: 300px;
+      }
+
+      .modal-content button {
+        font-size: 16px; /* Larger button text */
+        padding: 8px 14px; /* Adjust padding for touch */
+      }
     }
   </style>
 </head>
