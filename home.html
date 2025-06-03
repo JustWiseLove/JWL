@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!-- Added viewport meta tag -->
   <title>IDE - Just Wise Love</title>
   <style>
     body {
@@ -153,6 +154,11 @@
       border: 1px solid #333;
     }
 
+    .modal-content p {
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
     .modal-content input,
     .modal-content select {
       margin: 12px 0;
@@ -188,14 +194,10 @@
       border-color: #5a5a5a;
     }
 
+    /* Enhanced mobile responsiveness */
     @media only screen and (max-width: 768px) {
       body {
-        font-size: 18px;
-      }
-
-      .code-editor {
-        font-size: 16px;
-        padding: 10px;
+        font-size: 18px; /* Increased base font size for better readability */
       }
 
       .top-bar {
@@ -205,13 +207,21 @@
       }
 
       .top-bar button {
-        font-size: 16px;
-        padding: 8px 14px;
+        font-size: 16px; /* Larger button text */
+        padding: 8px 14px; /* Increased padding for touch targets */
+        min-width: 80px; /* Ensure buttons are tappable */
       }
 
       .tab {
-        font-size: 16px;
-        padding: 8px 12px;
+        font-size: 16px; /* Larger tab text */
+        padding: 8px 12px; /* Increased padding */
+        min-width: 70px; /* Minimum width for readability */
+      }
+
+      .code-editor {
+        font-size: 16px; /* Larger code font */
+        padding: 10px; /* Increased padding */
+        line-height: 1.8; /* Improved line spacing */
       }
 
       .modal-content {
@@ -219,7 +229,11 @@
       }
 
       .modal-content h3 {
-        font-size: 20px;
+        font-size: 20px; /* Larger modal headings */
+      }
+
+      .modal-content p {
+        font-size: 16px; /* Larger modal text */
       }
 
       .modal-content input,
@@ -233,6 +247,27 @@
       .modal-content button {
         font-size: 16px;
         padding: 8px 14px;
+        min-width: 100px; /* Ensure buttons are tappable */
+      }
+    }
+
+    /* Additional small screen adjustments */
+    @media only screen and (max-width: 480px) {
+      .top-bar button {
+        font-size: 14px;
+        padding: 6px 10px;
+        min-width: 70px;
+      }
+
+      .tab {
+        font-size: 14px;
+        padding: 6px 10px;
+        min-width: 60px;
+      }
+
+      .code-editor {
+        font-size: 14px;
+        padding: 8px;
       }
     }
   </style>
@@ -244,7 +279,7 @@
       <button id="newFileBtn" onclick="showNewFileModal()">New File</button>
       <button id="selectAllBtn" onclick="selectAllCode()" disabled>Select All</button>
       <button id="saveBtn" onclick="saveToFile()" disabled>Save</button>
-      <button id="deleteBtn" onclick="deleteFile()" disabled>Delete</button>
+      <button id="deleteBtn" onclick="showDeleteModal()" disabled>Delete</button>
     </div>
   </div>
 
@@ -322,6 +357,17 @@ console.log("Hello from JS");
     </div>
   </div>
 
+  <div id="deleteFileModal" class="modal">
+    <div class="modal-content">
+      <h3>Delete File</h3>
+      <p id="deleteFileMessage"></p>
+      <div>
+        <button onclick="confirmDelete()">Confirm</button>
+        <button onclick="closeDeleteModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Initialize files object, loading from localStorage if available
     let files = JSON.parse(localStorage.getItem('jwl-ide-files')) || {
@@ -353,8 +399,9 @@ console.log("Hello from JS");
           const tab = document.createElement('button');
           tab.className = 'tab';
           tab.textContent = `${fileId.replace(/^[^-]+-/, '')}.${file.type}`;
+          tab.setAttribute('data-file-id', fileId); // Add data attribute for reliable selection
           tab.onclick = () => switchTab(fileId);
-          document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
+          document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab('browser')"]'));
 
           const editorArea = document.createElement('div');
           editorArea.id = fileId;
@@ -441,27 +488,82 @@ console.log("Hello from JS");
       }
     }
 
-    function deleteFile() {
-      if (currentTab === 'browser' || Object.keys(files).length <= 1) return;
+    function showDeleteModal() {
+      if (currentTab === 'browser' || Object.keys(files).length <= 1) {
+        console.log('Delete blocked: On browser tab or only one file remains');
+        return;
+      }
 
       const fileName = `${currentTab.replace(/^[^-]+-/, '')}.${files[currentTab].type}`;
-      if (confirm(`Are you sure you want to delete ${fileName}?`)) {
-        // Remove tab and editor
-        const tabButton = document.querySelector(`.tab[onclick="switchTab('${currentTab}')"]`);
+      console.log(`Showing delete modal for file: ${fileName}`);
+
+      const deleteMessage = document.getElementById('deleteFileMessage');
+      deleteMessage.textContent = `Are you sure you want to delete ${fileName}?`;
+      document.getElementById('deleteFileModal').style.display = 'flex';
+    }
+
+    function closeDeleteModal() {
+      document.getElementById('deleteFileModal').style.display = 'none';
+      console.log('Delete modal closed');
+    }
+
+    function confirmDelete() {
+      console.log(`Confirming deletion of file: ${currentTab}`);
+
+      try {
+        // Log current DOM state
+        console.log('Current tabs:', document.querySelectorAll('.tab').length);
+        console.log('Current editor areas:', document.querySelectorAll('.editor-area').length);
+
+        // Find tab by data-file-id (more reliable than onclick)
+        let tabButton = document.querySelector(`.tab[data-file-id="${currentTab}"]`);
+        if (!tabButton) {
+          console.warn(`Initial tab button for ${currentTab} not found with data-file-id`);
+          // Fallback: Search by text content
+          const fileName = `${currentTab.replace(/^[^-]+-/, '')}.${files[currentTab].type}`;
+          tabButton = Array.from(document.querySelectorAll('.tab')).find(tab => tab.textContent === fileName);
+          if (!tabButton) {
+            console.error(`Tab button for ${currentTab} not found by text content either`);
+            throw new Error(`Tab button for ${currentTab} not found`);
+          }
+        }
+        console.log(`Found tab button for ${currentTab} with onclick:`, tabButton.getAttribute('onclick'));
+        console.log(`Removing tab button for ${currentTab}`);
+        tabButton.remove();
+
+        // Find and remove editor
         const editorArea = document.getElementById(currentTab);
-        if (tabButton) tabButton.remove();
-        if (editorArea) editorArea.remove();
+        if (!editorArea) {
+          console.error(`Editor area for ${currentTab} not found`);
+          throw new Error(`Editor area for ${currentTab} not found`);
+        }
+        console.log(`Removing editor area for ${currentTab}`);
+        editorArea.remove();
 
         // Remove from files object
-        delete files[currentTab];
+        if (files[currentTab]) {
+          delete files[currentTab];
+          console.log(`File ${currentTab} deleted from files object`);
+        } else {
+          console.error(`File ${currentTab} not found in files object`);
+          throw new Error(`File ${currentTab} not found in files object`);
+        }
 
         // Save to localStorage
         saveToLocalStorage();
+        console.log('LocalStorage updated');
 
         // Switch to another tab
         const remainingTabs = Object.keys(files).filter(id => id !== 'browser');
         const nextTab = remainingTabs.length > 0 ? remainingTabs[0] : 'browser';
+        console.log(`Switching to next tab: ${nextTab}`);
         switchTab(nextTab);
+
+        closeDeleteModal();
+      } catch (error) {
+        console.error('Error during file deletion:', error.message);
+        alert(`Failed to delete file: ${error.message}. Please try again or check the console for details.`);
+        closeDeleteModal();
       }
     }
 
@@ -486,8 +588,9 @@ console.log("Hello from JS");
       const tab = document.createElement('button');
       tab.className = 'tab';
       tab.textContent = `${name}.${type}`;
+      tab.setAttribute('data-file-id', fileId); // Add data attribute for reliable selection
       tab.onclick = () => switchTab(fileId);
-      document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
+      document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab('browser')"]'));
 
       const editorArea = document.createElement('div');
       editorArea.id = fileId;
