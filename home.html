@@ -4,12 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>IDE - Just Wise Love</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
   <style>
+    :root {
+      --dark: #181A1C;
+      --blue: #4a7fb2;
+      --white: #ffffff;
+    }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #1a1a1a;
-      color: #d0d0d0;
+      background: var(--dark);
+      color: var(--white);
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -19,54 +26,169 @@
       touch-action: manipulation;
     }
 
+    .header-container {
+      background: var(--dark);
+      border-bottom: 1px solid var(--blue);
+    }
+
     .top-bar {
-      background: #252525;
+      background: var(--dark);
       padding: 12px 16px;
       display: flex;
-      justify-content: flex-start; /* Changed from space-between to flex-start */
+      justify-content: flex-start;
       align-items: center;
       font-weight: 600;
-      border-bottom: 1px solid #333;
-      gap: 16px; /* Added to space out the title and buttons */
+      gap: 12px;
+      height: 48px;
+      box-sizing: border-box;
+    }
+
+    .top-bar span {
+      flex: 0 0 auto;
     }
 
     .top-bar button {
-      background: #3a3a3a;
-      color: #d0d0d0;
-      border: 1px solid #4a4a4a;
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--blue);
       padding: 6px 12px;
       cursor: pointer;
       border-radius: 4px;
       transition: background 0.2s, border-color 0.2s;
       font-size: 14px;
-      margin-left: 8px;
-      position: relative;
-      z-index: 2;
       touch-action: auto;
+      height: 32px;
+      line-height: 1;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+      max-width: 120px;
+      justify-content: center;
+    }
+
+    .top-bar button i {
+      color: var(--blue);
     }
 
     .top-bar button:hover {
-      background: #4a4a4a;
-      border-color: #5a5a5a;
+      background: var(--blue);
+      color: var(--dark);
+      border-color: var(--blue);
+    }
+
+    .top-bar button:hover i {
+      color: var(--dark);
     }
 
     .top-bar button:disabled {
-      background: #2a2a2a;
+      background: var(--dark);
       color: #606060;
       cursor: not-allowed;
       border-color: #3a3a3a;
     }
 
+    .top-bar button:disabled i {
+      color: #606060;
+    }
+
+    .find-replace-bar {
+      background: var(--dark);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 48px;
+      box-sizing: border-box;
+      flex-wrap: nowrap;
+    }
+
+    .find-replace-bar span {
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      height: 32px;
+      line-height: 32px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .find-replace-bar input {
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--blue);
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      outline: none;
+      height: 32px;
+      width: 100px;
+      box-sizing: border-box;
+      user-select: text;
+      touch-action: auto;
+    }
+
+    .find-replace-bar input:focus {
+      border-color: var(--blue);
+    }
+
+    .find-replace-bar button {
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--blue);
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s;
+      font-size: 14px;
+      touch-action: auto;
+      height: 32px;
+      line-height: 1;
+      box-sizing: border-box;
+      min-width: 80px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .find-replace-bar button i {
+      color: var(--blue);
+    }
+
+    .find-replace-bar button:hover {
+      background: var(--blue);
+      color: var(--dark);
+      border-color: var(--blue);
+    }
+
+    .find-replace-bar button:hover i {
+      color: var(--dark);
+    }
+
+    .find-replace-bar button:disabled {
+      background: var(--dark);
+      color: #606060;
+      cursor: not-allowed;
+      border-color: #3a3a3a;
+    }
+
+    .find-replace-bar button:disabled i {
+      color: #606060;
+    }
+
     .tabs {
       display: flex;
-      background: #202020;
+      background: var(--dark);
       overflow-x: auto;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid var(--blue);
     }
 
     .tab {
       padding: 10px 16px;
-      background: #202020;
+      background: var(--dark);
       border: none;
       color: #a0a0a0;
       cursor: pointer;
@@ -74,96 +196,57 @@
       transition: background 0.2s, color 0.2s;
       font-size: 14px;
       position: relative;
-      z-index: 2;
       touch-action: auto;
+      margin-right: 4px;
+    }
+
+    .tab:last-child {
+      margin-right: 0;
     }
 
     .tab.active {
-      background: #2a2a2a;
-      color: #d0d0d0;
+      background: var(--blue);
+      color: var(--white);
       font-weight: 600;
-      border-bottom: 2px solid #4a4a4a;
+      border-bottom: 2px solid var(--blue);
     }
 
     .tab:hover {
-      background: #2a2a2a;
-      color: #d0d0d0;
-    }
-
-    .find-replace-bar {
-      background: #252525;
-      padding: 8px 16px;
-      display: flex;
-      align-items: center;
-      gap: 6px; /* Reduced from 8px to save space */
-      border-bottom: 1px solid #333;
-      flex-wrap: nowrap; /* Prevent wrapping */
-    }
-
-    .find-replace-bar label {
-      color: #d0d0d0;
-      font-size: 14px;
-      font-weight: 500;
-      margin-left: 4px;
-    }
-
-    .find-replace-bar input {
-      background: #2a2a2a;
-      color: #d0d0d0;
-      border: 1px solid #4a4a4a;
-      padding: 6px 8px; /* Reduced padding to save space */
-      border-radius: 4px;
-      margin-left: 4px;
-      font-size: 14px;
-      outline: none;
-      width: 60px; /* Reduced from 150px for compactness */
-    }
-
-    .find-replace-bar input:focus {
-      border-color: #5a5a5a;
-    }
-
-    .find-replace-bar button {
-      background: #3a3a3a;
-      color: #d0d0d0;
-      border: 1px solid #4a4a4a;
-      padding: 6px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.2s, border-color 0.2s;
-      margin-left: 8px;
-      font-size: 14px;
-      z-index: 2;
-      touch-action: auto;
-      min-width: 80px;
-    }
-
-    .find-replace-bar button:hover {
-      background: #4a4a4a;
-      border-color: #5a5a5a;
-    }
-
-    .find-replace-bar button:disabled {
-      background: #2a2a2a;
-      color: #606060;
-      cursor: not-allowed;
-      border-color: #3a3a3a;
+      background: var(--blue);
+      color: var(--dark);
     }
 
     .editor-area {
       display: none;
       flex-grow: 1;
-      overflow: hidden;
+      overflow: auto;
       position: relative;
+      flex-direction: row;
     }
 
     .editor-area.visible {
       display: flex;
     }
 
+    .line-numbers {
+      background: var(--dark);
+      color: #a0a0a0;
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 12px 8px;
+      text-align: right;
+      width: 40px;
+      border-right: 1px solid var(--blue);
+      user-select: none;
+      touch-action: none;
+      overflow: hidden;
+    }
+
     .code-editor {
-      background: #1e1e1e;
-      color: #d0d0d0;
+      background: var(--dark);
+      color: var(--white);
+      caret-color: var(--white);
       font-family: 'Fira Code', 'Consolas', monospace;
       font-size: 14px;
       line-height: 1.6;
@@ -171,10 +254,12 @@
       height: 100%;
       resize: none;
       border: none;
-      padding: 12px;
+      padding: 12px 8px;
       box-sizing: border-box;
       outline: none;
-      scrollbar-color: #4a4a4a #2a2a2a;
+      scrollbar-color: var(--blue) var(--dark);
+      user-select: text;
+      touch-action: auto;
     }
 
     .code-editor::-webkit-scrollbar {
@@ -182,11 +267,11 @@
     }
 
     .code-editor::-webkit-scrollbar-track {
-      background: #2a2a2a;
+      background: var(--dark);
     }
 
     .code-editor::-webkit-scrollbar-thumb {
-      background: #4a4a4a;
+      background: var(--blue);
       border-radius: 4px;
     }
 
@@ -194,7 +279,7 @@
       border: none;
       width: 100%;
       height: 100%;
-      background: #ffffff;
+      background: var(--white);
     }
 
     .container {
@@ -214,19 +299,24 @@
       justify-content: center;
       align-items: center;
       z-index: 10;
+      pointer-events: auto;
     }
 
     .modal-content {
-      background: #252525;
+      background: var(--dark);
       padding: 24px;
       border-radius: 6px;
       text-align: center;
-      border: 1px solid #333;
+      border: 1px solid var(--blue);
+      pointer-events: auto;
+      user-select: text;
+      touch-action: auto;
     }
 
     .modal-content p {
       margin: 12px 0;
       font-size: 14px;
+      color: var(--white);
     }
 
     .modal-content input,
@@ -234,152 +324,323 @@
       margin: 12px 0;
       padding: 8px;
       width: 220px;
-      background: #2a2a2a;
-      color: #d0d0d0;
-      border: 1px solid #4a4a4a;
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--blue);
       border-radius: 4px;
       outline: none;
       font-size: 14px;
+      user-select: text;
+      touch-action: auto;
+      pointer-events: auto;
     }
 
     .modal-content input:focus,
     .modal-content select:focus {
-      border-color: #5a5a5a;
+      border-color: var(--blue);
+    }
+
+    .modal-content div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
     }
 
     .modal-content button {
-      background: #3a3a3a;
-      color: #d0d0d0;
-      border: 1px solid #4a4a4a;
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--blue);
       padding: 6px 12px;
       cursor: pointer;
       border-radius: 4px;
       transition: background 0.2s, border-color 0.2s;
       font-size: 14px;
-      margin: 0 6px;
-      z-index: 12;
       touch-action: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: auto;
+    }
+
+    .modal-content button i {
+      color: var(--blue);
     }
 
     .modal-content button:hover {
-      background: #4a4a4a;
-      border-color: #5a5a5a;
+      background: var(--blue);
+      color: var(--dark);
+      border-color: var(--blue);
     }
 
-    @media only screen and (max-width: 768px) {
-      body {
-        font-size: 18px;
+    .modal-content button:hover i {
+      color: var(--dark);
+    }
+
+    @media only screen and (min-width: 768px) {
+      .header-container {
+        display: flex;
+        align-items: center;
       }
 
-     /* .top-bar {
-        padding: 10px 12px;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .top-bar button {
-        font-size: 16px;
-        padding: 8px 14px;
-        min-width: 80px;
-      }
-
-      .tab {
-        font-size: 16px;
-        padding: 8px 12px;
-        min-width: 70px;
+      .top-bar {
+        flex: 0 0 auto;
+        border-bottom: none;
+        padding-right: 0;
       }
 
       .find-replace-bar {
-        flex-wrap: nowrap;
-        gap: 4px;
-        padding: 10px 12px;
+        flex: 1;
+        border-bottom: none;
+        border-left: 1px solid var(--blue);
+        padding-left: 16px;
+      }
+    }
+
+    @media only screen and (max-width: 767px) {
+      .header-container {
+        display: block;
+      }
+
+      .top-bar {
+        padding: 8px 12px;
+        flex-wrap: wrap;
+        gap: 10px;
+        height: auto;
+        min-height: 48px;
+        justify-content: space-between;
+      }
+
+      .top-bar span {
+        font-size: 16px;
+        line-height: 44px;
+        flex: 0 0 60px;
+      }
+
+      .top-bar button {
+        font-size: 14px;
+        padding: 8px 12px;
+        min-width: 90px;
+        height: 44px;
+        max-width: none;
+        flex: 1 1 auto;
+      }
+
+      .find-replace-bar {
+        gap: 8px;
+        padding: 8px 12px;
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 48px;
+        justify-content: space-between;
+      }
+
+      .find-replace-bar span {
+        font-size: 14px;
+        height: 44px;
+        line-height: 44px;
+        flex: 0 0 60px;
       }
 
       .find-replace-bar input {
-        width: 80px;
+        width: 120px;
         font-size: 14px;
-        padding: 6px 6px;
+        padding: 8px 10px;
+        height: 44px;
+        flex: 1 1 auto;
       }
 
       .find-replace-bar button {
-        font-size: 16px;
-        padding: 8px 14px;
+        font-size: 14px;
+        padding: 8px 12px;
+        min-width: 90px;
+        height: 44px;
+        flex: 1 1 auto;
+      }
+
+      .tabs {
+        padding: 4px 0;
+      }
+
+      .tab {
+        font-size: 14px;
+        padding: 8px 12px;
         min-width: 80px;
-      }*/
+        margin-right: 4px;
+      }
+
+      .tab:last-child {
+        margin-right: 0;
+      }
+
+      .line-numbers {
+        font-size: 14px;
+        padding: 10px 6px;
+        width: 36px;
+      }
 
       .code-editor {
-        font-size: 16px;
-        padding: 10px;
-        line-height: 1.8;
+        font-size: 14px;
+        padding: 10px 6px;
       }
 
       .modal-content {
-        padding: 20px;
+        padding: 16px;
+        width: 90%;
+        max-width: 320px;
       }
 
       .modal-content h3 {
-        font-size: 20px;
+        font-size: 18px;
+        margin: 8px 0;
       }
 
       .modal-content p {
-        font-size: 16px;
+        font-size: 14px;
+        margin: 8px 0;
       }
 
       .modal-content input,
       .modal-content select {
-        font-size: 16px;
+        font-size: 14px;
         padding: 10px;
-        width: 90%;
-        max-width: 300px;
+        width: 100%;
+        max-width: 280px;
+        height: 44px;
       }
 
       .modal-content button {
-        font-size: 16px;
-        padding: 8px 14px;
-        min-width: 100px;
+        font-size: 14px;
+        padding: 8px 12px;
+        min-width: 90px;
+        height: 44px;
       }
     }
 
     @media only screen and (max-width: 480px) {
-      /*.top-bar button {
-        font-size: 14px;
-        padding: 6px 10px;
-        min-width: 70px;
+      .top-bar {
+        gap: 8px;
+        padding: 6px 8px;
       }
 
-      .tab {
+      .top-bar span {
         font-size: 14px;
-        padding: 6px 10px;
-        min-width: 60px;
+        line-height: 36px;
+        flex: 0 0 50px;
+      }
+
+      .top-bar button {
+        font-size: 12px;
+        padding: 6px 8px;
+        min-width: 80px;
+        height: 36px;
+        flex: 1 1 auto;
+      }
+
+      .find-replace-bar {
+        gap: 6px;
+        padding: 6px 8px;
+      }
+
+      .find-replace-bar span {
+        font-size: 12px;
+        height: 36px;
+        line-height: 36px;
+        flex: 0 0 50px;
       }
 
       .find-replace-bar input {
-        width: 60px;
+        width: 100px;
         font-size: 12px;
-        padding: 5px 4px;
+        padding: 6px 8px;
+        height: 36px;
+        flex: 1 1 auto;
       }
 
       .find-replace-bar button {
-        font-size: 14px;
-        padding: 6px 10px;
+        font-size: 12px;
+        padding: 6px 8px;
+        min-width: 80px;
+        height: 36px;
+        flex: 1 1 auto;
+      }
+
+      .tabs {
+        padding: 2px 0;
+      }
+
+      .tab {
+        font-size: 12px;
+        padding: 6px 8px;
         min-width: 70px;
-      }*/
+        margin-right: 2px;
+      }
+
+      .tab:last-child {
+        margin-right: 0;
+      }
+
+      .line-numbers {
+        font-size: 12px;
+        padding: 8px 4px;
+        width: 32px;
+      }
 
       .code-editor {
-        font-size: 14px;
+        font-size: 12px;
+        padding: 8px 4px;
+      }
+
+      .modal-content {
+        padding: 12px;
+        width: 90%;
+        max-width: 280px;
+      }
+
+      .modal-content h3 {
+        font-size: 16px;
+        margin: 6px 0;
+      }
+
+      .modal-content p {
+        font-size: 12px;
+        margin: 6px 0;
+      }
+
+      .modal-content input,
+      .modal-content select {
+        font-size: 12px;
         padding: 8px;
+        width: 100%;
+        max-width: 240px;
+        height: 36px;
+      }
+
+      .modal-content button {
+        font-size: 12px;
+        padding: 6px 8px;
+        min-width: 80px;
+        height: 36px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    <span>IDE</span>
-    <div>
-      <button id="newFileBtn" onclick="showNewFileModal()">New File</button>
-      <button id="selectAllBtn" onclick="selectAllCode()" disabled>Select All</button>
-      <button id="saveBtn" onclick="saveToFile()" disabled>Save</button>
-      <button id="deleteBtn" onclick="showDeleteModal()" disabled>Delete</button>
+  <div class="header-container">
+    <div class="top-bar">
+      <span>IDE</span>
+      <button id="newFileBtn" onclick="showNewFileModal()"><i class="fas fa-plus"></i> New File</button>
+      <button id="selectAllBtn" onclick="selectAllCode()" disabled><i class="fas fa-check-square"></i> Select All</button>
+      <button id="saveBtn" onclick="saveToFile()" disabled><i class="fas fa-save"></i> Save</button>
+      <button id="deleteBtn" onclick="showDeleteModal()" disabled><i class="fas fa-trash"></i> Delete</button>
+    </div>
+    <div class="find-replace-bar">
+      <span>Find:</span>
+      <input type="text" id="findText" placeholder="Text">
+      <span>Replace:</span>
+      <input type="text" id="replaceText" placeholder="With">
+      <button id="findReplaceBtn" onclick="findAndReplace()" disabled><i class="fas fa-check"></i> Submit</button>
     </div>
   </div>
 
@@ -390,18 +651,10 @@
     <button class="tab" onclick="switchTab('browser')">Browser</button>
   </div>
 
-  <div class="find-replace-bar">
-    <label for="findText">Find:</label>
-    <input type="text" id="findText" placeholder="Text">
-    <label for="replaceText">Replace:</label>
-    <input type="text" id="replaceText" placeholder="With">
-    <button id="findReplaceBtn" onclick="findAndReplace()" disabled>Submit</button>
-  </div>
-
   <div class="container">
     <div id="html-index" class="editor-area visible">
-      <textarea id="editor-html-index" class="code-editor" spellcheck="false">
-<!DOCTYPE html>
+      <div class="line-numbers"></div>
+      <textarea id="editor-html-index" class="code-editor" spellcheck="false"><!DOCTYPE html>
 <html>
   <head>
     <title>Welcome - JWL</title>
@@ -411,24 +664,21 @@
     <h1>Hello Coder</h1>
     <script src="script.js"></script>
   </body>
-</html>
-      </textarea>
+</html></textarea>
     </div>
 
     <div id="css-style" class="editor-area">
-      <textarea id="editor-css-style" class="code-editor" spellcheck="false">
-body {
+      <div class="line-numbers"></div>
+      <textarea id="editor-css-style" class="code-editor" spellcheck="false">body {
   background-color: lightgray;
   text-align: center;
   font-family: sans-serif;
-}
-      </textarea>
+}</textarea>
     </div>
 
     <div id="js-script" class="editor-area">
-      <textarea id="editor-js-script" class="code-editor" spellcheck="false">
-console.log("Hello from JS");
-      </textarea>
+      <div class="line-numbers"></div>
+      <textarea id="editor-js-script" class="code-editor" spellcheck="false">console.log("Hello from JS");</textarea>
     </div>
 
     <div id="browser" class="editor-area">
@@ -448,8 +698,8 @@ console.log("Hello from JS");
         <option value="py">.py</option>
       </select>
       <div>
-        <button onclick="createNewFile()">Create</button>
-        <button onclick="closeNewFileModal()">Cancel</button>
+        <button onclick="createNewFile()"><i class="fas fa-check"></i> Create</button>
+        <button onclick="closeNewFileModal()"><i class="fas fa-times"></i> Cancel</button>
       </div>
     </div>
   </div>
@@ -459,8 +709,8 @@ console.log("Hello from JS");
       <h3>Save File</h3>
       <input type="text" id="saveFileName" placeholder="Enter file name">
       <div>
-        <button onclick="downloadFile()">Download</button>
-        <button onclick="closeSaveFileModal()">Cancel</button>
+        <button onclick="downloadFile()"><i class="fas fa-download"></i> Download</button>
+        <button onclick="closeSaveFileModal()"><i class="fas fa-times"></i> Cancel</button>
       </div>
     </div>
   </div>
@@ -470,8 +720,8 @@ console.log("Hello from JS");
       <h3>Delete File</h3>
       <p id="deleteFileMessage"></p>
       <div>
-        <button onclick="confirmDelete()">Confirm</button>
-        <button onclick="closeDeleteModal()">Cancel</button>
+        <button onclick="confirmDelete()"><i class="fas fa-check"></i> Confirm</button>
+        <button onclick="closeDeleteModal()"><i class="fas fa-times"></i> Cancel</button>
       </div>
     </div>
   </div>
@@ -491,6 +741,13 @@ console.log("Hello from JS");
 
     let currentTab = 'html-index';
     let lastHtmlTab = 'html-index';
+
+    function updateLineNumbers(editorId) {
+      const textarea = document.getElementById(editorId);
+      const lineNumbers = textarea.previousElementSibling;
+      const lines = textarea.value.split('\n').length;
+      lineNumbers.innerHTML = Array.from({ length: lines }, (_, i) => `<div>${i + 1}</div>`).join('');
+    }
 
     function updateButtonStates() {
       const selectAllBtn = document.getElementById('selectAllBtn');
@@ -519,20 +776,29 @@ console.log("Hello from JS");
           const editorArea = document.createElement('div');
           editorArea.id = fileId;
           editorArea.className = 'editor-area';
+          const lineNumbers = document.createElement('div');
+          lineNumbers.className = 'line-numbers';
           const textarea = document.createElement('textarea');
           textarea.id = `editor-${fileId}`;
           textarea.className = 'code-editor';
           textarea.spellcheck = false;
           textarea.value = file.content;
+          editorArea.appendChild(lineNumbers);
           editorArea.appendChild(textarea);
           document.querySelector('.container').appendChild(editorArea);
 
           textarea.addEventListener('input', () => {
             files[fileId].content = textarea.value;
+            updateLineNumbers(`editor-${fileId}`);
           });
+
+          updateLineNumbers(`editor-${fileId}`);
         } else {
           const textarea = document.getElementById(`editor-${fileId}`);
-          if (textarea) textarea.value = files[fileId].content;
+          if (textarea) {
+            textarea.value = files[fileId].content;
+            updateLineNumbers(`editor-${fileId}`);
+          }
         }
       }
       if (!files[lastHtmlTab] || files[lastHtmlTab].type !== 'html') {
@@ -712,6 +978,8 @@ console.log("Hello from JS");
       const editorArea = document.createElement('div');
       editorArea.id = fileId;
       editorArea.className = 'editor-area';
+      const lineNumbers = document.createElement('div');
+      lineNumbers.className = 'line-numbers';
       const textarea = document.createElement('textarea');
       textarea.id = `editor-${fileId}`;
       textarea.className = 'code-editor';
@@ -721,6 +989,7 @@ console.log("Hello from JS");
                        type === 'js' ? '/* New JS File */\n' :
                        type === 'jsx' ? 'import React from "react";\n\nfunction Component() {\n  return (\n    <div>\n      <h1>Hello, React!</h1>\n    </div>\n  );\n}\n\nexport default Component;\n' :
                        type === 'py' ? '# New Python File\n\nprint("Hello, Python!")\n' : '';
+      editorArea.appendChild(lineNumbers);
       editorArea.appendChild(textarea);
       document.querySelector('.container').appendChild(editorArea);
 
@@ -728,7 +997,10 @@ console.log("Hello from JS");
 
       textarea.addEventListener('input', () => {
         files[fileId].content = textarea.value;
+        updateLineNumbers(`editor-${fileId}`);
       });
+
+      updateLineNumbers(`editor-${fileId}`);
 
       closeNewFileModal();
       setTimeout(() => {
@@ -798,6 +1070,7 @@ console.log("Hello from JS");
       const regex = new RegExp(findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
       files[currentTab].content = editor.value = editor.value.replace(regex, replaceText);
       console.log(`Replaced "${findText}" with "${replaceText}" in ${currentTab}`);
+      updateLineNumbers(`editor-${currentTab}`);
     }
 
     function updateFindReplaceButton() {
@@ -813,6 +1086,7 @@ console.log("Hello from JS");
       editor.addEventListener('input', () => {
         const fileId = editor.id.replace('editor-', '');
         files[fileId].content = editor.value;
+        updateLineNumbers(editor.id);
       });
     });
 
