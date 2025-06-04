@@ -37,7 +37,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      font-weight: 600;
+      font-weight:) 600;
       gap: 12px;
       height: 48px;
       box-sizing: border-box;
@@ -290,8 +290,6 @@
       background: var(--dark);
       overflow-x: auto;
       border-bottom: 1px solid var(--blue);
-      min-height: 40px; /* Ensure tabs don't collapse */
-      flex-shrink: 0; /* Prevent shrinking */
     }
 
     .tab {
@@ -335,54 +333,23 @@
       display: flex;
     }
 
-    .editor-wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      overflow: hidden;
-    }
-
-    .line-numbers {
-      width: 48px;
-      background: var(--dark);
-      color: #a0a0a0;
-      font-family: 'Fira Code', 'Consolas', monospace;
-      font-size: 14px;
-      line-height: 1.6; /* Must match .code-editor */
-      text-align: right;
-      padding: 12px 8px 12px 8px;
-      border-right: 1px solid var(--blue);
-      overflow: hidden; /* No independent scrolling */
-      user-select: none;
-      white-space: pre;
-      box-sizing: border-box;
-      scrollbar-width: none;
-    }
-
-    .line-numbers::-webkit-scrollbar {
-      display: none;
-    }
-
     .code-editor {
       background: var(--dark);
       color: var(--white);
       caret-color: var(--white);
       font-family: 'Fira Code', 'Consolas', monospace;
       font-size: 14px;
-      line-height: 1.6; /* Must match .line-numbers */
+      line-height: 1.6;
       width: 100%;
       height: 100%;
       resize: none;
       border: none;
-      padding: 12px 12px 12px 8px;
+      padding: 12px;
       box-sizing: border-box;
       outline: none;
       scrollbar-color: var(--blue) var(--dark);
       user-select: text;
       touch-action: auto;
-      margin-left: 48px;
-      overflow-y: auto;
     }
 
     .code-editor::-webkit-scrollbar {
@@ -630,7 +597,6 @@
 
       .tabs {
         padding: 4px 0;
-        min-height: 36px; /* Adjusted for smaller screens */
       }
 
       .tab {
@@ -644,18 +610,10 @@
         margin-right: 0;
       }
 
-      .line-numbers {
-        font-size: 14px;
-        padding: 10px 8px 10px 8px;
-        line-height: 1.8;
-        width: 44px;
-      }
-
       .code-editor {
         font-size: 14px;
-        padding: 10px 12px 10px 8px;
+        padding: 10px;
         line-height: 1.8;
-        margin-left: 44px;
       }
 
       .modal-content {
@@ -776,7 +734,6 @@
 
       .tabs {
         padding: 2px 0;
-        min-height: 32px; /* Adjusted for smaller screens */
       }
 
       .tab {
@@ -790,18 +747,10 @@
         margin-right: 0;
       }
 
-      .line-numbers {
-        font-size: 12px;
-        padding: 8px 6px 8px 6px;
-        line-height: 1.6;
-        width: 40px;
-      }
-
       .code-editor {
         font-size: 12px;
-        padding: 8px 10px 8px 6px;
+        padding: 8px;
         line-height: 1.6;
-        margin-left: 40px;
       }
 
       .modal-content {
@@ -875,44 +824,35 @@
 
   <div class="container">
     <div id="html-index" class="editor-area visible">
-      <div class="editor-wrapper">
-        <div id="line-numbers-html-index" class="line-numbers"></div>
-        <textarea id="editor-html-index" class="code-editor" spellcheck="false">
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Welcome - JWL</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Hello Coder</h1>
-    <script src="script.js"></script>
-  </body>
-</html>
-        </textarea>
-      </div>
+      <textarea id="editor-html-index" class="code-editor" spellcheck="false">
+1  <!DOCTYPE html>
+2  <html>
+3    <head>
+4      <title>Welcome - JWL</title>
+5      <link rel="stylesheet" href="style.css">
+6    </head>
+7    <body>
+8      <h1>Hello Coder</h1>
+9      <script src="script.js"></script>
+10   </body>
+11 </html>
+      </textarea>
     </div>
 
     <div id="css-style" class="editor-area">
-      <div class="editor-wrapper">
-        <div id="line-numbers-css-style" class="line-numbers"></div>
-        <textarea id="editor-css-style" class="code-editor" spellcheck="false">
-body {
-  background-color: lightgray;
-  text-align: center;
-  font-family: sans-serif;
-}
-        </textarea>
-      </div>
+      <textarea id="editor-css-style" class="code-editor" spellcheck="false">
+1  body {
+2    background-color: lightgray;
+3    text-align: center;
+4    font-family: sans-serif;
+5  }
+      </textarea>
     </div>
 
     <div id="js-script" class="editor-area">
-      <div class="editor-wrapper">
-        <div id="line-numbers-js-script" class="line-numbers"></div>
-        <textarea id="editor-js-script" class="code-editor" spellcheck="false">
-console.log("Hello from JS");
-        </textarea>
-      </div>
+      <textarea id="editor-js-script" class="code-editor" spellcheck="false">
+1  console.log("Hello from JS");
+      </textarea>
     </div>
 
     <div id="browser" class="editor-area">
@@ -987,53 +927,23 @@ console.log("Hello from JS");
     let currentTab = 'html-index';
     let lastHtmlTab = 'html-index';
     let currentProject = null;
-    let isScrolling = false; // Flag to prevent scroll feedback loops
 
-    function updateLineNumbers(textarea, lineNumbersDiv) {
-      if (!textarea || !lineNumbersDiv) return;
-      const scrollTop = textarea.scrollTop; // Preserve scroll position
-      const lines = textarea.value.split('\n').length;
-      let lineNumbers = '';
-      for (let i = 1; i <= Math.max(lines, 1); i++) {
-        lineNumbers += `${i}\n`;
-      }
-      lineNumbersDiv.textContent = lineNumbers;
-      textarea.scrollTop = scrollTop; // Restore scroll position
-      syncScroll(textarea, lineNumbersDiv); // Ensure sync after update
+    function stripLineNumbers(content) {
+      return content.replace(/^\d+\s+/gm, '');
     }
 
-    function syncScroll(textarea, lineNumbersDiv) {
-      if (isScrolling || !lineNumbersDiv) return;
-      isScrolling = true;
-      lineNumbersDiv.scrollTop = textarea.scrollTop;
-      isScrolling = false;
-    }
-
-    function initializeLineNumbers() {
-      document.querySelectorAll('.code-editor').forEach(textarea => {
-        const fileId = textarea.id.replace('editor-', '');
-        const lineNumbersDiv = document.getElementById(`line-numbers-${fileId}`);
-        if (lineNumbersDiv) {
-          updateLineNumbers(textarea, lineNumbersDiv);
-          textarea.addEventListener('input', () => {
-            updateLineNumbers(textarea, lineNumbersDiv);
-            syncScroll(textarea, lineNumbersDiv); // Force sync on input
-          });
-          textarea.addEventListener('scroll', () => syncScroll(textarea, lineNumbersDiv));
-        }
-      });
-    }
-
-    function preserveBrowserTab() {
-      const tabsContainer = document.querySelector('.tabs');
-      const browserTab = document.querySelector('.tab[onclick="switchTab(\'browser\')"]');
-      if (!browserTab) {
-        const newBrowserTab = document.createElement('button');
-        newBrowserTab.className = 'tab';
-        newBrowserTab.textContent = 'Browser';
-        newBrowserTab.setAttribute('onclick', "switchTab('browser')");
-        tabsContainer.appendChild(newBrowserTab);
-        console.log('Browser tab restored');
+    function updateLineNumbers(textarea) {
+      const fileId = textarea.id.replace('editor-', '');
+      let content = textarea.value;
+      // Remove existing line numbers
+      content = stripLineNumbers(content);
+      // Split into lines and add new line numbers
+      const lines = content.split('\n');
+      const numberedContent = lines.map((line, index) => `${index + 1}  ${line}`).join('\n');
+      // Update textarea only if content has changed to avoid infinite loops
+      if (textarea.value !== numberedContent) {
+        textarea.value = numberedContent;
+        files[fileId].content = numberedContent;
       }
     }
 
@@ -1066,34 +976,23 @@ console.log("Hello from JS");
           const editorArea = document.createElement('div');
           editorArea.id = fileId;
           editorArea.className = 'editor-area';
-          const editorWrapper = document.createElement('div');
-          editorWrapper.className = 'editor-wrapper';
-          const lineNumbers = document.createElement('div');
-          lineNumbers.id = `line-numbers-${fileId}`;
-          lineNumbers.className = 'line-numbers';
           const textarea = document.createElement('textarea');
           textarea.id = `editor-${fileId}`;
           textarea.className = 'code-editor';
           textarea.spellcheck = false;
           textarea.value = file.content;
-          editorWrapper.appendChild(lineNumbers);
-          editorWrapper.appendChild(textarea);
-          editorArea.appendChild(editorWrapper);
+          editorArea.appendChild(textarea);
           document.querySelector('.container').appendChild(editorArea);
 
-          updateLineNumbers(textarea, lineNumbers);
           textarea.addEventListener('input', () => {
-            files[fileId].content = textarea.value;
-            updateLineNumbers(textarea, lineNumbers);
+            updateLineNumbers(textarea);
           });
-          textarea.addEventListener('scroll', () => syncScroll(textarea, lineNumbers));
+          textarea.addEventListener('paste', (e) => {
+            setTimeout(() => updateLineNumbers(textarea), 0);
+          });
         } else {
           const textarea = document.getElementById(`editor-${fileId}`);
-          const lineNumbers = document.getElementById(`line-numbers-${fileId}`);
-          if (textarea) {
-            textarea.value = files[fileId].content;
-            if (lineNumbers) updateLineNumbers(textarea, lineNumbers);
-          }
+          if (textarea) textarea.value = files[fileId].content;
         }
       }
       if (!files[lastHtmlTab] || files[lastHtmlTab].type !== 'html') {
@@ -1102,27 +1001,19 @@ console.log("Hello from JS");
       }
       updateButtonStates();
       loadProjects();
-      initializeLineNumbers();
-      preserveBrowserTab();
     }
 
     function switchTab(tab) {
       console.log(`Switching to tab: ${tab}`);
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       const tabButton = document.querySelector(`.tab[data-file-id="${tab}"], .tab[onclick="switchTab('${tab}')"]`);
-      if (tabButton) {
-        tabButton.classList.add('active');
-      } else {
-        console.warn(`Tab button for ${tab} not found`);
-      }
+      if (tabButton) tabButton.classList.add('active');
+      else console.warn(`Tab button for ${tab} not found`);
 
       document.querySelectorAll('.editor-area').forEach(e => e.classList.remove('visible'));
       const editorArea = document.getElementById(tab);
-      if (editorArea) {
-        editorArea.classList.add('visible');
-      } else {
-        console.warn(`Editor area for ${tab} not found`);
-      }
+      if (editorArea) editorArea.className = 'editor-area visible';
+      else console.warn(`Editor area for ${tab} not found`);
 
       currentTab = tab;
       if (files[tab]?.type === 'html') lastHtmlTab = tab;
@@ -1134,13 +1025,13 @@ console.log("Hello from JS");
         runCode();
       } else {
         const textarea = editorArea?.querySelector('.code-editor');
-        const lineNumbers = editorArea?.querySelector('.line-numbers');
-        if (textarea && lineNumbers) {
-          updateLineNumbers(textarea, lineNumbers);
-          setTimeout(() => textarea.focus(), 50);
+        if (textarea) {
+          setTimeout(() => {
+            textarea.focus();
+            updateLineNumbers(textarea);
+          }, 50);
         }
       }
-      preserveBrowserTab();
     }
 
     function runCode() {
@@ -1150,13 +1041,13 @@ console.log("Hello from JS");
         if (editor) files[currentTab].content = editor.value;
       }
 
-      let htmlContent = lastHtmlTab && files[lastHtmlTab]?.type === 'html' ? files[lastHtmlTab].content : '<html><body><h1>No HTML file available</h1></body></html>';
+      let htmlContent = lastHtmlTab && files[lastHtmlTab]?.type === 'html' ? stripLineNumbers(files[lastHtmlTab].content) : '<html><body><h1>No HTML file available</h1></body></html>';
       let cssContent = '';
       let jsContent = '';
 
       for (let id in files) {
-        if (files[id].type === 'css') cssContent += files[id].content + '\n';
-        else if (files[id].type === 'js') jsContent += files[id].content + '\n';
+        if (files[id].type === 'css') cssContent += stripLineNumbers(files[id].content) + '\n';
+        else if (files[id].type === 'js') jsContent += stripLineNumbers(files[id].content) + '\n';
       }
 
       const fullCode = `
@@ -1249,7 +1140,6 @@ console.log("Hello from JS");
         switchTab(nextTab);
 
         closeDeleteModal();
-        preserveBrowserTab();
       } catch (error) {
         console.error('Error during file deletion:', error.message);
         alert(`Failed to delete file: ${error.message}. Check the console for details.`);
@@ -1283,46 +1173,39 @@ console.log("Hello from JS");
       tab.textContent = `${name}.${type}`;
       tab.setAttribute('data-file-id', fileId);
       tab.onclick = () => switchTab(fileId);
-      const tabsContainer = document.querySelector('.tabs');
-      tabsContainer.insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
+      document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
 
       const editorArea = document.createElement('div');
       editorArea.id = fileId;
       editorArea.className = 'editor-area';
-      const editorWrapper = document.createElement('div');
-      editorWrapper.className = 'editor-wrapper';
-      const lineNumbers = document.createElement('div');
-      lineNumbers.id = `line-numbers-${fileId}`;
-      lineNumbers.className = 'line-numbers';
       const textarea = document.createElement('textarea');
       textarea.id = `editor-${fileId}`;
       textarea.className = 'code-editor';
       textarea.spellcheck = false;
-      textarea.value = type === 'html' ? '<!DOCTYPE html>\n<html>\n  <head>\n    <title>New Page</title>\n  </head>\n  <body>\n  </body>\n</html>' :
-                       type === 'css' ? '/* New CSS File */\n' :
-                       type === 'js' ? '/* New JS File */\n' :
-                       type === 'jsx' ? 'import React from "react";\n\nfunction Component() {\n  return (\n    <div>\n      <h1>Hello, React!</h1>\n    </div>\n  );\n}\n\nexport default Component;\n' :
-                       type === 'py' ? '# New Python File\n\nprint("Hello, Python!")\n' : '';
-      editorWrapper.appendChild(lineNumbers);
-      editorWrapper.appendChild(textarea);
-      editorArea.appendChild(editorWrapper);
+      const baseContent = type === 'html' ? '<!DOCTYPE html>\n<html>\n  <head>\n    <title>New Page</title>\n  </head>\n  <body>\n  </body>\n</html>' :
+                          type === 'css' ? '/* New CSS File */\n' :
+                          type === 'js' ? '/* New JS File */\n' :
+                          type === 'jsx' ? 'import React from "react";\n\nfunction Component() {\n  return (\n    <div>\n      <h1>Hello, React!</h1>\n    </div>\n  );\n}\n\nexport default Component;\n' :
+                          type === 'py' ? '# New Python File\n\nprint("Hello, Python!")\n' : '';
+      const lines = baseContent.split('\n');
+      textarea.value = lines.map((line, index) => `${index + 1}  ${line}`).join('\n');
+      editorArea.appendChild(textarea);
       document.querySelector('.container').appendChild(editorArea);
 
       files[fileId] = { type, content: textarea.value };
 
-      updateLineNumbers(textarea, lineNumbers);
       textarea.addEventListener('input', () => {
-        files[fileId].content = textarea.value;
-        updateLineNumbers(textarea, lineNumbers);
+        updateLineNumbers(textarea);
       });
-      textarea.addEventListener('scroll', () => syncScroll(textarea, lineNumbers));
+      textarea.addEventListener('paste', (e) => {
+        setTimeout(() => updateLineNumbers(textarea), 0);
+      });
 
       closeNewFileModal();
       setTimeout(() => {
         switchTab(fileId);
         textarea.focus();
       }, 100);
-      preserveBrowserTab();
     }
 
     function saveToFile() {
@@ -1348,7 +1231,7 @@ console.log("Hello from JS");
       const editor = document.getElementById(`editor-${currentTab}`);
       if (editor) files[currentTab].content = editor.value;
 
-      const content = files[currentTab].content;
+      const content = stripLineNumbers(files[currentTab].content);
       const blob = new Blob([content], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -1378,16 +1261,18 @@ console.log("Hello from JS");
       }
 
       const editor = document.getElementById(`editor-${currentTab}`);
-      const lineNumbers = document.getElementById(`line-numbers-${currentTab}`);
       if (!editor) {
         console.error(`Editor for ${currentTab} not found`);
         return;
       }
 
+      const content = stripLineNumbers(editor.value);
       const regex = new RegExp(findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-      files[currentTab].content = editor.value = editor.value.replace(regex, replaceText);
+      const newContent = content.replace(regex, replaceText);
+      const lines = newContent.split('\n');
+      editor.value = lines.map((line, index) => `${index + 1}  ${line}`).join('\n');
+      files[currentTab].content = editor.value;
       console.log(`Replaced "${findText}" with "${replaceText}" in ${currentTab}`);
-      if (lineNumbers) updateLineNumbers(editor, lineNumbers);
     }
 
     function updateFindReplaceButton() {
@@ -1440,7 +1325,6 @@ console.log("Hello from JS");
 
       closeNewProjectModal();
       updateButtonStates();
-      preserveBrowserTab();
     }
 
     function saveProject() {
@@ -1501,32 +1385,25 @@ console.log("Hello from JS");
         tab.textContent = `${fileId.replace(/^[^-]+-/, '')}.${file.type}`;
         tab.setAttribute('data-file-id', fileId);
         tab.onclick = () => switchTab(fileId);
-        document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]') || document.querySelector('.tabs').lastChild);
+        document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
 
         const editorArea = document.createElement('div');
         editorArea.id = fileId;
         editorArea.className = 'editor-area';
-        const editorWrapper = document.createElement('div');
-        editorWrapper.className = 'editor-wrapper';
-        const lineNumbers = document.createElement('div');
-        lineNumbers.id = `line-numbers-${fileId}`;
-        lineNumbers.className = 'line-numbers';
         const textarea = document.createElement('textarea');
         textarea.id = `editor-${fileId}`;
         textarea.className = 'code-editor';
         textarea.spellcheck = false;
         textarea.value = file.content;
-        editorWrapper.appendChild(lineNumbers);
-        editorWrapper.appendChild(textarea);
-        editorArea.appendChild(editorWrapper);
+        editorArea.appendChild(textarea);
         document.querySelector('.container').appendChild(editorArea);
 
-        updateLineNumbers(textarea, lineNumbers);
         textarea.addEventListener('input', () => {
-          files[fileId].content = textarea.value;
-          updateLineNumbers(textarea, lineNumbers);
+          updateLineNumbers(textarea);
         });
-        textarea.addEventListener('scroll', () => syncScroll(textarea, lineNumbers));
+        textarea.addEventListener('paste', (e) => {
+          setTimeout(() => updateLineNumbers(textarea), 0);
+        });
       }
 
       currentProject = name;
@@ -1534,7 +1411,6 @@ console.log("Hello from JS");
       currentTab = project.currentTab || 'browser';
       lastHtmlTab = Object.keys(files).find(id => files[id].type === 'html') || null;
       switchTab(currentTab);
-      preserveBrowserTab();
     }
 
     function loadProjects() {
@@ -1559,10 +1435,10 @@ console.log("Hello from JS");
 
     document.querySelectorAll('.code-editor').forEach(editor => {
       editor.addEventListener('input', () => {
-        const fileId = editor.id.replace('editor-', '');
-        files[fileId].content = editor.value;
-        const lineNumbers = document.getElementById(`line-numbers-${fileId}`);
-        if (lineNumbers) updateLineNumbers(editor, lineNumbers);
+        updateLineNumbers(editor);
+      });
+      editor.addEventListener('paste', (e) => {
+        setTimeout(() => updateLineNumbers(editor), 0);
       });
     });
 
