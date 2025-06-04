@@ -2,59 +2,132 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Code IDE</title>
-  <!-- CodeMirror for syntax highlighting -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/javascript/javascript.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/css/css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/htmlmixed/htmlmixed.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/python/python.min.js"></script>
-  <!-- Pyodide for Python execution -->
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
-  <!-- JSZip for ZIP file creation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>IDE - Just Wise Love</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="ide.css">
 </head>
 <body>
-  <div class="top-bar">
-    <div class="logo"><img src="codex.png" width="30px" height="30px">CODEXEDOC</div>
-    <div class="top-bar-buttons">
-      <button id="copy-code"><i class="fa-solid fa-clipboard"></i></button>
-      <button id="clear-code"><i class="fa-solid fa-snowplow"></i></button>
-      <button id="download-all"><i class="fa-solid fa-download"></i></button>
-      <button id="run-code"><i class="fa-solid fa-play"></i></button>
-      <button id="open-output"><i class="fa-solid fa-window-restore"></i></button>
+  <div class="header-container">
+    <div class="project-bar">
+      <span>Projects</span>
+      <input type="text" id="projectName" placeholder="Project name">
+      <button id="addProjectBtn" onclick="showNewProjectModal()"><i class="fas fa-plus"></i> Add</button>
+      <button id="saveProjectBtn" onclick="saveProject()"><i class="fas fa-save"></i> Save</button>
+      <button id="openProjectBtn" onclick="openProject()" disabled><i class="fas fa-folder-open"></i> Open</button>
+      <select id="projectList">
+        <option value="">Select a project</option>
+      </select>
+    </div>
+    <div class="top-bar">
+      <span>IDE</span>
+      <button id="newFileBtn" onclick="showNewFileModal()"><i class="fas fa-plus"></i> New File</button>
+      <button id="selectAllBtn" onclick="selectAllCode()" disabled><i class="fas fa-check-square"></i> Select All</button>
+      <button id="saveBtn" onclick="saveToFile()" disabled><i class="fas fa-save"></i> Save</button>
+      <button id="deleteBtn" onclick="showDeleteModal()" disabled><i class="fas fa-trash"></i> Delete</button>
+    </div>
+    <div class="find-replace-bar">
+      <span>Find:</span>
+      <input type="text" id="findText" placeholder="Text">
+      <span>Replace:</span>
+      <input type="text" id="replaceText" placeholder="With">
+      <button id="findReplaceBtn" onclick="findAndReplace()" disabled><i class="fas fa-check"></i> Submit</button>
     </div>
   </div>
 
-  <div class="main-container">
-    <div class="editor-container">
-      <div class="tabs">
-        <!-- Dynamically populated tabs will appear here -->
-        <button id="add-file"><i class="fa-solid fa-plus"></i></button>
-        <input type="file" id="file-import" accept=".html,.css,.js,.py,.txt" style="display: none;">
-      </div>
-      <div class="editor">
-        <textarea placeholder="Start coding..."></textarea>
-      </div>
+  <div class="tabs">
+    <button class="tab active" data-file-id="html-index" onclick="switchTab('html-index')">index.html</button>
+    <button class="tab" data-file-id="css-style" onclick="switchTab('css-style')">style.css</button>
+    <button class="tab" data-file-id="js-script" onclick="switchTab('js-script')">script.js</button>
+    <button class="tab" onclick="switchTab('browser')">Browser</button>
+  </div>
+
+  <div class="container">
+    <div id="html-index" class="editor-area visible">
+      <textarea id="editor-html-index" class="code-editor" spellcheck="false">
+1  <!DOCTYPE html>
+2  <html>
+3    <head>
+4      <title>Welcome - JWL</title>
+5      <link rel="stylesheet" href="style.css">
+6    </head>
+7    <body>
+8      <h1>Hello Coder</h1>
+9      <script src="script.js"></script>
+10   </body>
+11 </html>
+      </textarea>
+    </div>
+
+    <div id="css-style" class="editor-area">
+      <textarea id="editor-css-style" class="code-editor" spellcheck="false">
+1  body {
+2    background-color: lightgray;
+3    text-align: center;
+4    font-family: sans-serif;
+5  }
+      </textarea>
+    </div>
+
+    <div id="js-script" class="editor-area">
+      <textarea id="editor-js-script" class="code-editor" spellcheck="false">
+1  console.log("Hello from JS");
+      </textarea>
+    </div>
+
+    <div id="browser" class="editor-area">
+      <iframe id="preview"></iframe>
     </div>
   </div>
 
-  <div class="status-bar">
-    <span>Ln 1, Col 1</span>
-    <span>UTF-8 | None | Spaces: 2</span>
-  </div>
-
-  <div id="file-modal" class="modal" style="display: none;">
+  <div id="newProjectModal" class="modal">
     <div class="modal-content">
-      <h3>Add New File</h3>
-      <input type="text" id="new-file-name" placeholder="Enter file name (e.g., index.html)">
-      <button id="create-new-file">Create</button>
-      <button onclick="document.getElementById('file-import').click()">Import File</button>
-      <button id="cancel-modal">Cancel</button>
+      <h3>Create New Project</h3>
+      <input type="text" id="newProjectName" placeholder="Enter project name">
+      <div>
+        <button onclick="createNewProject()"><i class="fas fa-check"></i> Create</button>
+        <button onclick="closeNewProjectModal()"><i class="fas fa-times"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="newFileModal" class="modal">
+    <div class="modal-content">
+      <h3>Create New File</h3>
+      <input type="text" id="newFileName" placeholder="Enter file name">
+      <select id="fileType">
+        <option value="html">.html</option>
+        <option value="css">.css</option>
+        <option value="js">.js</option>
+        <option value="jsx">.jsx</option>
+        <option value="py">.py</option>
+      </select>
+      <div>
+        <button onclick="createNewFile()"><i class="fas fa-check"></i> Create</button>
+        <button onclick="closeNewFileModal()"><i class="fas fa-times"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="saveFileModal" class="modal">
+    <div class="modal-content">
+      <h3>Save File</h3>
+      <input type="text" id="saveFileName" placeholder="Enter file name">
+      <div>
+        <button onclick="downloadFile()"><i class="fas fa-download"></i> Download</button>
+        <button onclick="closeSaveFileModal()"><i class="fas fa-times"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="deleteFileModal" class="modal">
+    <div class="modal-content">
+      <h3>Delete File</h3>
+      <p id="deleteFileMessage"></p>
+      <div>
+        <button onclick="confirmDelete()"><i class="fas fa-check"></i> Confirm</button>
+        <button onclick="closeDeleteModal()"><i class="fas fa-times"></i> Cancel</button>
+      </div>
     </div>
   </div>
 
