@@ -1,366 +1,779 @@
 :root {
-  --dark-blue: #181A1C;
-  --light-blue: #181A1C;
-  --green: #4a7fb2 /*#1a5c38*/;
+  --dark: #181A1C;
+  --blue: #4a7fb2;
   --white: #ffffff;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-@font-face {
-  font-family: 'Share Tech Mono';
-  src: url('https://www.codexedoc.com/fonts/ShareTechMono-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 body {
-  font-family: 'Share Tech Mono', monospace;
-  background-color: var(--dark-blue);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--dark);
   color: var(--white);
-  height: 100vh;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
-  overflow: hidden;
+  height: 100vh;
+  font-size: 16px;
+  -webkit-user-select: none;
+  user-select: none;
   touch-action: manipulation;
 }
 
-.top-bar {
-  background-color: var(--light-blue);
-  padding: 10px;
+.header-container {
+  background: var(--dark);
+  border-bottom: 1px solid var(--blue);
+}
+
+.project-bar {
+  background: var(--dark);
+  padding: 12px 16px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid var(--green);
+  font-weight: 600;
+  gap: 12px;
+  height: 48px;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
 }
 
-.top-bar .logo {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--white);
-}
-
-.top-bar .top-bar-buttons {
+.project-bar span {
+  flex: 0 0 auto;
+  font-size: 14px;
+  height: 32px;
+  line-height: 32px;
   display: flex;
-  gap: 10px;
+  align-items: center;
+}
+
+.project-bar input {
+  background: var(--dark);
+  color: var(--white);
+  border: 1px solid var(--blue);
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  height: 32px;
+  width: 100px;
+  box-sizing: border-box;
+  user-select: text;
+  touch-action: auto;
+}
+
+.project-bar input:focus {
+  border-color: var(--blue);
+}
+
+.project-bar select {
+  background: var(--dark);
+  color: var(--white);
+  border: 1px solid var(--blue);
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  height: 32px;
+  width: 120px;
+  box-sizing: border-box;
+  user-select: text;
+  touch-action: auto;
+}
+
+.project-bar select:focus {
+  border-color: var(--blue);
+}
+
+.project-bar button {
+  background: var(--dark);
+  color: var(--white);
+  border: 1px solid var(--blue);
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s;
+  font-size: 14px;
+  touch-action: auto;
+  height: 32px;
+  line-height: 1;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  max-width: 120px;
+  justify-content: center;
+}
+
+.project-bar button i {
+  color: var(--blue);
+}
+
+.project-bar button:hover {
+  background: var(--blue);
+  color: var(--dark);
+  border-color: var(--blue);
+}
+
+.project-bar button:hover i {
+  color: var(--dark);
+}
+
+.project-bar button:disabled {
+  background: var(--dark);
+  color: #606060;
+  cursor: not-allowed;
+  border-color: #3a3a3a;
+}
+
+.project-bar button:disabled i {
+  color: #606060;
+}
+
+.top-bar {
+  background: var(--dark);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 600;
+  gap: 12px;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+.top-bar span {
+  flex: 0 0 auto;
 }
 
 .top-bar button {
-  padding: 8px;
-  background-color: var(--dark-blue);
-  border: 2px solid var(--green);
+  background: var(--dark);
   color: var(--white);
+  border: 1px solid var(--blue);
+  padding: 6px 12px;
   cursor: pointer;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.9rem;
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s;
+  font-size: 14px;
+  touch-action: auto;
+  height: 32px;
+  line-height: 1;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  max-width: 120px;
+  justify-content: center;
+}
+
+.top-bar button i {
+  color: var(--blue);
 }
 
 .top-bar button:hover {
-  background-color: var(--green);
-  color: var(--dark-blue);
+  background: var(--blue);
+  color: var(--dark);
+  border-color: var(--blue);
 }
 
-.main-container {
-  display: flex !important;
-  flex: 1;
-  height: calc(100vh - 50px);
+.top-bar button:hover i {
+  color: var(--dark);
 }
 
-.editor-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+.top-bar button:disabled {
+  background: var(--dark);
+  color: #606060;
+  cursor: not-allowed;
+  border-color: #3a3a3a;
 }
 
-.tabs {
-  background-color: var(--light-blue);
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--green);
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--green) var(--dark-blue);
+.top-bar button:disabled i {
+  color: #606060;
 }
 
-.tabs .tab {
-  padding: 10px 15px;
-  cursor: pointer;
-  background-color: var(--dark-blue);
-  border-right: 1px solid var(--green);
-  white-space: nowrap;
-  color: var(--white);
+.find-replace-bar {
+  background: var(--dark);
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
+  height: 48px;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
 }
 
-.tabs .tab.active {
-  background-color: var(--light-blue);
-  color: var(--green);
-}
-
-.tabs .tab:hover {
-  background-color: var(--green);
-  color: var(--dark-blue);
-}
-
-.tabs .tab i {
-  font-size: 0.8rem;
-}
-
-.tabs button#add-file {
-  padding: 10px;
-  background-color: var(--dark-blue);
-  border: 2px solid var(--green);
+.find-replace-bar span {
   color: var(--white);
-  cursor: pointer;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.9rem;
-  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  height: 32px;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-.tabs button#add-file:hover {
-  background-color: var(--green);
-  color: var(--dark-blue);
+.find-replace-bar input {
+  background: var(--dark);
+  color: var(--white);
+  border: 1px solid var(--blue);
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  height: 32px;
+  width: 100px;
+  box-sizing: border-box;
+  user-select: text;
+  touch-action: auto;
+}
+
+.find-replace-bar input:focus {
+  border-color: var(--blue);
+}
+
+.find-replace-bar button {
+  background: var(--dark);
+  color: var(--white);
+  border: 1px solid var(--blue);
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s;
+  font-size: 14px;
+  touch-action: auto;
+  height: 32px;
+  line-height: 1;
+  box-sizing: border-box;
+  min-width: 80px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+
+.find-replace-bar button i {
+  color: var(--blue);
+}
+
+.find-replace-bar button:hover {
+  background: var(--blue);
+  color: var(--dark);
+  border-color: var(--blue);
+}
+
+.find-replace-bar button:hover i {
+  color: var(--dark);
+}
+
+.find-replace-bar button:disabled {
+  background: var(--dark);
+  color: #606060;
+  cursor: not-allowed;
+  border-color: #3a3a3a;
+}
+
+.find-replace-bar button:disabled i {
+  color: #606060;
+}
+
+.tabs {
+  display: flex;
+  background: var(--dark);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--blue);
+}
+
+.tab {
+  padding: 10px 16px;
+  background: var(--dark);
+  border: none;
+  color: #a0a0a0;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: background 0.2s, color 0.2s;
+  font-size: 14px;
+  position: relative;
+  touch-action: auto;
+  margin-right: 4px;
+}
+
+.tab:last-child {
+  margin-right: 0;
+}
+
+.tab.active {
+  background: var(--blue);
+  color: var(--white);
+  font-weight: 600;
+  border-bottom: 2px solid var(--blue);
+}
+
+.tab:hover {
+  background: var(--blue);
+  color: var(--dark);
+}
+
+.editor-area {
+  display: none;
+  flex-grow: 1;
+  overflow: auto;
+  position: relative;
+}
+
+.editor-area.visible {
+  display: flex;
 }
 
 .code-editor {
-  position: relative;
-  flex: 1;
-  background-color: var(--dark-blue);
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.cm-s-monokai {
-  background-color: var(--light-blue);
+  background: var(--dark);
   color: var(--white);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  height: 100%;
-}
-
-.cm-s-monokai .CodeMirror-gutters {
-  background-color: var(--dark-blue);
-  border-right: 1px solid var(--green);
-}
-
-.cm-s-monokai .CodeMirror-linenumbers {
-  color: var(--green);
-  padding: 0 5px;
-}
-
-.cm-s-monokai .CodeMirror-cursor {
-  border-left: 1px solid var(--green);
-}
-
-.editor {
-  flex: 1;
-  background-color: var(--dark-blue);
-  padding: 10px;
-  overflow: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--green) var(--dark-blue);
-  touch-action: none;
-}
-
-.editor .CodeMirror {
-  height: 100%;
-  width: 100%;
-}
-
-.editor textarea {
+  caret-color: var(--white);
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.6;
   width: 100%;
   height: 100%;
-  background: var(--light-blue);
-  border: 2px solid var(--green);
-  color: var(--white);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.9rem;
-  padding: 10px 15px 10px 60px;
   resize: none;
+  border: none;
+  padding: 12px;
+  box-sizing: border-box;
   outline: none;
-  line-height: 1.5;
-  border-radius: 5px;
+  scrollbar-color: var(--blue) var(--dark);
+  user-select: text;
+  touch-action: auto;
 }
 
-.status-bar {
-  background-color: var(--green);
-  color: var(--dark-blue);
-  padding: 5px 10px;
-  font-size: 0.8rem;
+.code-editor::-webkit-scrollbar {
+  width: 8px;
+}
+
+.code-editor::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+.code-editor::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  border-radius: 4px;
+}
+
+iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+}
+
+.container {
+  flex-grow: 1;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .modal {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
+  background: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .modal-content {
-  background-color: var(--light-blue);
-  padding: 20px;
-  border: 2px solid var(--green);
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 300px;
+  background: var(--dark);
+  padding: 24px;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid var(--blue);
+  pointer-events: auto;
+  user-select: text;
+  touch-action: auto;
 }
 
-.modal-content h3 {
-  margin: 0;
-  color: var(--green);
-}
-
-.modal-content input {
-  padding: 8px;
-  background-color: var(--dark-blue);
-  border: 2px solid var(--green);
+.modal-content p {
+  margin: 12px 0;
+  font-size: 14px;
   color: var(--white);
-  font-family: 'Share Tech Mono', monospace;
+}
+
+.modal-content input,
+.modal-content select {
+  margin: 12px 0;
+  padding: 8px;
+  width: 220px;
+  background: var(--dark);
+  color: var(--white);
+  border: 1px solid var(--blue);
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+  user-select: text;
+  touch-action: auto;
+  pointer-events: auto;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: var(--blue);
+}
+
+.modal-content div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
 }
 
 .modal-content button {
-  padding: 8px;
-  background-color: var(--dark-blue);
-  border: 2px solid var(--green);
+  background: var(--dark);
   color: var(--white);
+  border: 1px solid var(--blue);
+  padding: 6px 12px;
   cursor: pointer;
-  font-family: 'Share Tech Mono', monospace;
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s;
+  font-size: 14px;
+  touch-action: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: auto;
+}
+
+.modal-content button i {
+  color: var(--blue);
 }
 
 .modal-content button:hover {
-  background-color: var(--green);
-  color: var(--dark-blue);
+  background: var(--blue);
+  color: var(--dark);
+  border-color: var(--blue);
 }
 
-@media (max-width: 768px) {
-  .main-container {
-    flex-direction: column;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--green) var(--dark-blue);
+.modal-content button:hover i {
+  color: var(--dark);
+}
+
+@media only screen and (min-width: 768px) {
+  .header-container {
+    display: flex;
+    align-items: center;
   }
 
-  .editor-container {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--green) var(--dark-blue);
+  .project-bar {
+    flex: 0 0 auto;
+    border-bottom: none;
+    padding-right: 0;
   }
 
-  .code-editor {
-    height: 400px;
+  .top-bar {
+    flex: 0 0 auto;
+    border-bottom: none;
+    padding-right: 0;
   }
 
-  .cm-s-monokai {
-    font-size: 0.8rem;
-    line-height: 1.5;
-  }
-
-  .cm-s-monokai .CodeMirror-linenumbers {
-    width: 38px;
-    padding: 0 5px;
-  }
-
-  .editor textarea {
-    height: 400px;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    padding: 10px 15px 10px 50px;
-  }
-
-  .modal-content {
-    width: 90%;
+  .find-replace-bar {
+    flex: 1;
+    border-bottom: none;
+    border-left: 1px solid var(--blue);
+    padding-left: 16px;
   }
 }
 
-@media (max-width: 480px) {
-  .top-bar .logo {
-    font-size: 1rem;
+@media only screen and (max-width: 767px) {
+  .header-container {
+    display: block;
+  }
+
+  .project-bar {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+    height: auto;
+    min-height: 48px;
+    justify-content: space-between;
+  }
+
+  .project-bar span {
+    font-size: 16px;
+    line-height: 44px;
+    flex: 0 0 60px;
+  }
+
+  .project-bar input {
+    width: 120px;
+    font-size: 14px;
+    padding: 8px 10px;
+    height: 44px;
+    flex: 1 1 auto;
+  }
+
+  .project-bar select {
+    width: 120px;
+    font-size: 14px;
+    padding: 8px 10px;
+    height: 44px;
+    flex: 1 1 auto;
+  }
+
+  .project-bar button {
+    font-size: 14px;
+    padding: 8px 12px;
+    min-width: 90px;
+    height: 44px;
+    max-width: none;
+    flex: 1 1 auto;
+  }
+
+  .top-bar {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+    height: auto;
+    min-height: 48px;
+    justify-content: space-between;
+  }
+
+  .top-bar span {
+    font-size: 16px;
+    line-height: 44px;
+    flex: 0 0 60px;
   }
 
   .top-bar button {
-    font-size: 0.8rem;
-    padding: 6px;
+    font-size: 14px;
+    padding: 8px 12px;
+    min-width: 90px;
+    height: 44px;
+    max-width: none;
+    flex: 1 1 auto;
   }
 
-  .tabs button#add-file {
-    font-size: 0.8rem;
-    padding: 6px;
+  .find-replace-bar {
+    gap: 8px;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 48px;
+    justify-content: space-between;
+  }
+
+  .find-replace-bar span {
+    font-size: 14px;
+    height: 44px;
+    line-height: 44px;
+    flex: 0 0 60px;
+  }
+
+  .find-replace-bar input {
+    width: 120px;
+    font-size: 14px;
+    padding: 8px 10px;
+    height: 44px;
+    flex: 1 1 auto;
+  }
+
+  .find-replace-bar button {
+    font-size: 14px;
+    padding: 8px 12px;
+    min-width: 90px;
+    height: 44px;
+    flex: 1 1 auto;
+  }
+
+  .tabs {
+    padding: 4px 0;
+  }
+
+  .tab {
+    font-size: 14px;
+    padding: 8px 12px;
+    min-width: 80px;
+    margin-right: 4px;
+  }
+
+  .tab:last-child {
+    margin-right: 0;
   }
 
   .code-editor {
-    height: 300px;
-  }
-
-  .cm-s-monokai {
-    font-size: 0.8rem;
-    line-height: 1.5;
-  }
-
-  .cm-s-monokai .CodeMirror-linenumbers {
-    width: 38px;
-    padding: 0 5px;
-  }
-
-  .editor textarea {
-    height: 300px;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    padding: 10px 15px 10px 50px;
-  }
-
-  .status-bar {
-    font-size: 0.7rem;
-  }
-
-  .main-container {
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--green) var(--dark-blue);
-  }
-
-  .editor-container {
-    height: 100%;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--green) var(--dark-blue);
+    font-size: 14px;
+    padding: 10px;
+    line-height: 1.8;
   }
 
   .modal-content {
+    padding: 16px;
     width: 90%;
+    max-width: 320px;
+  }
+
+  .modal-content h3 {
+    font-size: 18px;
+    margin: 8px 0;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+
+  .modal-content input,
+  .modal-content select {
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+    max-width: 280px;
+    height: 44px;
+  }
+
+  .modal-content button {
+    font-size: 14px;
+    padding: 8px 12px;
+    min-width: 90px;
+    height: 44px;
   }
 }
 
-/* WebKit Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
+@media only screen and (max-width: 480px) {
+  .project-bar {
+    gap: 8px;
+    padding: 6px 8px;
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: #3c8235;
-  border-radius: 4px;
-}
+  .project-bar span {
+    font-size: 14px;
+    line-height: 36px;
+    flex: 0 0 50px;
+  }
 
-::-webkit-scrollbar-track {
-  background-color: #0a0a23;
+  .project-bar input {
+    width: 100px;
+    font-size: 12px;
+    padding: 6px 8px;
+    height: 36px;
+    flex: 1 1 auto;
+  }
+
+  .project-bar select {
+    width: 100px;
+    font-size: 12px;
+    padding: 6px 8px;
+    height: 36px;
+    flex: 1 1 auto;
+  }
+
+  .project-bar button {
+    font-size: 12px;
+    padding: 6px 8px;
+    min-width: 80px;
+    height: 36px;
+    flex: 1 1 auto;
+  }
+
+  .top-bar {
+    gap: 8px;
+    padding: 6px 8px;
+  }
+
+  .top-bar span {
+    font-size: 14px;
+    line-height: 36px;
+    flex: 0 0 50px;
+  }
+
+  .top-bar button {
+    font-size: 12px;
+    padding: 6px 8px;
+    min-width: 80px;
+    height: 36px;
+    flex: 1 1 auto;
+  }
+
+  .find-replace-bar {
+    gap: 6px;
+    padding: 6px 8px;
+  }
+
+  .find-replace-bar span {
+    font-size: 12px;
+    height: 36px;
+    line-height: 36px;
+    flex: 0 0 50px;
+  }
+
+  .find-replace-bar input {
+    width: 100px;
+    font-size: 12px;
+    padding: 6px 8px;
+    height: 36px;
+    flex: 1 1 auto;
+  }
+
+  .find-replace-bar button {
+    font-size: 12px;
+    padding: 6px 8px;
+    min-width: 80px;
+    height: 36px;
+    flex: 1 1 auto;
+  }
+
+  .tabs {
+    padding: 2px 0;
+  }
+
+  .tab {
+    font-size: 12px;
+    padding: 6px 8px;
+    min-width: 70px;
+    margin-right: 2px;
+  }
+
+  .tab:last-child {
+    margin-right: 0;
+  }
+
+  .code-editor {
+    font-size: 12px;
+    padding: 8px;
+    line-height: 1.6;
+  }
+
+  .modal-content {
+    padding: 12px;
+    width: 90%;
+    max-width: 280px;
+  }
+
+  .modal-content h3 {
+    font-size: 16px;
+    margin: 6px 0;
+  }
+
+  .modal-content p {
+    font-size: 12px;
+    margin: 6px 0;
+  }
+
+  .modal-content input,
+  .modal-content select {
+    font-size: 12px;
+    padding: 8px;
+    width: 100%;
+    max-width: 240px;
+    height: 36px;
+  }
+
+  .modal-content button {
+    font-size: 12px;
+    padding: 6px 8px;
+    min-width: 80px;
+    height: 36px;
+  }
 }
