@@ -21,12 +21,9 @@ function stripLineNumbers(content) {
 function updateLineNumbers(textarea) {
   const fileId = textarea.id.replace('editor-', '');
   let content = textarea.value;
-  // Remove existing line numbers
   content = stripLineNumbers(content);
-  // Split into lines and add new line numbers
   const lines = content.split('\n');
   const numberedContent = lines.map((line, index) => `${index + 1}  ${line}`).join('\n');
-  // Update textarea only if content has changed to avoid infinite loops
   if (textarea.value !== numberedContent) {
     textarea.value = numberedContent;
     files[fileId].content = numberedContent;
@@ -39,6 +36,7 @@ function updateButtonStates() {
   const deleteBtn = document.getElementById('deleteBtn');
   const findReplaceBtn = document.getElementById('findReplaceBtn');
   const openProjectBtn = document.getElementById('openProjectBtn');
+  const deleteProjectBtn = document.getElementById('deleteProjectBtn');
 
   const isBrowserTab = currentTab === 'browser';
   selectAllBtn.disabled = isBrowserTab;
@@ -46,6 +44,7 @@ function updateButtonStates() {
   deleteBtn.disabled = isBrowserTab || Object.keys(files).length <= 1;
   findReplaceBtn.disabled = isBrowserTab || !document.getElementById('findText').value;
   openProjectBtn.disabled = !document.getElementById('projectList').value;
+  deleteProjectBtn.disabled = !currentProject;
 }
 
 function loadInitialFiles() {
@@ -401,7 +400,6 @@ function createNewProject() {
   currentProject = name;
   document.getElementById('projectName').value = name;
 
-  // Clear current files and tabs
   document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
   document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
   files = {};
@@ -418,7 +416,6 @@ function saveProject() {
   const name = document.getElementById('projectName').value.trim();
   if (!name) return alert('Enter a project name.');
 
-  // Update current file contents
   if (currentTab !== 'browser') {
     const editor = document.getElementById(`editor-${currentTab}`);
     if (editor) files[currentTab].content = editor.value;
@@ -429,7 +426,6 @@ function saveProject() {
   projects[name] = { id: projectId, files: { ...files }, currentTab };
   localStorage.setItem('ideProjects', JSON.stringify(projects));
 
-  // Update dropdown if new project
   if (!Object.keys(projects).includes(name)) {
     const projectList = document.getElementById('projectList');
     const option = document.createElement('option');
@@ -453,17 +449,14 @@ function openProject() {
   const project = projects[name];
   if (!project) return alert('Project not found.');
 
-  // Clear current files and tabs
   document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
   document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
   files = {};
 
-  // Load project files
   for (let fileId in project.files) {
     files[fileId] = project.files[fileId];
   }
 
-  // Recreate tabs and editor areas
   for (let fileId in files) {
     const file = files[fileId];
     const tab = document.createElement('button');
@@ -510,6 +503,71 @@ function loadProjects() {
     projectList.appendChild(option);
   }
   updateButtonStates();
+}
+
+function showDeleteProjectModal() {
+  console.log('Delete Project button clicked');
+  if (!currentProject) {
+    console.log('Delete project blocked: No project selected');
+    return;
+  }
+
+  console.log(`Showing delete project modal for project: ${currentProject}`);
+  const deleteMessage = document.getElementById('deleteProjectMessage');
+  deleteMessage.textContent = `Are you sure you want to delete the project "${currentProject}"?`;
+  document.getElementById('deleteProjectModal').style.display = 'flex';
+}
+
+function closeDeleteProjectModal() {
+  console.log('Delete Project modal closed');
+  document.getElementById('deleteProjectModal').style.display = 'none';
+}
+
+function confirmDeleteProject() {
+  console.log(`Confirming deletion of project: ${currentProject}`);
+  if (!currentProject) {
+    console.warn('Delete project aborted: No project selected');
+    closeDeleteProjectModal();
+    return;
+  }
+
+  try {
+    const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
+    if (!projects[currentProject]) {
+      console.warn(`Project ${currentProject} not found in storage`);
+      closeDeleteProjectModal();
+      return;
+    }
+
+    delete projects[currentProject];
+    localStorage.setItem('ideProjects', JSON.stringify(projects));
+
+    const projectList = document.getElementById('projectList');
+    const option = projectList.querySelector(`option[value="${currentProject}"]`);
+    if (option) {
+      option.remove();
+    } else {
+      console.warn(`Project option for ${currentProject} not found in dropdown`);
+    }
+
+    currentProject = null;
+    document.getElementById('projectName').value = '';
+    projectList.value = '';
+
+    document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
+    document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
+    files = {};
+    currentTab = 'browser';
+    lastHtmlTab = null;
+    switchTab('browser');
+
+    closeDeleteProjectModal();
+    updateButtonStates();
+  } catch (error) {
+    console.error('Error during project deletion:', error.message);
+    alert(`Failed to delete project: ${error.message}. Check the console for details.`);
+    closeDeleteProjectModal();
+  }
 }
 
 document.getElementById('findText').addEventListener('input', updateFindReplaceButton);
