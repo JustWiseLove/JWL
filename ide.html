@@ -86,7 +86,7 @@
       font-size: 14px;
       outline: none;
       height: 32px;
-      width: 150px; /* Increased to show "Select a Project" */
+      width: 150px;
       box-sizing: border-box;
       user-select: text;
       touch-action: auto;
@@ -362,7 +362,6 @@
       touch-action: auto;
     }
 
-    /* CodeMirror-specific styles */
     .CodeMirror {
       width: 100%;
       height: 100%;
@@ -498,10 +497,14 @@
       color: var(--dark);
     }
 
+    #fileInput {
+      display: none;
+    }
+
     @media only screen and (min-width: 768px) {
       .header-container {
         display: flex;
-        flex-direction: column; /* Stack project bar and combined top/find-replace vertically */
+        flex-direction: column;
         align-items: stretch;
       }
 
@@ -528,12 +531,12 @@
         padding: 12px 16px;
         justify-content: flex-start;
         gap: 8px;
-        border-left: 1px solid var(--blue); /* Separator between top-bar and find-replace-bar */
+        border-left: 1px solid var(--blue);
       }
 
       .top-bar-container {
         display: flex;
-        flex-direction: row; /* Combine top-bar and find-replace-bar in one row */
+        flex-direction: row;
         align-items: center;
         flex-wrap: nowrap;
       }
@@ -858,8 +861,9 @@
     <div class="top-bar-container">
       <div class="top-bar">
         <span>IDE</span>
-        <button id="newFileBtn" onclick="showNewFileModal()"><i class="fas fa-plus"></i> New File</button>
-        <button id="selectAllBtn" onclick="selectAllCode()" disabled><i class="fas fa-check-square"></i> Select All</button>
+        <button id="newFileBtn" onclick="showNewFileModal()"><i class="fas fa-plus"></i> New</button>
+        <button id="importFileBtn" onclick="triggerFileInput()"><i class="fas fa-upload"></i> Import</button>
+        <button id="selectAllBtn" onclick="selectAllCode()" disabled><i class="fas fa-check-square"></i> Select</button>
         <button id="saveBtn" onclick="saveToFile()" disabled><i class="fas fa-save"></i> Save</button>
         <button id="deleteBtn" onclick="showDeleteModal()" disabled><i class="fas fa-trash"></i> Delete</button>
       </div>
@@ -873,6 +877,8 @@
     </div>
   </div>
 
+  <input type="file" id="fileInput" accept=".html,.css,.js,.jsx,.py" style="display: none;" />
+
   <div class="tabs">
     <button class="tab active" data-file-id="html-index" onclick="switchTab('html-index')">index.html</button>
     <button class="tab" data-file-id="css-style" onclick="switchTab('css-style')">style.css</button>
@@ -882,7 +888,7 @@
 
   <div class="container">
     <div id="html-index" class="editor-area visible">
-      <textarea id="editor-html-index" class="code-editor" spellcheck="false">
+      <textarea id="editor-html-index" class="code-editor">
 <!DOCTYPE html>
 <html>
   <head>
@@ -898,17 +904,17 @@
     </div>
 
     <div id="css-style" class="editor-area">
-      <textarea id="editor-css-style" class="code-editor" spellcheck="false">
+      <textarea id="editor-css-style" class="code-editor">
 body {
   background-color: lightgray;
   text-align: center;
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
 }
       </textarea>
     </div>
 
     <div id="js-script" class="editor-area">
-      <textarea id="editor-js-script" class="code-editor" spellcheck="false">
+      <textarea id="editor-js-script" class="code-editor">
 console.log("Hello from JS");
       </textarea>
     </div>
@@ -963,7 +969,7 @@ console.log("Hello from JS");
       <h3>Delete File</h3>
       <p id="deleteFileMessage"></p>
       <div>
-        <button onclick="confirmDelete()"><i class="fas fa-check"></i> Confirm</button>
+        <button onclick="confirmDeleteFile()"><i class="fas fa-check"></i> Confirm</button>
         <button onclick="closeDeleteModal()"><i class="fas fa-times"></i> Cancel</button>
       </div>
     </div>
@@ -995,9 +1001,9 @@ console.log("Hello from JS");
     };
 
     let files = {
-      'html-index': { type: 'html', content: document.getElementById('editor-html-index').value },
-      'css-style': { type: 'css', content: document.getElementById('editor-css-style').value },
-      'js-script': { type: 'js', content: document.getElementById('editor-js-script').value }
+      'html-index': { type: 'html', content: document.getElementById('editor-html-index').value, filename: 'index.html' },
+      'css-style': { type: 'css', content: document.getElementById('editor-css-style').value, filename: 'style.css' },
+      'js-script': { type: 'js', content: document.getElementById('editor-js-script').value, filename: 'script.js' }
     };
 
     let editors = {};
@@ -1005,7 +1011,6 @@ console.log("Hello from JS");
     let lastHtmlTab = 'html-index';
     let currentProject = null;
 
-    // Debounce utility to handle rapid editor changes
     function debounce(func, wait) {
       let timeout;
       return function(...args) {
@@ -1015,22 +1020,30 @@ console.log("Hello from JS");
     }
 
     function initializeCodeMirror(textarea, mode) {
-      const editor = CodeMirror.fromTextArea(textarea, {
-        lineNumbers: true,
-        mode: mode,
-        theme: 'monokai',
-        lineWrapping: true,
-        tabSize: 2,
-        indentWithTabs: false,
-        scrollbarStyle: 'native'
-      });
-      // Debounce change events to stabilize after large pastes
-      editor.on('change', debounce(() => {
-        const fileId = textarea.id.replace('editor-', '');
-        files[fileId].content = editor.getValue();
-        console.log(`Content updated for ${fileId}`);
-      }, 300));
-      return editor;
+      try {
+        const editor = CodeMirror.fromTextArea(textarea, {
+          lineNumbers: true,
+          mode: mode,
+          theme: 'monokai',
+          lineWrapping: true,
+          tabSize: 2,
+          indentWithTabs: false,
+          scrollbarStyle: 'native',
+          matchBrackets: true,
+          autoCloseTags: true,
+          autoCloseBrackets: true
+        });
+        editor.on('change', debounce(() => {
+          const fileId = textarea.id.replace('editor-', '');
+          files[fileId].content = editor.getValue();
+          console.log(`Content updated for ${fileId}`);
+        }, 300));
+        return editor;
+      } catch (error) {
+        console.error(`Error initializing CodeMirror for ${textarea.id}:`, error);
+        alert(`Failed to initialize editor for ${textarea.id}. Check console for details.`);
+        return null;
+      }
     }
 
     function getModeForFileType(type) {
@@ -1058,12 +1071,147 @@ console.log("Hello from JS");
     }
 
     function loadInitialFiles() {
-      for (let fileId in files) {
-        if (!document.getElementById(fileId)) {
-          const file = files[fileId];
+      try {
+        for (let fileId in files) {
+          const textarea = document.getElementById(`editor-${fileId}`);
+          if (textarea && !editors[fileId]) {
+            const mode = getModeForFileType(files[fileId].type);
+            editors[fileId] = initializeCodeMirror(textarea, mode);
+            if (editors[fileId]) {
+              editors[fileId].setValue(files[fileId].content);
+            }
+          }
+        }
+        if (!files[lastHtmlTab] || files[lastHtmlTab].type !== 'html') {
+          const htmlFiles = Object.keys(files).filter(id => files[id].type === 'html');
+          lastHtmlTab = htmlFiles.length > 0 ? htmlFiles[0] : null;
+        }
+        updateButtonStates();
+        loadProjects();
+      } catch (error) {
+        console.error('Error loading initial files:', error);
+        alert('Failed to load initial files. Check console for details.');
+      }
+    }
+
+    function switchTab(tab) {
+      console.log(`Switching to tab: ${tab}`);
+      try {
+        if (currentTab !== 'browser' && editors[currentTab]) {
+          files[currentTab].content = editors[currentTab].getValue();
+          editors[currentTab].getInputField().blur();
+        }
+
+        const tabButton = document.querySelector(`.tab[data-file-id="${tab}"], .tab[onclick="switchTab('${tab}')"]`);
+        if (!tabButton) throw new Error(`Tab button for ${tab} not found`);
+        const editorArea = document.getElementById(tab);
+        if (!editorArea) throw new Error(`Editor area for ${tab} not found`);
+
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tabButton.classList.add('active');
+
+        document.querySelectorAll('.editor-area').forEach(e => e.classList.remove('visible'));
+        editorArea.classList.add('visible');
+
+        currentTab = tab;
+        if (files[tab]?.type === 'html') lastHtmlTab = tab;
+
+        updateButtonStates();
+        updateFindReplaceButton();
+
+        if (tab === 'browser') {
+          runCode();
+        } else if (editors[tab]) {
+          setTimeout(() => {
+            editors[tab].refresh();
+            editors[tab].focus();
+          }, 50);
+        }
+      } catch (error) {
+        console.error(`Error switching to tab ${tab}:`, error);
+        alert(`Failed to switch to tab ${tab}. Check console for details.`);
+      }
+    }
+
+    function runCode() {
+      console.log('Running code for browser preview');
+      try {
+        if (currentTab !== 'browser' && editors[currentTab]) {
+          files[currentTab].content = editors[currentTab].getValue();
+        }
+
+        let htmlContent = lastHtmlTab && files[lastHtmlTab]?.type === 'html' ? files[lastHtmlTab].content : '<html><body><h1>No HTML file available</h1></body></html>';
+        let cssContent = '';
+        let jsContent = '';
+
+        for (let id in files) {
+          if (files[id].type === 'css') cssContent += files[id].content + '\n';
+          else if (files[id].type === 'js') jsContent += files[id].content + '\n';
+        }
+
+        const fullCode = `
+          <html>
+            <head><style>${cssContent}</style></head>
+            <body>${htmlContent}<script>${jsContent}<\/script></body>
+          </html>
+        `;
+
+        const previewIframe = document.getElementById('preview');
+        const oldSrc = previewIframe.src;
+        const blob = new Blob([fullCode], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        previewIframe.src = url;
+        if (oldSrc.startsWith('blob:')) {
+          setTimeout(() => URL.revokeObjectURL(oldSrc), 100);
+        }
+      } catch (error) {
+        console.error('Error generating preview:', error);
+        document.getElementById('preview').contentDocument.body.innerHTML = '<h1>Error rendering preview</h1>';
+      }
+    }
+
+    function selectAllCode() {
+      console.log('Select button clicked');
+      if (currentTab !== 'browser' && editors[currentTab]) {
+        editors[currentTab].execCommand('selectAll');
+        editors[currentTab].refresh();
+        editors[currentTab].focus();
+      }
+    }
+
+    function triggerFileInput() {
+      console.log('Import button clicked');
+      document.getElementById('fileInput').click();
+    }
+
+    function handleFileImport(event) {
+      console.log('File selected for import');
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const fileName = file.name;
+      const fileExt = fileName.split('.').pop().toLowerCase();
+      if (!['html', 'css', 'js', 'jsx', 'py'].includes(fileExt)) {
+        alert('Unsupported file type. Please select a .html, .css, .js, .jsx, or .py file.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const content = e.target.result;
+          const type = fileExt;
+          const name = fileName.replace(/\.[^/.]+$/, '');
+          const fileId = `${type}-${name.replace(/\s+/g, '-')}`;
+
+          if (files[fileId]) {
+            alert(`File ${fileName} already exists. Please rename or select a different file.`);
+            return;
+          }
+
           const tab = document.createElement('button');
           tab.className = 'tab';
-          tab.textContent = `${fileId.replace(/^[^-]+-/, '')}.${file.type}`;
+          tab.textContent = fileName;
           tab.setAttribute('data-file-id', fileId);
           tab.onclick = () => switchTab(fileId);
           document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
@@ -1074,145 +1222,41 @@ console.log("Hello from JS");
           const textarea = document.createElement('textarea');
           textarea.id = `editor-${fileId}`;
           textarea.className = 'code-editor';
-          textarea.spellcheck = false;
-          textarea.value = file.content;
+          textarea.value = content;
           editorArea.appendChild(textarea);
           document.querySelector('.container').appendChild(editorArea);
 
-          const mode = getModeForFileType(file.type);
+          files[fileId] = { type, content, filename: fileName };
+          const mode = getModeForFileType(type);
           editors[fileId] = initializeCodeMirror(textarea, mode);
-        } else {
-          const textarea = document.getElementById(`editor-${fileId}`);
-          if (textarea && !editors[fileId]) {
-            const mode = getModeForFileType(files[fileId].type);
-            editors[fileId] = initializeCodeMirror(textarea, mode);
-            editors[fileId].setValue(files[fileId].content);
-          }
-        }
-      }
-      if (!files[lastHtmlTab] || files[lastHtmlTab].type !== 'html') {
-        const htmlFiles = Object.keys(files).filter(id => files[id].type === 'html');
-        lastHtmlTab = htmlFiles.length > 0 ? htmlFiles[0] : null;
-      }
-      updateButtonStates();
-      loadProjects();
-    }
 
-    function switchTab(tab) {
-      console.log(`Attempting to switch to tab: ${tab}`);
-      try {
-        // Save current editor content and release focus
-        if (currentTab !== 'browser' && editors[currentTab]) {
-          files[currentTab].content = editors[currentTab].getValue();
-          editors[currentTab].getInputField().blur();
-          console.log(`Saved and blurred editor for ${currentTab}`);
-        }
-
-        // Validate tab and editor area
-        const tabButton = document.querySelector(`.tab[data-file-id="${tab}"], .tab[onclick="switchTab('${tab}')"]`);
-        if (!tabButton) {
-          throw new Error(`Tab button for ${tab} not found`);
-        }
-        const editorArea = document.getElementById(tab);
-        if (!editorArea) {
-          throw new Error(`Editor area for ${tab} not found`);
-        }
-
-        // Update tab highlighting
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        tabButton.classList.add('active');
-
-        // Update editor area visibility
-        document.querySelectorAll('.editor-area').forEach(e => e.classList.remove('visible'));
-        editorArea.className = 'editor-area visible';
-
-        // Update state
-        currentTab = tab;
-        if (files[tab]?.type === 'html') lastHtmlTab = tab;
-
-        updateButtonStates();
-        updateFindReplaceButton();
-
-        // Handle browser or editor
-        if (tab === 'browser') {
-          runCode();
-        } else if (editors[tab]) {
           setTimeout(() => {
-            editors[tab].refresh();
-            editors[tab].focus();
-            console.log(`Refreshed and focused editor for ${tab}`);
-          }, 50);
-        } else {
-          console.warn(`No editor found for ${tab}`);
+            switchTab(fileId);
+            editors[fileId].refresh();
+            editors[fileId].focus();
+          }, 100);
+
+          document.getElementById('fileInput').value = '';
+        } catch (error) {
+          console.error('Error importing file:', error);
+          alert('Failed to import file. Check console for details.');
         }
-      } catch (error) {
-        console.error(`Error switching to tab ${tab}:`, error.message);
-        alert(`Failed to switch to tab ${tab}. Check the console for details.`);
-      }
-    }
+      };
 
-    function runCode() {
-      console.log('Running code for browser preview');
-      if (currentTab !== 'browser' && editors[currentTab]) {
-        files[currentTab].content = editors[currentTab].getValue();
-      }
+      reader.onerror = function() {
+        console.error('Error reading file');
+        alert('Error reading the file. Please try again.');
+      };
 
-      let htmlContent = lastHtmlTab && files[lastHtmlTab]?.type === 'html' ? files[lastHtmlTab].content : '<html><body><h1>No HTML file available</h1></body></html>';
-      let cssContent = '';
-      let jsContent = '';
-
-      for (let id in files) {
-        if (files[id].type === 'css') cssContent += files[id].content + '\n';
-        else if (files[id].type === 'js') jsContent += files[id].content + '\n';
-      }
-
-      const fullCode = `
-        <html>
-          <head><style>${cssContent}</style></head>
-          <body>${htmlContent}<script>${jsContent}<\/script></body>
-        </html>
-      `;
-
-      const previewIframe = document.getElementById('preview');
-      const oldSrc = previewIframe.src;
-      try {
-        const blob = new Blob([fullCode], { type: 'text/html' });
-        const url = URL.createObjectURL(blob);
-        previewIframe.src = url;
-        if (oldSrc.startsWith('blob:')) {
-          setTimeout(() => URL.revokeObjectURL(oldSrc), 100);
-        }
-      } catch (error) {
-        console.error('Error generating preview:', error);
-        previewIframe.src = 'about:blank';
-        previewIframe.contentDocument.body.innerHTML = '<h1>Error rendering preview</h1>';
-      }
-    }
-
-    function selectAllCode() {
-      console.log('Select All button clicked');
-      if (currentTab !== 'browser' && editors[currentTab]) {
-        const editor = editors[currentTab];
-        editor.execCommand('selectAll');
-        editor.refresh();
-        editor.focus();
-        console.log(`Selected all text in ${currentTab} editor`);
-      } else {
-        console.warn(`Select All failed: No editor for ${currentTab} or on browser tab`);
-      }
+      reader.readAsText(file);
     }
 
     function showDeleteModal() {
       console.log('Delete button clicked');
-      if (currentTab === 'browser' || Object.keys(files).length <= 1) {
-        console.log('Delete blocked: On browser tab or only one file remains');
-        return;
-      }
+      if (currentTab === 'browser' || Object.keys(files).length <= 1) return;
 
-      const fileName = `${currentTab.replace(/^[^-]+-/, '')}.${files[currentTab].type}`;
-      console.log(`Showing delete modal for file: ${fileName}`);
-      const deleteMessage = document.getElementById('deleteFileMessage');
-      deleteMessage.textContent = `Are you sure you want to delete ${fileName}?`;
+      const fileName = files[currentTab].filename;
+      document.getElementById('deleteFileMessage').textContent = `Are you sure you want to delete ${fileName}?`;
       document.getElementById('deleteFileModal').style.display = 'flex';
     }
 
@@ -1221,56 +1265,42 @@ console.log("Hello from JS");
       document.getElementById('deleteFileModal').style.display = 'none';
     }
 
-    function confirmDelete() {
+    function confirmDeleteFile() {
       console.log(`Confirming deletion of file: ${currentTab}`);
-      if (currentTab === 'browser' || !files[currentTab]) {
-        console.warn('Delete aborted: Invalid tab or file not found');
-        closeDeleteModal();
-        return;
-      }
-
       try {
-        const tabButton = document.querySelector(`.tab[data-file-id="${currentTab}"]`);
-        if (tabButton) {
-          console.log(`Removing tab button for ${currentTab}`);
-          tabButton.remove();
-        } else {
-          console.warn(`Tab button for ${currentTab} not found`);
+        if (currentTab === 'browser' || !files[currentTab]) {
+          closeDeleteModal();
+          return;
         }
+
+        const tabButton = document.querySelector(`.tab[data-file-id="${currentTab}"]`);
+        if (tabButton) tabButton.remove();
 
         const editorArea = document.getElementById(currentTab);
-        if (editorArea) {
-          console.log(`Removing editor area for ${currentTab}`);
-          editorArea.remove();
-        } else {
-          console.warn(`Editor area for ${currentTab} not found`);
-        }
+        if (editorArea) editorArea.remove();
 
         delete editors[currentTab];
         delete files[currentTab];
-        console.log(`File ${currentTab} deleted from files and editors`);
 
         if (currentTab === lastHtmlTab) {
           const htmlFiles = Object.keys(files).filter(id => files[id].type === 'html');
           lastHtmlTab = htmlFiles.length > 0 ? htmlFiles[0] : null;
-          console.log(`Updated lastHtmlTab to: ${lastHtmlTab || 'none'}`);
         }
 
-        const remainingTabs = Object.keys(files).filter(id => id !== 'browser');
+        const remainingTabs = Object.keys(files);
         const nextTab = remainingTabs.length > 0 ? remainingTabs[0] : 'browser';
-        console.log(`Switching to next tab: ${nextTab}`);
         switchTab(nextTab);
 
         closeDeleteModal();
       } catch (error) {
-        console.error('Error during file deletion:', error.message);
-        alert(`Failed to delete file: ${error.message}. Check the console for details.`);
+        console.error('Error during file deletion:', error);
+        alert('Failed to delete file. Check console for details.');
         closeDeleteModal();
       }
     }
 
     function showNewFileModal() {
-      console.log('New File button clicked');
+      console.log('New button clicked');
       document.getElementById('newFileModal').style.display = 'flex';
       document.getElementById('newFileName').focus();
     }
@@ -1282,114 +1312,124 @@ console.log("Hello from JS");
     }
 
     function createNewFile() {
-      console.log('Create button clicked');
-      const name = document.getElementById('newFileName').value.trim();
-      const type = document.getElementById('fileType').value;
-      if (!name) return alert('Enter a file name.');
+      console.log('Create New File button clicked');
+      try {
+        const name = document.getElementById('newFileName').value.trim();
+        const type = document.getElementById('fileType').value;
+        if (!name) return alert('Please enter a file name.');
 
-      const fileId = `${type}-${name.replace(/\.[^/.]+$/, '')}`;
-      if (files[fileId]) return alert('File already exists.');
+        const fileName = `${name}.${type}`;
+        const fileId = `${type}-${name.replace(/\s+/g, '-')}`;
+        if (files[fileId]) return alert('File already exists.');
 
-      const tab = document.createElement('button');
-      tab.className = 'tab';
-      tab.textContent = `${name}.${type}`;
-      tab.setAttribute('data-file-id', fileId);
-      tab.onclick = () => switchTab(fileId);
-      document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
+        const tab = document.createElement('button');
+        tab.className = 'tab';
+        tab.textContent = fileName;
+        tab.setAttribute('data-file-id', fileId);
+        tab.onclick = () => switchTab(fileId);
+        document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
 
-      const editorArea = document.createElement('div');
-      editorArea.id = fileId;
-      editorArea.className = 'editor-area';
-      const textarea = document.createElement('textarea');
-      textarea.id = `editor-${fileId}`;
-      textarea.className = 'code-editor';
-      textarea.spellcheck = false;
-      textarea.value = type === 'html' ? '<!DOCTYPE html>\n<html>\n  <head>\n    <title>New Page</title>\n  </head>\n  <body>\n  </body>\n</html>' :
-                       type === 'css' ? '/* New CSS File */\n' :
-                       type === 'js' ? '/* New JS File */\n' :
-                       type === 'jsx' ? 'import React from "react";\n\nfunction Component() {\n  return (\n    <div>\n      <h1>Hello, React!</h1>\n    </div>\n  );\n}\n\nexport default Component;\n' :
-                       type === 'py' ? '# New Python File\n\nprint("Hello, Python!")\n' : '';
-      editorArea.appendChild(textarea);
-      document.querySelector('.container').appendChild(editorArea);
+        const editorArea = document.createElement('div');
+        editorArea.id = fileId;
+        editorArea.className = 'editor-area';
+        const textarea = document.createElement('textarea');
+        textarea.id = `editor-${fileId}`;
+        textarea.className = 'code-editor';
+        textarea.value = type === 'html' ? '<!DOCTYPE html>\n<html>\n  <head>\n    <title>New Page</title>\n  </head>\n  <body>\n  </body>\n</html>' :
+                         type === 'css' ? '/* New CSS File */\n' :
+                         type === 'js' ? '/* New JS File */\n' :
+                         type === 'jsx' ? 'import React from "react";\n\nfunction Component() {\n  return (\n    <div>\n      <h1>Hello, React!</h1>\n    </div>\n  );\n}\n\nexport default Component;\n' :
+                         type === 'py' ? '# New Python File\n\nprint("Hello, Python!")\n' : '';
+        editorArea.appendChild(textarea);
+        document.querySelector('.container').appendChild(editorArea);
 
-      files[fileId] = { type, content: textarea.value };
-      const mode = getModeForFileType(type);
-      editors[fileId] = initializeCodeMirror(textarea, mode);
+        files[fileId] = { type, content: textarea.value, filename: fileName };
+        const mode = getModeForFileType(type);
+        editors[fileId] = initializeCodeMirror(textarea, mode);
 
-      closeNewFileModal();
-      setTimeout(() => {
-        switchTab(fileId);
-        editors[fileId].refresh();
-        editors[fileId].focus();
-      }, 100);
+        closeNewFileModal();
+        setTimeout(() => {
+          switchTab(fileId);
+          editors[fileId].refresh();
+          editors[fileId].focus();
+        }, 100);
+      } catch (error) {
+        console.error('Error creating new file:', error);
+        alert('Failed to create new file. Check console for details.');
+      }
     }
 
     function saveToFile() {
       console.log('Save button clicked');
       if (currentTab === 'browser') return;
-      const fileName = `${currentTab.replace(/^[^-]+-/, '')}.${files[currentTab].type}`;
-      document.getElementById('saveFileName').value = fileName;
+      document.getElementById('saveFileName').value = files[currentTab].filename;
       document.getElementById('saveFileModal').style.display = 'flex';
       document.getElementById('saveFileName').focus();
     }
 
     function closeSaveFileModal() {
-      console.log('Save modal closed');
+      console.log('Save File modal closed');
       document.getElementById('saveFileModal').style.display = 'none';
       document.getElementById('saveFileName').value = '';
     }
 
     function downloadFile() {
       console.log('Download button clicked');
-      const fileName = document.getElementById('saveFileName').value.trim();
-      if (!fileName) return alert('Enter a file name.');
+      try {
+        const fileName = document.getElementById('saveFileName').value.trim();
+        if (!fileName) return alert('Please enter a file name.');
 
-      if (editors[currentTab]) {
-        files[currentTab].content = editors[currentTab].getValue();
+        if (editors[currentTab]) {
+          files[currentTab].content = editors[currentTab].getValue();
+        }
+
+        const content = files[currentTab].content;
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        files[currentTab].filename = fileName;
+        const tabButton = document.querySelector(`.tab[data-file-id="${currentTab}"]`);
+        if (tabButton) tabButton.textContent = fileName;
+
+        closeSaveFileModal();
+      } catch (error) {
+        console.error('Error downloading file:', error);
+        alert('Failed to download file. Check console for details.');
       }
-
-      const content = files[currentTab].content;
-      const blob = new Blob([content], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      closeSaveFileModal();
     }
 
     function findAndReplace() {
       console.log('Find and Replace button clicked');
-      if (currentTab === 'browser' || !editors[currentTab]) {
-        console.log('Find and Replace blocked: On browser tab or no editor');
-        return;
-      }
+      if (currentTab === 'browser' || !editors[currentTab]) return;
 
       const findText = document.getElementById('findText').value;
       const replaceText = document.getElementById('replaceText').value;
 
-      if (!findText) {
-        alert('Please enter text to find.');
-        return;
-      }
+      if (!findText) return alert('Please enter text to find.');
 
-      const editor = editors[currentTab];
-      const content = editor.getValue();
-      const regex = new RegExp(findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-      const newContent = content.replace(regex, replaceText);
-      editor.setValue(newContent);
-      files[currentTab].content = newContent;
-      console.log(`Replaced "${findText}" with "${replaceText}" in ${currentTab}`);
+      try {
+        const editor = editors[currentTab];
+        const content = editor.getValue();
+        const regex = new RegExp(findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        const newContent = content.replace(regex, replaceText);
+        editor.setValue(newContent);
+        files[currentTab].content = newContent;
+      } catch (error) {
+        console.error('Error in find and replace:', error);
+        alert('Failed to perform find and replace. Check console for details.');
+      }
     }
 
     function updateFindReplaceButton() {
       const findText = document.getElementById('findText').value;
-      const findReplaceBtn = document.getElementById('findReplaceBtn');
-      findReplaceBtn.disabled = currentTab === 'browser' || !findText;
+      document.getElementById('findReplaceBtn').disabled = currentTab === 'browser' || !findText;
     }
 
     function showNewProjectModal() {
@@ -1406,124 +1446,130 @@ console.log("Hello from JS");
 
     function createNewProject() {
       console.log('Create Project button clicked');
-      const name = document.getElementById('newProjectName').value.trim();
-      if (!name) return alert('Enter a project name.');
+      try {
+        const name = document.getElementById('newProjectName').value.trim();
+        if (!name) return alert('Please enter a project name.');
 
-      const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
-      if (projects[name]) return alert('Project already exists.');
+        const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
+        if (projects[name]) return alert('Project already exists.');
 
-      const projectId = `project-${Date.now()}`;
-      projects[name] = { id: projectId, files: {}, currentTab: 'browser' };
-      localStorage.setItem('ideProjects', JSON.stringify(projects));
+        const projectId = `project-${Date.now()}`;
+        projects[name] = { id: projectId, files: {}, currentTab: 'browser' };
+        localStorage.setItem('ideProjects', JSON.stringify(projects));
 
-      const projectList = document.getElementById('projectList');
-      const option = document.createElement('option');
-      option.value = name;
-      option.textContent = name;
-      projectList.appendChild(option);
-      projectList.value = name;
-
-      currentProject = name;
-      document.getElementById('projectName').value = name;
-
-      // Clear current tabs and editors
-      document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
-      document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
-      files = {};
-      editors = {};
-      currentTab = 'browser';
-      lastHtmlTab = null;
-      switchTab('browser');
-
-      closeNewProjectModal();
-    }
-
-    function saveProject() {
-      console.log('Saving project');
-      const name = document.getElementById('projectName').value.trim();
-      if (!name) return alert('Please enter a project name.');
-
-      if (currentTab !== 'browser' && editors[currentTab]) {
-        files[currentTab].content = editors[currentTab].getValue();
-      }
-
-      const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
-      const projectId = `project-${Date.now()}`;
-      projects[name] = { id: projectId, files: { ...files }, currentTab };
-      localStorage.setItem('ideProjects', JSON.stringify(projects));
-
-      if (!Object.keys(projects).includes(name)) {
         const projectList = document.getElementById('projectList');
         const option = document.createElement('option');
         option.value = name;
         option.textContent = name;
         projectList.appendChild(option);
-      }
+        projectList.value = name;
 
-      document.getElementById('projectList').value = name;
-      currentProject = name;
-      alert('Project saved successfully.');
-      updateButtonStates();
+        currentProject = name;
+        document.getElementById('projectName').value = name;
+
+        document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
+        document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
+        files = {};
+        editors = {};
+        currentTab = 'browser';
+        lastHtmlTab = null;
+        switchTab('browser');
+
+        closeNewProjectModal();
+      } catch (error) {
+        console.error('Error creating new project:', error);
+        alert('Failed to create new project. Check console for details.');
+      }
+    }
+
+    function saveProject() {
+      console.log('Save Project button clicked');
+      try {
+        const name = document.getElementById('projectName').value.trim();
+        if (!name) return alert('Please enter a project name.');
+
+        if (currentTab !== 'browser' && editors[currentTab]) {
+          files[currentTab].content = editors[currentTab].getValue();
+        }
+
+        const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
+        const projectId = `project-${Date.now()}`;
+        projects[name] = { id: projectId, files: { ...files }, currentTab };
+        localStorage.setItem('ideProjects', JSON.stringify(projects));
+
+        if (!Object.keys(projects).includes(name)) {
+          const projectList = document.getElementById('projectList');
+          const option = document.createElement('option');
+          option.value = name;
+          option.textContent = name;
+          projectList.appendChild(option);
+        }
+
+        document.getElementById('projectList').value = name;
+        currentProject = name;
+        alert('Project saved successfully.');
+        updateButtonStates();
+      } catch (error) {
+        console.error('Error saving project:', error);
+        alert('Failed to save project. Check console for details.');
+      }
     }
 
     function openProject() {
-      console.log('Opening project');
-      const name = document.getElementById('projectList').value;
-      if (!name) return;
+      console.log('Open Project button clicked');
+      try {
+        const name = document.getElementById('projectList').value;
+        if (!name) return;
 
-      const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
-      const project = projects[name];
-      if (!project) return alert('Project not found.');
+        const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
+        const project = projects[name];
+        if (!project) return alert('Project not found.');
 
-      document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
-      document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
-      files = {};
-      editors = {};
+        document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
+        document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
+        files = {};
+        editors = {};
 
-      for (let fileId in project.files) {
-        files[fileId] = project.files[fileId];
+        for (let fileId in project.files) {
+          files[fileId] = project.files[fileId];
+
+          const tab = document.createElement('button');
+          tab.className = 'tab';
+          tab.textContent = files[fileId].filename;
+          tab.setAttribute('data-file-id', fileId);
+          tab.onclick = () => switchTab(fileId);
+          document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
+
+          const editorArea = document.createElement('div');
+          editorArea.id = fileId;
+          editorArea.className = 'editor-area';
+          const textarea = document.createElement('textarea');
+          textarea.id = `editor-${fileId}`;
+          textarea.className = 'code-editor';
+          textarea.value = files[fileId].content;
+          editorArea.appendChild(textarea);
+          document.querySelector('.container').appendChild(editorArea);
+
+          const mode = getModeForFileType(files[fileId].type);
+          editors[fileId] = initializeCodeMirror(textarea, mode);
+        }
+
+        currentProject = name;
+        document.getElementById('projectName').value = name;
+        currentTab = project.currentTab || 'browser';
+        lastHtmlTab = Object.keys(files).find(id => files[id].type === 'html') || null;
+        switchTab(currentTab);
+      } catch (error) {
+        console.error('Error opening project:', error);
+        alert('Failed to open project. Check console for details.');
       }
-
-      for (let fileId in files) {
-        const file = files[fileId];
-        const tab = document.createElement('button');
-        tab.className = 'tab';
-        tab.textContent = `${fileId.replace(/^[^-]+-/, '')}.${file.type}`;
-        tab.setAttribute('data-file-id', fileId);
-        tab.onclick = () => switchTab(fileId);
-        document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
-
-        const editorArea = document.createElement('div');
-        editorArea.id = fileId;
-        editorArea.className = 'editor-area';
-        const textarea = document.createElement('textarea');
-        textarea.id = `editor-${fileId}`;
-        textarea.className = 'code-editor';
-        textarea.spellcheck = '';
-        textarea.value = file.content;
-        editorArea.appendChild(textarea);
-        document.querySelector('.container').appendChild(editorArea);
-
-        const mode = getModeForFileType(file.type);
-        editors[fileId] = initializeCodeMirror(textarea, mode);
-      }
-
-      currentProject = name;
-      document.getElementById('projectName').value = name;
-      currentTab = project.currentTab || 'browser';
-      lastHtmlTab = Object.keys(files).find(id => files[id].type === 'html') || null;
-      switchTab(currentTab);
     }
 
     function showDeleteProjectModal() {
       console.log('Delete Project button clicked');
       const projectName = document.getElementById('projectList').value;
-      if (!projectName) {
-        console.log('Delete project blocked: No project selected');
-        return;
-      }
-      const deleteMessage = document.getElementById('deleteProjectMessage');
-      deleteMessage.textContent = `Are you sure you want to delete the project "${projectName}"?`;
+      if (!projectName) return;
+      document.getElementById('deleteProjectMessage').textContent = `Are you sure you want to delete the project "${projectName}"?`;
       document.getElementById('deleteProjectModal').style.display = 'flex';
     }
 
@@ -1533,15 +1579,14 @@ console.log("Hello from JS");
     }
 
     function confirmDeleteProject() {
-      console.log('Confirming project deletion');
-      const projectName = document.getElementById('projectList').value;
-      if (!projectName) {
-        console.log('Delete project aborted: No project selected');
-        closeDeleteProjectModal();
-        return;
-      }
-
+      console.log('Confirm Delete Project button clicked');
       try {
+        const projectName = document.getElementById('projectList').value;
+        if (!projectName) {
+          closeDeleteProjectModal();
+          return;
+        }
+
         const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
         delete projects[projectName];
         localStorage.setItem('ideProjects', JSON.stringify(projects));
@@ -1565,31 +1610,35 @@ console.log("Hello from JS");
         closeDeleteProjectModal();
         updateButtonStates();
       } catch (error) {
-        console.error('Error deleting project:', error.message);
-        alert(`Failed to delete project: ${error.message}. Check the console for details.`);
+        console.error('Error deleting project:', error);
+        alert('Failed to delete project. Check console for details.');
         closeDeleteProjectModal();
       }
     }
 
     function loadProjects() {
-      const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
-      const projectList = document.getElementById('projectList');
-      projectList.innerHTML = '<option value="">Select a Project</option>';
-      for (let name in projects) {
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = name;
-        projectList.appendChild(option);
+      try {
+        const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
+        const projectList = document.getElementById('projectList');
+        projectList.innerHTML = '<option value="">Select a Project</option>';
+        for (let name in projects) {
+          const option = document.createElement('option');
+          option.value = name;
+          option.textContent = name;
+          projectList.appendChild(option);
+        }
+        updateButtonStates();
+      } catch (error) {
+        console.error('Error loading projects:', error);
+        alert('Failed to load projects. Check console for details.');
       }
-      updateButtonStates();
     }
 
     document.getElementById('findText').addEventListener('input', updateFindReplaceButton);
     document.getElementById('replaceText').addEventListener('input', updateFindReplaceButton);
+    document.getElementById('fileInput').addEventListener('change', handleFileImport);
 
-    document.getElementById('projectList').addEventListener('change', () => {
-      updateButtonStates();
-    });
+    document.getElementById('projectList').addEventListener('change', updateButtonStates);
 
     document.querySelectorAll('.top-bar button').forEach(button => {
       button.addEventListener('click', () => {
