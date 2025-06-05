@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>IDE - Just Wise Love</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+  <!-- CodeMirror Theme (monokai for dark theme compatibility) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/monokai.min.css" />
   <style>
     :root {
       --dark: #181A1C;
@@ -29,6 +33,113 @@
     .header-container {
       background: var(--dark);
       border-bottom: 1px solid var(--blue);
+      flex: 0 0 auto; /* Ensure header doesn't shrink */
+    }
+
+    .project-bar {
+      background: var(--dark);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-weight: 600;
+      gap: 12px;
+      height: 48px;
+      box-sizing: border-box;
+      flex-wrap: nowrap;
+    }
+
+    .project-bar span {
+      flex: 0 0 auto;
+      font-size: 14px;
+      height: 32px;
+      line-height: 32px;
+      display: flex;
+      align-items: center;
+    }
+
+    .project-bar input {
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--blue);
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      outline: none;
+      height: 32px;
+      width: 100px;
+      box-sizing: border-box;
+      user-select: text;
+      touch-action: auto;
+    }
+
+    .project-bar input:focus {
+      border-color: var(--blue);
+    }
+
+    .project-bar select {
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--blue);
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      outline: none;
+      height: 32px;
+      width: 120px;
+      box-sizing: border-box;
+      user-select: text;
+      touch-action: auto;
+    }
+
+    .project-bar select:focus {
+      border-color: var(--blue);
+    }
+
+    .project-bar button {
+      background: var(--dark);
+      color: var(--white);
+      border: 1px solid var(--blue);
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s;
+      font-size: 14px;
+      touch-action: auto;
+      height: 32px;
+      line-height: 1;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+      max-width: 120px;
+      justify-content: center;
+    }
+
+    .project-bar button i {
+      color: var(--blue);
+    }
+
+    .project-bar button:hover {
+      background: var(--blue);
+      color: var(--dark);
+      border-color: var(--blue);
+    }
+
+    .project-bar button:hover i {
+      color: var(--dark);
+    }
+
+    .project-bar button:disabled {
+      background: var(--dark);
+      color: #606060;
+      cursor: not-allowed;
+      border-color: #3a3a3a;
+    }
+
+    .project-bar button:disabled i {
+      color: #606060;
     }
 
     .top-bar {
@@ -184,6 +295,9 @@
       background: var(--dark);
       overflow-x: auto;
       border-bottom: 1px solid var(--blue);
+      position: relative; /* Ensure tabs stay in place */
+      z-index: 2; /* Higher z-index to stay above editor */
+      flex: 0 0 auto; /* Prevent shrinking */
     }
 
     .tab {
@@ -219,8 +333,10 @@
     .editor-area {
       display: none;
       flex-grow: 1;
-      overflow: auto;
+      overflow: hidden; /* Changed from auto to prevent overlap */
       position: relative;
+      width: 100%;
+      height: 100%;
     }
 
     .editor-area.visible {
@@ -246,15 +362,33 @@
       touch-action: auto;
     }
 
-    .code-editor::-webkit-scrollbar {
+    /* CodeMirror-specific styles */
+    .CodeMirror {
+      width: 100%;
+      height: 100%;
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Fira Code', 'Consolas', monospace !important;
+      font-size: 14px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1; /* Lower z-index than tabs */
+    }
+
+    .CodeMirror-scroll {
+      scrollbar-color: var(--blue) var(--dark);
+      overflow: auto;
+    }
+
+    .CodeMirror::-webkit-scrollbar {
       width: 8px;
     }
 
-    .code-editor::-webkit-scrollbar-track {
+    .CodeMirror::-webkit-scrollbar-track {
       background: var(--dark);
     }
 
-    .code-editor::-webkit-scrollbar-thumb {
+    .CodeMirror::-webkit-scrollbar-thumb {
       background: var(--blue);
       border-radius: 4px;
     }
@@ -267,9 +401,11 @@
     }
 
     .container {
-      flex-grow: 1;
+      flex: 1; /* Take remaining space */
       display: flex;
       flex-direction: column;
+      overflow: hidden; /* Prevent container from causing overlap */
+      width: 100%;
     }
 
     .modal {
@@ -368,6 +504,12 @@
         align-items: center;
       }
 
+      .project-bar {
+        flex: 0 0 auto;
+        border-bottom: none;
+        padding-right: 0;
+      }
+
       .top-bar {
         flex: 0 0 auto;
         border-bottom: none;
@@ -385,6 +527,46 @@
     @media only screen and (max-width: 767px) {
       .header-container {
         display: block;
+      }
+
+      .project-bar {
+        padding: 8px 12px;
+        flex-wrap: wrap;
+        gap: 10px;
+        height: auto;
+        min-height: 48px;
+        justify-content: space-between;
+      }
+
+      .project-bar span {
+        font-size: 16px;
+        line-height: 44px;
+        flex: 0 0 60px;
+      }
+
+      .project-bar input {
+        width: 120px;
+        font-size: 14px;
+        padding: 8px 10px;
+        height: 44px;
+        flex: 1 1 auto;
+      }
+
+      .project-bar select {
+        width: 120px;
+        font-size: 14px;
+        padding: 8px 10px;
+        height: 44px;
+        flex: 1 1 auto;
+      }
+
+      .project-bar button {
+        font-size: 14px;
+        padding: 8px 12px;
+        min-width: 90px;
+        height: 44px;
+        max-width: none;
+        flex: 1 1 auto;
       }
 
       .top-bar {
@@ -464,6 +646,11 @@
         line-height: 1.8;
       }
 
+      .CodeMirror {
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
       .modal-content {
         padding: 16px;
         width: 90%;
@@ -498,6 +685,41 @@
     }
 
     @media only screen and (max-width: 480px) {
+      .project-bar {
+        gap: 8px;
+        padding: 6px 8px;
+      }
+
+      .project-bar span {
+        font-size: 14px;
+        line-height: 36px;
+        flex: 0 0 50px;
+      }
+
+      .project-bar input {
+        width: 100px;
+        font-size: 12px;
+        padding: 6px 8px;
+        height: 36px;
+        flex: 1 1 auto;
+      }
+
+      .project-bar select {
+        width: 100px;
+        font-size: 12px;
+        padding: 6px 8px;
+        height: 36px;
+        flex: 1 1 auto;
+      }
+
+      .project-bar button {
+        font-size: 12px;
+        padding: 6px 8px;
+        min-width: 80px;
+        height: 36px;
+        flex: 1 1 auto;
+      }
+
       .top-bar {
         gap: 8px;
         padding: 6px 8px;
@@ -566,6 +788,11 @@
         line-height: 1.6;
       }
 
+      .CodeMirror {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
       .modal-content {
         padding: 12px;
         width: 90%;
@@ -602,6 +829,16 @@
 </head>
 <body>
   <div class="header-container">
+    <div class="project-bar">
+      <span>Projects</span>
+      <input type="text" id="projectName" placeholder="Project name">
+      <button id="addProjectBtn" onclick="showNewProjectModal()"><i class="fas fa-plus"></i> Add</button>
+      <button id="saveProjectBtn" onclick="saveProject()"><i class="fas fa-save"></i> Save</button>
+      <button id="openProjectBtn" onclick="openProject()" disabled><i class="fas fa-folder-open"></i> Open</button>
+      <select id="projectList">
+        <option value="">Select a project</option>
+      </select>
+    </div>
     <div class="top-bar">
       <span>IDE</span>
       <button id="newFileBtn" onclick="showNewFileModal()"><i class="fas fa-plus"></i> New File</button>
@@ -663,6 +900,17 @@ console.log("Hello from JS");
     </div>
   </div>
 
+  <div id="newProjectModal" class="modal">
+    <div class="modal-content">
+      <h3>Create New Project</h3>
+      <input type="text" id="newProjectName" placeholder="Enter project name">
+      <div>
+        <button onclick="createNewProject()"><i class="fas fa-check"></i> Create</button>
+        <button onclick="closeNewProjectModal()"><i class="fas fa-times"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <div id="newFileModal" class="modal">
     <div class="modal-content">
       <h3>Create New File</h3>
@@ -703,6 +951,13 @@ console.log("Hello from JS");
     </div>
   </div>
 
+  <!-- CodeMirror JS and modes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
   <script>
     window.onerror = function(message, source, lineno, colno, error) {
       console.error(`Global error: ${message} at ${source}:${lineno}:${colno}`);
@@ -716,20 +971,43 @@ console.log("Hello from JS");
       'js-script': { type: 'js', content: document.getElementById('editor-js-script').value }
     };
 
+    let editors = {};
     let currentTab = 'html-index';
     let lastHtmlTab = 'html-index';
+    let currentProject = null;
+
+    function initializeCodeMirror(textarea, mode) {
+      return CodeMirror.fromTextArea(textarea, {
+        lineNumbers: true,
+        mode: mode,
+        theme: 'monokai',
+        lineWrapping: true,
+        tabSize: 2,
+        indentWithTabs: false,
+        scrollbarStyle: 'native'
+      });
+    }
+
+    function getModeForFileType(type) {
+      return type === 'html' ? 'htmlmixed' :
+             type === 'css' ? 'css' :
+             type === 'js' || type === 'jsx' ? 'javascript' :
+             type === 'py' ? 'python' : 'text/plain';
+    }
 
     function updateButtonStates() {
       const selectAllBtn = document.getElementById('selectAllBtn');
       const saveBtn = document.getElementById('saveBtn');
       const deleteBtn = document.getElementById('deleteBtn');
       const findReplaceBtn = document.getElementById('findReplaceBtn');
+      const openProjectBtn = document.getElementById('openProjectBtn');
 
       const isBrowserTab = currentTab === 'browser';
       selectAllBtn.disabled = isBrowserTab;
       saveBtn.disabled = isBrowserTab;
       deleteBtn.disabled = isBrowserTab || Object.keys(files).length <= 1;
       findReplaceBtn.disabled = isBrowserTab || !document.getElementById('findText').value;
+      openProjectBtn.disabled = !document.getElementById('projectList').value;
     }
 
     function loadInitialFiles() {
@@ -754,12 +1032,21 @@ console.log("Hello from JS");
           editorArea.appendChild(textarea);
           document.querySelector('.container').appendChild(editorArea);
 
-          textarea.addEventListener('input', () => {
-            files[fileId].content = textarea.value;
+          const mode = getModeForFileType(file.type);
+          editors[fileId] = initializeCodeMirror(textarea, mode);
+          editors[fileId].on('change', () => {
+            files[fileId].content = editors[fileId].getValue();
           });
         } else {
           const textarea = document.getElementById(`editor-${fileId}`);
-          if (textarea) textarea.value = files[fileId].content;
+          if (textarea && !editors[fileId]) {
+            const mode = getModeForFileType(files[fileId].type);
+            editors[fileId] = initializeCodeMirror(textarea, mode);
+            editors[fileId].setValue(files[fileId].content);
+            editors[fileId].on('change', () => {
+              files[fileId].content = editors[fileId].getValue();
+            });
+          }
         }
       }
       if (!files[lastHtmlTab] || files[lastHtmlTab].type !== 'html') {
@@ -767,6 +1054,7 @@ console.log("Hello from JS");
         lastHtmlTab = htmlFiles.length > 0 ? htmlFiles[0] : null;
       }
       updateButtonStates();
+      loadProjects();
     }
 
     function switchTab(tab) {
@@ -789,17 +1077,18 @@ console.log("Hello from JS");
 
       if (tab === 'browser') {
         runCode();
-      } else {
-        const textarea = editorArea?.querySelector('.code-editor');
-        if (textarea) setTimeout(() => textarea.focus(), 50);
+      } else if (editors[tab]) {
+        setTimeout(() => {
+          editors[tab].refresh();
+          editors[tab].focus();
+        }, 50);
       }
     }
 
     function runCode() {
       console.log('Running code for browser preview');
-      if (currentTab !== 'browser') {
-        const editor = document.getElementById(`editor-${currentTab}`);
-        if (editor) files[currentTab].content = editor.value;
+      if (currentTab !== 'browser' && editors[currentTab]) {
+        files[currentTab].content = editors[currentTab].getValue();
       }
 
       let htmlContent = lastHtmlTab && files[lastHtmlTab]?.type === 'html' ? files[lastHtmlTab].content : '<html><body><h1>No HTML file available</h1></body></html>';
@@ -836,9 +1125,14 @@ console.log("Hello from JS");
 
     function selectAllCode() {
       console.log('Select All button clicked');
-      if (currentTab !== 'browser') {
-        const textarea = document.querySelector(`#${currentTab} .code-editor`);
-        if (textarea) textarea.select();
+      if (currentTab !== 'browser' && editors[currentTab]) {
+        const editor = editors[currentTab];
+        editor.execCommand('selectAll');
+        editor.refresh(); // Ensure visual update
+        editor.focus(); // Focus the editor
+        console.log(`Selected all text in ${currentTab} editor`);
+      } else {
+        console.warn(`Select All failed: No editor for ${currentTab} or on browser tab`);
       }
     }
 
@@ -886,8 +1180,9 @@ console.log("Hello from JS");
           console.warn(`Editor area for ${currentTab} not found`);
         }
 
+        delete editors[currentTab];
         delete files[currentTab];
-        console.log(`File ${currentTab} deleted from files object`);
+        console.log(`File ${currentTab} deleted from files and editors`);
 
         if (currentTab === lastHtmlTab) {
           const htmlFiles = Object.keys(files).filter(id => files[id].type === 'html');
@@ -952,15 +1247,17 @@ console.log("Hello from JS");
       document.querySelector('.container').appendChild(editorArea);
 
       files[fileId] = { type, content: textarea.value };
-
-      textarea.addEventListener('input', () => {
-        files[fileId].content = textarea.value;
+      const mode = getModeForFileType(type);
+      editors[fileId] = initializeCodeMirror(textarea, mode);
+      editors[fileId].on('change', () => {
+        files[fileId].content = editors[fileId].getValue();
       });
 
       closeNewFileModal();
       setTimeout(() => {
         switchTab(fileId);
-        textarea.focus();
+        editors[fileId].refresh();
+        editors[fileId].focus();
       }, 100);
     }
 
@@ -984,8 +1281,9 @@ console.log("Hello from JS");
       const fileName = document.getElementById('saveFileName').value.trim();
       if (!fileName) return alert('Enter a file name.');
 
-      const editor = document.getElementById(`editor-${currentTab}`);
-      if (editor) files[currentTab].content = editor.value;
+      if (editors[currentTab]) {
+        files[currentTab].content = editors[currentTab].getValue();
+      }
 
       const content = files[currentTab].content;
       const blob = new Blob([content], { type: 'text/plain' });
@@ -1003,8 +1301,8 @@ console.log("Hello from JS");
 
     function findAndReplace() {
       console.log('Find and Replace button clicked');
-      if (currentTab === 'browser') {
-        console.log('Find and Replace blocked: On browser tab');
+      if (currentTab === 'browser' || !editors[currentTab]) {
+        console.log('Find and Replace blocked: On browser tab or no editor');
         return;
       }
 
@@ -1016,14 +1314,12 @@ console.log("Hello from JS");
         return;
       }
 
-      const editor = document.getElementById(`editor-${currentTab}`);
-      if (!editor) {
-        console.error(`Editor for ${currentTab} not found`);
-        return;
-      }
-
+      const editor = editors[currentTab];
+      const content = editor.getValue();
       const regex = new RegExp(findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-      files[currentTab].content = editor.value = editor.value.replace(regex, replaceText);
+      const newContent = content.replace(regex, replaceText);
+      editor.setValue(newContent);
+      files[currentTab].content = newContent;
       console.log(`Replaced "${findText}" with "${replaceText}" in ${currentTab}`);
     }
 
@@ -1033,19 +1329,167 @@ console.log("Hello from JS");
       findReplaceBtn.disabled = currentTab === 'browser' || !findText;
     }
 
+    function showNewProjectModal() {
+      console.log('Add Project button clicked');
+      document.getElementById('newProjectModal').style.display = 'flex';
+      document.getElementById('newProjectName').focus();
+    }
+
+    function closeNewProjectModal() {
+      console.log('New Project modal closed');
+      document.getElementById('newProjectModal').style.display = 'none';
+      document.getElementById('newProjectName').value = '';
+    }
+
+    function createNewProject() {
+      console.log('Create Project button clicked');
+      const name = document.getElementById('newProjectName').value.trim();
+      if (!name) return alert('Enter a project name.');
+
+      const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
+      if (projects[name]) return alert('Project already exists.');
+
+      const projectId = `project-${Date.now()}`;
+      projects[name] = { id: projectId, files: {}, currentTab: 'browser' };
+      localStorage.setItem('ideProjects', JSON.stringify(projects));
+
+      const projectList = document.getElementById('projectList');
+      const option = document.createElement('option');
+      option.value = name;
+      option.textContent = name;
+      projectList.appendChild(option);
+      projectList.value = name;
+
+      currentProject = name;
+      document.getElementById('projectName').value = name;
+
+      // Clear current files, editors, and tabs
+      document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
+      document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
+      files = {};
+      editors = {};
+      currentTab = 'browser';
+      lastHtmlTab = null;
+      switchTab('browser');
+
+      closeNewProjectModal();
+      updateButtonStates();
+    }
+
+    function saveProject() {
+      console.log('Save Project button clicked');
+      const name = document.getElementById('projectName').value.trim();
+      if (!name) return alert('Enter a project name.');
+
+      // Update current file contents
+      if (currentTab !== 'browser' && editors[currentTab]) {
+        files[currentTab].content = editors[currentTab].getValue();
+      }
+
+      const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
+      const projectId = `project-${Date.now()}`;
+      projects[name] = { id: projectId, files: { ...files }, currentTab };
+      localStorage.setItem('ideProjects', JSON.stringify(projects));
+
+      // Update dropdown if new project
+      if (!Object.keys(projects).includes(name)) {
+        const projectList = document.getElementById('projectList');
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        projectList.appendChild(option);
+      }
+
+      document.getElementById('projectList').value = name;
+      currentProject = name;
+      alert('Project saved successfully.');
+      updateButtonStates();
+    }
+
+    function openProject() {
+      console.log('Open Project button clicked');
+      const name = document.getElementById('projectList').value;
+      if (!name) return;
+
+      const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
+      const project = projects[name];
+      if (!project) return alert('Project not found.');
+
+      // Clear current files, editors, and tabs
+      document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
+      document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
+      files = {};
+      editors = {};
+
+      // Load project files
+      for (let fileId in project.files) {
+        files[fileId] = project.files[fileId];
+      }
+
+      // Recreate tabs and editor areas
+      for (let fileId in files) {
+        const file = files[fileId];
+        const tab = document.createElement('button');
+        tab.className = 'tab';
+        tab.textContent = `${fileId.replace(/^[^-]+-/, '')}.${file.type}`;
+        tab.setAttribute('data-file-id', fileId);
+        tab.onclick = () => switchTab(fileId);
+        document.querySelector('.tabs').insertBefore(tab, document.querySelector('.tab[onclick="switchTab(\'browser\')"]'));
+
+        const editorArea = document.createElement('div');
+        editorArea.id = fileId;
+        editorArea.className = 'editor-area';
+        const textarea = document.createElement('textarea');
+        textarea.id = `editor-${fileId}`;
+        textarea.className = 'code-editor';
+        textarea.spellcheck = false;
+        textarea.value = file.content;
+        editorArea.appendChild(textarea);
+        document.querySelector('.container').appendChild(editorArea);
+
+        const mode = getModeForFileType(file.type);
+        editors[fileId] = initializeCodeMirror(textarea, mode);
+        editors[fileId].on('change', () => {
+          files[fileId].content = editors[fileId].getValue();
+        });
+      }
+
+      currentProject = name;
+      document.getElementById('projectName').value = name;
+      currentTab = project.currentTab || 'browser';
+      lastHtmlTab = Object.keys(files).find(id => files[id].type === 'html') || null;
+      switchTab(currentTab);
+    }
+
+    function loadProjects() {
+      const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
+      const projectList = document.getElementById('projectList');
+      projectList.innerHTML = '<option value="">Select a project</option>';
+      for (let name in projects) {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        projectList.appendChild(option);
+      }
+      updateButtonStates();
+    }
+
     document.getElementById('findText').addEventListener('input', updateFindReplaceButton);
     document.getElementById('replaceText').addEventListener('input', updateFindReplaceButton);
 
-    document.querySelectorAll('.code-editor').forEach(editor => {
-      editor.addEventListener('input', () => {
-        const fileId = editor.id.replace('editor-', '');
-        files[fileId].content = editor.value;
-      });
+    document.getElementById('projectList').addEventListener('change', () => {
+      updateButtonStates();
     });
 
     document.querySelectorAll('.top-bar button').forEach(button => {
       button.addEventListener('click', () => {
         console.log(`Button clicked: ${button.id}`);
+      });
+    });
+
+    document.querySelectorAll('.project-bar button').forEach(button => {
+      button.addEventListener('click', () => {
+        console.log(`Project button clicked: ${button.id}`);
       });
     });
 
