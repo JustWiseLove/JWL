@@ -15,6 +15,7 @@
       <button id="addProjectBtn" onclick="showNewProjectModal()"><i class="fas fa-plus"></i> Add</button>
       <button id="saveProjectBtn" onclick="saveProject()"><i class="fas fa-save"></i> Save</button>
       <button id="openProjectBtn" onclick="openProject()" disabled><i class="fas fa-folder-open"></i> Open</button>
+      <button id="deleteProjectBtn" onclick="showDeleteProjectModal()" disabled><i class="fas fa-trash"></i> Delete</button>
       <select id="projectList">
         <option value="">Select a project</option>
       </select>
@@ -127,6 +128,17 @@
       <div>
         <button onclick="confirmDelete()"><i class="fas fa-check"></i> Confirm</button>
         <button onclick="closeDeleteModal()"><i class="fas fa-times"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="deleteProjectModal" class="modal">
+    <div class="modal-content">
+      <h3>Delete Project</h3>
+      <p id="deleteProjectMessage"></p>
+      <div>
+        <button onclick="confirmDeleteProject()"><i class="fas fa-check"></i> Confirm</button>
+        <button onclick="closeDeleteProjectModal()"><i class="fas fa-times"></i> Cancel</button>
       </div>
     </div>
   </div>
