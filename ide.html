@@ -86,7 +86,7 @@
       font-size: 14px;
       outline: none;
       height: 32px;
-      width: 120px;
+      width: 150px; /* Increased to show "Select a Project" */
       box-sizing: border-box;
       user-select: text;
       touch-action: auto;
@@ -501,13 +501,13 @@
     @media only screen and (min-width: 768px) {
       .header-container {
         display: flex;
-        flex-direction: column; /* Stack bars vertically */
+        flex-direction: column; /* Stack project bar and combined top/find-replace vertically */
         align-items: stretch;
       }
 
       .project-bar {
         flex: 0 0 auto;
-        border-bottom: 1px solid var(--blue); /* Restore border for separation */
+        border-bottom: 1px solid var(--blue);
         padding: 12px 16px;
         justify-content: flex-start;
         gap: 12px;
@@ -519,14 +519,23 @@
         padding: 12px 16px;
         justify-content: flex-start;
         gap: 12px;
+        display: flex;
+        flex-wrap: nowrap;
       }
 
       .find-replace-bar {
         flex: 0 0 auto;
-        border-bottom: 1px solid var(--blue);
         padding: 12px 16px;
         justify-content: flex-start;
         gap: 8px;
+        border-left: 1px solid var(--blue); /* Separator between top-bar and find-replace-bar */
+      }
+
+      .top-bar-container {
+        display: flex;
+        flex-direction: row; /* Combine top-bar and find-replace-bar in one row */
+        align-items: center;
+        flex-wrap: nowrap;
       }
     }
 
@@ -843,22 +852,24 @@
       <button id="openProjectBtn" onclick="openProject()" disabled><i class="fas fa-folder-open"></i> Open</button>
       <button id="deleteProjectBtn" onclick="showDeleteProjectModal()" disabled><i class="fas fa-trash"></i> Delete</button>
       <select id="projectList">
-        <option value="">Select a project</option>
+        <option value="">Select a Project</option>
       </select>
     </div>
-    <div class="top-bar">
-      <span>IDE</span>
-      <button id="newFileBtn" onclick="showNewFileModal()"><i class="fas fa-plus"></i> New File</button>
-      <button id="selectAllBtn" onclick="selectAllCode()" disabled><i class="fas fa-check-square"></i> Select All</button>
-      <button id="saveBtn" onclick="saveToFile()" disabled><i class="fas fa-save"></i> Save</button>
-      <button id="deleteBtn" onclick="showDeleteModal()" disabled><i class="fas fa-trash"></i> Delete</button>
-    </div>
-    <div class="find-replace-bar">
-      <span>Find:</span>
-      <input type="text" id="findText" placeholder="Text">
-      <span>Replace:</span>
-      <input type="text" id="replaceText" placeholder="With">
-      <button id="findReplaceBtn" onclick="findAndReplace()" disabled><i class="fas fa-check"></i> Submit</button>
+    <div class="top-bar-container">
+      <div class="top-bar">
+        <span>IDE</span>
+        <button id="newFileBtn" onclick="showNewFileModal()"><i class="fas fa-plus"></i> New File</button>
+        <button id="selectAllBtn" onclick="selectAllCode()" disabled><i class="fas fa-check-square"></i> Select All</button>
+        <button id="saveBtn" onclick="saveToFile()" disabled><i class="fas fa-save"></i> Save</button>
+        <button id="deleteBtn" onclick="showDeleteModal()" disabled><i class="fas fa-trash"></i> Delete</button>
+      </div>
+      <div class="find-replace-bar">
+        <span>Find:</span>
+        <input type="text" id="findText" placeholder="Text">
+        <span>Replace:</span>
+        <input type="text" id="replaceText" placeholder="With">
+        <button id="findReplaceBtn" onclick="findAndReplace()" disabled><i class="fas fa-check"></i> Submit</button>
+      </div>
     </div>
   </div>
 
@@ -1563,7 +1574,7 @@ console.log("Hello from JS");
     function loadProjects() {
       const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
       const projectList = document.getElementById('projectList');
-      projectList.innerHTML = '<option value="">Select a project</option>';
+      projectList.innerHTML = '<option value="">Select a Project</option>';
       for (let name in projects) {
         const option = document.createElement('option');
         option.value = name;
