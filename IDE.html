@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>IDE - Just Wise Love</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+  <!-- CodeMirror Theme (monokai for dark theme compatibility) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/monokai.min.css" />
   <style>
     :root {
       --dark: #181A1C;
@@ -29,6 +33,7 @@
     .header-container {
       background: var(--dark);
       border-bottom: 1px solid var(--blue);
+      flex: 0 0 auto;
     }
 
     .project-bar {
@@ -37,7 +42,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      font-weight:) 600;
+      font-weight: 600;
       gap: 12px;
       height: 48px;
       box-sizing: border-box;
@@ -290,6 +295,9 @@
       background: var(--dark);
       overflow-x: auto;
       border-bottom: 1px solid var(--blue);
+      position: relative;
+      z-index: 2;
+      flex: 0 0 auto;
     }
 
     .tab {
@@ -325,8 +333,10 @@
     .editor-area {
       display: none;
       flex-grow: 1;
-      overflow: auto;
+      overflow: hidden;
       position: relative;
+      width: 100%;
+      height: 100%;
     }
 
     .editor-area.visible {
@@ -352,15 +362,33 @@
       touch-action: auto;
     }
 
-    .code-editor::-webkit-scrollbar {
+    /* CodeMirror-specific styles */
+    .CodeMirror {
+      width: 100%;
+      height: 100%;
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Fira Code', 'Consolas', monospace !important;
+      font-size: 14px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .CodeMirror-scroll {
+      scrollbar-color: var(--blue) var(--dark);
+      overflow: auto;
+    }
+
+    .CodeMirror::-webkit-scrollbar {
       width: 8px;
     }
 
-    .code-editor::-webkit-scrollbar-track {
+    .CodeMirror::-webkit-scrollbar-track {
       background: var(--dark);
     }
 
-    .code-editor::-webkit-scrollbar-thumb {
+    .CodeMirror::-webkit-scrollbar-thumb {
       background: var(--blue);
       border-radius: 4px;
     }
@@ -373,9 +401,11 @@
     }
 
     .container {
-      flex-grow: 1;
+      flex: 1;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      width: 100%;
     }
 
     .modal {
@@ -616,6 +646,11 @@
         line-height: 1.8;
       }
 
+      .CodeMirror {
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
       .modal-content {
         padding: 16px;
         width: 90%;
@@ -753,6 +788,11 @@
         line-height: 1.6;
       }
 
+      .CodeMirror {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
       .modal-content {
         padding: 12px;
         width: 90%;
@@ -825,33 +865,33 @@
   <div class="container">
     <div id="html-index" class="editor-area visible">
       <textarea id="editor-html-index" class="code-editor" spellcheck="false">
-1  <!DOCTYPE html>
-2  <html>
-3    <head>
-4      <title>Welcome - JWL</title>
-5      <link rel="stylesheet" href="style.css">
-6    </head>
-7    <body>
-8      <h1>Hello Coder</h1>
-9      <script src="script.js"></script>
-10   </body>
-11 </html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome - JWL</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Hello Coder</h1>
+    <script src="script.js"></script>
+  </body>
+</html>
       </textarea>
     </div>
 
     <div id="css-style" class="editor-area">
       <textarea id="editor-css-style" class="code-editor" spellcheck="false">
-1  body {
-2    background-color: lightgray;
-3    text-align: center;
-4    font-family: sans-serif;
-5  }
+body {
+  background-color: lightgray;
+  text-align: center;
+  font-family: sans-serif;
+}
       </textarea>
     </div>
 
     <div id="js-script" class="editor-area">
       <textarea id="editor-js-script" class="code-editor" spellcheck="false">
-1  console.log("Hello from JS");
+console.log("Hello from JS");
       </textarea>
     </div>
 
@@ -911,6 +951,13 @@
     </div>
   </div>
 
+  <!-- CodeMirror JS and modes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
   <script>
     window.onerror = function(message, source, lineno, colno, error) {
       console.error(`Global error: ${message} at ${source}:${lineno}:${colno}`);
@@ -924,27 +971,44 @@
       'js-script': { type: 'js', content: document.getElementById('editor-js-script').value }
     };
 
+    let editors = {};
     let currentTab = 'html-index';
     let lastHtmlTab = 'html-index';
     let currentProject = null;
 
-    function stripLineNumbers(content) {
-      return content.replace(/^\d+\s+/gm, '');
+    // Debounce utility to handle rapid editor changes
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
     }
 
-    function updateLineNumbers(textarea) {
-      const fileId = textarea.id.replace('editor-', '');
-      let content = textarea.value;
-      // Remove existing line numbers
-      content = stripLineNumbers(content);
-      // Split into lines and add new line numbers
-      const lines = content.split('\n');
-      const numberedContent = lines.map((line, index) => `${index + 1}  ${line}`).join('\n');
-      // Update textarea only if content has changed to avoid infinite loops
-      if (textarea.value !== numberedContent) {
-        textarea.value = numberedContent;
-        files[fileId].content = numberedContent;
-      }
+    function initializeCodeMirror(textarea, mode) {
+      const editor = CodeMirror.fromTextArea(textarea, {
+        lineNumbers: true,
+        mode: mode,
+        theme: 'monokai',
+        lineWrapping: true,
+        tabSize: 2,
+        indentWithTabs: false,
+        scrollbarStyle: 'native'
+      });
+      // Debounce change events to stabilize after large pastes
+      editor.on('change', debounce(() => {
+        const fileId = textarea.id.replace('editor-', '');
+        files[fileId].content = editor.getValue();
+        console.log(`Content updated for ${fileId}`);
+      }, 300));
+      return editor;
+    }
+
+    function getModeForFileType(type) {
+      return type === 'html' ? 'htmlmixed' :
+             type === 'css' ? 'css' :
+             type === 'js' || type === 'jsx' ? 'javascript' :
+             type === 'py' ? 'python' : 'text/plain';
     }
 
     function updateButtonStates() {
@@ -984,15 +1048,15 @@
           editorArea.appendChild(textarea);
           document.querySelector('.container').appendChild(editorArea);
 
-          textarea.addEventListener('input', () => {
-            updateLineNumbers(textarea);
-          });
-          textarea.addEventListener('paste', (e) => {
-            setTimeout(() => updateLineNumbers(textarea), 0);
-          });
+          const mode = getModeForFileType(file.type);
+          editors[fileId] = initializeCodeMirror(textarea, mode);
         } else {
           const textarea = document.getElementById(`editor-${fileId}`);
-          if (textarea) textarea.value = files[fileId].content;
+          if (textarea && !editors[fileId]) {
+            const mode = getModeForFileType(files[fileId].type);
+            editors[fileId] = initializeCodeMirror(textarea, mode);
+            editors[fileId].setValue(files[fileId].content);
+          }
         }
       }
       if (!files[lastHtmlTab] || files[lastHtmlTab].type !== 'html') {
@@ -1004,50 +1068,71 @@
     }
 
     function switchTab(tab) {
-      console.log(`Switching to tab: ${tab}`);
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      const tabButton = document.querySelector(`.tab[data-file-id="${tab}"], .tab[onclick="switchTab('${tab}')"]`);
-      if (tabButton) tabButton.classList.add('active');
-      else console.warn(`Tab button for ${tab} not found`);
-
-      document.querySelectorAll('.editor-area').forEach(e => e.classList.remove('visible'));
-      const editorArea = document.getElementById(tab);
-      if (editorArea) editorArea.className = 'editor-area visible';
-      else console.warn(`Editor area for ${tab} not found`);
-
-      currentTab = tab;
-      if (files[tab]?.type === 'html') lastHtmlTab = tab;
-
-      updateButtonStates();
-      updateFindReplaceButton();
-
-      if (tab === 'browser') {
-        runCode();
-      } else {
-        const textarea = editorArea?.querySelector('.code-editor');
-        if (textarea) {
-          setTimeout(() => {
-            textarea.focus();
-            updateLineNumbers(textarea);
-          }, 50);
+      console.log(`Attempting to switch to tab: ${tab}`);
+      try {
+        // Save current editor content and release focus
+        if (currentTab !== 'browser' && editors[currentTab]) {
+          files[currentTab].content = editors[currentTab].getValue();
+          editors[currentTab].getInputField().blur();
+          console.log(`Saved and blurred editor for ${currentTab}`);
         }
+
+        // Validate tab and editor area
+        const tabButton = document.querySelector(`.tab[data-file-id="${tab}"], .tab[onclick="switchTab('${tab}')"]`);
+        if (!tabButton) {
+          throw new Error(`Tab button for ${tab} not found`);
+        }
+        const editorArea = document.getElementById(tab);
+        if (!editorArea) {
+          throw new Error(`Editor area for ${tab} not found`);
+        }
+
+        // Update tab highlighting
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tabButton.classList.add('active');
+
+        // Update editor area visibility
+        document.querySelectorAll('.editor-area').forEach(e => e.classList.remove('visible'));
+        editorArea.className = 'editor-area visible';
+
+        // Update state
+        currentTab = tab;
+        if (files[tab]?.type === 'html') lastHtmlTab = tab;
+
+        updateButtonStates();
+        updateFindReplaceButton();
+
+        // Handle browser or editor
+        if (tab === 'browser') {
+          runCode();
+        } else if (editors[tab]) {
+          setTimeout(() => {
+            editors[tab].refresh();
+            editors[tab].focus();
+            console.log(`Refreshed and focused editor for ${tab}`);
+          }, 50);
+        } else {
+          console.warn(`No editor found for ${tab}`);
+        }
+      } catch (error) {
+        console.error(`Error switching to tab ${tab}:`, error.message);
+        alert(`Failed to switch to tab ${tab}. Check the console for details.`);
       }
     }
 
     function runCode() {
       console.log('Running code for browser preview');
-      if (currentTab !== 'browser') {
-        const editor = document.getElementById(`editor-${currentTab}`);
-        if (editor) files[currentTab].content = editor.value;
+      if (currentTab !== 'browser' && editors[currentTab]) {
+        files[currentTab].content = editors[currentTab].getValue();
       }
 
-      let htmlContent = lastHtmlTab && files[lastHtmlTab]?.type === 'html' ? stripLineNumbers(files[lastHtmlTab].content) : '<html><body><h1>No HTML file available</h1></body></html>';
+      let htmlContent = lastHtmlTab && files[lastHtmlTab]?.type === 'html' ? files[lastHtmlTab].content : '<html><body><h1>No HTML file available</h1></body></html>';
       let cssContent = '';
       let jsContent = '';
 
       for (let id in files) {
-        if (files[id].type === 'css') cssContent += stripLineNumbers(files[id].content) + '\n';
-        else if (files[id].type === 'js') jsContent += stripLineNumbers(files[id].content) + '\n';
+        if (files[id].type === 'css') cssContent += files[id].content + '\n';
+        else if (files[id].type === 'js') jsContent += files[id].content + '\n';
       }
 
       const fullCode = `
@@ -1075,9 +1160,14 @@
 
     function selectAllCode() {
       console.log('Select All button clicked');
-      if (currentTab !== 'browser') {
-        const textarea = document.querySelector(`#${currentTab} .code-editor`);
-        if (textarea) textarea.select();
+      if (currentTab !== 'browser' && editors[currentTab]) {
+        const editor = editors[currentTab];
+        editor.execCommand('selectAll');
+        editor.refresh();
+        editor.focus();
+        console.log(`Selected all text in ${currentTab} editor`);
+      } else {
+        console.warn(`Select All failed: No editor for ${currentTab} or on browser tab`);
       }
     }
 
@@ -1125,8 +1215,9 @@
           console.warn(`Editor area for ${currentTab} not found`);
         }
 
+        delete editors[currentTab];
         delete files[currentTab];
-        console.log(`File ${currentTab} deleted from files object`);
+        console.log(`File ${currentTab} deleted from files and editors`);
 
         if (currentTab === lastHtmlTab) {
           const htmlFiles = Object.keys(files).filter(id => files[id].type === 'html');
@@ -1182,29 +1273,23 @@
       textarea.id = `editor-${fileId}`;
       textarea.className = 'code-editor';
       textarea.spellcheck = false;
-      const baseContent = type === 'html' ? '<!DOCTYPE html>\n<html>\n  <head>\n    <title>New Page</title>\n  </head>\n  <body>\n  </body>\n</html>' :
-                          type === 'css' ? '/* New CSS File */\n' :
-                          type === 'js' ? '/* New JS File */\n' :
-                          type === 'jsx' ? 'import React from "react";\n\nfunction Component() {\n  return (\n    <div>\n      <h1>Hello, React!</h1>\n    </div>\n  );\n}\n\nexport default Component;\n' :
-                          type === 'py' ? '# New Python File\n\nprint("Hello, Python!")\n' : '';
-      const lines = baseContent.split('\n');
-      textarea.value = lines.map((line, index) => `${index + 1}  ${line}`).join('\n');
+      textarea.value = type === 'html' ? '<!DOCTYPE html>\n<html>\n  <head>\n    <title>New Page</title>\n  </head>\n  <body>\n  </body>\n</html>' :
+                       type === 'css' ? '/* New CSS File */\n' :
+                       type === 'js' ? '/* New JS File */\n' :
+                       type === 'jsx' ? 'import React from "react";\n\nfunction Component() {\n  return (\n    <div>\n      <h1>Hello, React!</h1>\n    </div>\n  );\n}\n\nexport default Component;\n' :
+                       type === 'py' ? '# New Python File\n\nprint("Hello, Python!")\n' : '';
       editorArea.appendChild(textarea);
       document.querySelector('.container').appendChild(editorArea);
 
       files[fileId] = { type, content: textarea.value };
-
-      textarea.addEventListener('input', () => {
-        updateLineNumbers(textarea);
-      });
-      textarea.addEventListener('paste', (e) => {
-        setTimeout(() => updateLineNumbers(textarea), 0);
-      });
+      const mode = getModeForFileType(type);
+      editors[fileId] = initializeCodeMirror(textarea, mode);
 
       closeNewFileModal();
       setTimeout(() => {
         switchTab(fileId);
-        textarea.focus();
+        editors[fileId].refresh();
+        editors[fileId].focus();
       }, 100);
     }
 
@@ -1228,10 +1313,11 @@
       const fileName = document.getElementById('saveFileName').value.trim();
       if (!fileName) return alert('Enter a file name.');
 
-      const editor = document.getElementById(`editor-${currentTab}`);
-      if (editor) files[currentTab].content = editor.value;
+      if (editors[currentTab]) {
+        files[currentTab].content = editors[currentTab].getValue();
+      }
 
-      const content = stripLineNumbers(files[currentTab].content);
+      const content = files[currentTab].content;
       const blob = new Blob([content], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -1247,8 +1333,8 @@
 
     function findAndReplace() {
       console.log('Find and Replace button clicked');
-      if (currentTab === 'browser') {
-        console.log('Find and Replace blocked: On browser tab');
+      if (currentTab === 'browser' || !editors[currentTab]) {
+        console.log('Find and Replace blocked: On browser tab or no editor');
         return;
       }
 
@@ -1260,18 +1346,12 @@
         return;
       }
 
-      const editor = document.getElementById(`editor-${currentTab}`);
-      if (!editor) {
-        console.error(`Editor for ${currentTab} not found`);
-        return;
-      }
-
-      const content = stripLineNumbers(editor.value);
+      const editor = editors[currentTab];
+      const content = editor.getValue();
       const regex = new RegExp(findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
       const newContent = content.replace(regex, replaceText);
-      const lines = newContent.split('\n');
-      editor.value = lines.map((line, index) => `${index + 1}  ${line}`).join('\n');
-      files[currentTab].content = editor.value;
+      editor.setValue(newContent);
+      files[currentTab].content = newContent;
       console.log(`Replaced "${findText}" with "${replaceText}" in ${currentTab}`);
     }
 
@@ -1315,27 +1395,25 @@
       currentProject = name;
       document.getElementById('projectName').value = name;
 
-      // Clear current files and tabs
+      // Clear current tabs and editors
       document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
       document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
       files = {};
+      editors = {};
       currentTab = 'browser';
       lastHtmlTab = null;
       switchTab('browser');
 
       closeNewProjectModal();
-      updateButtonStates();
     }
 
     function saveProject() {
-      console.log('Save Project button clicked');
+      console.log('Saving project');
       const name = document.getElementById('projectName').value.trim();
-      if (!name) return alert('Enter a project name.');
+      if (!name) return alert('Please enter a project name.');
 
-      // Update current file contents
-      if (currentTab !== 'browser') {
-        const editor = document.getElementById(`editor-${currentTab}`);
-        if (editor) files[currentTab].content = editor.value;
+      if (currentTab !== 'browser' && editors[currentTab]) {
+        files[currentTab].content = editors[currentTab].getValue();
       }
 
       const projects = JSON.parse(localStorage.getItem('ideProjects') || '{}');
@@ -1343,7 +1421,6 @@
       projects[name] = { id: projectId, files: { ...files }, currentTab };
       localStorage.setItem('ideProjects', JSON.stringify(projects));
 
-      // Update dropdown if new project
       if (!Object.keys(projects).includes(name)) {
         const projectList = document.getElementById('projectList');
         const option = document.createElement('option');
@@ -1359,7 +1436,7 @@
     }
 
     function openProject() {
-      console.log('Open Project button clicked');
+      console.log('Opening project');
       const name = document.getElementById('projectList').value;
       if (!name) return;
 
@@ -1367,17 +1444,15 @@
       const project = projects[name];
       if (!project) return alert('Project not found.');
 
-      // Clear current files and tabs
       document.querySelectorAll('.tab:not([onclick="switchTab(\'browser\')"])').forEach(tab => tab.remove());
       document.querySelectorAll('.editor-area:not(#browser)').forEach(area => area.remove());
       files = {};
+      editors = {};
 
-      // Load project files
       for (let fileId in project.files) {
         files[fileId] = project.files[fileId];
       }
 
-      // Recreate tabs and editor areas
       for (let fileId in files) {
         const file = files[fileId];
         const tab = document.createElement('button');
@@ -1393,17 +1468,13 @@
         const textarea = document.createElement('textarea');
         textarea.id = `editor-${fileId}`;
         textarea.className = 'code-editor';
-        textarea.spellcheck = false;
+        textarea.spellcheck = '';
         textarea.value = file.content;
         editorArea.appendChild(textarea);
         document.querySelector('.container').appendChild(editorArea);
 
-        textarea.addEventListener('input', () => {
-          updateLineNumbers(textarea);
-        });
-        textarea.addEventListener('paste', (e) => {
-          setTimeout(() => updateLineNumbers(textarea), 0);
-        });
+        const mode = getModeForFileType(file.type);
+        editors[fileId] = initializeCodeMirror(textarea, mode);
       }
 
       currentProject = name;
@@ -1433,24 +1504,15 @@
       updateButtonStates();
     });
 
-    document.querySelectorAll('.code-editor').forEach(editor => {
-      editor.addEventListener('input', () => {
-        updateLineNumbers(editor);
-      });
-      editor.addEventListener('paste', (e) => {
-        setTimeout(() => updateLineNumbers(editor), 0);
-      });
-    });
-
     document.querySelectorAll('.top-bar button').forEach(button => {
       button.addEventListener('click', () => {
-        console.log(`Button clicked: ${button.id}`);
+        console.log(`Button click: ${button.id}`);
       });
     });
 
     document.querySelectorAll('.project-bar button').forEach(button => {
       button.addEventListener('click', () => {
-        console.log(`Project button clicked: ${button.id}`);
+        console.log(`Project button click: ${button.id}`);
       });
     });
 
