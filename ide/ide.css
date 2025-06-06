@@ -27,7 +27,7 @@ body {
 
 .columns {
   display: flex !important;
-  flex-direction: column; /* Stack columns vertically for desktop */
+  flex-direction: column; /* Stack rows vertically for desktop */
   width: 100%;
   border-bottom: none; /* Remove bottom border from container */
 }
@@ -36,11 +36,12 @@ body {
   flex: none; /* Remove flex-grow to let content dictate size */
   width: 100%; /* Full width for each row */
   background: linear-gradient(to bottom, #1e2022, var(--dark));
-  padding: 15px 20px; /* Adjust padding for better spacing */
+  padding: 15px 20px; /* Adjusted padding for better spacing */
   display: flex !important;
-  flex-direction: column;
+  flex-direction: row; /* Horizontal layout within each row */
   align-items: center;
-  gap: 8px;
+  justify-content: center; /* Center items horizontally */
+  gap: 10px; /* Space between elements in the row */
   box-sizing: border-box;
   min-height: auto; /* Let content dictate height */
 }
@@ -51,7 +52,7 @@ body {
   align-items: center;
   margin-bottom: 12px;
   border: 1px dashed red; /* Debug border to confirm visibility */
-  width: 100%;
+  width: auto; /* Allow natural width */
 }
 
 .logo-text {
@@ -103,8 +104,7 @@ body {
   font-size: 14px;
   outline: none;
   height: 36px;
-  width: 100%;
-  max-width: 300px; /* Limit input width for better desktop layout */
+  width: 200px; /* Fixed width for desktop to control layout */
   box-sizing: border-box;
   user-select: text;
   touch-action: auto;
@@ -127,8 +127,7 @@ body {
   font-size: 14px;
   outline: none;
   height: 36px;
-  width: 100%;
-  max-width: 300px; /* Limit select width for better desktop layout */
+  width: 200px; /* Fixed width for desktop */
   box-sizing: border-box;
   user-select: text;
   touch-action: auto;
@@ -159,8 +158,7 @@ body {
   align-items: center;
   gap: 6px;
   flex: 0 0 auto;
-  width: 100%;
-  max-width: 300px; /* Limit button width for better desktop layout */
+  width: 120px; /* Fixed width for buttons on desktop */
   justify-content: center;
   text-align: center;
 }
@@ -417,14 +415,14 @@ iframe {
 /* Responsive adjustments for tablet and mobile */
 @media only screen and (max-width: 767px) {
   .columns {
-    flex-direction: row; /* Revert to side-by-side for tablet/mobile */
+    flex-direction: row; /* Side-by-side layout for tablet/mobile */
   }
 
   .column {
-    flex: 1; /* Restore flex-grow for side-by-side layout */
+    flex: 1; /* Equal width for side-by-side */
     width: auto; /* Reset width */
     padding: 10px 8px;
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
     gap: 8px;
     min-height: 60px;
@@ -443,27 +441,27 @@ iframe {
 
   .project-bar input,
   .file-bar input {
-    max-width: none; /* Remove max-width for smaller screens */
     width: 100%;
+    max-width: none; /* Full width on smaller screens */
     font-size: 13px;
     padding: 6px 8px;
     height: 32px;
   }
 
   .project-bar select {
-    max-width: none; /* Remove max-width for smaller screens */
     width: 100%;
+    max-width: none; /* Full width on smaller screens */
     font-size: 13px;
     padding: 6px 8px;
     height: 32px;
   }
 
   .column button {
-    max-width: none; /* Remove max-width for smaller screens */
+    width: 100%;
+    max-width: none; /* Full width on smaller screens */
     font-size: 13px;
     padding: 6px 12px;
     height: 32px;
-    width: 100%;
   }
 
   .page-logo {
