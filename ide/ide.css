@@ -85,16 +85,16 @@ body {
   width: 120px; /* Match button width on desktop */
   justify-content: center;
   text-align: center;
-  border: 1px dashed red; /* Preserve debug border */
+  border: 1px solid var(--green); /* Preserve debug border */
 }
 
 .logo-button .logo-text {
   font-family: 'Audiowide', sans-serif !important;
   font-size: 16px !important; /* Adjusted to fit within button height */
-  color: var(--white) !important;
+  color: #ffd800 !important;
   text-align: center;
   line-height: 1;
-  border: 1px solid yellow; /* Preserve debug border */
+  /*border: 1px solid yellow; Preserve debug border*/
 }
 
 .logo-button .tagline {
@@ -105,7 +105,7 @@ body {
   text-align: center;
   line-height: 1.2;
   margin-top: 2px;
-  border: 1px solid blue; /* Preserve debug border */
+  /*border: 1px solid blue;*/ /* Preserve debug border */
 }
 
 .logo-button:hover {
@@ -566,7 +566,7 @@ iframe {
   }
 
   .level {
-    padding-bottom: 10px;
+    padding-bottom: 8px;
   }
 }
 
@@ -674,6 +674,6 @@ iframe {
   }
 
   .level {
-    padding-bottom: 10px;
+    padding-bottom: 8px;
   }
 }
