@@ -564,6 +564,10 @@ iframe {
     min-width: 90px;
     height: 36px;
   }
+
+  .level {
+    padding-bottom: 10px;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -667,5 +671,9 @@ iframe {
     padding: 6px 10px;
     min-width: 80px;
     height: 32px;
+  }
+
+  .level {
+    padding-bottom: 10px;
   }
 }
