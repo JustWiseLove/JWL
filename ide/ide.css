@@ -25,45 +25,6 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.logo-row {
-  display: flex !important;
-  flex-direction: row;
-  width: 100%;
-  background: linear-gradient(to bottom, #1e2022, var(--dark));
-  padding: 10px 20px; /* Adjusted padding for logo row */
-  box-sizing: border-box;
-  align-items: center; /* Vertically center logo content */
-}
-
-.page-logo {
-  display: flex !important;
-  flex-direction: column;
-  align-items: flex-start; /* Align logo to the left on desktop */
-  margin: 0; /* Remove margin to fit snugly */
-  border: 1px dashed red; /* Debug border to confirm visibility */
-  width: auto; /* Allow natural width */
-}
-
-.logo-text {
-  font-family: 'Audiowide', sans-serif !important;
-  font-size: 28px !important;
-  color: var(--white) !important;
-  text-align: left; /* Align text to the left on desktop */
-  line-height: 1;
-  border: 1px solid yellow; /* Debug border */
-}
-
-.tagline {
-  font-size: 10px !important;
-  color: #a0a0a0 !important;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: left; /* Align text to the left on desktop */
-  line-height: 1.2;
-  margin-top: 4px;
-  border: 1px solid blue; /* Debug border */
-}
-
 .columns {
   display: flex !important;
   flex-direction: column; /* Stack rows vertically for desktop */
@@ -102,6 +63,56 @@ body {
   height: 30px;
   line-height: 30px;
   text-align: center;
+}
+
+.logo-button {
+  background: #252729;
+  color: var(--white);
+  border: 1px solid var(--green);
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.1s;
+  font-size: 14px;
+  font-weight: 500;
+  touch-action: auto;
+  height: 36px;
+  line-height: 1;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  width: 120px; /* Match button width on desktop */
+  justify-content: center;
+  text-align: center;
+  border: 1px dashed red; /* Preserve debug border */
+}
+
+.logo-button .logo-text {
+  font-family: 'Audiowide', sans-serif !important;
+  font-size: 16px !important; /* Adjusted to fit within button height */
+  color: var(--white) !important;
+  text-align: center;
+  line-height: 1;
+  border: 1px solid yellow; /* Preserve debug border */
+}
+
+.logo-button .tagline {
+  font-size: 8px !important; /* Adjusted to fit within button height */
+  color: #a0a0a0 !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 1.2;
+  margin-top: 2px;
+  border: 1px solid blue; /* Preserve debug border */
+}
+
+.logo-button:hover {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green-hover);
+  transform: translateY(-1px);
 }
 
 .project-bar input,
@@ -428,10 +439,6 @@ iframe {
     flex: 0 0 auto;
   }
 
-  .logo-row {
-    display: none; /* Hide logo row on mobile/tablet, integrate into Project Bar */
-  }
-
   .columns {
     flex-direction: row; /* Side-by-side layout for tablet/mobile */
   }
@@ -440,8 +447,8 @@ iframe {
     flex: 1; /* Equal width for side-by-side */
     width: auto; /* Reset width */
     padding: 10px 8px;
-    flex-direction: row;
-    align-items: stretch;
+    flex-direction: column; /* Stack elements vertically within each column */
+    align-items: center;
     gap: 8px;
     min-height: 60px;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
@@ -450,33 +457,24 @@ iframe {
   .project-bar {
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: none; /* Remove bottom border for side-by-side */
-    display: flex !important;
-    flex-direction: column; /* Stack elements vertically within Project Bar */
-    align-items: center;
   }
 
   .file-bar {
     border-right: none;
     border-bottom: none;
-    display: flex !important;
-    flex-direction: column; /* Stack elements vertically within File Bar */
-    align-items: center;
   }
 
-  .project-bar .page-logo {
-    align-items: center; /* Center logo on mobile/tablet */
-    margin-bottom: 8px;
+  .project-bar .logo-button {
+    width: 100%;
+    max-width: none; /* Full width on smaller screens */
   }
 
-  .logo-text {
-    font-size: 24px !important;
-    text-align: center; /* Center align for mobile/tablet */
+  .logo-button .logo-text {
+    font-size: 20px !important; /* Adjusted for mobile/tablet */
   }
 
-  .tagline {
-    font-size: 8px !important;
-    letter-spacing: 0.8px;
-    text-align: center; /* Center align for mobile/tablet */
+  .logo-button .tagline {
+    font-size: 7px !important; /* Adjusted for mobile/tablet */
   }
 
   .project-bar input,
@@ -579,17 +577,16 @@ iframe {
     line-height: 30px;
   }
 
-  .project-bar .page-logo {
+  .project-bar .logo-button {
     margin-bottom: 6px;
   }
 
-  .logo-text {
-    font-size: 20px !important;
+  .logo-button .logo-text {
+    font-size: 18px !important; /* Adjusted for mobile */
   }
 
-  .tagline {
-    font-size: 7px !important;
-    letter-spacing: 0.6px;
+  .logo-button .tagline {
+    font-size: 6px !important; /* Adjusted for mobile */
   }
 
   .project-bar input,
