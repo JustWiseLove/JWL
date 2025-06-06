@@ -38,7 +38,7 @@ body {
 .page-logo {
   display: flex !important;
   flex-direction: column;
-  align-items: flex-start; /* Align logo to the left */
+  align-items: flex-start; /* Align logo to the left on desktop */
   margin: 0; /* Remove margin to fit snugly */
   border: 1px dashed red; /* Debug border to confirm visibility */
   width: auto; /* Allow natural width */
@@ -48,7 +48,7 @@ body {
   font-family: 'Audiowide', sans-serif !important;
   font-size: 28px !important;
   color: var(--white) !important;
-  text-align: left; /* Align text to the left */
+  text-align: left; /* Align text to the left on desktop */
   line-height: 1;
   border: 1px solid yellow; /* Debug border */
 }
@@ -58,7 +58,7 @@ body {
   color: #a0a0a0 !important;
   text-transform: uppercase;
   letter-spacing: 1px;
-  text-align: left; /* Align text to the left */
+  text-align: left; /* Align text to the left on desktop */
   line-height: 1.2;
   margin-top: 4px;
   border: 1px solid blue; /* Debug border */
@@ -429,7 +429,7 @@ iframe {
   }
 
   .logo-row {
-    display: none; /* Hide logo row on mobile/tablet, handled by side-by-side */
+    display: none; /* Hide logo row on mobile/tablet, integrate into Project Bar */
   }
 
   .columns {
@@ -450,11 +450,33 @@ iframe {
   .project-bar {
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: none; /* Remove bottom border for side-by-side */
+    display: flex !important;
+    flex-direction: column; /* Stack elements vertically within Project Bar */
+    align-items: center;
   }
 
   .file-bar {
     border-right: none;
     border-bottom: none;
+    display: flex !important;
+    flex-direction: column; /* Stack elements vertically within File Bar */
+    align-items: center;
+  }
+
+  .project-bar .page-logo {
+    align-items: center; /* Center logo on mobile/tablet */
+    margin-bottom: 8px;
+  }
+
+  .logo-text {
+    font-size: 24px !important;
+    text-align: center; /* Center align for mobile/tablet */
+  }
+
+  .tagline {
+    font-size: 8px !important;
+    letter-spacing: 0.8px;
+    text-align: center; /* Center align for mobile/tablet */
   }
 
   .project-bar input,
@@ -480,22 +502,6 @@ iframe {
     font-size: 13px;
     padding: 6px 12px;
     height: 32px;
-  }
-
-  .page-logo {
-    margin-bottom: 8px;
-    align-items: center; /* Center align for side-by-side layout */
-  }
-
-  .logo-text {
-    font-size: 24px !important;
-    text-align: center; /* Center align for side-by-side */
-  }
-
-  .tagline {
-    font-size: 8px !important;
-    letter-spacing: 0.8px;
-    text-align: center; /* Center align for side-by-side */
   }
 
   .column span {
@@ -573,7 +579,7 @@ iframe {
     line-height: 30px;
   }
 
-  .page-logo {
+  .project-bar .page-logo {
     margin-bottom: 6px;
   }
 
