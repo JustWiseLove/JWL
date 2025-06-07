@@ -1,37 +1,57 @@
 // Log initialization
 console.log('Initializing IDE...');
 
+// Default file contents
+const defaultFiles = {
+  'index.html': `<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Page</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <p id="demo">This is a demo.</p>
+    <script src="script.js"></script>
+  </body>
+</html>`,
+  'style.css': `body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+}
+
+p {
+  color: #666;
+}`,
+  'script.js': `document.getElementById("demo").innerHTML = "Hello from JavaScript!";
+console.log("Script loaded.");`
+};
+
 // Initialize CodeMirror editors
 const editors = {};
 try {
   document.querySelectorAll('.code-editor').forEach((textarea) => {
     console.log(`Initializing editor for ${textarea.id}`);
+    const mode = textarea.id.includes('html') ? 'htmlmixed' :
+                 textarea.id.includes('css') ? 'css' :
+                 textarea.id.includes('js') || textarea.id.includes('jsx') ? 'javascript' :
+                 textarea.id.includes('py') ? 'python' : 'text';
     const editor = CodeMirror.fromTextArea(textarea, {
       lineNumbers: true,
-      mode: 'htmlmixed',
+      mode: mode,
       theme: 'the-matrix',
       tabSize: 2,
       lineWrapping: true,
       extraKeys: {
         'Ctrl-S': saveToFile,
         'Cmd-S': saveToFile
-      },
-      fallback: 'default' // Fallback theme if the-matrix fails
+      }
     });
     editors[textarea.id] = editor;
-
-    // Set mode based on textarea id
-    if (textarea.id.includes('html')) {
-      editor.setOption('mode', 'htmlmixed');
-    } else if (textarea.id.includes('css')) {
-      editor.setOption('mode', 'css');
-    } else if (textarea.id.includes('js') || textarea.id.includes('jsx')) {
-      editor.setOption('mode', 'javascript');
-    } else if (textarea.id.includes('py')) {
-      editor.setOption('mode', 'python');
-    }
-
-    // Update preview on change
     editor.on('change', () => {
       console.log(`Editor ${textarea.id} changed, updating preview...`);
       updatePreview();
@@ -79,9 +99,9 @@ function switchTab(tabId) {
 // Update preview
 function updatePreview() {
   try {
-    const htmlContent = editors['editor-html-index']?.getValue() || '';
-    const cssContent = `<style>${editors['editor-css-style']?.getValue() || ''}</style>`;
-    const jsContent = `<script>${editors['editor-js-script']?.getValue() || ''}</script>`;
+    const htmlContent = editors['editor-html-index']?.getValue() || defaultFiles['index.html'];
+    const cssContent = `<style>${editors['editor-css-style']?.getValue() || defaultFiles['style.css']}</style>`;
+    const jsContent = `<script>${editors['editor-js-script']?.getValue() || defaultFiles['script.js']}</script>`;
     const fullContent = `${htmlContent.replace('</head>', `${cssContent}</head>`).replace('</body>', `${jsContent}</body>`)}`;
 
     const iframe = document.getElementById('preview');
@@ -93,6 +113,53 @@ function updatePreview() {
     console.log('Preview updated successfully');
   } catch (error) {
     console.error('Error updating preview:', error);
+  }
+}
+
+// Recreate default file
+function recreateDefaultFile(fileName, tabId, mode, content) {
+  try {
+    if (document.getElementById(tabId)) {
+      console.log(`File ${fileName} already exists, skipping recreation`);
+      return;
+    }
+    console.log(`Recreating default file ${fileName}`);
+    const tabButton = document.createElement('button');
+    tabButton.className = 'tab';
+    tabButton.setAttribute('data-file-id', tabId);
+    tabButton.setAttribute('onclick', `switchTab('${tabId}')`);
+    tabButton.textContent = fileName;
+    document.querySelector('.tabs').insertBefore(tabButton, document.querySelector('.tabs .tab:last-child'));
+
+    const editorArea = document.createElement('div');
+    editorArea.id = tabId;
+    editorArea.className = 'editor-area';
+    const textarea = document.createElement('textarea');
+    textarea.id = `editor-${tabId}`;
+    textarea.className = 'code-editor';
+    textarea.value = content;
+    editorArea.appendChild(textarea);
+    document.querySelector('.container').appendChild(editorArea);
+
+    const editor = CodeMirror.fromTextArea(textarea, {
+      lineNumbers: true,
+      mode: mode,
+      theme: 'the-matrix',
+      tabSize: 2,
+      lineWrapping: true,
+      extraKeys: {
+        'Ctrl-S': saveToFile,
+        'Cmd-S': saveToFile
+      }
+    });
+    editors[`editor-${tabId}`] = editor;
+    editor.on('change', () => {
+      console.log(`Editor ${tabId} changed, updating preview...`);
+      updatePreview();
+    });
+    console.log(`Default file ${fileName} recreated`);
+  } catch (error) {
+    console.error(`Error recreating default file ${fileName}:`, error);
   }
 }
 
@@ -148,7 +215,13 @@ function createNewFile() {
       return;
     }
 
-    console.log(`Creating tab for ${fileName} with tabId ${tabId}`);
+    // Determine CodeMirror mode
+    const mode = fileType === 'html' ? 'htmlmixed' :
+                 fileType === 'css' ? 'css' :
+                 fileType === 'js' || fileType === 'jsx' ? 'javascript' :
+                 fileType === 'py' ? 'python' : 'text';
+
+    console.log(`Creating tab for ${fileName} with tabId ${tabId} and mode ${mode}`);
     const tabButton = document.createElement('button');
     tabButton.className = 'tab';
     tabButton.setAttribute('data-file-id', tabId);
@@ -167,15 +240,14 @@ function createNewFile() {
 
     const editor = CodeMirror.fromTextArea(textarea, {
       lineNumbers: true,
-      mode: fileType === 'html' ? 'htmlmixed' : fileType,
+      mode: mode,
       theme: 'the-matrix',
       tabSize: 2,
       lineWrapping: true,
       extraKeys: {
         'Ctrl-S': saveToFile,
         'Cmd-S': saveToFile
-      },
-      fallback: 'default'
+      }
     });
     editors[`editor-${tabId}`] = editor;
     editor.on('change', () => {
@@ -185,7 +257,7 @@ function createNewFile() {
 
     closeNewFileModal();
     switchTab(tabId);
-    console.log(`New file ${fileName} created successfully`);
+    console.log(`New file ${fileName} created with mode ${mode}`);
   } catch (error) {
     console.error('Error creating new file:', error);
     alert('Failed to create new file. Check console for details.');
@@ -219,7 +291,13 @@ document.getElementById('fileInput').addEventListener('change', (event) => {
       return;
     }
 
-    console.log(`Importing file ${fileName}`);
+    // Determine CodeMirror mode for imported file
+    const mode = fileType === 'html' ? 'htmlmixed' :
+                 fileType === 'css' ? 'css' :
+                 fileType === 'js' || fileType === 'jsx' ? 'javascript' :
+                 fileType === 'py' ? 'python' : 'text';
+
+    console.log(`Importing file ${fileName} with mode ${mode}`);
     const reader = new FileReader();
     reader.onload = (e) => {
       const tabButton = document.createElement('button');
@@ -241,15 +319,14 @@ document.getElementById('fileInput').addEventListener('change', (event) => {
 
       const editor = CodeMirror.fromTextArea(textarea, {
         lineNumbers: true,
-        mode: fileType === 'html' ? 'htmlmixed' : fileType,
+        mode: mode,
         theme: 'the-matrix',
         tabSize: 2,
         lineWrapping: true,
         extraKeys: {
           'Ctrl-S': saveToFile,
           'Cmd-S': saveToFile
-        },
-        fallback: 'default'
+        }
       });
       editors[`editor-${tabId}`] = editor;
       editor.on('change', () => {
@@ -258,7 +335,7 @@ document.getElementById('fileInput').addEventListener('change', (event) => {
       });
 
       switchTab(tabId);
-      console.log(`File ${fileName} imported successfully`);
+      console.log(`File ${fileName} imported successfully with mode ${mode}`);
     };
     reader.readAsText(file);
   } catch (error) {
@@ -331,8 +408,8 @@ function downloadFile() {
 function showDeleteModal() {
   try {
     if (activeTab === 'browser') {
-      alert('Cannot delete this tab.');
-      console.warn(`Attempted to delete protected tab ${activeTab}`);
+      alert('Cannot delete the Browser tab.');
+      console.warn('Attempted to delete browser tab');
       return;
     }
 
@@ -361,12 +438,52 @@ function confirmDeleteFile() {
     if (!tabButton) throw new Error(`Tab button for ${activeTab} not found`);
     const editorArea = document.getElementById(activeTab);
     if (!editorArea) throw new Error(`Editor area for ${activeTab} not found`);
-    tabButton.remove();
-    editorArea.remove();
-    delete editors[`editor-${activeTab}`];
-    switchTab('html-index');
+    const fileName = tabButton.textContent;
+
+    // Switch to another tab before deletion to avoid active tab issues
+    if (tabButton.classList.contains('active')) {
+      const nextTab = document.querySelector('.tab[data-file-id]:not([data-file-id="' + activeTab + '"])')?.getAttribute('data-file-id') || 'browser';
+      switchTab(nextTab);
+      console.log(`Switched from ${activeTab} to ${nextTab} before deletion`);
+    }
+
+    // Force removal of tab and editor
+    console.log(`Attempting to remove tab and editor for ${fileName}`);
+    const tabParent = tabButton.parentElement;
+    const areaParent = editorArea.parentElement;
+    if (tabParent && areaParent) {
+      tabButton.remove();
+      editorArea.remove();
+      delete editors[`editor-${activeTab}`];
+      console.log(`Successfully removed ${fileName} from DOM and editors`);
+    } else {
+      throw new Error(`Parent elements for ${fileName} not found`);
+    }
+
+    // Delay recreation to ensure removal is complete
+    setTimeout(() => {
+      let shouldRecreate = false;
+      if (fileName === 'index.html') {
+        recreateDefaultFile('index.html', 'html-index', 'htmlmixed', defaultFiles['index.html']);
+        shouldRecreate = true;
+      } else if (fileName === 'style.css') {
+        recreateDefaultFile('style.css', 'css-style', 'css', defaultFiles['style.css']);
+        shouldRecreate = true;
+      } else if (fileName === 'script.js') {
+        recreateDefaultFile('script.js', 'js-script', 'javascript', defaultFiles['script.js']);
+        shouldRecreate = true;
+      }
+
+      if (shouldRecreate) {
+        console.log(`Recreation of ${fileName} triggered after delay`);
+      } else {
+        console.log(`${fileName} deleted permanently`);
+      }
+      updatePreview();
+      console.log(`Deletion and recreation process for ${fileName} completed`);
+    }, 100); // 100ms delay to ensure DOM updates
+
     closeDeleteModal();
-    console.log(`File ${activeTab} deleted successfully`);
   } catch (error) {
     console.error('Error deleting file:', error);
     alert('Failed to delete file. Check console for details.');
@@ -524,20 +641,23 @@ function openProject() {
     console.log(`Opening project ${projectName}`);
     document.querySelectorAll('.tab[data-file-id]').forEach(tab => {
       const tabId = tab.getAttribute('data-file-id');
-      if (!['html-index', 'css-style', 'js-script'].includes(tabId)) {
-        tab.remove();
-        document.getElementById(tabId).remove();
-        delete editors[`editor-${tabId}`];
-      }
+      tab.remove();
+      document.getElementById(tabId).remove();
+      delete editors[`editor-${tabId}`];
     });
 
-    editors['editor-html-index'].setValue('<!DOCTYPE html>\n<html>\n  <head>\n    <title>My Page</title>\n    <link rel="stylesheet" href="style.css">\n  </head>\n  <body>\n    <h1>Hello, World!</h1>\n    <p id="demo">This is a demo.</p>\n    <script src="script.js"></script>\n  </body>\n</html>');
-    editors['editor-css-style'].setValue('body {\n  background-color: #f0f0f0;\n  font-family: Arial, sans-serif;\n}\n\nh1 {\n  color: #333;\n}\n\np {\n  color: #666;\n}');
-    editors['editor-js-script'].setValue('document.getElementById("demo").innerHTML = "Hello from JavaScript!";\nconsole.log("Script loaded.");');
+    // Recreate default files
+    recreateDefaultFile('index.html', 'html-index', 'htmlmixed', defaultFiles['index.html']);
+    recreateDefaultFile('style.css', 'css-style', 'css', defaultFiles['style.css']);
+    recreateDefaultFile('script.js', 'js-script', 'javascript', defaultFiles['script.js']);
 
     Object.entries(projectData.files).forEach(([fileName, content]) => {
       const fileType = fileName.split('.').pop().toLowerCase();
       const tabId = `${fileType}-${fileName.replace(/\./g, '-')}`;
+      const mode = fileType === 'html' ? 'htmlmixed' :
+                   fileType === 'css' ? 'css' :
+                   fileType === 'js' || fileType === 'jsx' ? 'javascript' :
+                   fileType === 'py' ? 'python' : 'text';
 
       if (['html-index', 'css-style', 'js-script'].includes(tabId)) {
         editors[`editor-${tabId}`].setValue(content);
@@ -562,15 +682,14 @@ function openProject() {
 
         const editor = CodeMirror.fromTextArea(textarea, {
           lineNumbers: true,
-          mode: fileType === 'html' ? 'htmlmixed' : fileType,
+          mode: mode,
           theme: 'the-matrix',
           tabSize: 2,
           lineWrapping: true,
           extraKeys: {
             'Ctrl-S': saveToFile,
             'Cmd-S': saveToFile
-          },
-          fallback: 'default'
+          }
         });
         editors[`editor-${tabId}`] = editor;
         editor.on('change', () => {
@@ -630,10 +749,18 @@ function confirmDeleteProject() {
     document.getElementById('deleteProjectBtn').disabled = true;
     document.getElementById('exportProjectBtn').disabled = true;
 
+    document.querySelectorAll('.tab[data-file-id]').forEach(tab => {
+      const tabId = tab.getAttribute('data-file-id');
+      tab.remove();
+      document.getElementById(tabId).remove();
+      delete editors[`editor-${tabId}`];
+    });
+
+    recreateDefaultFile('index.html', 'html-index', 'htmlmixed', defaultFiles['index.html']);
+    recreateDefaultFile('style.css', 'css-style', 'css', defaultFiles['style.css']);
+    recreateDefaultFile('script.js', 'js-script', 'javascript', defaultFiles['script.js']);
+
     switchTab('html-index');
-    editors['editor-html-index'].setValue('<!DOCTYPE html>\n<html>\n  <head>\n    <title>My Page</title>\n    <link rel="stylesheet" href="style.css">\n  </head>\n  <body>\n    <h1>Hello, World!</h1>\n    <p id="demo">This is a demo.</p>\n    <script src="script.js"></script>\n  </body>\n</html>');
-    editors['editor-css-style'].setValue('body {\n  background-color: #f0f0f0;\n  font-family: Arial, sans-serif;\n}\n\nh1 {\n  color: #333;\n}\n\np {\n  color: #666;\n}');
-    editors['editor-js-script'].setValue('document.getElementById("demo").innerHTML = "Hello from JavaScript!";\nconsole.log("Script loaded.");');
     updatePreview();
     closeDeleteProjectModal();
     console.log(`Project ${projectName} deleted successfully`);
