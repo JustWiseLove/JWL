@@ -330,7 +330,7 @@ function downloadFile() {
 
 function showDeleteModal() {
   try {
-    if (activeTab === 'browser' || activeTab === 'html-index' || activeTab === 'css-style' || activeTab === 'js-script') {
+    if (activeTab === 'browser') {
       alert('Cannot delete this tab.');
       console.warn(`Attempted to delete protected tab ${activeTab}`);
       return;
