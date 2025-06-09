@@ -37,9 +37,10 @@ header {
 }
 
 .hamburger {
-    font-size: 2.5rem; /* Increased from 1.5rem to make icons much larger */
+    font-size: 2.5rem;
     cursor: pointer;
-    padding: 0 0.5rem; /* Adjusted padding to reduce horizontal space */
+    padding: 0 0.5rem;
+    color: var(--Dark);
 }
 
 .hamburger-menu {
@@ -72,11 +73,12 @@ header h1 {
     font-size: 4rem;
     margin: 0;
     cursor: pointer;
+    color: #000000;
 }
 
 .main-content {
     width: 100%;
-    padding: 0.5rem; /* Reduced from 1rem */
+    padding: 0.5rem 0.5rem 0.2rem;
     flex: 1;
     background-color: var(--Green);
 }
@@ -85,12 +87,12 @@ header h1 {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 0.2rem;
 }
 
 .search-section {
     margin: 0 auto;
-    margin-top: 0.5rem; /* Reduced from 1rem */
+    margin-top: 0.5rem;
     text-align: center;
     padding: 1rem;
     background-color: var(--Dark);
@@ -100,7 +102,7 @@ header h1 {
 }
 
 .search-content {
-    display: block; /* Always visible */
+    display: block;
     font-size: 1rem;
     line-height: 1.5;
 }
@@ -108,45 +110,53 @@ header h1 {
 #search {
     width: 100%;
     max-width: 600px;
-    padding: 0.5rem;
+    padding: 0; /* Removed all padding */
     font-size: 1rem;
-    border: 1px solid var(--Dark);
+    border: none;
     border-radius: 4px;
-    background-color: #ffffff;
-    color: var(--Dark);
+    background-color: var(--Dark);
+    color: #ffffff;
     text-align: center;
+    font-family: 'Audiowide', sans-serif;
+    cursor: pointer;
 }
 
 #search::placeholder {
-    color: var(--Dark);
+    color: #ffffff;
     text-align: center;
+    font-family: 'Audiowide', sans-serif;
+}
+
+#search:focus {
+    outline: 2px solid var(--Gold);
+    outline-offset: 2px;
 }
 
 .tabs {
     display: flex;
-    justify-content: space-between; /* Changed from center to space-between for even distribution */
+    justify-content: space-between;
     gap: 0.5rem;
     margin-top: 1rem;
-    max-width: 600px; /* Match the search-section width */
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .tab-button, a.tab-button {
-    flex: 1; /* Each button takes equal space within the 600px width */
-    padding: 0.75rem 0.5rem; /* Adjusted padding for larger appearance */
+    flex: 1;
+    padding: 0.75rem 0.5rem;
     background-color: var(--Dark);
     color: #ffffff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1.4rem; /* Increased from 1.2rem for larger text */
+    font-size: 1.4rem;
     font-family: 'Audiowide', sans-serif;
     text-transform: uppercase;
     transition: background-color 0.3s;
-    text-align: center; /* Ensure text is centered */
-    text-decoration: none; /* Remove default underline for links */
-    display: inline-block; /* Ensure <a> behaves like a button */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .tab-button:hover, a.tab-button:hover {
@@ -231,10 +241,11 @@ header h1 {
 
 footer {
     background-color: var(--Green);
-    color: #ffffff;
+    color: #000000;
     padding: 1rem;
     text-align: center;
     font-size: 1rem;
+    font-family: 'Audiowide', sans-serif; /* Already set, ensured consistency */
 }
 
 @media (max-width: 768px) {
@@ -243,12 +254,12 @@ footer {
     }
 
     .tab-button, a.tab-button {
-        font-size: 1.2rem; /* Adjusted for larger buttons on smaller screens */
+        font-size: 1.2rem;
         padding: 0.6rem 0.4rem;
     }
 
     .hamburger {
-        font-size: 2rem; /* Scaled down from 2.5rem but still larger than original 1.2rem */
+        font-size: 2rem;
     }
 
     header h1 {
@@ -270,15 +281,15 @@ footer {
     }
 
     .main-content {
-        padding: 0.3rem; /* Further reduced for small screens */
+        padding: 0.3rem 0.3rem 0.1rem;
     }
 
     .tab-button, a.tab-button {
-        font-size: 1rem; /* Adjusted for larger buttons on small screens */
+        font-size: 1rem;
         padding: 0.5rem 0.3rem;
     }
 
     .hamburger {
-        font-size: 1.8rem; /* Scaled down from 2.5rem but still larger than original 1rem */
+        font-size: 1.8rem;
     }
 }
