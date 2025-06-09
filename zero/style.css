@@ -1,3 +1,8 @@
+:root {
+    --Dark: #004800;
+    --Green: #008000;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,7 +18,7 @@ body {
 }
 
 header {
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -81,12 +86,12 @@ header {
 
 .nav-menu-left {
     left: 20px;
-    background: linear-gradient(90deg, #2a6626, #6b9e31);
+    background: linear-gradient(90deg, var(--Dark), var(--Green));
 }
 
 .nav-menu-right {
     right: 20px;
-    background: linear-gradient(90deg, #6b9e31, #2a6626);
+    background: linear-gradient(90deg, var(--Green), var(--Dark));
     text-align: right;
 }
 
@@ -140,7 +145,7 @@ main {
 }
 
 .featured-article {
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     padding: 20px 10px 0px 10px;
     margin: 10px 0 10px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -220,7 +225,7 @@ main {
 }
 
 .read-more:hover {
-    background: linear-gradient(90deg, #2a6626, #6b9e31);
+    background: linear-gradient(90deg, var(--Dark), var(--Green));
     transform: translateY(-2px);
 }
 
@@ -291,8 +296,8 @@ main {
 }
 
 .category {
-    background-color: #2a6626;
-    background-image: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    background-color: var(--Dark);
+    background-image: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -343,7 +348,7 @@ main {
     width: 100%;
     padding: 15px;
     font-family: 'Audiowide', Arial, sans-serif;
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     border: none;
     color: #000000;
     text-align: center;
@@ -353,7 +358,7 @@ main {
 }
 
 .item-button:hover {
-    background: linear-gradient(90deg, #6b9e31);
+    background: linear-gradient(90deg, var(--Green));
 }
 
 .item-content {
@@ -412,7 +417,7 @@ main {
 }
 
 .scripture {
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     padding: 15px;
     margin: 10px auto;
     border-radius: 8px;
@@ -438,7 +443,7 @@ main {
 }
 
 footer {
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     text-align: center;
     padding: 5px;
     color: #000000;
@@ -477,7 +482,7 @@ footer p {
 .carousel .category {
     flex: 0 0 100%;
     max-width: 100%;
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -528,7 +533,7 @@ footer p {
 .carousel-dot {
     width: 10px;
     height: 10px;
-    background: #6b9e31;
+    background: var(--Green);
     border-radius: 50%;
     margin: 0 5px;
     cursor: pointer;
@@ -556,7 +561,7 @@ footer p {
 
 .timeline-section {
     padding: 20px 20px 0px 20px;
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -565,7 +570,7 @@ footer p {
 
 .timeline-line {
     height: 2px;
-    background: #6b9e31;
+    background: var(--Green);
     position: relative;
     margin: 20px auto;
     max-width: 800px;
@@ -575,7 +580,7 @@ footer p {
     width: 12px;
     height: 12px;
     background: #ffffff;
-    border: 2px solid #6b9e31;
+    border: 2px solid var(--Green);
     border-radius: 50%;
     position: absolute;
     top: -5px;
@@ -584,9 +589,9 @@ footer p {
 }
 
 .timeline-dot.active {
-    background: #6b9e31;
+    background: var(--Green);
     transform: scale(1.2);
-    box-shadow: 0 0 10px #6b9e31;
+    box-shadow: 0 0 10px var(--Green);
 }
 
 .timeline-description {
@@ -595,7 +600,7 @@ footer p {
     max-width: 800px;
     margin: 20px auto 10px auto;
     padding: 15px;
-    background: linear-gradient(90deg, #2a6626, #6b9e31, #2a6626);
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     border-radius: 8px;
     font-style: italic;
     color: #000000;
@@ -654,8 +659,8 @@ footer p {
 }
 
 .paradise-tab.active, .spotlight-tab.active {
-    background: #6b9e31;
-    box-shadow: 0 0 10px #6b9e31;
+    background: var(--Green);
+    box-shadow: 0 0 10px var(--Green);
 }
 
 .spotlight-tab-content {
