@@ -132,7 +132,7 @@ header h1 {
     margin-right: auto;
 }
 
-.tab-button {
+.tab-button, a.tab-button {
     flex: 1; /* Each button takes equal space within the 600px width */
     padding: 0.75rem 0.5rem; /* Adjusted padding for larger appearance */
     background-color: var(--Dark);
@@ -145,20 +145,22 @@ header h1 {
     text-transform: uppercase;
     transition: background-color 0.3s;
     text-align: center; /* Ensure text is centered */
+    text-decoration: none; /* Remove default underline for links */
+    display: inline-block; /* Ensure <a> behaves like a button */
 }
 
-.tab-button:hover {
+.tab-button:hover, a.tab-button:hover {
     background-color: var(--Gold);
     color: var(--Dark);
 }
 
-.tab-button.active {
+.tab-button.active, a.tab-button.active {
     background-color: var(--Gold);
     color: var(--Dark);
     border-radius: 4px 4px 0 0;
 }
 
-.tab-button.match-highlight {
+.tab-button.match-highlight, a.tab-button.match-highlight {
     background-color: var(--Gold);
     color: var(--Dark);
 }
@@ -240,7 +242,7 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .tab-button {
+    .tab-button, a.tab-button {
         font-size: 1.2rem; /* Adjusted for larger buttons on smaller screens */
         padding: 0.6rem 0.4rem;
     }
@@ -271,7 +273,7 @@ footer {
         padding: 0.3rem; /* Further reduced for small screens */
     }
 
-    .tab-button {
+    .tab-button, a.tab-button {
         font-size: 1rem; /* Adjusted for larger buttons on small screens */
         padding: 0.5rem 0.3rem;
     }
