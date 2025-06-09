@@ -1,8 +1,18 @@
+// main.js
+
 // Global variables and initialization
 // Sorted categories for display
-const sortedLaunch = launch.slice().sort((a, b) => a.T.localeCompare(b.T));
-const sortedTopics = topics.slice().sort((a, b) => a.T.localeCompare(b.T));
-const sortedPeople = people.slice().sort((a, b) => a.T.localeCompare(b.T));
+let sortedLaunch = [];
+let sortedTopics = [];
+let sortedPeople = [];
+
+try {
+    sortedLaunch = launch.slice().sort((a, b) => a.T.localeCompare(b.T));
+    sortedTopics = topics.slice().sort((a, b) => a.T.localeCompare(b.T));
+    sortedPeople = people.slice().sort((a, b) => a.T.localeCompare(b.T));
+} catch (e) {
+    console.error('Error initializing sorted arrays:', e);
+}
 
 // Category mapping for easy access
 const categories = {
@@ -18,7 +28,9 @@ let debounceTimeout;
 // Toggles visibility of the specified hamburger menu
 function toggleMenu(menuId) {
     const menu = document.getElementById(menuId);
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    if (menu) {
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
 }
 
 // Closes hamburger menus when clicking outside
@@ -46,13 +58,15 @@ function resetView() {
     console.log('Resetting view');
     const searchResults = document.getElementById('search-results');
     if (searchResults) searchResults.remove();
-    const searchTerm = document.getElementById('search').value.toLowerCase();
+    const searchTerm = document.getElementById('search')?.value.toLowerCase() || '';
 
     // Populate each category with items
     Object.keys(categories).forEach(category => {
         const itemList = document.getElementById(category);
+        if (!itemList) return;
         itemList.innerHTML = ''; // Clear existing items
         categories[category].forEach(item => {
+            if (!item || !item.T) return; // Skip invalid items
             const itemDiv = document.createElement('div');
             itemDiv.className = 'item';
             const itemButton = document.createElement('button');
@@ -62,12 +76,14 @@ function resetView() {
                 item.T;
             const content = document.createElement('div');
             content.className = 'content';
-            const scriptures = searchTerm ? 
-                item.S.map(scripture => scripture.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>')) : 
-                item.S;
-            const description = searchTerm ? 
+            const scriptures = (item.S || []).map(scripture => 
+                searchTerm ? 
+                    scripture.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
+                    scripture
+            );
+            const description = searchTerm && item.D ? 
                 item.D.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
-                item.D;
+                item.D || '';
             content.innerHTML = `
                 <div class="scripture-section"><ul>${scriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
                 <div class="description-section">${description}</div>
@@ -97,13 +113,14 @@ function resetView() {
 // Switches to the specified tab and handles search state
 function showTab(category) {
     console.log(`Switching to tab: ${category}`);
-    const searchTerm = document.getElementById('search').value.toLowerCase();
+    const searchTerm = document.getElementById('search')?.value.toLowerCase() || '';
     const searchResults = document.getElementById('search-results');
 
     // If there's a search term and results, update tab buttons only
     if (searchTerm && searchResults) {
         document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
-        document.querySelector(`[onclick="showTab('${category}')"]`).classList.add('active');
+        const tabButton = document.querySelector(`[onclick="showTab('${category}')"]`);
+        if (tabButton) tabButton.classList.add('active');
         highlightMatchingTabs(searchTerm);
         return;
     }
@@ -114,9 +131,11 @@ function showTab(category) {
     });
     if (searchResults) searchResults.remove();
     document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
-    document.getElementById(category).style.display = 'grid';
+    const selectedTab = document.getElementById(category);
+    if (selectedTab) selectedTab.style.display = 'grid';
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
-    document.querySelector(`[onclick="showTab('${category}')"]`).classList.add('active');
+    const tabButton = document.querySelector(`[onclick="showTab('${category}')"]`);
+    if (tabButton) tabButton.classList.add('active');
 
     // Highlight tabs with matching content if search term exists
     if (searchTerm) {
@@ -130,9 +149,10 @@ function highlightMatchingTabs(searchTerm) {
     Object.keys(categories).forEach(cat => {
         const items = categories[cat];
         items.forEach(item => {
+            if (!item || !item.T) return;
             const titleMatch = item.T.toLowerCase().includes(searchTerm);
-            const scripturesText = item.S.join(' ').toLowerCase();
-            const descriptionText = item.D.toLowerCase();
+            const scripturesText = (item.S || []).join(' ').toLowerCase();
+            const descriptionText = (item.D || '').toLowerCase();
             const contentMatch = scripturesText.includes(searchTerm) || descriptionText.includes(searchTerm);
             if (titleMatch || contentMatch) {
                 categoriesWithMatches.add(cat);
@@ -156,12 +176,12 @@ function createSearchResults(input) {
     if (existingResults) existingResults.remove();
     
     // Find the Bear Book image and insert the search results before it
-    const bearImage = main.querySelector('img[src="BEAR.PNG"]');
-    if (bearImage) {
+    const bearImage = main?.querySelector('img[src="BEAR.PNG"]');
+    if (bearImage && main) {
         main.insertBefore(allList, bearImage);
     } else {
-        // Fallback: append to main content if image isn't found
-        main.appendChild(allList);
+        // Fallback: append to main content if image or main isn't found
+        main?.appendChild(allList);
     }
     return allList;
 }
@@ -173,33 +193,47 @@ function filterAndSortItems(input) {
     Object.keys(categories).forEach(category => {
         const items = categories[category];
         items.forEach(item => {
+            if (!item || !item.T) return;
             const titleMatch = item.T.toLowerCase().includes(input);
-            const scripturesText = item.S.join(' ').toLowerCase();
-            const descriptionText = item.D.toLowerCase();
+            const scripturesText = (item.S || []).join(' ').toLowerCase();
+            const descriptionText = (item.D || '').toLowerCase();
             const contentMatch = scripturesText.includes(input) || descriptionText.includes(input);
 
             if (titleMatch || contentMatch) {
                 categoriesWithMatches.add(category);
-                matchingItems.push({ item, category });
+                // Determine matching content for partial display
+                let matchingScriptures = [];
+                let matchingDescription = '';
+                if (!titleMatch && contentMatch) {
+                    // Find matching scriptures
+                    matchingScriptures = (item.S || []).filter(s => s.toLowerCase().includes(input));
+                    // Split description into paragraphs and find matches
+                    const paragraphs = (item.D || '').split('\n').filter(p => p.trim() !== '');
+                    matchingDescription = paragraphs.filter(p => p.toLowerCase().includes(input)).join('\n');
+                }
+                matchingItems.push({ item, category, titleMatch, matchingScriptures, matchingDescription });
             }
         });
         const itemList = document.getElementById(category);
-        itemList.querySelectorAll('.item').forEach(itemDiv => {
-            const itemTitle = itemDiv.querySelector('.item-button').textContent;
-            const item = categories[category].find(i => i.T === itemTitle);
-            const titleMatch = item.T.toLowerCase().includes(input);
-            const scripturesText = item.S.join(' ').toLowerCase();
-            const descriptionText = item.D.toLowerCase();
-            itemDiv.style.display = (titleMatch || scripturesText.includes(input) || descriptionText.includes(input)) ? '' : 'none';
-        });
+        if (itemList) {
+            itemList.querySelectorAll('.item').forEach(itemDiv => {
+                const itemTitle = itemDiv.querySelector('.item-button')?.textContent;
+                const item = categories[category].find(i => i.T === itemTitle);
+                if (!item) return;
+                const titleMatch = item.T.toLowerCase().includes(input);
+                const scripturesText = (item.S || []).join(' ').toLowerCase();
+                const descriptionText = (item.D || '').toLowerCase();
+                itemDiv.style.display = (titleMatch || scripturesText.includes(input) || descriptionText.includes(input)) ? '' : 'none';
+            });
+        }
     });
 
     // Sort items: exact matches first, then alphabetically
     matchingItems.sort((a, b) => {
-        const aText = `${a.item.T} ${a.item.S.join(' ')} ${a.item.D}`.toLowerCase();
-        const bText = `${b.item.T} ${b.item.S.join(' ')} ${b.item.D}`.toLowerCase();
-        const aIsExact = aText === input || a.item.T.toLowerCase() === input || a.item.S.some(s => s.toLowerCase() === input) || a.item.D.toLowerCase() === input;
-        const bIsExact = bText === input || b.item.T.toLowerCase() === input || b.item.S.some(s => s.toLowerCase() === input) || a.item.D.toLowerCase() === input;
+        const aText = `${a.item.T} ${(a.item.S || []).join(' ')} ${a.item.D || ''}`.toLowerCase();
+        const bText = `${b.item.T} ${(b.item.S || []).join(' ')} ${b.item.D || ''}`.toLowerCase();
+        const aIsExact = aText === input || a.item.T.toLowerCase() === input || (a.item.S || []).some(s => s.toLowerCase() === input) || (a.item.D || '').toLowerCase() === input;
+        const bIsExact = bText === input || b.item.T.toLowerCase() === input || (b.item.S || []).some(s => s.toLowerCase() === input) || (b.item.D || '').toLowerCase() === input;
         if (aIsExact && !bIsExact) return -1;
         if (!aIsExact && bIsExact) return 1;
         return a.item.T.localeCompare(b.item.T);
@@ -210,7 +244,9 @@ function filterAndSortItems(input) {
 
 // Populates search results with matching items
 function populateSearchResults(allList, matchingItems, input) {
-    matchingItems.forEach(({ item, category }) => {
+    if (!allList) return;
+    matchingItems.forEach(({ item, category, titleMatch, matchingScriptures, matchingDescription }) => {
+        if (!item || !item.T) return;
         const itemDiv = document.createElement('div');
         itemDiv.className = 'item';
         const itemButton = document.createElement('button');
@@ -218,14 +254,32 @@ function populateSearchResults(allList, matchingItems, input) {
         itemButton.innerHTML = item.T.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
         const content = document.createElement('div');
         content.className = 'content';
-        const highlightedScriptures = item.S.map(scripture =>
-            scripture.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
-        );
-        const highlightedDescription = item.D.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
-        content.innerHTML = `
-            <div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
-            <div class="description-section">${highlightedDescription}</div>
-        `;
+
+        if (titleMatch) {
+            // Display full content if search term is in the title
+            const highlightedScriptures = (item.S || []).map(scripture =>
+                scripture.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
+            );
+            const highlightedDescription = (item.D || '').replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
+            content.innerHTML = `
+                <div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
+                <div class="description-section">${highlightedDescription}</div>
+            `;
+        } else {
+            // Display only matching scriptures and description paragraphs
+            const highlightedScriptures = matchingScriptures.map(scripture =>
+                scripture.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
+            );
+            const paragraphs = matchingDescription.split('\n').filter(p => p.trim() !== '');
+            const highlightedDescription = paragraphs.map(p =>
+                p.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
+            ).map(p => `<p>${p}</p>`).join('');
+            content.innerHTML = `
+                ${highlightedScriptures.length ? `<div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>` : ''}
+                ${highlightedDescription ? `<div class="description-section">${highlightedDescription}</div>` : ''}
+            `;
+        }
+
         content.style.display = 'block'; // Keep content open by default for search results
         itemDiv.appendChild(itemButton);
         allList.appendChild(itemDiv);
@@ -247,7 +301,7 @@ function populateSearchResults(allList, matchingItems, input) {
 function searchItems() {
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
-        const input = document.getElementById('search').value.toLowerCase();
+        const input = document.getElementById('search')?.value.toLowerCase() || '';
         console.log(`Searching for: ${input}`);
         if (!input) {
             resetView();
@@ -267,15 +321,15 @@ function searchItems() {
 
         // Show search results and hide other tabs
         document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
-        allList.style.display = 'grid';
+        if (allList) allList.style.display = 'grid';
         if (!matchingItems.length) resetView();
     }, 300);
 }
 
 // Event Listeners
 // Handle search input changes
-document.getElementById('search').addEventListener('input', () => {
-    const input = document.getElementById('search').value;
+document.getElementById('search')?.addEventListener('input', () => {
+    const input = document.getElementById('search')?.value || '';
     console.log(`Search input changed: ${input}`);
     if (!input) {
         const searchResults = document.getElementById('search-results');
