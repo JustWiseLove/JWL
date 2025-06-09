@@ -14,29 +14,30 @@
             <h1 onclick="goToHome()">JWL</h1>
         </div>
         <div class="hamburger" onclick="toggleMenu('right-menu')">☰</div>
-        <div id="left-menu" class="hamburger-menu">
+        <div id="left-menu" class="hamburger-menu" style="left: 1rem; top: 1rem;">
             <a href="family.html">FAMILY</a>
             <a href="news.html">NEWS</a>
         </div>
-        <div id="right-menu" class="hamburger-menu">
+        <div id="right-menu" class="hamburger-menu" style="right: 1rem; top: 1rem;">
             <a href="school.html">SCHOOL</a>
             <a href="note.html">NOTE</a>
         </div>
     </header>
-    <main>
+    <section class="main-content">
         <div class="search-section">
-            <input type="text" id="search" placeholder="SEARCH" onkeyup="searchItems()">
+            <div id="search-content" class="search-content expanded">
+                <input type="text" id="search" placeholder="SEARCH" onkeyup="searchItems()">
+            </div>
         </div>
         <div class="tabs">
             <a class="tab-button" href="/zero/index.html">LAUNCH</a>
             <button class="tab-button" onclick="showTab('topics')">TOPICS</button>
             <button class="tab-button" onclick="showTab('people')">PEOPLE</button>
         </div>
-        <div class="progress-line"></div>
         <div class="list" id="topics" style="display: none;"></div>
         <div class="list" id="people" style="display: none;"></div>
         <img src="BEAR.PNG" alt="Bear Book" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-    </main>
+    </section>
     <footer>
         <p>© Just Wise Love</p>
     </footer>
