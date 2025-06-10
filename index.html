@@ -5,30 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JWL</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="hamburger" onclick="toggleMenu('left-menu')">☰</div>
-        <div class="header-content">
-            <h1 onclick="goToHome()">JWL</h1>
+        <nav class="nav-left">
+            <button class="hamburger-left" aria-expanded="false" aria-controls="nav-menu-left" aria-label="Toggle left navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-menu-left" class="nav-menu-left">
+                <li><a href="family.html" aria-label="Family page">FAMILY</a></li>
+                <li><a href="news.html" aria-label="News page">NEWS</a></li>
+            </ul>
+        </nav>
+        <div class="logo">
+            <a href="index.html" aria-label="Just Wise Love home">
+                <h1>JWL</h1>
+            </a>
         </div>
-        <div class="hamburger" onclick="toggleMenu('right-menu')">☰</div>
-        <div id="left-menu" class="hamburger-menu" style="left: 1rem; top: 1rem;">
-            <a href="family.html">FAMILY</a>
-            <a href="news.html">NEWS</a>
-        </div>
-        <div id="right-menu" class="hamburger-menu" style="right: 1rem; top: 1rem;">
-            <a href="school.html">SCHOOL</a>
-            <a href="note.html">NOTE</a>
-        </div>
+        <nav class="nav-right">
+            <button class="hamburger-right" aria-expanded="false" aria-controls="nav-menu-right" aria-label="Toggle right navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-menu-right" class="nav-menu-right">
+                <li><a href="school.html" aria-label="School page">SCHOOL</a></li>
+                <li><a href="note.html" aria-label="Note page">NOTE</a></li>
+            </ul>
+        </nav>
     </header>
-    <section class="main-content">
-        <div class="search-section">
+    <main class="main-content">
+        <section class="search-section">
             <div id="search-content" class="search-content expanded">
                 <input type="text" id="search" placeholder="SEARCH" onkeyup="searchItems()">
             </div>
-        </div>
+        </section>
         <div class="tabs">
             <a class="tab-button" href="/zero/index.html">LAUNCH</a>
             <button class="tab-button" onclick="showTab('topics')">TOPICS</button>
@@ -36,10 +51,10 @@
         </div>
         <div class="list" id="topics" style="display: none;"></div>
         <div class="list" id="people" style="display: none;"></div>
-        <img src="BEAR.PNG" alt="Bear Book" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-    </section>
+        <img src="BEAR.PNG" alt="Bear Book" class="bear-image">
+    </main>
     <footer>
-        <p>© Just Wise Love</p>
+        <p>© 2025 Just Wise Love</p>
     </footer>
     <script src="topics.js"></script>
     <script src="people.js"></script>
