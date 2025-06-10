@@ -168,7 +168,7 @@ main.main-content {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s, color 0.3s;
-    text-decoration: none; /* Remove underline from all tab-buttons */
+    text-decoration: none;
 }
 
 .tab-button:hover {
@@ -189,22 +189,20 @@ main.main-content {
 
 /* Specific fix for the LAUNCH button (which is an <a> tag) */
 .tab-button[href] {
-    border-bottom: none; /* Remove any bottom border */
-    text-decoration: none; /* Ensure no underline */
+    border-bottom: none;
+    text-decoration: none;
 }
 
 .list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+    display: block; /* Changed from grid to block for vertical stacking */
+    max-width: 600px; /* Match search box width */
+    margin: 0 auto; /* Center the list */
 }
 
-@media (min-width: 768px) {
-    .list {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.list#search-results {
+    display: grid; /* Keep search results as grid for individual items */
+    grid-template-columns: 1fr; /* Single column for each item */
+    gap: 20px;
 }
 
 .item {
@@ -213,6 +211,10 @@ main.main-content {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
+    width: 100%; /* Ensure full width within the list */
+    display: flex;
+    flex-direction: column; /* Stack title and content vertically */
+    align-items: center; /* Center the content horizontally */
 }
 
 .item:hover {
@@ -221,6 +223,7 @@ main.main-content {
 
 .item-button {
     width: 100%;
+    max-width: 600px; /* Match search box width */
     padding: 10px;
     background: #000000;
     color: #ffffff;
@@ -230,6 +233,7 @@ main.main-content {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s;
+    text-align: center; /* Center the title */
 }
 
 .item-button:hover {
@@ -244,6 +248,9 @@ main.main-content {
     margin-top: 10px;
     border-radius: 8px;
     color: #ffffff;
+    width: 100%;
+    max-width: 600px; /* Match search box width */
+    text-align: left; /* Keep article text left-aligned for readability */
 }
 
 .content.active {
