@@ -136,7 +136,7 @@ main.main-content {
 
 .search-content input {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px; /* Increased from 600px to 800px */
     padding: 10px;
     font-size: 16px;
     border: 2px solid #000000;
@@ -195,7 +195,7 @@ main.main-content {
 
 .list {
     display: block; /* Changed from grid to block for vertical stacking */
-    max-width: 600px; /* Match search box width */
+    max-width: 800px; /* Increased from 600px to 800px */
     margin: 0 auto; /* Center the list */
 }
 
@@ -223,7 +223,7 @@ main.main-content {
 
 .item-button {
     width: 100%;
-    max-width: 600px; /* Match search box width */
+    max-width: 800px; /* Increased from 600px to 800px */
     padding: 10px;
     background: #000000;
     color: #ffffff;
@@ -249,7 +249,7 @@ main.main-content {
     border-radius: 8px;
     color: #ffffff;
     width: 100%;
-    max-width: 600px; /* Match search box width */
+    max-width: 800px; /* Increased from 600px to 800px */
     text-align: left; /* Keep article text left-aligned for readability */
 }
 
