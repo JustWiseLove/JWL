@@ -1,5 +1,33 @@
 const people = [
   {
+    "T": "Philologus",
+    "S": [
+        "Romans 16:15 - <em>Greet Philologus and Julia, Nereus and his sister, and Olympas, and all the holy ones with them.</em>"
+    ],
+    "D": "Philologus, a faithful Christian in Rome, was commended by Paul for his service in the congregation. His example teaches us to serve Jehovah diligently, inspiring us to contribute to the unity and strength of His people."
+},
+{
+    "T": "Julia",
+    "S": [
+        "Romans 16:15 - <em>Greet Philologus and Julia, Nereus and his sister, and Olympas, and all the holy ones with them.</em>"
+    ],
+    "D": "Julia, a devoted Christian, was recognized by Paul for her faithfulness in the early congregation. Her example encourages us to support Jehovah’s work steadfastly, inspiring unity among His servants."
+},
+{
+    "T": "Nereus",
+    "S": [
+        "Romans 16:15 - <em>Greet Philologus and Julia, Nereus and his sister, and Olympas, and all the holy ones with them.</em>"
+    ],
+    "D": "Nereus, a Christian in Rome, was greeted by Paul for his loyal service. His example teaches us to remain active in Jehovah’s congregation, inspiring us to strengthen our brothers through faithful worship."
+},
+{
+    "T": "Olympas",
+    "S": [
+        "Romans 16:15 - <em>Greet Philologus and Julia, Nereus and his sister, and Olympas, and all the holy ones with them.</em>"
+    ],
+    "D": "Olympas, a steadfast Christian, was recognized by Paul for his service in Rome’s congregation. His example encourages us to contribute faithfully to Jehovah’s work, inspiring unity and zeal in worship."
+},
+  {
     "T": "Aaron",
     "S": [
       "Exodus 4:14 - <em>Is not Aaron the Levite your brother? I know that he can speak well.</em>",
