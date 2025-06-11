@@ -11,7 +11,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #000000; /* Changed to solid black for black spacing */
+    background: #000000; /* Solid black background for black spacing */
     color: #fff;
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
@@ -28,7 +28,7 @@ header {
     top: 0;
     z-index: 100;
     width: 100%; /* Full width */
-    margin-bottom: 20px; /* Black spacing below header */
+    margin-bottom: 10px; /* Reduced to 10px for black spacing below header */
 }
 
 .logo {
@@ -127,8 +127,8 @@ main.main-content {
 .search-section {
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 15px;
-    margin-bottom: 20px; /* Black spacing below search bar */
-    margin-top: 20px; /* Black spacing above search bar */
+    margin-bottom: 10px; /* Reduced to 10px for black spacing below search bar */
+    margin-top: 10px; /* Reduced to 10px for black spacing above search bar */
     border-radius: 8px;
     text-align: center;
     width: 100%; /* Full width */
@@ -160,8 +160,8 @@ main.main-content {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px; /* Black spacing below tabs */
-    margin-top: 20px; /* Black spacing above tabs */
+    margin-bottom: 10px; /* Reduced to 10px for black spacing below tabs */
+    margin-top: 10px; /* Reduced to 10px for black spacing above tabs */
     width: 100%; /* Full width */
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 10px 0; /* Add padding to contain the gradient */
@@ -300,7 +300,7 @@ main.main-content {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 20px auto; /* Black spacing above and below bear image */
+    margin: 10px auto; /* Reduced to 10px for black spacing above and below bear image */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
@@ -315,7 +315,7 @@ footer {
     color: #000000;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     width: 100%; /* Full width */
-    margin-top: 20px; /* Black spacing above footer */
+    margin-top: 10px; /* Reduced to 10px for black spacing above footer */
 }
 
 footer p {
@@ -343,7 +343,7 @@ footer p {
     }
 
     .bear-image {
-        margin: 10px auto;
+        margin: 5px auto; /* Adjusted for mobile to maintain proportion */
     }
 }
 
