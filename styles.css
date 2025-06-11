@@ -28,7 +28,7 @@ header {
     top: 0;
     z-index: 100;
     width: 100%; /* Full width */
-    margin-bottom: 10px; /* Reduced to 10px for black spacing below header */
+    margin-bottom: 10px; /* 10px black spacing below header */
 }
 
 .logo {
@@ -127,8 +127,8 @@ main.main-content {
 .search-section {
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 15px;
-    margin-bottom: 10px; /* Reduced to 10px for black spacing below search bar */
-    margin-top: 10px; /* Reduced to 10px for black spacing above search bar */
+    margin-bottom: 10px; /* 10px black spacing below search bar */
+    margin-top: 10px; /* 10px black spacing above search bar */
     border-radius: 8px;
     text-align: center;
     width: 100%; /* Full width */
@@ -160,8 +160,8 @@ main.main-content {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 10px; /* Reduced to 10px for black spacing below tabs */
-    margin-top: 10px; /* Reduced to 10px for black spacing above tabs */
+    margin-bottom: 10px; /* 10px black spacing below tabs */
+    margin-top: 10px; /* 10px black spacing above tabs */
     width: 100%; /* Full width */
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 10px 0; /* Add padding to contain the gradient */
@@ -203,30 +203,29 @@ main.main-content {
 }
 
 .list {
-    display: block; /* Changed from grid to block for vertical stacking */
-    max-width: 100%; /* Full width */
-    margin: 0 auto; /* Center the list if needed */
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
-    padding: 20px; /* Add padding to contain the gradient */
+    padding: 10px; /* 10px padding to match spacing */
+    width: 100%; /* Full width */
+    margin-bottom: 10px; /* 10px black spacing below list */
 }
 
-.list#search-results {
-    display: grid; /* Keep search results as grid for individual items */
-    grid-template-columns: 1fr; /* Single column for each item */
-    gap: 20px;
+.list#search-results, .list#topics, .list#people {
+    display: flex; /* Use flex for vertical stacking */
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* 10px spacing between items */
     width: 100%; /* Full width */
 }
 
 .item {
     background: none; /* Remove individual item background, use list background */
-    padding: 15px;
+    padding: 0; /* Remove padding to eliminate double container effect */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
     width: 100%; /* Ensure full width within the list */
-    display: flex;
+    display: flex; /* Use flex to control internal spacing */
     flex-direction: column; /* Stack title and content vertically */
-    align-items: center; /* Center the content horizontally */
+    gap: 10px; /* 10px spacing between title and content within item */
 }
 
 .item:hover {
@@ -246,6 +245,7 @@ main.main-content {
     cursor: pointer;
     transition: background 0.3s;
     text-align: center; /* Center the title */
+    margin: 0 auto; /* Center within the 800px max-width */
 }
 
 .item-button:hover {
@@ -257,12 +257,12 @@ main.main-content {
     display: none;
     background: #000000;
     padding: 15px;
-    margin-top: 10px;
     border-radius: 8px;
     color: #ffffff;
     width: 100%;
     max-width: 800px; /* Width set to 800px */
     text-align: left; /* Keep article text left-aligned for readability */
+    margin: 0 auto; /* Center within the 800px max-width */
 }
 
 .content.active {
@@ -300,12 +300,14 @@ main.main-content {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 10px auto; /* Reduced to 10px for black spacing above and below bear image */
+    margin: 10px auto; /* 10px black spacing above and below bear image */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 20px; /* Add padding to contain the gradient */
     width: 100%; /* Full width */
+    /* Ensure consistent padding above bear image */
+    margin-top: 10px !important; /* Explicitly set and enforce 10px margin-top */
 }
 
 footer {
@@ -315,7 +317,7 @@ footer {
     color: #000000;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     width: 100%; /* Full width */
-    margin-top: 10px; /* Reduced to 10px for black spacing above footer */
+    margin-top: 10px; /* 10px black spacing above footer */
 }
 
 footer p {
