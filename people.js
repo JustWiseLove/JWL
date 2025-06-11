@@ -552,6 +552,14 @@ const people = [
     "D": "Eglon, Moab’s king, oppressed Israel until Ehud killed him. His tyranny shows the folly of opposing Jehovah’s people. Eglon’s downfall teaches us that God delivers His servants from enemies. We learn to trust Jehovah’s justice against those defying His purpose."
   },
   {
+    "T": "Eli",
+    "S": [
+        "1 Samuel 1:9 - <em>Eli the priest was sitting on the seat by the doorpost of the temple of Jehovah.</em>",
+        "1 Samuel 3:8 - <em>Eli realized that Jehovah was calling the boy.</em>"
+    ],
+    "D": "Eli, Israel’s high priest, trained young Samuel but failed to discipline his own sons, leading to their corruption. His story teaches the importance of upholding Jehovah’s standards in family and worship, warning against neglecting spiritual responsibilities."
+  },
+  {
     "T": "Eliphaz",
     "S": [
       "Job 2:11 - <em>Eliphaz the Temanite... came to sympathize with him.</em>",
@@ -1056,6 +1064,14 @@ const people = [
     "D": "Joab, David’s commander, showed loyalty but acted vengefully, killing Abner and Amasa. His disobedience to David led to his death. Joab’s example warns against letting personal motives override Jehovah’s standards. His life teaches us to serve faithfully, submitting to God’s appointed leaders with integrity."
   },
   {
+    "T": "Joanna",
+    "S": [
+        "Luke 8:3 - <em>Joanna the wife of Chuza, Herod’s steward, and Susanna and many other women were ministering to them from their belongings.</em>",
+        "Luke 24:10 - <em>Mary Magdalene and Joanna and Mary the mother of James and the other women with them reported these things to the apostles.</em>"
+    ],
+    "D": "Joanna, a faithful disciple, supported Jesus’ ministry and witnessed his resurrection. Her generosity and courage teach us to use our resources and opportunities to serve Jehovah, standing firm in faith despite worldly pressures."
+  },
+  {
     "T": "Joash",
     "S": [
       "2 Kings 11:2 - <em>Jehosheba... hid him from Athaliah.</em>",
@@ -1352,6 +1368,14 @@ const people = [
     "D": "Micah prophesied justice and mercy, urging Israel to obey Jehovah. His boldness teaches us to proclaim God’s standards. Micah’s example encourages us to live humbly, sharing His truth and supporting His purpose with faith."
   },
   {
+    "T": "Micaiah",
+    "S": [
+        "1 Kings 22:14 - <em>Micaiah said: ‘As surely as Jehovah is living, whatever Jehovah says to me, that is what I will speak.’</em>",
+        "1 Kings 22:28 - <em>If you return in peace, Jehovah has not spoken with me.</em>"
+    ],
+    "D": "Micaiah, a prophet of Jehovah, boldly spoke truth to King Ahab despite opposition from false prophets. His courage teaches us to proclaim Jehovah’s message fearlessly, trusting in His support even when facing persecution."
+  },
+  {
     "T": "Michal",
     "S": [
       "1 Samuel 19:13 - <em>Michal took the household idol and placed it on the bed.</em>",
@@ -1510,6 +1534,14 @@ const people = [
       "Colossians 4:9 - <em>Onesimus, our faithful and beloved brother.</em>"
     ],
     "D": "Onesimus, a runaway slave, became a Christian, serving with Paul. His transformation teaches us that Jehovah changes lives. Onesimus’ example encourages us to embrace God’s truth, serving faithfully and fostering reconciliation in His organization."
+  },
+  {
+    "T": "Othniel",
+    "S": [
+        "Judges 3:9 - <em>The sons of Israel cried out to Jehovah, and Jehovah raised up a savior for them, Othniel the son of Kenaz.</em>",
+        "Judges 3:11 - <em>The land had rest for 40 years, until Othniel the son of Kenaz died.</em>"
+    ],
+    "D": "Othniel, Israel’s first judge, delivered God’s people from oppression through faith and courage. His leadership teaches us to rely on Jehovah’s strength to overcome challenges, inspiring steadfast service in His cause."
   },
   {
     "T": "Paul",
