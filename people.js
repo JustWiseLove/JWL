@@ -8,6 +8,157 @@ const people = [
     "D": "Aaron, Moses’ brother, was Israel’s first high priest, using his eloquence to support God’s prophet. His courage in confronting Pharaoh showed faith, but crafting the golden calf revealed human weakness. Aaron’s repentance teaches humility and the importance of loyalty to Jehovah, encouraging steadfast service despite imperfections."
   },
   {
+    "T": "Shamgar",
+    "S": [
+        "Judges 3:31 - <em>After him came Shamgar the son of Anath, who struck down 600 Philistines with a cattle goad, and he too saved Israel.</em>"
+    ],
+    "D": "Shamgar, a judge of Israel, used a simple tool to defeat 600 Philistines, delivering God’s people. His courage teaches us to rely on Jehovah’s strength to overcome great odds, inspiring us to act boldly in His service."
+},
+{
+    "T": "Hilkiah",
+    "S": [
+        "2 Kings 22:8 - <em>Hilkiah the high priest said to Shaphan the secretary: ‘I have found the book of the Law in the house of Jehovah.’</em>",
+        "2 Chronicles 34:14 - <em>Hilkiah the priest found the book of Jehovah’s Law given through Moses.</em>"
+    ],
+    "D": "Hilkiah, the high priest, discovered the Law scroll, sparking a revival of true worship under Josiah. His diligence teaches us to value Jehovah’s Word and promote its teachings, inspiring us to uphold pure worship."
+},
+{
+    "T": "Doeg",
+    "S": [
+        "1 Samuel 22:18 - <em>Doeg the Edomite turned and struck down the priests, killing 85 men who wore the linen ephod.</em>"
+    ],
+    "D": "Doeg, an Edomite, betrayed Jehovah’s priests, leading to their slaughter. His disloyalty warns us to remain faithful to Jehovah’s servants and avoid actions that harm His people, encouraging steadfast devotion."
+},
+{
+    "T": "Ibzan",
+    "S": [
+        "Judges 12:8 - <em>Ibzan from Bethlehem judged Israel after Jephthah.</em>",
+        "Judges 12:9 - <em>Ibzan had 30 sons and 30 daughters, and he sent his daughters abroad and brought in 30 women for his sons.</em>"
+    ],
+    "D": "Ibzan, a judge of Israel, led God’s people faithfully. His leadership teaches us to serve Jehovah diligently in our responsibilities, inspiring us to promote unity and stability in His congregation."
+},
+{
+    "T": "Elon",
+    "S": [
+        "Judges 12:11 - <em>Elon the Zebulunite judged Israel for ten years.</em>"
+    ],
+    "D": "Elon, a judge from Zebulun, served Israel faithfully. His example teaches us to fulfill our roles in Jehovah’s service with dedication, inspiring us to contribute to His people’s welfare."
+},
+{
+    "T": "Abdon",
+    "S": [
+        "Judges 12:13 - <em>Abdon the son of Hillel the Pirathonite judged Israel after Elon.</em>",
+        "Judges 12:14 - <em>He had 40 sons and 30 grandsons who rode on 70 donkeys.</em>"
+    ],
+    "D": "Abdon, a judge of Israel, led with faithfulness during his time. His service teaches us to carry out Jehovah’s assignments with loyalty, inspiring us to support His organization steadfastly."
+},
+{
+    "T": "Azariah",
+    "S": [
+        "2 Chronicles 15:1 - <em>The spirit of God came upon Azariah the son of Oded.</em>",
+        "2 Chronicles 15:2 - <em>He went out to meet Asa and said to him: ‘Hear me, Asa and all Judah and Benjamin: Jehovah is with you as long as you remain with him.’</em>"
+    ],
+    "D": "Azariah, a prophet, encouraged King Asa to seek Jehovah, strengthening Judah’s faith. His boldness teaches us to proclaim Jehovah’s truth, inspiring us to support others in remaining loyal to Him."
+},
+{
+    "T": "Berekiah",
+    "S": [
+        "Zechariah 1:1 - <em>In the eighth month, in the second year of Darius, the word of Jehovah came to the prophet Zechariah, son of Berekiah, son of Iddo.</em>"
+    ],
+    "D": "Berekiah, father of the prophet Zechariah, was part of a faithful lineage serving Jehovah. His example teaches us to cultivate a heritage of faith, inspiring us to raise future generations to love Jehovah."
+},
+{
+    "T": "Hanani",
+    "S": [
+        "2 Chronicles 16:7 - <em>Hanani the seer came to Asa king of Judah and said to him: ‘Because you relied on the king of Syria and did not rely on Jehovah.’</em>"
+    ],
+    "D": "Hanani, a seer, boldly rebuked King Asa for relying on human alliances. His courage teaches us to trust Jehovah completely, inspiring us to speak truth and uphold His standards."
+},
+{
+    "T": "Amasa",
+    "S": [
+        "2 Samuel 17:25 - <em>Absalom appointed Amasa over the army in place of Joab.</em>",
+        "2 Samuel 20:10 - <em>Joab struck Amasa in the abdomen with the sword, and he died.</em>"
+    ],
+    "D": "Amasa, briefly a commander under David, was betrayed by Joab. His experience warns us to choose associations wisely and remain loyal to Jehovah’s appointed servants, avoiding actions that lead to spiritual harm."
+},
+{
+    "T": "Ahithophel",
+    "S": [
+        "2 Samuel 15:31 - <em>David was told: ‘Ahithophel is among the conspirators with Absalom.’</em>",
+        "2 Samuel 17:23 - <em>When Ahithophel saw that his advice had not been followed, he saddled his donkey and returned to his home city and hanged himself.</em>"
+    ],
+    "D": "Ahithophel, once David’s counselor, betrayed him by supporting Absalom. His disloyalty and tragic end warn us to remain faithful to Jehovah’s organization, avoiding pride and rebellion."
+},
+{
+    "T": "Adonijah",
+    "S": [
+        "1 Kings 1:5 - <em>Adonijah the son of Haggith exalted himself, saying: ‘I will be king.’</em>",
+        "1 Kings 2:25 - <em>King Solomon sent Benaiah the son of Jehoiada, who struck Adonijah down, and he died.</em>"
+    ],
+    "D": "Adonijah, David’s son, sought the throne against Jehovah’s will, leading to his downfall. His ambition warns us to respect Jehovah’s arrangements, encouraging humility and submission to His purpose."
+},
+{
+    "T": "Ithamar",
+    "S": [
+        "Exodus 6:23 - <em>Aaron took Elisheba, the daughter of Amminadab, the sister of Nahshon, as his wife, and she bore him Nadab, Abihu, Eleazar, and Ithamar.</em>",
+        "1 Chronicles 24:3 - <em>David, along with Zadok from the sons of Eleazar and Ahimelech from the sons of Ithamar, divided them for their duties.</em>"
+    ],
+    "D": "Ithamar, Aaron’s son, served faithfully as a priest in Jehovah’s sanctuary. His obedience teaches us to fulfill our roles in worship diligently, inspiring us to serve Jehovah wholeheartedly."
+},
+{
+    "T": "Amminadab",
+    "S": [
+        "Numbers 1:7 - <em>From Judah, Nahshon the son of Amminadab.</em>",
+        "1 Chronicles 2:10 - <em>Amminadab became father to Nahshon, a chieftain of the sons of Judah.</em>"
+    ],
+    "D": "Amminadab, a forefather in Judah’s lineage, contributed to Jehovah’s covenant people. His example teaches us to play our part in God’s purpose, inspiring us to support His kingdom faithfully."
+},
+{
+    "T": "Asyncritus",
+    "S": [
+        "Romans 16:14 - <em>Greet Asyncritus, Phlegon, Hermes, Patrobas, Hermas, and the brothers with them.</em>"
+    ],
+    "D": "Asyncritus, a faithful Christian, was greeted by Paul for his service in the congregation. His example teaches us to contribute diligently to Jehovah’s work, inspiring us to support our brothers in faith."
+},
+{
+    "T": "Phlegon",
+    "S": [
+        "Romans 16:14 - <em>Greet Asyncritus, Phlegon, Hermes, Patrobas, Hermas, and the brothers with them.</em>"
+    ],
+    "D": "Phlegon, a dedicated Christian, was recognized by Paul for his faithfulness. His example encourages us to serve Jehovah steadfastly in the congregation, inspiring unity and devotion."
+},
+{
+    "T": "Mahli",
+    "S": [
+        "1 Chronicles 6:16 - <em>The sons of Levi were Gershom, Kohath, and Merari. And these are the names of the sons of Gershom: Libni and Shimei. The sons of Kohath were Amram, Izhar, Hebron, and Uzziel. The sons of Merari were Mahli and Mushi.</em>"
+    ],
+    "D": "Mahli, a Levite, was part of Jehovah’s priestly tribe. His inclusion in the lineage teaches us to value our role in Jehovah’s arrangement, inspiring faithful service in His worship."
+},
+{
+    "T": "Amram",
+    "S": [
+        "Exodus 6:18 - <em>The sons of Kohath were Amram, Izhar, Hebron, and Uzziel.</em>",
+        "Exodus 6:20 - <em>Amram took Jochebed his father’s sister as his wife, and she bore him Aaron and Moses.</em>"
+    ],
+    "D": "Amram, father of Moses and Aaron, raised his family in faith despite Egypt’s oppression. His example teaches us to nurture spiritual strength in our households, inspiring devotion to Jehovah."
+},
+{
+    "T": "Jochebed",
+    "S": [
+        "Exodus 6:20 - <em>Amram took Jochebed his father’s sister as his wife, and she bore him Aaron and Moses.</em>",
+        "Numbers 26:59 - <em>The name of Amram’s wife was Jochebed, the daughter of Levi, who was born to Levi in Egypt.</em>"
+    ],
+    "D": "Jochebed, mother of Moses, protected her son through faith in Jehovah. Her courage teaches us to trust God’s protection in perilous times, inspiring us to act boldly for His purpose."
+},
+{
+    "T": "Zebadiah",
+    "S": [
+        "1 Chronicles 8:15 - <em>Zebadiah, Arad, Eder, Michael, Ishpah, and Joha were the sons of Beriah.</em>"
+    ],
+    "D": "Zebadiah, a descendant of Benjamin, was part of Jehovah’s covenant people. His inclusion teaches us to value our place in God’s arrangement, inspiring faithful participation in His purpose."
+},
+  {
     "T": "Abel",
     "S": [
       "Genesis 4:4 - <em>Abel brought some of the firstborn of his flock... and Jehovah looked with favor on Abel and his offering.</em>",
