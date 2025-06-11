@@ -2112,6 +2112,76 @@ const people = [
     "D": "Zipporah, Moses’ wife, acted decisively to obey Jehovah, circumcising her son. Her faith teaches us to uphold God’s commands. Zipporah’s example encourages us to support spiritual leadership, serving Jehovah with courage and devotion."
   },
   {
+    "T": "Hushai",
+    "S": [
+        "2 Samuel 15:32 - <em>Hushai the Archite, David’s friend, came to meet him with his garment ripped and dirt on his head.</em>",
+        "2 Samuel 17:14 - <em>Jehovah had determined to frustrate the counsel of Ahithophel, so that Hushai’s counsel prevailed.</em>"
+    ],
+    "D": "Hushai, David’s loyal friend, risked his life to undermine Absalom’s rebellion by giving wise counsel. His faithfulness teaches us to support Jehovah’s anointed and use discernment to protect His people, inspiring courage and loyalty in challenging times."
+},
+{
+    "T": "Jabez",
+    "S": [
+        "1 Chronicles 4:9 - <em>Jabez was more honorable than his brothers; and his mother named him Jabez, saying: ‘I gave birth to him in pain.’</em>",
+        "1 Chronicles 4:10 - <em>Jabez called on the God of Israel, saying: ‘O that you would bless me and enlarge my territory.’</em>"
+    ],
+    "D": "Jabez, known for his heartfelt prayer, sought Jehovah’s blessing and protection, which were granted. His example teaches us to approach Jehovah with bold yet humble requests, trusting in His ability to provide and guide us in His service."
+},
+{
+    "T": "Joram",
+    "S": [
+        "2 Kings 8:16 - <em>Jehoram the son of Jehoshaphat began to reign as king of Judah.</em>",
+        "2 Chronicles 21:6 - <em>He kept walking in the way of the kings of Israel, for he married a daughter of Ahab.</em>"
+    ],
+    "D": "Joram, a king of Judah, abandoned Jehovah’s worship, influenced by his marriage to Ahab’s daughter. His downfall warns us to choose associations wisely and remain loyal to Jehovah, avoiding compromises that lead to spiritual ruin."
+},
+{
+    "T": "Tryphaena",
+    "S": [
+        "Romans 16:12 - <em>Greet Tryphaena and Tryphosa, women who are working hard in the Lord.</em>"
+    ],
+    "D": "Tryphaena, along with Tryphosa, was a faithful Christian who worked hard in the Lord. Her dedication teaches us to serve Jehovah tirelessly in the congregation, inspiring us to contribute wholeheartedly to His work despite challenges."
+},
+  {
+    "T": "Phinehas",
+    "S": [
+        "Numbers 25:7 - <em>When Phinehas the son of Eleazar, the son of Aaron the priest, saw it, he took a spear in his hand.</em>",
+        "Psalm 106:30 - <em>Phinehas took a stand and intervened, and the plague was stopped.</em>"
+    ],
+    "D": "Phinehas, a priest, acted with zeal to uphold Jehovah’s standards, stopping a plague by confronting sin. His courage teaches us to defend Jehovah’s righteousness boldly, inspiring us to take a stand for pure worship even in difficult circumstances."
+},
+{
+    "T": "Shemaiah",
+    "S": [
+        "1 Kings 12:22 - <em>The true God said to Shemaiah the man of God:</em>",
+        "2 Chronicles 11:2 - <em>The word of Jehovah came to Shemaiah the man of God.</em>"
+    ],
+    "D": "Shemaiah, a prophet, delivered Jehovah’s message to Rehoboam, preventing civil war among God’s people. His obedience teaches us to speak Jehovah’s truth courageously, trusting His guidance to promote peace and unity in His congregation."
+},
+{
+    "T": "Rufus",
+    "S": [
+        "Romans 16:13 - <em>Greet Rufus, the chosen one in the Lord, and his mother, who has also been a mother to me.</em>"
+    ],
+    "D": "Rufus, a faithful Christian, was commended by Paul for his exemplary faith. His example, along with his mother’s kindness, teaches us to show steadfast love and support within the congregation, inspiring us to build up others in Jehovah’s service."
+},
+{
+    "T": "Elkanah",
+    "S": [
+        "1 Samuel 1:3 - <em>That man would go up from his city year after year to worship and to sacrifice to Jehovah of armies in Shiloh.</em>",
+        "1 Samuel 1:21 - <em>Elkanah and all his household went up to offer to Jehovah the yearly sacrifice.</em>"
+    ],
+    "D": "Elkanah, Samuel’s father, was devoted to regular worship at Jehovah’s sanctuary despite personal challenges. His faithfulness teaches us to prioritize pure worship and family unity in serving Jehovah, inspiring steadfast devotion to His arrangement."
+},
+{
+    "T": "Jehoiakim",
+    "S": [
+        "2 Kings 23:36 - <em>Jehoiakim was 25 years old when he began to reign, and he reigned for 11 years in Jerusalem.</em>",
+        "Jeremiah 36:23 - <em>As soon as Jehudi had read three or four columns, the king would cut them off with a secretary’s knife and throw them into the fire.</em>"
+    ],
+    "D": "Jehoiakim, a king of Judah, rejected Jehovah’s word by burning Jeremiah’s scroll, leading to his downfall. His rebellion warns us to respect Jehovah’s counsel, encouraging us to heed His guidance humbly to avoid spiritual consequences."
+},
+  {
     "T": "Zophar",
     "S": [
       "Job 2:11 - <em>Zophar the Naamathite... came to sympathize with him.</em>",
