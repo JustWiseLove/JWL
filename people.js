@@ -8,6 +8,87 @@ const people = [
     "D": "Aaron, Moses’ brother, was Israel’s first high priest, using his eloquence to support God’s prophet. His courage in confronting Pharaoh showed faith, but crafting the golden calf revealed human weakness. Aaron’s repentance teaches humility and the importance of loyalty to Jehovah, encouraging steadfast service despite imperfections."
   },
   {
+    "T": "Patrobas",
+    "S": [
+        "Romans 16:14 - <em>Greet Asyncritus, Phlegon, Hermes, Patrobas, Hermas, and the brothers with them.</em>"
+    ],
+    "D": "Patrobas, a faithful Christian, was recognized by Paul for his service in the congregation. His example teaches us to contribute diligently to Jehovah’s work, inspiring unity and steadfastness in faith."
+},
+{
+    "T": "Hermas",
+    "S": [
+        "Romans 16:14 - <em>Greet Asyncritus, Phlegon, Hermes, Patrobas, Hermas, and the brothers with them.</em>"
+    ],
+    "D": "Hermas, a devoted Christian, was commended by Paul for his faithfulness. His example encourages us to serve Jehovah actively in the congregation, inspiring us to support our brothers in worship."
+},
+{
+    "T": "Hermes",
+    "S": [
+        "Romans 16:14 - <em>Greet Asyncritus, Phlegon, Hermes, Patrobas, Hermas, and the brothers with them.</em>"
+    ],
+    "D": "Hermes, a Christian greeted by Paul, served faithfully in the early congregation. His example teaches us to remain steadfast in Jehovah’s service, inspiring us to strengthen our brothers in faith."
+},
+{
+    "T": "Nahshon",
+    "S": [
+        "Numbers 1:7 - <em>From Judah, Nahshon the son of Amminadab.</em>",
+        "Numbers 2:3 - <em>The leader of the sons of Judah is Nahshon the son of Amminadab.</em>"
+    ],
+    "D": "Nahshon, a chieftain of Judah, led his tribe faithfully during the wilderness journey. His leadership teaches us to serve Jehovah with responsibility, inspiring us to uphold His arrangement in our roles."
+},
+{
+    "T": "Urijah",
+    "S": [
+        "Jeremiah 26:20 - <em>There was another man prophesying in the name of Jehovah, Urijah the son of Shemaiah from Kiriath-jearim.</em>",
+        "Jeremiah 26:23 - <em>They brought Urijah out of Egypt and took him to King Jehoiakim, who struck him down with the sword.</em>"
+    ],
+    "D": "Urijah, a prophet, boldly spoke Jehovah’s word but was martyred by Jehoiakim. His courage teaches us to proclaim Jehovah’s truth fearlessly, inspiring us to remain faithful even under persecution."
+},
+{
+    "T": "Gedaliah",
+    "S": [
+        "2 Kings 25:22 - <em>Gedaliah the son of Ahikam, the son of Shaphan, was appointed over the people who were left in the land of Judah.</em>",
+        "Jeremiah 40:5 - <em>Gedaliah the son of Ahikam, the son of Shaphan, was made governor.</em>"
+    ],
+    "D": "Gedaliah, appointed governor by Nebuchadnezzar, sought to protect Judah’s remnant but was betrayed. His trust in others warns us to exercise discernment, encouraging us to rely on Jehovah’s guidance."
+},
+{
+    "T": "Uzziel",
+    "S": [
+        "1 Chronicles 6:18 - <em>The sons of Kohath were Amram, Izhar, Hebron, and Uzziel.</em>"
+    ],
+    "D": "Uzziel, a Levite, was part of Jehovah’s priestly tribe. His inclusion in the lineage teaches us to value our role in Jehovah’s arrangement, inspiring faithful service in His worship."
+},
+{
+    "T": "Eber",
+    "S": [
+        "Genesis 11:16 - <em>Eber lived 34 years and became father to Peleg.</em>"
+    ],
+    "D": "Eber, an ancestor in Shem’s line, contributed to Jehovah’s covenant people. His example teaches us to play our part in God’s purpose, inspiring steadfastness in His service."
+},
+{
+    "T": "Beriah",
+    "S": [
+        "1 Chronicles 8:13 - <em>Beriah and Shema, who were heads of the paternal houses of the inhabitants of Aijalon.</em>"
+    ],
+    "D": "Beriah, a Benjamite leader, was part of Jehovah’s people. His role teaches us to serve faithfully in our assignments, inspiring us to contribute to God’s organization."
+},
+{
+    "T": "Shaphan",
+    "S": [
+        "2 Kings 22:3 - <em>Shaphan the son of Azaliah, the son of Meshullam, the secretary, went to Hilkiah the high priest.</em>",
+        "Jeremiah 36:10 - <em>Baruch read from the book the words of Jeremiah in the house of Jehovah, in the chamber of Gemariah the son of Shaphan.</em>"
+    ],
+    "D": "Shaphan, a scribe under Josiah, supported the restoration of true worship. His diligence teaches us to assist Jehovah’s servants faithfully, inspiring us to promote His Word in our roles."
+},
+{
+    "T": "Merari",
+    "S": [
+        "1 Chronicles 6:16 - <em>The sons of Levi were Gershom, Kohath, and Merari.</em>"
+    ],
+    "D": "Merari, a Levite, was ancestor to a clan serving in Jehovah’s sanctuary. His legacy teaches us to value our part in God’s worship, inspiring dedicated service in His organization."
+},
+  {
     "T": "Shamgar",
     "S": [
         "Judges 3:31 - <em>After him came Shamgar the son of Anath, who struck down 600 Philistines with a cattle goad, and he too saved Israel.</em>"
