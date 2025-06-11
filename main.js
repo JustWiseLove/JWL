@@ -70,13 +70,16 @@ function resetView() {
         itemList.innerHTML = '';
         categories[category].forEach(item => {
             if (!item || !item.T) return;
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'item';
+            // Create a wrapper div for each item and its content
+            const itemWrapper = document.createElement('div');
+            itemWrapper.className = 'item';
+
             const itemButton = document.createElement('button');
             itemButton.className = 'item-button';
             itemButton.innerHTML = searchTerm ? 
                 item.T.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
                 item.T;
+
             const content = document.createElement('div');
             content.className = 'content';
             const scriptures = (item.S || []).map(scripture => 
@@ -92,9 +95,11 @@ function resetView() {
                 <div class="description-section">${description}</div>
             `;
             content.style.display = 'none';
-            itemDiv.appendChild(itemButton);
-            itemList.appendChild(itemDiv);
-            itemList.appendChild(content);
+
+            itemWrapper.appendChild(itemButton);
+            itemWrapper.appendChild(content);
+            itemList.appendChild(itemWrapper);
+
             itemButton.addEventListener('click', () => {
                 console.log(`Clicked ${item.T}, isOpen: ${content.style.display === 'block'}`);
                 const isOpen = content.style.display === 'block';
@@ -235,11 +240,14 @@ function populateSearchResults(allList, matchingItems, input) {
     if (!allList) return;
     matchingItems.forEach(({ item, category, titleMatch, matchingScriptures, matchingDescription }) => {
         if (!item || !item.T) return;
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'item';
+        // Create a wrapper div for each item and its content
+        const itemWrapper = document.createElement('div');
+        itemWrapper.className = 'item';
+
         const itemButton = document.createElement('button');
         itemButton.className = 'item-button';
         itemButton.innerHTML = item.T.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
+
         const content = document.createElement('div');
         content.className = 'content';
 
@@ -267,9 +275,10 @@ function populateSearchResults(allList, matchingItems, input) {
         }
 
         content.style.display = 'block';
-        itemDiv.appendChild(itemButton);
-        allList.appendChild(itemDiv);
-        allList.appendChild(content);
+        itemWrapper.appendChild(itemButton);
+        itemWrapper.appendChild(content);
+        allList.appendChild(itemWrapper);
+
         itemButton.addEventListener('click', () => {
             console.log(`Clicked ${item.T}, isOpen: ${content.style.display === 'block'}`);
             const isOpen = content.style.display === 'block';
