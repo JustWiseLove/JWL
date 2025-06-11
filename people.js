@@ -607,12 +607,13 @@ const people = [
     ],
     "D": "Enoch walked with Jehovah, prophesying faithfully until God took him. His steadfastness teaches us to live righteously amid wickedness. Enoch’s example inspires us to maintain close fellowship with Jehovah, proclaiming His truth boldly despite opposition."
   },
-  { “T”: “Epaphroditus”, 
-    “S”: [ 
-      “Philippians 2:25 - <em>I consider it necessary to send to you Epaphroditus, my brother and fellow worker and fellow soldier.</em>”, 
-      “Philippians 4:18 - <em>I have everything I need, now that I have received from Epaphroditus the things you sent.</em>” 
-  ], 
-    “D”: “Epaphroditus, a faithful Christian from Philippi, served as a trusted messenger, delivering aid to Paul during his imprisonment. His selfless service, despite personal hardship, nearly cost him his life. Epaphroditus example teaches loyalty, sacrifice, and wholehearted devotion to supporting Jehovah’s servants, inspiring us to prioritize spiritual needs.” 
+  {
+    "T": "Epaphroditus",
+    "S": [
+        "Philippians 2:25 - <em>I consider it necessary to send to you Epaphroditus, my brother and fellow worker and fellow soldier.</em>",
+        "Philippians 4:18 - <em>I have everything I need, now that I have received from Epaphroditus the things you sent.</em>"
+    ],
+    "D": "Epaphroditus, a faithful Christian from Philippi, served as a trusted messenger, delivering aid to Paul during his imprisonment. His selfless service, despite personal hardship, nearly cost him his life. Epaphroditus’ example teaches loyalty, sacrifice, and wholehearted devotion to supporting Jehovah’s servants, inspiring us to prioritize spiritual needs."
   },
   {
     "T": "Ephraim",
