@@ -313,7 +313,7 @@ main.main-content {
 footer {
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     text-align: center;
-    padding: 5px;
+    padding: 2px;
     color: #000000;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     width: 100%; /* Full width */
