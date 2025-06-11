@@ -48,6 +48,14 @@ const people = [
     "D": "Abiram, with Korah, rebelled against Moses, coveting unauthorized authority. His pride led to divine judgment, as the earth swallowed him. Abiram’s defiance warns against challenging Jehovah’s appointed leaders. His example teaches humility, contentment, and loyalty to God’s arrangement for unity."
   },
   {
+    "T": "Abishai",
+    "S": [
+        "1 Samuel 26:8 - <em>Abishai said to David: ‘God has surrendered your enemy into your hand today.’</em>",
+        "2 Samuel 21:17 - <em>Abishai the son of Zeruiah came to his aid and struck the Philistine down.</em>"
+    ],
+    "D": "Abishai, a loyal warrior under David, showed courage and devotion but sometimes acted impulsively. His obedience to David’s restraint teaches us to balance zeal for Jehovah’s cause with respect for His appointed servants, encouraging faithfulness tempered by self-control."
+  },
+  {
     "T": "Abner",
     "S": [
       "2 Samuel 2:8 - <em>Abner the son of Ner, the chief of Saul’s army, took Ish-bosheth... and made him king.</em>",
@@ -2014,6 +2022,14 @@ const people = [
       "Luke 19:8 - <em>I am giving half my belongings to the poor.</em>"
     ],
     "D": "Zacchaeus, a tax collector, sought Jesus, repenting and making restitution. His change teaches us to embrace truth. Zacchaeus’ example encourages us to correct wrongs, serving Jehovah generously and supporting His organization."
+  },
+  {
+    "T": "Zadok",
+    "S": [
+        "2 Samuel 15:29 - <em>Zadok and Abiathar carried the Ark of the true God back to Jerusalem.</em>",
+        "1 Kings 1:39 - <em>Zadok the priest took the horn of oil from the tent and anointed Solomon.</em>"
+    ],
+    "D": "Zadok, a faithful high priest, supported Jehovah’s anointed kings, David and Solomon, with unwavering loyalty. His service teaches us to uphold Jehovah’s arrangements, remain steadfast in worship, and trust in His promises, inspiring us to serve humbly in His organization."
   },
   {
     "T": "Zebedee",
