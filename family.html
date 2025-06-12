@@ -48,7 +48,7 @@
         </section>
 
         <div class="weekly-topic" id="weekly-topic">
-            <h2>This Week's Topics</h2>
+            <h2>Next Week's Topics</h2>
             <p id="current-topic">Loading...</p>
         </div>
 
@@ -142,7 +142,7 @@
                     <p>Philippians 4:11-13 teaches contentment in all circumstances. 1 Timothy 6:6-8 declares godliness with contentment great gain. Psalm 23:1 says Jehovah provides. Families reject materialism, finding joy in His gifts (Revelation 21:4). Discuss: How can we stay content? Let’s list blessings this week.</p>
 
                     <h3>Thankful</h3>
-                    <p>Psalm 107:1 urges thankfulness for Jehovah’s goodness. Colossians 3:15 commands a grateful heart. Families express gratitude, strengthening faith (1 Thessalonians 5:18). Discuss: How can we show thankfulness? Let’s thank someone in the congregation this week.</p>
+                    <p>Psalm 107:1 urges gratitude for Jehovah’s goodness. Colossians 3:15 commands a grateful heart. Families express gratitude, strengthening faith (1 Thessalonians 5:18). Discuss: How can we show thankfulness? Let’s thank someone in the congregation this week.</p>
                 </div>
             </details>
             <details class="item">
@@ -539,7 +539,7 @@
                     <p>Thanksgiving, rooted in paganism, promotes materialism (2 Corinthians 6:17). Psalm 92:1 urges constant gratitude. Families thank Jehovah, preparing for paradise (Revelation 21:4). Discuss: Why avoid Thanksgiving? Let’s list blessings this week.</p>
                 </div>
             </details>
-            <details class="item">
+                        <details class="item">
                 <summary class="item-button">November 28, 2025</summary>
                 <div class="item-content">
                     <h3>Birth of Jesus</h3>
@@ -643,7 +643,7 @@
             { date: "August 8, 2025", topics: ["Broadcast"] },
             { date: "August 15, 2025", topics: ["Paul & Timothy Educated Men", "Philosophy"] },
             { date: "August 22, 2025", topics: ["Paul & Timothy", "Youth", "Make It Your Own"] },
-            { date: "August 29, 2025", topics: ["Labor Day"] },
+            { date: "August 26, 2025", topics: ["Labor Day"] },
             { date: "September 5, 2025", topics: ["Broadcast"] },
             { date: "September 12, 2025", topics: ["4 Horsemen", "What Do You Look Forward To?"] },
             { date: "September 19, 2025", topics: ["666", "Numerology", "Spiritism"] },
@@ -663,52 +663,59 @@
             { date: "December 26, 2025", topics: ["New Years", "Goals", "Change"] }
         ];
 
-        // Function to find the current week's topics
-        function getCurrentTopic() {
+        // Function to determine Eastern Time offset (EST/EDT)
+        function getEasternTimeOffset(date) {
+            // Approximate DST: Second Sunday in March to first Sunday in November
+            const year = date.getFullYear();
+            const march = new Date(year, 2, 1);
+            const secondSundayMarch = new Date(march.setDate(14 - (march.getDay() || 7)));
+            const november = new Date(year, 10, 1);
+            const firstSundayNovember = new Date(november.setDate(7 - (november.getDay() || 7)));
+            
+            // EDT (UTC-4) from March to November, else EST (UTC-5)
+            return (date >= secondSundayMarch && date < firstSundayNovember) ? -4 : -5;
+        }
+
+        // Function to find the next Friday's topics
+        function getNextTopic() {
             const now = new Date();
-            const currentYear = now.getFullYear();
-            const dayOfWeek = now.getDay(); // 0 = Sunday, 6 = Saturday
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const seconds = now.getSeconds();
-            const milliseconds = now.getMilliseconds();
-
-            // Convert current time to EST
-            const estOffset = -5 * 60; // EST is UTC-5
+            
+            // Convert to Eastern Time (EST/EDT)
+            const easternOffset = getEasternTimeOffset(now) * 60; // Offset in minutes
             const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            const estNow = new Date(utc + (estOffset * 60000));
-            const estDayOfWeek = estNow.getDay();
-            const estHours = estNow.getHours();
+            const easternNow = new Date(utc + (easternOffset * 60000));
+            const easternDayOfWeek = easternNow.getDay();
+            const currentYear = easternNow.getFullYear();
 
-            let currentFriday = new Date(estNow);
-            let currentTopics = "No topics scheduled for this week.";
+            let nextFriday = new Date(easternNow);
+            let currentTopics = "No topics scheduled for next week.";
+            let daysToNextFriday;
 
-            // If today is Saturday and time is before 12 AM EST, show previous week's topics
-            if (estDayOfWeek === 6 && estHours < 0) {
-                // Show topics for the previous Friday
-                currentFriday.setDate(estNow.getDate() - 1); // Go back to previous Friday
+            // Calculate days to the next Friday
+            if (easternDayOfWeek === 6) {
+                // On Saturday, look for the Friday in 6 days
+                daysToNextFriday = 6;
             } else {
-                // Calculate the most recent Friday
-                const daysSinceFriday = (estDayOfWeek + 2) % 7; // Days since last Friday
-                currentFriday.setDate(estNow.getDate() - daysSinceFriday);
+                // Sunday (0) to Friday (5), look for the next Friday
+                daysToNextFriday = (5 - easternDayOfWeek + 7) % 7 || 7;
             }
+            
+            nextFriday.setDate(easternNow.getDate() + daysToNextFriday);
+            nextFriday.setHours(0, 0, 0, 0); // Normalize to start of the day
 
-            // Normalize currentFriday to start of the day
-            currentFriday.setHours(0, 0, 0, 0);
-
-            // Find the schedule entry for the current Friday
+            // Find the schedule entry for the next Friday
             schedule.forEach(item => {
                 const itemDate = new Date(item.date);
                 itemDate.setHours(0, 0, 0, 0); // Normalize to start of the day
-                if (itemDate.getFullYear() === currentYear && itemDate.getTime() === currentFriday.getTime()) {
+                if (itemDate.getFullYear() === nextFriday.getFullYear() && itemDate.getTime() === nextFriday.getTime()) {
                     currentTopics = item.topics.join(", ");
                 }
             });
 
-            // If no topics found for the current Friday, check if we're past the last scheduled date
+            // If no topics found and beyond the last scheduled date
             const lastScheduleDate = new Date(schedule[schedule.length - 1].date);
-            if (currentFriday > lastScheduleDate && estDayOfWeek !== 6) {
-                // After the last date, unless it's Saturday before 12 AM EST, show first topics of next year
+            if (nextFriday > lastScheduleDate) {
+                // Default to the first topics of the next year
                 currentTopics = schedule[0].topics.join(", ");
             }
 
@@ -716,7 +723,7 @@
         }
 
         // Update the current topic display
-        document.getElementById("current-topic").textContent = getCurrentTopic();
+        document.getElementById("current-topic").textContent = getNextTopic();
     </script>
 </body>
 </html>
