@@ -28,7 +28,7 @@ header {
     top: 0;
     z-index: 100;
     width: 100%; /* Full width */
-    margin-bottom: 10px; /* 10px black spacing below header */
+    margin-bottom: 5px; /* Changed to 5px black spacing below header */
 }
 
 .logo {
@@ -127,8 +127,8 @@ main.main-content {
 .search-section {
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 15px;
-    margin-bottom: 10px; /* 10px black spacing below search bar */
-    margin-top: 10px; /* 10px black spacing above search bar */
+    margin-bottom: 5px; /* Changed to 5px black spacing below search bar */
+    margin-top: 5px; /* Changed to 5px black spacing above search bar */
     border-radius: 8px;
     text-align: center;
     width: 100%; /* Full width */
@@ -160,8 +160,8 @@ main.main-content {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 10px; /* 10px black spacing below tabs */
-    margin-top: 10px; /* 10px black spacing above tabs */
+    margin-bottom: 5px; /* Changed to 5px black spacing below tabs */
+    margin-top: 5px; /* Changed to 5px black spacing above tabs */
     width: 100%; /* Full width */
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 10px 0; /* Add padding to contain the gradient */
@@ -213,7 +213,7 @@ main.main-content {
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 10px; /* 10px padding to match spacing */
     width: 100%; /* Full width */
-    margin-bottom: 10px; /* 10px black spacing below list */
+    margin-bottom: 5px; /* Changed to 5px black spacing below list */
 }
 
 .list#search-results, .list#topics, .list#people {
@@ -307,14 +307,13 @@ main.main-content {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 10px auto; /* 10px black spacing above and below bear image */
+    margin: 5px auto; /* Changed to 5px black spacing above and below bear image */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 20px; /* Add padding to contain the gradient */
     width: 100%; /* Full width */
-    /* Ensure consistent padding above bear image */
-    margin-top: 10px !important; /* Explicitly set and enforce 10px margin-top */
+    margin-top: 5px !important; /* Changed to 5px black spacing above bear image */
 }
 
 footer {
@@ -324,7 +323,7 @@ footer {
     color: #000000;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     width: 100%; /* Full width */
-    margin-top: 10px; /* 10px black spacing above footer */
+    margin-top: 5px; /* Changed to 5px black spacing above footer */
 }
 
 footer p {
@@ -352,7 +351,7 @@ footer p {
     }
 
     .bear-image {
-        margin: 5px auto; /* Adjusted for mobile to maintain proportion */
+        margin: 5px auto; /* Changed to 5px for mobile to match black spacing */
     }
 }
 
