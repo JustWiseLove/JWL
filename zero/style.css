@@ -141,13 +141,13 @@ main {
 .intro h2 {
     font-family: 'Audiowide', Arial, sans-serif;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .featured-article {
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     padding: 20px 10px 0px 10px;
-    margin: 10px 0 10px 0;
+    margin: 5px 0 5px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -322,13 +322,13 @@ main {
 .category i {
     font-size: 24px;
     color: #000000;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .category h3 {
     font-family: 'Audiowide', Arial, sans-serif;
     color: #000000;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .category p {
@@ -419,7 +419,7 @@ main {
 .scripture {
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     padding: 15px;
-    margin: 10px auto;
+    margin: 5px auto;
     border-radius: 8px;
     font-style: italic;
     color: #000000;
@@ -434,7 +434,7 @@ main {
 .describe {
     background: #000000;
     padding: 15px;
-    margin: 10px auto;
+    margin: 5px auto;
     border-radius: 8px;
     font-style: italic;
     color: #fff;
@@ -449,11 +449,11 @@ footer {
     color: #000000;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 footer p {
-    margin: 10px 0 0;
+    margin: 5px 0 0;
 }
 
 .carousel-container {
@@ -552,6 +552,7 @@ footer p {
         font-size: 20px;
         padding: 8px;
     }
+
     .carousel-dot {
         width: 8px;
         height: 8px;
@@ -598,7 +599,7 @@ footer p {
     opacity: 0;
     animation: fadeIn 0.5s forwards;
     max-width: 800px;
-    margin: 20px auto 10px auto;
+    margin: 20px auto 5px auto;
     padding: 15px;
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     border-radius: 8px;
@@ -611,7 +612,7 @@ footer p {
     font-family: 'Audiowide', Arial, sans-serif;
     color: #000000;
     font-size: 1.2em;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-transform: uppercase;
     text-align: center;
 }
