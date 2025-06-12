@@ -51,7 +51,9 @@
         </div>
         <div class="list" id="topics" style="display: none;"></div>
         <div class="list" id="people" style="display: none;"></div>
-        <img src=ANT.PNG" alt="ANT" class="bear-image">
+        <div class="image-container">
+            <img src="BEAR.PNG" alt="Bear or Ant" class="bear-image" id="swipe-image">
+        </div>
     </main>
     <footer>
         <p>© 2025 Just Wise Love</p>
@@ -59,5 +61,33 @@
     <script src="topics.js"></script>
     <script src="people.js"></script>
     <script src="main.js"></script>
+    <script>
+        // Swipe to change image
+        const swipeImage = document.getElementById('swipe-image');
+        let startX = 0;
+        let endX = 0;
+
+        swipeImage.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        swipeImage.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // Minimum swipe distance in pixels
+            if (startX - endX > swipeThreshold) {
+                // Swipe left, change to ANT.PNG
+                swipeImage.src = 'ANT.PNG';
+                swipeImage.alt = 'Ant';
+            } else if (endX - startX > swipeThreshold) {
+                // Swipe right, change to BEAR.PNG
+                swipeImage.src = 'BEAR.PNG';
+                swipeImage.alt = 'Bear';
+            }
+        }
+    </script>
 </body>
 </html>
