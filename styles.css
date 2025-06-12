@@ -202,6 +202,13 @@ main.main-content {
     text-decoration: none;
 }
 
+/* New style for NAVIGATE button to always be green */
+.tab-button[href="/zero/index.html"] {
+    background: var(--Green);
+    color: #000000;
+    box-shadow: 0 0 10px var(--Green);
+}
+
 .list {
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
     padding: 10px; /* 10px padding to match spacing */
