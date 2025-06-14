@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Truth From the Bible</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #004800, #008000);
+      color: #000;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      color: white;
+      background-color: #004d00;
+      padding: 40px 20px;
+      border-bottom: 5px solid #0f0;
+      box-shadow: 0 0 20px #00ff99;
+    }
+    header h1 { font-size: 2.5em; margin-bottom: 10px; }
+    header p { font-size: 1.2em; }
+    section.truth {
+      margin: 40px auto;
+      padding: 30px;
+      background: #e0ffe0;
+      border-left: 8px solid #00aa00;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 128, 0, 0.3);
+      max-width: 900px;
+      transition: transform 1s ease, opacity 1s ease;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    section.truth.dark { background: #ccffcc; border-left-color: #006600; }
+    section.animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2 {
+      font-size: 1.8em;
+      color: #004d00;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .quote {
+      margin: 15px 0;
+      font-style: italic;
+      font-weight: bold;
+      background: #cfc;
+      padding: 15px;
+      border-left: 6px solid #090;
+      border-radius: 4px;
+      position: relative;
+    }
+    .quote[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #004d00;
+      color: #fff;
+      padding: 8px;
+      font-size: 0.9em;
+      border-radius: 5px;
+      white-space: nowrap;
+      margin-top: 5px;
+      z-index: 10;
+    }
+    .toggle {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .toggle-btn {
+      background: #006600;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+      width: 100%;
+      text-align: center;
+    }
+    .toggle-btn:hover { background: #00aa00; }
+    .toggle-content {
+      display: none;
+      margin-top: 10px;
+      padding: 15px;
+      background: #d9ffd9;
+      border-left: 5px solid #00aa00;
+      border-radius: 5px;
+    }
+    .truth-content {
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #003300;
+      color: #aaffaa;
+      font-size: 0.9em;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-seedling"></i> Truth From the Bible</h1>
+    <p>Unmasking deception. Declaring what is written.</p>
+  </header>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-book-open"></i> Jehovah Is the Only True God</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Jehovah alone is the true God, the Creator of all things. Unlike false religions that promote a trinity or multiple gods, Scripture clearly states that Jesus is not equal to Jehovah but is His Son, subordinate to Him. Jehovah’s unique name appears over 7,000 times in the Bible, emphasizing His supremacy. True worship must honor Jehovah alone, as He demands exclusive devotion. This is the truth Jehovah approves, and any teaching that elevates others to His level is false worship, leading to divine disapproval.</p>
+      <div class="quote" data-tooltip="Jehovah’s name distinguishes Him as the sovereign God.">"You, whose name is Jehovah, you alone are the Most High over all the earth." — Psalm 83:18</div>
+      <div class="quote" data-tooltip="Jesus acknowledges Jehovah’s superiority.">"The Father is greater than I am." — John 14:28</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions obscure Jehovah’s unique identity by replacing His name with generic titles like “Lord” or inventing a trinity doctrine. These practices dishonor the Creator, blending pagan concepts with worship, which Jehovah condemns as idolatry. Such teachings confuse followers, leading them away from the truth and into spiritual darkness, unfit for Jehovah’s approval.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-id-card-alt"></i> True Worship Must Be Pure</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that true worshipers must worship Jehovah in spirit and truth, free from man-made traditions. Rituals like rosaries, incense, or holy water are not in Scripture and are unacceptable to Jehovah. True worship involves studying the Bible, obeying its commands, and living in harmony with Jehovah’s standards. Only worship based on biblical truth pleases Jehovah, as He rejects practices rooted in paganism or human invention. This is the truth Jehovah approves, and anything less is empty and futile in His eyes.</p>
+      <div class="quote" data-tooltip="Jesus demands worship based on truth, not tradition.">"True worshipers will worship the Father with spirit and truth." — John 4:23</div>
+      <div class="quote" data-tooltip="Man-made doctrines nullify true worship.">"They worship me in vain, for they teach commands of men as doctrines." — Matthew 15:9</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions cling to emotional rituals like rosaries or incense, rooted in paganism, which Jehovah abhors. These practices, absent from Scripture, deceive followers into thinking they please God while defiling worship with human inventions. Such empty traditions prioritize feelings over truth, leading to spiritual ruin and Jehovah’s rejection.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-hammer"></i> Jesus Died on a Torture Stake</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Jesus was executed on a single upright stake, called a <em>stauros</em> in Greek, not a cross. The cross is a pagan symbol adopted centuries later to blend Christianity with sun worship. Historical evidence, including early Christian writings, confirms the use of a stake. Jehovah disapproves of using pagan symbols in worship, as they defile His truth. This is the truth Jehovah approves, and clinging to the cross distorts the sacrifice of Jesus and dishonors Jehovah’s standards for pure worship.</p>
+      <div class="quote" data-tooltip="The Greek term <em>stauros</em> refers to a single stake.">"He carried the torture stake himself." — John 19:17</div>
+      <div class="quote" data-tooltip="Pagan symbols have no place in true worship.">"You must not make for yourself a carved image." — Exodus 20:4</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        The cross, a pagan sun-worship symbol, was falsely adopted to merge Christianity with idolatry, defiling Jesus’ sacrifice. This deception misleads millions into venerating a pagan emblem, contrary to Jehovah’s command against images. Such false worship dishonors the truth and invites divine judgment, as it prioritizes tradition over Scripture.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-fire-alt"></i> Hellfire Does Not Exist</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that the dead are unconscious, and Jehovah never intended to burn anyone. Hellfire is a false doctrine rooted in pagan beliefs, not Scripture. Jehovah explicitly stated that burning people never entered His mind, showing His loving nature. The dead await resurrection, not eternal torment. The soul that sins simply dies, not burns forever. This is the truth Jehovah approves, and teaching hellfire misrepresents His justice and love, leading to false worship that He rejects.</p>
+      <div class="quote" data-tooltip="Jehovah rejects burning as punishment.">"To burn their sons and their daughters in the fire, something that I had not commanded and that had not come into my heart." — Jeremiah 7:31</div>
+      <div class="quote" data-tooltip="The dead are unconscious, not suffering.">"The dead know nothing at all." — Ecclesiastes 9:5</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        Hellfire, a pagan myth, instills fear and distorts Jehovah’s loving nature. Rooted in ancient fire worship, it falsely portrays God as cruel, tormenting souls eternally. This lie manipulates people, replacing the Bible’s truth of unconscious death and resurrection with terror, leading to worship that Jehovah utterly rejects.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-globe"></i> God’s Kingdom Is a Real Government</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Jehovah’s Kingdom is a literal government, established in heaven with Jesus as King since 1914, based on biblical prophecy. It will soon crush all human governments and transform the earth into a paradise. Unlike false teachings that call the Kingdom symbolic or internal, Daniel and Jesus confirm it as a divine rulership. This is the truth Jehovah approves, and praying for His Kingdom is central to true worship. Rejecting this truth leads to futile hopes in human systems, which Jehovah will destroy.</p>
+      <div class="quote" data-tooltip="The Kingdom is a divine government, not a metaphor.">"In the days of those kings the God of heaven will set up a kingdom that will never be destroyed." — Daniel 2:44</div>
+      <div class="quote" data-tooltip="Jesus taught us to prioritize the Kingdom.">"Let your Kingdom come." — Matthew 6:10</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions portray the Kingdom as a vague, internal feeling or distant hope, undermining its reality as Jehovah’s government. This deception keeps people loyal to failing human systems, doomed to destruction. Such teachings mock Jehovah’s purpose, leading followers astray into worship that is powerless and unacceptable to Him.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-cloud"></i> Only 144,000 Will Rule in Heaven</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that exactly 144,000 faithful servants are chosen to rule with Christ in heaven as kings and priests. This limited group is distinct from the majority, who will live forever on a restored earth. Revelation clearly specifies this number, showing Jehovah’s precise plan. This is the truth Jehovah approves, and believing all go to heaven contradicts His purpose. True worship acknowledges this distinction, honoring Jehovah’s arrangement for heavenly and earthly hopes, which ensures His will is fulfilled.</p>
+      <div class="quote" data-tooltip="A fixed number rule with Christ in heaven.">"I saw, and look! the Lamb standing on Mount Zion, and with him 144,000." — Revelation 14:1</div>
+      <div class="quote" data-tooltip="Most will live on earth, not heaven.">"The meek will inherit the earth." — Matthew 5:5</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions falsely claim all good people ascend to heaven, ignoring Jehovah’s clear plan for a limited 144,000 rulers. This error distorts His purpose, promoting a universal heaven that defies Scripture. Such teachings mislead followers, fostering false hopes and worship that Jehovah deems unacceptable and futile.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-balance-scale"></i> Free Will, Not Fate, Guides Humans</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Jehovah grants humans free will to choose obedience or disobedience, not a predetermined fate. This freedom carries responsibility, as choices lead to life or death. Jehovah urges choosing life through obedience to His commands. Unlike false teachings of predestination, which deny accountability, the Bible emphasizes personal choice in worship. This is the truth Jehovah approves, and denying free will misrepresents His justice and undermines the purpose of His commands.</p>
+      <div class="quote" data-tooltip="Humans choose their path, not a fixed fate.">"I have put life and death before you... choose life." — Deuteronomy 30:19</div>
+      <div class="quote" data-tooltip="Choices have consequences before Jehovah.">"Each of us will render an account for himself to God." — Romans 14:12</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        Predestination doctrines falsely strip humans of responsibility, portraying Jehovah as unjust and arbitrary. These teachings, rooted in pagan fatalism, deny the Bible’s call to choose obedience, misleading people into apathy. Such lies undermine true worship, as they reject Jehovah’s gift of free will, rendering devotion meaningless and unacceptable.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-tint"></i> Blood Is Sacred to Jehovah</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that blood represents life, which is sacred to Jehovah. He commands His worshipers to abstain from blood, whether in food or medical use. This reflects respect for His ownership of life. Historically, pagan practices misused blood in rituals, which Jehovah condemns. True worship obeys this command, as it is central to Jehovah’s standards. This is the truth Jehovah approves, and violating it defiles His worship. Ignoring this command shows disrespect for Jehovah’s authority over life.</p>
+      <div class="quote" data-tooltip="Blood is sacred and must not be misused.">"You must not eat the blood; pour it out on the ground like water." — Deuteronomy 12:16</div>
+      <div class="quote" data-tooltip="Abstaining from blood is a Christian requirement.">"Abstain from... blood and from things strangled." — Acts 15:20</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions disregard Jehovah’s command, using blood in rituals or medical practices that defile life’s sanctity. These acts, rooted in pagan disregard for Jehovah’s laws, disrespect His authority. By ignoring Scripture, they promote false worship that dishonors the Creator, leading followers into practices that Jehovah condemns as unholy.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-handshake-slash"></i> Christians Must Be Separate From the World</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that true Christians must remain separate from worldly politics, conflicts, and customs. Jehovah demands exclusive devotion, and involvement in human governments or pagan practices defiles worship. Jesus set the example by rejecting worldly power. This is the truth Jehovah approves, and mixing with the world’s ways, such as voting or celebrating pagan holidays, contradicts His standards and invites His disapproval, as it compromises loyalty to Him.</p>
+      <div class="quote" data-tooltip="True Christians avoid worldly entanglements.">"They are no part of the world, just as I am no part of the world." — John 17:16</div>
+      <div class="quote" data-tooltip="Friendship with the world opposes Jehovah.">"Friendship with the world is enmity with God." — James 4:4</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions entangle themselves in politics and pagan customs, betraying Jehovah’s call for separation. By embracing worldly systems, they divide loyalty, adopting practices like voting or holidays that stem from idolatry. This defiance of Scripture leads to worship that Jehovah rejects as impure and disloyal to His sovereignty.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-flag"></i> Saluting Flags Is Idolatry</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that saluting flags or pledging allegiance to nations is idolatry, giving undue honor to human institutions. Jehovah demands exclusive devotion, and such acts violate His command against worshiping images or symbols. Historically, flag worship emerged from nationalistic fervor, not biblical faith. True worshipers honor only Jehovah and His Kingdom, rejecting patriotic rituals. This is the truth Jehovah approves, and participating in such acts defiles pure worship, as it places human creations above the Creator.</p>
+      <div class="quote" data-tooltip="Jehovah forbids worshiping images or symbols.">"You must not make for yourself a carved image... you must not bow down to them." — Exodus 20:4, 5</div>
+      <div class="quote" data-tooltip="True loyalty belongs to Jehovah alone.">"You must worship God alone." — Luke 4:8</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        Flag salutes and pledges, rooted in idolatrous nationalism, divert devotion from Jehovah to human creations. These rituals, born of worldly pride, defy Scripture’s call for exclusive worship. By honoring symbols over the Creator, false religions lead followers into idolatry, fostering worship that Jehovah condemns as disloyal and profane.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-dove"></i> The Soul Is Mortal</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that the soul is not immortal; humans are souls that die at death. Jehovah created humans as living souls, not spirits that survive death. The idea of an immortal soul comes from Greek philosophy, not Scripture. The dead are unconscious, awaiting resurrection. This is the truth Jehovah approves, and believing in an immortal soul distorts His purpose for resurrection and eternal life on earth. True worship rejects this pagan lie, honoring Jehovah’s design for humanity.</p>
+      <div class="quote" data-tooltip="The soul dies with the body.">"The soul who sins is the one who will die." — Ezekiel 18:20</div>
+      <div class="quote" data-tooltip="The dead await resurrection, not eternal life as spirits.">"The dead know nothing at all." — Ecclesiastes 9:5</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        The immortal soul myth, derived from Greek philosophy, falsely claims humans live on as spirits after death. This pagan lie denies Jehovah’s truth of unconscious death and resurrection, misleading people into false hopes. Such teachings corrupt worship, as they reject Scripture’s clear teaching, leading to practices Jehovah deems unacceptable.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-tree"></i> Earth Will Be a Paradise Forever</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Jehovah’s purpose is for the earth to remain forever as a paradise, not to be destroyed. He created it to be inhabited by righteous humans living in peace. False teachings claim the earth will burn, but Scripture promises a restored Eden. This is the truth Jehovah approves, and true worshipers hope in His promise to live forever on earth, not in heaven. Denying this distorts Jehovah’s original purpose for creation.</p>
+      <div class="quote" data-tooltip="The earth is Jehovah’s creation for eternal habitation.">"The righteous will possess the earth, and they will live forever on it." — Psalm 37:29</div>
+      <div class="quote" data-tooltip="Jehovah’s creation endures forever.">"He has established the earth on its foundations; it will not be moved from its place forever." — Psalm 104:5</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions falsely prophesy the earth’s fiery end, contradicting Jehovah’s promise of an eternal paradise. This lie, rooted in apocalyptic myths, dismisses His purpose for a restored Eden. By focusing on heaven, such teachings mislead followers, fostering worship that ignores Scripture’s truth and fails to honor Jehovah’s creation plan.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-user-shield"></i> No Clergy Class in True Worship</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that all true Christians are equal ministers, with no exalted clergy class. Jesus condemned religious leaders who sought prominence, teaching that all believers are brothers. True worship involves humble service to Jehovah, not hierarchical titles or power. Historically, clergy systems arose to control followers, not to honor Jehovah. This is the truth Jehovah approves, and any system elevating certain men above others defiles His worship, as it contradicts the humility Jesus exemplified.</p>
+      <div class="quote" data-tooltip="All Christians are equal before Jehovah.">"You are all brothers." — Matthew 23:8</div>
+      <div class="quote" data-tooltip="Jesus rejected religious titles.">"Do not call anyone your father on earth, for one is your Father, the heavenly One." — Matthew 23:9</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        Clergy hierarchies, born of human pride, exalt men above others, defying Jesus’ teaching of equality. These systems, rooted in power and control, create spiritual elitism that Jehovah abhors. By prioritizing titles over humble service, false religions corrupt worship, leading followers into practices that Scripture condemns as unrighteous.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-baby"></i> Baptism Requires Personal Faith</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that baptism is for those who consciously choose to follow Jehovah, requiring personal faith and repentance. Infant baptism is unscriptural, as babies cannot understand or dedicate themselves to God. Jesus commanded making disciples before baptizing, emphasizing informed commitment. Historically, infant baptism arose from pagan traditions, not biblical teaching. This is the truth Jehovah approves, and baptizing infants misrepresents His requirement for voluntary, heartfelt worship, rendering such acts meaningless before Him.</p>
+      <div class="quote" data-tooltip="Baptism follows discipleship and faith.">"Go and make disciples... baptizing them." — Matthew 28:19</div>
+      <div class="quote" data-tooltip="Repentance precedes baptism.">"Repent, and let each one of you be baptized." — Acts 2:38</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        Infant baptism, a pagan-derived ritual, falsely claims to dedicate those incapable of faith or repentance. This practice, absent from Scripture, mocks Jehovah’s requirement for conscious devotion. By baptizing infants, false religions promote empty ceremonies that deceive followers, leading to worship that fails to meet Jehovah’s standards of truth.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-users"></i> The Congregation Is People, Not Buildings</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that the true congregation is the people who worship Jehovah, not physical buildings. Early Christians met in homes, not ornate temples, focusing on spiritual unity. Jehovah desires worship from the heart, not tied to structures. Historically, grand churches were built to impress, not to honor God. This is the truth Jehovah approves, and equating worship with buildings distracts from true devotion, leading to false worship that prioritizes materialism over spirituality.</p>
+      <div class="quote" data-tooltip="True worship occurs among people, not in buildings.">"Where two or three are gathered in my name, I am there." — Matthew 18:20</div>
+      <div class="quote" data-tooltip="God seeks heart-based worship.">"God is a Spirit, and those worshipping him must worship with spirit and truth." — John 4:24</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions glorify ornate buildings as sacred, diverting focus from spiritual worship to materialism. These structures, often funded by greed, contradict the simplicity of early Christian gatherings. By equating buildings with faith, such worship defies Jehovah’s call for heartfelt devotion, leading to practices He rejects as vain.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-heart"></i> Love Marks True Christians</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that genuine love among Christians is the hallmark of true worship. Jesus said love would identify his followers, shown through self-sacrifice and unity. This love transcends race, nationality, and status, reflecting Jehovah’s own nature. Unlike divided religions, true worshipers display brotherly love, obeying Jehovah’s command. This is the truth Jehovah approves, and lack of love reveals false worship, as it fails to reflect His character and purpose for His people.</p>
+      <div class="quote" data-tooltip="Love is the defining trait of true Christians.">"By this all will know that you are my disciples—if you have love among yourselves." — John 13:35</div>
+      <div class="quote" data-tooltip="Love reflects Jehovah’s standards.">"Love one another; just as I have loved you." — John 15:12</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions are fractured by politics, race, and conflict, lacking the unifying love Jehovah demands. Their failure to show self-sacrificing love exposes their worship as hollow, rooted in division rather than Scripture. Such disunity defies Jesus’ teaching, leading to practices that Jehovah condemns as unworthy of His approval.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-globe-americas"></i> Jehovah’s Purpose Is a Paradise Earth</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Jehovah’s purpose is to restore the earth to a paradise where righteous humans will live forever in peace, health, and happiness. He created Adam and Eve to inhabit a perfect earth, and despite their sin, His purpose remains unchanged. The earth will be filled with obedient humans under His Kingdom, fulfilling His original intent. This is the truth Jehovah approves, and true worshipers trust in His promise to transform the earth, not to destroy it or abandon it for heaven.</p>
+      <div class="quote" data-tooltip="Jehovah’s purpose is eternal life on earth.">"The righteous will possess the earth, and they will live forever on it." — Psalm 37:29</div>
+      <div class="quote" data-tooltip="God’s will is a populated, perfect earth.">"As for the heavens, they belong to Jehovah, but the earth he has given to the sons of men." — Psalm 115:16</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions falsely teach that heaven is the ultimate destiny, ignoring Jehovah’s plan for a paradise earth. This deception, rooted in pagan afterlife myths, dismisses Scripture’s promise of earthly restoration. By focusing on heaven, such teachings mislead followers, fostering worship that defies Jehovah’s purpose and fails His standards.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-compass"></i> The Bible Provides Clear Direction</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Jehovah’s Word is a reliable guide for life, offering clear direction to avoid being swayed by human philosophies or shifting trends. Without Scripture, people are like those tossed by the wind, lacking stability. The Bible provides principles for moral decisions, family life, and worship, ensuring alignment with Jehovah’s will. This is the truth Jehovah approves, and true worshipers rely on His Word to navigate life, rejecting human ideas that lead to confusion and false worship.</p>
+      <div class="quote" data-tooltip="The Bible stabilizes against worldly confusion.">"Be not carried about with divers and strange doctrines." — Hebrews 13:9</div>
+      <div class="quote" data-tooltip="Scripture guides like a lamp.">"Your word is a lamp to my foot and a light to my path." — Psalm 119:105</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions rely on human philosophies and shifting trends, leaving followers directionless, like waves tossed by the wind. These teachings, devoid of biblical grounding, lead to moral confusion and spiritual instability. By rejecting Jehovah’s Word as the sole guide, such worship fails to align with His truth and incurs His disapproval.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-gift"></i> Christmas Is a Pagan Holiday</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Christmas is not a Christian celebration but a pagan holiday Jehovah disapproves. Its origins lie in Roman Saturnalia, a festival of sun worship, with customs like gift-giving and decorated trees rooted in pagan rituals. The Bible never records Jesus’ birth date or commands its celebration. True worshipers reject Christmas as false worship, honoring Jehovah with pure devotion. This is the truth Jehovah approves, and participating in Christmas defiles His worship by blending it with paganism.</p>
+      <div class="quote" data-tooltip="Jehovah forbids pagan practices in worship.">"Do not learn the way of the nations... for the customs of the peoples are a delusion." — Jeremiah 10:2, 3</div>
+      <div class="quote" data-tooltip="True worship avoids pagan rituals.">"You must not worship Jehovah your God in that way." — Deuteronomy 12:31</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        Christmas, born from Roman Saturnalia and sun worship, deceives millions with its pagan roots. Trees, gifts, and dates stem from idolatrous rituals, not Scripture. By celebrating it, false religions blend Christianity with paganism, defiling worship. Jehovah rejects such practices as delusions that dishonor His truth and lead to spiritual ruin.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-egg"></i> Easter Is a Pagan Holiday</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Easter is a pagan holiday, not a Christian one, and Jehovah disapproves of it. Its origins trace to fertility festivals honoring goddesses like Astarte, with symbols like eggs and rabbits tied to pagan worship. The Bible commands commemorating Jesus’ death, not his resurrection, through the Lord’s Evening Meal. True worshipers reject Easter’s pagan roots, focusing on biblical worship. This is the truth Jehovah approves, and celebrating Easter defiles His worship with pagan falsehoods.</p>
+      <div class="quote" data-tooltip="Pagan worship is unacceptable to Jehovah.">"You must not mention the name of other gods." — Exodus 23:13</div>
+      <div class="quote" data-tooltip="Jesus commanded a specific memorial.">"Keep doing this in remembrance of me." — Luke 22:19</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        Easter’s roots in fertility cults, with eggs and rabbits honoring goddesses like Astarte, make it a pagan deception. False religions embrace these symbols, ignoring Jehovah’s command to avoid idolatry. By celebrating Easter, they reject the biblical memorial of Jesus’ death, promoting worship that Jehovah condemns as impure and offensive.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-book"></i> The Trinity Is a False Doctrine</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that the Trinity is a lie, as Jehovah is the only true God, and Jesus is His created Son, not equal to Him. The Holy Spirit is Jehovah’s active force, not a person. The Trinity concept emerged from pagan triads in Babylon and Egypt, adopted by apostate Christianity in the 4th century. True worshipers reject this doctrine, honoring Jehovah alone. This is the truth Jehovah approves, and the Trinity defiles worship by misrepresenting His nature and Jesus’ role.</p>
+      <div class="quote" data-tooltip="Jehovah is uniquely supreme.">"Jehovah our God is one Jehovah." — Deuteronomy 6:4</div>
+      <div class="quote" data-tooltip="Jesus is subordinate to Jehovah.">"The head of the Christ is God." — 1 Corinthians 11:3</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        The Trinity, borrowed from Babylonian and Egyptian triads, falsely equates Jesus and the Holy Spirit with Jehovah. This 4th-century apostasy distorts God’s nature, promoting idolatry. False religions cling to this pagan lie, defying Scripture’s clear teaching of one God. Such worship misleads followers, earning Jehovah’s condemnation as untruthful.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-pray"></i> Jehovah Demands Pure Worship</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Jehovah requires worship that is pure, free from paganism, hypocrisy, or human traditions. True worshipers obey His commands, study His Word, and live by His standards. Jesus emphasized worshiping in spirit and truth, rejecting rituals not found in Scripture. Pagan influences, like holidays or idols, defile worship. This is the truth Jehovah approves, and only pure, Bible-based worship pleases Him. Impure worship, tainted by falsehoods, is worthless and invites His judgment.</p>
+      <div class="quote" data-tooltip="Pure worship is Jehovah’s requirement.">"True worshipers will worship the Father with spirit and truth." — John 4:23</div>
+      <div class="quote" data-tooltip="False worship is futile.">"In vain do they keep worshipping me." — Matthew 15:9</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions mix paganism, like holidays and idols, with worship, rendering it vain and offensive to Jehovah. These human-invented traditions, devoid of scriptural basis, deceive followers into thinking they please God. By prioritizing rituals over truth, such worship fails Jehovah’s standards, leading to spiritual emptiness and divine disapproval.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-birthday-cake"></i> Birthdays Are Pagan and Unscriptural</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that birthday celebrations are rooted in pagan practices and are not part of true worship. Scripture records no Christian celebrating birthdays; instead, it associates them with pagan rulers like Pharaoh and Herod. Historical records show birthdays tied to astrology and pagan rituals, which Jehovah forbids. True worshipers honor Jehovah, not individuals, through celebrations. This is the truth Jehovah approves, and celebrating birthdays defiles worship by adopting pagan customs that displease Him.</p>
+      <div class="quote" data-tooltip="Pagan customs are unfit for Jehovah’s worship.">"Do not learn the way of the nations." — Jeremiah 10:2</div>
+      <div class="quote" data-tooltip="Life’s value lies in serving Jehovah, not celebrating birth.">"The day of our death is better than the day of our birth." — Ecclesiastes 7:1</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        Birthday celebrations, tied to pagan astrology and self-worship, defy Jehovah’s command against idolatrous practices. False religions embrace these rituals, ignoring their unbiblical origins. By glorifying individuals over the Creator, such customs corrupt worship, leading followers into deception. Jehovah rejects these practices as unfit, demanding pure devotion instead.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-shield-alt"></i> Military Service Violates Jehovah’s Law</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that true Christians must not engage in military service, as it violates Jehovah’s command to love neighbors and remain neutral in worldly conflicts. Jesus taught peace, and true worshipers follow his example by refusing to kill or support war. Historically, early Christians faced persecution for rejecting military service, showing their loyalty to Jehovah’s Kingdom. This is the truth Jehovah approves, and participating in military activities defiles worship by opposing His principles of love and peace.</p>
+      <div class="quote" data-tooltip="Love, not war, defines true Christians.">"You must love your neighbor as yourself." — Matthew 22:39</div>
+      <div class="quote" data-tooltip="Christians prioritize Jehovah’s Kingdom.">"My kingdom is no part of this world." — John 18:36</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions endorse military service, defying Jehovah’s commands for love and neutrality. By supporting war, they betray Jesus’ teachings, aligning with worldly conflicts over God’s Kingdom. This disobedience, rooted in human pride, corrupts worship, leading followers to commit acts Jehovah condemns as contrary to His peaceful purpose.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-skull"></i> The Dead Will Be Resurrected</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Jehovah will resurrect the dead to life on a paradise earth, fulfilling His purpose for humanity. Death is not the end but a sleep-like state until Jehovah’s appointed time. Jesus’ resurrection guarantees this hope. Unlike false teachings of immortal souls or eternal torment, the Bible promises a future restoration. This is the truth Jehovah approves, and true worshipers trust in His resurrection promise, rejecting lies that obscure His loving plan for the dead.</p>
+      <div class="quote" data-tooltip="Resurrection is Jehovah’s promise.">"The hour is coming in which all those in the memorial tombs will hear his voice and come out." — John 5:28, 29</div>
+      <div class="quote" data-tooltip="Death is a temporary sleep.">"Lazarus our friend has fallen asleep, but I am traveling there to awaken him." — John 11:11</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions promote immortal souls or eternal torment, denying Jehovah’s resurrection promise. These lies, rooted in pagan myths, obscure His plan for a restored earth. By rejecting the truth of death as sleep, they mislead followers into false hopes, fostering worship that defies Scripture and earns Jehovah’s disapproval.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth dark animate">
+    <h2><i class="fas fa-clock"></i> Armageddon Is Imminent</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that Armageddon, Jehovah’s day of judgment, is near, when He will destroy the wicked and their systems. This is not a symbolic event but a literal intervention to end human misrule and establish His Kingdom fully. Prophecies in Daniel and Revelation point to its imminence. True worshipers prepare by obeying Jehovah now. This is the truth Jehovah approves, and ignoring Armageddon’s reality leads to destruction, as only those loyal to Jehovah will survive.</p>
+      <div class="quote" data-tooltip="Jehovah’s judgment is certain and near.">"Jehovah’s day is coming as a thief." — 2 Peter 3:10</div>
+      <div class="quote" data-tooltip="The wicked will face destruction.">"The wicked will be cut off from the earth." — Proverbs 2:22</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions dismiss Armageddon as symbolic or distant, ignoring Jehovah’s imminent judgment. These teachings, rooted in apathy, lull followers into complacency, defying Scripture’s warnings. By denying the reality of His intervention, they promote false security, leading to worship that fails to prepare for Jehovah’s day of reckoning.
+      </div>
+    </div>
+  </section>
+
+  <section class="truth animate">
+    <h2><i class="fas fa-book"></i> The Bible Is Jehovah’s Inspired Word</h2>
+    <div class="truth-content">
+      <p>The Bible teaches that all Scripture is inspired by Jehovah, serving as His authoritative guide for worship and life. It is free from error and superior to human wisdom. True worshipers study it diligently to align with Jehovah’s will. Historically, attempts to alter or suppress the Bible have failed, proving its divine origin. This is the truth Jehovah approves, and rejecting the Bible’s authority leads to false worship, as it is the only source of Jehovah’s revealed truth.</p>
+      <div class="quote" data-tooltip="The Bible is divinely inspired.">"All Scripture is inspired of God and beneficial." — 2 Timothy 3:16</div>
+      <div class="quote" data-tooltip="Jehovah’s Word endures forever.">"The word of our God endures forever." — Isaiah 40:8</div>
+    </div>
+    <div class="toggle">
+      <button class="toggle-btn truth-btn">Reveal the Truth</button>
+      <button class="toggle-btn lie-btn">Reveal the Lie</button>
+      <div class="toggle-content lie-content">
+        False religions elevate human philosophies and traditions above Jehovah’s inspired Word, leading followers astray. By altering or ignoring Scripture, they promote error-filled teachings that lack divine authority. This rejection of the Bible’s truth fosters worship that is vain and offensive, as it defies Jehovah’s guidance for true devotion.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© Just Wise Love</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll(".animate").forEach(section => {
+        observer.observe(section);
+      });
+
+      document.querySelectorAll(".truth-btn").forEach(button => {
+        button.addEventListener("click", () => {
+          const content = button.parentElement.previousElementSibling;
+          content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+      });
+
+      document.querySelectorAll(".lie-btn").forEach(button => {
+        button.addEventListener("click", () => {
+          const content = button.nextElementSibling;
+          content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
