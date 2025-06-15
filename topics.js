@@ -8,8 +8,25 @@ const topics = [
   ],
   "D": "The Trinity doctrine is unscriptural and contradicts the Bible’s clear teachings about Jehovah, Jesus, and the holy spirit. At Jesus’ baptism (Matthew 3:16-17), Jehovah’s voice from heaven identifies Jesus as His Son, while the holy spirit descends separately—three distinct entities, not one. Jesus plainly stated, ‘the Father is greater than I am’ (John 14:28), showing he is not equal to Jehovah. Paul affirms that Jesus remains in subjection to God even after all things are subjected to him (1 Corinthians 15:27-28). The Trinity doctrine originated in pagan philosophy and was adopted centuries after the Bible was written. Jehovah’s Witnesses rightly reject it, staying loyal to what the Scriptures truly teach."
 },
-  
   {
+  "T": "The Holocaust",
+  "S": [
+    "2 Timothy 3:1, 3 - <em>But know this, that in the last days critical times hard to deal with will be here… having no natural affection, not open to any agreement, slanderers, without self-control, fierce, without love of goodness.</em>",
+    "John 15:19 - <em>If you were part of the world, the world would be fond of what is its own. Now because you are no part of the world… the world hates you.</em>",
+    "Revelation 12:17 - <em>So the dragon became enraged at the woman and went off to wage war with the remaining ones of her offspring, who observe the commandments of God and have the work of bearing witness concerning Jesus.</em>"
+  ],
+  "D": "The Holocaust was one of the darkest chapters in human history, fueled by hatred, nationalism, and Satan’s influence over a godless system. Millions of innocent lives were lost, including around 4,200 of Jehovah’s Witnesses—men, women, and even children—who refused to compromise their faith. While Jews were targeted for their ethnicity, Witnesses were persecuted for their beliefs. Revelation 12:17 helps us see this as part of Satan’s war against true Christians. John 15:19 shows the world’s hatred for those who remain separate from its politics and wars. Jehovah’s Witnesses, unlike most religious groups, refused to support the Nazi regime, even when it meant imprisonment or death. This history confirms the truth of 2 Timothy 3:1, 3—“fierce” conditions would mark the last days. But despite all this, Jehovah preserved His people, and their integrity glorified Him."
+},
+  {
+  "T": "Unicorns",
+  "S": [
+    "Job 39:9-10 - <em>Will a wild bull want to serve you? Will it spend the night in your stable? Can you hold a wild bull to the furrow with a rope, or will it plow the valley behind you?</em>",
+    "Psalm 22:21 (KJV) - <em>Save me from the lion’s mouth: for thou hast heard me from the horns of the unicorns.</em>",
+    "Proverbs 30:5-6 - <em>Every saying of God is refined. He is a shield to those taking refuge in him. Add nothing to his words, or he will reprove you, and you will be proved a liar.</em>"
+  ],
+  "D": "The idea of unicorns in the Bible is based on mistranslations in older versions like the King James Version. The original Hebrew word 'reʾem' refers to a strong, wild animal—likely the now-extinct aurochs, a powerful wild bull—not a mythical one-horned horse. The New World Translation accurately renders it 'wild bull' (Job 39:9-10). Proverbs 30:5-6 reminds us not to add to God’s Word. Jehovah’s Witnesses rely on accurate translations and do not accept mythological interpretations. Claims of unicorns in the Bible are misunderstandings, not supported by the inspired text."
+},
+ {
     "T": "1914",
     "S": [
       "Daniel 4:17 - <em>The Most High is Ruler in the kingdom of mankind and that he gives it to whomever he wants.</em>",
