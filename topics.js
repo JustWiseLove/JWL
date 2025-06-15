@@ -1,4 +1,14 @@
 const topics = [
+ {
+  "T": "Trinity",
+  "S": [
+    "Matthew 3:16-17 - <em>After being baptized, Jesus immediately came up from the water; and look! the heavens were opened up, and he saw God’s spirit descending like a dove and coming upon him. Look! Also, a voice from the heavens said: ‘This is my Son, the beloved, whom I have approved.’</em>",
+    "John 14:28 - <em>You heard that I said to you, ‘I am going away, and I am coming back to you.’ If you loved me, you would rejoice that I am going to the Father, for the Father is greater than I am.</em>",
+    "1 Corinthians 15:27-28 - <em>For God ‘subjected all things under his feet.’ But when he says that ‘all things have been subjected,’ it is evident that this does not include the one who subjected all things to him. But when all things will have been subjected to him, then the Son himself will also subject himself to the One who subjected all things to him, that God may be all things to everyone.</em>"
+  ],
+  "D": "The Trinity doctrine is unscriptural and contradicts the Bible’s clear teachings about Jehovah, Jesus, and the holy spirit. At Jesus’ baptism (Matthew 3:16-17), Jehovah’s voice from heaven identifies Jesus as His Son, while the holy spirit descends separately—three distinct entities, not one. Jesus plainly stated, ‘the Father is greater than I am’ (John 14:28), showing he is not equal to Jehovah. Paul affirms that Jesus remains in subjection to God even after all things are subjected to him (1 Corinthians 15:27-28). The Trinity doctrine originated in pagan philosophy and was adopted centuries after the Bible was written. Jehovah’s Witnesses rightly reject it, staying loyal to what the Scriptures truly teach."
+},
+  
   {
     "T": "1914",
     "S": [
