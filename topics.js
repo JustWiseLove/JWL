@@ -1,4 +1,204 @@
 const topics = [
+  {
+    "T": "Christmas",
+    "S": [
+      "Exodus 20:3 - <em>You must not have any other gods besides me.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>"
+    ],
+    "D": "Christmas stems from the Roman Saturnalia, a debauched festival honoring Saturn with drunken orgies, human sacrifices, and lawless role reversals where slaves mocked masters, often sparking violence. Evergreen trees, adorned to appease winter spirits, and gift-giving, mimicking offerings to false gods, perpetuate lies of divine favor. The Bible gives no date for Jesus’ birth; December 25 aligns with sun god worship, not truth. Modern practices—Santa Claus as a magical judge, twinkling lights echoing pagan solstice rites—glorify myths, not Jehovah. Exodus 20:3 forbids other gods, and John 4:24 demands worship in truth, which this pagan revelry defiles."
+  },
+  {
+    "T": "Easter",
+    "S": [
+      "Deuteronomy 12:30-31 - <em>Be careful not to be ensnared by following their ways... for every detestable thing that Jehovah hates they have done for their gods.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>"
+    ],
+    "D": "Easter derives from worship of Ēostre, a Germanic fertility goddess, with rituals of sexual unions and eggs smeared with sacrificial blood to symbolize reproduction. Rabbits, chosen for rampant breeding, were idols of lustful life cycles. The Bible never ties Jesus’ resurrection to April or commands its celebration; the date mimics spring equinox rites. Easter egg hunts and bunny symbols perpetuate pagan fertility lies, not biblical truth. Sunrise services echo sun worship, defying Deuteronomy 12:30-31’s warning against pagan ways. John 4:24 requires pure worship, which this sensual idolatry violates."
+  },
+  {
+    "T": "Independence Day",
+    "S": [
+      "John 17:16 - <em>They are no part of the world, just as I am no part of the world.</em>",
+      "Isaiah 2:4 - <em>They will beat their swords into plowshares... nation will not lift up sword against nation.</em>"
+    ],
+    "D": "Independence Day celebrates the American Revolution’s bloodshed, where thousands—soldiers, women, children—died in battles and massacres. Fireworks mimic war’s explosions, and flag-waving exalts a nation over Jehovah’s Kingdom. The liberty proclaimed ignores enslaved and Native victims, a lie of universal freedom. Parades and anthems glorify human rule, not God’s. Isaiah 2:4 envisions peace, not war’s carnage. John 17:16 demands separation from worldly loyalties, which this violent, nationalistic festival contradicts, lacking any basis in biblical truth."
+  },
+  {
+    "T": "Memorial Day",
+    "S": [
+      "Matthew 5:44 - <em>Continue to love your enemies and to pray for those who persecute you.</em>",
+      "Psalm 146:3 - <em>Do not put your trust in princes, in a son of man, who cannot bring salvation.</em>"
+    ],
+    "D": "Memorial Day honors war dead from conflicts like the Civil War, where over 600,000 perished, including civilians in brutal raids. Grave decorations and military parades glorify killing, masking the horror of mangled bodies and orphaned children. The holiday’s claim to honor sacrifice lies, as it exalts human conflicts over Jehovah’s peace. Matthew 5:44 commands loving enemies, not celebrating their slaughter. Psalm 146:3 rejects trust in human leaders, yet this festival venerates their wars, defying the truth of God’s Kingdom."
+  },
+  {
+    "T": "Halloween",
+    "S": [
+      "Deuteronomy 18:10-11 - <em>There should not be found in you anyone who... consults the dead.</em>",
+      "Ephesians 5:11 - <em>Have no fellowship with the unfruitful works of darkness, but rather expose them.</em>"
+    ],
+    "D": "Halloween comes from Celtic Samhain, where druids burned humans and animals to appease vengeful spirits. Costumes mimicked ghosts to fool demons, and food offerings, now trick-or-treating, bribed evil forces. Jack-o’-lanterns, carved to ward off spirits, perpetuate occult lies. The Bible condemns spiritism in Deuteronomy 18:10-11, yet modern celebrations glorify death with skeletons and ghouls. Ephesians 5:11 rejects fellowship with darkness, which this demonic festival promotes, opposing the truth and pure worship Jehovah demands."
+  },
+  {
+    "T": "Thanksgiving",
+    "S": [
+      "1 Thessalonians 5:18 - <em>In connection with everything give thanks.</em>",
+      "John 15:19 - <em>If you were part of the world, the world would be fond of what is its own.</em>"
+    ],
+    "D": "Thanksgiving whitewashes colonial genocide, tied to the 1621 feast but leading to millions of Native deaths by disease, war, and land theft. Turkey feasts and harvest imagery hide the blood of scalped tribes and enslaved peoples. The holiday’s gratitude narrative lies, focusing on human prosperity, not Jehovah. 1 Thessalonians 5:18 calls for constant thanks to God, not a day celebrating conquest. John 15:19 demands separation from worldly traditions, which this violent, deceptive festival contradicts, lacking any scriptural truth."
+  },
+  {
+    "T": "New Year’s Day",
+    "S": [
+      "Galatians 4:9-10 - <em>You are scrupulously observing days and months and seasons and years.</em>",
+      "Isaiah 1:14 - <em>Your new moons and your festivals my soul hates.</em>"
+    ],
+    "D": "New Year’s Day stems from Roman worship of Janus, with drunken orgies and animal sacrifices to ensure prosperity. Fireworks, resolutions, and lucky foods like black-eyed peas mimic pagan divination, falsely promising divine favor. The date, tied to a human calendar, exalts man’s timekeeping over Jehovah’s eternal plan. Galatians 4:9-10 condemns observing special days, and Isaiah 1:14 declares God’s hatred for such festivals. This idolatrous celebration lacks truth, defying the pure worship Jehovah requires."
+  },
+  {
+    "T": "Valentine’s Day",
+    "S": [
+      "2 Timothy 2:22 - <em>Flee from youthful desires, but pursue righteousness, faith, love, peace.</em>",
+      "1 Corinthians 10:14 - <em>Flee from idolatry.</em>"
+    ],
+    "D": "Valentine’s Day originates from Lupercalia, a Roman festival where priests whipped women with bloody hides for fertility and paired couples for sexual rites. Hearts, roses, and chocolates promote lustful romance, not godly love. The martyr Valentine’s link is a myth, masking pagan sensuality. 2 Timothy 2:22 calls for fleeing fleshly desires, and 1 Corinthians 10:14 rejects idolatry. This immoral festival’s lies glorify human passion, not Jehovah’s truth, opposing pure worship."
+  },
+  {
+    "T": "Mother’s Day",
+    "S": [
+      "Matthew 12:50 - <em>Whoever does the will of my Father who is in heaven, that one is my brother and sister and mother.</em>",
+      "Exodus 20:12 - <em>Honor your father and your mother.</em>"
+    ],
+    "D": "Mother’s Day stems from worship of Cybele, whose followers castrated themselves and engaged in temple prostitution to honor the mother goddess. Modern cards, flowers, and brunches, pushed by commerce, exalt humans over Jehovah. Anna Jarvis, its founder, denounced its greed-driven distortion. Matthew 12:50 defines true family as those doing God’s will, not a special day. Exodus 20:12 commands constant honor, not pagan-rooted celebrations. This idolatrous lie defies Jehovah’s truth and pure worship."
+  },
+  {
+    "T": "Father’s Day",
+    "S": [
+      "Ephesians 6:4 - <em>Fathers, do not be irritating your children, but go on bringing them up in the discipline and instruction of Jehovah.</em>",
+      "Psalm 83:18 - <em>You alone are the Most High over all the earth.</em>"
+    ],
+    "D": "Father’s Day, tied to Mother’s Day, shares its roots in Cybele’s cult, with bloody rituals and frenzied worship of a false goddess. Ties, tools, and barbecues exalt human fathers, not Jehovah, the ultimate Father. The holiday’s commercial push lies, claiming one day suffices for honor. Ephesians 6:4 demands ongoing godly parenting, not worldly celebrations. Psalm 83:18 declares Jehovah’s supremacy, which this idolatrous tradition undermines, lacking biblical truth for pure worship."
+  },
+  {
+    "T": "St. Patrick’s Day",
+    "S": [
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Deuteronomy 4:15-16 - <em>You must not make for yourself a carved image... for you did not see any form.</em>"
+    ],
+    "D": "St. Patrick’s Day promotes the Trinity, a false doctrine using shamrocks to depict a triune god, unmentioned in scripture. Rooted in Celtic Druidic rites, it features drunken parades and green beer, glorifying excess. Leprechauns and pots of gold echo pagan myths of spirit beings. John 4:24 demands worship in truth, which the Trinity lie defies. Deuteronomy 4:15-16 forbids idolatrous images like shamrocks. This blasphemous festival lacks Jehovah’s truth, opposing pure worship."
+  },
+  {
+    "T": "Labor Day",
+    "S": [
+      "Colossians 3:23 - <em>Whatever you are doing, work at it whole-souled as for Jehovah.</em>",
+      "1 John 2:15 - <em>Do not love either the world or the things in the world.</em>"
+    ],
+    "D": "Labor Day glorifies human toil, rooted in violent strikes like the 1894 Pullman Strike, where workers died in riots. Parades and picnics celebrate class struggles, not Jehovah’s provision. The holiday’s narrative of worker triumph lies, ignoring exploited laborers and worldly systems. Colossians 3:23 calls for work to honor Jehovah, not man. 1 John 2:15 rejects love for worldly achievements. This divisive celebration lacks biblical truth, defying pure worship."
+  },
+  {
+    "T": "Columbus Day",
+    "S": [
+      "Micah 6:8 - <em>He has told you, O man, what is good... to love kindness and to be modest.</em>",
+      "James 4:4 - <em>Friendship with the world is enmity with God.</em>"
+    ],
+    "D": "Columbus Day honors a genocidal explorer whose 1492 voyages led to enslavement, rape, and millions of Native deaths by sword and disease. Parades and statues glorify his conquests, lying about ‘discovery’ while ignoring slaughtered tribes. Micah 6:8 demands kindness, not cruelty’s celebration. James 4:4 warns against worldly alliances. This bloodstained festival exalts human greed, not Jehovah’s justice, opposing the truth required for pure worship."
+  },
+  {
+    "T": "Presidents’ Day",
+    "S": [
+      "Psalm 146:3 - <em>Do not put your trust in princes, in a son of man, who cannot bring salvation.</em>",
+      "Daniel 2:44 - <em>The God of heaven will set up a kingdom that will never be destroyed.</em>"
+    ],
+    "D": "Presidents’ Day idolizes human rulers like Washington, who owned slaves and displaced Natives, and Lincoln, tied to bloody wars. Sales and ceremonies exalt men’s power, lying about their salvation. Psalm 146:3 rejects trust in princes, and Daniel 2:44 promises Jehovah’s Kingdom over human rule. This worldly veneration of flawed leaders defies biblical truth, lacking any basis for pure worship of Jehovah."
+  },
+  {
+    "T": "Earth Day",
+    "S": [
+      "Romans 1:25 - <em>They venerated and rendered sacred service to the creation rather than the Creator.</em>",
+      "Revelation 11:18 - <em>The nations became wrathful... to bring to ruin those ruining the earth.</em>"
+    ],
+    "D": "Earth Day worships creation, rooted in pagan Gaia cults with rituals like tree-hugging and offerings to nature spirits. Recycling drives and green pledges deify the planet, lying that human efforts save it. Romans 1:25 condemns venerating creation over Jehovah. Revelation 11:18 reserves judgment of the earth for God, not man. This idolatrous celebration steals Jehovah’s glory, opposing the truth of pure worship."
+  },
+  {
+    "T": "April Fool’s Day",
+    "S": [
+      "Proverbs 12:22 - <em>Lying lips are detestable to Jehovah.</em>",
+      "Ephesians 4:25 - <em>Speak truth each one of you with his neighbor.</em>"
+    ],
+    "D": "April Fool’s Day celebrates lies, tied to medieval festivals mocking authority with cruel pranks and pagan spring rites deceiving for divine favor. Jokes and hoaxes, like fake emergencies, glorify falsehood. Proverbs 12:22 declares Jehovah’s hatred for lies, and Ephesians 4:25 demands truth. This deceptive tradition, rooted in pagan trickery, defies the honesty required for pure worship of Jehovah."
+  },
+  {
+    "T": "Groundhog Day",
+    "S": [
+      "Leviticus 19:26 - <em>You must not look for omens.</em>",
+      "Isaiah 44:25 - <em>I am frustrating the signs of the empty talkers.</em>"
+    ],
+    "D": "Groundhog Day stems from Celtic Imbolc, where priests read animal omens to predict seasons, a lie of divine insight. Crowds watching a groundhog’s shadow as prophecy perpetuate this superstition. Leviticus 19:26 bans omens, and Isaiah 44:25 shows Jehovah nullifies false signs. This divinatory ritual mocks His truth, lacking any basis for pure worship."
+  },
+  {
+    "T": "Mardi Gras",
+    "S": [
+      "1 Peter 4:3 - <em>The past time is sufficient for you to have gone on doing what the nations have a will for, living in deeds of brazen conduct, lusts, overdrinking.</em>",
+      "Galatians 5:19-21 - <em>The works of the flesh are... drunkenness, wild parties... those who practice such things will not inherit God’s Kingdom.</em>"
+    ],
+    "D": "Mardi Gras, tied to pagan Bacchanalia, features drunken orgies, nudity, and idol worship in pre-Lent excess. Bead-throwing and masked parades promote lust and chaos, lying about divine approval. 1 Peter 4:3 rejects such brazen conduct, and Galatians 5:19-21 bars drunkards from God’s Kingdom. This depraved festival defies Jehovah’s call for purity and truth in worship."
+  },
+  {
+    "T": "Hanukkah",
+    "S": [
+      "John 10:22-23 - <em>It was the Festival of Dedication... but Jesus did not participate.</em>",
+      "Colossians 2:16 - <em>Let no man judge you in eating and drinking or in respect of a festival.</em>"
+    ],
+    "D": "Hanukkah celebrates a Jewish military victory with menorah lighting and feasts, but Jesus, in John 10:22-23, did not join it, showing no divine mandate. Games like dreidel and oil-fried foods exalt human tradition, not Jehovah’s truth. Colossians 2:16 frees worshipers from unscriptural festivals. This man-made celebration lacks biblical basis, opposing the truth required for pure worship."
+  },
+  {
+    "T": "Purim",
+    "S": [
+      "Esther 9:26 - <em>They called these days Purim... but no command to celebrate.</em>",
+      "Deuteronomy 12:32 - <em>Everything that I am commanding you, you should do. You must not add to it.</em>"
+    ],
+    "D": "Purim marks Esther’s victory with drunken feasts, costumes, and noisemakers, echoing pagan excess, not Jehovah’s command. Esther 9:26 notes the event, but no scripture mandates its celebration. Costumed revelry and gift-giving mimic idolatrous rites. Deuteronomy 12:32 forbids adding human traditions to God’s worship. This unscriptural festival defies the truth and purity Jehovah demands."
+  },
+  {
+    "T": "Diwali",
+    "S": [
+      "Isaiah 42:8 - <em>I am Jehovah. That is my name; I give my glory to no one else.</em>",
+      "Acts 17:24 - <em>The God who made the world... does not dwell in handmade temples.</em>"
+    ],
+    "D": "Diwali, a Hindu festival, worships Lakshmi with lamps, sweets, and firecrackers, honoring false gods through temple rituals. Myths of demon-slaying and prosperity lies exalt idols. Isaiah 42:8 declares Jehovah’s exclusive glory, and Acts 17:24 rejects temple worship. This idolatrous celebration, steeped in falsehood, opposes the truth and pure worship of Jehovah."
+  },
+  {
+    "T": "Holi",
+    "S": [
+      "Romans 12:1 - <em>Present your bodies as a living sacrifice, holy, acceptable to God.</em>",
+      "1 Corinthians 6:18 - <em>Flee from sexual immorality.</em>"
+    ],
+    "D": "Holi, a Hindu spring festival, celebrates Krishna’s lustful exploits with colored powders, bonfires, and sensual dances. Crowds engage in drunken revelry, throwing dyes to mimic mythic seductions. Romans 12:1 demands holiness, not pagan immorality. 1 Corinthians 6:18 commands fleeing sexual sin, which Holi’s licentious rites glorify. This filthy festival lacks truth, defying Jehovah’s pure worship."
+  },
+  {
+    "T": "Chinese New Year",
+    "S": [
+      "Deuteronomy 18:9 - <em>You must not learn to do according to the detestable things of those nations.</em>",
+      "Revelation 9:20 - <em>They did not repent... nor from their worship of demons.</em>"
+    ],
+    "D": "Chinese New Year honors ancestors and demons with offerings, dragon dances, and red envelopes to ward off evil spirits. Firecrackers and zodiac rituals promote superstitious lies of divine protection. Deuteronomy 18:9 condemns such pagan practices, and Revelation 9:20 warns against demon worship. This occult festival defies Jehovah’s truth, opposing pure worship."
+  },
+  {
+    "T": "Veterans Day",
+    "S": [
+      "Micah 4:3 - <em>They will not learn war anymore.</em>",
+      "John 18:36 - <em>My Kingdom is no part of this world.</em>"
+    ],
+    "D": "Veterans Day glorifies war, honoring soldiers from conflicts like World War I, where millions died in muddy trenches. Ceremonies and flag displays exalt human battles, lying about their nobility. Micah 4:3 promises a world without war, and John 18:36 shows Jesus’ Kingdom rejects worldly fights. This blood-soaked tribute lacks biblical truth, defying Jehovah’s call for pure worship."
+  },
+  {
+    "T": "Black Friday",
+    "S": [
+      "1 Timothy 6:10 - <em>The love of money is a root of all sorts of injurious things.</em>",
+      "Matthew 6:24 - <em>You cannot slave for God and for Riches.</em>"
+    ],
+    "D": "Black Friday, tied to Thanksgiving sales, incites greed with violent stampedes for discounts, injuring and killing shoppers. Ads and doorbusters lie, promising happiness through materialism. 1 Timothy 6:10 warns against love of money, and Matthew 6:24 rejects serving riches over Jehovah. This frenzied, consumerist ritual defies the truth and purity of Jehovah’s worship."
+  },
  {
   "T": "Trinity",
   "S": [
