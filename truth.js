@@ -929,7 +929,7 @@ const truths = [
   },
   {
     title: "Abednego’s Trust Triumphs",
-    icon: "fas fa-cross",
+    icon: "fas fa-shield-alt",
     summary: "Abednego’s trust in Jehovah, refusing to worship Nebuchadnezzar’s image, led to his preservation in the furnace (Daniel 3:18). His faith contrasts with Babylon’s idolatry. False religions trust in false gods, like Israel’s Baal worship (1 Kings 16:32), leading to spiritual ruin. True worshipers, like Abednego, rely on Jehovah, ensuring His approval. Abednego’s example teaches us to trust Jehovah in trials, securing eternal life. In contrast, idolatry, like Judah’s apostasy (2 Chronicles 33:6), leads to divine disapproval and spiritual ruin, as it rejects Jehovah’s sovereignty.",
     scriptures: [
       { text: "Even if he does not, we will not serve your gods.", reference: "Daniel 3:18", tooltip: "Trust in Jehovah alone." },
