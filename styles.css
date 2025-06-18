@@ -11,14 +11,14 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #000000; /* Solid black background for black spacing */
+    background: #000000;
     color: #fff;
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
 }
 
 header {
-    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -27,8 +27,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    width: 100%; /* Full width */
-    margin-bottom: 5px; /* Changed to 5px black spacing below header */
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 .logo {
@@ -118,20 +118,20 @@ header {
 }
 
 main.main-content {
-    max-width: 100%; /* Full width, no max constraint */
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0; /* Remove padding to let containers handle spacing */
+    padding: 0;
     width: 100%;
 }
 
 .search-section {
-    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     padding: 15px;
-    margin-bottom: 5px; /* Changed to 5px black spacing below search bar */
-    margin-top: 5px; /* Changed to 5px black spacing above search bar */
+    margin-bottom: 5px;
+    margin-top: 5px;
     border-radius: 8px;
     text-align: center;
-    width: 100%; /* Full width */
+    width: 100%;
 }
 
 .search-content {
@@ -141,7 +141,7 @@ main.main-content {
 
 .search-content input {
     width: 100%;
-    max-width: 800px; /* Width set to 800px */
+    max-width: 800px;
     padding: 10px;
     font-size: 16px;
     border: 2px solid #000000;
@@ -150,21 +150,23 @@ main.main-content {
     font-family: Arial, Helvetica, sans-serif;
     color: #000000;
     background: #ffffff;
+    text-align: center;
 }
 
 .search-content input::placeholder {
     color: #666666;
+    text-align: center;
 }
 
 .tabs {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 5px; /* Changed to 5px black spacing below tabs */
-    margin-top: 5px; /* Changed to 5px black spacing above tabs */
-    width: 100%; /* Full width */
-    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
-    padding: 10px 0; /* Add padding to contain the gradient */
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
+    padding: 10px 0;
 }
 
 .tab-button {
@@ -196,13 +198,11 @@ main.main-content {
     color: #000000;
 }
 
-/* Specific fix for the LAUNCH button (which is an <a> tag) */
 .tab-button[href] {
     border-bottom: none;
     text-decoration: none;
 }
 
-/* New style for NAVIGATE button to always be green */
 .tab-button[href="/zero/index.html"] {
     background: var(--Green);
     color: #000000;
@@ -210,29 +210,29 @@ main.main-content {
 }
 
 .list {
-    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
-    padding: 10px; /* 10px padding to match spacing */
-    width: 100%; /* Full width */
-    margin-bottom: 5px; /* Changed to 5px black spacing below list */
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 5px;
 }
 
-.list#search-results, .list#topics, .list#people {
-    display: flex; /* Use flex for vertical stacking */
-    flex-direction: column; /* Stack items vertically */
-    gap: 10px; /* 10px spacing between items */
-    width: 100%; /* Full width */
+.list#search-results, .list#topics, .list#people, .list#truths {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
 }
 
 .item {
-    background: none; /* Remove individual item background, use list background */
-    padding: 0; /* Remove padding to eliminate double container effect */
+    background: none;
+    padding: 0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
-    width: 100%; /* Ensure full width within the list */
-    display: flex; /* Use flex to control internal spacing */
-    flex-direction: column; /* Stack title and content vertically */
-    gap: 10px; /* 10px spacing between title and content within item */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .item:hover {
@@ -241,7 +241,7 @@ main.main-content {
 
 .item-button {
     width: 100%;
-    max-width: 800px; /* Width set to 800px */
+    max-width: 800px;
     padding: 10px;
     background: #000000;
     color: #ffffff;
@@ -251,8 +251,8 @@ main.main-content {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s;
-    text-align: center; /* Center the title */
-    margin: 0 auto; /* Center within the 800px max-width */
+    text-align: center;
+    margin: 0 auto;
 }
 
 .item-button:hover {
@@ -267,13 +267,23 @@ main.main-content {
     border-radius: 8px;
     color: #ffffff;
     width: 100%;
-    max-width: 800px; /* Width set to 800px */
-    text-align: left; /* Keep article text left-aligned for readability */
-    margin: 0 auto; /* Center within the 800px max-width */
+    max-width: 800px;
+    text-align: left;
+    margin: 0 auto;
 }
 
 .content.active {
     display: block;
+}
+
+.content p {
+    margin: 10px 0;
+}
+
+.content p.reference {
+    font-style: italic;
+    color: #ffffff;
+    margin-top: 10px;
 }
 
 .scripture-section ul {
@@ -297,7 +307,7 @@ main.main-content {
 }
 
 .highlight {
-    background: #ffd800;
+    background: #ffd700;
     color: #000000;
     padding: 2px 4px;
     border-radius: 3px;
@@ -305,29 +315,74 @@ main.main-content {
 
 .bear-image {
     max-width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
-    margin: 5px auto; /* Changed to 5px black spacing above and below bear image */
+    margin: 5px auto;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
-    padding: 20px; /* Add padding to contain the gradient */
-    width: 100%; /* Full width */
-    margin-top: 5px !important; /* Changed to 5px black spacing above bear image */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
+    padding: 20px;
+    width: 100%;
+    margin-top: 5px !important;
 }
 
 footer {
-    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark)); /* Green gradient container */
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     text-align: center;
     padding: 2px;
     color: #000000;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Full width */
-    margin-top: 5px; /* Changed to 5px black spacing above footer */
+    width: 100%;
+    margin-top: 5px;
 }
 
 footer p {
     margin: 10px 0 0;
+}
+
+.dropdown-section {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+    background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
+    padding: 15px; /* Match search-section padding */
+    width: 100%;
+    border-radius: 8px; /* Match search-section border-radius */
+}
+
+.dropdown-section select {
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-align-last: center;
+    appearance: none;
+    cursor: pointer;
+}
+
+.dropdown-section select option {
+    text-align: center;
+}
+
+.dropdown-section select:focus {
+    outline: none;
+    border-color: var(--Green);
+}
+
+.placeholder {
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Audiowide', Arial, sans-serif;
+    font-size: 16px;
+    margin: 15px 0;
+    max-width: 800px;
+    width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -351,11 +406,15 @@ footer p {
     }
 
     .bear-image {
-        margin: 5px auto; /* Changed to 5px for mobile to match black spacing */
+        margin: 5px auto;
+    }
+
+    .dropdown-section select {
+        font-size: 14px;
+        padding: 8px;
     }
 }
 
-/* Backward compatibility for hamburger-menu from original indexs.html */
 .hamburger {
     display: none;
     cursor: pointer;
