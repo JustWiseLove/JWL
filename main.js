@@ -3,10 +3,12 @@
 // Global variables and initialization
 let sortedTopics = [];
 let sortedPeople = [];
+let sortedTruths = [];
 
 try {
     sortedTopics = topics.slice().sort((a, b) => a.T.localeCompare(b.T));
     sortedPeople = people.slice().sort((a, b) => a.T.localeCompare(b.T));
+    sortedTruths = truths.slice().sort((a, b) => a.title.localeCompare(b.title));
 } catch (e) {
     console.error('Error initializing sorted arrays:', e);
 }
@@ -14,7 +16,8 @@ try {
 // Category mapping for easy access
 const categories = {
     'topics': sortedTopics,
-    'people': sortedPeople
+    'people': sortedPeople,
+    'truths': sortedTruths
 };
 
 // Debounce timeout for search input
@@ -57,6 +60,51 @@ function goToHome() {
     window.location.href = 'index.html';
 }
 
+// Populate truth dropdown
+function populateTruthSelector() {
+    const selector = document.getElementById('truth-selector');
+    if (!selector) return;
+    sortedTruths.forEach((truth, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = truth.title;
+        selector.appendChild(option);
+    });
+}
+
+// Display selected truth
+function displayTruth() {
+    const selector = document.getElementById('truth-selector');
+    const container = document.getElementById('truths');
+    if (!selector || !container) return;
+
+    const index = selector.value;
+    container.innerHTML = index === '' ? 
+        '<p class="placeholder">Choose An Article To Explore</p>' : 
+        `<div class="item">
+            <button class="item-button">${sortedTruths[index].title}</button>
+            <div class="content" style="display: block;">${sortedTruths[index].content}</div>
+        </div>`;
+
+    // Add toggle event listener
+    const itemButton = container.querySelector('.item-button');
+    const content = container.querySelector('.content');
+    if (itemButton && content) {
+        itemButton.addEventListener('click', () => {
+            console.log(`Clicked ${sortedTruths[index].title}, isOpen: ${content.style.display === 'block'}`);
+            const isOpen = content.style.display === 'block';
+            document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
+            content.style.display = isOpen ? 'none' : 'block';
+        });
+    }
+
+    // Animate
+    const item = container.querySelector('.item');
+    if (item) {
+        setTimeout(() => item.classList.add('visible'), 100);
+    }
+}
+
 // Tab Management Functions
 function resetView() {
     console.log('Resetting view');
@@ -69,31 +117,37 @@ function resetView() {
         if (!itemList) return;
         itemList.innerHTML = '';
         categories[category].forEach(item => {
-            if (!item || !item.T) return;
-            // Create a wrapper div for each item and its content
+            if (!item || (!item.T && !item.title)) return;
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'item';
 
             const itemButton = document.createElement('button');
             itemButton.className = 'item-button';
+            const title = item.T || item.title;
             itemButton.innerHTML = searchTerm ? 
-                item.T.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
-                item.T;
+                title.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
+                title;
 
             const content = document.createElement('div');
             content.className = 'content';
-            const scriptures = (item.S || []).map(scripture => 
-                searchTerm ? 
-                    scripture.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
-                    scripture
-            );
-            const description = searchTerm && item.D ? 
-                item.D.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
-                item.D || '';
-            content.innerHTML = `
-                <div class="scripture-section"><ul>${scriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
-                <div class="description-section">${description}</div>
-            `;
+            let contentHTML = '';
+            if (category === 'truths') {
+                contentHTML = item.content || '';
+            } else {
+                const scriptures = (item.S || []).map(scripture => 
+                    searchTerm ? 
+                        scripture.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
+                        scripture
+                );
+                const description = searchTerm && item.D ? 
+                    item.D.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
+                    item.D || '';
+                contentHTML = `
+                    <div class="scripture-section"><ul>${scriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
+                    <div class="description-section">${description}</div>
+                `;
+            }
+            content.innerHTML = contentHTML;
             content.style.display = 'none';
 
             itemWrapper.appendChild(itemButton);
@@ -101,7 +155,7 @@ function resetView() {
             itemList.appendChild(itemWrapper);
 
             itemButton.addEventListener('click', () => {
-                console.log(`Clicked ${item.T}, isOpen: ${content.style.display === 'block'}`);
+                console.log(`Clicked ${title}, isOpen: ${content.style.display === 'block'}`);
                 const isOpen = content.style.display === 'block';
                 document.querySelectorAll('.content').forEach(c => {
                     c.style.display = 'none';
@@ -114,6 +168,7 @@ function resetView() {
     });
 
     document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
+    document.getElementById('truths').style.display = 'flex';
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
 }
 
@@ -134,9 +189,26 @@ function showTab(category) {
         c.style.display = 'none';
     });
     if (searchResults) searchResults.remove();
-    document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
-    const selectedTab = document.getElementById(category);
-    if (selectedTab) selectedTab.style.display = 'grid';
+
+    // Toggle logic for people and topics
+    if (category === 'people' || category === 'topics') {
+        const selectedTab = document.getElementById(category);
+        const otherTab = category === 'people' ? document.getElementById('topics') : document.getElementById('people');
+        if (selectedTab) {
+            const isVisible = selectedTab.style.display === 'flex';
+            selectedTab.style.display = isVisible ? 'none' : 'flex';
+            if (!isVisible) {
+                if (otherTab) otherTab.style.display = 'none'; // Close the other tab
+            }
+        }
+    }
+
+    document.getElementById('truths').style.display = 'flex'; // Keep truths visible for dropdown
+    document.querySelectorAll('.list').forEach(section => {
+        if (section.id !== 'truths' && section.id !== category) {
+            section.style.display = 'none'; // Ensure only the selected tab is visible
+        }
+    });
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
     const tabButton = document.querySelector(`[onclick="showTab('${category}')"]`);
     if (tabButton) tabButton.classList.add('active');
@@ -151,11 +223,17 @@ function highlightMatchingTabs(searchTerm) {
     Object.keys(categories).forEach(cat => {
         const items = categories[cat];
         items.forEach(item => {
-            if (!item || !item.T) return;
-            const titleMatch = item.T.toLowerCase().includes(searchTerm);
-            const scripturesText = (item.S || []).join(' ').toLowerCase();
-            const descriptionText = (item.D || '').toLowerCase();
-            const contentMatch = scripturesText.includes(searchTerm) || descriptionText.includes(searchTerm);
+            if (!item || (!item.T && !item.title)) return;
+            const title = item.T || item.title;
+            const titleMatch = title.toLowerCase().includes(searchTerm);
+            let contentMatch = false;
+            if (cat === 'truths') {
+                contentMatch = (item.content || '').toLowerCase().includes(searchTerm);
+            } else {
+                const scripturesText = (item.S || []).join(' ').toLowerCase();
+                const descriptionText = (item.D || '').toLowerCase();
+                contentMatch = scripturesText.includes(searchTerm) || descriptionText.includes(searchTerm);
+            }
             if (titleMatch || contentMatch) {
                 categoriesWithMatches.add(cat);
             }
@@ -191,46 +269,81 @@ function filterAndSortItems(input) {
     Object.keys(categories).forEach(category => {
         const items = categories[category];
         items.forEach(item => {
-            if (!item || !item.T) return;
-            const titleMatch = item.T.toLowerCase().includes(input);
-            const scripturesText = (item.S || []).join(' ').toLowerCase();
-            const descriptionText = (item.D || '').toLowerCase();
-            const contentMatch = scripturesText.includes(input) || descriptionText.includes(input);
+            if (!item || (!item.T && !item.title)) return;
+            const title = item.T || item.title;
+            const titleMatch = title.toLowerCase().includes(input);
+            let contentMatch = false;
+            let matchingScriptures = [];
+            let matchingDescription = '';
+            let matchingContent = '';
 
-            if (titleMatch || contentMatch) {
-                categoriesWithMatches.add(category);
-                let matchingScriptures = [];
-                let matchingDescription = '';
+            if (category === 'truths') {
+                contentMatch = (item.content || '').toLowerCase().includes(input);
+                if (!titleMatch && contentMatch) {
+                    const paragraphs = (item.content || '').split(/<\/p>\s*<p>/).filter(p => p.trim() !== '');
+                    matchingContent = paragraphs
+                        .filter(p => p.toLowerCase().includes(input))
+                        .map(p => p.replace(/^<p>|<\/p>$/g, '')) // Remove <p> tags
+                        .join('</p><p>');
+                }
+            } else {
+                const scripturesText = (item.S || []).join(' ').toLowerCase();
+                const descriptionText = (item.D || '').toLowerCase();
+                contentMatch = scripturesText.includes(input) || descriptionText.includes(input);
                 if (!titleMatch && contentMatch) {
                     matchingScriptures = (item.S || []).filter(s => s.toLowerCase().includes(input));
                     const paragraphs = (item.D || '').split('\n').filter(p => p.trim() !== '');
                     matchingDescription = paragraphs.filter(p => p.toLowerCase().includes(input)).join('\n');
                 }
-                matchingItems.push({ item, category, titleMatch, matchingScriptures, matchingDescription });
+            }
+
+            if (titleMatch || contentMatch) {
+                categoriesWithMatches.add(category);
+                matchingItems.push({ 
+                    item, 
+                    category, 
+                    titleMatch, 
+                    matchingScriptures, 
+                    matchingDescription, 
+                    matchingContent 
+                });
             }
         });
         const itemList = document.getElementById(category);
         if (itemList) {
             itemList.querySelectorAll('.item').forEach(itemDiv => {
                 const itemTitle = itemDiv.querySelector('.item-button')?.textContent;
-                const item = categories[category].find(i => i.T === itemTitle);
+                const item = categories[category].find(i => (i.T || i.title) === itemTitle);
                 if (!item) return;
-                const titleMatch = item.T.toLowerCase().includes(input);
-                const scripturesText = (item.S || []).join(' ').toLowerCase();
-                const descriptionText = (item.D || '').toLowerCase();
-                itemDiv.style.display = (titleMatch || scripturesText.includes(input) || descriptionText.includes(input)) ? '' : 'none';
+                const title = item.T || item.title;
+                const titleMatch = title.toLowerCase().includes(input);
+                let contentMatch = false;
+                if (category === 'truths') {
+                    contentMatch = (item.content || '').toLowerCase().includes(input);
+                } else {
+                    const scripturesText = (item.S || []).join(' ').toLowerCase();
+                    const descriptionText = (item.D || '').toLowerCase();
+                    contentMatch = scripturesText.includes(input) || descriptionText.includes(input);
+                }
+                itemDiv.style.display = (titleMatch || contentMatch) ? '' : 'none';
             });
         }
     });
 
     matchingItems.sort((a, b) => {
-        const aText = `${a.item.T} ${(a.item.S || []).join(' ')} ${a.item.D || ''}`.toLowerCase();
-        const bText = `${b.item.T} ${(b.item.S || []).join(' ')} ${b.item.D || ''}`.toLowerCase();
-        const aIsExact = aText === input || a.item.T.toLowerCase() === input || (a.item.S || []).some(s => s.toLowerCase() === input) || (a.item.D || '').toLowerCase() === input;
-        const bIsExact = bText === input || b.item.T.toLowerCase() === input || (b.item.S || []).some(s => s.toLowerCase() === input) || (b.item.D || '').toLowerCase() === input;
+        const aTitle = a.item.T || a.item.title;
+        const aText = a.item.content || `${a.item.T} ${(a.item.S || []).join(' ')} ${a.item.D || ''}`;
+        const bTitle = b.item.T || b.item.title;
+        const bText = b.item.content || `${b.item.T} ${(b.item.S || []).join(' ')} ${b.item.D || ''}`;
+        const aIsExact = aText.toLowerCase() === input || aTitle.toLowerCase() === input || 
+            (a.item.S || []).some(s => s.toLowerCase() === input) || (a.item.D || '').toLowerCase() === input || 
+            (a.item.content || '').toLowerCase() === input;
+        const bIsExact = bText.toLowerCase() === input || bTitle.toLowerCase() === input || 
+            (b.item.S || []).some(s => s.toLowerCase() === input) || (b.item.D || '').toLowerCase() === input || 
+            (b.item.content || '').toLowerCase() === input;
         if (aIsExact && !bIsExact) return -1;
         if (!aIsExact && bIsExact) return 1;
-        return a.item.T.localeCompare(b.T);
+        return aTitle.localeCompare(bTitle);
     });
 
     return { matchingItems, categoriesWithMatches };
@@ -238,49 +351,59 @@ function filterAndSortItems(input) {
 
 function populateSearchResults(allList, matchingItems, input) {
     if (!allList) return;
-    matchingItems.forEach(({ item, category, titleMatch, matchingScriptures, matchingDescription }) => {
-        if (!item || !item.T) return;
-        // Create a wrapper div for each item and its content
+    matchingItems.forEach(({ item, category, titleMatch, matchingScriptures, matchingDescription, matchingContent }) => {
+        if (!item || (!item.T && !item.title)) return;
         const itemWrapper = document.createElement('div');
         itemWrapper.className = 'item';
 
         const itemButton = document.createElement('button');
         itemButton.className = 'item-button';
-        itemButton.innerHTML = item.T.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
+        const title = item.T || item.title;
+        itemButton.innerHTML = title.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
 
         const content = document.createElement('div');
         content.className = 'content';
+        let contentHTML = '';
 
-        if (titleMatch) {
-            const highlightedScriptures = (item.S || []).map(scripture =>
-                scripture.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
-            );
-            const highlightedDescription = (item.D || '').replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
-            content.innerHTML = `
-                <div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
-                <div class="description-section">${highlightedDescription}</div>
-            `;
+        if (category === 'truths') {
+            if (titleMatch) {
+                contentHTML = (item.content || '').replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
+            } else {
+                contentHTML = `<p>${matchingContent.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')}</p>`;
+            }
         } else {
-            const highlightedScriptures = matchingScriptures.map(scripture =>
-                scripture.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
-            );
-            const paragraphs = matchingDescription.split('\n').filter(p => p.trim() !== '');
-            const highlightedDescription = paragraphs.map(p =>
-                p.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
-            ).map(p => `<p>${p}</p>`).join('');
-            content.innerHTML = `
-                ${highlightedScriptures.length ? `<div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>` : ''}
-                ${highlightedDescription ? `<div class="description-section">${highlightedDescription}</div>` : ''}
-            `;
+            if (titleMatch) {
+                const highlightedScriptures = (item.S || []).map(scripture =>
+                    scripture.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
+                );
+                const highlightedDescription = (item.D || '').replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
+                contentHTML = `
+                    <div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
+                    <div class="description-section">${highlightedDescription}</div>
+                `;
+            } else {
+                const highlightedScriptures = matchingScriptures.map(scripture =>
+                    scripture.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
+                );
+                const paragraphs = matchingDescription.split('\n').filter(p => p.trim() !== '');
+                const highlightedDescription = paragraphs.map(p =>
+                    p.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
+                ).map(p => `<p>${p}</p>`).join('');
+                contentHTML = `
+                    ${highlightedScriptures.length ? `<div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>` : ''}
+                    ${highlightedDescription ? `<div class="description-section">${highlightedDescription}</div>` : ''}
+                `;
+            }
         }
 
+        content.innerHTML = contentHTML;
         content.style.display = 'block';
         itemWrapper.appendChild(itemButton);
         itemWrapper.appendChild(content);
         allList.appendChild(itemWrapper);
 
         itemButton.addEventListener('click', () => {
-            console.log(`Clicked ${item.T}, isOpen: ${content.style.display === 'block'}`);
+            console.log(`Clicked ${title}, isOpen: ${content.style.display === 'block'}`);
             const isOpen = content.style.display === 'block';
             document.querySelectorAll('.content').forEach(c => {
                 c.style.display = 'none';
@@ -313,29 +436,20 @@ function searchItems() {
         });
 
         document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
-        if (allList) allList.style.display = 'grid';
+        if (allList) allList.style.display = 'flex';
         if (!matchingItems.length) resetView();
     }, 300);
 }
 
 // Event Listeners
-document.getElementById('search')?.addEventListener('input', () => {
-    const input = document.getElementById('search')?.value || '';
-    console.log(`Search input changed: ${input}`);
-    if (!input) {
-        const searchResults = document.getElementById('search-results');
-        if (searchResults) searchResults.remove();
-        resetView();
-    } else {
-        searchItems();
-    }
-});
-
+document.getElementById('search')?.addEventListener('input', searchItems);
 document.addEventListener('click', closeMenusOnOutsideClick);
-
-// Add event listeners for hamburger menus
 document.querySelector('.hamburger-left')?.addEventListener('click', () => toggleMenu('nav-menu-left'));
 document.querySelector('.hamburger-right')?.addEventListener('click', () => toggleMenu('nav-menu-right'));
 
 // Initialize the view on page load
-resetView();
+window.onload = () => {
+    resetView();
+    populateTruthSelector();
+    displayTruth();
+};
