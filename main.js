@@ -60,49 +60,40 @@ function goToHome() {
     window.location.href = 'index.html';
 }
 
-// Populate truth dropdown
-function populateTruthSelector() {
-    const selector = document.getElementById('truth-selector');
-    if (!selector) return;
-    sortedTruths.forEach((truth, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = truth.title;
-        selector.appendChild(option);
-    });
-}
-
-// Display selected truth
-function displayTruth() {
-    const selector = document.getElementById('truth-selector');
+// Populate truth list (replaces dropdown population)
+function populateTruthList() {
     const container = document.getElementById('truths');
-    if (!selector || !container) return;
+    if (!container) return;
+    container.innerHTML = '';
+    sortedTruths.forEach((truth, index) => {
+        const itemWrapper = document.createElement('div');
+        itemWrapper.className = 'item';
 
-    const index = selector.value;
-    container.innerHTML = index === '' ? 
-        '<p class="placeholder">Choose An Article To Explore</p>' : 
-        `<div class="item">
-            <button class="item-button">${sortedTruths[index].title}</button>
-            <div class="content" style="display: block;">${sortedTruths[index].content}</div>
-        </div>`;
+        const itemButton = document.createElement('button');
+        itemButton.className = 'item-button';
+        itemButton.textContent = truth.title;
 
-    // Add toggle event listener
-    const itemButton = container.querySelector('.item-button');
-    const content = container.querySelector('.content');
-    if (itemButton && content) {
+        const content = document.createElement('div');
+        content.className = 'content';
+        content.innerHTML = truth.content || '';
+        content.style.display = 'none';
+
+        itemWrapper.appendChild(itemButton);
+        itemWrapper.appendChild(content);
+        container.appendChild(itemWrapper);
+
         itemButton.addEventListener('click', () => {
-            console.log(`Clicked ${sortedTruths[index].title}, isOpen: ${content.style.display === 'block'}`);
+            console.log(`Clicked ${truth.title}, isOpen: ${content.style.display === 'block'}`);
             const isOpen = content.style.display === 'block';
             document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
             content.style.display = isOpen ? 'none' : 'block';
         });
-    }
+    });
+}
 
-    // Animate
-    const item = container.querySelector('.item');
-    if (item) {
-        setTimeout(() => item.classList.add('visible'), 100);
-    }
+// Display truth list (no longer needed, handled by showTab)
+function displayTruth() {
+    // This function is no longer needed as truths are now toggled via showTab
 }
 
 // Tab Management Functions
@@ -168,7 +159,6 @@ function resetView() {
     });
 
     document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
-    document.getElementById('truths').style.display = 'flex';
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
 }
 
@@ -190,22 +180,21 @@ function showTab(category) {
     });
     if (searchResults) searchResults.remove();
 
-    // Toggle logic for people and topics
-    if (category === 'people' || category === 'topics') {
+    // Toggle logic for people, topics, and truths
+    if (category === 'people' || category === 'topics' || category === 'truths') {
         const selectedTab = document.getElementById(category);
-        const otherTab = category === 'people' ? document.getElementById('topics') : document.getElementById('people');
+        const otherTabs = ['people', 'topics', 'truths'].filter(c => c !== category).map(c => document.getElementById(c));
         if (selectedTab) {
             const isVisible = selectedTab.style.display === 'flex';
             selectedTab.style.display = isVisible ? 'none' : 'flex';
             if (!isVisible) {
-                if (otherTab) otherTab.style.display = 'none'; // Close the other tab
+                otherTabs.forEach(tab => tab.style.display = 'none'); // Close other tabs
             }
         }
     }
 
-    document.getElementById('truths').style.display = 'flex'; // Keep truths visible for dropdown
     document.querySelectorAll('.list').forEach(section => {
-        if (section.id !== 'truths' && section.id !== category) {
+        if (section.id !== category) {
             section.style.display = 'none'; // Ensure only the selected tab is visible
         }
     });
@@ -450,6 +439,5 @@ document.querySelector('.hamburger-right')?.addEventListener('click', () => togg
 // Initialize the view on page load
 window.onload = () => {
     resetView();
-    populateTruthSelector();
-    displayTruth();
+    populateTruthList();
 };
