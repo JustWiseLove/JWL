@@ -127,7 +127,7 @@ main.main-content {
 .top-section {
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     margin: 5px 0;
-    border-radius: 8px;
+    /*border-radius: 8px;*/
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -318,7 +318,7 @@ main.main-content {
     height: 100%;
     display: block;
     margin: 5px auto;
-    border-radius: 8px;
+    /*border-radius: 8px;*/
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
     width: 100%;
