@@ -1,173 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truth - Just Wise Love</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts link for Audiowide -->
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6.0.0-beta3 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Browser tab favicon -->
-    <link rel="apple-touch-icon" href="apple-touch-icon.png"> <!-- iOS home screen icon -->
-    <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png"> <!-- Android home screen icon -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bible Truth</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #008000, #00FF00);
+      color: #000;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      color: white;
+      background-color: #004d00;
+      padding: 40px 20px;
+      border-bottom: 5px solid #0f0;
+      box-shadow: 0 0 20px #00ff99;
+    }
+    header h1 { font-size: 2.5em; margin-bottom: 10px; }
+    header p { font-size: 1.2em; }
+    section.search {
+      margin: 20px auto;
+      padding: 20px;
+      background: #e0ffe0;
+      border-left: 8px solid #00aa00;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 128, 0, 0.3);
+      max-width: 900px;
+      text-align: center;
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+    .search-bar input {
+      padding: 10px;
+      width: 70%;
+      border: 2px solid #00aa00;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    .search-bar button {
+      background: #006600;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .search-bar button:hover { background: #00aa00; }
+    #search-results {
+      margin-top: 20px;
+      text-align: left;
+      background: #d9ffd9;
+      padding: 15px;
+      border-left: 5px solid #00aa00;
+      border-radius: 5px;
+      display: none;
+    }
+    #search-results h3 { color: #004d00; margin-bottom: 10px; }
+    #search-results p { margin: 10px 0; }
+    .highlight { background-color: #FFD800; }
+    section.truth {
+      margin: 40px auto;
+      padding: 30px;
+      background: #e0ffe0;
+      border-left: 8px solid #00aa00;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 128, 0, 0.3);
+      max-width: 900px;
+      transition: transform 1s ease, opacity 1s ease;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    section.truth.dark { background: #ccffcc; border-left-color: #006600; }
+    section.animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2 {
+      font-size: 1.8em;
+      color: #004d00;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .quote {
+      margin: 15px 0;
+      font-style: italic;
+      font-weight: bold;
+      background: #cfc;
+      padding: 15px;
+      border-left: 6px solid #090;
+      border-radius: 4px;
+      position: relative;
+    }
+    .quote[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #004d00;
+      color: #fff;
+      padding: 8px;
+      font-size: 0.9em;
+      border-radius: 5px;
+      white-space: nowrap;
+      margin-top: 5px;
+      z-index: 10;
+    }
+    .toggle {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .toggle-btn {
+      background: #006600;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+      width: 100%;
+      text-align: center;
+    }
+    .toggle-btn:hover { background: #00aa00; }
+    .toggle-content {
+      display: none;
+      margin-top: 10px;
+      padding: 15px;
+      background: #d9ffd9;
+      border-left: 5px solid #00aa00;
+      border-radius: 5px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #003300;
+      color: #aaffaa;
+      font-size: 0.9em;
+      margin-top: 60px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1><a href="index.html">TRUTH</a></h1>
-        </div>
-    </header>
+  <header>
+    <h1><i class="fas fa-seedling"></i> Bible Truth</h1>
+    <p>Unmasking deception. <br>Declaring what is written.</p>
+  </header>
 
-    <main>
-        <section class="intro">
-            <p class="scripture">“For his invisible qualities are clearly seen from the world’s creation onward, because they are perceived by the things made.” — Romans 1:20</p>
-            <p class="describe">Creation’s marvels—galaxies, DNA, and microscopic systems—reveal Jehovah’s undeniable truth, proclaiming His wisdom through intricate design.</p>
-        </section>
+  <section class="search">
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search Bible Truths..." />
+      <button onclick="searchTruths()"><i class="fas fa-search"></i> Search</button>
+    </div>
+    <div id="search-results"></div>
+  </section>
 
-        <section class="item">
-            <!-- Item 1: Nature’s Design Reveals Truth -->
-            <div class="item">
-                <details>
-                    <summary class="item-button">Nature’s Design Reveals Truth</summary>
-                    <div class="item-content">
-                        <h2>Cosmos and Earth Testify to Jehovah’s Wisdom</h2>
-                        <p>The universe’s majestic order, from galaxies to oceans, proclaims Jehovah’s purposeful design, as “The heavens are declaring the glory of God; and the expanse is proclaiming the work of his hands.” Creation’s harmony and complexity demand a divine architect. — Psalm 19:1</p>
-                        <p><strong>Galaxies: Cosmic Masterpieces:</strong> Over 2 trillion galaxies, each with 100 billion stars, orbit with precision, as “He is counting the number of the stars; all of them he calls by their names.” The Milky Way spans 100,000 light-years, its 200 billion stars in perfect balance. David was awed, saying, “When I see your heavens, the works of your fingers, the moon and the stars that you have prepared, what is mortal man that you keep him in mind?” — Psalm 147:4, Psalm 8:3-4</p>
-                        <p><strong>Ecosystems: Interwoven Harmony:</strong> Earth’s ecosystems, like coral reefs with 1 million species, thrive in balance, as “How many your works are, O Jehovah! You have made all of them in wisdom. The earth is full of your productions.” Rainforests, 6% of land, produce 20% oxygen for 7.8 billion people. This interdependence, recycling 10 billion tons of carbon yearly, demands design. — Psalm 104:24</p>
-                        <p><strong>Weather Systems: Cycles of Renewal:</strong> Weather cycles 37.5 trillion tons of water across 510 million square kilometers, as “All the streams flow into the sea, yet the sea is not full.” Hurricanes release 600 trillion watts, nurturing ecosystems. This precision, as “He has made everything beautiful in its time,” proves divine order. — Ecclesiastes 1:7, Ecclesiastes 3:11</p>
-                        <p><strong>Geologic Formations: Enduring Testimony:</strong> Mountains like Everest (29,032 feet) and canyons like the Grand Canyon (277 miles) showcase power, as “He has established the mountains by his strength.” Plate tectonics recycle 43,000 square miles of crust, stabilizing earth. These endure as proof. — Psalm 65:6</p>
-                        <p><strong>Oceans: Vast Reservoirs of Life:</strong> Oceans, covering 71% of earth, hold 1.332 billion km³ of water, as “He gathers the waters of the sea together as a heap.” Currents like the Gulf Stream move 100 million cubic meters/second, regulating climate. Hosting 230,000 species, oceans produce 50% of oxygen, proving design. — Psalm 33:7</p>
-                        <p><strong>Practical Steps:</strong> Stargaze for galaxies, hike forests for ecosystems, track storms, visit canyons, or dive oceans. Journal observations, meditate on Jehovah’s wisdom, and share insights, as “Sing to Jehovah a new song, for he has done wonderful things!” — Psalm 98:1</p>
-                        <p class="scripture">The heavens are declaring the glory of God; and the expanse is proclaiming the work of his hands. — Psalm 19:1</p>
-                    </div>
-                </details>
-            </div>
+  <div id="truth-sections"></div>
 
-            <!-- Item 2: Earth’s Atmosphere Shields Life -->
-            <div class="item">
-                <details>
-                    <summary class="item-button">Earth’s Atmosphere Shields Life</summary>
-                    <div class="item-content">
-                        <h2>A Protective Canopy Reflects Wisdom</h2>
-                        <p>Earth’s atmosphere, a delicate balance of gases, shields life from cosmic threats, as “He stretches out the heavens like a fine gauze.” Its design ensures survival, revealing Jehovah’s truth. — Isaiah 40:22</p>
-                        <p><strong>Ozone Layer: Guardian Against Radiation:</strong> The ozone layer absorbs 99% of UV radiation, protecting 8.7 million species, as “Jehovah’s works are great.” Without it, life would perish under solar rays. — Psalm 111:2</p>
-                        <p><strong>Atmospheric Pressure: Balanced for Breath:</strong> At 14.7 psi, the atmosphere supports respiration for 7.8 billion people, as “Everything that has the breath of life in it.” Its stability defies random formation. — Genesis 7:22</p>
-                        <p><strong>Auroras: Displays of Magnetic Protection:</strong> Earth’s magnetic field deflects solar winds, creating auroras visible 240 miles above, as “When I see your heavens, the works of your fingers.” This shield preserves ecosystems across 510 million square kilometers. — Psalm 8:3</p>
-                        <p><strong>Practical Steps:</strong> Observe auroras, study atmospheric layers, or breathe deeply in nature. Reflect on Jehovah’s protective design and share insights, as “The heavens are declaring the glory of God.” — Psalm 19:1</p>
-                        <p class="scripture">He stretches out the heavens like a fine gauze. — Isaiah 40:22</p>
-                    </div>
-                </details>
-            </div>
+  <footer>
+    <p>© Just Wise Love</p>
+  </footer>
 
-            <!-- Item 3: Earth’s Resources Support Life -->
-            <div class="item">
-                <details>
-                    <summary class="item-button">Earth’s Resources Support Life</summary>
-                    <div class="item-content">
-                        <h2>Abundance Reflects Jehovah’s Provision</h2>
-                        <p>Earth’s resources—water, soil, air, minerals, forests—sustain life, revealing Jehovah’s truth, as “The true God gives us richly all things to enjoy.” Their balance testifies to His care. — 1 Timothy 6:17</p>
-                        <p><strong>Water: Life’s Essence:</strong> 326 million trillion gallons cover 71% of earth, as “He gathers the waters of the sea together as a heap.” Water’s density saves aquatic life, cycling 1,386 million km³. — Psalm 33:7</p>
-                        <p><strong>Soil: Foundation of Growth:</strong> Soil yields 4.5 billion tons of crops, as “He makes grass grow for the cattle and plants for man’s use.” One teaspoon holds 1 billion microbes, supporting 95% of food. — Psalm 104:14</p>
-                        <p><strong>Air: Breath of Life:</strong> 21% oxygen sustains 8.7 million species, as “Everything that has the breath of life in it.” Nitrogen (78%) stabilizes 5,200 trillion tons of air. — Genesis 7:22</p>
-                        <p><strong>Minerals: Building Blocks:</strong> Minerals like iron support 7.8 billion lives, as “The earth is full of your possessions.” 88 million tons of iron yearly build infrastructure. — Psalm 104:24</p>
-                        <p><strong>Forests: Lungs of Earth:</strong> 15 billion trees produce 40% of oxygen, as “The trees of Jehovah are satisfied.” Forests host 80% of biodiversity, sequestering 2.6 billion tons of CO2. — Psalm 104:16</p>
-                        <p><strong>Practical Steps:</strong> Conserve water, enrich soil, breathe deeply, use minerals wisely, and protect forests. Thank Jehovah, as “Give thanks to Jehovah, for he is good.” — Psalm 136:1</p>
-                        <p class="scripture">The true God gives us richly all things to enjoy. — 1 Timothy 6:17</p>
-                    </div>
-                </details>
-            </div>
+  <script src="truth.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let lastScrollY = window.scrollY;
 
-            <!-- Item 4: Biodiversity Sustains Ecosystems -->
-            <div class="item">
-                <details>
-                    <summary class="item-button">Biodiversity Sustains Ecosystems</summary>
-                    <div class="item-content">
-                        <h2>Variety Proclaims Divine Design</h2>
-                        <p>Earth’s 8.7 million species, from microbes to mammals, maintain ecological balance, as “How many your works are, O Jehovah! You have made all of them in wisdom.” — Psalm 104:24</p>
-                        <p><strong>Pollinators: Key to Food Chains:</strong> Bees and butterflies pollinate 80% of crops, yielding 4.5 billion tons of food, as “All his works are faithful.” Their role ensures abundance for 7.8 billion people. — Psalm 33:4</p>
-                        <p><strong>Predators: Regulators of Balance:</strong> Wolves and sharks control populations, preventing overgrazing or depletion, as “Jehovah’s works are great.” Their precision maintains harmony across ecosystems. — Psalm 111:2</p>
-                        <p><strong>Microbes: Invisible Sustainers:</strong> Soil bacteria recycle 25% of nitrogen, supporting plant growth, as “The spirit of God has made me.” One gram of soil holds 40 million bacteria, sustaining food chains. — Job 33:4</p>
-                        <p><strong>Practical Steps:</strong> Study local species, plant pollinator gardens, or support conservation. Reflect on Jehovah’s diverse creation and share observations, as “Let all the earth praise Jehovah.” — Psalm 148:7</p>
-                        <p class="scripture">How many your works are, O Jehovah! You have made all of them in wisdom. — Psalm 104:24</p>
-                    </div>
-                </details>
-            </div>
+      // Dynamically generate sections from truth.js
+      const container = document.getElementById("truth-sections");
+      truths.forEach((truth, index) => {
+        const sectionClass = index % 2 === 0 ? "truth animate" : "truth dark animate";
+        const section = document.createElement("section");
+        section.className = sectionClass;
+        section.innerHTML = `
+          <h2><i class="${truth.icon}"></i> ${truth.title}</h2>
+          ${truth.scriptures.map(s => `<div class="quote" data-tooltip="${s.tooltip}">"${s.text}" — ${s.reference}</div>`).join("")}
+          <div class="toggle">
+            <button class="toggle-btn">READ MORE</button>
+            <div class="toggle-content">${truth.summary}</div>
+          </div>
+        `;
+        container.appendChild(section);
+      });
 
-            <!-- Item 5: Human Body Reflects Truth -->
-            <div class="item">
-                <details>
-                    <summary class="item-button">Human Body Reflects Truth</summary>
-                    <div class="item-content">
-                        <h2>Body Systems Showcase Divine Engineering</h2>
-                        <p>The human body, a masterpiece of systems, proclaims Jehovah’s truth, as “I praise you because in an awesome way I am wonderfully made.” From bones to DNA, each component reveals unmatched purpose. — Psalm 139:14</p>
-                        <p><strong>Bone Structure: Framework of Strength:</strong> The 206 bones, five times stronger than steel, support 500 muscles, as “All my bones will say: ‘O Jehovah, who is like you?’” Bones withstand 1,600 pounds, regenerating every 10 years. — Psalm 35:10</p>
-                        <p><strong>Human Eye: Window of Precision:</strong> The eye’s 120 million rods and 7 million cones process 10 million bits/second, as “The hearing ear and the seeing eye—Jehovah has made them both.” 2 million parts autofocus in 0.2 seconds. — Proverbs 20:12</p>
-                        <p><strong>Brain: Citadel of Thought:</strong> The brain’s 86 billion neurons form 100 trillion connections, as “You must love Jehovah your God with all your mind.” It processes 11 million inputs, storing 2.5 petabytes. — Matthew 22:37</p>
-                        <p><strong>Nervous System: Instant Network:</strong> 7 trillion nerves transmit at 268 mph, as “In an awesome way I am wonderfully made.” Coordinating 37 trillion cells, it reacts in 0.01 seconds. — Psalm 139:14</p>
-                        <p><strong>Heart: Pump of Life:</strong> The heart pumps 2,000 gallons across 60,000 miles of vessels, as “The life of every creature is its blood.” Beating 100,000 times daily, it delivers 5 liters/minute. — Leviticus 17:11</p>
-                        <p><strong>DNA: Code of Creation:</strong> DNA’s 3 billion base pairs encode 20,000 genes, as “You produced my kidneys; you wove me together in my mother’s womb.” Each cell holds 2 meters of DNA, 99.9% error-free. — Psalm 139:13</p>
-                        <p><strong>Practical Steps:</strong> Study anatomy, exercise bones, protect eyes, and engage the mind in worship. Reflect on DNA’s code, as “My bones were not hidden from you when I was made in secret.” — Psalm 139:15</p>
-                        <p class="scripture">I praise you because in an awesome way I am wonderfully made. — Psalm 139:14</p>
-                    </div>
-                </details>
-            </div>
+      // IntersectionObserver for scroll animations
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const currentScrollY = window.scrollY;
+          const isScrollingUp = currentScrollY < lastScrollY;
+          if (entry.isIntersecting && !isScrollingUp) {
+            entry.target.classList.add("visible");
+          } else if (!entry.isIntersecting && isScrollingUp) {
+            entry.target.classList.remove("visible");
+          }
+        });
+        lastScrollY = window.scrollY;
+      }, { threshold: 0.3 });
 
-            <!-- Item 6: Immune System Defends Life -->
-            <div class="item">
-                <details>
-                    <summary class="item-button">Immune System Defends Life</summary>
-                    <div class="item-content">
-                        <h2>A Fortress of Protection</h2>
-                        <p>The immune system, with trillions of cells, guards against disease, as “You are the one fortifying me with strength for the battle.” — Psalm 18:39</p>
-                        <p><strong>White Blood Cells: Sentinels of Health:</strong> 10,000 leukocytes per microliter destroy pathogens, neutralizing 99% of infections, as “Jehovah’s works are great.” Their vigilance ensures survival. — Psalm 111:2</p>
-                        <p><strong>Antibodies: Precision Weapons:</strong> 10 billion antibodies target specific invaders, adapting in hours, as “In an awesome way I am wonderfully made.” Their accuracy defies chance. — Psalm 139:14</p>
-                        <p><strong>Lymphatic System: Cleansing Network:</strong> 600 nodes filter 15 liters of lymph daily, removing toxins, as “The spirit of God has made me.” This network sustains health. — Job 33:4</p>
-                        <p><strong>Practical Steps:</strong> Study immunology, boost health with nutrition, and rest. Thank Jehovah for this defense, as “O Jehovah, you have healed me.” — Psalm 30:2</p>
-                        <p class="scripture">You are the one fortifying me with strength for the battle. — Psalm 18:39</p>
-                    </div>
-                </details>
-            </div>
+      document.querySelectorAll(".animate").forEach(section => observer.observe(section));
 
-            <!-- Item 7: Microscopic and Quantum Design -->
-            <div class="item">
-                <details>
-                    <summary class="item-button">Microscopic and Quantum Design</summary>
-                    <div class="item-content">
-                        <h2>Invisible Realms Prove Jehovah’s Precision</h2>
-                        <p>The microscopic and quantum worlds, from cells to subatomic particles, reveal Jehovah’s truth, as “Your works are wonderful, and I know this very well.” Their complexity and order provide compelling evidence of a purposeful intelligent design. — Psalm 139:14</p>
-                        <p><strong>Cellular Complexity: Life’s Building Blocks:</strong> 37 trillion cells, each with 100,000 molecules, form life, as “You produced my kidneys; you wove me together in my mother’s womb.” Cells perform 10^16 reactions/second. — Psalm 139:13</p>
-                        <p><strong>Microbiology: Bacterial Ingenuity:</strong> 10^30 bacteria, like E. coli, propel via 40-part flagella at 100 rpm, as “Let every living thing praise Jah!” One gram of soil holds 40 million bacteria, recycling 25% of nitrogen. — Psalm 150:6</p>
-                        <p><strong>Protein Folding: Molecular Precision:</strong> Proteins fold in 10^-6 seconds into 10^300 shapes, as “He has made everything beautiful in its time.” Misfolding causes 0.0001% errors, yet 50,000 proteins function flawlessly. — Ecclesiastes 3:11</p>
-                        <p><strong>Quantum Physics: Subatomic Stability:</strong> Quarks, at 10^-35 meters, bind via strong force, as “All things came into existence through him.” Electrons orbit at 2.2 million mph, with 99.999% stability. — John 1:3</p>
-                        <p><strong>ATP Synthase: Cellular Powerhouses:</strong> ATP synthase, a 10-nanometer motor, produces 700 trillion ATP molecules daily, as “You open your hand and satisfy the desire of every living thing.” Spinning at 7,000 rpm, it powers 100% of cellular energy. — Psalm 145:16</p>
-                        <p><strong>Practical Steps:</strong> Study cells, bacteria, proteins, quantum mechanics, and ATP via microscopes or texts. Reflect on invisible design, marvel at Jehovah’s precision, as “My heart will rejoice in your salvation.” — Psalm 13:5</p>
-                        <p class="scripture">Your works are wonderful, and I know this very well. — Psalm 139:14</p>
-                    </div>
-                </details>
-            </div>
+      // Toggle content visibility
+      document.querySelectorAll(".toggle-btn").forEach(button => {
+        button.addEventListener("click", () => {
+          const content = button.nextElementSibling;
+          content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+      });
+    });
 
-            <!-- Item 8: Human Perception of Creation -->
-            <div class="item">
-                <details>
-                    <summary class="item-button">Human Perception of Creation</summary>
-                    <div class="item-content">
-                        <h2>Minds Designed to See Truth</h2>
-                        <p>Human ability to observe and understand creation’s complexity reveals Jehovah’s truth, as “The hearing ear and the seeing eye—Jehovah has made them both.” — Proverbs 20:12</p>
-                        <p><strong>Scientific Inquiry: Uncovering Design:</strong> Humans map 2 trillion galaxies and 3 billion DNA pairs, as “Jehovah’s works are great.” This capacity to study creation points to a purposeful design. — Psalm 111:2</p>
-                        <p><strong>Aesthetic Appreciation: Beauty Inspires:</strong> From sunsets to coral reefs, beauty evokes awe in 95% of people, as “He has made everything beautiful in its time.” This response reflects divine intent. — Ecclesiastes 3:11</p>
-                        <p><strong>Reasoning: Grasping Purpose:</strong> The mind’s ability to deduce a creator from order, as “The heavens declare his righteousness,” defies random origin. Humans reason across cultures, seeking meaning. — Psalm 97:6</p>
-                        <p><strong>Practical Steps:</strong> Study astronomy, biology, or art. Journal creation’s beauty and share insights on Jehovah’s design, as “The heavens are declaring the glory of God.” — Psalm 19:1</p>
-                        <p class="scripture">The hearing ear and the seeing eye—Jehovah has made them both. — Proverbs 20:12</p>
-                    </div>
-                </details>
-            </div>
-        </section>
-    </main>
+    function searchTruths() {
+      const query = document.getElementById("search-input").value.toLowerCase().trim();
+      const resultsDiv = document.getElementById("search-results");
+      resultsDiv.innerHTML = "";
+      resultsDiv.style.display = query ? "block" : "none";
 
-    <footer>
-        <p>© 2025 Just Wise Love</p>
-    </footer>
+      if (!query) return;
+
+      const results = truths.filter(truth => {
+        const titleMatch = truth.title.toLowerCase().includes(query);
+        const summaryMatch = truth.summary.toLowerCase().includes(query);
+        const scriptureMatch = truth.scriptures.some(s => s.text.toLowerCase().includes(query) || s.reference.toLowerCase().includes(query));
+        return titleMatch || summaryMatch || scriptureMatch;
+      });
+
+      if (results.length === 0) {
+        resultsDiv.innerHTML = "<p>No results found.</p>";
+        return;
+      }
+
+      results.forEach(truth => {
+        const result = document.createElement("div");
+        const highlightedTitle = truth.title.replace(new RegExp(query, "gi"), match => `<span class="highlight">${match}</span>`);
+        const highlightedSummary = truth.summary.replace(new RegExp(query, "gi"), match => `<span class="highlight">${match}</span>`);
+        result.innerHTML = `
+          <h3>${highlightedTitle}</h3>
+          <p>${highlightedSummary}</p>
+          ${truth.scriptures.map(s => {
+            const highlightedText = s.text.replace(new RegExp(query, "gi"), match => `<span class="highlight">${match}</span>`);
+            return `<p><i>"${highlightedText}" — ${s.reference}</i></p>`;
+          }).join("")}
+        `;
+        resultsDiv.appendChild(result);
+      });
+    }
+  </script>
 </body>
 </html>
