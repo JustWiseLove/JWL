@@ -132,8 +132,8 @@ main.main-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 13px; /* Maintains padding between search and buttons */
-    padding: 14px;
+    gap: 11px; /* Maintains padding between search and buttons */
+    padding: 15px;
 }
 
 .search-section {
