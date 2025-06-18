@@ -41,7 +41,7 @@
     <main class="main-content">
         <section class="search-section">
             <div id="search-content" class="search-content expanded">
-                <input type="text" id="search" placeholder="SEARCH" onkeyup="searchItems()">
+                <input type="text" id="search" placeholder="SEARCH" oninput="searchItems()">
             </div>
         </section>
         <div class="tabs">
@@ -49,8 +49,14 @@
             <a class="tab-button" href="/zero/index.html">NAVIGATE</a>
             <button class="tab-button" onclick="showTab('topics')">TREASURES</button>
         </div>
+        <div class="dropdown-section">
+            <select id="truth-selector" onchange="displayTruth()">
+                <option value="">SELECT</option>
+            </select>
+        </div>
         <div class="list" id="topics" style="display: none;"></div>
         <div class="list" id="people" style="display: none;"></div>
+        <div class="list" id="truths"></div>
         <img src="BEAR.PNG" alt="Bear" class="bear-image">
     </main>
     <footer>
@@ -58,6 +64,7 @@
     </footer>
     <script src="topics.js"></script>
     <script src="people.js"></script>
+    <script src="tnt.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
