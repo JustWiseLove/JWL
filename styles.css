@@ -214,7 +214,7 @@ main.main-content {
     margin-bottom: 5px;
 }
 
-.list#search-results, .list#topics, .list#people, .list#truths {
+.list#search-results, .list#topics, .list#people, .list#articles { // Changed from truths to articles
     display: flex;
     flex-direction: column;
     gap: 10px;
