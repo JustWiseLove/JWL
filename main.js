@@ -8,7 +8,7 @@ let sortedTruths = [];
 try {
     sortedTopics = topics.slice().sort((a, b) => a.T.localeCompare(b.T));
     sortedPeople = people.slice().sort((a, b) => a.T.localeCompare(b.T));
-    sortedTruths = truths.slice().sort((a, b) => a.title.localeCompare(b.title));
+    sortedTruths = articles.slice().sort((a, b) => a.title.localeCompare(b.title)); // Updated from truths to articles
 } catch (e) {
     console.error('Error initializing sorted arrays:', e);
 }
