@@ -3,12 +3,14 @@
 // Global variables and initialization
 let sortedTopics = [];
 let sortedPeople = [];
-let sortedArticles = []; // Changed from sortedTruths to sortedArticles
+let sortedArticles = [];
+let sortedSections = [];
 
 try {
     sortedTopics = topics.slice().sort((a, b) => a.T.localeCompare(b.T));
     sortedPeople = people.slice().sort((a, b) => a.T.localeCompare(b.T));
-    sortedArticles = articles.slice().sort((a, b) => a.title.localeCompare(b.title)); // Changed from truths to articles
+    sortedArticles = articles.slice().sort((a, b) => a.title.localeCompare(b.title));
+    sortedSections = sections.slice().sort((a, b) => a.T.localeCompare(b.T));
 } catch (e) {
     console.error('Error initializing sorted arrays:', e);
 }
@@ -17,7 +19,8 @@ try {
 const categories = {
     'topics': sortedTopics,
     'people': sortedPeople,
-    'articles': sortedArticles // Changed from truths to articles
+    'articles': sortedArticles,
+    'sections': sortedSections
 };
 
 // Debounce timeout for search input
@@ -60,22 +63,22 @@ function goToHome() {
     window.location.href = 'index.html';
 }
 
-// Populate article list (replaces dropdown population)
-function populateArticleList() { // Changed from populateTruthList to populateArticleList
-    const container = document.getElementById('articles'); // Changed from truths to articles
+// Populate article list
+function populateArticleList() {
+    const container = document.getElementById('articles');
     if (!container) return;
     container.innerHTML = '';
-    sortedArticles.forEach((article, index) => { // Changed from truths to articles
+    sortedArticles.forEach((article, index) => {
         const itemWrapper = document.createElement('div');
         itemWrapper.className = 'item';
 
         const itemButton = document.createElement('button');
         itemButton.className = 'item-button';
-        itemButton.textContent = article.title; // Changed from truth to article
+        itemButton.textContent = article.title;
 
         const content = document.createElement('div');
         content.className = 'content';
-        content.innerHTML = article.content || ''; // Changed from truth to article
+        content.innerHTML = article.content || '';
         content.style.display = 'none';
 
         itemWrapper.appendChild(itemButton);
@@ -83,17 +86,12 @@ function populateArticleList() { // Changed from populateTruthList to populateAr
         container.appendChild(itemWrapper);
 
         itemButton.addEventListener('click', () => {
-            console.log(`Clicked ${article.title}, isOpen: ${content.style.display === 'block'}`); // Changed from truth to article
+            console.log(`Clicked ${article.title}, isOpen: ${content.style.display === 'block'}`);
             const isOpen = content.style.display === 'block';
             document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
             content.style.display = isOpen ? 'none' : 'block';
         });
     });
-}
-
-// Display article list (no longer needed, handled by showTab)
-function displayArticle() { // Changed from displayTruth to displayArticle
-    // This function is no longer needed as articles are now toggled via showTab
 }
 
 // Tab Management Functions
@@ -122,7 +120,7 @@ function resetView() {
             const content = document.createElement('div');
             content.className = 'content';
             let contentHTML = '';
-            if (category === 'articles') { // Changed from truths to articles
+            if (category === 'articles') {
                 contentHTML = item.content || '';
             } else {
                 const scriptures = (item.S || []).map(scripture => 
@@ -180,10 +178,10 @@ function showTab(category) {
     });
     if (searchResults) searchResults.remove();
 
-    // Toggle logic for people, topics, and articles
-    if (category === 'people' || category === 'topics' || category === 'articles') { // Changed from truths to articles
+    // Toggle logic for people, topics, articles, and sections
+    if (category === 'people' || category === 'topics' || category === 'articles' || category === 'sections') {
         const selectedTab = document.getElementById(category);
-        const otherTabs = ['people', 'topics', 'articles'].filter(c => c !== category).map(c => document.getElementById(c)); // Changed from truths to articles
+        const otherTabs = ['people', 'topics', 'articles', 'sections'].filter(c => c !== category).map(c => document.getElementById(c));
         if (selectedTab) {
             const isVisible = selectedTab.style.display === 'flex';
             selectedTab.style.display = isVisible ? 'none' : 'flex';
@@ -216,7 +214,7 @@ function highlightMatchingTabs(searchTerm) {
             const title = item.T || item.title;
             const titleMatch = title.toLowerCase().includes(searchTerm);
             let contentMatch = false;
-            if (cat === 'articles') { // Changed from truths to articles
+            if (cat === 'articles') {
                 contentMatch = (item.content || '').toLowerCase().includes(searchTerm);
             } else {
                 const scripturesText = (item.S || []).join(' ').toLowerCase();
@@ -266,7 +264,7 @@ function filterAndSortItems(input) {
             let matchingDescription = '';
             let matchingContent = '';
 
-            if (category === 'articles') { // Changed from truths to articles
+            if (category === 'articles') {
                 contentMatch = (item.content || '').toLowerCase().includes(input);
                 if (!titleMatch && contentMatch) {
                     const paragraphs = (item.content || '').split(/<\/p>\s*<p>/).filter(p => p.trim() !== '');
@@ -307,7 +305,7 @@ function filterAndSortItems(input) {
                 const title = item.T || item.title;
                 const titleMatch = title.toLowerCase().includes(input);
                 let contentMatch = false;
-                if (category === 'articles') { // Changed from truths to articles
+                if (category === 'articles') {
                     contentMatch = (item.content || '').toLowerCase().includes(input);
                 } else {
                     const scripturesText = (item.S || []).join(' ').toLowerCase();
@@ -354,7 +352,7 @@ function populateSearchResults(allList, matchingItems, input) {
         content.className = 'content';
         let contentHTML = '';
 
-        if (category === 'articles') { // Changed from truths to articles
+        if (category === 'articles') {
             if (titleMatch) {
                 contentHTML = (item.content || '').replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
             } else {
@@ -439,5 +437,5 @@ document.querySelector('.hamburger-right')?.addEventListener('click', () => togg
 // Initialize the view on page load
 window.onload = () => {
     resetView();
-    populateArticleList(); // Changed from populateTruthList to populateArticleList
+    populateArticleList();
 };
