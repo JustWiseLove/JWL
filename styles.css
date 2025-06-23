@@ -219,7 +219,7 @@ main.main-content {
     margin-bottom: 5px;
 }
 
-.list#search-results, .list#topics, .list#people, .list#articles { // Changed from truths to articles
+.list#search-results, .list#topics, .list#people, .list#articles, .list#sections {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -378,7 +378,7 @@ footer p {
     }
 
     .tab-button {
-        font-size: 14px;
+        font-size: 13px;
         padding: 8px 16px;
     }
 
