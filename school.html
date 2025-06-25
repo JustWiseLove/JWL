@@ -659,7 +659,7 @@
                             <li>Who destroyed the altar of Baal in Israel?</li>
                             <li>What did Gideon do to promote true worship?</li>
                             <li>What does the Bible say about worshipping images?</li>
-                            <li>What pagan symbol is linked to the cross?</li>
+                            <li>What pagan symbol is the cross linked to?</li>
                             <li>Did Jesus die on a cross or a stake?</li>
                             <li>What Greek word is used for Jesus’ execution instrument?</li>
                             <li>What does “stauros” mean?</li>
@@ -964,20 +964,20 @@
     <script>
         // Ensure DOM is fully loaded before executing
         document.addEventListener('DOMContentLoaded', function() {
-            // Print Worksheet Function (restored to original working version)
+            // Print Worksheet Function
             window.printWorksheet = function(button) {
                 var printWindow = window.open('', '', 'height=600,width=800');
                 var unitContent = button.parentElement;
                 printWindow.document.write('<html><head><title>Print Worksheet</title>');
-                printWindow.document.write('<link rel="stylesheet" href="styles.css">');
+                printWindow.document.write('<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">'); // Ensure font loads
                 printWindow.document.write('<style>');
-                printWindow.document.write('body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }');
+                printWindow.document.write('body { font-family: "Audiowide", Arial, sans-serif; margin: 0; padding: 20px; background-color: #fff; color: #000; }');
                 printWindow.document.write('.worksheet-title { font-family: "Audiowide", sans-serif; font-size: 24px; color: #000; text-align: center; margin: 10px 0; }');
                 printWindow.document.write('.worksheet-intro { font-style: italic; text-align: center; margin-bottom: 20px; }');
                 printWindow.document.write('.questions { margin: 20px 0; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; }');
                 printWindow.document.write('.questions ol { padding-left: 20px; }');
-                printWindow.document.write('.questions li { margin-bottom: 10px; text-align: left; }');
-                printWindow.document.write('.answers { margin-top: 20px; padding: 10px; border-top: 1px solid #000; text-align: center; transform: rotate(180deg); -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); font-size: 12px; color: #000; }');
+                printWindow.document.write('.questions li { margin-bottom: 10px; text-align: left; color: #000; }');
+                printWindow.document.write('.answers { margin-top: 20px; padding: 10px; border-top: 1px solid #000; text-align: center; font-size: 12px; color: #000; }'); // Removed rotate for print
                 printWindow.document.write('.answers p { margin: 5px 0; }');
                 printWindow.document.write('@page { size: 8.5in 11in; margin: 0.5in; }');
                 printWindow.document.write('</style></head><body>');
