@@ -3,11 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>News- Just Wise Love</title>
+  <title>News - Just Wise Love</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
   <style>
+    :root {
+      --Dark: #004800;
+      --Green: #008000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      touch-action: pan-x pan-y; /* Allows scrolling but disables pinch-zoom */
+      -webkit-text-size-adjust: 100%; /* Prevents iOS text size adjustment */
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #000000; /* Unified black background */
+      color: #fff;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    .logo {
+      flex: 1;
+      text-align: center;
+    }
+
+    .logo h1 {
+      font-family: 'Audiowide', Arial, sans-serif;
+      color: #000000;
+      font-size: 48px;
+      margin: 0;
+    }
+
+    .logo a {
+      text-decoration: none;
+      color: #000000;
+    }
+
+    main {
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #000000; /* Reinforce black background */
+    }
+
+    .item {
+      background: none;
+      padding: 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .item:hover {
+      transform: translateY(-5px);
+    }
+
+    .item-content {
+      padding: 15px;
+      color: #ffffff;
+      width: 100%;
+      max-width: 800px;
+      text-align: left;
+      margin: 0 auto;
+    }
+
+    footer {
+      background: linear-gradient(90deg, var(--Dark), var(--Green), var(--Dark));
+      text-align: center;
+      padding: 2px;
+      color: #000000;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      margin-top: 5px;
+      padding-bottom: 10px;
+    }
+
+    footer p {
+      margin: 10px 0 0;
+      cursor: pointer; /* For the clickable copyright toggle */
+    }
+
     .weather-hourly,
     .weather-daily {
       display: flex;
@@ -66,7 +168,17 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
+    .scripture {
+      font-style: italic;
+      color: #ffffff;
+      margin: 10px 0;
+    }
+
     @media (max-width: 768px) {
+      .logo h1 {
+        font-size: 42px;
+      }
+
       .hour, .day {
         flex: 1 1 100px;
       }
@@ -307,6 +419,5 @@ async function fetchWeather() {
 fetchNews();
 fetchWeather();
 </script>
-
 </body>
 </html>
