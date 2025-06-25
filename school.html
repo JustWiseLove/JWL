@@ -170,12 +170,6 @@
     <main>
         <section class="intro">
             <div class="intro-content">
-                <h2>Scripture School</h2>
-                <p> Equip your entire family with tools to build strong faith through our Scripture School section. These thoughtfully prepared worksheets and question-based lessons are designed for both adults and children, helping all to grow in knowledge and appreciation of Jehovah’s Word. Rooted in the Scriptures, each activity encourages meaningful study and personal application—guiding families to “go on walking in the truth” (3 John 4). As you train your children “according to the way for him” (Proverbs 22:6), you’ll also strengthen your own understanding and unity as a household devoted to Jehovah. </p>
-            </div>
-        </section>
-        <section class="intro">
-            <div class="intro-content">
                 <h2>Train Your Child</h2>
                 <div class="scripture">
                     <p><em>“No greater joy do I have than this: that I should hear that my children go on walking in the truth.” - 3 John 4</em></p>
@@ -665,7 +659,7 @@
                             <li>Who destroyed the altar of Baal in Israel?</li>
                             <li>What did Gideon do to promote true worship?</li>
                             <li>What does the Bible say about worshipping images?</li>
-                            <li>What pagan symbol is the cross linked to?</li>
+                            <li>What pagan symbol is linked to the cross?</li>
                             <li>Did Jesus die on a cross or a stake?</li>
                             <li>What Greek word is used for Jesus’ execution instrument?</li>
                             <li>What does “stauros” mean?</li>
@@ -863,7 +857,7 @@
                             <li>Who remained faithful despite family challenges in the 1st century?</li>
                             <li>In what year did Joseph resist temptation in Egypt?</li>
                             <li>Who endured loss around 1473 BCE, praising Jehovah?</li>
-                            <li>Who declared, “I have fought the fine fight,” in the 1st century?</li>
+                            <li>Who declared, “I’ve fought the fine fight,” in the 1st century?</li>
                             <li>Who overcame doubt in 1107 BCE to lead Israel?</li>
                             <li>Who was reassured by Jesus to become believing in 33 CE?</li>
                             <li>In what year did Daniel’s companions refuse to bow to an image?</li>
@@ -970,91 +964,29 @@
     <script>
         // Ensure DOM is fully loaded before executing
         document.addEventListener('DOMContentLoaded', function() {
-            // Print Worksheet Function
+            // Print Worksheet Function (restored to original working version)
             window.printWorksheet = function(button) {
-                try {
-                    const unitContent = button.closest('.unit-content');
-                    const unit = unitContent.closest('.unit');
-                    if (!unitContent || !unit) {
-                        console.error('No .unit-content or .unit found for print button');
-                        return;
-                    }
-                    const printWindow = window.open('', '_blank');
-                    if (!printWindow) {
-                        console.error('Failed to open print window');
-                        return;
-                    }
-                    printWindow.document.write(`
-                        <html>
-                        <head>
-                            <title>Print Worksheet</title>
-                            <style>
-                                body {
-                                    font-family: Arial, sans-serif;
-                                    margin: 0;
-                                    padding: 20px;
-                                    color: #000;
-                                    height: 100vh;
-                                    overflow: hidden;
-                                }
-                                .worksheet-title {
-                                    font-family: 'Audiowide', sans-serif;
-                                    font-size: 24px;
-                                    color: #000;
-                                    text-align: center;
-                                    margin: 10px 0;
-                                }
-                                .worksheet-intro {
-                                    font-style: italic;
-                                    text-align: center;
-                                    margin-bottom: 20px;
-                                }
-                                .questions {
-                                    margin: 20px 0;
-                                    text-align: left;
-                                    max-width: 600px;
-                                    margin-left: auto;
-                                    margin-right: auto;
-                                }
-                                .questions ol {
-                                    padding-left: 20px;
-                                }
-                                .questions li {
-                                    margin-bottom: 10px;
-                                    text-align: left;
-                                }
-                                .answers {
-                                    margin-top: 20px;
-                                    padding: 10px;
-                                    border-top: 1px solid #000;
-                                    text-align: center;
-                                    transform: rotate(180deg);
-                                    -webkit-transform: rotate(180deg);
-                                    -moz-transform: rotate(180deg);
-                                    font-size: 12px;
-                                    color: #000;
-                                }
-                                .answers p {
-                                    margin: 5px 0;
-                                }
-                                @page {
-                                    size: 8.5in 11in;
-                                    margin: 0.5in;
-                                }
-                            </style>
-                        </head>
-                        <body>
-                            ${unitContent.innerHTML.replace(/<button class="print-btn">.*?</button>/, '')}
-                        </body>
-                        </html>
-                    `);
-                    printWindow.document.close();
-                    printWindow.focus();
-                    printWindow.print();
-                    printWindow.close();
-                } catch (error) {
-                    console.error('Print error:', error);
-                }
+                var printWindow = window.open('', '', 'height=600,width=800');
+                var unitContent = button.parentElement;
+                printWindow.document.write('<html><head><title>Print Worksheet</title>');
+                printWindow.document.write('<link rel="stylesheet" href="styles.css">');
+                printWindow.document.write('<style>');
+                printWindow.document.write('body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }');
+                printWindow.document.write('.worksheet-title { font-family: "Audiowide", sans-serif; font-size: 24px; color: #000; text-align: center; margin: 10px 0; }');
+                printWindow.document.write('.worksheet-intro { font-style: italic; text-align: center; margin-bottom: 20px; }');
+                printWindow.document.write('.questions { margin: 20px 0; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; }');
+                printWindow.document.write('.questions ol { padding-left: 20px; }');
+                printWindow.document.write('.questions li { margin-bottom: 10px; text-align: left; }');
+                printWindow.document.write('.answers { margin-top: 20px; padding: 10px; border-top: 1px solid #000; text-align: center; transform: rotate(180deg); -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); font-size: 12px; color: #000; }');
+                printWindow.document.write('.answers p { margin: 5px 0; }');
+                printWindow.document.write('@page { size: 8.5in 11in; margin: 0.5in; }');
+                printWindow.document.write('</style></head><body>');
+                printWindow.document.write(unitContent.innerHTML.replace(/<button class="print-btn">.*?<\/button>/, ''));
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.focus();
+                printWindow.print();
+                printWindow.close();
             };
 
             // Attach print button event listeners dynamically
