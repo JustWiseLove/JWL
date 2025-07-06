@@ -522,6 +522,263 @@ const sections = [
     `
 },
 {
+    "T": "Scriptures",
+    "S": [],
+    "D": `
+        <p>Jehovah’s Witnesses use the following 250 scriptures from the New World Translation (2013) to share Bible truth, listed in order of popularity based on their use in Bible teachings. These verses, frequently cited in their preaching and teaching, highlight Jehovah’s purpose, His Kingdom, and principles for life, guiding people to a closer relationship with God.</p>
+        <br><p>1. Matthew 24:14 - And this good news of the Kingdom will be preached in all the inhabited earth for a witness to all the nations, and then the end will come.</p>
+        <br><p>2. Psalm 83:18 - May people know that you, whose name is Jehovah, You alone are the Most High over all the earth.</p>
+        <br><p>3. John 17:3 - This means everlasting life, their coming to know you, the only true God, and the one whom you sent, Jesus Christ.</p>
+        <br><p>4. Revelation 21:4 - And he will wipe out every tear from their eyes, and death will be no more, neither will mourning nor outcry nor pain be anymore. The former things have passed away.</p>
+        <br><p>5. Matthew 28:19-20 - Go, therefore, and make disciples of people of all the nations, baptizing them in the name of the Father and of the Son and of the holy spirit, teaching them to observe all the things I have commanded you. And look! I am with you all the days until the conclusion of the system of things.</p>
+        <br><p>6. John 3:16 - For God loved the world so much that he gave his only-begotten Son, so that everyone exercising faith in him might not be destroyed but have everlasting life.</p>
+        <br><p>7. Psalm 37:29 - The righteous will possess the earth, And they will live forever on it.</p>
+        <br><p>8. Acts 15:29 - to keep abstaining from things sacrificed to idols, from blood, from what is strangled, and from sexual immorality. If you carefully keep yourselves from these things, you will prosper. Good health to you!</p>
+        <br><p>9. John 18:36 - Jesus answered: “My Kingdom is no part of this world. If my Kingdom were part of this world, my attendants would have fought that I should not be handed over to the Jews. But as it is, my Kingdom is not from this source.”</p>
+        <br><p>10. 2 Timothy 3:16 - All Scripture is inspired of God and beneficial for teaching, for reproving, for setting things straight, for disciplining in righteousness.</p>
+        <br><p>11. Isaiah 43:10 - “You are my witnesses,” declares Jehovah, “Yes, my servant whom I have chosen, So that you may know and have faith in me And understand that I am the same One. Before me no God was formed, And after me there has been none.”</p>
+        <br><p>12. Daniel 2:44 - In the days of those kings the God of heaven will set up a kingdom that will never be destroyed. And this kingdom will not be passed on to any other people. It will crush and put an end to all these kingdoms, and it alone will stand forever.</p>
+        <br><p>13. John 14:6 - Jesus said to him: “I am the way and the truth and the life. No one comes to the Father except through me.”</p>
+        <br><p>14. Ecclesiastes 9:5 - For the living know that they will die, but the dead know nothing at all, nor do they have any more reward, because all memory of them is forgotten.</p>
+        <br><p>15. Acts 24:15 - And I have hope toward God, which hope these men also look forward to, that there is going to be a resurrection of both the righteous and the unrighteous.</p>
+        <br><p>16. Psalm 37:10-11 - Just a little while longer, and the wicked will be no more; You will look at where they were, and they will not be there. But the meek will possess the earth, And they will find exquisite delight in the abundance of peace.</p>
+        <br><p>17. Matthew 6:9-10 - You must pray, then, this way: “‘Our Father in the heavens, let your name be sanctified. Let your Kingdom come. Let your will take place, as in heaven, also on earth.’”</p>
+        <br><p>18. John 5:28-29 - Do not be amazed at this, for the hour is coming in which all those in the memorial tombs will hear his voice and come out, those who did good things to a resurrection of life, and those who practiced vile things to a resurrection of judgment.</p>
+        <br><p>19. 2 Corinthians 6:17 - “Therefore, get out from among them, and separate yourselves,” says Jehovah, “and quit touching the unclean thing”; “‘and I will take you in.’”</p>
+        <br><p>20. Romans 10:13 - For “everyone who calls on the name of Jehovah will be saved.”</p>
+        <br><p>21. Isaiah 65:17 - For look! I am creating new heavens and a new earth; And the former things will not be called to mind, Nor will they come up into the heart.</p>
+        <br><p>22. Hebrews 10:24-25 - And let us consider one another so as to incite to love and fine works, not forsaking our meeting together, as some have the custom, but encouraging one another, and all the more so as you see the day drawing near.</p>
+        <br><p>23. Genesis 1:1 - In the beginning God created the heavens and the earth.</p>
+        <br><p>24. John 8:44 - You are from your father the Devil, and you wish to do the desires of your father. That one was a murderer when he began, and he did not stand fast in the truth, because truth is not in him.</p>
+        <br><p>25. Philippians 4:6-7 - Do not be anxious over anything, but in everything by prayer and supplication along with thanksgiving, let your petitions be made known to God; and the peace of God that surpasses all understanding will guard your hearts and your mental powers by means of Christ Jesus.</p>
+        <br><p>26. Acts 15:14 - Symeon has related thoroughly how God for the first time turned his attention to the nations to take out of them a people for his name.</p>
+        <br><p>27. 1 Timothy 2:5 - For there is one God, and one mediator between God and men, a man, Christ Jesus.</p>
+        <br><p>28. John 4:23 - Nevertheless, the hour is coming, and it is now, when the true worshippers will worship the Father with spirit and truth, for indeed, the Father is looking for ones like these to worship him.</p>
+        <br><p>29. 1 Corinthians 10:31 - Therefore, whether you are eating or drinking or doing anything else, do all things for God’s glory.</p>
+        <br><p>30. Romans 5:8 - But God recommends his own love to us in that, while we were yet sinners, Christ died for us.</p>
+        <br><p>31. Genesis 2:24 - That is why a man will leave his father and his mother and he will stick to his wife, and they will become one flesh.</p>
+        <br><p>32. Isaiah 2:4 - He will render judgment among the nations And set matters straight respecting many peoples. They will beat their swords into plowshares And their spears into pruning shears. Nation will not lift up sword against nation, Nor will they learn war anymore.</p>
+        <br><p>33. John 14:28 - You heard that I said to you, ‘I am going away and I am coming back to you.’ If you loved me, you would rejoice that I am going to the Father, for the Father is greater than I am.</p>
+        <br><p>34. 2 Corinthians 9:7 - Let each one do just as he has resolved in his heart, not grudgingly or under compulsion, for God loves a cheerful giver.</p>
+        <br><p>35. Psalm 119:105 - Your word is a lamp to my foot, And a light for my path.</p>
+        <br><p>36. Leviticus 17:11 - For the life of the flesh is in the blood, and I myself have put it on the altar for you to make atonement for your lives, because it is the blood that makes atonement by means of the life in it.</p>
+        <br><p>37. Acts 17:11 - Now these were more noble-minded than those in Thessalonica, for they accepted the word with the greatest eagerness of mind, carefully examining the Scriptures daily to see whether these things were so.</p>
+        <br><p>38. Romans 6:23 - For the wages sin pays is death, but the gift God gives is everlasting life by Christ Jesus our Lord.</p>
+        <br><p>39. 1 Corinthians 1:10 - Now I urge you, brothers, through the name of our Lord Jesus Christ, that you should all speak in agreement and that there should be no divisions among you, but that you may be completely united in the same mind and in the same line of thought.</p>
+        <br><p>40. James 4:8 - Draw close to God, and he will draw close to you. Cleanse your hands, you sinners, and purify your hearts, you indecisive ones.</p>
+        <br><p>41. Matthew 5:3 - Happy are those conscious of their spiritual need, since the Kingdom of the heavens belongs to them.</p>
+        <br><p>42. John 13:34-35 - I am giving you a new commandment, that you love one another; just as I have loved you, you also love one another. By this all will know that you are my disciples—if you have love among yourselves.</p>
+        <br><p>43. 1 Peter 3:15 - But sanctify the Christ as Lord in your hearts, always ready to make a defense before everyone who demands of you a reason for the hope you have, but doing so with a mild temper and deep respect.</p>
+        <br><p>44. Isaiah 52:7 - How beautiful upon the mountains are the feet of the one bringing good news, The one proclaiming peace, The one bringing good news of something better, The one proclaiming salvation, The one saying to Zion: “Your God has become King!”</p>
+        <br><p>45. 2 Peter 3:9 - Jehovah is not slow concerning his promise, as some people consider slowness, but he is patient with you because he does not desire anyone to be destroyed but desires all to attain to repentance.</p>
+        <br><p>46. Matthew 4:10 - Then Jesus said to him: “Go away, Satan! For it is written: ‘It is Jehovah your God you must worship, and it is to him alone you must render sacred service.’”</p>
+        <br><p>47. Psalm 19:1 - The heavens are declaring the glory of God; The skies above proclaim the work of his hands.</p>
+        <br><p>48. Romans 12:1 - Therefore, I appeal to you by the compassions of God, brothers, to present your bodies as a living sacrifice, holy and acceptable to God, a sacred service with your power of reason.</p>
+        <br><p>49. Hebrews 11:6 - Moreover, without faith it is impossible to please God well, for whoever approaches God must believe that he is and that he becomes the rewarder of those earnestly seeking him.</p>
+        <br><p>50. 1 John 5:3 - For this is what the love of God means, that we observe his commandments; and yet his commandments are not burdensome.</p>
+        <br><p>51. Genesis 1:26 - Then God said: “Let us make man in our image, according to our likeness, and let them have in subjection the fish of the sea and the flying creatures of the heavens and the domestic animals and all the earth and every creeping animal that is moving on the earth.”</p>
+        <br><p>52. Genesis 1:27 - So God created man in his own image, in the image of God he created him; male and female he created them.</p>
+        <br><p>53. Genesis 2:7 - And Jehovah God went on to form the man out of dust from the ground and to blow into his nostrils the breath of life, and the man became a living person.</p>
+        <br><p>54. Genesis 3:15 - And I will put enmity between you and the woman and between your offspring and her offspring. He will crush your head, and you will strike him in the heel.</p>
+        <br><p>55. Genesis 9:6 - Anyone shedding man’s blood, by man will his own blood be shed, for in God’s image he made man.</p>
+        <br><p>56. Exodus 3:14 - So God said to Moses: “I Will Become What I Choose to Become.” And he added: “This is what you are to say to the Israelites, ‘I Will Become has sent me to you.’”</p>
+        <br><p>57. Exodus 15:3 - Jehovah is a warrior; Jehovah is his name.</p>
+        <br><p>58. Exodus 20:3 - You must not have any other gods besides me.</p>
+        <br><p>59. Exodus 20:4-5 - You must not make for yourself a carved image or a form like anything that is in the heavens above or on the earth below or in the waters under the earth. You must not bow down to them nor be enticed to serve them, for I, Jehovah your God, am a God who requires exclusive devotion.</p>
+        <br><p>60. Exodus 34:6-7 - Jehovah was passing before his face and declaring: “Jehovah, Jehovah, a God merciful and compassionate, slow to anger and abundant in loyal love and truth, showing loyal love to thousands, pardoning error and transgression and sin, but by no means granting immunity from punishment.”</p>
+        <br><p>61. Leviticus 18:22 - You must not lie down with a male in the same way that you lie down with a woman. It is a detestable act.</p>
+        <br><p>62. Leviticus 19:18 - You must not take vengeance nor hold a grudge against the sons of your people, and you must love your fellow man as yourself. I am Jehovah.</p>
+        <br><p>63. Deuteronomy 4:39 - Know, therefore, on this day, and take it to heart that Jehovah is the true God in the heavens above and on the earth below. There is no other.</p>
+        <br><p>64. Deuteronomy 6:4 - Listen, O Israel: Jehovah our God is one Jehovah.</p>
+        <br><p>65. Deuteronomy 18:10-11 - There should not be found in you anyone who makes his son or his daughter pass through the fire, anyone who employs divination, anyone practicing magic, anyone who looks for omens, a sorcerer, anyone binding others with a spell, anyone who consults a spirit medium or a fortune-teller, or anyone who inquires of the dead.</p>
+        <br><p>66. Deuteronomy 30:19 - I take the heavens and the earth as witnesses against you today that I have put life and death before you, the blessing and the curse; and you must choose life so that you may live, you and your offspring.</p>
+        <br><p>67. Joshua 24:15 - Now if it seems bad to you to serve Jehovah, choose for yourselves today whom you will serve, whether the gods that your forefathers served on the other side of the River or the gods of the Amorites in whose land you are dwelling. But as for me and my household, we will serve Jehovah.</p>
+        <br><p>68. Job 1:8 - Then Jehovah said to Satan: “Have you taken note of my servant Job? There is no one like him on the earth. He is an upright man of integrity, fearing God and shunning what is bad.”</p>
+        <br><p>69. Job 12:13 - With him there are wisdom and mightiness; He has counsel and understanding.</p>
+        <br><p>70. Psalm 23:1 - Jehovah is my Shepherd. I will lack nothing.</p>
+        <br><p>71. Psalm 33:6 - By the word of Jehovah the heavens were made, And by the spirit of his mouth all their army.</p>
+        <br><p>72. Psalm 34:8 - Taste and see that Jehovah is good; Happy is the man who takes refuge in him.</p>
+        <br><p>73. Psalm 36:9 - With you is the source of life; By your light we can see light.</p>
+        <br><p>74. Psalm 90:2 - Before the mountains were born Or you brought forth the earth and the productive land, From everlasting to everlasting, you are God.</p>
+        <br><p>75. Psalm 101:3 - I will not set anything worthless before my eyes. I hate the deeds of those who act crookedly; They will not stick with me.</p>
+        <br><p>76. Psalm 104:24 - How many your works are, O Jehovah! You have made all of them in wisdom. The earth is full of what you have made.</p>
+        <br><p>77. Psalm 119:9 - How can a young man keep his path clean? By keeping on guard according to your word.</p>
+        <br><p>78. Psalm 139:14 - I praise you because in an awe-inspiring way I am wonderfully made. Your works are wonderful, As I know very well.</p>
+        <br><p>79. Psalm 146:3 - Do not put your trust in princes Nor in a son of man, who cannot bring salvation.</p>
+        <br><p>80. Proverbs 1:5 - Let the wise one listen and take in more instruction, And let the understanding one acquire skillful direction.</p>
+        <br><p>81. Proverbs 2:3-5 - Moreover, if you call out for understanding And raise your voice for discernment; If you keep seeking for it as for silver, And you keep searching for it as for hidden treasures; Then you will understand the fear of Jehovah, And you will find the knowledge of God.</p>
+        <br><p>82. Proverbs 3:5-6 - Trust in Jehovah with all your heart, And do not rely on your own understanding. In all your ways take notice of him, And he will make your paths straight.</p>
+        <br><p>83. Proverbs 4:18 - But the path of the righteous is like the bright morning light That grows brighter and brighter until full daylight.</p>
+        <br><p>84. Proverbs 10:22 - It is the blessing of Jehovah that makes one rich, And he adds no pain with it.</p>
+        <br><p>85. Proverbs 12:22 - Lying lips are detestable to Jehovah, But those acting in faithfulness are his delight.</p>
+        <br><p>86. Proverbs 15:28 - The heart of the righteous one meditates before answering, But the mouth of the wicked blurts out bad things.</p>
+        <br><p>87. Proverbs 22:6 - Train a boy in the way he should go; Even when he grows old he will not depart from it.</p>
+        <br><p>88. Ecclesiastes 3:7 - A time to keep silent and a time to speak.</p>
+        <br><p>89. Ecclesiastes 7:1 - A good name is better than good oil, and the day of death is better than the day of birth.</p>
+        <br><p>90. Ecclesiastes 9:10 - Whatever your hand finds to do, do with all your might, for there is no work nor planning nor knowledge nor wisdom in the Grave, where you are going.</p>
+        <br><p>91. Ecclesiastes 12:1 - Remember, now, your Grand Creator in the days of your youth, before the days of distress come and the years arrive when you will say: “I have no pleasure in them.”</p>
+        <br><p>92. Isaiah 11:9 - They will not cause any harm or any ruin in all my holy mountain, because the earth will certainly be filled with the knowledge of Jehovah as the waters cover the sea.</p>
+        <br><p>93. Isaiah 25:8 - He will swallow up death forever, And the Sovereign Lord Jehovah will wipe away the tears from all faces. The reproach of his people he will take away from all the earth, For Jehovah himself has spoken it.</p>
+        <br><p>94. Isaiah 26:3 - You will keep the mind that is supported by you in perfect peace, Because it is trusting in you.</p>
+        <br><p>95. Isaiah 33:24 - And no resident will say: “I am sick.” The people dwelling there will be pardoned for their error.</p>
+        <br><p>96. Isaiah 40:28 - Do you not know? Have you not heard? Jehovah, the Creator of the ends of the earth, is a God for all eternity. He never tires out or grows weary. His understanding is unsearchable.</p>
+        <br><p>97. Isaiah 41:10 - Do not be afraid, for I am with you. Do not be anxious, for I am your God. I will fortify you, yes, I will help you, I will really hold on to you with my right hand of righteousness.</p>
+        <br><p>98. Isaiah 46:10 - From the beginning I foretell the outcome, And from long ago the things that have not yet been done. I say, ‘My decision will stand, And I will do whatever I please.’</p>
+        <br><p>99. Isaiah 48:17 - This is what Jehovah says, your Repurchaser, the Holy One of Israel: “I, Jehovah, am your God, The One teaching you to benefit yourself, The One guiding you in the way you should walk.”</p>
+        <br><p>100. Isaiah 55:11 - So my word that goes out of my mouth will be. It will not return to me without results, But it will certainly accomplish whatever is my delight, And it will have sure success in what I send it to do.</p>
+        <br><p>101. Jeremiah 10:10 - But Jehovah is truly God. He is the living God and the eternal King. Because of his indignation the earth will quake, And no nations will endure his denunciation.</p>
+        <br><p>102. Jeremiah 29:11 - “‘For I myself well know the thoughts that I am thinking toward you,’ declares Jehovah, ‘thoughts of peace, and not of calamity, to give you a future and a hope.’”</p>
+        <br><p>103. Ezekiel 18:4 - Look! All the souls—to me they belong. As the soul of the father so also the soul of the son—to me they belong. The soul who sins is the one who will die.</p>
+        <br><p>104. Daniel 12:2 - And many of those asleep in the dust of the earth will wake up, some to everlasting life and others to reproach and to everlasting contempt.</p>
+        <br><p>105. Hosea 13:14 - From the power of the Grave I will redeem them; From death I will recover them. Where are your stings, O Death? Where is your destructiveness, O Grave?</p>
+        <br><p>106. Joel 2:32 - And everyone who calls on the name of Jehovah will be saved; For on Mount Zion and in Jerusalem there will be those who escape, just as Jehovah has promised, And among the survivors will be those whom Jehovah calls.</p>
+        <br><p>107. Micah 4:3 - He will render judgment among many peoples And set matters straight respecting mighty nations far away. They will beat their swords into plowshares And their spears into pruning shears. They will not lift up sword against nation, Neither will they learn war anymore.</p>
+        <br><p>108. Micah 6:8 - He has told you, O man, what is good. And what is Jehovah requiring of you? Only to exercise justice, to cherish loyalty, And to walk in modesty with your God!</p>
+        <br><p>109. Habakkuk 2:3 - For the vision is yet for its appointed time, And it is rushing toward its end, and it will not lie. Even if it should delay, keep in expectation of it! For it will without fail come true; It will not be late!</p>
+        <br><p>110. Zephaniah 3:17 - Jehovah your God is in your midst, A mighty one who will save. He will exult over you with great joy. He will become silent in his love. He will rejoice over you with shouts of joy.</p>
+        <br><p>111. Zechariah 8:3 - This is what Jehovah says: “I will return to Zion and reside in Jerusalem; and Jerusalem will be called the city of truth, and the mountain of Jehovah of armies, the holy mountain.”</p>
+        <br><p>112. Malachi 3:6 - For I am Jehovah; I do not change. And you are sons of Jacob; you have not yet come to your finish.</p>
+        <br><p>113. Malachi 4:2 - But for you who fear my name, the sun of righteousness will rise with healing in its wings, and you will go out and leap like fattened calves.</p>
+        <br><p>114. Matthew 5:16 - Likewise, let your light shine before men, so that they may see your fine works and give glory to your Father who is in the heavens.</p>
+        <br><p>115. Matthew 5:44 - However, I say to you: Continue to love your enemies and to pray for those who persecute you.</p>
+        <br><p>116. Matthew 6:24 - No one can slave for two masters; for either he will hate the one and love the other, or he will stick to the one and despise the other. You cannot slave for God and for Riches.</p>
+        <br><p>117. Matthew 6:33 - Keep on, then, seeking first the Kingdom and his righteousness, and all these other things will be added to you.</p>
+        <br><p>118. Matthew 7:7 - Keep on asking, and it will be given you; keep on seeking, and you will find; keep on knocking, and it will be opened to you.</p>
+        <br><p>119. Matthew 7:13-14 - Go in through the narrow gate, because broad is the gate and spacious is the road leading off into destruction, and many are going in through it; whereas narrow is the gate and cramped the road leading off into life, and few are finding it.</p>
+        <br><p>120. Matthew 7:21 - Not everyone saying to me, ‘Lord, Lord,’ will enter into the Kingdom of the heavens, but the one doing the will of my Father who is in the heavens will.</p>
+        <br><p>121. Matthew 10:8 - Cure the sick, raise up the dead, make lepers clean, expel demons. You received free, give free.</p>
+        <br><p>122. Matthew 11:28 - Come to me, all you who are toiling and loaded down, and I will refresh you.</p>
+        <br><p>123. Matthew 11:29-30 - Take my yoke upon you and learn from me, for I am mild-tempered and lowly in heart, and you will find refreshment for yourselves. For my yoke is kindly, and my load is light.</p>
+        <br><p>124. Matthew 18:15 - Moreover, if your brother commits a sin, go and reveal his fault between you and him alone. If he listens to you, you have gained your brother.</p>
+        <br><p>125. Matthew 19:9 - I say to you that whoever divorces his wife, except on the ground of sexual immorality, and marries another commits adultery.</p>
+        <br><p>126. Matthew 22:21 - They said: “Caesar’s.” Then he said to them: “Pay back, therefore, Caesar’s things to Caesar, but God’s things to God.”</p>
+        <br><p>127. Matthew 22:37-39 - He said to him: “‘You must love Jehovah your God with your whole heart and with your whole soul and with your whole mind.’ This is the greatest and first commandment. The second, like it, is this: ‘You must love your neighbor as yourself.’”</p>
+        <br><p>128. Mark 9:37 - Whoever receives one of such young children on the basis of my name receives me also; and whoever receives me receives not only me but also the One who sent me.</p>
+        <br><p>129. Mark 10:6-8 - However, from the beginning of creation, ‘He made them male and female. For this reason a man will leave his father and his mother, and the two will be one flesh,’ so that they are no longer two, but one flesh.</p>
+        <br><p>130. Mark 13:10 - Also, in all the nations, the good news has to be preached first.</p>
+        <br><p>131. Luke 6:31 - Also, just as you want men to do to you, do the same way to them.</p>
+        <br><p>132. Luke 10:27 - He answered: “‘You must love Jehovah your God with your whole heart and with your whole soul and with your whole strength and with your whole mind’ and ‘your neighbor as yourself.’”</p>
+        <br><p>133. Luke 11:2 - So he said to them: “Whenever you pray, say: ‘Father, let your name be sanctified. Let your Kingdom come.’”</p>
+        <br><p>134. Luke 11:13 - Therefore, if you, although being wicked, know how to give good gifts to your children, how much more so will the Father in heaven give holy spirit to those asking him!</p>
+        <br><p>135. Luke 12:15 - Then he said to them: “Keep your eyes open and guard against every sort of greed, because even when a person has an abundance, his life does not result from the things he possesses.”</p>
+        <br><p>136. Luke 12:22 - Then he said to his disciples: “That is why I say to you, stop being anxious about your lives as to what you will eat or about your bodies as to what you will wear.”</p>
+        <br><p>137. Luke 16:13 - No slave can be a slave to two masters, for either he will hate the one and love the other, or he will stick to the one and despise the other. You cannot be slaves to God and to Riches.</p>
+        <br><p>138. Luke 17:21 - Nor will people say, ‘See here!’ or, ‘There!’ For look! the Kingdom of God is in your midst.</p>
+        <br><p>139. Luke 22:19 - Also, he took a loaf, gave thanks, broke it, and gave it to them, saying: “This means my body, which is to be given in your behalf. Keep doing this in remembrance of me.”</p>
+        <br><p>140. John 1:1 - In the beginning was the Word, and the Word was with God, and the Word was a god.</p>
+        <br><p>141. John 3:36 - The one who exercises faith in the Son has everlasting life; the one who disobeys the Son will not see life, but the wrath of God remains upon him.</p>
+        <br><p>142. John 6:44 - No man can come to me unless the Father, who sent me, draws him, and I will resurrect him on the last day.</p>
+        <br><p>143. John 8:32 - And you will know the truth, and the truth will set you free.</p>
+        <br><p>144. John 10:16 - And I have other sheep, which are not of this fold; those too I must bring in, and they will listen to my voice, and they will become one flock, one shepherd.</p>
+        <br><p>145. John 10:30 - I and the Father are one.</p>
+        <br><p>146. John 15:13 - No one has love greater than this, that someone should surrender his life in behalf of his friends.</p>
+        <br><p>147. John 15:18 - If the world hates you, you know that it has hated me before it hated you.</p>
+        <br><p>148. John 16:33 - I have said these things to you so that by means of me you may have peace. In the world you will have tribulation, but take courage! I have conquered the world.</p>
+        <br><p>149. John 17:16 - They are no part of the world, just as I am no part of the world.</p>
+        <br><p>150. John 17:26 - I have made your name known to them and will make it known, so that the love with which you loved me may be in them and I in union with them.</p>
+        <br><p>151. Acts 1:8 - But you will receive power when the holy spirit comes upon you, and you will be witnesses of me in Jerusalem, in all Judea and Samaria, and to the most distant part of the earth.</p>
+        <br><p>152. Acts 2:17 - ‘And in the last days,’ God says, ‘I will pour out some of my spirit on every sort of flesh, and your sons and your daughters will prophesy, and your young men will see visions, and your old men will dream dreams.’</p>
+        <br><p>153. Acts 2:21 - And everyone who calls on the name of Jehovah will be saved.</p>
+        <br><p>154. Acts 3:19 - Repent, therefore, and turn around so as to get your sins blotted out, so that seasons of refreshing may come from the person of Jehovah.</p>
+        <br><p>155. Acts 4:12 - Furthermore, there is no salvation in anyone else, for there is no other name under heaven that has been given among men by which we must get saved.</p>
+        <br><p>156. Acts 4:19-20 - But in reply Peter and John said to them: “Whether it is right in the sight of God to listen to you rather than to God, judge for yourselves. But as for us, we cannot stop speaking about the things we have seen and heard.”</p>
+        <br><p>157. Acts 5:29 - In answer Peter and the other apostles said: “We must obey God as ruler rather than men.”</p>
+        <br><p>158. Acts 8:30-31 - Philip ran alongside and heard him reading aloud Isaiah the prophet, and he said: “Do you actually know what you are reading?” He said: “Really, how could I ever do so unless someone guided me?”</p>
+        <br><p>159. Acts 8:36 - Now as they were going along the road, they came to a certain body of water, and the eunuch said: “Look! Here is water; what prevents me from getting baptized?”</p>
+        <br><p>160. Acts 10:34-35 - At this Peter began to speak, and he said: “Now I truly understand that God is not partial, but in every nation the man who fears him and does what is right is acceptable to him.”</p>
+        <br><p>161. Acts 11:28-30 - One of them named Agabus stood up and indicated through the spirit that a great famine was about to come on the entire inhabited earth, which, in fact, did take place in the time of Claudius. So the disciples determined, each according to what he could afford, to send relief to the brothers living in Judea; and this they did, sending it to the elders by the hand of Barnabas and Saul.</p>
+        <br><p>162. Acts 13:48 - When those of the nations heard this, they began to rejoice and to glorify the word of Jehovah, and all those who were rightly disposed for everlasting life became believers.</p>
+        <br><p>163. Acts 15:2 - But after quite a bit of dissension and disputing by Paul and Barnabas with them, they arranged for Paul, Barnabas, and some others to go up to the apostles and elders in Jerusalem regarding this issue.</p>
+        <br><p>164. Acts 20:20 - while I did not hold back from telling you any of the things that were profitable nor from teaching you publicly and from house to house.</p>
+        <br><p>165. Acts 20:28 - Pay attention to yourselves and to all the flock, among which the holy spirit has appointed you overseers, to shepherd the congregation of God, which he purchased with the blood of his own Son.</p>
+        <br><p>166. Romans 1:20 - For his invisible qualities are clearly seen from the world’s creation onward, because they are perceived by the things made, even his eternal power and Godship, so that they are inexcusable.</p>
+        <br><p>167. Romans 3:23 - For all have sinned and fall short of the glory of God.</p>
+        <br><p>168. Romans 5:12 - That is why, just as through one man sin entered into the world and death through sin, and so death spread to all men because they had all sinned—.</p>
+        <br><p>169. Romans 6:7 - For the one who has died has been acquitted from his sin.</p>
+        <br><p>170. Romans 8:28 - We know that God makes all his works cooperate together for the good of those who love God, those who are the ones called according to his purpose.</p>
+        <br><p>171. Romans 12:2 - And stop being molded by this system of things, but be transformed by making your mind over, so that you may prove to yourselves the good and acceptable and perfect will of God.</p>
+        <br><p>172. Romans 12:18 - If possible, as far as it depends on you, be peaceable with all men.</p>
+        <br><p>173. Romans 13:1 - Let every person be in subjection to the superior authorities, for there is no authority except by God; the existing authorities stand placed in their relative positions by God.</p>
+        <br><p>174. Romans 14:7-8 - Not one of us, in fact, lives with regard to himself only, and no one dies with regard to himself only. For if we live, we live to Jehovah, and if we die, we die to Jehovah. So both if we live and if we die, we belong to Jehovah.</p>
+        <br><p>175. Romans 14:12 - So, then, each of us will render an account for himself to God.</p>
+        <br><p>176. Romans 15:4 - For all the things that were written beforehand were written for our instruction, so that through our endurance and through the comfort from the Scriptures we might have hope.</p>
+        <br><p>177. Romans 15:13 - May the God who gives hope fill you with all joy and peace by your trusting in him, so that you may abound in hope with power of holy spirit.</p>
+        <br><p>178. 1 Corinthians 3:16 - Do you not know that you yourselves are God’s temple and that the spirit of God dwells in you?</p>
+        <br><p>179. 1 Corinthians 5:11 - But now I am writing you to stop keeping company with anyone called a brother who is sexually immoral or a greedy person or an idolater or a reviler or a drunkard or an extortioner, not even eating with such a man.</p>
+        <br><p>180. 1 Corinthians 6:9-10 - Or do you not know that unrighteous people will not inherit God’s Kingdom? Do not be misled. Those who are sexually immoral, idolaters, adulterers, men who submit to homosexual acts, men who practice homosexuality, thieves, greedy people, drunkards, revilers, and extortioners will not inherit God’s Kingdom.</p>
+        <br><p>181. 1 Corinthians 6:19-20 - Do you not know that your body is the temple of the holy spirit within you, which you have from God? Also, you do not belong to yourselves, for you were bought with a price. By all means, glorify God in your body.</p>
+        <br><p>182. 1 Corinthians 10:14 - Therefore, my beloved ones, flee from idolatry.</p>
+        <br><p>183. 1 Corinthians 13:4-7 - Love is patient and kind. Love is not jealous. It does not brag, does not get puffed up, does not behave indecently, does not look for its own interests, does not become provoked. It does not keep account of the injury. It does not rejoice over unrighteousness, but rejoices with the truth. It bears all things, believes all things, hopes all things, endures all things.</p>
+        <br><p>184. 1 Corinthians 15:22 - For just as in Adam all are dying, so also in the Christ all will be made alive.</p>
+        <br><p>185. 1 Corinthians 15:33 - Do not be misled. Bad associations spoil useful habits.</p>
+        <br><p>186. 2 Corinthians 4:4 - among whom the god of this system of things has blinded the minds of the unbelievers, so that the illumination of the glorious good news about the Christ, who is the image of God, might not shine through.</p>
+        <br><p>187. 2 Corinthians 5:20 - Therefore, we are ambassadors substituting for Christ, as though God were making an appeal through us. As substitutes for Christ, we beg: “Be reconciled to God.”</p>
+        <br><p>188. 2 Corinthians 6:14 - Do not become unevenly yoked with unbelievers. For what fellowship do righteousness and lawlessness have? Or what sharing does light have with darkness?</p>
+        <br><p>189. 2 Corinthians 8:12 - For if the readiness is there, it is especially acceptable according to what a person has, not according to what a person does not have.</p>
+        <br><p>190. Galatians 3:13 - Christ purchased us, releasing us from the curse of the Law by becoming a curse instead of us, because it is written: “Accursed is every man hung upon a stake.”</p>
+        <br><p>191. Galatians 5:22-23 - On the other hand, the fruitage of the spirit is love, joy, peace, patience, kindness, goodness, faith, mildness, self-control. Against such things there is no law.</p>
+        <br><p>192. Galatians 6:7 - Do not be misled: God is not one to be mocked. For whatever a person is sowing, this he will also reap.</p>
+        <br><p>193. Ephesians 2:8 - By this undeserved kindness you have been saved through faith, and this is not of your own doing; rather, it is God’s gift.</p>
+        <br><p>194. Ephesians 4:28 - Let the stealer steal no more; rather, let him do hard work, doing good work with his hands, so that he may have something to share with someone in need.</p>
+        <br><p>195. Ephesians 4:32 - But become kind to one another, tenderly compassionate, freely forgiving one another just as God also by Christ freely forgave you.</p>
+        <br><p>196. Ephesians 5:3 - Let sexual immorality and every sort of uncleanness or greediness not even be mentioned among you, as is proper for holy people.</p>
+        <br><p>197. Ephesians 5:22-23 - Let wives be in subjection to their husbands as to the Lord, because a husband is head of his wife just as the Christ is head of the congregation, he being a savior of this body.</p>
+        <br><p>198. Ephesians 6:1 - Children, be obedient to your parents in union with the Lord, for this is righteous.</p>
+        <br><p>199. Ephesians 6:4 - And fathers, do not be irritating your children, but go on bringing them up in the discipline and instruction of Jehovah.</p>
+        <br><p>200. Philippians 2:3-4 - Do nothing out of contentiousness or out of egotism, but with humility consider others superior to you, as you look out not only for your own interests, but also for the interests of others.</p>
+        <br><p>201. Philippians 2:9 - For this very reason, God exalted him to a superior position and kindly gave him the name that is above every other name.</p>
+        <br><p>202. Philippians 4:13 - For all things I have the strength through the one who gives me power.</p>
+        <br><p>203. Colossians 1:15 - He is the image of the invisible God, the firstborn of all creation.</p>
+        <br><p>204. Colossians 3:5 - Deaden, therefore, your body members that are on the earth as respects sexual immorality, uncleanness, uncontrolled sexual passion, hurtful desire, and greediness, which is idolatry.</p>
+        <br><p>205. Colossians 3:13 - Continue putting up with one another and forgiving one another freely even if anyone has a cause for complaint against another. Just as Jehovah freely forgave you, you must also do the same.</p>
+        <br><p>206. Colossians 3:14 - But besides all these things, clothe yourselves with love, for it is a perfect bond of union.</p>
+        <br><p>207. Colossians 3:20 - You children, be obedient to your parents in everything, for this is well-pleasing to the Lord.</p>
+        <br><p>208. 1 Thessalonians 4:13 - Moreover, brothers, we do not want you to be ignorant about those who are sleeping in death, so that you may not sorrow as the rest do who have no hope.</p>
+        <br><p>209. 1 Thessalonians 5:17 - Pray constantly.</p>
+        <br><p>210. 1 Thessalonians 5:21 - Make sure of all things; hold fast to what is fine.</p>
+        <br><p>211. 2 Thessalonians 3:13 - But you, brothers, do not give up in doing good.</p>
+        <br><p>212. 1 Timothy 2:9-10 - Likewise, I desire the women to adorn themselves in appropriate dress, with modesty and soundness of mind, not with styles of hair braiding and gold or pearls or very expensive clothing, but in the way that is proper for women professing devotion to God, namely, through good works.</p>
+        <br><p>213. 1 Timothy 4:16 - Pay constant attention to yourself and to your teaching. Persevere in these things, for by doing this you will save both yourself and those who listen to you.</p>
+        <br><p>214. 1 Timothy 6:6 - To be sure, there is great gain in godly devotion along with contentment.</p>
+        <br><p>215. 1 Timothy 6:10 - For the love of money is a root of all sorts of injurious things, and by reaching out for this love some have been led astray from the faith and have stabbed themselves all over with many pains.</p>
+        <br><p>216. 2 Timothy 2:15 - Do your utmost to present yourself approved to God, a workman with nothing to be ashamed of, handling the word of the truth aright.</p>
+        <br><p>217. 2 Timothy 2:24 - For a slave of the Lord does not need to fight, but needs to be gentle toward all, qualified to teach, showing restraint when wronged.</p>
+        <br><p>218. 2 Timothy 4:2 - Preach the word; be at it urgently in favorable times and difficult times; reprove, reprimand, exhort, with all patience and art of teaching.</p>
+        <br><p>219. Titus 1:2 - in the hope of the everlasting life that God, who cannot lie, promised long ago.</p>
+        <br><p>220. Titus 2:3-5 - Likewise, let the older women be reverent in behavior, not slanderous, not enslaved to a lot of wine, teachers of what is good, so that they may advise the younger women to love their husbands, to love their children, to be sound in mind, chaste, working at home, good, subjecting themselves to their own husbands, so that the word of God may not be spoken of abusively.</p>
+        <br><p>221. Hebrews 1:14 - Are they not all spirits for holy service, sent out to minister for those who are going to inherit salvation?</p>
+        <br><p>222. Hebrews 2:14 - Therefore, since the “young children” are sharers of blood and flesh, he also similarly shared in the same things, so that through his death he might bring to nothing the one having the means to cause death, that is, the Devil.</p>
+        <br><p>223. Hebrews 4:12 - For the word of God is alive and exerts power and is sharper than any two-edged sword and pierces even to the dividing of soul and spirit, and of joints from the marrow, and is able to discern thoughts and intentions of the heart.</p>
+        <br><p>224. Hebrews 11:1 - Faith is the assured expectation of what is hoped for, the evident demonstration of realities that are not seen.</p>
+        <br><p>225. Hebrews 12:1 - So, then, because we have such a great cloud of witnesses surrounding us, let us also throw off every weight and the sin that easily entangles us, and let us run with endurance the race that is set before us.</p>
+        <br><p>226. Hebrews 13:17 - Be obedient to those who are taking the lead among you and be submissive, for they are keeping watch over you as those who will render an account, so that they may do this with joy and not with sighing, for this would be damaging to you.</p>
+        <br><p>227. James 1:13 - When under trial, let no one say: “I am being tried by God.” For with evil things God cannot be tried, nor does he himself try anyone.</p>
+        <br><p>228. James 1:17 - Every good gift and every perfect present is from above, coming down from the Father of the celestial lights, who does not vary or change like the shifting shadows.</p>
+        <br><p>229. James 2:17 - So, too, faith by itself, without works, is dead.</p>
+        <br><p>230. James 2:23 - And the scripture was fulfilled that says: “Abraham put faith in Jehovah, and it was counted to him as righteousness,” and he came to be called Jehovah’s friend.</p>
+        <br><p>231. James 4:7 - Therefore, subject yourselves to God; but oppose the Devil, and he will flee from you.</p>
+        <br><p>232. 1 Peter 2:9 - But you are “a chosen race, a royal priesthood, a holy nation, a people for special possession, that you should declare abroad the excellencies” of the One who called you out of darkness into his wonderful light.</p>
+        <br><p>233. 1 Peter 3:21 - Baptism, which corresponds to this, is now saving you (not by the removal of the filth of the flesh, but by the request to God for a good conscience), through the resurrection of Jesus Christ.</p>
+        <br><p>234. 1 Peter 4:8 - Above all things, have intense love for one another, because love covers a multitude of sins.</p>
+        <br><p>235. 1 Peter 5:2-3 - Shepherd the flock of God under your care, not under compulsion, but willingly before God; not for love of dishonest gain, but eagerly; not lording it over those who are God’s inheritance, but becoming examples to the flock.</p>
+        <br><p>236. 2 Peter 1:21 - For prophecy was at no time brought by man’s will, but men spoke from God as they were moved by holy spirit.</p>
+        <br><p>237. 1 John 2:15-17 - Do not love either the world or the things in the world. If anyone loves the world, the love of the Father is not in him; because everything in the world—the desire of the flesh and the desire of the eyes and the showy display of one’s means of life—does not originate with the Father, but originates with the world. Furthermore, the world is passing away and so is its desire, but the one who does the will of God remains forever.</p>
+        <br><p>238. 1 John 3:4 - Everyone who practices sin is also practicing lawlessness, and sin is lawlessness.</p>
+        <br><p>239. 1 John 3:18 - Little children, we should love, not in word or with the tongue, but in deed and truth.</p>
+        <br><p>240. 1 John 4:8 - The one who does not love has not come to know God, because God is love.</p>
+        <br><p>241. 1 John 4:19 - We love, because he first loved us.</p>
+        <br><p>242. Revelation 4:11 - You are worthy, Jehovah our God, to receive the glory and the honor and the power, because you created all things, and because of your will they came into existence and were created.</p>
+        <br><p>243. Revelation 7:9 - After this I saw, and look! a great crowd, which no man was able to number, out of all nations and tribes and peoples and tongues, standing before the throne and before the Lamb, dressed in white robes; and there were palm branches in their hands.</p>
+        <br><p>244. Revelation 11:15 - The seventh angel blew his trumpet. And there were loud voices in heaven, saying: “The kingdom of the world has become the Kingdom of our Lord and of his Christ, and he will rule as king forever and ever.”</p>
+        <br><p>245. Revelation 14:1 - Then I saw, and look! the Lamb standing on Mount Zion, and with him 144,000 who have his name and the name of his Father written on their foreheads.</p>
+        <br><p>246. Revelation 18:4 - And I heard another voice out of heaven say: “Get out of her, my people, if you do not want to share with her in her sins, and if you do not want to receive part of her plagues.”</p>
+        <br><p>247. Revelation 20:13 - And the sea gave up the dead in it, and death and the Grave gave up the dead in them, and they were judged individually according to their deeds.</p>
+        <br><p>248. Revelation 22:17 - And the spirit and the bride keep on saying, “Come!” and let anyone hearing say, “Come!” and let anyone thirsting come; let anyone who wishes take life’s water free.</p>
+        <br><p>249. 1 Chronicles 29:11 - Yours, O Jehovah, are the greatness and the mightiness and the beauty and the splendor and the majesty, for everything in the heavens and on the earth is yours. Yours is the kingdom, O Jehovah, the one exalting yourself as head over all.</p>
+        <br><p>250. John 14:1 - Do not let your hearts be troubled. Exercise faith in God; exercise faith also in me.</p>
+    `
+},
+{
     T: "Translation",
     S: [
         "Psalm 119:105 - Your word is a lamp to my foot and a light to my path."
