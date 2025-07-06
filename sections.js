@@ -196,12 +196,12 @@ const sections = [
     `
 },
 {
-    "T": "Jehovah’s Truth",
+    "T": "Highlight",
     "S": [
         "Matthew 7:24-25 - Therefore, everyone who hears these sayings of mine and does them will be like a discreet man who built his house on the rock. And the rain poured down and the floods came and the winds blew and lashed against that house, but it did not cave in, for it had been founded on the rock."
     ],
     "D": `
-        <p>Jehovah's truth as revealed in the Bible, stands firm against Satan’s lies and false worship. By rejecting pagan practices, upholding Scripture’s accuracy, and living Jesus’ example, true worshipers prepare for Jehovah’s Kingdom, building their lives on the rock of His Word for everlasting life.</p>
+        <p>We aim to highlight key truths as revealed in the Bible, standing firm against Satan’s lies and false worship. By rejecting pagan practices, upholding Scripture’s accuracy, and living Jesus’ example, true worshipers prepare for Jehovah’s Kingdom, building their lives on the rock of His Word for everlasting life.</p>
         <br><p><strong>Building on the Rock</strong></p><br><p><strong>Jesus’ Teachings as the Foundation</strong></p><p>The foundation of true worship is obedience to Jesus’ teachings, which guide Jehovah’s Witnesses to reject falsehoods and embrace Jehovah’s truth. This steadfast adherence ensures spiritual stability, unlike the shifting sands of human traditions, as emphasized in the call to build wisely on divine principles.</p><br><p><em>“Therefore, everyone who hears these sayings of mine and does them will be like a discreet man who built his house on the rock. And the rain poured down and the floods came and the winds blew and lashed against that house, but it did not cave in, for it had been founded on the rock.” — Matthew 7:24-25</em></p>
         <br><p><strong>False Worship Begins</strong></p><br><p><strong>Satan’s Deception in Eden</strong></p><p>False worship began when Satan deceived Eve, promoting independence from Jehovah and introducing idolatry (Genesis 3:1-6). This rebellion, seen in Cain’s actions (Genesis 4:3-8) and Sumerian polytheism (3000 BCE), defies Jehovah’s sole devotion.</p><br><p><em>“You must not have any other gods besides me.” — Exodus 20:3</em></p>
         <br><p><strong>The Golden Calf Incident</strong></p><p>The Israelites’ golden calf, blending Jehovah’s worship with Egyptian practices (Exodus 32:4-6, 28), brought judgment, showing the danger of mixing truth with human traditions, as confirmed by Hazor’s figurines (1400 BCE).</p><br><p><em>“Every detestable thing that Jehovah hates, they have done.” — Deuteronomy 12:31</em></p>
