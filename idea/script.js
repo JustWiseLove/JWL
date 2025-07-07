@@ -1,3 +1,9 @@
+// Scroll to section
+function scrollToSection(sectionId) {
+    const target = document.getElementById(sectionId);
+    target.scrollIntoView({ behavior: 'smooth' });
+}
+
 // Lesson toggle
 document.querySelectorAll('.section h2').forEach(header => {
     header.addEventListener('click', () => {
@@ -8,23 +14,15 @@ document.querySelectorAll('.section h2').forEach(header => {
     });
 });
 
-// Smooth scrolling for navigation
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
-    });
-});
-
 // Progress tracker
 let completedLessons = 0;
-document.querySelectorAll('.lesson').forEach(lesson => {
-    lesson.addEventListener('click', () => {
-        if (!lesson.dataset.clicked) {
+document.querySelectorAll('.lesson textarea').forEach(textarea => {
+    textarea.addEventListener('input', () => {
+        const lesson = textarea.closest('.lesson');
+        if (!lesson.dataset.clicked && textarea.value.trim()) {
             completedLessons++;
             lesson.dataset.clicked = true;
-            document.getElementById('progress').textContent = `${completedLessons}/88`;
+            document.getElementById('progress').textContent = `${completedLessons}/45`;
         }
     });
 });
