@@ -140,6 +140,20 @@ footer {
         display: block;
         margin: 0.5rem 0;
     }
+    .section {
+        margin-bottom: 0.4rem;
+    }
+    .section h2 {
+        cursor: pointer;
+        background-color: #1A1A1A;
+        padding: 0.4rem;
+        border-radius: 2px;
+        font-size: 0.4rem;
+        transition: background-color 0.3s;
+    }
+    .section h2:hover {
+        background-color: #666666;
+    }
     .lesson img {
         max-width: 100%;
     }
