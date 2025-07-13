@@ -14,15 +14,44 @@ document.querySelectorAll('.section h2').forEach(header => {
     });
 });
 
-// Progress tracker
-let completedLessons = 0;
-document.querySelectorAll('.lesson textarea').forEach(textarea => {
-    textarea.addEventListener('input', () => {
-        const lesson = textarea.closest('.lesson');
-        if (!lesson.dataset.clicked && textarea.value.trim()) {
-            completedLessons++;
-            lesson.dataset.clicked = true;
-            document.getElementById('progress').textContent = `${completedLessons}/45`;
+// Progress tracker and saving answers
+document.addEventListener('DOMContentLoaded', () => {
+    const textareas = document.querySelectorAll('.lesson textarea');
+    const totalLessons = textareas.length; // Should be 60
+    let completedLessons = 0;
+
+    // Load saved answers from localStorage
+    textareas.forEach((textarea, index) => {
+        const savedAnswer = localStorage.getItem(`lesson-answer-${index}`);
+        if (savedAnswer) {
+            textarea.value = savedAnswer;
+            if (savedAnswer.trim()) {
+                textarea.closest('.lesson').dataset.completed = 'true';
+                completedLessons++;
+            }
         }
+    });
+
+    // Update progress display
+    document.getElementById('progress').textContent = `${completedLessons}/${totalLessons}`;
+
+    // Save answers and update progress on input
+    textareas.forEach((textarea, index) => {
+        textarea.addEventListener('input', () => {
+            // Save the answer to localStorage
+            localStorage.setItem(`lesson-answer-${index}`, textarea.value);
+
+            // Update progress
+            const lesson = textarea.closest('.lesson');
+            const isCompleted = textarea.value.trim() !== '';
+            if (isCompleted && !lesson.dataset.completed) {
+                lesson.dataset.completed = 'true';
+                completedLessons++;
+            } else if (!isCompleted && lesson.dataset.completed) {
+                lesson.dataset.completed = 'false';
+                completedLessons--;
+            }
+            document.getElementById('progress').textContent = `${completedLessons}/${totalLessons}`;
+        });
     });
 });
