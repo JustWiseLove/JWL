@@ -33,11 +33,15 @@
             text-align: left;
             border: 1px solid #ccc;
             font-size: 16px;
+            min-width: 100px; /* Ensure consistent column width */
+            vertical-align: top; /* Align content to top for consistency */
         }
         th {
             background-color: #556B2F; /* Olive green */
             color: #fff;
             font-weight: bold;
+            position: sticky;
+            top: 0;
         }
         tr:nth-child(even) {
             background-color: #F5E8C7; /* Lighter gold for rows */
@@ -52,10 +56,10 @@
             text-align: center;
             cursor: pointer;
         }
-        .section-content {
-            display: table-row-group;
+        .collapsible-row {
+            display: table-row; /* Ensure rows align properly */
         }
-        .section-content.hidden {
+        .collapsible-row.hidden {
             display: none;
         }
         input[type="checkbox"] {
@@ -68,6 +72,7 @@
             th, td {
                 padding: 8px;
                 font-size: 14px;
+                min-width: 80px;
             }
             input[type="checkbox"] {
                 width: 18px;
@@ -102,7 +107,7 @@
                 <tr class="section-header" data-section="a7a">
                     <td colspan="7">A7-A: Leading Up to Jesus’ Ministry</td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Annunciation to Zechariah</td>
                     <td>-</td>
                     <td>-</td>
@@ -111,7 +116,7 @@
                     <td>6 BCE</td>
                     <td><input type="checkbox" data-id="a7a-1" aria-label="Mark Annunciation to Zechariah as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Annunciation to Mary</td>
                     <td>1:18-25</td>
                     <td>-</td>
@@ -120,7 +125,7 @@
                     <td>6 BCE</td>
                     <td><input type="checkbox" data-id="a7a-2" aria-label="Mark Annunciation to Mary as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Birth of John the Baptist</td>
                     <td>-</td>
                     <td>-</td>
@@ -129,7 +134,7 @@
                     <td>6 BCE</td>
                     <td><input type="checkbox" data-id="a7a-3" aria-label="Mark Birth of John the Baptist as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Birth of Jesus</td>
                     <td>1:18-25</td>
                     <td>-</td>
@@ -138,7 +143,7 @@
                     <td>6–4 BCE</td>
                     <td><input type="checkbox" data-id="a7a-4" aria-label="Mark Birth of Jesus as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Visit of the shepherds</td>
                     <td>-</td>
                     <td>-</td>
@@ -147,7 +152,7 @@
                     <td>6–4 BCE</td>
                     <td><input type="checkbox" data-id="a7a-5" aria-label="Mark Visit of the shepherds as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Circumcision and presentation at temple</td>
                     <td>-</td>
                     <td>-</td>
@@ -156,7 +161,7 @@
                     <td>6–4 BCE</td>
                     <td><input type="checkbox" data-id="a7a-6" aria-label="Mark Circumcision and presentation as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Visit of the astrologers</td>
                     <td>2:1-12</td>
                     <td>-</td>
@@ -165,7 +170,7 @@
                     <td>4 BCE</td>
                     <td><input type="checkbox" data-id="a7a-7" aria-label="Mark Visit of the astrologers as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Flight to Egypt</td>
                     <td>2:13-15</td>
                     <td>-</td>
@@ -174,7 +179,7 @@
                     <td>4 BCE</td>
                     <td><input type="checkbox" data-id="a7a-8" aria-label="Mark Flight to Egypt as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Return to Nazareth</td>
                     <td>2:16-23</td>
                     <td>-</td>
@@ -183,7 +188,7 @@
                     <td>4 BCE</td>
                     <td><input type="checkbox" data-id="a7a-9" aria-label="Mark Return to Nazareth as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>Jesus at 12 visits Jerusalem</td>
                     <td>-</td>
                     <td>-</td>
@@ -192,7 +197,7 @@
                     <td>7 CE</td>
                     <td><input type="checkbox" data-id="a7a-10" aria-label="Mark Jesus at 12 visits Jerusalem as completed"></td>
                 </tr>
-                <tr class="section-content a7a">
+                <tr class="collapsible-row a7a">
                     <td>John the Baptist’s ministry</td>
                     <td>3:1-12</td>
                     <td>1:1-8</td>
@@ -205,7 +210,7 @@
                 <tr class="section-header" data-section="a7b">
                     <td colspan="7">A7-B: The Beginning of Jesus’ Ministry</td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>Jesus’ baptism</td>
                     <td>3:13-17</td>
                     <td>1:9-11</td>
@@ -214,7 +219,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-1" aria-label="Mark Jesus’ baptism as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>Temptation in the wilderness</td>
                     <td>4:1-11</td>
                     <td>1:12-13</td>
@@ -223,7 +228,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-2" aria-label="Mark Temptation in the wilderness as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>First miracle at Cana</td>
                     <td>-</td>
                     <td>-</td>
@@ -232,7 +237,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-3" aria-label="Mark First miracle at Cana as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>First cleansing of the temple</td>
                     <td>-</td>
                     <td>-</td>
@@ -241,7 +246,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-4" aria-label="Mark First cleansing of the temple as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>Conversation with Nicodemus</td>
                     <td>-</td>
                     <td>-</td>
@@ -250,7 +255,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-5" aria-label="Mark Conversation with Nicodemus as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>Ministry in Judea</td>
                     <td>-</td>
                     <td>-</td>
@@ -259,7 +264,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-6" aria-label="Mark Ministry in Judea as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>Imprisonment of John the Baptist</td>
                     <td>4:12</td>
                     <td>1:14</td>
@@ -268,7 +273,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-7" aria-label="Mark Imprisonment of John the Baptist as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>Jesus returns to Galilee</td>
                     <td>4:12-17</td>
                     <td>1:14-15</td>
@@ -277,7 +282,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-8" aria-label="Mark Jesus returns to Galilee as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>Rejection at Nazareth</td>
                     <td>-</td>
                     <td>-</td>
@@ -286,7 +291,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-9" aria-label="Mark Rejection at Nazareth as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>Move to Capernaum</td>
                     <td>4:13-17</td>
                     <td>-</td>
@@ -295,7 +300,7 @@
                     <td>29 CE</td>
                     <td><input type="checkbox" data-id="a7b-10" aria-label="Mark Move to Capernaum as completed"></td>
                 </tr>
-                <tr class="section-content a7b">
+                <tr class="collapsible-row a7b">
                     <td>Calling of first disciples</td>
                     <td>4:18-22</td>
                     <td>1:16-20</td>
@@ -308,7 +313,7 @@
                 <tr class="section-header" data-section="a7c">
                     <td colspan="7">A7-C: Jesus’ Great Ministry in Galilee (Part 1)</td>
                 </tr>
-                <tr class="section-content a7c">
+                <tr class="collapsible-row a7c">
                     <td>Healing of official’s son</td>
                     <td>-</td>
                     <td>-</td>
@@ -317,7 +322,7 @@
                     <td>29–30 CE</td>
                     <td><input type="checkbox" data-id="a7c-1" aria-label="Mark Healing of official’s son as completed"></td>
                 </tr>
-                <tr class="section-content a7c">
+                <tr class="collapsible-row a7c">
                     <td>Healing at Capernaum</td>
                     <td>8:14-17</td>
                     <td>1:21-34</td>
@@ -326,7 +331,7 @@
                     <td>29–30 CE</td>
                     <td><input type="checkbox" data-id="a7c-2" aria-label="Mark Healing at Capernaum as completed"></td>
                 </tr>
-                <tr class="section-content a7c">
+                <tr class="collapsible-row a7c">
                     <td>First preaching tour in Galilee</td>
                     <td>4:23-25</td>
                     <td>1:35-39</td>
@@ -335,7 +340,7 @@
                     <td>29–30 CE</td>
                     <td><input type="checkbox" data-id="a7c-3" aria-label="Mark First preaching tour in Galilee as completed"></td>
                 </tr>
-                <tr class="section-content a7c">
+                <tr class="collapsible-row a7c">
                     <td>Healing of a leper</td>
                     <td>8:2-4</td>
                     <td>1:40-45</td>
@@ -344,7 +349,7 @@
                     <td>29–30 CE</td>
                     <td><input type="checkbox" data-id="a7c-4" aria-label="Mark Healing of a leper as completed"></td>
                 </tr>
-                <tr class="section-content a7c">
+                <tr class="collapsible-row a7c">
                     <td>Healing of a paralytic</td>
                     <td>9:1-8</td>
                     <td>2:1-12</td>
@@ -353,7 +358,7 @@
                     <td>29–30 CE</td>
                     <td><input type="checkbox" data-id="a7c-5" aria-label="Mark Healing of a paralytic as completed"></td>
                 </tr>
-                <tr class="section-content a7c">
+                <tr class="collapsible-row a7c">
                     <td>Calling of Matthew (Levi)</td>
                     <td>9:9-13</td>
                     <td>2:13-17</td>
@@ -362,7 +367,7 @@
                     <td>29–30 CE</td>
                     <td><input type="checkbox" data-id="a7c-6" aria-label="Mark Calling of Matthew as completed"></td>
                 </tr>
-                <tr class="section-content a7c">
+                <tr class="collapsible-row a7c">
                     <td>Sermon on the Mount</td>
                     <td>5:1–7:29</td>
                     <td>-</td>
@@ -371,7 +376,7 @@
                     <td>30 CE</td>
                     <td><input type="checkbox" data-id="a7c-7" aria-label="Mark Sermon on the Mount as completed"></td>
                 </tr>
-                <tr class="section-content a7c">
+                <tr class="collapsible-row a7c">
                     <td>Healing of centurion’s servant</td>
                     <td>8:5-13</td>
                     <td>-</td>
@@ -384,7 +389,7 @@
                 <tr class="section-header" data-section="a7d">
                     <td colspan="7">A7-D: Jesus’ Great Ministry in Galilee (Part 2)</td>
                 </tr>
-                <tr class="section-content a7d">
+                <tr class="collapsible-row a7d">
                     <td>Raising of widow’s son</td>
                     <td>-</td>
                     <td>-</td>
@@ -393,7 +398,7 @@
                     <td>30–31 CE</td>
                     <td><input type="checkbox" data-id="a7d-1" aria-label="Mark Raising of widow’s son as completed"></td>
                 </tr>
-                <tr class="section-content a7d">
+                <tr class="collapsible-row a7d">
                     <td>John the Baptist’s question</td>
                     <td>11:2-19</td>
                     <td>-</td>
@@ -402,7 +407,7 @@
                     <td>30–31 CE</td>
                     <td><input type="checkbox" data-id="a7d-2" aria-label="Mark John the Baptist’s question as completed"></td>
                 </tr>
-                <tr class="section-content a7d">
+                <tr class="collapsible-row a7d">
                     <td>Anointing of Jesus</td>
                     <td>-</td>
                     <td>-</td>
@@ -411,7 +416,7 @@
                     <td>30–31 CE</td>
                     <td><input type="checkbox" data-id="a7d-3" aria-label="Mark Anointing of Jesus as completed"></td>
                 </tr>
-                <tr class="section-content a7d">
+                <tr class="collapsible-row a7d">
                     <td>Second preaching tour</td>
                     <td>-</td>
                     <td>-</td>
@@ -420,7 +425,7 @@
                     <td>30–31 CE</td>
                     <td><input type="checkbox" data-id="a7d-4" aria-label="Mark Second preaching tour as completed"></td>
                 </tr>
-                <tr class="section-content a7d">
+                <tr class="collapsible-row a7d">
                     <td>Parable of the sower</td>
                     <td>13:1-23</td>
                     <td>4:1-20</td>
@@ -429,7 +434,7 @@
                     <td>30–31 CE</td>
                     <td><input type="checkbox" data-id="a7d-5" aria-label="Mark Parable of the sower as completed"></td>
                 </tr>
-                <tr class="section-content a7d">
+                <tr class="collapsible-row a7d">
                     <td>Calming the storm</td>
                     <td>8:23-27</td>
                     <td>4:35-41</td>
@@ -438,7 +443,7 @@
                     <td>30–31 CE</td>
                     <td><input type="checkbox" data-id="a7d-6" aria-label="Mark Calming the storm as completed"></td>
                 </tr>
-                <tr class="section-content a7d">
+                <tr class="collapsible-row a7d">
                     <td>Healing of Gerasene demoniac</td>
                     <td>8:28-34</td>
                     <td>5:1-20</td>
@@ -447,7 +452,7 @@
                     <td>30–31 CE</td>
                     <td><input type="checkbox" data-id="a7d-7" aria-label="Mark Healing of Gerasene demoniac as completed"></td>
                 </tr>
-                <tr class="section-content a7d">
+                <tr class="collapsible-row a7d">
                     <td>Healing of Jairus’ daughter</td>
                     <td>9:18-26</td>
                     <td>5:21-43</td>
@@ -460,7 +465,7 @@
                 <tr class="section-header" data-section="a7e">
                     <td colspan="7">A7-E: Jesus’ Great Ministry in Galilee (Part 3) and Later Ministry East of the Jordan</td>
                 </tr>
-                <tr class="section-content a7e">
+                <tr class="collapsible-row a7e">
                     <td>Feeding of the 5,000</td>
                     <td>14:13-21</td>
                     <td>6:30-44</td>
@@ -469,7 +474,7 @@
                     <td>31–32 CE</td>
                     <td><input type="checkbox" data-id="a7e-1" aria-label="Mark Feeding of the 5,000 as completed"></td>
                 </tr>
-                <tr class="section-content a7e">
+                <tr class="collapsible-row a7e">
                     <td>Walking on water</td>
                     <td>14:22-33</td>
                     <td>6:45-52</td>
@@ -478,7 +483,7 @@
                     <td>31–32 CE</td>
                     <td><input type="checkbox" data-id="a7e-2" aria-label="Mark Walking on water as completed"></td>
                 </tr>
-                <tr class="section-content a7e">
+                <tr class="collapsible-row a7e">
                     <td>Teaching on clean and unclean</td>
                     <td>15:1-20</td>
                     <td>7:1-23</td>
@@ -487,7 +492,7 @@
                     <td>31–32 CE</td>
                     <td><input type="checkbox" data-id="a7e-3" aria-label="Mark Teaching on clean and unclean as completed"></td>
                 </tr>
-                <tr class="section-content a7e">
+                <tr class="collapsible-row a7e">
                     <td>Healing of Canaanite woman’s daughter</td>
                     <td>15:21-28</td>
                     <td>7:24-30</td>
@@ -496,7 +501,7 @@
                     <td>31–32 CE</td>
                     <td><input type="checkbox" data-id="a7e-4" aria-label="Mark Healing of Canaanite woman’s daughter as completed"></td>
                 </tr>
-                <tr class="section-content a7e">
+                <tr class="collapsible-row a7e">
                     <td>Feeding of the 4,000</td>
                     <td>15:29-38</td>
                     <td>8:1-10</td>
@@ -505,7 +510,7 @@
                     <td>31–32 CE</td>
                     <td><input type="checkbox" data-id="a7e-5" aria-label="Mark Feeding of the 4,000 as completed"></td>
                 </tr>
-                <tr class="section-content a7e">
+                <tr class="collapsible-row a7e">
                     <td>Transfiguration</td>
                     <td>17:1-13</td>
                     <td>9:2-13</td>
@@ -514,7 +519,7 @@
                     <td>32 CE</td>
                     <td><input type="checkbox" data-id="a7e-6" aria-label="Mark Transfiguration as completed"></td>
                 </tr>
-                <tr class="section-content a7e">
+                <tr class="collapsible-row a7e">
                     <td>Healing of demon-possessed boy</td>
                     <td>17:14-20</td>
                     <td>9:14-29</td>
@@ -523,7 +528,7 @@
                     <td>32 CE</td>
                     <td><input type="checkbox" data-id="a7e-7" aria-label="Mark Healing of demon-possessed boy as completed"></td>
                 </tr>
-                <tr class="section-content a7e">
+                <tr class="collapsible-row a7e">
                     <td>Teaching in Judea</td>
                     <td>-</td>
                     <td>-</td>
@@ -536,7 +541,7 @@
                 <tr class="section-header" data-section="a7f">
                     <td colspan="7">A7-F: Jesus’ Final Ministry in Jerusalem</td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Triumphal entry</td>
                     <td>21:1-11</td>
                     <td>11:1-11</td>
@@ -545,7 +550,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-1" aria-label="Mark Triumphal entry as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Second cleansing of the temple</td>
                     <td>21:12-17</td>
                     <td>11:15-19</td>
@@ -554,7 +559,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-2" aria-label="Mark Second cleansing of the temple as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Olivet Discourse</td>
                     <td>24:1–25:46</td>
                     <td>13:1-37</td>
@@ -563,7 +568,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-3" aria-label="Mark Olivet Discourse as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Last Supper</td>
                     <td>26:17-35</td>
                     <td>14:12-31</td>
@@ -572,7 +577,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-4" aria-label="Mark Last Supper as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Betrayal and arrest</td>
                     <td>26:36-56</td>
                     <td>14:32-52</td>
@@ -581,7 +586,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-5" aria-label="Mark Betrayal and arrest as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Trials before Jewish authorities</td>
                     <td>26:57–27:1</td>
                     <td>14:53–15:1</td>
@@ -590,7 +595,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-6" aria-label="Mark Trials before Jewish authorities as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Trials before Pilate and Herod</td>
                     <td>27:2-26</td>
                     <td>15:1-15</td>
@@ -599,7 +604,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-7" aria-label="Mark Trials before Pilate and Herod as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Crucifixion and death</td>
                     <td>27:27-56</td>
                     <td>15:16-41</td>
@@ -608,7 +613,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-8" aria-label="Mark Crucifixion and death as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Burial</td>
                     <td>27:57-61</td>
                     <td>15:42-47</td>
@@ -617,7 +622,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-9" aria-label="Mark Burial as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Resurrection</td>
                     <td>28:1-10</td>
                     <td>16:1-8</td>
@@ -626,7 +631,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-10" aria-label="Mark Resurrection as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Post-resurrection appearances</td>
                     <td>28:11-20</td>
                     <td>16:9-20</td>
@@ -635,7 +640,7 @@
                     <td>33 CE</td>
                     <td><input type="checkbox" data-id="a7f-11" aria-label="Mark Post-resurrection appearances as completed"></td>
                 </tr>
-                <tr class="section-content a7f">
+                <tr class="collapsible-row a7f">
                     <td>Ascension</td>
                     <td>-</td>
                     <td>-</td>
@@ -666,7 +671,7 @@
             sectionHeaders.forEach(header => {
                 header.addEventListener('click', () => {
                     const section = header.getAttribute('data-section');
-                    const rows = document.querySelectorAll(`.section-content.${section}`);
+                    const rows = document.querySelectorAll(`.collapsible-row.${section}`);
                     rows.forEach(row => {
                         row.classList.toggle('hidden');
                     });
