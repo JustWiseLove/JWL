@@ -2,22 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblical Truth: Articles</title>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JWL: Articles</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <header>
         <div id="sidebar-placeholder"></div>
-        <main class="content">
-            <h1>Articles From the Scriptures</h1>
-            <input type="text" id="search" placeholder="Search articles..." class="search-bar">
-            <div id="articles"></div>
-        </main>
-    </div>
+    </header>
+    <main class="main-content">
+        <div class="top-section">
+            <section class="search-section">
+                <div id="search-content" class="search-content expanded">
+                    <input type="text" id="search" placeholder="SEARCH ARTICLES" oninput="searchItems()">
+                </div>
+            </section>
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('articles')">ARTICLES</button>
+            </div>
+        </div>
+        <div class="list" id="articles"></div>
+        <img src="BEAR.PNG" alt="Bear" class="bear-image">
+    </main>
+    <footer>
+        <p id="copyright" style="cursor: pointer;">© 2025 Just Wise Love</p>
+    </footer>
     <script src="articles.js"></script>
-    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
