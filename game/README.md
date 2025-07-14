@@ -1,22 +1,36 @@
-# Sheep Village Game
+# Just Wise Love
 
-A simple Clash of Clans-style village builder with sheep and wolf attacks.
+A survival game where you choose a male or female character, gather wood and food, build a shelter, maintain a fire, and escape an island by boat.
 
 ## Setup
-1. Clone the repository: `git clone https://github.com/<your-username>/game.git`
-2. Add placeholder images (`sheep_builder.png`, `sheep_defender.png`, `wolf.png`, `barn.png`, `turret.png`) to the `game/` folder.
-3. Run locally:
-   - Install Node.js.
-   - Run `npx http-server game/`.
-   - Open `http://localhost:8080` in your browser.
-4. Deploy to GitHub Pages:
-   - Push to GitHub: `git add .`, `git commit -m "Update game"`, `git push origin main`.
-   - Enable GitHub Pages in Settings > Pages, select `main` branch, `/ (root)`.
-   - Access at `https://<your-username>.github.io/game/`.
+1. Ensure the repository has:
+   - `index.html`
+   - `main.js`
+   - `README.md`
+2. (Optional) Add images: `player_male.png`, `player_female.png`, `shelter.png`, `fire.png`, `boat.png`, `crab.png` (see below).
+3. Deploy to GitHub Pages:
+   - Go to `https://github.com/<your-username>/game`.
+   - Tap Settings > Pages.
+   - Select `main` branch, `/ (root)`, and Save.
+   - Wait 5-10 minutes, then visit `https://<your-username>.github.io/game/`.
+4. Play in your mobile browser:
+   - Choose a character (Male/Female).
+   - Follow the tutorial to gather wood, build a shelter, find food, and escape.
+
+## Images
+The game uses colored rectangles as placeholders:
+- Male: Blue 32x32 rectangle
+- Female: Purple 32x32 rectangle
+- Shelter: Red 50x50 rectangle
+- Fire: Yellow 32x32 rectangle
+- Boat: Blue 50x50 rectangle
+- Crab: Green 32x32 rectangle
+To use real images:
+- Download from [Kenney.nl](https://kenney.nl/assets) (e.g., Pixel Platformer pack).
+- Upload to the `game/` folder via GitHub.
 
 ## Gameplay
-- Click "Build Barn" or "Build Turret" and click the canvas to place buildings.
-- Click "Spawn Sheep" to create a sheep (Builder or Defender).
-- Builders repair barns; Defenders attack wolves.
-- Wolves spawn periodically and attack sheep or buildings.
-- Manage wool and wood resources to build and spawn.
+- Choose a male or female character.
+- Gather wood and food (berries, crabs, fish).
+- Build a shelter, keep the fire going, and build a boat to win.
+- Avoid starvation or shelter destruction.
