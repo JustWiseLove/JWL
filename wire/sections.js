@@ -1,4 +1,4 @@
-const sections = [
+window.sections = [
     {
         T: "Accuracy",
         S: [
