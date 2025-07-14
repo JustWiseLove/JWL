@@ -9,6 +9,7 @@ header {
     background-color: #d0d0d0;
     padding: 10px 0;
     position: relative;
+    width: 100%;
 }
 .sidebar {
     display: flex;
@@ -85,15 +86,18 @@ header {
     text-align: center;
 }
 .search-content {
-    max-width: 800px;
+    max-width: 100%; /* Match content width */
     margin: 0 auto;
+    padding: 0 20px; /* Add padding to avoid overflow */
 }
 .search-content input {
     width: 100%;
+    max-width: 600px; /* Constrain max width to fit content */
     padding: 10px;
     border: 1px solid #999999;
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box; /* Ensure padding doesn’t exceed width */
 }
 .tabs {
     display: flex;
@@ -178,6 +182,12 @@ footer {
     .sidebar {
         flex-direction: column;
         padding: 10px;
+        position: fixed; /* Keep at top */
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #d0d0d0;
+        z-index: 1000;
     }
     .hamburger-left, .hamburger-right {
         display: flex;
@@ -192,6 +202,10 @@ footer {
     }
     .logo {
         font-size: 36px;
+        margin-bottom: 10px; /* Space before nav */
+    }
+    .main-content {
+        padding-top: 80px; /* Offset for fixed header */
     }
     .tabs {
         flex-wrap: wrap;
