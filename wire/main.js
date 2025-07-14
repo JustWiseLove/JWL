@@ -1,23 +1,7 @@
-// Hamburger menu functionality
+// Set active navigation link
 document.addEventListener('DOMContentLoaded', () => {
-  const hamburgerLeft = document.querySelector('.hamburger-left');
-  const hamburgerRight = document.querySelector('.hamburger-right');
-  if (hamburgerLeft) {
-    hamburgerLeft.addEventListener('click', () => {
-      const menu = document.getElementById('nav-menu-left');
-      menu.classList.toggle('active');
-    });
-  }
-  if (hamburgerRight) {
-    hamburgerRight.addEventListener('click', () => {
-      const menu = document.getElementById('nav-menu-right');
-      menu.classList.toggle('active');
-    });
-  }
-
-  // Set active navigation link
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-menu-left a, .nav-menu-right a').forEach(link => {
+  document.querySelectorAll('.nav-menu a').forEach(link => {
     if (link.getAttribute('href') === currentPage) {
       link.classList.add('active');
     }
@@ -64,9 +48,8 @@ function searchItems() {
       };
 
       if (searchTerm) {
-        // Check if search term is in header (title)
+        // Check if search term is in header (title) or content
         const isTitleMatch = headerText.includes(searchTerm);
-        // Check if search term is in content
         const isContentMatch = contentText.includes(searchTerm);
         if (isTitleMatch || isContentMatch) {
           // Update header with highlighted text
@@ -88,7 +71,7 @@ function searchItems() {
       }
     });
 
-    // Sort items: title matches first, then content matches
+    // Sort items: title matches first, then content matches, then alphabetical
     items.sort((a, b) => {
       const aHeader = a.querySelector('.header').textContent.toLowerCase();
       const bHeader = b.querySelector('.header').textContent.toLowerCase();
