@@ -5,26 +5,16 @@
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
     <style>
         body { margin: 0; background: #222; }
-        #ui { position: absolute; top: 10px; left: 10px; color: white; font-family: Arial; }
-        button { margin: 5px; padding: 10px; display: block; }
-        #tutorial { position: absolute; top: 50px; left: 10px; color: yellow; font-family: Arial; }
-        #character-select { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; }
-        #character-select button { margin: 10px; padding: 15px; font-size: 16px; }
+        #tutorial { position: absolute; top: 10px; left: 10px; color: yellow; font-family: Arial; font-size: 16px; }
+        #character-select { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; font-family: Arial; }
     </style>
 </head>
 <body>
-    <div id="ui" style="display: none;">
-        <div id="resources">Wood: 0 | Food: 0</div>
-        <button id="gatherWood">Gather Wood</button>
-        <button id="buildShelter">Build Shelter (50 Wood)</button>
-        <button id="explore">Explore for Food</button>
-        <button id="buildBoat">Build Boat (100 Wood)</button>
-    </div>
     <div id="tutorial"></div>
     <div id="character-select">
         <h2>Choose Your Character</h2>
-        <button id="male">Male</button>
-        <button id="female">Female</button>
+        <div id="male">🧍 Male</div>
+        <div id="female">🧍‍♀️ Female</div>
     </div>
     <script src="main.js"></script>
 </body>
