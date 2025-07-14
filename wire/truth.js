@@ -1,4 +1,4 @@
-const truths = [
+window.truths = [
   {
     title: "Jehovah Is the Only True God",
     icon: "fas fa-book-open",
