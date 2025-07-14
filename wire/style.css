@@ -146,17 +146,27 @@ h1 {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid #999999;
+        position: relative;
+    }
+    .sidebar ul {
+        display: none;
+    }
+    .sidebar ul.active {
+        display: block;
     }
     .logo {
         font-size: 36px;
+        cursor: pointer;
     }
-    .sidebar ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .sidebar ul li {
-        margin: 5px 10px;
+    .sidebar::before {
+        content: '\f0c9';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
     }
     .content {
         padding: 10px;
@@ -167,7 +177,7 @@ h1 {
     .intro, .reflection {
         max-width: 100%;
     }
-    .episode, .header, .content .content {
+    .episode {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
