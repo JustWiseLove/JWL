@@ -2,26 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JWL: Homepage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JWL</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <header>
         <div id="sidebar-placeholder"></div>
-        <main class="content">
-            <h1>Biblical Truth: A Scholar’s Guide</h1>
-            <div class="intro">
-                <p>The Bible provides timeless truth to guide humanity, and Jesus Christ set the perfect example for sharing it. In Matthew 24:14, he said, “This good news of the Kingdom will be preached in all the inhabited earth.” Jesus taught with love, clarity, and boldness, often door-to-door (Luke 8:1), inviting all to learn God’s purpose. This website follows his example, offering clear, scripture-based answers to life’s questions. Explore these pages to discover what the Bible teaches about God, salvation, and the future, using the 2020 New World Translation for accuracy. Our goal is to help you find truth and draw closer to the Creator.</p>
+    </header>
+    <main class="main-content">
+        <div class="top-section">
+            <section class="search-section">
+                <div id="search-content" class="search-content expanded">
+                    <input type="text" id="search" placeholder="SEARCH" oninput="searchItems()">
+                </div>
+            </section>
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('articles')">ARTICLES</button>
+                <button class="tab-button" onclick="showTab('people')">PEOPLE</button>
+                <button class="tab-button" onclick="showTab('topics')">TOPICS</button>
+                <button class="tab-button" onclick="showTab('sections')">SECTIONS</button>
             </div>
-            <div class="reflection">
-                <h2>Reflection</h2>
-                <p>What is your purpose in life? The Bible invites you to seek truth and find meaning. Psalm 119:105 says, “Your word is a lamp to my foot, and a light to my path.” Reflect on your values, your hopes, and what God’s Word offers. Explore the Truth, People, Good News, Articles, Sections, and Topics pages to uncover answers about life, death, and God’s promises. Let the Scriptures guide you to a deeper understanding of your place in the Creator’s purpose and the hope of a better future.</p>
-            </div>
-        </main>
-    </div>
-    <script src="script.js"></script>
+        </div>
+        <div class="list active" id="articles"></div>
+        <div class="list" id="people"></div>
+        <div class="list" id="topics"></div>
+        <div class="list" id="sections"></div>
+    </main>
+    <footer>
+        <p id="copyright" style="cursor: pointer;">© 2025 Just Wise Love</p>
+    </footer>
+    <script src="articles.js"></script>
+    <script src="people.js"></script>
+    <script src="topics.js"></script>
+    <script src="sections.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
