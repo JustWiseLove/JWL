@@ -1,4 +1,4 @@
-const topics = [
+window.topics = [
   {
     "T": "Christmas",
     "S": [
