@@ -19,222 +19,277 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-let resources = { wood: 0, food: 0 };
-let player = null;
+let resources = { wood: 0, berries: 0, stone: 0, fish: 0 };
+let characters = [];
 let shelter = null;
-let fire = null;
 let boat = null;
 let crabs = [];
+let eagles = [];
 let gameState = 'characterSelect';
 let tutorialStep = 0;
 let tutorialMessages = [
-    "Welcome to Just Wise Love! Tap 'Male' or 'Female' to choose your character.",
-    "Tap 'Gather Wood' to collect wood for a shelter.",
-    "Gather 50 wood, then tap 'Build Shelter' and tap the canvas to place it.",
-    "With a shelter built, tap 'Explore' to find berries for food.",
-    "Crabs may attack your shelter. Move to them to catch them for food.",
-    "Tap water areas to fish for more food. Keep food above 0 to survive!",
-    "Keep the fire going by gathering wood. It burns 1 wood every 10 seconds.",
-    "Gather 100 wood, then tap 'Build Boat' to escape and win!"
+    "Tap 🧍 Male or 🧍‍♀️ Female to start. The Green Male will gather wood for a shelter.",
+    "Green Male is gathering wood from 🌴. Wait for 50 wood to build the shelter.",
+    "Shelter 🏕️ built! Pink Female spawns to gather berries 🍓.",
+    "Yellow Male spawns to gather stone 🪨.",
+    "Purple Female spawns to fish 🐟.",
+    "Crabs 🦀 and eagles 🦅 steal resources! Tap them to stop them. Upgrade gatherers with ⬆️ buttons."
 ];
 
 function preload() {
-    // Fallback graphics (no images needed)
-    this.textures.generate('player_male', { data: ['11', 'BB'], pixelWidth: 16 });
-    this.textures.generate('player_female', { data: ['11', 'PP'], pixelWidth: 16 });
-    this.textures.generate('shelter', { data: ['1111', '1RR1', '1RR1', '1111'], pixelWidth: 25 });
-    this.textures.generate('fire', { data: ['11', 'YY'], pixelWidth: 16 });
-    this.textures.generate('boat', { data: ['1111', '1BB1', '1BB1', '1111'], pixelWidth: 25 });
-    this.textures.generate('crab', { data: ['11', 'GG'], pixelWidth: 16 });
+    // No images; emojis used as text sprites
 }
 
 function create() {
-    // Background (beach and water)
-    this.add.rectangle(400, 400, 800, 400, 0xEDC9AF); // Beach (sand)
-    this.add.rectangle(400, 100, 800, 200, 0x1E90FF); // Water (top 200px)
+    // Background
+    this.add.rectangle(200, 300, 400, 600, 0x1E90FF); // Left: Blue water
+    this.add.rectangle(400, 300, 400, 600, 0x8B4513); // Middle: Brown sand
+    this.add.rectangle(600, 300, 400, 600, 0x228B22); // Right: Green grass
+    this.add.rectangle(400, 100, 800, 200, 0x808080); // Back: Gray rocks
+    this.add.rectangle(400, 550, 800, 100, 0x654321); // Bottom: Dark brown soil
 
-    // Tutorial display
+    // Resource display
+    this.resourceText = this.add.text(10, 10, 'Wood: 0 | Berries: 0 | Stone: 0 | Fish: 0', { font: '16px Arial', fill: '#FFFFFF' }).setDepth(1);
+
+    // Action buttons (emojis)
+    this.fishButton = this.add.text(100, 100, '🐟', { font: '32px Arial', fill: '#FFFFFF' }).setInteractive().setDepth(1);
+    this.berryButton = this.add.text(700, 300, '🍓', { font: '32px Arial', fill: '#FFFFFF' }).setInteractive().setDepth(1);
+    this.stoneButton = this.add.text(400, 50, '🪨', { font: '32px Arial', fill: '#FFFFFF' }).setInteractive().setDepth(1);
+    this.woodButton = this.add.text(400, 550, '🌴', { font: '32px Arial', fill: '#FFFFFF' }).setInteractive().setDepth(1);
+    this.boatButton = this.add.text(400, 500, '⛵ Build Boat', { font: '16px Arial', fill: '#FFFFFF', backgroundColor: '#000000' }).setInteractive().setDepth(1).setVisible(false);
+
+    // Upgrade buttons
+    this.upgradeGreen = this.add.text(10, 50, '⬆️ Green (10 Berries)', { font: '16px Arial', fill: '#FFFFFF' }).setInteractive().setDepth(1).setVisible(false);
+    this.upgradePink = this.add.text(10, 70, '⬆️ Pink (10 Fish)', { font: '16px Arial', fill: '#FFFFFF' }).setInteractive().setDepth(1).setVisible(false);
+    this.upgradeYellow = this.add.text(10, 90, '⬆️ Yellow (10 Wood)', { font: '16px Arial', fill: '#FFFFFF' }).setInteractive().setDepth(1).setVisible(false);
+    this.upgradePurple = this.add.text(10, 110, '⬆️ Purple (10 Stone)', { font: '16px Arial', fill: '#FFFFFF' }).setInteractive().setDepth(1).setVisible(false);
+
+    // Tutorial
     this.tutorialText = document.getElementById('tutorial');
     this.updateTutorial();
 
-    // Character selection
-    document.getElementById('male').addEventListener('click', () => {
-        gameState = 'playing';
-        document.getElementById('character-select').style.display = 'none';
-        document.getElementById('ui').style.display = 'block';
-        spawnPlayer.call(this, 'male');
-        tutorialStep++;
-        this.updateTutorial();
-    });
-    document.getElementById('female').addEventListener('click', () => {
-        gameState = 'playing';
-        document.getElementById('character-select').style.display = 'none';
-        document.getElementById('ui').style.display = 'block';
-        spawnPlayer.call(this, 'female');
-        tutorialStep++;
-        this.updateTutorial();
-    });
+    // Character selection (Phaser-based for mobile reliability)
+    this.maleButton = this.add.text(350, 250, '🧍 Male', { font: '24px Arial', fill: '#FFFFFF', backgroundColor: '#333333', padding: { x: 15, y: 10 } }).setInteractive().setDepth(1);
+    this.femaleButton = this.add.text(350, 350, '🧍‍♀️ Female', { font: '24px Arial', fill: '#FFFFFF', backgroundColor: '#333333', padding: { x: 15, y: 10 } }).setInteractive().setDepth(1);
+    this.maleButton.on('pointerdown', () => selectCharacter.call(this, 'green_male'));
+    this.femaleButton.on('pointerdown', () => selectCharacter.call(this, 'green_male')); // Same gameplay
 
-    // UI buttons
-    document.getElementById('gatherWood').addEventListener('click', () => {
-        if (gameState === 'playing') {
-            resources.wood += 10;
-            this.updateResourcesUI();
-            if (tutorialStep === 1) {
-                tutorialStep++;
-                this.updateTutorial();
-            }
-        }
+    // Button actions
+    this.fishButton.on('pointerdown', () => {
+        const purple = characters.find(c => c.getData('type') === 'purple_female');
+        if (purple) purple.setData('target', this.fishButton);
     });
-    document.getElementById('buildShelter').addEventListener('click', () => {
-        if (gameState === 'playing' && !shelter) {
-            gameState = 'placingShelter';
-        }
+    this.berryButton.on('pointerdown', () => {
+        const pink = characters.find(c => c.getData('type') === 'pink_female');
+        if (pink) pink.setData('target', this.berryButton);
     });
-    document.getElementById('explore').addEventListener('click', () => {
-        if (gameState === 'playing' && shelter) {
-            resources.food += 5; // Find berries
-            this.updateResourcesUI();
-            if (tutorialStep === 3) {
-                tutorialStep++;
-                this.updateTutorial();
-            }
-        }
+    this.stoneButton.on('pointerdown', () => {
+        const yellow = characters.find(c => c.getData('type') === 'yellow_male');
+        if (yellow) yellow.setData('target', this.stoneButton);
     });
-    document.getElementById('buildBoat').addEventListener('click', () => {
-        if (gameState === 'playing' && resources.wood >= 100 && fire) {
+    this.woodButton.on('pointerdown', () => {
+        const green = characters.find(c => c.getData('type') === 'green_male');
+        if (green) green.setData('target', this.woodButton);
+    });
+    this.boatButton.on('pointerdown', () => {
+        if (resources.wood >= 100 && resources.stone >= 50) {
             resources.wood -= 100;
+            resources.stone -= 50;
             spawnBoat.call(this);
-            this.updateResourcesUI();
+            this.updateResources();
         }
     });
 
-    // Place shelter
-    this.input.on('pointerdown', (pointer) => {
-        if (gameState === 'placingShelter' && resources.wood >= 50) {
-            const x = Math.floor(pointer.x / 50) * 50;
-            const y = Math.max(200, Math.floor(pointer.y / 50) * 50); // Stay on beach
-            if (!shelter) {
-                resources.wood -= 50;
-                shelter = this.physics.add.sprite(x, y, 'shelter').setOrigin(0);
-                shelter.setData('health', 100);
-                fire = this.physics.add.sprite(x + 25, y + 50, 'fire');
-                gameState = 'playing';
-                this.updateResourcesUI();
-                this.time.addEvent({
-                    delay: 10000,
-                    callback: () => {
-                        if (fire) {
-                            resources.wood = Math.max(0, resources.wood - 1);
-                            this.updateResourcesUI();
-                            if (resources.wood === 0) {
-                                fire.destroy();
-                                fire = null;
-                                if (tutorialStep === 6) {
-                                    tutorialStep++;
-                                    this.updateTutorial();
-                                }
-                            }
-                        }
-                    },
-                    loop: true
-                });
-                if (tutorialStep === 2) {
-                    tutorialStep++;
-                    this.updateTutorial();
-                }
-            }
-        } else if (gameState === 'playing' && pointer.y < 200 && shelter) { // Fishing in water
-            resources.food += 3;
-            this.updateResourcesUI();
-            if (tutorialStep === 5) {
-                tutorialStep++;
-                this.updateTutorial();
-            }
+    // Upgrade actions
+    this.upgradeGreen.on('pointerdown', () => {
+        const green = characters.find(c => c.getData('type') === 'green_male');
+        if (green && resources.berries >= 10) {
+            resources.berries -= 10;
+            green.setData('speed', green.getData('speed0) + 0.5);
+            this.updateResources();
+        }
+    });
+    this.upgradePink.on('pointerdown', () => {
+        const pink = characters.find(c => c.getData('type') === 'pink_female');
+        if (pink && resources.fish >= 10) {
+            resources.fish -= 10;
+            pink.setData('speed', pink.getData('speed') + 0.5);
+            this.updateResources();
+        }
+    });
+    this.upgradeYellow.on('pointerdown', () => {
+        const yellow = characters.find(c => c.getData('type') === 'yellow_male');
+        if (yellow && resources.wood >= 10) {
+            resources.wood -= 10;
+            yellow.setData('speed', yellow.getData('speed') + 0.5);
+            this.updateResources();
+        }
+    });
+    this.upgradePurple.on('pointerdown', () => {
+        const purple = characters.find(c => c.getData('type') === 'purple_female');
+        if (purple && resources.stone >= 10) {
+            resources.stone -= 10;
+            purple.setData('speed', purple.getData('speed') + 0.5);
+            this.updateResources();
         }
     });
 
-    // Crab spawns (every 10-20 seconds for testing, change to 300000-900000 for 5-15 min)
+    // Enemy spawns
     this.time.addEvent({
-        delay: Phaser.Math.Between(10000, 20000),
-        callback: () => spawnCrab.call(this),
+        delay: Phaser.Math.Between(10000, 20000), // 10-20s for testing
+        callback: () => spawnEnemy.call(this),
         loop: true
     });
 }
 
 function update() {
-    if (gameState === 'playing' && player) {
-        // Move player to tapped position
-        if (this.input.activePointer.isDown) {
-            this.physics.moveTo(player, this.input.activePointer.x, this.input.activePointer.y, player.getData('speed') * 60);
+    if (gameState === 'playing') {
+        // Character movement
+        characters.forEach(char => {
+            if (char.active) {
+                const type = char.getData('type');
+                let target = char.getData('target');
+                if (!target || !target.active) {
+                    if (type === 'green_male') target = this.woodButton;
+                    else if (type === 'pink_female') target = this.berryButton;
+                    else if (type === 'yellow_male') target = this.stoneButton;
+                    else if (type === 'purple_female') target = this.fishButton;
+                    char.setData('target', target);
+                }
+                if (target) {
+                    this.physics.moveToObject(char, target, char.getData('speed') * 60);
+                    if (Phaser.Math.Distance.Between(char.x, char.y, target.x, target.y) < 20) {
+                        if (type === 'green_male') resources.wood += 1;
+                        else if (type === 'pink_female') resources.berries += 1;
+                        else if (type === 'yellow_male') resources.stone += 1;
+                        else if (type === 'purple_female') resources.fish += 1;
+                        char.setData('target', shelter || this.add.text(400, 300, '🏕️', { font: '32px Arial' }));
+                        this.updateResources();
+                    } else if (shelter && Phaser.Math.Distance.Between(char.x, char.y, shelter.x, shelter.y) < 20) {
+                        char.setData('target', type === 'green_male' ? this.woodButton : type === 'pink_female' ? this.berryButton : type === 'yellow_male' ? this.stoneButton : this.fishButton);
+                    }
+                }
+                // Attack enemies
+                [crabs, eagles].forEach(enemies => {
+                    const enemy = enemies.find(e => e.active && Phaser.Math.Distance.Between(char.x, char.y, e.x, e.y) < 20);
+                    if (enemy) {
+                        enemy.destroy();
+                        enemies.splice(enemies.indexOf(enemy), 1);
+                    }
+                });
+            }
+        });
+
+        // Shelter building
+        if (!shelter && resources.wood >= 50) {
+            shelter = this.add.text(400, 300, '🏕️', { font: '32px Arial' }).setDepth(1);
+            spawnCharacter.call(this, 'pink_female');
+            this.upgradeGreen.setVisible(true);
+            tutorialStep++;
+            this.updateTutorial();
         }
-        // Crab attacks and catching
+
+        // Spawn additional characters
+        if (shelter && resources.berries >= 20 && !characters.find(c => c.getData('type') === 'yellow_male')) {
+            spawnCharacter.call(this, 'yellow_male');
+            this.upgradePink.setVisible(true);
+            tutorialStep++;
+            this.updateTutorial();
+        }
+        if (shelter && resources.stone >= 20 && !characters.find(c => c.getData('type') === 'purple_female')) {
+            spawnCharacter.call(this, 'purple_female');
+            this.upgradeYellow.setVisible(true);
+            this.upgradePurple.setVisible(true);
+            this.boatButton.setVisible(true);
+            tutorialStep++;
+            this.updateTutorial();
+        }
+
+        // Enemy behavior
         crabs.forEach(crab => {
-            if (crab.active) {
-                if (shelter && Phaser.Math.Distance.Between(crab.x, crab.y, shelter.x, shelter.y) < 50) {
-                    shelter.setData('health', shelter.getData('health') - 5);
-                    if (shelter.getData('health') <= 0) {
-                        shelter.destroy();
-                        shelter = null;
-                        fire.destroy();
-                        fire = null;
-                        crabs.forEach(c => c.destroy());
-                        crabs = [];
-                        gameState = 'gameOver';
-                        this.tutorialText.innerText = 'Game Over: Shelter destroyed! Refresh to restart.';
-                    }
-                } else if (Phaser.Math.Distance.Between(crab.x, crab.y, player.x, player.y) < 20) {
-                    resources.food += 5;
+            if (crab.active && shelter) {
+                this.physics.moveToObject(crab, shelter, 50);
+                if (Phaser.Math.Distance.Between(crab.x, crab.y, shelter.x, shelter.y) < 20) {
+                    const resource = Phaser.Math.RND.pick(['berries', 'fish']);
+                    resources[resource] = Math.max(0, resources[resource] - 2);
                     crab.destroy();
-                    crabs = crabs.filter(c => c !== crab);
-                    this.updateResourcesUI();
-                    if (tutorialStep === 4) {
-                        tutorialStep++;
-                        this.updateTutorial();
-                    }
+                    crabs.splice(crabs.indexOf(crab), 1);
+                    this.updateResources();
                 }
             }
         });
-        // Food consumption
+        eagles.forEach(eagle => {
+            if (eagle.active && shelter) {
+                this.physics.moveToObject(eagle, shelter, 50);
+                if (Phaser.Math.Distance.Between(eagle.x, eagle.y, shelter.x, shelter.y) < 20) {
+                    const resource = Phaser.Math.RND.pick(['wood', 'stone']);
+                    resources[resource] = Math.max(0, resources[resource] - 2);
+                    eagle.destroy();
+                    eagles.splice(eagles.indexOf(eagle), 1);
+                    this.updateResources();
+                }
+            }
+        });
+
+        // Resource consumption
         if (this.time.now % 15000 < 60) {
-            resources.food = Math.max(0, resources.food - 1);
-            this.updateResourcesUI();
-            if (resources.food === 0) {
+            resources.berries = Math.max(0, resources.berries - 1);
+            resources.fish = Math.max(0, resources.fish - 1);
+            this.updateResources();
+            if (resources.berries === 0 && resources.fish === 0) {
                 gameState = 'gameOver';
                 this.tutorialText.innerText = 'Game Over: You starved! Refresh to restart.';
             }
         }
-        // Check win condition
-        if (boat && Phaser.Math.Distance.Between(player.x, player.y, boat.x, boat.y) < 20) {
-            gameState = 'won';
-            this.tutorialText.innerText = 'You Win! You built a boat and escaped!';
+
+        // Win condition
+        if (boat && characters.find(c => c.getData('type') === 'green_male')) {
+            const green = characters.find(c => c.getData('type') === 'green_male');
+            if (Phaser.Math.Distance.Between(green.x, green.y, boat.x, boat.y) < 20) {
+                gameState = 'won';
+                this.tutorialText.innerText = 'You Win! You built a boat and escaped!';
+            }
         }
     }
 }
 
-function spawnPlayer(type) {
-    player = this.physics.add.sprite(400, 400, `player_${type}`);
-    player.setData('speed', 2);
+function selectCharacter(type) {
+    gameState = 'playing';
+    this.maleButton.destroy();
+    this.femaleButton.destroy();
+    document.getElementById('character-select').style.display = 'none';
+    spawnCharacter.call(this, type);
+    tutorialStep++;
+    this.updateTutorial();
 }
 
-function spawnCrab() {
-    if (shelter && gameState === 'playing') {
-        const crab = this.physics.add.sprite(Phaser.Math.Between(0, 800), 200, 'crab');
-        crab.setData('speed', 1);
-        this.physics.moveToObject(crab, shelter, crab.getData('speed') * 60);
-        crabs.push(crab);
-    }
+function spawnCharacter(type) {
+    const x = 400, y = 300;
+    const emoji = type === 'green_male' ? '🧍' : type === 'pink_female' ? '🧍‍♀️' : type === 'yellow_male' ? '🧍' : '🧍‍♀️';
+    const color = type === 'green_male' ? '#00FF00' : type === 'pink_female' ? '#FF69B4' : type === 'yellow_male' ? '#FFFF00' : '#800080';
+    const char = this.physics.add.text(x, y, emoji, { font: '24px Arial', fill: color }).setDepth(1);
+    char.setData('type', type);
+    char.setData('speed', 1);
+    char.setData('target', type === 'green_male' ? this.woodButton : null);
+    characters.push(char);
 }
 
 function spawnBoat() {
-    boat = this.physics.add.sprite(400, 150, 'boat').setOrigin(0);
-    if (tutorialStep === 7) {
-        this.tutorialText.innerText = 'Boat built! Move to the boat to escape and win!';
+    boat = this.add.text(400, 200, '⛵', { font: '32px Arial' }).setDepth(1);
+    this.tutorialText.innerText = 'Boat ⛵ built! Move Green Male to it to win!';
+}
+
+function spawnEnemy() {
+    if (shelter && gameState === 'playing') {
+        const type = Phaser.Math.RND.pick(['crab', 'eagle']);
+        const pos = type === 'crab' ? Phaser.Math.RND.pick([[100, 0], [100, 600]]) : Phaser.Math.RND.pick([[700, 0], [700, 600]]);
+        const enemy = this.physics.add.text(pos[0], pos[1], type === 'crab' ? '🦀' : '🦅', { font: '24px Arial' }).setDepth(1);
+        (type === 'crab' ? crabs : eagles).push(enemy);
     }
 }
 
-function updateResourcesUI() {
-    document.getElementById('resources').innerText = `Wood: ${resources.wood} | Food: ${resources.food}`;
+function updateResources() {
+    this.resourceText.setText(`Wood: ${resources.wood} | Berries: ${resources.berries} | Stone: ${resources.stone} | Fish: ${resources.fish}`);
 }
 
 function updateTutorial() {
