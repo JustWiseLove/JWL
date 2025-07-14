@@ -23,6 +23,7 @@ function showTab(tabId) {
     tab.style.display = 'block';
     tab.classList.add('active');
     document.querySelector(`button[onclick="showTab('${tabId}')"]`).classList.add('active');
+    populateList(tabId); // Repopulate to reset content
   } else {
     console.error(`Tab with ID ${tabId} not found`);
   }
@@ -41,32 +42,33 @@ function searchItems() {
       const headerText = header.textContent.toLowerCase();
       const contentText = content ? content.textContent.toLowerCase() : '';
 
-      // Highlight function
+      // Highlight function (preserve original case)
       const highlightText = (text, term) => {
         if (!term) return text;
-        return text.replace(new RegExp(`(${term})`, 'gi'), '<span style="background-color: #FFD700; color: #333333;">$1</span>');
+        const regex = new RegExp(`(${term})`, 'gi');
+        return text.replace(regex, match => `<span style="background-color: #FFD700; color: #333333;">${match}</span>`);
       };
 
       if (searchTerm) {
+        const originalHeader = header.dataset.original || header.textContent; // Store original if not set
+        const originalContent = content ? (content.dataset.original || content.innerHTML) : '';
+        if (!header.dataset.original) header.dataset.original = originalHeader;
+        if (content && !content.dataset.original) content.dataset.original = originalContent;
+
         // Check if search term is in header (title) or content
         const isTitleMatch = headerText.includes(searchTerm);
         const isContentMatch = contentText.includes(searchTerm);
         if (isTitleMatch || isContentMatch) {
-          // Update header with highlighted text
-          header.innerHTML = highlightText(headerText.replace(/<[^>]+>/g, ''), searchTerm);
-          // Update content with highlighted text
-          if (content) {
-            let contentHTML = content.innerHTML;
-            contentHTML = highlightText(contentHTML.replace(/<[^>]+>/g, ''), searchTerm);
-            content.innerHTML = contentHTML;
-          }
+          header.innerHTML = highlightText(originalHeader, searchTerm);
+          if (content) content.innerHTML = highlightText(originalContent, searchTerm);
           item.style.display = 'block';
         } else {
           item.style.display = 'none';
         }
       } else {
-        // Reset to original content if no search term
-        populateList(list.id);
+        // Reset to original content
+        if (header.dataset.original) header.innerHTML = header.dataset.original;
+        if (content && content.dataset.original) content.innerHTML = content.dataset.original;
         item.style.display = 'block';
       }
     });
