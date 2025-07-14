@@ -7,9 +7,6 @@ body {
     display: flex;
     min-height: 100vh;
 }
-header {
-    flex: 0 0 auto;
-}
 .sidebar {
     background-color: #d0d0d0;
     width: 200px;
@@ -166,9 +163,16 @@ footer {
     color: #333333;
 }
 @media (max-width: 768px) {
+    body {
+        display: block; /* Remove flex for stacking */
+    }
     .sidebar {
-        width: 150px; /* Narrower on mobile */
-        padding: 10px 0;
+        position: relative; /* Remove fixed positioning */
+        width: 100%; /* Full width */
+        height: auto; /* Auto height */
+        border-right: none;
+        border-bottom: 1px solid #999999;
+        margin-bottom: 20px;
     }
     .logo {
         font-size: 36px;
@@ -177,9 +181,11 @@ footer {
     .nav-menu a {
         font-size: 16px;
         padding: 8px 15px;
+        text-align: center;
     }
     .main-content {
-        margin-left: 150px; /* Adjust for narrower sidebar */
+        margin-left: 0; /* Remove sidebar offset */
+        padding: 10px; /* Reduce padding */
     }
     .tabs {
         flex-wrap: wrap;
