@@ -3,8 +3,19 @@
 <head>
     <title>Sheep Village</title>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <style>
+        body { margin: 0; background: #222; }
+        #ui { position: absolute; top: 10px; left: 10px; color: white; font-family: Arial; }
+        button { margin: 5px; padding: 10px; }
+    </style>
 </head>
 <body>
-    <script src="src/main.js"></script>
+    <div id="ui">
+        <div id="resources">Wool: 0 | Wood: 0</div>
+        <button id="buildBarn">Build Barn (50 Wood)</button>
+        <button id="buildTurret">Build Turret (30 Wood)</button>
+        <button id="spawnSheep">Spawn Sheep (20 Wool)</button>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
