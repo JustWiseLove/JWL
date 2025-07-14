@@ -4,14 +4,14 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     line-height: 1.6;
-    display: flex;
     min-height: 100vh;
 }
 .sidebar {
     background-color: #d0d0d0;
     padding: 20px 0;
-    border-right: 1px solid #999999;
+    border-bottom: 1px solid #999999;
     box-sizing: border-box;
+    width: 100%;
     overflow-y: auto;
 }
 .logo {
@@ -32,9 +32,11 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: center;
 }
 .nav-menu li {
     margin: 10px 0;
+    display: inline-block;
 }
 .nav-menu a {
     color: #333333;
@@ -52,7 +54,6 @@ body {
     margin-right: 10px;
 }
 .main-content {
-    flex: 1;
     padding: 20px;
     box-sizing: border-box;
 }
@@ -150,35 +151,36 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: #d0d0d0;
-    flex: 0 0 auto;
 }
 
 /* Desktop layout (≥1024px) */
 @media (min-width: 1024px) {
+    body {
+        display: flex;
+    }
     .sidebar {
         width: 200px;
         position: fixed;
         top: 0;
         left: 0;
         height: 100%;
+        border-bottom: none;
+        border-right: 1px solid #999999;
     }
     .main-content {
         margin-left: 200px; /* Match sidebar width */
     }
+    .nav-menu li {
+        display: block; /* Vertical list on desktop */
+    }
 }
 
-/* Tablet and Mobile layout (≤1024px) */
-@media (max-width: 1024px) {
-    body {
-        display: block; /* Stack layout */
-    }
+/* Tablet and Mobile layout (≤1023px) */
+@media (max-width: 1023px) {
     .sidebar {
-        position: relative; /* Remove fixed positioning */
-        width: 100%; /* Full width */
-        height: auto; /* Auto height */
-        border-right: none;
-        border-bottom: 1px solid #999999;
-        margin-bottom: 20px;
+        position: relative; /* Ensure top placement */
+        width: 100%;
+        height: auto;
     }
     .logo {
         font-size: 36px;
@@ -187,11 +189,9 @@ footer {
     .nav-menu a {
         font-size: 16px;
         padding: 8px 15px;
-        text-align: center;
     }
     .main-content {
-        margin-left: 0; /* Remove sidebar offset */
-        padding: 10px; /* Reduce padding */
+        padding: 10px;
     }
     .tabs {
         flex-wrap: wrap;
@@ -199,29 +199,5 @@ footer {
     .tab-button {
         flex: 1 1 45%;
         margin: 5px;
-    }
-}
-
-/* Additional breakpoint for small desktop (600px–1023px) */
-@media (min-width: 601px) and (max-width: 1023px) {
-    .sidebar {
-        width: 100%;
-        position: relative;
-        top: 0;
-        left: 0;
-        height: auto;
-        border-bottom: 1px solid #999999;
-        margin-bottom: 20px;
-    }
-    .main-content {
-        margin-left: 0;
-        padding: 15px;
-    }
-    .logo {
-        font-size: 40px;
-    }
-    .nav-menu a {
-        font-size: 17px;
-        padding: 10px 20px;
     }
 }
