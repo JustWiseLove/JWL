@@ -1,4 +1,4 @@
-const articles = [
+window.articles = [
     {
         title: "God's Divine Name",
         content: `
