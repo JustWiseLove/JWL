@@ -1,11 +1,7 @@
-// Set active navigation link
+// Set active navigation link (removed sidebar-specific logic)
 document.addEventListener('DOMContentLoaded', () => {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-menu a').forEach(link => {
-    if (link.getAttribute('href') === currentPage) {
-      link.classList.add('active');
-    }
-  });
+  // No sidebar links to check, so this is a no-op unless you add other nav elements
 });
 
 // Show tab content
@@ -29,61 +25,140 @@ function showTab(tabId) {
   }
 }
 
-// Enhanced search functionality with highlighting
+// Enhanced cross-array search functionality with highlighting
 function searchItems() {
   const searchTerm = document.getElementById('search').value.toLowerCase().trim();
   console.log(`Searching for: ${searchTerm}`);
-  const lists = document.querySelectorAll('.list');
-  lists.forEach(list => {
-    const items = Array.from(list.querySelectorAll('.episode'));
-    items.forEach(item => {
-      const header = item.querySelector('.header');
-      const content = item.querySelector('.content');
-      const headerText = header.textContent.toLowerCase();
-      const contentText = content ? content.textContent.toLowerCase() : '';
+  const lists = {
+    truths: document.getElementById('truths'),
+    people: document.getElementById('people'),
+    articles: document.getElementById('articles'),
+    sections: document.getElementById('sections'),
+    topics: document.getElementById('topics')
+  };
 
-      // Highlight function (preserve original case)
-      const highlightText = (text, term) => {
-        if (!term) return text;
-        const regex = new RegExp(`(${term})`, 'gi');
-        return text.replace(regex, match => `<span style="background-color: #FFD700; color: #333333;">${match}</span>`);
-      };
+  // Clear all lists
+  Object.values(lists).forEach(list => {
+    if (list) list.innerHTML = '';
+  });
 
-      if (searchTerm) {
-        const originalHeader = header.dataset.original || header.textContent; // Store original if not set
-        const originalContent = content ? (content.dataset.original || content.innerHTML) : '';
-        if (!header.dataset.original) header.dataset.original = originalHeader;
-        if (content && !content.dataset.original) content.dataset.original = originalContent;
+  if (!searchTerm) {
+    // Reset to original tab content
+    Object.keys(lists).forEach(listId => populateList(listId));
+    return;
+  }
 
-        // Check if search term is in header (title) or content
-        const isTitleMatch = headerText.includes(searchTerm);
-        const isContentMatch = contentText.includes(searchTerm);
-        if (isTitleMatch || isContentMatch) {
-          header.innerHTML = highlightText(originalHeader, searchTerm);
-          if (content) content.innerHTML = highlightText(originalContent, searchTerm);
-          item.style.display = 'block';
+  // Highlight function (preserve original case)
+  const highlightText = (text, term) => {
+    if (!term) return text;
+    const regex = new RegExp(`(${term})`, 'gi');
+    return text.replace(regex, match => `<span style="background-color: #FFD700; color: #333333;">${match}</span>`);
+  };
+
+  // Arrays to search
+  const arrays = {
+    truths: window.truths || [],
+    people: window.people || [],
+    articles: window.articles || [],
+    sections: window.sections || [],
+    topics: window.topics || []
+  };
+
+  // Collect all matching items
+  const allMatches = [];
+  Object.entries(arrays).forEach(([arrayName, array]) => {
+    array.forEach(item => {
+      const title = (item.title || item.T || '').toLowerCase();
+      const isTitleMatch = title.includes(searchTerm);
+      let hasKeyword = isTitleMatch;
+
+      // Check content based on array type
+      let contentText = '';
+      if (arrayName === 'truths') {
+        contentText = (item.summary || '').toLowerCase();
+        hasKeyword = hasKeyword || contentText.includes(searchTerm);
+        item.scriptures?.forEach(s => hasKeyword = hasKeyword || (s.text || '').toLowerCase().includes(searchTerm));
+      } else if (arrayName === 'people' || arrayName === 'sections' || arrayName === 'topics') {
+        contentText = (item.D || '').toLowerCase();
+        hasKeyword = hasKeyword || contentText.includes(searchTerm);
+        item.S?.forEach(s => hasKeyword = hasKeyword || s.toLowerCase().includes(searchTerm));
+      } else if (arrayName === 'articles') {
+        contentText = (item.content || '').toLowerCase();
+        hasKeyword = hasKeyword || contentText.includes(searchTerm);
+      }
+
+      if (hasKeyword) {
+        const episode = document.createElement('div');
+        episode.className = 'episode';
+        const header = document.createElement('div');
+        header.className = 'header';
+        const titleText = item.title || item.T || '';
+        header.innerHTML = `<i class="${item.icon || 'fas fa-question-circle'}"></i> ${highlightText(titleText, searchTerm)}`;
+        header.addEventListener('click', () => {
+          const content = header.nextElementSibling;
+          content.classList.toggle('show');
+        });
+
+        const content = document.createElement('div');
+        content.className = 'content';
+        let contentHTML = '<div class="block">';
+        if (isTitleMatch) {
+          // Display entire content if title matches
+          if (arrayName === 'truths') {
+            contentHTML += `<div class="text">${highlightText(item.summary || '', searchTerm)}</div>`;
+            if (item.scriptures?.length) {
+              contentHTML += `<div class="scripture-section"><ul>`;
+              item.scriptures.forEach(s => {
+                contentHTML += `<li title="${s.tooltip || ''}">${highlightText(s.text || '', searchTerm)} <span class="ref">(${s.reference})</span></li>`;
+              });
+              contentHTML += `</ul></div>`;
+            }
+          } else if (arrayName === 'people' || arrayName === 'sections' || arrayName === 'topics') {
+            contentHTML += `<div class="description-section">${highlightText(item.D || '', searchTerm)}</div>`;
+            if (item.S?.length) {
+              contentHTML += `<div class="scripture-section"><ul>`;
+              item.S.forEach(s => contentHTML += `<li>${highlightText(s, searchTerm)}</li>`);
+              contentHTML += `</ul></div>`;
+            }
+          } else if (arrayName === 'articles') {
+            contentHTML += `${highlightText(item.content || '', searchTerm)}`;
+          }
         } else {
-          item.style.display = 'none';
+          // Display only paragraphs with the keyword
+          if (arrayName === 'truths' && contentText.includes(searchTerm)) {
+            contentHTML += `<div class="text">${highlightText(item.summary || '', searchTerm)}</div>`;
+            item.scriptures?.forEach(s => {
+              if ((s.text || '').toLowerCase().includes(searchTerm)) {
+                contentHTML += `<div class="scripture-section"><ul><li title="${s.tooltip || ''}">${highlightText(s.text || '', searchTerm)} <span class="ref">(${s.reference})</span></li></ul></div>`;
+              }
+            });
+          } else if ((arrayName === 'people' || arrayName === 'sections' || arrayName === 'topics') && contentText.includes(searchTerm)) {
+            contentHTML += `<div class="description-section">${highlightText(item.D || '', searchTerm)}</div>`;
+            item.S?.forEach(s => {
+              if (s.toLowerCase().includes(searchTerm)) {
+                contentHTML += `<div class="scripture-section"><ul><li>${highlightText(s, searchTerm)}</li></ul></div>`;
+              }
+            });
+          } else if (arrayName === 'articles' && contentText.includes(searchTerm)) {
+            contentHTML += `${highlightText(item.content || '', searchTerm)}`;
+          }
         }
-      } else {
-        // Reset to original content
-        if (header.dataset.original) header.innerHTML = header.dataset.original;
-        if (content && content.dataset.original) content.innerHTML = content.dataset.original;
-        item.style.display = 'block';
+        contentHTML += '</div>';
+        content.innerHTML = contentHTML;
+        episode.appendChild(header);
+        episode.appendChild(content);
+        allMatches.push({ episode, arrayName });
       }
     });
+  });
 
-    // Sort items: title matches first, then content matches, then alphabetical
-    items.sort((a, b) => {
-      const aHeader = a.querySelector('.header').textContent.toLowerCase();
-      const bHeader = b.querySelector('.header').textContent.toLowerCase();
-      const aMatch = aHeader.includes(searchTerm);
-      const bMatch = bHeader.includes(searchTerm);
-      if (aMatch && !bMatch) return -1;
-      if (!aMatch && bMatch) return 1;
-      return aHeader.localeCompare(bHeader); // Alphabetical for ties
-    });
-    items.forEach(item => list.appendChild(item));
+  // Populate all lists with matches
+  Object.entries(lists).forEach(([listId, list]) => {
+    if (list) {
+      list.innerHTML = '';
+      const matchesForList = allMatches.filter(m => m.arrayName === listId);
+      matchesForList.forEach(m => list.appendChild(m.episode));
+    }
   });
 }
 
