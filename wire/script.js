@@ -11,6 +11,11 @@ function loadSidebar() {
                     link.classList.add('active');
                 }
             });
+            // Mobile sidebar toggle
+            document.querySelector('.logo').addEventListener('click', () => {
+                const menu = document.querySelector('.sidebar ul');
+                menu.classList.toggle('active');
+            });
         })
         .catch(error => console.error('Error loading sidebar:', error));
 }
@@ -34,14 +39,14 @@ function populateTruth() {
         episode.className = 'episode';
         const header = document.createElement('div');
         header.className = 'header';
-        header.innerHTML = `<i class="${truth.icon}"></i> ${truth.title}`;
+        header.innerHTML = `<i class="${truth.icon || 'fas fa-question-circle'}"></i> ${truth.title}`;
         const content = document.createElement('div');
         content.className = 'content';
         let contentHTML = `<div class="block"><div class="text">${truth.summary}</div>`;
-        if (truth.scriptures.length) {
+        if (truth.scriptures && truth.scriptures.length) {
             contentHTML += `<div class="scripture-section"><ul>`;
             truth.scriptures.forEach(scripture => {
-                contentHTML += `<li title="${scripture.tooltip}">${scripture.text} <span class="ref">(${scripture.reference})</span></li>`;
+                contentHTML += `<li title="${scripture.tooltip || ''}">${scripture.text} <span class="ref">(${scripture.reference})</span></li>`;
             });
             contentHTML += `</ul></div>`;
         }
@@ -67,7 +72,7 @@ function populatePeople() {
         const content = document.createElement('div');
         content.className = 'content';
         let contentHTML = `<div class="block"><div class="description-section">${person.D}</div>`;
-        if (person.S.length) {
+        if (person.S && person.S.length) {
             contentHTML += `<div class="scripture-section"><ul>`;
             person.S.forEach(scripture => {
                 contentHTML += `<li>${scripture}</li>`;
@@ -116,7 +121,7 @@ function populateSections() {
         const content = document.createElement('div');
         content.className = 'content';
         let contentHTML = `<div class="block"><div class="description-section">${section.D}</div>`;
-        if (section.S.length) {
+        if (section.S && section.S.length) {
             contentHTML += `<div class="scripture-section"><ul>`;
             section.S.forEach(scripture => {
                 contentHTML += `<li>${scripture}</li>`;
@@ -145,7 +150,7 @@ function populateTopics() {
         const content = document.createElement('div');
         content.className = 'content';
         let contentHTML = `<div class="block"><div class="description-section">${topic.D}</div>`;
-        if (topic.S.length) {
+        if (topic.S && topic.S.length) {
             contentHTML += `<div class="scripture-section"><ul>`;
             topic.S.forEach(scripture => {
                 contentHTML += `<li>${scripture}</li>`;
@@ -160,7 +165,7 @@ function populateTopics() {
     });
 }
 
-// Search functionality across all pages
+// Search functionality
 document.addEventListener('input', function(event) {
     if (event.target.matches('#search')) {
         const searchTerm = event.target.value.toLowerCase();
