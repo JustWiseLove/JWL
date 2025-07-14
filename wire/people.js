@@ -1,4 +1,4 @@
-const people = [
+window.people = [
   {
     "T": "Philologus",
     "S": [
