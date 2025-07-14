@@ -1,36 +1,34 @@
 # Just Wise Love
 
-A survival game where you choose a male or female character, gather wood and food, build a shelter, maintain a fire, and escape an island by boat.
+A survival game where you choose a male or female character, gather resources (wood, berries, stone, fish), build a shelter, defend against crabs and eagles, and escape by boat.
 
 ## Setup
 1. Ensure the repository has:
    - `index.html`
    - `main.js`
    - `README.md`
-2. (Optional) Add images: `player_male.png`, `player_female.png`, `shelter.png`, `fire.png`, `boat.png`, `crab.png` (see below).
-3. Deploy to GitHub Pages:
-   - Go to `https://github.com/<your-username>/game`.
+2. Deploy to GitHub Pages:
+   - Go to `https://github.com/<your-username>/game` on your mobile browser.
    - Tap Settings > Pages.
    - Select `main` branch, `/ (root)`, and Save.
    - Wait 5-10 minutes, then visit `https://<your-username>.github.io/game/`.
-4. Play in your mobile browser:
-   - Choose a character (Male/Female).
-   - Follow the tutorial to gather wood, build a shelter, find food, and escape.
-
-## Images
-The game uses colored rectangles as placeholders:
-- Male: Blue 32x32 rectangle
-- Female: Purple 32x32 rectangle
-- Shelter: Red 50x50 rectangle
-- Fire: Yellow 32x32 rectangle
-- Boat: Blue 50x50 rectangle
-- Crab: Green 32x32 rectangle
-To use real images:
-- Download from [Kenney.nl](https://kenney.nl/assets) (e.g., Pixel Platformer pack).
-- Upload to the `game/` folder via GitHub.
+3. Play in your browser (mobile or desktop):
+   - Tap 🧍 Male or 🧍‍♀️ Female to start.
+   - Follow the tutorial to gather resources and build a boat.
 
 ## Gameplay
-- Choose a male or female character.
-- Gather wood and food (berries, crabs, fish).
-- Build a shelter, keep the fire going, and build a boat to win.
-- Avoid starvation or shelter destruction.
+- Choose a character (affects Green Male’s start).
+- Green Male (🧍) gathers wood (🌴) to build shelter (🏕️) at 50 wood.
+- Pink Female (🧍‍♀️) gathers berries (🍓).
+- Yellow Male (🧍) gathers stone (🪨).
+- Purple Female (🧍‍♀️) gathers fish (🐟).
+- Crabs (🦀) steal berries/fish; eagles (🦅) steal wood/stone. Tap them to stop.
+- Upgrade gatherers (⬆️ buttons) with 10 resources to increase speed.
+- Build a boat (⛵, 100 wood, 50 stone) and move Green Male to it to win.
+- Avoid starvation (berries/fish = 0).
+
+## Notes
+- Uses emojis as placeholders; no images needed.
+- For production, edit `main.js` to change enemy spawn from 10-20s to 5-15min:
+  - Find: `delay: Phaser.Math.Between(10000, 20000)`
+  - Change to: `delay: Phaser.Math.Between(300000, 900000)`
