@@ -8,15 +8,28 @@ document.addEventListener('DOMContentLoaded', () => {
         button.setAttribute('data-lesson', i);
         timelineContainer.appendChild(button);
     }
+
+    // Load saved answers from localStorage on page load
+    document.querySelectorAll('.lesson textarea').forEach(textarea => {
+        const lessonId = textarea.closest('.lesson').id;
+        const savedAnswer = localStorage.getItem(lessonId);
+        if (savedAnswer) {
+            textarea.value = savedAnswer;
+            if (savedAnswer.trim()) {
+                textarea.closest('.lesson').dataset.clicked = true;
+                updateProgress();
+            }
+        }
+    });
 });
 
 // Scroll to section or lesson
 function scrollToSection(id) {
     const target = document.getElementById(id);
     if (target) {
-        const navHeight = document.querySelector('nav').offsetHeight; // Dynamic nav height
-        const timelineHeight = document.querySelector('.timeline').offsetHeight; // Dynamic timeline height
-        const headerOffset = navHeight + timelineHeight + 20; // Add buffer
+        const navHeight = document.querySelector('nav').offsetHeight;
+        const timelineHeight = document.querySelector('.timeline').offsetHeight;
+        const headerOffset = navHeight + timelineHeight + 20;
         const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({
             top: elementPosition - headerOffset,
@@ -47,15 +60,29 @@ document.querySelectorAll('.section h2').forEach(header => {
     });
 });
 
-// Progress tracker
+// Progress tracker and answer saving
 let completedLessons = 0;
+function updateProgress() {
+    completedLessons = document.querySelectorAll('.lesson[data-clicked]').length;
+    document.getElementById('progress').textContent = `${completedLessons}/60`;
+}
+
 document.querySelectorAll('.lesson textarea').forEach(textarea => {
     textarea.addEventListener('input', () => {
         const lesson = textarea.closest('.lesson');
-        if (!lesson.dataset.clicked && textarea.value.trim()) {
-            completedLessons++;
+        const lessonId = lesson.id;
+        const answer = textarea.value;
+
+        // Save to localStorage
+        localStorage.setItem(lessonId, answer);
+
+        // Update completion status
+        if (!lesson.dataset.clicked && answer.trim()) {
             lesson.dataset.clicked = true;
-            document.getElementById('progress').textContent = `${completedLessons}/60`;
+            updateProgress();
+        } else if (lesson.dataset.clicked && !answer.trim()) {
+            delete lesson.dataset.clicked;
+            updateProgress();
         }
     });
 });
