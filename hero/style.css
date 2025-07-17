@@ -1,0 +1,232 @@
+/* style.css */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Header and Logo */
+.header-container {
+    background-color: #006400; /* Dark green */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-container .logo {
+    font-family: 'Audiowide', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.header-container h1 {
+    font-family: 'Audiowide', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.header-container p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Card Styling for Arrays (sections, people, topics, articles) */
+.item {
+    background-color: #ffffff;
+    border: 2px solid #006400; /* Dark green border */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: calc(33.33% - 20px); /* Three cards per row */
+    min-height: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: rotate(1deg); /* Slight tilt like lesson-card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item:hover {
+    transform: rotate(0deg) scale(1.05); /* Straighten and scale on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.item-button {
+    background: none;
+    border: none;
+    font-family: 'Audiowide', sans-serif;
+    font-size: 1.2em;
+    color: #006400; /* Dark green text */
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.item-button:hover {
+    color: #00ff00; /* Bright green on hover */
+}
+
+.content {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.content .scripture-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.content .scripture-section li {
+    margin-bottom: 5px;
+}
+
+.content .description-section {
+    margin-top: 10px;
+}
+
+.content .highlight {
+    background-color: #00ff00; /* Bright green highlight for search matches */
+    padding: 0 2px;
+}
+
+/* Tab Container and Button Styling */
+.tabs {
+    background-color: #000000; /* Black background */
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.tab-button {
+    background-color: #004800; /* Darker green when not selected */
+    color: #ffffff;
+    border: 2px solid #00ff00; /* Bright green border */
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-family: 'Audiowide', sans-serif;
+    font-size: 0.9em;
+    cursor: pointer;
+    transform: rotate(-2deg); /* Leftward tilt like TRUST/TRUTH buttons */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: #00ff00; /* Bright green on hover */
+    color: #000000;
+    transform: rotate(0deg) scale(1.05); /* Straighten and scale on hover */
+}
+
+.tab-button.active {
+    background-color: #008000; /* Medium green when selected */
+    color: #ffffff;
+    transform: rotate(0deg); /* Straighten when active */
+}
+
+.tab-button.match-highlight {
+    border-color: #ffffff; /* White border for search match highlight */
+}
+
+/* Section Wrapper Styling */
+.section-wrapper {
+    background-color: #666666; /* Gray background like nav in theme.css */
+    border-left: 5px solid #00ff00; /* Green left border */
+    padding: 20px;
+    margin: 0 10px;
+    border-radius: 8px;
+}
+
+/* List Container Styling */
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+}
+
+/* Search Section */
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.search-content input {
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #006400;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 500px;
+    background-color: #000000; /* Black background */
+    color: #ffffff;
+}
+
+.search-content input::placeholder {
+    color: #cccccc;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #006400;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .item {
+        width: calc(50% - 20px); /* Two cards per row on smaller screens */
+    }
+
+    .header-container h1 {
+        font-size: 1.5em;
+    }
+
+    .header-container p {
+        font-size: 0.9em;
+    }
+
+    .tabs {
+        gap: 5px;
+    }
+
+    .tab-button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .item {
+        width: calc(100% - 20px); /* One card per row on mobile */
+    }
+
+    .header-container h1 {
+        font-size: 1.2em;
+    }
+
+    .header-container p {
+        font-size: 0.8em;
+    }
+
+    .tab-button {
+        padding: 5px 10px;
+        font-size: 0.7em;
+    }
+}
