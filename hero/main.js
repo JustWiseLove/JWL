@@ -9,10 +9,10 @@ let sortedTopics = [];
 
 try {
     sortedLessons = lessons.slice().sort((a, b) => a.title.localeCompare(b.title));
-    sortedPeople = people ? people.slice().sort((a, b) => (a.T || a.title).localeCompare(b.T || b.title)) : [];
-    sortedArticles = articles ? articles.slice().sort((a, b) => (a.title || a.T).localeCompare(b.title || b.T)) : [];
-    sortedSections = sections ? sections.slice().sort((a, b) => (a.T || a.title).localeCompare(b.T || b.title)) : [];
-    sortedTopics = topics ? topics.slice().sort((a, b) => (a.T || a.title).localeCompare(b.T || b.title)) : [];
+    sortedPeople = people.slice().sort((a, b) => a.T.localeCompare(b.T));
+    sortedArticles = articles.slice().sort((a, b) => a.title.localeCompare(b.title));
+    sortedSections = sections.slice().sort((a, b) => a.T.localeCompare(b.T));
+    sortedTopics = topics.slice().sort((a, b) => a.T.localeCompare(b.T));
 } catch (e) {
     console.error('Error initializing sorted arrays:', e);
 }
@@ -37,8 +37,8 @@ function populateList(category, containerId) {
         container.querySelectorAll('.lesson-card').forEach(el => el.remove());
 
         // Populate lessons under respective sections
-        const section1 = container.querySelector('#section1');
-        const section2 = container.querySelector('#section2');
+        const section1 = container.querySelectorAll('.section')[0];
+        const section2 = container.querySelectorAll('.section')[1];
         section1.innerHTML = '<h2>Trust The Creator And His Word</h2>';
         section2.innerHTML = '<h2>Worship With Truth Not Tradition</h2>';
 
@@ -81,65 +81,34 @@ function populateList(category, containerId) {
         });
 
         updateProgress();
-    } else {
-        // Populate Walk and Root tabs
+    } else if (category === 'walk') {
         container.innerHTML = '';
-        const items = categories[category] || [];
-        items.forEach(item => {
-            if (!item || (!item.T && !item.title)) return;
-
+        sortedPeople.forEach(item => {
             const itemWrapper = document.createElement('div');
-            itemWrapper.className = 'lesson lesson-card'; // Reuse lesson-card for styling
-
+            itemWrapper.className = 'lesson lesson-card';
+            itemWrapper.innerHTML = `
+                <h3>${item.T}</h3>
+                <div class="scripture-section"><ul>${item.S.map(s => `<li>${s}</li>`).join('')}</ul></div>
+                <div class="description-section">${item.D}</div>
+            `;
+            container.appendChild(itemWrapper);
+        });
+    } else if (category === 'root') {
+        container.innerHTML = '';
+        [...sortedTopics, ...sortedArticles, ...sortedSections].forEach(item => {
+            const itemWrapper = document.createElement('div');
+            itemWrapper.className = 'lesson lesson-card';
             const title = item.T || item.title;
-            const scriptures = (item.S || item.scriptures || []).map(s => `<li>${s}</li>`).join('');
-            const description = item.D || item.description || item.content || '';
-
+            const scriptures = item.S ? item.S.map(s => `<li>${s}</li>`).join('') : '';
+            const description = item.D || item.content || '';
             itemWrapper.innerHTML = `
                 <h3>${title}</h3>
-                <div class="scripture-section"><ul>${scriptures}</ul></div>
+                ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
                 <div class="description-section">${description}</div>
             `;
             container.appendChild(itemWrapper);
         });
     }
-}
-
-// Generate timeline for Pray tab
-function generateTimeline() {
-    const timelineContainer = document.querySelector('#pray-timeline .timeline-container');
-    timelineContainer.innerHTML = '';
-    for (let i = 1; i <= 60; i++) {
-        const button = document.createElement('button');
-        button.textContent = i;
-        button.setAttribute('data-lesson', i);
-        button.addEventListener('click', () => scrollToLesson(i));
-        timelineContainer.appendChild(button);
-    }
-}
-
-// Scroll to lesson
-function scrollToLesson(lessonNum) {
-    const target = document.getElementById(`lesson-${lessonNum}`);
-    if (target) {
-        const navHeight = document.querySelector('nav').offsetHeight;
-        const timelineHeight = document.querySelector('.timeline').offsetHeight;
-        const headerOffset = navHeight + timelineHeight + 20;
-        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-            top: elementPosition - headerOffset,
-            behavior: 'smooth'
-        });
-        updateActiveTimelineButton(lessonNum);
-    }
-}
-
-// Update active timeline button
-function updateActiveTimelineButton(lessonNum) {
-    const buttons = document.querySelectorAll('.timeline button');
-    buttons.forEach(button => button.classList.remove('active'));
-    const activeButton = document.querySelector(`.timeline button[data-lesson="${lessonNum}"]`);
-    if (activeButton) activeButton.classList.add('active');
 }
 
 // Update progress tracker
@@ -149,42 +118,29 @@ function updateProgress() {
 }
 
 // Tab Management
-function resetView() {
-    const searchResults = document.getElementById('search-results');
-    if (searchResults) searchResults.innerHTML = '';
-
-    document.querySelectorAll('.list').forEach(list => (list.style.display = 'none'));
-    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
-    document.getElementById('pray-timeline').style.display = 'none';
-
-    populateList('pray', 'pray');
-    populateList('walk', 'walk');
-    populateList('root', 'root');
-    generateTimeline();
-}
-
 function showTab(category) {
-    const searchTerm = document.getElementById('search')?.value.toLowerCase() || '';
-    const searchResults = document.getElementById('search-results');
-
-    if (searchTerm && searchResults) {
+    const searchTerm = document.getElementById('search').value.toLowerCase();
+    if (searchTerm) {
         searchItems();
         document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-        document.querySelector(`[onclick="showTab('${category}')"]`)?.classList.add('active');
+        document.querySelector(`[onclick="showTab('${category}')"]`).classList.add('active');
         return;
     }
 
-    document.querySelectorAll('.list').forEach(list => (list.style.display = 'none'));
+    document.querySelectorAll('.list').forEach(list => list.style.display = 'none');
     const selectedList = document.getElementById(category);
     if (selectedList) selectedList.style.display = 'block';
-    document.getElementById('pray-timeline').style.display = category === 'pray' ? 'block' : 'none';
 
-    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
-    document.querySelector(`[onclick="showTab('${category}')"]`)?.classList.add('active');
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[onclick="showTab('${category}')"]`).classList.add('active');
 
     if (category === 'pray') {
-        generateTimeline();
+        populateList('pray', 'pray');
         updateProgress();
+    } else if (category === 'walk') {
+        populateList('walk', 'walk');
+    } else if (category === 'root') {
+        populateList('root', 'root');
     }
 }
 
@@ -197,22 +153,23 @@ function searchItems() {
         searchResults.innerHTML = '';
 
         if (!searchTerm) {
-            resetView();
-            showTab('pray');
+            document.querySelectorAll('.list').forEach(list => list.style.display = list.id === 'pray' ? 'block' : 'none');
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[onclick="showTab('pray')"]`).classList.add('active');
+            populateList('pray', 'pray');
+            updateProgress();
             return;
         }
 
         const matches = [];
         Object.keys(categories).forEach(category => {
-            const items = categories[category];
-            items.forEach(item => {
-                if (!item || (!item.T && !item.title)) return;
-                const title = (item.T || item.title).toLowerCase();
-                const scripturesText = (item.S || item.scriptures || []).join(' ').toLowerCase();
-                const descriptionText = (item.D || item.description || item.content || '').toLowerCase();
-                const questionText = item.question ? item.question.toLowerCase() : '';
+            categories[category].forEach(item => {
+                const title = (item.T || item.title || '').toLowerCase();
+                const scriptures = (item.S || item.scriptures || []).join(' ').toLowerCase();
+                const description = (item.D || item.content || item.description || '').toLowerCase();
+                const question = (item.question || '').toLowerCase();
 
-                if (title.includes(searchTerm) || scripturesText.includes(searchTerm) || descriptionText.includes(searchTerm) || questionText.includes(searchTerm)) {
+                if (title.includes(searchTerm) || scriptures.includes(searchTerm) || description.includes(searchTerm) || question.includes(searchTerm)) {
                     matches.push({ category, item });
                 }
             });
@@ -221,22 +178,20 @@ function searchItems() {
         matches.forEach(({ category, item }) => {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
-
             const title = item.T || item.title;
-            const scriptures = (item.S || item.scriptures || []).map(s => `<li>${s}</li>`).join('');
-            const description = item.D || item.description || item.content || '';
+            const scriptures = item.S ? item.S.map(s => `<li>${s}</li>`).join('') : '';
+            const description = item.D || item.content || item.description || '';
             const question = item.question || '';
 
             itemWrapper.innerHTML = `
                 <h3>${title}</h3>
-                <div class="scripture-section"><ul>${scriptures}</ul></div>
+                ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
                 <div class="description-section">${description}</div>
-                ${question ? `<p><strong>Question:</strong> ${question}</p>` : ''}
-                ${category === 'pray' ? `<textarea placeholder="Write your answer here..."></textarea>` : ''}
+                ${question ? `<p><strong>Question:</strong> ${question}</p><textarea placeholder="Write your answer here..."></textarea>` : ''}
             `;
             searchResults.appendChild(itemWrapper);
 
-            if (category === 'pray') {
+            if (category === 'pray' && question) {
                 const lessonNum = sortedLessons.findIndex(l => l.title === item.title) + 1;
                 itemWrapper.id = `lesson-${lessonNum}`;
                 const textarea = itemWrapper.querySelector('textarea');
@@ -258,31 +213,14 @@ function searchItems() {
             }
         });
 
-        document.querySelectorAll('.list').forEach(list => (list.style.display = list.id === 'search-results' ? 'block' : 'none'));
-        document.getElementById('pray-timeline').style.display = 'none';
-        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.list').forEach(list => list.style.display = list.id === 'search-results' ? 'block' : 'none');
     }, 300);
 }
 
-// Scroll tracking for timeline
-window.addEventListener('scroll', () => {
-    if (document.getElementById('pray').style.display !== 'block') return;
-    const lessons = document.querySelectorAll('.lesson');
-    let currentLesson = null;
-    lessons.forEach(lesson => {
-        const rect = lesson.getBoundingClientRect();
-        if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-            currentLesson = lesson.id;
-        }
-    });
-    if (currentLesson && currentLesson.startsWith('lesson-')) {
-        const lessonNum = parseInt(currentLesson.split('-')[1]);
-        updateActiveTimelineButton(lessonNum);
-    }
-});
-
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    resetView();
+    populateList('pray', 'pray');
+    populateList('walk', 'walk');
+    populateList('root', 'root');
     showTab('pray');
 });
