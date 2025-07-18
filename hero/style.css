@@ -29,7 +29,7 @@ body {
 
 .header-container h1 {
     font-family: 'Audiowide', sans-serif;
-    font-size: 1.8em;
+    font-size: 1.5em;
     margin-bottom: 15px;
 }
 
@@ -247,11 +247,11 @@ footer {
     }
 
     .header-container h1 {
-        font-size: 1.2em;
+        font-size: 1.5em;
     }
 
     .header-container p {
-        font-size: 0.8em;
+        font-size: 1em;
     }
 
     .tab-button {
