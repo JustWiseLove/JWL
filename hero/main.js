@@ -242,19 +242,14 @@ function searchItems() {
 function toggleTheme() {
     const body = document.body;
     const themeStylesheet = document.getElementById('theme-stylesheet');
-    const lightStylesheet = document.getElementById('light-theme-stylesheet');
     const currentTheme = body.getAttribute('data-theme');
 
-    if (currentTheme === 'dark') {
-        themeStylesheet.setAttribute('href', 'light.css');
-        lightStylesheet.disabled = false;
-        themeStylesheet.disabled = true;
-        body.setAttribute('data-theme', 'light');
-    } else {
+    if (currentTheme === 'light') {
         themeStylesheet.setAttribute('href', 'dark.css');
-        lightStylesheet.disabled = true;
-        themeStylesheet.disabled = false;
         body.setAttribute('data-theme', 'dark');
+    } else {
+        themeStylesheet.setAttribute('href', 'light.css');
+        body.setAttribute('data-theme', 'light');
     }
 }
 
