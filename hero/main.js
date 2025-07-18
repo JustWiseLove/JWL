@@ -26,43 +26,6 @@ const categories = {
 // Debounce timeout for search input
 let debounceTimeout;
 
-// Hamburger Menu Functions
-function toggleMenu(menuId) {
-    const menu = document.getElementById(menuId);
-    const hamburger = menuId === 'nav-menu-left' ? document.querySelector('.hamburger-left') : document.querySelector('.hamburger-right');
-    if (menu && hamburger) {
-        const isActive = menu.classList.contains('active');
-        menu.classList.toggle('active', !isActive);
-        hamburger.classList.toggle('active', !isActive);
-        hamburger.setAttribute('aria-expanded', !isActive);
-    }
-}
-
-// Closes hamburger menus when clicking outside
-function closeMenusOnOutsideClick(event) {
-    const menus = document.querySelectorAll('.nav-menu-left, .nav-menu-right');
-    const hamburgers = document.querySelectorAll('.hamburger-left, .hamburger-right');
-    let clickInside = false;
-    hamburgers.forEach(hamburger => {
-        if (hamburger.contains(event.target)) clickInside = true;
-    });
-    menus.forEach(menu => {
-        if (!clickInside && !menu.contains(event.target)) {
-            menu.classList.remove('active');
-            const hamburger = menu.id === 'nav-menu-left' ? document.querySelector('.hamburger-left') : document.querySelector('.hamburger-right');
-            if (hamburger) {
-                hamburger.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
-            }
-        }
-    });
-}
-
-// Navigation Functions
-function goToHome() {
-    window.location.href = 'index.html';
-}
-
 // Populate article list
 function populateArticleList() {
     const container = document.getElementById('articles');
@@ -156,7 +119,8 @@ function resetView() {
         });
     });
 
-    document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
+    // Hide all lists within the section wrapper
+    document.querySelectorAll('.list').forEach(list => list.style.display = 'none');
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
 }
 
@@ -178,24 +142,21 @@ function showTab(category) {
     });
     if (searchResults) searchResults.remove();
 
-    // Toggle logic for people, topics, articles, and sections
+    // Show the selected list and hide others within the section wrapper
     if (category === 'people' || category === 'topics' || category === 'articles' || category === 'sections') {
-        const selectedTab = document.getElementById(category);
-        const otherTabs = ['people', 'topics', 'articles', 'sections'].filter(c => c !== category).map(c => document.getElementById(c));
-        if (selectedTab) {
-            const isVisible = selectedTab.style.display === 'flex';
-            selectedTab.style.display = isVisible ? 'none' : 'flex';
+        const selectedList = document.getElementById(category);
+        const otherLists = ['people', 'topics', 'articles', 'sections'].filter(c => c !== category).map(c => document.getElementById(c));
+        if (selectedList) {
+            const isVisible = selectedList.style.display === 'flex';
+            selectedList.style.display = isVisible ? 'none' : 'flex';
             if (!isVisible) {
-                otherTabs.forEach(tab => tab.style.display = 'none'); // Close other tabs
+                otherLists.forEach(list => {
+                    if (list) list.style.display = 'none';
+                });
             }
         }
     }
 
-    document.querySelectorAll('.list').forEach(section => {
-        if (section.id !== category) {
-            section.style.display = 'none'; // Ensure only the selected tab is visible
-        }
-    });
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
     const tabButton = document.querySelector(`[onclick="showTab('${category}')"]`);
     if (tabButton) tabButton.classList.add('active');
@@ -241,9 +202,9 @@ function createSearchResults(input) {
     const existingResults = document.getElementById('search-results');
     if (existingResults) existingResults.remove();
     
-    const bearImage = main?.querySelector('.bear-image');
-    if (bearImage && main) {
-        main.insertBefore(allList, bearImage);
+    const sectionWrapper = main?.querySelector('.section-wrapper');
+    if (sectionWrapper && main) {
+        main.insertBefore(allList, sectionWrapper);
     } else {
         main?.appendChild(allList);
     }
@@ -422,7 +383,7 @@ function searchItems() {
             if (tabButton) tabButton.classList.add('match-highlight');
         });
 
-        document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
+        document.querySelectorAll('.list').forEach(list => list.style.display = 'none');
         if (allList) allList.style.display = 'flex';
         if (!matchingItems.length) resetView();
     }, 300);
@@ -430,9 +391,6 @@ function searchItems() {
 
 // Event Listeners
 document.getElementById('search')?.addEventListener('input', searchItems);
-document.addEventListener('click', closeMenusOnOutsideClick);
-document.querySelector('.hamburger-left')?.addEventListener('click', () => toggleMenu('nav-menu-left'));
-document.querySelector('.hamburger-right')?.addEventListener('click', () => toggleMenu('nav-menu-right'));
 
 // Initialize the view on page load
 window.onload = () => {
