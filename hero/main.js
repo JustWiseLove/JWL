@@ -1,4 +1,4 @@
-// main.js (unchanged)
+// main.js
 let sortedLessons = [];
 let sortedPeople = [];
 let sortedArticles = [];
@@ -44,21 +44,33 @@ function populateList(category, containerId) {
             lessonCard.className = 'lesson lesson-card';
             lessonCard.id = `lesson-${lessonNum}`;
             lessonCard.innerHTML = `
-                <div class="lesson-number">${lessonNum}</div>
-                <h3>${lesson.title}</h3>
-                <div class="scripture-section"><ul>${lesson.scriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
-                <div class="description-section">${lesson.description}</div>
-                <p><strong>Question:</strong> ${lesson.question}</p>
-                <textarea placeholder="Write your answer here..."></textarea>
+                <div class="lesson-header">
+                    <div class="lesson-number">${lessonNum}</div>
+                    <h3>${lesson.title}</h3>
+                </div>
+                <div class="lesson-content" style="display: none;">
+                    <div class="scripture-section"><ul>${lesson.scriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
+                    <div class="description-section">${lesson.description}</div>
+                    <p><strong>Question:</strong> ${lesson.question}</p>
+                    <textarea placeholder="Write your answer here..."></textarea>
+                </div>
             `;
             section.appendChild(lessonCard);
 
+            const header = lessonCard.querySelector('.lesson-header');
+            const content = lessonCard.querySelector('.lesson-content');
             const textarea = lessonCard.querySelector('textarea');
             const savedAnswer = localStorage.getItem(`lesson-${lessonNum}`);
             if (savedAnswer) {
                 textarea.value = savedAnswer;
                 if (savedAnswer.trim()) lessonCard.dataset.clicked = true;
             }
+
+            header.addEventListener('click', () => {
+                const isExpanded = content.style.display === 'block';
+                content.style.display = isExpanded ? 'none' : 'block';
+                lessonCard.dataset.expanded = !isExpanded;
+            });
 
             textarea.addEventListener('input', () => {
                 localStorage.setItem(`lesson-${lessonNum}`, textarea.value);
@@ -79,11 +91,23 @@ function populateList(category, containerId) {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
             itemWrapper.innerHTML = `
-                <h3>${item.T}</h3>
-                <div class="scripture-section"><ul>${item.S.map(s => `<li>${s}</li>`).join('')}</ul></div>
-                <div class="description-section">${item.D}</div>
+                <div class="lesson-header">
+                    <h3>${item.T}</h3>
+                </div>
+                <div class="lesson-content" style="display: none;">
+                    <div class="scripture-section"><ul>${item.S.map(s => `<li>${s}</li>`).join('')}</ul></div>
+                    <div class="description-section">${item.D}</div>
+                </div>
             `;
             container.appendChild(itemWrapper);
+
+            const header = itemWrapper.querySelector('.lesson-header');
+            const content = itemWrapper.querySelector('.lesson-content');
+            header.addEventListener('click', () => {
+                const isExpanded = content.style.display === 'block';
+                content.style.display = isExpanded ? 'none' : 'block';
+                itemWrapper.dataset.expanded = !isExpanded;
+            });
         });
     } else if (category === 'root') {
         container.innerHTML = '';
@@ -94,11 +118,23 @@ function populateList(category, containerId) {
             const scriptures = item.S ? item.S.map(s => `<li>${s}</li>`).join('') : '';
             const description = item.D || item.content || '';
             itemWrapper.innerHTML = `
-                <h3>${title}</h3>
-                ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
-                <div class="description-section">${description}</div>
+                <div class="lesson-header">
+                    <h3>${title}</h3>
+                </div>
+                <div class="lesson-content" style="display: none;">
+                    ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
+                    <div class="description-section">${description}</div>
+                </div>
             `;
             container.appendChild(itemWrapper);
+
+            const header = itemWrapper.querySelector('.lesson-header');
+            const content = itemWrapper.querySelector('.lesson-content');
+            header.addEventListener('click', () => {
+                const isExpanded = content.style.display === 'block';
+                content.style.display = isExpanded ? 'none' : 'block';
+                itemWrapper.dataset.expanded = !isExpanded;
+            });
         });
     }
 }
@@ -180,11 +216,23 @@ function searchItems() {
             const scriptures = item.S ? item.S.map(s => `<li>${highlightText(s, searchTerm)}</li>`).join('') : '';
             const description = item.D || item.content || '';
             itemWrapper.innerHTML = `
-                <h3>${highlightText(title, searchTerm)}</h3>
-                ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
-                <div class="description-section">${highlightText(description, searchTerm)}</div>
+                <div class="lesson-header">
+                    <h3>${highlightText(title, searchTerm)}</h3>
+                </div>
+                <div class="lesson-content" style="display: none;">
+                    ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
+                    <div class="description-section">${highlightText(description, searchTerm)}</div>
+                </div>
             `;
             searchResults.appendChild(itemWrapper);
+
+            const header = itemWrapper.querySelector('.lesson-header');
+            const content = itemWrapper.querySelector('.lesson-content');
+            header.addEventListener('click', () => {
+                const isExpanded = content.style.display === 'block';
+                content.style.display = isExpanded ? 'none' : 'block';
+                itemWrapper.dataset.expanded = !isExpanded;
+            });
         });
 
         document.querySelectorAll('.list').forEach(list => list.style.display = list.id === 'search-results' ? 'block' : 'none');
