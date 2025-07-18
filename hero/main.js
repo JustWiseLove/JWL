@@ -1,6 +1,4 @@
-// main.js
-
-// Initialize sorted arrays
+// main.js (unchanged)
 let sortedLessons = [];
 let sortedPeople = [];
 let sortedArticles = [];
@@ -17,35 +15,31 @@ try {
     console.error('Error initializing sorted arrays:', e);
 }
 
-// Category mapping for tabs
 const categories = {
     pray: sortedLessons,
     walk: sortedPeople,
-    root: [...sortedTopics, ...sortedArticles, ...sortedSections]
+    root: [...sortedTopics, ...sortedArticles, ...sortedSections].sort((a, b) => (a.T || a.title).localeCompare(b.T || b.title))
 };
 
-// Debounce timeout for search
 let debounceTimeout;
 
-// Populate content for a given category
+function highlightText(text, searchTerm) {
+    if (!searchTerm || !text) return text;
+    const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(regex, '<span class="highlight">$1</span>');
+}
+
 function populateList(category, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     if (category === 'pray') {
-        // Clear existing lesson cards
         container.querySelectorAll('.lesson-card').forEach(el => el.remove());
-
-        // Populate lessons under respective sections
-        const section1 = container.querySelectorAll('.section')[0];
-        const section2 = container.querySelectorAll('.section')[1];
-        section1.innerHTML = '<h2>Trust The Creator And His Word</h2>';
-        section2.innerHTML = '<h2>Worship With Truth Not Tradition</h2>';
+        const section = container.querySelector('.section');
+        section.innerHTML = '';
 
         sortedLessons.forEach((lesson, index) => {
             const lessonNum = index + 1;
-            const targetSection = lessonNum <= 30 ? section1 : section2;
-
             const lessonCard = document.createElement('div');
             lessonCard.className = 'lesson lesson-card';
             lessonCard.id = `lesson-${lessonNum}`;
@@ -57,9 +51,8 @@ function populateList(category, containerId) {
                 <p><strong>Question:</strong> ${lesson.question}</p>
                 <textarea placeholder="Write your answer here..."></textarea>
             `;
-            targetSection.appendChild(lessonCard);
+            section.appendChild(lessonCard);
 
-            // Load saved answers
             const textarea = lessonCard.querySelector('textarea');
             const savedAnswer = localStorage.getItem(`lesson-${lessonNum}`);
             if (savedAnswer) {
@@ -67,7 +60,6 @@ function populateList(category, containerId) {
                 if (savedAnswer.trim()) lessonCard.dataset.clicked = true;
             }
 
-            // Save answers on input
             textarea.addEventListener('input', () => {
                 localStorage.setItem(`lesson-${lessonNum}`, textarea.value);
                 if (!lessonCard.dataset.clicked && textarea.value.trim()) {
@@ -95,7 +87,7 @@ function populateList(category, containerId) {
         });
     } else if (category === 'root') {
         container.innerHTML = '';
-        [...sortedTopics, ...sortedArticles, ...sortedSections].forEach(item => {
+        categories.root.forEach(item => {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
             const title = item.T || item.title;
@@ -111,16 +103,14 @@ function populateList(category, containerId) {
     }
 }
 
-// Update progress tracker
 function updateProgress() {
     const completedLessons = document.querySelectorAll('.lesson[data-clicked]').length;
     document.getElementById('progress').textContent = `${completedLessons}/60`;
 }
 
-// Tab Management
 function showTab(category) {
     const searchTerm = document.getElementById('search').value.toLowerCase();
-    if (searchTerm) {
+    if (searchTerm && (category === 'walk' || category === 'root')) {
         searchItems();
         document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
         document.querySelector(`[onclick="showTab('${category}')"]`).classList.add('active');
@@ -144,7 +134,6 @@ function showTab(category) {
     }
 }
 
-// Search Functionality
 function searchItems() {
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
@@ -162,65 +151,69 @@ function searchItems() {
         }
 
         const matches = [];
-        Object.keys(categories).forEach(category => {
+        ['walk', 'root'].forEach(category => {
             categories[category].forEach(item => {
                 const title = (item.T || item.title || '').toLowerCase();
-                const scriptures = (item.S || item.scriptures || []).join(' ').toLowerCase();
-                const description = (item.D || item.content || item.description || '').toLowerCase();
-                const question = (item.question || '').toLowerCase();
+                const scriptures = (item.S || []).join(' ').toLowerCase();
+                const description = (item.D || item.content || '').toLowerCase();
 
-                if (title.includes(searchTerm) || scriptures.includes(searchTerm) || description.includes(searchTerm) || question.includes(searchTerm)) {
-                    matches.push({ category, item });
+                if (title.includes(searchTerm)) {
+                    matches.push({ category, item, isTitleMatch: true });
+                } else if (scriptures.includes(searchTerm) || description.includes(searchTerm)) {
+                    matches.push({ category, item, isTitleMatch: false });
                 }
             });
+        });
+
+        matches.sort((a, b) => {
+            if (a.isTitleMatch && !b.isTitleMatch) return -1;
+            if (!a.isTitleMatch && b.isTitleMatch) return 1;
+            const titleA = (a.item.T || a.item.title || '').toLowerCase();
+            const titleB = (b.item.T || b.item.title || '').toLowerCase();
+            return titleA.localeCompare(titleB);
         });
 
         matches.forEach(({ category, item }) => {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
             const title = item.T || item.title;
-            const scriptures = item.S ? item.S.map(s => `<li>${s}</li>`).join('') : '';
-            const description = item.D || item.content || item.description || '';
-            const question = item.question || '';
-
+            const scriptures = item.S ? item.S.map(s => `<li>${highlightText(s, searchTerm)}</li>`).join('') : '';
+            const description = item.D || item.content || '';
             itemWrapper.innerHTML = `
-                <h3>${title}</h3>
+                <h3>${highlightText(title, searchTerm)}</h3>
                 ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
-                <div class="description-section">${description}</div>
-                ${question ? `<p><strong>Question:</strong> ${question}</p><textarea placeholder="Write your answer here..."></textarea>` : ''}
+                <div class="description-section">${highlightText(description, searchTerm)}</div>
             `;
             searchResults.appendChild(itemWrapper);
-
-            if (category === 'pray' && question) {
-                const lessonNum = sortedLessons.findIndex(l => l.title === item.title) + 1;
-                itemWrapper.id = `lesson-${lessonNum}`;
-                const textarea = itemWrapper.querySelector('textarea');
-                const savedAnswer = localStorage.getItem(`lesson-${lessonNum}`);
-                if (savedAnswer) {
-                    textarea.value = savedAnswer;
-                    if (savedAnswer.trim()) itemWrapper.dataset.clicked = true;
-                }
-                textarea.addEventListener('input', () => {
-                    localStorage.setItem(`lesson-${lessonNum}`, textarea.value);
-                    if (!itemWrapper.dataset.clicked && textarea.value.trim()) {
-                        itemWrapper.dataset.clicked = true;
-                        updateProgress();
-                    } else if (itemWrapper.dataset.clicked && !textarea.value.trim()) {
-                        delete itemWrapper.dataset.clicked;
-                        updateProgress();
-                    }
-                });
-            }
         });
 
         document.querySelectorAll('.list').forEach(list => list.style.display = list.id === 'search-results' ? 'block' : 'none');
     }, 300);
 }
 
-// Initialize on page load
+function toggleTheme() {
+    const body = document.body;
+    const themeStylesheet = document.getElementById('theme-stylesheet');
+    const lightStylesheet = document.getElementById('light-theme-stylesheet');
+    const currentTheme = body.getAttribute('data-theme');
+
+    if (currentTheme === 'dark') {
+        themeStylesheet.setAttribute('href', 'light.css');
+        lightStylesheet.disabled = false;
+        themeStylesheet.disabled = true;
+        body.setAttribute('data-theme', 'light');
+    } else {
+        themeStylesheet.setAttribute('href', 'dark.css');
+        lightStylesheet.disabled = true;
+        themeStylesheet.disabled = false;
+        body.setAttribute('data-theme', 'dark');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     populateList('pray', 'pray');
     populateList('walk', 'walk');
     populateList('root', 'root');
     showTab('pray');
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
 });
