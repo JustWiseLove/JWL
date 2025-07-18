@@ -1,6 +1,4 @@
-/* style.css */
-
-/* Reset and Base Styles */
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -8,254 +6,270 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #000000;
-    color: #333;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #d3d3d3; /* Light gray for a soft base */
+    color: #333333; /* Dark gray for text readability */
+    line-height: 1.6;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Crect fill="%23e0e0e0" width="100" height="100"/%3E%3Ccircle cx="50" cy="50" r="2" fill="%23cccccc" opacity="0.3"/%3E%3C/svg%3E'); /* Subtle noise texture */
 }
 
-/* Header and Logo */
+/* Header */
 .header-container {
-    background-color: #008000; /* Dark green */
+    background-color: #1a1a1a; /* Dark gray for depth */
     color: #ffffff;
-    padding: 20px;
     text-align: center;
+    padding: 30px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
 }
 
-.header-container .logo {
-    font-family: 'Audiowide', sans-serif;
+.header-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(0, 72, 0, 0.2)); /* Subtle green overlay */
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.logo {
+    font-family: 'Audiowide', cursive;
     font-size: 2.5em;
-    margin-bottom: 10px;
+    color: #008000; /* Bright green for logo */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), 0 0 10px #004800; /* Glow effect */
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
 }
 
-.header-container h1 {
-    font-family: 'Audiowide', sans-serif;
-    font-size: 1.5em;
+.logo:hover {
+    transform: scale(1.05); /* Subtle scale on hover */
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 2.2em;
+    margin: 15px 0;
+    color: #e0e0e0; /* Light gray for contrast */
+    position: relative;
+    z-index: 1;
+}
+
+header p {
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #cccccc; /* Medium gray for readability */
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 0;
+    background-color: #333333; /* Medium gray */
+    border-bottom: 3px solid #004800; /* Dark green accent */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav button {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.3em;
+    color: #ffffff;
+    background-color: #004800; /* Dark green */
+    border: 2px solid #008000; /* Bright green border */
+    padding: 12px 25px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 0 5px rgba(0, 128, 0, 0.3); /* Inner glow */
+    transition: all 0.3s ease;
+    transform: rotate(-2deg); /* Slight rotation for uniqueness */
+}
+
+nav button:hover {
+    background-color: #008000; /* Bright green on hover */
+    transform: rotate(0deg) scale(1.1); /* Straighten and scale */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5), 0 0 15px #008000; /* Green glow */
+}
+
+/* Timeline */
+.timeline {
+    position: sticky;
+    top: 90px; /* Increased from 70px to account for nav height + padding + buffer */
+    width: 100%;
+    background-color: #1a1a1a; /* Dark gray */
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.timeline-container {
+    display: inline-flex;
+    padding: 0 20px;
+}
+
+.timeline button {
+    font-family: 'Audiowide', cursive;
+    font-size: 1em;
+    color: #ffffff;
+    background-color: #333333; /* Medium gray */
+    border: 2px solid #004800; /* Dark green border */
+    border-radius: 0; /* Square shape */
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    line-height: 36px;
+}
+
+.timeline button:hover {
+    background-color: #008000; /* Bright green on hover */
+    border-color: #004800;
+    transform: scale(1.2); /* Slight zoom */
+    box-shadow: 0 0 8px #008000; /* Green glow */
+}
+
+.timeline button.active {
+    background-color: #004800; /* Dark green for active */
+    border-color: #008000;
+    box-shadow: 0 0 10px #008000; /* Stronger green glow */
+}
+
+/* Container and sections */
+.container {
+    max-width: 900px;
+    margin: 150px auto 30px; /* Increased from 130px to account for updated timeline top */
+    padding: 0 20px;
+}
+
+.section-wrapper {
+    background-color: #f0f0f0; /* Light gray */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 50px;
+    border-left: 5px solid #004800; /* Dark green accent */
+}
+
+h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 2em;
+    color: #008000; /* Bright green */
+    border-bottom: 3px solid #004800; /* Dark green underline */
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Lesson cards */
+.lesson-card {
+    background-color: #ffffff;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #cccccc; /* Light gray border */
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: rotate(1deg); /* Slight tilt for uniqueness */
+}
+
+.lesson-card:hover {
+    transform: rotate(0deg) scale(1.02); /* Straighten and slight zoom */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px #008000; /* Green glow */
+}
+
+.lesson-number {
+    font-family: 'Audiowide', cursive;
+    font-size: 2em;
+    color: #008000; /* Bright green */
+    background-color: #e0e0e0; /* Light gray */
+    border: 3px solid #004800; /* Dark green border */
+    border-radius: 0; /* Square shape */
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    box-shadow: 0 0 8px rgba(0, 72, 0, 0.5); /* Subtle green glow */
+    transition: transform 0.3s ease;
+}
+
+.lesson-number:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.lesson-card h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.6em;
+    color: #004800; /* Dark green */
+    margin: 0 0 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-card p {
+    font-size: 1em;
+    color: #333333; /* Dark gray text */
     margin-bottom: 15px;
 }
 
-.header-container p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1em;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.5;
+.lesson-card p strong {
+    color: #008000; /* Bright green for emphasis */
 }
 
-/* Card Styling for Arrays (sections, people, topics, articles) */
-.item {
-    background-color: #000000;
+.lesson-card textarea {
+    width: 100%;
+    height: 120px;
+    padding: 12px;
     border: 2px solid #004800; /* Dark green border */
     border-radius: 8px;
-    padding: 20px;
-    margin: 10px;
-    width: calc(33.33% - 20px); /* Three cards per row */
-    min-height: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: rotate(1deg); /* Slight tilt like lesson-card */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.item:hover {
-    transform: rotate(0deg) scale(1.05); /* Straighten and scale on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.item-button {
-    background: #000000;
-    border: none;
-    font-family: 'Audiowide', sans-serif;
-    font-size: 1.2em;
-    color: #ffffff; /* Dark green text */
-    text-align: left;
-    width: 100%;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.item-button:hover {
-    color: #ffffff; /* Bright green on hover */
-}
-
-.content {
+    resize: vertical;
+    background-color: #f5f5f5; /* Very light gray */
+    color: #333333;
     font-family: 'Roboto', sans-serif;
-    font-size: 0.9em;
-    color: #ffffff;
-    background: #000000;
+    transition: border-color 0.3s ease;
 }
 
-.content .scripture-section ul {
-    list-style-type: none;
-    padding-left: 0;
+.lesson-card textarea:focus {
+    border-color: #008000; /* Bright green on focus */
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 128, 0, 0.5); /* Green glow */
 }
 
-.content .scripture-section li {
-    margin-bottom: 5px;
-}
-
-.content .description-section {
-    margin-top: 10px;
-}
-
-.content .highlight {
-    background-color: #008000; /* Bright green highlight for search matches */
-    padding: 0 2px;
-}
-
-/* Tab Container and Button Styling */
-.tabs {
-    background-color: #000000; /* Black background */
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.tab-button {
-    background-color: #004800; /* Darker green when not selected */
-    color: #ffffff;
-    border: 2px solid #008000; /* Bright green border */
-    border-radius: 5px;
-    padding: 8px 16px;
-    font-family: 'Audiowide', sans-serif;
-    font-size: 1.2em;
-    cursor: pointer;
-    transform: rotate(-2deg); /* Leftward tilt like TRUST/TRUTH buttons */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.tab-button:hover {
-    background-color: #00ff00; /* Bright green on hover */
-    color: #000000;
-    transform: rotate(0deg) scale(1.05); /* Straighten and scale on hover */
-}
-
-.tab-button.active {
-    background-color: #008000; /* Medium green when selected */
-    color: #ffffff;
-    transform: rotate(0deg); /* Straighten when active */
-}
-
-.tab-button.match-highlight {
-    border-color: #ffffff; /* White border for search match highlight */
-}
-
-/* Section Wrapper Styling */
-.section-wrapper {
+/* Progress tracker */
+.progress-tracker {
     text-align: center;
-    color: #ffffff;
-    background-color: #008000; /* Gray background like nav in theme.css */
-    border-left: 5px solid #004800; /* Green left border */
-    padding: 10px;
-    margin: 15px 0;
+    font-family: 'Audiowide', cursive;
+    font-size: 1.3em;
+    color: #004800; /* Dark green */
+    background-color: #e0e0e0; /* Light gray */
+    padding: 15px;
     border-radius: 8px;
-}
-
-.section-wrapper h1 {
-    font-family: 'Audiowide', sans-serif;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    text-decoration: none;
-}
-
-.section-wrapper a {
-    font-family: 'Audiowide', sans-serif;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    text-decoration: none;
-    color: #ffffff;
-}
-
-/* List Container Styling */
-.list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    padding: 0;
-    background-color: #008000
-}
-
-/* Search Section */
-.search-section {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.search-content input {
-    padding: 10px;
-    font-size: 1em;
-    border: 2px solid #006400;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 500px;
-    background-color: #000000; /* Black background */
-    color: #ffffff;
-    text-align: center;
-    font-family: 'Audiowide', sans-serif;
-}
-
-.search-content input::placeholder {
-    color: #ffffff;
-    text-align: center;
-    font-family: 'Audiowide', sans-serif;
-}
-
-.search-content input:focus {
-    outline: none; /* Remove default blue outline */
-    border-color: #00ff00; /* Bright green border on focus */
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Green glow effect */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    margin: 30px 0;
 }
 
 /* Footer */
 footer {
+    background-color: #1a1a1a; /* Dark gray */
+    color: #cccccc; /* Light gray */
     text-align: center;
-    padding: 10px;
-    background-color: #006400;
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .item {
-        width: calc(50% - 20px); /* Two cards per row on smaller screens */
-    }
-
-    .header-container h1 {
-        font-size: 1.5em;
-    }
-
-    .header-container p {
-        font-size: 1em;
-    }
-
-    .tabs {
-        gap: 5px;
-    }
-
-    .tab-button {
-        padding: 6px 12px;
-        font-size: 0.8em;
-    }
-}
-
-@media (max-width: 480px) {
-    .item {
-        width: calc(100% - 20px); /* One card per row on mobile */
-    }
-
-    .header-container h1 {
-        font-size: 1.5em;
-    }
-
-    .header-container p {
-        font-size: 1em;
-    }
-
-    .tab-button {
-        padding: 5px 10px;
-        font-size: .9em;
-    }
+    padding: 15px;
+    font-size: 0.9em;
+    border-top: 3px solid #004800; /* Dark green accent */
 }
