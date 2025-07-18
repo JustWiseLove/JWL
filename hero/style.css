@@ -67,7 +67,7 @@ header p {
     color: #cccccc; /* Medium gray for readability */
 }
 
-header li {
+header li, header ul {
     list-style-type: none;
 }
 
