@@ -67,6 +67,10 @@ header p {
     color: #cccccc; /* Medium gray for readability */
 }
 
+header li {
+    list-style-type: none;
+}
+
 /* Navigation */
 nav {
     display: flex;
