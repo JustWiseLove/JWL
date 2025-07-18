@@ -247,11 +247,21 @@ function toggleTheme() {
     if (currentTheme === 'light') {
         themeStylesheet.setAttribute('href', 'dark.css');
         body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
     } else {
         themeStylesheet.setAttribute('href', 'light.css');
         body.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
     }
 }
+
+// This makes the theme stay when the page is refreshed
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    const themeStylesheet = document.getElementById('theme-stylesheet');
+    document.body.setAttribute('data-theme', savedTheme);
+    themeStylesheet.setAttribute('href', savedTheme === 'dark' ? 'dark.css' : 'light.css');
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     populateList('pray', 'pray');
