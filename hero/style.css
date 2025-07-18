@@ -35,7 +35,7 @@ body {
 
 .header-container p {
     font-family: 'Roboto', sans-serif;
-    font-size: .9em;
+    font-size: 1em;
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.5;
@@ -222,7 +222,7 @@ footer {
     }
 
     .header-container p {
-        font-size: 0.9em;
+        font-size: 1em;
     }
 
     .tabs {
