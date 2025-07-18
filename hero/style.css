@@ -9,13 +9,13 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #000000;
     color: #333;
 }
 
 /* Header and Logo */
 .header-container {
-    background-color: #006400; /* Dark green */
+    background-color: #008000; /* Dark green */
     color: #ffffff;
     padding: 20px;
     text-align: center;
@@ -43,8 +43,8 @@ body {
 
 /* Card Styling for Arrays (sections, people, topics, articles) */
 .item {
-    background-color: #ffffff;
-    border: 2px solid #006400; /* Dark green border */
+    background-color: #000000;
+    border: 2px solid #004800; /* Dark green border */
     border-radius: 8px;
     padding: 20px;
     margin: 10px;
@@ -61,11 +61,11 @@ body {
 }
 
 .item-button {
-    background: none;
+    background: #000000;
     border: none;
     font-family: 'Audiowide', sans-serif;
     font-size: 1.2em;
-    color: #006400; /* Dark green text */
+    color: #ffffff; /* Dark green text */
     text-align: left;
     width: 100%;
     cursor: pointer;
@@ -73,13 +73,14 @@ body {
 }
 
 .item-button:hover {
-    color: #00ff00; /* Bright green on hover */
+    color: #ffffff; /* Bright green on hover */
 }
 
 .content {
     font-family: 'Roboto', sans-serif;
     font-size: 0.9em;
-    color: #333;
+    color: #ffffff;
+    background: #000000;
 }
 
 .content .scripture-section ul {
@@ -96,7 +97,7 @@ body {
 }
 
 .content .highlight {
-    background-color: #00ff00; /* Bright green highlight for search matches */
+    background-color: #008000; /* Bright green highlight for search matches */
     padding: 0 2px;
 }
 
@@ -113,11 +114,11 @@ body {
 .tab-button {
     background-color: #004800; /* Darker green when not selected */
     color: #ffffff;
-    border: 2px solid #00ff00; /* Bright green border */
+    border: 2px solid #008000; /* Bright green border */
     border-radius: 5px;
     padding: 8px 16px;
     font-family: 'Audiowide', sans-serif;
-    font-size: 0.9em;
+    font-size: 1.2em;
     cursor: pointer;
     transform: rotate(-2deg); /* Leftward tilt like TRUST/TRUTH buttons */
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -141,11 +142,28 @@ body {
 
 /* Section Wrapper Styling */
 .section-wrapper {
-    background-color: #666666; /* Gray background like nav in theme.css */
-    border-left: 5px solid #00ff00; /* Green left border */
-    padding: 20px;
-    margin: 0 10px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #008000; /* Gray background like nav in theme.css */
+    border-left: 5px solid #004800; /* Green left border */
+    padding: 10px;
+    margin: 15px 0;
     border-radius: 8px;
+}
+
+.section-wrapper h1 {
+    font-family: 'Audiowide', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.section-wrapper a {
+    font-family: 'Audiowide', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #ffffff;
 }
 
 /* List Container Styling */
@@ -155,6 +173,7 @@ body {
     justify-content: center;
     gap: 10px;
     padding: 0;
+    background-color: #008000
 }
 
 /* Search Section */
@@ -173,10 +192,14 @@ body {
     max-width: 500px;
     background-color: #000000; /* Black background */
     color: #ffffff;
+    text-align: center;
+    font-family: 'Audiowide', sans-serif;
 }
 
 .search-content input::placeholder {
-    color: #cccccc;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Audiowide', sans-serif;
 }
 
 /* Footer */
@@ -227,6 +250,6 @@ footer {
 
     .tab-button {
         padding: 5px 10px;
-        font-size: 0.7em;
+        font-size: .9em;
     }
 }
