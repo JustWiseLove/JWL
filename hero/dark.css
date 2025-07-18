@@ -130,6 +130,7 @@ nav {
     padding: 12px 15px;
     font-family: 'Audiowide', cursive;
     font-size: 1.1em;
+    text-align: center;
     color: #ffffff; /* White text */
     background-color: #000000; /* Black */
     border: 2px solid #008000; /* Green border */
