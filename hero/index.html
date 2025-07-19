@@ -4,48 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>JWL - Just Wise Love</title>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" id="theme-stylesheet" href="light.css">
-    <link rel="stylesheet" id="light-theme-stylesheet" href="dark.css" disabled>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="light.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@400;700&display=swap">
 </head>
 <body data-theme="light">
     <header class="header-container">
-        <div class="logo" id="theme-toggle">JWL</div>
+        <h1 class="logo" id="theme-toggle">JWL</h1>
         <h1>Just Wise Love</h1>
-            <p><ul>
-                <li><strong>Path</strong>: Let God’s word light your steps and guide your direction.</li> “Your word is a lamp to my foot, and a light for my path.” (Psalm 119:105)
-                <li><strong>Walk</strong>: Walking with wise individuals and gaining understanding.</li> “The one walking with the wise will become wise.” (Proverbs 13:20)
-                <li><strong>Root</strong>: Grow deep and stay grounded in the truth.</li> “Rooted and built up in him and being stabilized in the faith.” (Colossians 2:7)
-            </ul>
+        <p class="introduction">
+            Welcome to JWL where we direct you to God’s word for discovering the truth taught by the Bible. In a world where life’s end is certain, our mission is to guide you toward the hope of everlasting life by drawing closer to God. Click <span class="intro-link" role="link" tabindex="0">Just</span> to explore Bible lessons that deepen your faith, <span class="intro-link" role="link" tabindex="0">Wise</span> to gain wisdom from Bible figures for worship that honors God, and <span class="intro-link" role="link" tabindex="0">Love</span> to find articles and topics that share accurate knowledge. Begin your journey to truth today.
         </p>
     </header>
+
     <nav>
-        <button class="tab-button active" onclick="showTab('pray')">PATH</button>
-        <button class="tab-button" onclick="showTab('walk')">WALK</button>
-        <button class="tab-button" onclick="showTab('root')">ROOT</button>
+        <button class="tab-button active" onclick="showTab('just')">Just</button>
+        <button class="tab-button" onclick="showTab('wise')">Wise</button>
+        <button class="tab-button" onclick="showTab('love')">Love</button>
     </nav>
+
     <div class="search-section">
-        <input type="text" id="search" class="search-input" placeholder="Search people or topics..." oninput="searchItems()">
+        <input type="text" id="search" class="search-input" placeholder="Search for people or topics..." oninput="searchItems()">
     </div>
+
     <div class="container">
         <div class="section-wrapper">
-            <div class="list" id="pray" style="display: block;">
-                <div class="section">
-                    <!-- All 60 lessons populated dynamically without titles -->
-                </div>
-                <div class="progress-tracker">
-                    Completed: <span id="progress">0/60</span>
-                </div>
+            <div id="just" class="list">
+                <div class="section"></div>
+                <div class="progress-tracker" id="progress">0/60</div>
             </div>
-            <div class="list" id="walk" style="display: none;"></div>
-            <div class="list" id="root" style="display: none;"></div>
-            <div class="list" id="search-results" style="display: none;"></div>
+            <div id="wise" class="list" style="display: none;"></div>
+            <div id="love" class="list" style="display: none;"></div>
+            <div id="search-results" class="list" style="display: none;"></div>
         </div>
     </div>
+
     <footer>
-        <p>© 2025 Just Wise Love</p>
+        <p>© 2025 Just Wise Love. All rights reserved.</p>
     </footer>
+
     <script src="lessons.js"></script>
     <script src="people.js"></script>
     <script src="articles.js"></script>
