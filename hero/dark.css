@@ -69,11 +69,48 @@ h1 {
 }
 
 header p {
-    font-family: 'Arial', cursive; /* Changed to Audiowide */
+    font-family: 'Audiowide', cursive; /* Fixed typo from 'Arial', cursive */
     font-size: 1.1em;
     max-width: 800px;
     margin: 0 auto;
     color: #ffffff; /* White for readability */
+}
+
+/* Introduction */
+.introduction {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    color: #ffffff; /* White text for dark theme */
+    max-width: 800px;
+    margin: 20px auto 30px;
+    text-align: center;
+    line-height: 1.8;
+    padding: 15px;
+    border-left: 3px solid #008000; /* Green accent */
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(64, 64, 64, 0.3); /* Dark gray shadow */
+    background-color: rgba(0, 128, 0, 0.1); /* Subtle green background */
+    transform: rotate(1deg); /* Playful tilt to match tab-button style */
+    transition: transform 0.3s ease;
+}
+
+.introduction:hover {
+    transform: rotate(0deg);
+    box-shadow: 0 4px 12px rgba(64, 64, 64, 0.4);
+}
+
+.intro-link {
+    font-family: 'Audiowide', cursive;
+    color: #008000; /* Green to match tab buttons */
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.intro-link:hover {
+    color: #00cc00; /* Brighter green on hover for dark theme */
+    text-shadow: 0 0 5px #008000;
 }
 
 /* Navigation */
@@ -101,7 +138,7 @@ nav {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
     box-shadow: 0 4px 8px rgba(64, 64, 64, 0.4), inset 0 0 5px rgba(0, 128, 0, 0.3); /* Dark gray shadow */
     transition: all 0.3s ease;
-    transform: rotate(-2deg);
+    /*transform: rotate(-2deg);*/
 }
 
 .tab-button:hover {
@@ -136,7 +173,7 @@ nav {
     border: 2px solid #008000; /* Green border */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(64, 64, 64, 0.4), inset 0 0 5px rgba(0, 128, 0, 0.3); /* Dark gray shadow */
-    transform: rotate(-2deg);
+    transform: rotate(-1deg);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
@@ -162,7 +199,7 @@ nav {
 }
 
 .section-wrapper {
-    background-color: #000000; /* Black */
+    background-color: rgba(0, 128, 0, 0.1); /* Subtle green background */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(64, 64, 64, 0.3); /* Dark gray shadow */
@@ -318,6 +355,16 @@ footer {
         font-size: 1em;
     }
 
+    .introduction {
+        font-size: 1.1em;
+        padding: 10px;
+        margin: 15px auto 20px;
+    }
+
+    .intro-link {
+        font-size: 1em;
+    }
+
     nav {
         gap: 8px;
         padding: 8px 10px;
@@ -374,6 +421,16 @@ footer {
     }
 
     header p {
+        font-size: 0.9em;
+    }
+
+    .introduction {
+        font-size: 1em;
+        padding: 8px;
+        margin: 10px auto 15px;
+    }
+
+    .intro-link {
         font-size: 0.9em;
     }
 
