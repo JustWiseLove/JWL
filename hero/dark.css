@@ -90,7 +90,7 @@ header p {
     border-radius: 5px;
     box-shadow: 0 2px 8px rgba(64, 64, 64, 0.3); /* Dark gray shadow */
     background-color: rgba(0, 128, 0, 0.1); /* Subtle green background */
-    transform: rotate(1deg); /* Playful tilt to match tab-button style */
+    transform: rotate(0deg); /* Playful tilt to match tab-button style */
     transition: transform 0.3s ease;
 }
 
@@ -193,10 +193,32 @@ nav {
 }
 
 /* Container and sections */
-.container {
+/*.container {
     max-width: 900px;
     margin: 20px auto 30px;
     padding: 0 20px;
+}*/
+
+.container {
+    background-color: #000000; /* Black */
+    color: #ffffff; /* White for text */
+    text-align: center;
+    padding: 30px 20px;
+    box-shadow: 0 4px 10px rgba(64, 64, 64, 0.5); /* Dark gray shadow */
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(0, 128, 0, 0.2)); /* Subtle green overlay */
+    opacity: 0.3;
+    z-index: 0;
 }
 
 .section-wrapper {
