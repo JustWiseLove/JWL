@@ -242,14 +242,14 @@ nav {
 /* Lesson cards */
 .lesson.lesson-card {
     background-color: #ffffff; /* White */
-    padding: 25px;
+    padding: 0 5%;
     margin-bottom: 25px;
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #008000; /* Green border */
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    transform: rotate(1deg);
+    transform: rotate(0deg);
 }
 
 .lesson.lesson-card:hover {
