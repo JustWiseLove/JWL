@@ -16,9 +16,9 @@ try {
 }
 
 const categories = {
-    pray: sortedLessons,
-    walk: sortedPeople,
-    root: [...sortedTopics, ...sortedArticles, ...sortedSections].sort((a, b) => (a.T || a.title).localeCompare(b.T || b.title))
+    just: sortedLessons,
+    wise: sortedPeople,
+    love: [...sortedTopics, ...sortedArticles, ...sortedSections].sort((a, b) => (a.T || a.title).localeCompare(b.T || b.title))
 };
 
 let debounceTimeout;
@@ -33,7 +33,7 @@ function populateList(category, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    if (category === 'pray') {
+    if (category === 'just') {
         container.querySelectorAll('.lesson-card').forEach(el => el.remove());
         const section = container.querySelector('.section');
         section.innerHTML = '';
@@ -85,7 +85,7 @@ function populateList(category, containerId) {
         });
 
         updateProgress();
-    } else if (category === 'walk') {
+    } else if (category === 'wise') {
         container.innerHTML = '';
         sortedPeople.forEach(item => {
             const itemWrapper = document.createElement('div');
@@ -109,9 +109,9 @@ function populateList(category, containerId) {
                 itemWrapper.dataset.expanded = !isExpanded;
             });
         });
-    } else if (category === 'root') {
+    } else if (category === 'love') {
         container.innerHTML = '';
-        categories.root.forEach(item => {
+        categories.love.forEach(item => {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
             const title = item.T || item.title;
@@ -146,7 +146,7 @@ function updateProgress() {
 
 function showTab(category) {
     const searchTerm = document.getElementById('search').value.toLowerCase();
-    if (searchTerm && (category === 'walk' || category === 'root')) {
+    if (searchTerm && (category === 'wise' || category === 'love')) {
         searchItems();
         document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
         document.querySelector(`[onclick="showTab('${category}')"]`).classList.add('active');
@@ -160,13 +160,13 @@ function showTab(category) {
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
     document.querySelector(`[onclick="showTab('${category}')"]`).classList.add('active');
 
-    if (category === 'pray') {
-        populateList('pray', 'pray');
+    if (category === 'just') {
+        populateList('just', 'just');
         updateProgress();
-    } else if (category === 'walk') {
-        populateList('walk', 'walk');
-    } else if (category === 'root') {
-        populateList('root', 'root');
+    } else if (category === 'wise') {
+        populateList('wise', 'wise');
+    } else if (category === 'love') {
+        populateList('love', 'love');
     }
 }
 
@@ -178,16 +178,16 @@ function searchItems() {
         searchResults.innerHTML = '';
 
         if (!searchTerm) {
-            document.querySelectorAll('.list').forEach(list => list.style.display = list.id === 'pray' ? 'block' : 'none');
+            document.querySelectorAll('.list').forEach(list => list.style.display = list.id === 'just' ? 'block' : 'none');
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[onclick="showTab('pray')"]`).classList.add('active');
-            populateList('pray', 'pray');
+            document.querySelector(`[onclick="showTab('just')"]`).classList.add('active');
+            populateList('just', 'just');
             updateProgress();
             return;
         }
 
         const matches = [];
-        ['walk', 'root'].forEach(category => {
+        ['wise', 'love'].forEach(category => {
             categories[category].forEach(item => {
                 const title = (item.T || item.title || '').toLowerCase();
                 const scriptures = (item.S || []).join(' ').toLowerCase();
@@ -264,9 +264,9 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    populateList('pray', 'pray');
-    populateList('walk', 'walk');
-    populateList('root', 'root');
-    showTab('pray');
+    populateList('just', 'just');
+    populateList('wise', 'wise');
+    populateList('love', 'love');
+    showTab('just');
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
 });
