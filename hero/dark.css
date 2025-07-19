@@ -227,7 +227,7 @@ nav {
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(64, 64, 64, 0.3); /* Dark gray shadow */
     margin-bottom: 50px;
-    border-left: 5px solid #008000; /* Green accent */
+    border-left: 3px solid #008000; /* Green accent */
     display: flex;
     flex-direction: column;
     gap: 20px;
