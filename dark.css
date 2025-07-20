@@ -26,7 +26,7 @@ body {
     color: #ffffff;
     text-align: center;
     padding: 30px 20px;
-    box-shadow: 0 4px 10px rgba(64, 64, 64, 0.5);
+    /*box-shadow: 0 4px 10px rgba(64, 64, 64, 0.5);*/
     position: relative;
     overflow: hidden;
 }
@@ -518,7 +518,7 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     .header-container {
-        padding: 20px 10px;
+        padding: 10px 10px;
     }
 
     .logo {
