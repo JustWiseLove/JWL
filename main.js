@@ -518,8 +518,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Make theme stay when the page is refreshed
 window.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark if no theme is saved
     const themeStylesheet = document.getElementById('theme-stylesheet');
     document.body.setAttribute('data-theme', savedTheme);
-    themeStylesheet.setAttribute('href', savedTheme === 'dark' ? 'dark.css' : 'light.css');
+    themeStylesheet.setAttribute('href', `${savedTheme}.css`);
 });
