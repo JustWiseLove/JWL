@@ -1,7 +1,5 @@
-I’ll send the featured.js just for you to verify but I haven’t tried your latest main.js so I’m not sure if it worked or not but I’ll send this just for you to see and maybe notice anything wrong
-
 // featured.js
-const paradiseEvents = {
+window.paradiseEvents = {
     creation: [
         { title: "The Beginning of Creation", text: 'Jehovah created Adam and Eve in his image, perfect and with free will, to live in the Garden of Eden forever. Genesis 1:27-28 states, “God created man in his image... and said to them: ‘Be fruitful and become many.’”' },
         { title: "The Earth Prepared", text: 'Jehovah formed the earth to be inhabited, with perfect ecosystems for life. Isaiah 45:18 says, “Jehovah... did not create [the earth] simply for nothing, but formed it to be inhabited.”' },
@@ -44,7 +42,7 @@ const paradiseEvents = {
     ]
 };
 
-const featuredEvents = [
+window.featuredEvents = [
     { title: "God or Government?", text: 'Human governments promise security but often lead to oppression and failure, as Psalm 146:3 warns, “Do not put your trust in princes, in whom there is no salvation.” Jehovah’s Kingdom offers eternal peace, fulfilling Daniel 2:44, “The God of heaven will set up a kingdom that will never be destroyed.” Choose Jehovah’s perfect rule over flawed human systems for lasting hope.' },
     { title: "Spirituality or Wealth?", text: 'Chasing wealth breeds anxiety and emptiness, as Ecclesiastes 5:10 states, “A lover of silver will never be satisfied with silver.” Cultivating spirituality brings contentment, as 1 Timothy 6:6 affirms, “Godly devotion along with contentment is great gain.” Choose spiritual riches that endure over fleeting material wealth.' },
     { title: "Morality or Immorality?", text: 'Immorality destroys relationships and self-respect, as Proverbs 6:32 says, “Anyone committing adultery lacks good sense; he who does so destroys himself.” Living by Jehovah’s moral standards fosters dignity and peace, per Psalm 119:165, “Abundant peace belongs to those who love your law.” Choose morality to gain Jehovah’s approval and lasting joy.' },
@@ -55,11 +53,11 @@ const featuredEvents = [
     { title: "Purpose or Aimlessness?", text: 'Worldly goals leave us lost, as Ecclesiastes 2:11 says, “I saw that everything was vanity.” Serving Jehovah gives clear direction, as Ecclesiastes 12:13 concludes, “Fear the true God and keep his commandments, for this is the whole obligation of man.” Choose purpose through devotion to God.' }
 ];
 
-const spotlightEvents = {
+window.spotlightEvents = {
     inspired: [
         { title: "Historical Support", text: 'The Bible’s historical accuracy is confirmed by extensive archaeological evidence, such as the Tel Dan Stele, which corroborates 2 Samuel 8:13, “David made a name when he struck down the Edomites.” The Lachish Letters align with Jeremiah 34:7, detailing Judah’s defense against Babylon. These findings affirm the Bible’s reliability as a historical record, proving its accounts are not myths but grounded in reality, as Psalm 119:160 declares, “The very essence of your word is truth.” This precision reflects Jehovah’s oversight in preserving His Word, as Isaiah 46:10 states, “My purpose will take effect, and I will carry out all that I please.”' },
         { title: "Scientific Evidence", text: 'The Bible aligns with scientific truths, written long before modern discoveries. Isaiah 40:22 describes the earth as a circle, “He stretches out the heavens like a fine gauze,” suggesting its spherical nature and the universe’s expansion. Job 26:7 notes, “He stretches out the northern sky over empty space, suspending the earth upon nothing,” reflecting an understanding of the earth’s position in space. These statements, penned centuries ago, demonstrate divine insight, as 2 Timothy 3:16 affirms, “All Scripture is inspired of God,” revealing Jehovah’s wisdom beyond human knowledge.' },
-        { title: "Manuscript Survivability", text: 'The Bible’s text has been preserved through thousands of ancient manuscripts, such as the Dead Sea Scrolls, which confirm the accuracy of modern translations. Over 5,000 Greek manuscripts of the New Testament exist, far surpassing other ancient texts. This preservation fulfills Isaiah 40:8, “The word of our God endures forever,” proving Jehovah’s ability to protect His message across millennia.' },
+        { title: "Manuscript Survivability", PUtext: 'The Bible’s text has been preserved through thousands of ancient manuscripts, such as the Dead Sea Scrolls, which confirm the accuracy of modern translations. Over 5,000 Greek manuscripts of the New Testament exist, far surpassing other ancient texts. This preservation fulfills Isaiah 40:8, “The word of our God endures forever,” proving Jehovah’s ability to protect His message across millennia.' },
         { title: "Prophetic Accuracy", text: 'The Bible’s prophecies, like the fall of Babylon in Isaiah 13:19-20, were fulfilled precisely when Cyrus conquered it in 539 B.C.E., as Daniel 5:30 records. Such accuracy, spanning centuries, shows divine inspiration, as 2 Peter 1:21 states, “Prophecy was at no time brought by man’s will, but men spoke from God as they were moved by holy spirit.”' },
         { title: "Moral Superiority", text: 'The Bible’s principles, like the Golden Rule in Matthew 7:12, “All things that you want men to do to you, you also must do to them,” provide a timeless moral framework. Its laws on justice, love, and mercy surpass human philosophies, as Psalm 19:7 declares, “The law of Jehovah is perfect, restoring the soul.”' },
         { title: "Transformative Power", text: 'The Bible changes lives, turning sinners into saints, as seen in 1 Corinthians 6:11, “That is what some of you were. But you have been washed clean.” Its teachings inspire love, forgiveness, and hope, fulfilling Hebrews 4:12, “The word of God is alive and exerts power.”' },
