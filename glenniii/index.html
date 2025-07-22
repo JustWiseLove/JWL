@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JW Family Worship</title>
+  <link id="theme-stylesheet" rel="stylesheet" href="black.css">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div id="logo" onclick="toggleTheme()">JWL</div>
+    <p id="mission-statement">
+      Seeking truth brings joy and draws us closer to God. All are warmly invited to learn His Word, for the path to everlasting life is open to those who search with a sincere heart.
+    </p>
+  </header>
+  <input id="search-bar" type="text" placeholder="Search For Topics Or People..." oninput="searchItems()">
+  <nav>
+    <div class="filter-buttons">
+      <button onclick="filterItems('A-H')">A-H</button>
+      <button onclick="filterItems('I-Q')">I-Q</button>
+      <button onclick="filterItems('Q-Z')">Q-Z</button>
+    </div>
+    <button id="daily-topic-btn" class="active" onclick="showDailyTopic()">Daily Topic</button>
+  </nav>
+  <div id="current-topic" class="fade-in"></div>
+  <div id="results" class="fade-in"></div>
+  <footer>
+    <p>© Just Wise Love</p>
+  </footer>
+  <script src="script.js" type="module"></script>
+</body>
+</html>
