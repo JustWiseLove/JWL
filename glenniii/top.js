@@ -29,222 +29,253 @@ const top = [
     ]
   },
   {
-    T: "Courage",
+    T: "Christmas",
     S: [
-      "Joshua 1:9 - <em>Have I not commanded you? Be courageous and strong. Do not be struck with terror or fear.</em>",
-      "Deuteronomy 31:6 - <em>Be courageous and strong. Do not be afraid or struck with terror before them.</em>",
-      "Psalm 27:14 - <em>Hope in Jehovah; be courageous and strong of heart.</em>",
-      "1 Corinthians 16:13 - <em>Stay awake, stand firm in the faith, act like men, grow mighty.</em>",
-      "Acts 4:13 - <em>They saw the boldness of Peter and John and were astonished.</em>"
+      "Jeremiah 10:3-4 - <em>The customs of the peoples are a delusion... They decorate it with silver and gold.</em>",
+      "Luke 2:8 - <em>There were shepherds living out in the fields, keeping watch over their flocks by night.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of the philosophy and empty deception.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "Deuteronomy 12:30-31 - <em>Do not inquire about their gods, saying, ‘How did these nations serve their gods?’</em>",
+      "Matthew 15:9 - <em>It is in vain that they keep worshipping me, for they teach commands of men as doctrines.</em>"
     ],
     D: [
-      "Courage is a quality Jehovah values, as seen in His encouragement to Joshua before entering the Promised Land (Joshua 1:9). Archaeological finds, like the Tel Dan Stele, confirm the historical context of Israel’s conquests, where courage was vital. Early Christians, like Peter and John, showed boldness in preaching despite opposition (Acts 4:13), a trait echoed in the steadfastness of modern witnesses facing persecution."
+      "Christmas derives from pagan festivals like Saturnalia and Mithraism, celebrated near December 25, as Roman historical records confirm. Luke 2:8 indicates shepherds were outdoors, unlikely in winter, suggesting Jesus’ birth was not in December. Jeremiah 10:3-4 describes tree decoration, a practice rooted in Babylonian customs. Roman solstice altars and artifacts show these celebrations were pagan, not Christian."
     ]
   },
   {
     T: "David",
     S: [
-      "1 Samuel 16:7 - <em>Jehovah sees into the heart.</em>",
-      "1 Samuel 17:45 - <em>I am coming against you in the name of Jehovah of armies.</em>",
-      "Psalm 23:1 - <em>Jehovah is my Shepherd; I will lack nothing.</em>",
-      "Acts 13:22 - <em>I have found David, a man agreeable to my heart.</em>",
-      "2 Samuel 7:16 - <em>Your house and your kingdom will be secure forever.</em>"
+      "1 Samuel 16:13 - <em>Samuel took the horn of oil and anointed him... and Jehovah’s spirit began to work upon David.</em>",
+      "1 Samuel 17:45 - <em>You are coming to me with sword and spear, but I am coming to you with the name of Jehovah.</em>",
+      "Psalm 51:10 - <em>Create in me a pure heart, O God.</em>",
+      "2 Samuel 6:14 - <em>David was dancing before Jehovah with all his might.</em>",
+      "Acts 13:22 - <em>I have found David... a man agreeable to my heart.</em>",
+      "1 Samuel 24:6 - <em>It is unthinkable from Jehovah’s standpoint for me to do such a thing to my lord.</em>"
     ],
     D: [
-      "David, king of Israel around 1000 BCE, was a shepherd, poet, and warrior whose heart aligned with Jehovah’s will (Acts 13:22). His defeat of Goliath (1 Samuel 17:45) showed reliance on God, supported by archaeological evidence like the sling stones found at Lachish. David’s Psalms, such as Psalm 23, reveal his deep faith and emotional expressiveness, while his repentance after sinning with Bathsheba (2 Samuel 12:13) highlights his humility."
+      "David, anointed king around 1077 BCE, showed courage confronting Goliath, trusting Jehovah’s name (1 Samuel 17:45). The Tel Dan Stele confirms the historical House of David. His repentance after sinning with Bathsheba revealed humility (Psalm 51:1-10). David’s loyalty spared Saul’s life (1 Samuel 24:6), and his joyful worship included dancing before the ark (2 Samuel 6:14), reflecting zeal."
+    ]
+  },
+  {
+    T: "Death",
+    S: [
+      "Ecclesiastes 9:5 - <em>The living know that they will die, but the dead know nothing at all.</em>",
+      "Psalm 146:4 - <em>His spirit goes out, he returns to the ground; on that very day his thoughts perish.</em>",
+      "John 11:11 - <em>Lazarus our friend has fallen asleep, but I am traveling there to awaken him.</em>",
+      "Romans 6:23 - <em>The wages sin pays is death, but the gift God gives is everlasting life.</em>",
+      "1 Corinthians 15:26 - <em>The last enemy, death, is to be brought to nothing.</em>",
+      "Revelation 21:4 - <em>Death will be no more.</em>"
+    ],
+    D: [
+      "Death is a state of unconsciousness, likened to sleep (Ecclesiastes 9:5, John 11:11). Fossil records and ancient burial sites, like those in Mesopotamia, confirm human mortality. Psalm 146:4 states thoughts cease at death, refuting afterlife beliefs. Egyptian tomb inscriptions promote immortality, but the Bible teaches resurrection (Revelation 21:4). Romans 6:23 links death to sin, with life as God’s gift."
     ]
   },
   {
     T: "Esther",
     S: [
-      "Esther 4:14 - <em>If you remain silent at this time, relief and deliverance will come from another source.</em>",
+      "Esther 4:14 - <em>If you remain silent at this time, relief and deliverance will come to the Jews from another source.</em>",
+      "Esther 2:7 - <em>Mordecai was raising Hadassah, that is, Esther, his cousin.</em>",
       "Esther 7:3 - <em>Let my life be granted as my petition, and my people as my request.</em>",
-      "Esther 8:17 - <em>Many of the peoples of the land were declaring themselves Jews.</em>",
-      "Hebrews 11:1 - <em>Faith is the assured expectation of what is hoped for.</em>"
+      "Esther 9:29 - <em>Esther the queen and Mordecai the Jew wrote with full authority.</em>",
+      "Esther 5:2 - <em>Esther found favor in the king’s eyes, and he held out the golden scepter.</em>"
     ],
     D: [
-      "Esther, a Jewish queen in Persia around 475 BCE, displayed courage by approaching King Ahasuerus to save her people (Esther 4:14). Persian court records and seals from Susa align with the book of Esther’s historical setting. Her tactful approach and faith under pressure (Esther 7:3) made her a model of discreet boldness, inspiring loyalty among her people."
+      "Esther, a Jewish queen in Persia (circa 5th century BCE), showed courage by approaching King Ahasuerus uninvited to save her people (Esther 5:1-2). Persepolis reliefs confirm the historical Persian court setting. Her loyalty to Mordecai, her cousin, and her tactful negotiation with the king (Esther 7:3) reflect wisdom and boldness. Her authoritative letters (Esther 9:29) demonstrate leadership."
     ]
   },
   {
-    T: "Faith",
+    T: "Fate",
     S: [
-      "Hebrews 11:1 - <em>Faith is the assured expectation of what is hoped for, the evident demonstration of realities that are not seen.</em>",
-      "Hebrews 11:6 - <em>Without faith it is impossible to please God well.</em>",
-      "James 2:26 - <em>Faith without works is dead.</em>",
-      "Romans 10:17 - <em>Faith follows the thing heard.</em>",
-      "Galatians 5:6 - <em>Faith is made operative by love.</em>"
+      "Ecclesiastes 9:11 - <em>Time and unexpected events overtake them all.</em>",
+      "Deuteronomy 30:19 - <em>Choose life by loving Jehovah your God.</em>",
+      "Joshua 24:15 - <em>Choose for yourselves today whom you will serve.</em>",
+      "Romans 10:13 - <em>Everyone who calls on the name of Jehovah will be saved.</em>",
+      "Proverbs 16:33 - <em>The lot is cast into the lap, but every decision by it is from Jehovah.</em>",
+      "John 7:17 - <em>If anyone desires to do His will, he will know.</em>"
     ],
     D: [
-      "Faith is a cornerstone of worship, requiring trust in Jehovah’s promises (Hebrews 11:1). The Dead Sea Scrolls, including fragments of Hebrews, affirm the early Christian emphasis on faith. Biblical examples like Noah and Rahab show faith through action (Hebrews 11:7, 31), encouraging steadfastness in modern times despite skepticism or opposition."
+      "Fate, the notion of predetermined outcomes, is unbiblical. Ecclesiastes 9:11 emphasizes life’s unpredictability, while Deuteronomy 30:19 and Joshua 24:15 highlight free will. Babylonian cuneiform tablets document astrological fate beliefs, absent in God’s Word. Romans 10:13 shows salvation comes through choice. Ancient Ugaritic texts reveal pagan fatalism, contrasting with the Bible’s focus on personal responsibility."
     ]
   },
   {
-    T: "Gideon",
+    T: "Hellfire",
     S: [
-      "Judges 6:12 - <em>Jehovah is with you, you mighty warrior.</em>",
-      "Judges 7:2 - <em>Jehovah said to Gideon: ‘The people with you are too many for me to give Midian into their hand.’</em>",
-      "Hebrews 11:32 - <em>Gideon... who became mighty in faith.</em>",
-      "Judges 8:23 - <em>I will not rule over you... Jehovah will rule over you.</em>"
+      "Ecclesiastes 9:10 - <em>All that your hand finds to do, do with your very power, for there is no work nor planning nor knowledge nor wisdom in the Grave.</em>",
+      "Psalm 16:10 - <em>You will not leave my soul in the Grave.</em>",
+      "Acts 2:31 - <em>Neither was he forsaken in the Grave nor did his flesh see corruption.</em>",
+      "Revelation 20:13 - <em>Death and the Grave gave up those dead in them.</em>",
+      "Matthew 10:28 - <em>Fear the One who can destroy both soul and body in Gehenna.</em>",
+      "Job 14:13 - <em>O that in the Grave you would conceal me.</em>"
     ],
     D: [
-      "Gideon, a judge of Israel around 1150 BCE, showed humility and faith by leading 300 men to victory against Midian with Jehovah’s guidance (Judges 7:2). Archaeological finds, like Midianite pottery in the Jezreel Valley, support the historical context. His refusal to become king (Judges 8:23) reflects his loyalty to Jehovah’s rulership."
+      "Hellfire, implying eternal torment, is not in the Bible. Ecclesiastes 9:10 and Psalm 16:10 describe the Grave (Sheol) as a state of inactivity. Dead Sea Scrolls use “Sheol” for death, not fire. Matthew 10:28 refers to Gehenna as destruction, not torment. Egyptian afterlife myths, seen in tomb artifacts, contrast with the Bible’s teaching of resurrection (Revelation 20:13)."
     ]
   },
   {
-    T: "Hospitality",
+    T: "Jehovah",
     S: [
-      "Hebrews 13:2 - <em>Do not forget hospitality, for through it some entertained angels without knowing it.</em>",
-      "1 Timothy 3:2 - <em>An overseer should be... hospitable.</em>",
-      "Romans 12:13 - <em>Share with the holy ones according to their needs, follow the course of hospitality.</em>",
-      "Genesis 18:4-5 - <em>Let me bring a little water, and you must wash your feet.</em>"
+      "Exodus 3:14 - <em>I Will Become What I Choose to Become.</em>",
+      "Psalm 83:18 - <em>May people know that you, whose name is Jehovah, you alone are the Most High.</em>",
+      "Isaiah 42:8 - <em>I am Jehovah. That is my name.</em>",
+      "John 17:3 - <em>This means everlasting life, their coming to know you, the only true God.</em>",
+      "Exodus 6:3 - <em>I used to appear to Abraham, Isaac, and Jacob as God Almighty, but with regard to my name Jehovah I did not make myself known to them.</em>",
+      "Revelation 4:11 - <em>You are worthy, Jehovah our God, to receive the glory and the honor.</em>"
     ],
     D: [
-      "Hospitality reflects love and generosity, as seen in Abraham’s welcome of angelic visitors (Genesis 18:4-5). Ancient Near Eastern inscriptions, like those from Ugarit, highlight hospitality as a cultural value. Early Christians were urged to show hospitality (Hebrews 13:2), a practice vital for community unity and sharing the good news."
+      "Jehovah is the only true God (Psalm 83:18). The Mesha Stele and other Hebrew inscriptions confirm the divine name’s use in ancient times. Exodus 3:14 reveals His self-existent nature, distinct from pagan deities in Babylonian artifacts. Over 7,000 ancient manuscripts contain Jehovah’s name, emphasizing His sovereignty (Isaiah 42:8)."
     ]
   },
   {
-    T: "Isaiah",
+    T: "Jesus",
     S: [
-      "Isaiah 6:8 - <em>Here I am! Send me!</em>",
-      "Isaiah 40:31 - <em>Those hoping in Jehovah will regain power.</em>",
-      "Isaiah 53:5 - <em>By his wounds we were healed.</em>",
-      "2 Kings 20:5 - <em>I have heard your prayer; I have seen your tears.</em>"
+      "John 1:1 - <em>In the beginning was the Word, and the Word was with God, and the Word was a god.</em>",
+      "Colossians 1:15 - <em>He is the image of the invisible God, the firstborn of all creation.</em>",
+      "John 14:6 - <em>I am the way and the truth and the life.</em>",
+      "Philippians 2:9 - <em>God exalted him to a superior position and kindly gave him the name that is above every other name.</em>",
+      "Hebrews 1:3 - <em>He is the reflection of God’s glory and the exact representation of his very being.</em>",
+      "Matthew 20:28 - <em>The Son of man came... to give his life as a ransom for many.</em>"
     ],
     D: [
-      "Isaiah, a prophet from 745–701 BCE, volunteered to serve Jehovah (Isaiah 6:8). His prophecies, including messianic ones, are supported by the Great Isaiah Scroll from Qumran. Isaiah’s bold preaching to Judah and his emotional support for Hezekiah (2 Kings 20:5) show his devotion and compassion, influencing later generations."
+      "Jesus, active around 30 CE, taught with authority and compassion, as seen in his Sermon on the Mount (Matthew 5-7). Roman historian Josephus mentions his ministry, and catacomb inscriptions depict him as Messiah. John 1:1 and Colossians 1:15 show he was created, subordinate to God. His humility was evident in washing disciples’ feet (John 13:5), and his sacrifice reflected love (Matthew 20:28)."
     ]
   },
   {
-    T: "Joseph",
+    T: "Mary",
     S: [
-      "Genesis 39:21 - <em>Jehovah was with Joseph and showed him loyal love.</em>",
-      "Genesis 41:46 - <em>Joseph was 30 years old when he stood before Pharaoh.</em>",
-      "Psalm 105:17-18 - <em>He sent a man ahead of them, Joseph, who was sold as a slave.</em>",
-      "Genesis 50:20 - <em>You intended evil against me, but God intended it for good.</em>"
+      "Luke 1:38 - <em>Let it happen to me according to your word.</em>",
+      "Luke 1:46-47 - <em>My soul magnifies Jehovah, and my spirit cannot keep from rejoicing in God my Savior.</em>",
+      "Matthew 1:18 - <em>Mary was found to be pregnant by holy spirit.</em>",
+      "John 19:26-27 - <em>Jesus saw his mother and the disciple whom he loved... he said: Woman, see! Your son!</em>",
+      "Acts 1:14 - <em>With one purpose all of these were persisting in prayer, together with... Mary the mother of Jesus.</em>"
     ],
     D: [
-      "Joseph, sold into slavery around 1750 BCE, rose to power in Egypt through faith and wisdom (Genesis 41:46). Egyptian records of Semitic officials, like the Brooklyn Papyrus, align with his era. His forgiveness of his brothers (Genesis 50:20) and loyalty to Jehovah under trial demonstrate his integrity and resilience."
-    ]
-  },
-  {
-    T: "Kindness",
-    S: [
-      "Ephesians 4:32 - <em>Become kind to one another, tenderly compassionate.</em>",
-      "Proverbs 19:22 - <em>What is desirable in a man is his kindness.</em>",
-      "Colossians 3:12 - <em>Clothe yourselves with kindness, humility, and mildness.</em>",
-      "Ruth 2:10 - <em>Why have I found favor in your eyes?</em>"
-    ],
-    D: [
-      "Kindness is a fruit of God’s spirit, exemplified by Ruth’s care for Naomi (Ruth 2:10). Ancient texts, like the Amarna letters, show kindness as a diplomatic virtue. Christians are urged to show kindness (Ephesians 4:32), fostering peace and reflecting Jehovah’s love in daily interactions."
+      "Mary, Jesus’ mother in 1st-century Judea, showed humility by accepting God’s will (Luke 1:38). Her song of praise (Luke 1:46-55) reflected deep faith and joy. She supported Jesus’ ministry, staying near him at his execution (John 19:26-27), and joined early Christians in prayer (Acts 1:14). Ossuary finds confirm the commonality of her name in Judea."
     ]
   },
   {
     T: "Moses",
     S: [
-      "Exodus 3:11 - <em>Who am I that I should go to Pharaoh?</em>",
-      "Numbers 12:3 - <em>Moses was by far the meekest of all men.</em>",
-      "Hebrews 11:24-25 - <em>By faith Moses refused to be called the son of Pharaoh’s daughter.</em>",
-      "Deuteronomy 34:10 - <em>No prophet like Moses has arisen in Israel.</em>"
+      "Exodus 3:11 - <em>Who am I that I should go to Pharaoh and bring the Israelites out of Egypt?</em>",
+      "Deuteronomy 18:15 - <em>Jehovah your God will raise up for you a prophet like me.</em>",
+      "Hebrews 11:24-25 - <em>By faith Moses... refused to be called the son of Pharaoh’s daughter.</em>",
+      "Numbers 12:3 - <em>The man Moses was by far the meekest of all the men on the face of the earth.</em>",
+      "Exodus 32:11 - <em>Moses tried to soften Jehovah’s anger.</em>",
+      "Acts 7:22 - <em>Moses was instructed in all the wisdom of the Egyptians.</em>"
     ],
     D: [
-      "Moses, raised in Egypt around 1500 BCE, led Israel out of slavery with meekness and faith (Numbers 12:3). Egyptian records of Semitic slaves, like the Leiden Papyrus, support the Exodus context. His reluctance (Exodus 3:11) and intercession for Israel (Exodus 32:11-14) show humility and love, making him a mediator like Christ."
+      "Moses, leading Israel around 1513 BCE, displayed meekness despite his Egyptian education (Acts 7:22). Egyptian papyri confirm slavery in that era. He interceded for Israel with humility (Exodus 32:11), confronted Pharaoh boldly (Exodus 5:1), and showed patience leading a rebellious nation (Numbers 12:3). His leadership is corroborated by archaeological records of nomadic migrations."
     ]
   },
   {
     T: "Noah",
     S: [
-      "Genesis 6:9 - <em>Noah was a righteous man... he walked with the true God.</em>",
-      "Hebrews 11:7 - <em>By faith Noah, after receiving divine warning, constructed an ark.</em>",
-      "Genesis 8:20 - <em>Noah built an altar to Jehovah.</em>",
-      "2 Peter 2:5 - <em>Noah, a preacher of righteousness.</em>"
+      "Genesis 6:9 - <em>Noah was a righteous man. He proved himself faultless among his contemporaries.</em>",
+      "Genesis 7:1 - <em>Go, you and all your household, into the ark.</em>",
+      "Hebrews 11:7 - <em>By faith Noah... constructed an ark for the saving of his household.</em>",
+      "2 Peter 2:5 - <em>He did not refrain from punishing an ancient world, but kept Noah, a preacher of righteousness, safe.</em>",
+      "Genesis 8:18 - <em>Noah went out, along with his sons and his wife.</em>",
+      "Ezekiel 14:20 - <em>Noah, Daniel, and Job... would save only themselves by their righteousness.</em>"
     ],
     D: [
-      "Noah, living before 2500 BCE, built the ark in faith, saving his family (Hebrews 11:7). Flood accounts in Mesopotamian texts, like the Epic of Gilgamesh, parallel Genesis. Noah’s obedience and preaching (2 Peter 2:5) show his righteousness and trust in Jehovah, despite a corrupt world."
+      "Noah, living around 2370 BCE, showed obedience by building the ark as God directed (Genesis 6:14-22). Sumerian flood legends in cuneiform tablets parallel the biblical account. His righteousness stood out in a corrupt world (Genesis 6:9), and he preached to others (2 Peter 2:5), demonstrating boldness and faith."
     ]
   },
   {
-    T: "Obedience",
+    T: "Paradise",
     S: [
-      "1 Samuel 15:22 - <em>Does Jehovah delight in burnt offerings as much as in obeying his voice?</em>",
-      "John 14:15 - <em>If you love me, you will observe my commandments.</em>",
-      "Acts 5:29 - <em>We must obey God as ruler rather than men.</em>",
-      "Deuteronomy 5:33 - <em>Walk in all the way that Jehovah has commanded you.</em>"
+      "Luke 23:43 - <em>Truly I tell you today, you will be with me in Paradise.</em>",
+      "Revelation 21:4 - <em>Death will be no more, neither will mourning nor outcry nor pain be anymore.</em>",
+      "Isaiah 65:17 - <em>I am creating new heavens and a new earth.</em>",
+      "Psalm 37:29 - <em>The righteous will possess the earth, and they will live forever on it.</em>",
+      "2 Peter 3:13 - <em>There are new heavens and a new earth that we are awaiting.</em>",
+      "Matthew 5:5 - <em>Happy are the mild-tempered, for they will inherit the earth.</em>"
     ],
     D: [
-      "Obedience to Jehovah is an expression of love and faith (John 14:15). The Lachish Letters, showing Judah’s adherence to Mosaic Law, reflect the importance of obedience. Early Christians, like Peter, prioritized God’s commands over human authority (Acts 5:29), a principle guiding true worship today."
+      "Paradise is a future restored earth (Revelation 21:4). Fossil records show earth’s original lush state, supporting Isaiah 65:17’s promise of renewal. Luke 23:43 records Jesus’ assurance of an earthly paradise. Ancient Egyptian afterlife myths, seen in tomb paintings, contrast with the Bible’s teaching of eternal life on earth (Psalm 37:29)."
     ]
   },
   {
     T: "Paul",
     S: [
-      "Acts 9:15 - <em>He is a chosen vessel to me to bear my name.</em>",
-      "Philippians 1:21 - <em>For me to live is Christ, and to die is gain.</em>",
+      "Acts 9:15 - <em>He is a chosen vessel to me to bear my name to the nations.</em>",
+      "1 Corinthians 15:10 - <em>By God’s undeserved kindness I am what I am.</em>",
+      "Philippians 1:21 - <em>For me, to live is Christ and to die is gain.</em>",
       "2 Timothy 4:7 - <em>I have fought the fine fight, I have run the race to the finish.</em>",
-      "1 Corinthians 9:22 - <em>I have become all things to people of all sorts.</em>"
+      "Acts 20:24 - <em>I consider my own life worth nothing to me.</em>",
+      "Romans 1:16 - <em>I am not ashamed of the good news.</em>"
     ],
     D: [
-      "Paul, converted around 34 CE, spread Christianity across the Roman Empire (Acts 9:15). Inscriptions, like the Erastus inscription in Corinth, confirm his travels. His adaptability (1 Corinthians 9:22) and endurance under persecution (2 Timothy 4:7) made him a zealous apostle, encouraging resilience in faith."
+      "Paul, converted around 34 CE, showed zeal preaching to Gentiles (Acts 9:15). Roman records of 1st-century missionaries align with his travels. His humility shone in acknowledging God’s kindness (1 Corinthians 15:10), and he boldly debated philosophers in Athens (Acts 17:22-31), enduring hardships with resilience (2 Timothy 4:7)."
     ]
   },
   {
-    T: "Prayer",
+    T: "Peter",
     S: [
-      "Philippians 4:6 - <em>Do not be anxious over anything, but in everything by prayer... let your petitions be made known to God.</em>",
-      "1 Thessalonians 5:17 - <em>Pray constantly.</em>",
-      "Psalm 65:2 - <em>O Hearer of prayer, to you people of all sorts will come.</em>",
-      "James 5:16 - <em>The supplication of a righteous man has much force.</em>"
+      "Matthew 16:16 - <em>You are the Christ, the Son of the living God.</em>",
+      "Acts 2:38 - <em>Repent, and let each one of you be baptized in the name of Jesus Christ.</em>",
+      "John 18:25-27 - <em>Peter then denied it again, and immediately a rooster crowed.</em>",
+      "John 21:15 - <em>Feed my little sheep.</em>",
+      "2 Peter 3:15 - <em>Our Lord’s patience means salvation.</em>",
+      "Galatians 2:9 - <em>James and Cephas and John... gave Barnabas and me the right hand of fellowship.</em>"
     ],
     D: [
-      "Prayer is a vital way to approach Jehovah (Psalm 65:2). Ancient inscriptions, like the Siloam Inscription, show Israel’s reliance on prayer. Jesus and early Christians modeled constant prayer (1 Thessalonians 5:17), strengthening faith and providing peace in trials."
-    ]
-  },
-  {
-    T: "Rahab",
-    S: [
-      "Joshua 2:11 - <em>Jehovah your God is God in the heavens above and on the earth below.</em>",
-      "Hebrews 11:31 - <em>By faith Rahab the prostitute did not perish with those who acted disobediently.</em>",
-      "James 2:25 - <em>Rahab the prostitute was declared righteous by works.</em>",
-      "Joshua 6:25 - <em>Rahab the prostitute... continued to dwell in Israel.</em>"
-    ],
-    D: [
-      "Rahab, a Canaanite in Jericho around 1450 BCE, hid Israel’s spies, showing faith in Jehovah (Joshua 2:11). Archaeological evidence, like Jericho’s fallen walls, supports the conquest narrative. Her actions (James 2:25) and integration into Israel (Joshua 6:25) highlight her courage and conversion."
+      "Peter, a 1st-century apostle, boldly confessed Jesus as Christ (Matthew 16:16). Early Christian ossuaries mention apostles, supporting his historical role. His impulsiveness led to denying Jesus (John 18:25-27), but his repentance showed humility. Peter’s leadership in preaching (Acts 2:38) and care for others (John 21:15) reflected devotion."
     ]
   },
   {
     T: "Ruth",
     S: [
       "Ruth 1:16 - <em>Your people will be my people, and your God my God.</em>",
-      "Ruth 2:12 - <em>May Jehovah reward your faithful love.</em>",
+      "Ruth 2:12 - <em>May Jehovah reward you... under whose wings you have come to seek refuge.</em>",
+      "Ruth 2:2 - <em>Let me go to the field and glean among the ears of grain.</em>",
       "Matthew 1:5 - <em>Boaz became the father of Obed by Ruth.</em>",
+      "Ruth 3:10 - <em>You have shown your loyal love is better now than at the start.</em>",
       "Ruth 4:14 - <em>Blessed be Jehovah, who has not left you without a repurchaser.</em>"
     ],
     D: [
-      "Ruth, a Moabitess around 1100 BCE, showed loyal love by staying with Naomi (Ruth 1:16). Moabite inscriptions, like the Mesha Stele, provide context for her era. Her humility and faith led to her becoming an ancestress of Jesus (Matthew 1:5), demonstrating Jehovah’s acceptance of sincere worshippers."
+      "Ruth, a Moabitess around 1100 BCE, showed loyalty by staying with Naomi (Ruth 1:16). Moabite artifacts confirm the historical setting. Her humility was evident in gleaning fields (Ruth 2:2), and her respect for Boaz led to her inclusion in Jesus’ genealogy (Matthew 1:5). Her kind interactions reflected devotion to God."
     ]
   },
   {
-    T: "Samuel",
+    T: "Soul",
     S: [
-      "1 Samuel 3:10 - <em>Speak, for your servant is listening.</em>",
-      "1 Samuel 12:23 - <em>As for me, it is unthinkable for me to sin against Jehovah by ceasing to pray for you.</em>",
-      "Psalm 99:6 - <em>Samuel was among those calling on his name.</em>",
-      "1 Chronicles 9:22 - <em>Samuel the seer appointed them to their office of trust.</em>"
+      "Genesis 2:7 - <em>The man became a living soul.</em>",
+      "Ezekiel 18:4 - <em>The soul who sins is the one who will die.</em>",
+      "Matthew 10:28 - <em>Fear the One who can destroy both soul and body in Gehenna.</em>",
+      "Psalm 146:4 - <em>His spirit goes out, he returns to the ground; on that very day his thoughts perish.</em>",
+      "Acts 3:23 - <em>Any soul who does not listen to that prophet will be completely destroyed.</em>",
+      "Ecclesiastes 9:5 - <em>The dead know nothing at all.</em>"
     ],
     D: [
-      "Samuel, a prophet and judge around 1070 BCE, served Jehovah from childhood (1 Samuel 3:10). Shiloh’s archaeological remains confirm the setting of his early ministry. His prayers and leadership (1 Samuel 12:23) guided Israel, showing his faithfulness and commitment to God’s people."
+      "The soul is the living person, not an immortal entity (Genesis 2:7). Dead Sea Scrolls use “nephesh” for living beings, aligning with Ezekiel 18:4’s teaching that souls die. Egyptian artifacts promote immortality myths, but Matthew 10:28 and Psalm 146:4 confirm the soul’s mortality, refuting pagan beliefs."
     ]
   },
   {
-    T: "Trust",
+    T: "Spirit",
     S: [
-      "Psalm 37:3 - <em>Trust in Jehovah and do what is good.</em>",
-      "Proverbs 3:5 - <em>Trust in Jehovah with all your heart.</em>",
-      "Isaiah 26:4 - <em>Trust in Jehovah forever.</em>",
-      "Psalm 62:8 - <em>Trust in him at all times, O people.</em>"
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Psalm 104:4 - <em>He makes his angels spirits, his ministers a consuming fire.</em>",
+      "Ecclesiastes 12:7 - <em>The dust returns to the earth, but the spirit returns to God who gave it.</em>",
+      "Hebrews 1:14 - <em>Are they not all spirits for holy service?</em>",
+      "1 Corinthians 2:11 - <em>Who among men knows the things of a man except the spirit of man that is in him?</em>",
+      "Luke 24:39 - <em>A spirit does not have flesh and bones.</em>"
     ],
     D: [
-      "Trust in Jehovah involves relying on His guidance (Proverbs 3:5). The Psalms, preserved in the Dead Sea Scrolls, emphasize trust as a foundation for endurance. Examples like David and Daniel show trust leading to deliverance, encouraging believers to rely on God in all circumstances."
+      "The spirit is the life force, not a conscious entity (Ecclesiastes 12:7). Ugaritic texts show pagan spirit worship, but John 4:24 and Luke 24:39 define spirits as non-physical, like God or angels. Hebrews 1:14 confirms angels are spirits, distinct from human life force, refuting afterlife myths in Egyptian artifacts."
+    ]
+  },
+  {
+    T: "Trinity",
+    S: [
+      "Deuteronomy 6:4 - <em>Jehovah our God is one Jehovah.</em>",
+      "John 14:28 - <em>The Father is greater than I am.</em>",
+      "1 Corinthians 8:6 - <em>There is actually to us one God, the Father... and there is one Lord, Jesus Christ.</em>",
+      "Colossians 1:15 - <em>He is the firstborn of all creation.</em>",
+      "John 20:17 - <em>I am ascending to my Father and your Father, to my God and your God.</em>",
+      "Isaiah 44:6 - <em>I am the first and I am the last, and besides me there is no God.</em>"
+    ],
+    D: [
+      "The Trinity doctrine is absent from the Bible, emerging in 4th-century councils. Codex Sinaiticus and other manuscripts show Jehovah as the only God (Deuteronomy 6:4). John 14:28 and Colossians 1:15 confirm Jesus’ subordination. Babylonian artifacts depict pagan triads, but Isaiah 44:6 affirms one God, Jehovah."
     ]
   }
 ];
