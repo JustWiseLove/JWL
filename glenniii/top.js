@@ -1,6 +1,411 @@
 // top.js
 const top = [
   {
+    T: "Amram",
+    S: [
+      "Exodus 6:20 - <em>Amram took Jochebed... and she bore him Aaron and Moses.</em>",
+      "Numbers 26:59 - <em>The name of Amram’s wife was Jochebed... who bore to Amram Aaron, Moses, and Miriam.</em>",
+      "1 Chronicles 6:3 - <em>The sons of Amram: Aaron, Moses, and Miriam.</em>",
+      "Hebrews 11:23 - <em>By faith Moses was hidden by his parents for three months.</em>",
+      "Exodus 2:1 - <em>A man of the house of Levi took a daughter of Levi.</em>",
+      "Psalm 77:20 - <em>You led your people like a flock by the hand of Moses and Aaron.</em>",
+      "Numbers 3:27 - <em>To Amram belonged the family of the Amramites.</em>"
+    ],
+    D: [
+      "Amram, a Levite around 1600 BCE, was Moses’ father (Exodus 6:20). Egyptian records confirm the Israelite presence in his era. His faith, with Jochebed, hid Moses from Pharaoh’s decree (Hebrews 11:23), earning Jehovah’s approval. Unlike Egyptian worship of Ra, seen in temple inscriptions, Amram’s trust in Jehovah (Psalm 77:20) reflected pure worship. He needed no forgiveness, showing steadfastness. His family’s role (Numbers 26:59) contrasted with pagan priestly cults. Amram’s life teaches us to protect family in faith, defy false worship, and trust Jehovah’s deliverance. His example encourages us to raise godly children, remain loyal, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Armageddon (Details)",
+    S: [
+      "Revelation 16:16 - <em>They gathered them together to the place called in Hebrew Armageddon.</em>",
+      "Revelation 19:19 - <em>I saw the wild beast and the kings of the earth... gathered to wage war.</em>",
+      "Joel 3:12 - <em>Let the nations be roused and come up to the Valley of Jehoshaphat.</em>",
+      "Zechariah 14:2 - <em>I will gather all the nations against Jerusalem for the battle.</em>",
+      "Revelation 11:15 - <em>The kingdom of the world has become the Kingdom of our Lord.</em>",
+      "Psalm 2:2 - <em>The kings of the earth take their stand... against Jehovah.</em>",
+      "Isaiah 13:9 - <em>The day of Jehovah is coming, cruel both with fury and with burning anger.</em>"
+    ],
+    D: [
+      "Armageddon is Jehovah’s war to end wickedness (Revelation 16:16). Archaeological evidence of ancient battles, like Megiddo’s ruins, aligns with its symbolic location. Unlike pagan war gods in Assyrian reliefs, Jehovah’s judgment (Joel 3:12) ensures justice (Revelation 19:19). Armageddon destroys false worship, like Babylon’s cults, seen in cuneiform texts, establishing God’s Kingdom (Revelation 11:15). No forgiveness is offered to opposers (Psalm 2:2). Believers remain faithful, preparing through pure worship (Isaiah 13:9). Armageddon teaches us to reject false religion, stay vigilant, and trust Jehovah’s victory. This truth encourages us to proclaim His Kingdom, avoid worldly alliances, and align with His purpose, free from pagan influences, securing salvation."
+    ]
+  },
+  {
+    T: "Azariah",
+    S: [
+      "2 Chronicles 15:1 - <em>The spirit of God came upon Azariah the son of Oded.</em>",
+      "2 Chronicles 15:2 - <em>Jehovah is with you as long as you are with him.</em>",
+      "2 Chronicles 15:7 - <em>Be strong, and do not let your hands drop, for your work will be rewarded.</em>",
+      "1 Kings 4:2 - <em>Azariah the son of Zadok was the priest.</em>",
+      "2 Chronicles 15:8 - <em>Asa heard these words... he removed the detestable idols.</em>",
+      "Psalm 105:5 - <em>Remember the wonderful works he has performed.</em>",
+      "Deuteronomy 4:29 - <em>You will search for Jehovah your God, and you will find him.</em>"
+    ],
+    D: [
+      "Azariah, a prophet around 911 BCE, urged King Asa to reform Judah (2 Chronicles 15:1). Lachish ostraca confirm his era’s idolatry. His message (2 Chronicles 15:2) inspired obedience, earning Jehovah’s approval, unlike Canaanite prophets in Ugaritic texts. Azariah needed no forgiveness, delivering God’s word (2 Chronicles 15:7). His call to remove idols (2 Chronicles 15:8) contrasted with pagan worship, like Baal altars. Azariah’s life teaches us to speak truth boldly, trust Jehovah’s support (Psalm 105:5), and reject false worship. His example encourages us to promote reform, seek God (Deuteronomy 4:29), and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Babylon the Great",
+    S: [
+      "Revelation 17:5 - <em>On her forehead was written a name, a mystery: Babylon the Great.</em>",
+      "Revelation 18:2 - <em>Babylon the Great has fallen... a dwelling place of demons.</em>",
+      "Revelation 18:4 - <em>Get out of her, my people, if you do not want to share in her sins.</em>",
+      "Jeremiah 51:6 - <em>Flee out of the midst of Babylon... for this is the time of Jehovah’s vengeance.</em>",
+      "Isaiah 47:1 - <em>Come down and sit in the dust, O virgin daughter of Babylon.</em>",
+      "Revelation 14:8 - <em>Another angel... said: Babylon the Great has fallen.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>"
+    ],
+    D: [
+      "Babylon the Great symbolizes false religion, rooted in ancient Babylon’s idolatry (Revelation 17:5). Cuneiform tablets reveal its star worship and spiritism, condemned in Jeremiah 51:6. Unlike Jehovah’s pure worship, it promotes immorality (Revelation 18:2), demanding separation (Revelation 18:4). No forgiveness is granted to its adherents unless they repent (2 Corinthians 6:17). Archaeological evidence, like Babylonian temple ruins, confirms its influence. Babylon the Great’s fall (Revelation 14:8) ensures Jehovah’s triumph. The lesson is to flee false religion, reject pagan practices like those in Isaiah 47:1, and maintain pure worship. This truth encourages us to separate from false teachings, uphold Jehovah’s standards, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Baruch",
+    S: [
+      "Jeremiah 36:4 - <em>Jeremiah called Baruch the son of Neriah... and Baruch wrote.</em>",
+      "Jeremiah 36:32 - <em>Baruch took another scroll and wrote on it.</em>",
+      "Jeremiah 36:10 - <em>Baruch read from the book the words of Jeremiah in the house of Jehovah.</em>",
+      "Jeremiah 43:6 - <em>Baruch the son of Neriah... they took to Egypt.</em>",
+      "Jeremiah 32:12 - <em>I gave the deed of purchase to Baruch... in the presence of witnesses.</em>",
+      "Psalm 119:105 - <em>Your word is a lamp to my foot.</em>",
+      "Proverbs 3:3 - <em>Do not let loyal love and faithfulness leave you.</em>"
+    ],
+    D: [
+      "Baruch, Jeremiah’s scribe around 607 BCE, faithfully recorded prophecies (Jeremiah 36:4). Babylonian seals confirm his era’s scribal role. His loyalty in reading Jehovah’s word publicly (Jeremiah 36:10) earned divine approval, unlike Babylonian scribes serving idols, seen in tablets. Baruch needed no forgiveness, showing steadfastness (Proverbs 3:3). His exile to Egypt (Jeremiah 43:6) reflected obedience despite trials. Baruch’s life teaches us to proclaim truth boldly, remain loyal, and reject false worship. His example encourages us to value God’s word (Psalm 119:105), support His prophets, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Christmas",
+    S: [
+      "Jeremiah 10:2 - <em>Do not learn the way of the nations.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "Deuteronomy 12:30 - <em>Do not inquire about their gods, saying, ‘How did these nations serve their gods?’</em>",
+      "Luke 2:8 - <em>Shepherds were living out in the fields... keeping watch over their flocks.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "1 Timothy 2:5 - <em>There is one God, and one mediator between God and men, a man, Christ Jesus.</em>"
+    ],
+    D: [
+      "Christmas, celebrated as Jesus’ birth, has pagan roots in Roman Saturnalia and Germanic Yule, dated to December 25, not supported by Luke 2:8, as shepherds were outdoors, unlikely in winter. Ancient Roman inscriptions confirm Saturnalia’s rituals, condemned in Jeremiah 10:2. Unlike Jehovah’s worship (John 4:24), Christmas blends paganism, like tree worship, with Christianity, violating Deuteronomy 12:30. True Christians avoid it (2 Corinthians 6:17), needing no forgiveness when rejecting it. Its commercialism and false mediator focus (1 Timothy 2:5) contrast with pure worship. Christmas teaches us to shun pagan traditions, seek truth, and worship Jehovah alone. This truth encourages us to reject false holidays, honor Jesus correctly, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Christianity",
+    S: [
+      "Acts 11:26 - <em>The disciples were by divine providence called Christians.</em>",
+      "1 Peter 4:16 - <em>If anyone suffers as a Christian, let him not be ashamed.</em>",
+      "Acts 26:28 - <em>Agrippa said to Paul: In a short time you would persuade me to become a Christian.</em>",
+      "Matthew 28:19 - <em>Go, therefore, and make disciples of people of all the nations.</em>",
+      "John 13:35 - <em>By this all will know that you are my disciples, if you have love among yourselves.</em>",
+      "James 1:27 - <em>The form of worship that is clean and undefiled.</em>",
+      "1 Corinthians 1:10 - <em>Be completely united in the same mind.</em>"
+    ],
+    D: [
+      "Christianity, established by Jesus, began in the 1st century (Acts 11:26). Early church artifacts, like those in Antioch, confirm its spread. True Christianity reflects Jehovah’s worship through love and unity (John 13:35), unlike Greco-Roman cults in inscriptions (Colossians 2:8). Disciples faced persecution (1 Peter 4:16) but earned Jehovah’s approval by preaching (Matthew 28:19). False Christianity, like later trinitarian creeds, requires repentance (James 1:27). True Christianity rejects paganism, maintaining pure worship (1 Corinthians 1:10). It teaches us to follow Jesus, show love, and avoid false doctrines. This truth encourages us to make disciples, remain united, and align with Jehovah’s purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Easter",
+    S: [
+      "Acts 12:4 - <em>Intending after the Passover to bring him out to the people.</em>",
+      "Jeremiah 7:18 - <em>The sons gather wood... to make sacrificial cakes to the Queen of Heaven.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Deuteronomy 12:31 - <em>You must not do that way to Jehovah your God.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "1 Corinthians 15:22 - <em>In the Christ all will be made alive.</em>"
+    ],
+    D: [
+      "Easter, linked to Jesus’ resurrection, derives from pagan fertility rites, like those of Eostre and Ishtar, with eggs and rabbits, condemned in Jeremiah 7:18. Babylonian reliefs confirm goddess worship, unlike Jehovah’s truth (John 4:24). Acts 12:4 uses ‘Passover,’ not Easter, showing no biblical basis. True Christians reject it (2 Corinthians 6:17), needing no forgiveness when avoiding paganism (Deuteronomy 12:31). Easter’s traditions, like hot cross buns, contrast with pure worship (1 Corinthians 15:22). It teaches us to shun false rituals, honor Jesus’ resurrection biblically, and reject paganism (Colossians 2:8). This truth encourages us to worship in truth, avoid false holidays, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "False Religion",
+    S: [
+      "Revelation 18:4 - <em>Get out of her, my people, if you do not want to share in her sins.</em>",
+      "Jeremiah 10:3 - <em>The customs of the peoples are a delusion.</em>",
+      "Isaiah 44:9 - <em>Those who make worthless idols... are all of them an unreality.</em>",
+      "2 Corinthians 11:14 - <em>Satan himself keeps disguising himself as an angel of light.</em>",
+      "1 John 4:1 - <em>Do not believe every inspired statement, but test the inspired statements.</em>",
+      "Deuteronomy 18:10 - <em>There should not be found in you anyone who... practices divination.</em>",
+      "Matthew 7:15 - <em>Beware of the false prophets, who come to you in sheep’s covering.</em>"
+    ],
+    D: [
+      "False religion, including pagan worship and apostate Christianity, opposes Jehovah (Revelation 18:4). Babylonian tablets and Greco-Roman idols, like those of Zeus, confirm its roots in idolatry (Isaiah 44:9). Unlike pure worship (John 4:24), it promotes spiritism and lies (2 Corinthians 11:14), requiring repentance (1 John 4:1). Archaeological evidence, like Canaanite altars, shows its prevalence. False religion’s customs (Jeremiah 10:3) deceive, but Matthew 7:15 warns us to test teachings. The lesson is to reject idolatry, seek truth, and maintain pure worship (Deuteronomy 18:10). This truth encourages us to flee false religion, test doctrines, and align with Jehovah’s purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Gamaliel",
+    S: [
+      "Acts 5:34 - <em>Gamaliel, a Law teacher esteemed by all the people, stood up.</em>",
+      "Acts 22:3 - <em>I am a Jew... educated at the feet of Gamaliel.</em>",
+      "Acts 5:38 - <em>If this scheme... is from men, it will be overthrown.</em>",
+      "Acts 5:39 - <em>If it is from God, you will not be able to overthrow them.</em>",
+      "Numbers 16:2 - <em>They rose up against Moses... prominent men of the assembly.</em>",
+      "Proverbs 2:6 - <em>Jehovah himself gives wisdom.</em>",
+      "John 7:51 - <em>Our Law does not judge a man unless it first hears from him.</em>"
+    ],
+    D: [
+      "Gamaliel, a 1st-century Pharisee, advised caution regarding the apostles (Acts 5:34). Jewish inscriptions confirm his scholarly role. His wisdom (Acts 5:38) reflected fairness, earning respect, though not explicit Jehovah’s approval (Proverbs 2:6). Unlike pagan oracles, like those at Delphi, his counsel aligned with justice (John 7:51). Gamaliel needed no forgiveness, showing discernment, unlike rebellious leaders (Numbers 16:2). His life teaches us to act wisely, avoid hasty judgment, and reject false worship. His example encourages us to seek truth, respect God’s work (Acts 5:39), and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring fairness and wisdom."
+    ]
+  },
+  {
+    T: "Halloween",
+    S: [
+      "Deuteronomy 18:10 - <em>There should not be found in you anyone who... engages in spiritism.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "Ephesians 5:11 - <em>Have no fellowship with the unfruitful works of darkness.</em>",
+      "Isaiah 8:19 - <em>Should not a people consult their God... rather than the dead?</em>",
+      "1 Corinthians 10:21 - <em>You cannot be drinking the cup of Jehovah and the cup of demons.</em>",
+      "Psalm 97:10 - <em>You who love Jehovah, hate what is bad.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>"
+    ],
+    D: [
+      "Halloween, rooted in Celtic Samhain and Roman spirit festivals, honors the dead, condemned in Deuteronomy 18:10. Ancient Celtic artifacts, like Samhain fires, confirm its pagan origins, unlike Jehovah’s worship (John 4:24). Practices like costumes and spiritism (Isaiah 8:19) defy pure worship, requiring rejection (2 Corinthians 6:17). True Christians avoid it, needing no forgiveness when shunning it (Ephesians 5:11). Halloween’s link to demons (1 Corinthians 10:21) contrasts with hating evil (Psalm 97:10). It teaches us to reject spiritism, uphold truth, and avoid pagan traditions. This truth encourages us to separate from dark practices, worship Jehovah alone, and align with His purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Hospitality",
+    S: [
+      "Hebrews 13:2 - <em>Do not forget hospitality, for through it some entertained angels.</em>",
+      "Romans 12:13 - <em>Share with the holy ones according to their needs.</em>",
+      "1 Peter 4:9 - <em>Be hospitable to one another without grumbling.</em>",
+      "Luke 14:13 - <em>When you spread a feast, invite the poor, the crippled.</em>",
+      "Genesis 18:4 - <em>Let me have some water brought... and rest under the tree.</em>",
+      "3 John 8 - <em>We are obliged to receive such ones hospitably.</em>",
+      "Proverbs 19:17 - <em>The one showing favor to the lowly is lending to Jehovah.</em>"
+    ],
+    D: [
+      "Hospitality reflects Jehovah’s love through generous care (Hebrews 13:2). Ancient Near Eastern inscriptions, like those at Ugarit, show hospitality norms, aligning with Genesis 18:4. Unlike pagan feasts for idols, biblical hospitality serves the needy (Luke 14:13), earning Jehovah’s approval (Proverbs 19:17). It needs no forgiveness when genuine (1 Peter 4:9). Early Christians’ sharing (Romans 12:13) contrasted with Greco-Roman exclusivity. Hospitality teaches us to show kindness, reject selfishness, and maintain pure worship (3 John 8). This truth encourages us to welcome others, support brothers, and align with Jehovah’s purpose, free from pagan influences, securing His favor through love."
+    ]
+  },
+  {
+    T: "Jael",
+    S: [
+      "Judges 4:21 - <em>Jael... took a tent pin... and struck Sisera, piercing his head.</em>",
+      "Judges 5:24 - <em>Most blessed of women is Jael... most blessed of women in the tent.</em>",
+      "Judges 4:17 - <em>Sisera fled on foot to the tent of Jael.</em>",
+      "Judges 5:6 - <em>In the days of Jael, the highways were deserted.</em>",
+      "Hebrews 11:31 - <em>By faith Rahab... was preserved.</em>",
+      "Psalm 68:8 - <em>The earth quaked... before God, the One of Sinai.</em>",
+      "Proverbs 31:30 - <em>A woman who fears Jehovah will be praised.</em>"
+    ],
+    D: [
+      "Jael, a Kenite around 1200 BCE, killed Sisera, aiding Israel (Judges 4:21). Canaanite artifacts confirm her era’s warfare. Her courage (Judges 5:24) earned Jehovah’s approval, unlike Canaanite goddess worship, seen in Asherah figurines. Jael needed no forgiveness, acting in faith (Proverbs 31:30). Her hospitality to Sisera (Judges 4:17) contrasted with pagan deceit, aligning with God’s purpose (Psalm 68:8). Jael’s life teaches us to act boldly for Jehovah, trust His deliverance, and reject false worship. Her example, like Rahab’s (Hebrews 11:31), encourages us to show courage, support God’s people, and maintain pure worship, free from pagan influences."
+    ]
+  },
+  {
+    T: "Judaism",
+    S: [
+      "Deuteronomy 6:4 - <em>Hear, O Israel: Jehovah our God is one Jehovah.</em>",
+      "Exodus 19:5 - <em>If you will strictly obey my voice... you will be my special property.</em>",
+      "Isaiah 43:10 - <em>You are my witnesses, declares Jehovah.</em>",
+      "Romans 2:29 - <em>A Jew is one on the inside, and his circumcision is that of the heart.</em>",
+      "Leviticus 19:2 - <em>You must be holy, because I, Jehovah your God, am holy.</em>",
+      "John 4:22 - <em>You worship what you do not know; we worship what we know.</em>",
+      "Psalm 147:19 - <em>He declares his word to Jacob, his regulations to Israel.</em>"
+    ],
+    D: [
+      "Judaism, rooted in Jehovah’s covenant with Israel (Exodus 19:5), emphasizes His oneness (Deuteronomy 6:4). Ancient Hebrew inscriptions, like the Mesha Stele, confirm its monotheistic context. Unlike Canaanite polytheism, seen in Ugaritic texts, Judaism required holiness (Leviticus 19:2), earning Jehovah’s approval (Isaiah 43:10). Apostate Judaism, like Pharisaic traditions, needed repentance (Romans 2:29). True Judaism prefigured Christianity (John 4:22), rejecting pagan idols. It teaches us to worship one God, obey His laws, and maintain pure worship (Psalm 147:19). This truth encourages us to uphold Jehovah’s standards, reject false teachings, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Manasseh",
+    S: [
+      "2 Kings 21:1 - <em>Manasseh was 12 years old when he became king.</em>",
+      "2 Chronicles 33:6 - <em>He made his own sons pass through the fire.</em>",
+      "2 Chronicles 33:12 - <em>In his distress, he begged Jehovah... and humbled himself.</em>",
+      "2 Kings 21:16 - <em>Manasseh shed innocent blood in great quantity.</em>",
+      "2 Chronicles 33:13 - <em>Jehovah let himself be entreated by him.</em>",
+      "Psalm 86:5 - <em>You, O Jehovah, are good and ready to forgive.</em>",
+      "2 Chronicles 33:15 - <em>He removed the foreign gods... from the house of Jehovah.</em>"
+    ],
+    D: [
+      "Manasseh, king of Judah around 696 BCE, initially promoted idolatry (2 Kings 21:1). Assyrian records confirm his era’s paganism. His sins, like child sacrifice (2 Chronicles 33:6), defied Jehovah, but repentance (2 Chronicles 33:12) earned forgiveness (Psalm 86:5). His reforms (2 Chronicles 33:15) contrasted with Canaanite rituals, like those in Ugaritic texts. Manasseh’s life teaches us to reject false worship, seek Jehovah’s mercy, and reform sincerely. His example encourages us to repent, remove idolatry, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring His forgiveness and favor."
+    ]
+  },
+  {
+    T: "Melchizedek",
+    S: [
+      "Genesis 14:18 - <em>Melchizedek king of Salem brought out bread and wine.</em>",
+      "Hebrews 7:1 - <em>This Melchizedek, king of Salem, priest of the Most High God.</em>",
+      "Hebrews 7:3 - <em>Having neither beginning of days nor end of life.</em>",
+      "Psalm 110:4 - <em>Jehovah has sworn... You are a priest forever in the manner of Melchizedek.</em>",
+      "Hebrews 7:17 - <em>You are a priest forever in the manner of Melchizedek.</em>",
+      "Genesis 14:20 - <em>He gave him a tenth of everything.</em>",
+      "Hebrews 5:10 - <em>Having been designated by God a high priest in the manner of Melchizedek.</em>"
+    ],
+    D: [
+      "Melchizedek, king and priest around 1900 BCE, blessed Abraham (Genesis 14:18). Canaanite inscriptions confirm priest-kings in his era. His priesthood, eternal in type (Hebrews 7:3), prefigured Jesus (Psalm 110:4), earning Jehovah’s approval. Unlike Canaanite priests serving Baal, seen in Ugaritic texts, Melchizedek worshipped Jehovah (Hebrews 7:1). He needed no forgiveness, showing faithfulness (Genesis 14:20). His life teaches us to honor Jehovah, support His servants, and reject false worship. His example encourages us to recognize Jesus’ priesthood (Hebrews 5:10), remain loyal, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Passover",
+    S: [
+      "Exodus 12:11 - <em>It is Jehovah’s Passover.</em>",
+      "Leviticus 23:5 - <em>In the first month, on the 14th day... is Jehovah’s Passover.</em>",
+      "Luke 22:15 - <em>I have greatly desired to eat this Passover with you.</em>",
+      "1 Corinthians 5:7 - <em>Christ our Passover lamb has been sacrificed.</em>",
+      "Exodus 12:27 - <em>It is the sacrifice of the Passover to Jehovah.</em>",
+      "John 19:36 - <em>These things took place for the scripture to be fulfilled.</em>",
+      "Hebrews 11:28 - <em>By faith he kept the Passover.</em>"
+    ],
+    D: [
+      "Passover, instituted around 1513 BCE, commemorates Israel’s deliverance (Exodus 12:11). Egyptian records confirm Hebrew slavery. Unlike pagan festivals, like those in Amarna texts, Passover honors Jehovah (Leviticus 23:5), prefiguring Jesus’ sacrifice (1 Corinthians 5:7). True observance earned Jehovah’s approval (Hebrews 11:28), requiring no forgiveness when kept purely (Exodus 12:27). Early Christians, like Jesus (Luke 22:15), observed it, unlike later Easter rites. Passover teaches us to remember Jehovah’s deliverance, reject pagan festivals, and maintain pure worship (John 19:36). This truth encourages us to honor Christ’s sacrifice, obey Jehovah, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Pentecost",
+    S: [
+      "Acts 2:1 - <em>During the day of Pentecost, they were all together in one place.</em>",
+      "Leviticus 23:15 - <em>You must count seven weeks... until the day after the seventh Sabbath.</em>",
+      "Acts 2:4 - <em>They all became filled with holy spirit and started to speak in different languages.</em>",
+      "Joel 2:28 - <em>I will pour out my spirit on every sort of flesh.</em>",
+      "Acts 2:17 - <em>In the last days, God says, I will pour out some of my spirit.</em>",
+      "Exodus 34:22 - <em>You will observe the Festival of Weeks.</em>",
+      "1 Corinthians 12:13 - <em>By one spirit we were all baptized into one body.</em>"
+    ],
+    D: [
+      "Pentecost, or the Festival of Weeks, around 1513 BCE, celebrated the harvest (Exodus 34:22). Qumran texts confirm its observance. In 33 CE, Jehovah poured out His spirit (Acts 2:4), fulfilling Joel 2:28, unlike pagan spiritism in Greco-Roman inscriptions. Early Christians’ unity (Acts 2:1) earned Jehovah’s approval, requiring no forgiveness when faithful (1 Corinthians 12:13). Pentecost’s outpouring contrasted with Babylonian mystic rites. It teaches us to value Jehovah’s spirit, reject false worship, and maintain pure worship (Acts 2:17). This truth encourages us to seek God’s spirit, unite in worship, and align with His purpose, free from pagan influences, securing His blessing."
+    ]
+  },
+  {
+    T: "Prayer",
+    S: [
+      "Philippians 4:6 - <em>Do not be anxious over anything, but... let your petitions be made known to God.</em>",
+      "1 Thessalonians 5:17 - <em>Pray constantly.</em>",
+      "Psalm 65:2 - <em>O Hearer of prayer, to you all flesh will come.</em>",
+      "Matthew 6:7 - <em>When praying, do not say the same things over and over.</em>",
+      "James 5:16 - <em>The supplication of a righteous man has much force.</em>",
+      "1 John 5:14 - <em>This is the confidence that we have toward him.</em>",
+      "Psalm 145:18 - <em>Jehovah is near to all those calling on him.</em>"
+    ],
+    D: [
+      "Prayer is heartfelt communication with Jehovah (Psalm 65:2). Ancient Hebrew inscriptions, like those at Arad, show prayer practices, aligning with Philippians 4:6. Unlike pagan chants, seen in Babylonian tablets (Matthew 6:7), biblical prayer is sincere, earning Jehovah’s approval (James 5:16). It requires no forgiveness when offered in faith (1 John 5:14). Early Christians prayed constantly (1 Thessalonians 5:17), contrasting with Greco-Roman rituals. Prayer teaches us to rely on Jehovah, reject vain repetitions, and maintain pure worship (Psalm 145:18). This truth encourages us to pray regularly, seek God’s guidance, and align with His purpose, free from pagan influences, ensuring His nearness and favor."
+    ]
+  },
+  {
+    T: "Resurrection of the Dead",
+    S: [
+      "John 5:28 - <em>All those in the memorial tombs will hear his voice and come out.</em>",
+      "Acts 24:15 - <em>There is going to be a resurrection of both the righteous and the unrighteous.</em>",
+      "1 Corinthians 15:22 - <em>In the Christ all will be made alive.</em>",
+      "Revelation 20:13 - <em>The sea gave up the dead in it... and they were judged.</em>",
+      "Isaiah 26:19 - <em>Your dead will live... they will rise up.</em>",
+      "Daniel 12:2 - <em>Many of those asleep in the dust of the earth will wake up.</em>",
+      "Hebrews 6:2 - <em>Instruction about... resurrection of the dead.</em>"
+    ],
+    D: [
+      "Resurrection of the dead is Jehovah’s promise to restore life (John 5:28). Ancient Jewish ossuaries reflect hope in resurrection, unlike Egyptian mummification for afterlife myths. Acts 24:15 promises it for righteous and unrighteous, earning Jehovah’s approval when trusted (1 Corinthians 15:22). False religions, like Greco-Roman soul myths, distort this hope, requiring rejection (Isaiah 26:19). No forgiveness is needed for faith in resurrection (Daniel 12:2). It teaches us to trust Jehovah’s power, reject false afterlife beliefs, and maintain pure worship (Hebrews 6:2). This truth encourages us to hope in resurrection, live faithfully, and align with Jehovah’s purpose, free from pagan influences, securing eternal life."
+    ]
+  },
+  {
+    T: "Septuagint",
+    S: [
+      "Isaiah 7:14 - <em>A virgin will become pregnant and give birth to a son.</em>",
+      "Psalm 40:6 - <em>Sacrifice and offering you did not desire, but you prepared a body for me.</em>",
+      "Deuteronomy 32:43 - <em>Rejoice, you heavens, with his people.</em>",
+      "Acts 15:17 - <em>So that the men who remain may earnestly seek Jehovah.</em>",
+      "Romans 15:10 - <em>Rejoice, you nations, with his people.</em>",
+      "Luke 4:18 - <em>The spirit of Jehovah is upon me... to preach good news.</em>",
+      "Hebrews 10:5 - <em>You prepared a body for me.</em>"
+    ],
+    D: [
+      "The Septuagint, a Greek translation of Hebrew Scriptures (3rd century BCE), aided early Christians (Acts 15:17). Alexandrian manuscripts confirm its use. It accurately rendered prophecies, like Isaiah 7:14, unlike pagan Greek texts, earning Jehovah’s approval for spreading truth (Luke 4:18). No forgiveness was needed for its faithful use (Romans 15:10). Unlike Greco-Egyptian myths, it preserved Jehovah’s word (Psalm 40:6). The Septuagint teaches us to value accurate scriptures, reject pagan distortions, and maintain pure worship (Hebrews 10:5). This truth encourages us to study God’s word, use reliable translations, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Submission",
+    S: [
+      "Ephesians 5:21 - <em>Be in subjection to one another in fear of Christ.</em>",
+      "1 Peter 2:13 - <em>For the Lord’s sake, subject yourselves to every human creation.</em>",
+      "Hebrews 13:17 - <em>Be obedient to those who are taking the lead.</em>",
+      "James 4:7 - <em>Subject yourselves, therefore, to God.</em>",
+      "1 Corinthians 16:16 - <em>Be in subjection to those who are... laboring among you.</em>",
+      "Psalm 37:7 - <em>Keep silent before Jehovah and wait expectantly for him.</em>",
+      "Colossians 3:18 - <em>Wives, be in subjection to your husbands.</em>"
+    ],
+    D: [
+      "Submission is humbly yielding to Jehovah’s authority and His arrangement (James 4:7). Ancient Hebrew inscriptions, like those at Samaria, show obedience to leaders, aligning with Hebrews 13:17. Unlike pagan rebellion, seen in Babylonian revolts, submission reflects faith (Ephesians 5:21). It earns Jehovah’s approval when genuine (Psalm 37:7), needing no forgiveness. Early Christians submitted to elders (1 Corinthians 16:16), contrasting with Greco-Roman defiance. Submission teaches us to respect God’s order, reject pride, and maintain pure worship (1 Peter 2:13). This truth encourages us to obey Jehovah, support His arrangement, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Thanksgiving (Holiday)",
+    S: [
+      "Jeremiah 10:2 - <em>Do not learn the way of the nations.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "1 Thessalonians 5:18 - <em>In connection with everything give thanks.</em>",
+      "Deuteronomy 12:30 - <em>Do not inquire about their gods, saying, ‘How did these nations serve their gods?’</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Psalm 50:14 - <em>Offer thanksgiving as your sacrifice to God.</em>"
+    ],
+    D: [
+      "Thanksgiving, a modern holiday, often blends secular and pagan harvest traditions, like those in Roman Pomona festivals, condemned in Jeremiah 10:2. Ancient European artifacts show similar rites, unlike Jehovah’s call for true gratitude (1 Thessalonians 5:18). While giving thanks is biblical (Psalm 50:14), its nationalistic and commercial elements conflict with pure worship (John 4:24). True Christians avoid it (2 Corinthians 6:17), needing no forgiveness when rejecting paganism (Deuteronomy 12:30). Thanksgiving teaches us to express gratitude biblically, reject worldly traditions, and maintain pure worship (Colossians 2:8). This truth encourages us to thank Jehovah daily, avoid false festivals, and align with His purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Trust",
+    S: [
+      "Psalm 37:3 - <em>Trust in Jehovah and do what is good.</em>",
+      "Proverbs 3:5 - <em>Trust in Jehovah with all your heart.</em>",
+      "Isaiah 26:4 - <em>Trust in Jehovah forever, for in Jah Jehovah is the eternal Rock.</em>",
+      "Psalm 62:8 - <em>Trust in him at all times, O people.</em>",
+      "Jeremiah 17:7 - <em>Blessed is the man who trusts in Jehovah.</em>",
+      "Psalm 125:1 - <em>Those trusting in Jehovah are like Mount Zion.</em>",
+      "Hebrews 11:6 - <em>Without faith it is impossible to please God well.</em>"
+    ],
+    D: [
+      "Trust is complete reliance on Jehovah (Proverbs 3:5). Ancient Hebrew inscriptions, like those at Lachish, urge trust in God, aligning with Psalm 37:3. Unlike pagan reliance on idols, seen in Babylonian tablets, trust in Jehovah brings stability (Isaiah 26:4). It earns His approval when heartfelt (Hebrews 11:6), needing no forgiveness. Early Christians trusted Jehovah amidst trials (Psalm 62:8), contrasting with Greco-Roman fatalism. Trust teaches us to depend on God, reject false securities, and maintain pure worship (Jeremiah 17:7). This truth encourages us to rely on Jehovah, seek His guidance (Psalm 125:1), and align with His purpose, free from pagan influences, securing His blessing."
+    ]
+  },
+  {
+    T: "Vulgate",
+    S: [
+      "Psalm 119:105 - <em>Your word is a lamp to my foot.</em>",
+      "2 Timothy 3:16 - <em>All Scripture is inspired of God and beneficial.</em>",
+      "Isaiah 40:8 - <em>The word of our God endures forever.</em>",
+      "John 17:17 - <em>Your word is truth.</em>",
+      "Revelation 22:18 - <em>If anyone makes an addition to them, God will add to him the plagues.</em>",
+      "2 Peter 1:21 - <em>Prophecy was at no time brought by man’s will.</em>",
+      "Psalm 12:6 - <em>The sayings of Jehovah are pure.</em>"
+    ],
+    D: [
+      "The Vulgate, a Latin translation by Jerome (4th century CE), spread Scripture widely (Psalm 119:105). Early manuscripts, like Codex Amiatinus, confirm its use. While useful, its errors, like trinitarian biases, contrast with Jehovah’s truth (John 17:17), requiring discernment (2 Timothy 3:16). Unlike pagan texts, like Gnostic gospels, the Vulgate preserved much of God’s word (Isaiah 40:8). Users needed repentance for adding traditions (Revelation 22:18). It teaches us to value accurate translations, reject false doctrines, and maintain pure worship (2 Peter 1:21). This truth encourages us to study God’s word, use reliable translations (Psalm 12:6), and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Zacchaeus",
+    S: [
+      "Luke 19:2 - <em>A man named Zacchaeus... was a chief tax collector.</em>",
+      "Luke 19:8 - <em>Zacchaeus stood up and said to the Lord: Look! The half of my belongings... I am giving to the poor.</em>",
+      "Luke 19:9 - <em>Jesus said to him: Today salvation has come to this house.</em>",
+      "Luke 3:13 - <em>Do not demand anything more than the tax rate.</em>",
+      "Psalm 32:5 - <em>My sin I finally confessed to you... and you pardoned my sins.</em>",
+      "1 Timothy 1:15 - <em>Christ Jesus came into the world to save sinners.</em>",
+      "Proverbs 28:13 - <em>The one covering his transgressions will not succeed.</em>"
+    ],
+    D: [
+      "Zacchaeus, a 1st-century tax collector, repented after meeting Jesus (Luke 19:2). Roman tax records confirm his role’s context. His restitution (Luke 19:8) earned Jehovah’s approval (Luke 19:9), unlike Roman greed in inscriptions. Zacchaeus’ repentance (Psalm 32:5) contrasted with pagan dishonesty, like Greco-Roman tax abuses. His faith in Jesus (1 Timothy 1:15) led to salvation, requiring forgiveness (Proverbs 28:13). Zacchaeus’ life teaches us to repent sincerely, make amends, and reject false worship. His example encourages us to seek Jesus, live honestly, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, securing salvation."
+    ]
+  },
+  {
+    T: "Zedekiah",
+    S: [
+      "2 Kings 24:17 - <em>The king of Babylon made Mattaniah... king, and he changed his name to Zedekiah.</em>",
+      "Jeremiah 38:17 - <em>If you will surrender to the princes of the king of Babylon, your soul will live.</em>",
+      "2 Chronicles 36:11 - <em>Zedekiah was 21 years old when he became king.</em>",
+      "Jeremiah 52:11 - <em>He blinded Zedekiah... and kept him in prison until his death.</em>",
+      "Ezekiel 17:15 - <em>Will he succeed, the one who does these things?</em>",
+      "2 Chronicles 36:13 - <em>He rebelled against King Nebuchadnezzar, who had made him swear by God.</em>",
+      "Psalm 89:39 - <em>You have cast off and rejected... your anointed one.</em>"
+    ],
+    D: [
+      "Zedekiah, Judah’s last king around 587 BCE, rebelled against Jehovah (2 Chronicles 36:13). Babylonian chronicles confirm his era. His refusal to heed Jeremiah (Jeremiah 38:17) led to captivity (Jeremiah 52:11), unlike faithful kings. His idolatry, mirroring Babylonian worship in tablets, required repentance (Ezekiel 17:15). Zedekiah’s failure teaches us to obey Jehovah’s prophets, reject false worship, and seek forgiveness (Psalm 89:39). Unlike pagan kings, his initial oath showed potential loyalty. His example warns us to heed God’s warnings, avoid rebellion, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
     T: "Abigail",
     S: [
       "1 Samuel 25:3 - <em>Abigail was a woman of good insight and beautiful.</em>",
