@@ -1,6 +1,441 @@
 // top.js
 const top = [
   {
+    T: "144,000",
+    S: [
+      "Revelation 7:4 - <em>I heard the number of those who were sealed, 144,000, sealed out of every tribe of the sons of Israel.</em>",
+      "Revelation 14:1 - <em>I saw, and look! the Lamb standing on Mount Zion, and with him 144,000.</em>",
+      "Revelation 14:3 - <em>They are singing a new song... and no one could learn that song except the 144,000.</em>",
+      "Luke 12:32 - <em>Have no fear, little flock, for your Father has approved of giving you the Kingdom.</em>",
+      "John 10:16 - <em>I have other sheep, which are not of this fold.</em>",
+      "Romans 8:17 - <em>Joint heirs with Christ, provided we suffer with him.</em>",
+      "1 Corinthians 15:50 - <em>Flesh and blood cannot inherit God’s Kingdom.</em>"
+    ],
+    D: [
+      "The 144,000 are a select group chosen by Jehovah to rule with Christ in heaven (Revelation 7:4). Ancient Jewish tribal records align with the symbolic number, emphasizing divine selection. Unlike pagan afterlife beliefs, like Egyptian immortality myths in papyri, the 144,000 are sealed for heavenly life (Revelation 14:1), distinct from the great crowd (John 10:16). Their role as co-heirs (Romans 8:17) requires faithfulness, earning Jehovah’s approval. False worship, like Greco-Roman apotheosis cults, misrepresents heavenly hope, but Luke 12:32 confirms their kingdom role. The 144,000 need no forgiveness when faithful, embodying pure worship (1 Corinthians 15:50). The lesson is to support Jehovah’s arrangement, reject false hopes, and pursue righteousness. Their example encourages us to remain loyal, ensuring pure worship aligns with Jehovah’s purpose, free from pagan distortions."
+    ]
+  },
+  {
+    T: "Ananias",
+    S: [
+      "Acts 9:10 - <em>There was a disciple in Damascus named Ananias.</em>",
+      "Acts 9:17 - <em>Ananias went and laid his hands on him... and he recovered his sight.</em>",
+      "Acts 22:12 - <em>Ananias, a devout man according to the Law... came to me.</em>",
+      "Acts 9:13 - <em>Lord, I have heard from many about this man.</em>",
+      "Hebrews 13:7 - <em>Remember those who are taking the lead... whose faith you should imitate.</em>",
+      "Acts 5:1 - <em>A man named Ananias, with Sapphira his wife, sold a possession.</em>",
+      "1 John 4:20 - <em>He who does not love his brother... cannot be loving God.</em>"
+    ],
+    D: [
+      "Ananias, a 1st-century disciple in Damascus, obeyed Jehovah’s command to restore Paul’s sight (Acts 9:17). Roman-era Syrian artifacts confirm his cultural setting. His faith and obedience earned divine approval (Acts 22:12), unlike Greco-Roman healing cults in temple inscriptions. Another Ananias, with Sapphira, sinned by lying about a donation (Acts 5:1), showing unrepentant hypocrisy that led to death. The faithful Ananias’ example (Hebrews 13:7) contrasts with false worship’s deceit, like Babylonian priestly frauds. His life teaches us to obey God courageously, reject hypocrisy, and maintain pure worship. Ananias’ faithfulness encourages us to support new believers, act with integrity, and align with Jehovah’s purpose, free from pagan influences, ensuring our devotion reflects true love (1 John 4:20)."
+    ]
+  },
+  {
+    T: "Aquila",
+    S: [
+      "Acts 18:2 - <em>Paul found a Jew named Aquila... with his wife Priscilla.</em>",
+      "Acts 18:26 - <em>They took him into their company and explained the way of God more accurately.</em>",
+      "Romans 16:3 - <em>Give my greetings to Prisca and Aquila, my fellow workers in Christ Jesus.</em>",
+      "1 Corinthians 16:19 - <em>Aquila and Prisca... send you hearty greetings.</em>",
+      "2 Timothy 4:19 - <em>Give my greetings to Prisca and Aquila.</em>",
+      "Acts 18:18 - <em>Paul... sailed off with Priscilla and Aquila.</em>",
+      "Colossians 4:15 - <em>Give my greetings to the brothers in Laodicea.</em>"
+    ],
+    D: [
+      "Aquila, a 1st-century Christian, worked with his wife Priscilla, supporting Paul’s ministry (Acts 18:2). Roman trade records confirm their tentmaking in Corinth. Their teaching of Apollos (Acts 18:26) and hospitality (1 Corinthians 16:19) earned Jehovah’s approval, unlike Roman mystery cults in inscriptions. They needed no forgiveness, showing loyalty. Their faith contrasted with pagan worship, like emperor cults in Ephesus. Aquila’s life teaches us to teach truth, show hospitality, and reject false worship. His example, with Priscilla, encourages us to support the ministry, collaborate in faith, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan practices, as their greetings reflect (Romans 16:3). Their teamwork strengthens our resolve to serve Jehovah unitedly."
+    ]
+  },
+  {
+    T: "Barzillai",
+    S: [
+      "2 Samuel 19:33 - <em>The king said to Barzillai: Cross over with me, and I will supply you with food.</em>",
+      "2 Samuel 17:27 - <em>Barzillai the Gileadite... brought provisions.</em>",
+      "2 Samuel 19:39 - <em>The king kissed Barzillai and blessed him, and he returned to his place.</em>",
+      "1 Kings 2:7 - <em>Show loyal love to the sons of Barzillai the Gileadite.</em>",
+      "Ezra 2:61 - <em>Of the sons of the priests... the sons of Barzillai.</em>",
+      "2 Samuel 19:37 - <em>Let your servant return, that I may die in my own city.</em>",
+      "Proverbs 19:17 - <em>The one showing favor to the poor is lending to Jehovah.</em>"
+    ],
+    D: [
+      "Barzillai, an elderly Gileadite around 1000 BCE, supported David during Absalom’s rebellion (2 Samuel 17:27). Gilead’s archaeological sites confirm his era’s tribal context. His generosity with provisions earned Jehovah’s approval (1 Kings 2:7), unlike Canaanite hoarding practices in reliefs. Barzillai needed no forgiveness, showing loyalty (2 Samuel 19:39). His humility in declining David’s offer (2 Samuel 19:37) contrasted with pagan self-exaltation, like Babylonian elite inscriptions. Barzillai’s life teaches us to support God’s servants, remain humble, and reject false worship. His example encourages us to show generosity, trust Jehovah’s care, and maintain pure worship, aligning with His purpose, free from pagan influences, as Proverbs 19:17 affirms in blessing the kind."
+    ]
+  },
+  {
+    T: "Cross",
+    S: [
+      "Matthew 10:38 - <em>Whoever does not accept his torture stake and follow after me is not worthy of me.</em>",
+      "John 19:17 - <em>Bearing the torture stake for himself, he went out to the so-called Skull Place.</em>",
+      "Galatians 6:14 - <em>Never may it occur that I should boast, except in the torture stake of our Lord Jesus Christ.</em>",
+      "Philippians 2:8 - <em>He humbled himself and became obedient to the point of death, even death on a torture stake.</em>",
+      "1 Corinthians 1:18 - <em>The speech about the torture stake is foolishness to those who are perishing.</em>",
+      "Colossians 2:14 - <em>He has taken it out of the way by nailing it to the torture stake.</em>",
+      "Hebrews 12:2 - <em>For the joy that was set before him he endured a torture stake.</em>"
+    ],
+    D: [
+      "The cross, or torture stake, was the instrument of Jesus’ execution (John 19:17). Roman crucifixion records and archaeological stakes confirm its use in the 1st century. Unlike pagan cross symbols, like Egyptian ankhs, Jesus’ stake represents redemption (Colossians 2:14), not idolatry. False worship, seen in later Christian cross veneration, distorts its purpose, but Galatians 6:14 emphasizes boasting only in Christ’s sacrifice. The stake requires no forgiveness, symbolizing Jehovah’s provision (Philippians 2:8). Matthew 10:38 calls us to bear our stake, enduring for faith. The lesson is to value Jesus’ sacrifice, reject idolatrous symbols, and ensure pure worship. This truth encourages us to follow Christ, avoid pagan traditions, and align with Jehovah’s purpose, securing salvation through faith (Hebrews 12:2)."
+    ]
+  },
+  {
+    T: "Eli",
+    S: [
+      "1 Samuel 2:12 - <em>The sons of Eli were worthless men; they did not know Jehovah.</em>",
+      "1 Samuel 3:13 - <em>I will judge his house forever for the error he knew about.</em>",
+      "1 Samuel 4:18 - <em>Eli fell backward off his seat... and died.</em>",
+      "1 Samuel 2:25 - <em>They would not listen to the voice of their father.</em>",
+      "1 Samuel 1:3 - <em>Eli and his two sons... were priests to Jehovah.</em>",
+      "1 Samuel 2:29 - <em>Why do you keep honoring your sons more than me?</em>",
+      "Hebrews 12:6 - <em>Jehovah disciplines those he loves.</em>"
+    ],
+    D: [
+      "Eli, a high priest around 1100 BCE, served at Shiloh (1 Samuel 1:3). Archaeological tabernacle remains confirm his setting. His failure to discipline his sinful sons (1 Samuel 2:12) led to Jehovah’s judgment (1 Samuel 3:13), unlike Canaanite priests who ignored idolatry, seen in Ugaritic texts. Eli’s negligence required repentance, but his death (1 Samuel 4:18) suggests incomplete reform. His role contrasts with pure worship, which demands accountability (1 Samuel 2:29). Eli’s life teaches us to correct sin, honor Jehovah above family, and reject false worship. His example warns us to take discipline seriously (Hebrews 12:6), ensure pure worship, and align with Jehovah’s purpose, avoiding pagan influences that lead to spiritual failure."
+    ]
+  },
+  {
+    T: "Elizabeth",
+    S: [
+      "Luke 1:6 - <em>They were righteous in the sight of God, walking blamelessly.</em>",
+      "Luke 1:41 - <em>When Elizabeth heard the greeting of Mary, the infant in her womb leaped.</em>",
+      "Luke 1:13 - <em>Your wife Elizabeth will bear you a son, and you will call his name John.</em>",
+      "Luke 1:25 - <em>Jehovah has... taken away my disgrace among men.</em>",
+      "Luke 1:57 - <em>The time came for Elizabeth to give birth, and she gave birth to a son.</em>",
+      "Luke 1:36 - <em>Your relative Elizabeth has also conceived a son in her old age.</em>",
+      "Psalm 113:9 - <em>He gives the barren woman a home, making her a joyful mother.</em>"
+    ],
+    D: [
+      "Elizabeth, a 1st-century relative of Mary, was righteous, bearing John the Baptist (Luke 1:6). Judea’s archaeological context confirms her priestly lineage. Her faith despite barrenness (Luke 1:25) earned Jehovah’s approval, fulfilling His promise (Luke 1:13). Unlike Roman fertility cults, seen in Diana statues, Elizabeth’s worship was pure, praising Jehovah (Psalm 113:9). She needed no forgiveness, showing steadfast faith. Her joy at John’s birth (Luke 1:57) contrasted with pagan rituals. Elizabeth’s life teaches us to trust Jehovah’s timing, remain faithful in trials, and reject false worship. Her example encourages us to praise God, support His purpose, and maintain pure worship, aligning with His will, free from pagan influences, ensuring hope in His promises."
+    ]
+  },
+  {
+    T: "Fate",
+    S: [
+      "Ecclesiastes 9:11 - <em>Time and unforeseen occurrence befall them all.</em>",
+      "Isaiah 65:11 - <em>You who abandon Jehovah... who set a table for the god of Good Luck.</em>",
+      "Proverbs 16:33 - <em>The lot is cast into the lap, but every decision by it is from Jehovah.</em>",
+      "Romans 8:28 - <em>All things work together for good to those who love God.</em>",
+      "Job 14:5 - <em>Since his days are determined, the number of his months is with you.</em>",
+      "Deuteronomy 32:8 - <em>The Most High gave the nations their inheritance.</em>",
+      "Acts 17:26 - <em>He made out of one man every nation of men.</em>"
+    ],
+    D: [
+      "Fate, as understood biblically, is under Jehovah’s sovereignty, not chance (Proverbs 16:33). Ancient Babylonian tablets reveal fatalistic worship of luck gods, condemned in Isaiah 65:11. Ecclesiastes 9:11 acknowledges unforeseen events, but Romans 8:28 assures Jehovah’s purpose prevails for the faithful. Unlike pagan astrology, seen in Mesopotamian omens, Jehovah determines outcomes (Job 14:5). Acts 17:26 shows His control over nations, refuting fatalism. Fate requires no forgiveness when trusting Jehovah’s will (Deuteronomy 32:8). The lesson is to rely on God, reject false luck beliefs, and ensure pure worship. This truth encourages us to trust Jehovah’s sovereignty, avoid pagan superstitions, and align with His purpose, securing confidence in His guidance."
+    ]
+  },
+  {
+    T: "Free Will",
+    S: [
+      "Deuteronomy 30:19 - <em>I have put life and death before you... choose life.</em>",
+      "Joshua 24:15 - <em>Choose for yourselves today whom you will serve.</em>",
+      "John 7:17 - <em>If anyone desires to do His will, he will know.</em>",
+      "Romans 6:16 - <em>You are slaves to the one you obey.</em>",
+      "James 1:25 - <em>The man who peers into the perfect law... and continues in it.</em>",
+      "Genesis 2:16 - <em>From every tree of the garden you may eat to satisfaction.</em>",
+      "1 Corinthians 10:13 - <em>God... will not let you be tempted beyond what you can bear.</em>"
+    ],
+    D: [
+      "Free will is Jehovah’s gift, allowing humans to choose obedience (Deuteronomy 30:19). Ancient Hebrew inscriptions, like those at Samaria, emphasize covenant choices, aligning with Joshua 24:15. Unlike pagan determinism, seen in Babylonian fate tablets, biblical free will empowers moral decisions (John 7:17). Romans 6:16 shows choices determine allegiance, and James 1:25 ties freedom to God’s law. False worship, like Canaanite rituals, enslaves, but 1 Corinthians 10:13 ensures Jehovah’s support. Free will requires no forgiveness when used righteously. The lesson is to choose Jehovah’s will, reject false teachings, and ensure pure worship. This truth encourages us to make godly choices, avoid pagan influences, and align with Jehovah’s purpose, securing life through obedience."
+    ]
+  },
+  {
+    T: "Hagar",
+    S: [
+      "Genesis 16:7 - <em>Jehovah’s angel found her by a spring of water in the wilderness.</em>",
+      "Genesis 21:17 - <em>God heard the voice of the boy... do not be afraid.</em>",
+      "Genesis 16:13 - <em>She called the name of Jehovah who spoke to her: You Are a God of Seeing.</em>",
+      "Galatians 4:25 - <em>Hagar is... corresponding to the Jerusalem now existing.</em>",
+      "Genesis 21:19 - <em>God opened her eyes, and she saw a well of water.</em>",
+      "Genesis 16:1 - <em>Sarai, Abram’s wife, had not borne him any children.</em>",
+      "Psalm 33:18 - <em>The eye of Jehovah is toward those hoping in his loyal love.</em>"
+    ],
+    D: [
+      "Hagar, an Egyptian servant around 1918 BCE, bore Abraham’s son Ishmael (Genesis 16:1). Canaanite household records confirm her era’s context. Her faith in Jehovah, who saw her distress (Genesis 16:13), earned divine care (Genesis 21:17), unlike Egyptian goddess worship, seen in Isis artifacts. Hagar’s submission to Sarah after fleeing (Genesis 16:7) showed repentance. Her life, paralleled in Galatians 4:25, contrasts with pagan slavery to false gods. Hagar’s example teaches us to trust Jehovah’s provision, repent humbly, and reject false worship. Her story encourages us to rely on God’s care (Psalm 33:18), endure trials, and maintain pure worship, aligning with His purpose, free from pagan influences, ensuring hope in His promises."
+    ]
+  },
+  {
+    T: "Heaven",
+    S: [
+      "Matthew 6:9 - <em>Our Father in the heavens, let your name be sanctified.</em>",
+      "Psalm 115:16 - <em>The heavens belong to Jehovah.</em>",
+      "Isaiah 66:1 - <em>The heaven is my throne, and the earth is my footstool.</em>",
+      "John 3:13 - <em>No man has ascended into heaven but the one who descended from heaven.</em>",
+      "Revelation 21:1 - <em>I saw a new heaven and a new earth.</em>",
+      "2 Corinthians 12:2 - <em>I know a man in union with Christ who... was caught away to the third heaven.</em>",
+      "Psalm 19:1 - <em>The heavens are declaring the glory of God.</em>"
+    ],
+    D: [
+      "Heaven is Jehovah’s spiritual dwelling place (Psalm 115:16). Ancient cosmologies, like Babylonian star charts, contrast with Isaiah 66:1’s depiction of God’s throne. Unlike pagan myths of human ascent, John 3:13 reserves heaven for Jesus and the 144,000 (Revelation 21:1). False worship, like Greco-Roman sky gods, misrepresents heaven, but Matthew 6:9 directs prayer to Jehovah. Heaven requires no forgiveness, being God’s realm (Psalm 19:1). The lesson is to honor Jehovah’s sovereignty, reject false afterlife beliefs, and ensure pure worship. This truth encourages us to focus on God’s kingdom, avoid pagan distortions, and align with His purpose, securing hope in His heavenly rule (2 Corinthians 12:2)."
+    ]
+  },
+  {
+    T: "Humility",
+    S: [
+      "Philippians 2:3 - <em>With humility consider others superior to you.</em>",
+      "Micah 6:8 - <em>To be modest in walking with your God.</em>",
+      "James 4:10 - <em>Humble yourselves in the eyes of Jehovah, and he will exalt you.</em>",
+      "1 Peter 5:6 - <em>Humble yourselves under the mighty hand of God.</em>",
+      "Proverbs 22:4 - <em>The result of humility and the fear of Jehovah is riches and glory.</em>",
+      "Matthew 23:12 - <em>Whoever exalts himself will be humbled.</em>",
+      "Colossians 3:12 - <em>Clothe yourselves with... humility.</em>"
+    ],
+    D: [
+      "Humility is lowliness of mind, submitting to Jehovah (Philippians 2:3). Ancient Hebrew inscriptions, like those at Lachish, praise humble service, aligning with Micah 6:8. Unlike pagan pride, seen in Babylonian kingly boasts, humility earns Jehovah’s favor (James 4:10). Proverbs 22:4 promises blessings, and 1 Peter 5:6 assures exaltation. False worship, like Greco-Roman hero cults, promotes self-exaltation, but Matthew 23:12 condemns pride. Humility requires no forgiveness when genuine (Colossians 3:12). The lesson is to serve humbly, reject arrogant practices, and ensure pure worship. This truth encourages us to prioritize others, trust Jehovah’s timing, and align with His purpose, free from pagan influences, securing His approval."
+    ]
+  },
+  {
+    T: "Jochebed",
+    S: [
+      "Exodus 2:2 - <em>The woman became pregnant and gave birth to a son.</em>",
+      "Numbers 26:59 - <em>The name of Amram’s wife was Jochebed... who bore Moses.</em>",
+      "Exodus 2:9 - <em>Take this child and nurse him for me, and I will pay you.</em>",
+      "Hebrews 11:23 - <em>By faith Moses... was hidden for three months by his parents.</em>",
+      "Exodus 6:20 - <em>Amram took Jochebed... and she bore him Aaron and Moses.</em>",
+      "Psalm 27:10 - <em>Even if my own father and mother abandon me, Jehovah will take me in.</em>",
+      "Exodus 2:10 - <em>The boy grew up, and she brought him to Pharaoh’s daughter.</em>"
+    ],
+    D: [
+      "Jochebed, Moses’ mother around 1571 BCE, hid him from Pharaoh’s decree (Exodus 2:2). Egyptian records of infanticide align with her era. Her faith (Hebrews 11:23) and ingenuity, placing Moses in a basket (Exodus 2:9), earned Jehovah’s approval. Unlike Egyptian goddess worship, seen in Hathor artifacts, Jochebed’s trust in Jehovah (Psalm 27:10) was pure. She needed no forgiveness, showing courage. Her actions contrasted with pagan child sacrifices. Jochebed’s life teaches us to protect faith, trust Jehovah’s care, and reject false worship. Her example encourages us to act boldly, nurture spiritual growth, and maintain pure worship, aligning with His purpose, free from pagan practices, ensuring His protection (Numbers 26:59)."
+    ]
+  },
+  {
+    T: "KJV",
+    S: [
+      "2 Timothy 3:16 - <em>All Scripture is inspired of God and beneficial.</em>",
+      "Psalm 119:105 - <em>Your word is a lamp to my foot.</em>",
+      "John 17:17 - <em>Your word is truth.</em>",
+      "2 Peter 1:21 - <em>Prophecy was at no time brought by man’s will, but men spoke from God.</em>",
+      "Isaiah 40:8 - <em>The word of our God endures forever.</em>",
+      "Revelation 22:18 - <em>If anyone makes an addition to them, God will add to him the plagues.</em>",
+      "Proverbs 30:5 - <em>Every saying of God is refined.</em>"
+    ],
+    D: [
+      "The King James Version (KJV), completed in 1611, is a historic Bible translation. Its era’s printing records confirm its influence, but textual scholarship, like Dead Sea Scrolls analysis, reveals inaccuracies compared to the New World Translation (NWT). Unlike pagan-influenced translations, like Latin Vulgate’s Trinitarian bias, the KJV aimed to reflect God’s word (2 Timothy 3:16). However, its archaic language and errors, like ‘hell’ for Sheol, obscure truth (John 17:17). Revelation 22:18 warns against altering scripture. The lesson is to seek accurate translations, like the NWT, reject pagan distortions, and ensure pure worship. This encourages us to study God’s word diligently (Psalm 119:105), align with Jehovah’s purpose, and avoid misleading traditions, securing truth (Isaiah 40:8)."
+    ]
+  },
+  {
+    T: "Mercy",
+    S: [
+      "Psalm 86:5 - <em>You, O Jehovah, are good and ready to forgive.</em>",
+      "Luke 6:36 - <em>Continue becoming merciful, just as your Father is merciful.</em>",
+      "Ephesians 2:4 - <em>God, who is rich in mercy... made us alive.</em>",
+      "Hosea 6:6 - <em>I desire mercy and not sacrifice.</em>",
+      "Matthew 5:7 - <em>Happy are the merciful, for they will be shown mercy.</em>",
+      "James 2:13 - <em>Mercy triumphs over judgment.</em>",
+      "Micah 7:18 - <em>Who is a God like you, pardoning error?</em>"
+    ],
+    D: [
+      "Mercy is Jehovah’s compassionate forgiveness (Psalm 86:5). Ancient Hebrew inscriptions, like those at Arad, seek divine mercy, aligning with Micah 7:18. Unlike pagan rituals, like Babylonian atonement rites, biblical mercy requires repentance (Hosea 6:6). Ephesians 2:4 shows God’s mercy through Christ, and Luke 6:36 urges imitating it. False worship, like Canaanite sacrifices, lacks compassion, but Matthew 5:7 promises mercy to the merciful. Mercy requires no forgiveness when shown sincerely (James 2:13). The lesson is to extend mercy, reject ritualistic worship, and ensure pure devotion. This truth encourages us to forgive others, reflect Jehovah’s love, and align with His purpose, free from pagan practices, securing His mercy."
+    ]
+  },
+  {
+    T: "Mordecai",
+    S: [
+      "Esther 2:7 - <em>Mordecai was bringing up Esther... for she had neither father nor mother.</em>",
+      "Esther 4:14 - <em>If you remain silent... relief and deliverance will come from another source.</em>",
+      "Esther 10:3 - <em>Mordecai the Jew was second to King Ahasuerus.</em>",
+      "Esther 2:17 - <em>The king loved Esther more than all the other women.</em>",
+      "Esther 6:10 - <em>Do for Mordecai the Jew... just as you have spoken.</em>",
+      "Esther 8:2 - <em>The king took off his signet ring... and gave it to Mordecai.</em>",
+      "Psalm 37:3 - <em>Trust in Jehovah and do good.</em>"
+    ],
+    D: [
+      "Mordecai, a Jew around 475 BCE, raised Esther and exposed a plot against Ahasuerus (Esther 2:7). Persian court records align with his era. His courage and faith (Esther 4:14) earned Jehovah’s approval, thwarting Haman’s genocide. Unlike Persian idolatry, seen in Zoroastrian artifacts, Mordecai’s worship was pure, trusting Jehovah (Psalm 37:3). He needed no forgiveness, showing loyalty. His rise to power (Esther 10:3) contrasted with pagan ambition. Mordecai’s life teaches us to act boldly, protect God’s people, and reject false worship. His example encourages us to trust Jehovah’s deliverance, stand for truth, and maintain pure worship, aligning with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Naaman",
+    S: [
+      "2 Kings 5:1 - <em>Naaman, the army chief of the king of Syria... was a mighty warrior.</em>",
+      "2 Kings 5:15 - <em>Now I know that there is no God anywhere in all the earth but in Israel.</em>",
+      "2 Kings 5:10 - <em>Go and wash in the Jordan seven times.</em>",
+      "2 Kings 5:17 - <em>Please, may I be given two mule-loads of earth.</em>",
+      "Luke 4:27 - <em>Naaman the Syrian was cleansed.</em>",
+      "2 Kings 5:14 - <em>His flesh was restored like the flesh of a little boy.</em>",
+      "Psalm 30:2 - <em>O Jehovah my God, I cried to you for help, and you healed me.</em>"
+    ],
+    D: [
+      "Naaman, a Syrian commander around 900 BCE, was healed of leprosy by Elisha (2 Kings 5:14). Syrian military records confirm his era. His faith in Jehovah (2 Kings 5:15), after washing in the Jordan (2 Kings 5:10), earned divine approval, unlike Syrian idol worship, seen in Baal altars. Naaman’s request for earth (2 Kings 5:17) showed new devotion, rejecting pagan gods. He needed no forgiveness, embracing truth (Luke 4:27). Naaman’s life teaches us to obey humbly, trust Jehovah’s power, and reject false worship. His example encourages us to seek God’s healing, act in faith, and maintain pure worship, aligning with His purpose, free from pagan practices (Psalm 30:2)."
+    ]
+  },
+  {
+    T: "New Covenant",
+    S: [
+      "Luke 22:20 - <em>This cup means the new covenant by virtue of my blood.</em>",
+      "Hebrews 8:8 - <em>I will make a new covenant with the house of Israel.</em>",
+      "Jeremiah 31:31 - <em>Look! The days are coming... when I will make a new covenant.</em>",
+      "1 Corinthians 11:25 - <em>This cup is the new covenant in my blood.</em>",
+      "Hebrews 9:15 - <em>He is the mediator of a new covenant.</em>",
+      "Galatians 3:17 - <em>The covenant previously validated by God.</em>",
+      "Matthew 26:28 - <em>This is my blood of the covenant, which is poured out for many.</em>"
+    ],
+    D: [
+      "The new covenant, established by Jesus’ blood, fulfills Jeremiah 31:31 (Luke 22:20). Ancient Hebrew covenant texts, like those at Qumran, align with Hebrews 8:8. Unlike pagan pacts, like Babylonian oaths, this covenant offers forgiveness through Christ (Hebrews 9:15). Matthew 26:28 ties it to salvation, and 1 Corinthians 11:25 emphasizes its memorial. False worship, like Greco-Roman blood rituals, lacks divine backing, but Galatians 3:17 confirms God’s promise. The new covenant requires no forgiveness when embraced, ensuring eternal life. The lesson is to honor Jesus’ sacrifice, reject false rituals, and ensure pure worship. This truth encourages us to partake in the memorial, live faithfully, and align with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Nicodemus",
+    S: [
+      "John 3:1 - <em>There was a man of the Pharisees named Nicodemus.</em>",
+      "John 3:3 - <em>Unless anyone is born again, he cannot see the Kingdom of God.</em>",
+      "John 7:50 - <em>Nicodemus... said to them.</em>",
+      "John 19:39 - <em>Nicodemus... came bringing a mixture of myrrh and aloes.</em>",
+      "John 3:10 - <em>Are you a teacher of Israel and yet do not know these things?</em>",
+      "Luke 18:18 - <em>A certain ruler questioned him.</em>",
+      "John 12:42 - <em>Many even of the rulers actually put faith in him.</em>"
+    ],
+    D: [
+      "Nicodemus, a 1st-century Pharisee, sought Jesus secretly (John 3:1). Jerusalem’s archaeological context confirms his setting. His inquiry about being born again (John 3:3) and aid at Jesus’ burial (John 19:39) showed growing faith, earning Jehovah’s approval (John 12:42). Unlike Pharisaic traditions, akin to Babylonian legalism, Nicodemus embraced truth. He needed no explicit forgiveness, pursuing righteousness. His defense of Jesus (John 7:50) contrasted with false worship’s rigidity. Nicodemus’ life teaches us to seek truth humbly, act courageously, and reject false traditions. His example encourages us to study God’s word, support His kingdom, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "NWT",
+    S: [
+      "John 17:17 - <em>Sanctify them by means of the truth; your word is truth.</em>",
+      "2 Timothy 3:16 - <em>All Scripture is inspired of God and beneficial.</em>",
+      "Psalm 119:160 - <em>The very essence of your word is truth.</em>",
+      "Isaiah 40:8 - <em>The word of our God endures forever.</em>",
+      "Revelation 22:19 - <em>If anyone takes anything away from the words... God will take away his portion.</em>",
+      "Proverbs 30:5 - <em>Every saying of God is refined.</em>",
+      "2 Peter 1:21 - <em>Men spoke from God as they were moved by holy spirit.</em>"
+    ],
+    D: [
+      "The New World Translation (NWT), first released in 1950, is a precise Bible translation. Textual scholarship, like Dead Sea Scrolls, supports its accuracy, restoring Jehovah’s name (Psalm 83:18). Unlike pagan-influenced translations, like the Vulgate’s Trinitarian errors, the NWT aligns with John 17:17’s truth. 2 Timothy 3:16 emphasizes scripture’s inspiration, and Isaiah 40:8 its endurance. False translations, like those adding to Revelation 22:19, obscure truth. The NWT requires no forgiveness, reflecting God’s word (Proverbs 30:5). The lesson is to use accurate translations, reject distorted versions, and ensure pure worship. This truth encourages us to study the NWT, proclaim truth, and align with Jehovah’s purpose, free from pagan influences, securing spiritual clarity (2 Peter 1:21)."
+    ]
+  },
+  {
+    T: "Patience",
+    S: [
+      "James 5:10 - <em>Take as an example of suffering evil... the prophets who spoke in the name of Jehovah.</em>",
+      "Psalm 37:7 - <em>Keep silent before Jehovah and wait expectantly for him.</em>",
+      "Galatians 5:22 - <em>The fruitage of the spirit is... patience.</em>",
+      "2 Peter 3:15 - <em>Consider the patience of our Lord as salvation.</em>",
+      "Romans 15:5 - <em>Now may the God who supplies endurance and comfort grant you to have among yourselves the same mental attitude.</em>",
+      "Hebrews 6:12 - <em>Through faith and patience inherit the promises.</em>",
+      "Colossians 1:11 - <em>Being strengthened with all power... for all endurance and patience.</em>"
+    ],
+    D: [
+      "Patience is a fruit of Jehovah’s spirit, enduring trials faithfully (Galatians 5:22). Ancient Hebrew inscriptions, like those at Lachish, urge waiting on God (Psalm 37:7). Unlike pagan impatience, seen in Canaanite ritual demands, biblical patience reflects trust (James 5:10). Romans 15:5 links it to unity, and 2 Peter 3:15 to salvation. False worship, like Babylonian instant oracles, lacks endurance, but Hebrews 6:12 promises inheritance through patience. Patience requires no forgiveness when genuine (Colossians 1:11). The lesson is to wait on Jehovah, reject hasty practices, and ensure pure worship. This truth encourages us to endure trials, trust God’s timing, and align with His purpose, free from pagan influences, securing His promises."
+    ]
+  },
+  {
+    T: "Priscilla",
+    S: [
+      "Acts 18:2 - <em>Paul found a Jew named Aquila, a native of Pontus, with his wife Priscilla.</em>",
+      "Acts 18:26 - <em>They took him into their company and explained the way of God more accurately.</em>",
+      "Romans 16:3 - <em>Give my greetings to Prisca and Aquila, my fellow workers in Christ Jesus.</em>",
+      "1 Corinthians 16:19 - <em>Aquila and Prisca... send you hearty greetings.</em>",
+      "2 Timothy 4:19 - <em>Give my greetings to Prisca and Aquila.</em>",
+      "Acts 18:18 - <em>Paul... sailed off with Priscilla and Aquila.</em>",
+      "Colossians 4:15 - <em>Give my greetings to the brothers in Laodicea.</em>"
+    ],
+    D: [
+      "Priscilla, a 1st-century Christian, worked with her husband Aquila, aiding Paul (Acts 18:2). Corinth’s trade artifacts confirm their tentmaking. Her teaching of Apollos (Acts 18:26) and hospitality (1 Corinthians 16:19) earned Jehovah’s approval, unlike Roman cult practices in inscriptions. She needed no forgiveness, showing loyalty. Her faith contrasted with pagan worship, like Ephesian Diana cults. Priscilla’s life teaches us to teach truth, serve generously, and reject false worship. Her example, with Aquila, encourages us to support the ministry, collaborate in faith, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, as their greetings show (Romans 16:3). Her teamwork inspires united service to God."
+    ]
+  },
+  {
+    T: "Righteousness",
+    S: [
+      "Psalm 23:3 - <em>He leads me in the paths of righteousness for his name’s sake.</em>",
+      "Romans 6:13 - <em>Present yourselves to God as those alive from the dead.</em>",
+      "1 John 3:7 - <em>The one who practices righteousness is righteous.</em>",
+      "Proverbs 21:21 - <em>The one pursuing righteousness and loyal love will find life.</em>",
+      "Matthew 5:20 - <em>Unless your righteousness surpasses that of the scribes and Pharisees.</em>",
+      "Isaiah 32:17 - <em>The work of righteousness will be peace.</em>",
+      "2 Timothy 2:22 - <em>Pursue righteousness, faith, love, peace.</em>"
+    ],
+    D: [
+      "Righteousness is living by Jehovah’s standards (Psalm 23:3). Ancient Hebrew inscriptions, like those at Samaria, urge righteous conduct, aligning with 1 John 3:7. Unlike pagan legalism, seen in Babylonian codes, biblical righteousness brings peace (Isaiah 32:17). Romans 6:13 calls for active devotion, and Proverbs 21:21 promises life. False worship, like Pharisaic hypocrisy (Matthew 5:20), lacks true righteousness. Righteousness requires no forgiveness when practiced (2 Timothy 2:22). The lesson is to live justly, reject false standards, and ensure pure worship. This truth encourages us to pursue righteousness, reflect Jehovah’s qualities, and align with His purpose, free from pagan influences, securing life and peace."
+    ]
+  },
+  {
+    T: "Sanctification",
+    S: [
+      "1 Thessalonians 4:3 - <em>This is the will of God, that you should be sanctified.</em>",
+      "John 17:17 - <em>Sanctify them by means of the truth; your word is truth.</em>",
+      "Hebrews 10:10 - <em>We have been sanctified through the offering of the body of Jesus Christ.</em>",
+      "1 Peter 1:2 - <em>According to the foreknowledge of God... for sanctification by the spirit.</em>",
+      "2 Thessalonians 2:13 - <em>God selected you... through sanctification by the spirit.</em>",
+      "1 Corinthians 6:11 - <em>You have been sanctified... in the name of our Lord Jesus Christ.</em>",
+      "Exodus 31:13 - <em>I, Jehovah, am sanctifying you.</em>"
+    ],
+    D: [
+      "Sanctification is being set apart for Jehovah’s service through His truth (John 17:17). Ancient Hebrew purification rites, like those in Qumran texts, align with Exodus 31:13. Unlike pagan rituals, like Babylonian cleansings, sanctification requires faith in Jesus’ sacrifice (Hebrews 10:10). 1 Thessalonians 4:3 ties it to holy conduct, and 2 Thessalonians 2:13 to God’s spirit. False worship, like Greco-Roman mysteries, lacks divine approval, but 1 Peter 1:2 confirms election through sanctification. Sanctification needs no forgiveness when pursued (1 Corinthians 6:11). The lesson is to live holy, reject false rituals, and ensure pure worship. This truth encourages us to dedicate ourselves, study God’s word, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Serpent",
+    S: [
+      "Genesis 3:1 - <em>The serpent was the most cautious of all the wild animals.</em>",
+      "Revelation 12:9 - <em>The great dragon was hurled down... called the Devil and Satan.</em>",
+      "John 8:44 - <em>You are from your father the Devil... a liar and the father of the lie.</em>",
+      "2 Corinthians 11:3 - <em>The serpent seduced Eve by its cunning.</em>",
+      "Genesis 3:15 - <em>I will put enmity between you and the woman, and between your offspring and her offspring.</em>",
+      "Numbers 21:9 - <em>Moses made a copper serpent and placed it on a pole.</em>",
+      "Revelation 20:2 - <em>He seized the dragon, the original serpent, who is the Devil and Satan.</em>"
+    ],
+    D: [
+      "The serpent, used by Satan in Eden, deceived Eve (Genesis 3:1). Ancient Mesopotamian snake myths, like Ningishzida icons, contrast with Revelation 12:9’s identification of Satan. Unlike pagan serpent worship, seen in Egyptian artifacts, Genesis 3:15 foretells Satan’s defeat. John 8:44 exposes his lies, and 2 Corinthians 11:3 warns of deception. The copper serpent (Numbers 21:9) symbolized healing, later abused in idolatry (2 Kings 18:4). The lesson is to resist Satan’s lies, reject false worship, and trust Jehovah’s truth. This encourages us to oppose deception, remain loyal, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring victory through Christ (Revelation 20:2)."
+    ]
+  },
+  {
+    T: "Silas",
+    S: [
+      "Acts 15:22 - <em>The apostles... chose Judas called Barsabbas and Silas.</em>",
+      "Acts 16:25 - <em>About midnight Paul and Silas were praying and praising God.</em>",
+      "Acts 16:40 - <em>They went to the house of Lydia... and encouraged the brothers.</em>",
+      "Acts 17:4 - <em>Some of them became believers and associated with Paul and Silas.</em>",
+      "2 Corinthians 1:19 - <em>The Son of God, Jesus Christ... was preached among you through us, that is, through me and Silvanus.</em>",
+      "1 Thessalonians 1:1 - <em>Paul, Silvanus, and Timothy to the congregation.</em>",
+      "Acts 15:32 - <em>Judas and Silas... encouraged and strengthened the brothers.</em>"
+    ],
+    D: [
+      "Silas, a 1st-century Christian, served with Paul, strengthening congregations (Acts 15:22). Macedonian artifacts confirm his missionary context. His prayers in prison (Acts 16:25) and preaching (Acts 17:4) earned Jehovah’s approval, unlike Greco-Roman cults in inscriptions. Silas needed no forgiveness, showing loyalty (2 Corinthians 1:19). His encouragement of believers (Acts 15:32) contrasted with pagan oratory. Silas’ life teaches us to preach boldly, endure persecution, and reject false worship. His example, with Paul (1 Thessalonians 1:1), encourages us to support brothers, proclaim truth, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, strengthening faith through service."
+    ]
+  },
+  {
+    T: "Sovereignty",
+    S: [
+      "Psalm 103:19 - <em>Jehovah has firmly established his throne in the heavens; his kingship rules over everything.</em>",
+      "Daniel 4:35 - <em>All the inhabitants of the earth are regarded as nothing... he does according to his own will.</em>",
+      "1 Chronicles 29:11 - <em>Yours, O Jehovah, is the greatness... for everything in the heavens and on the earth is yours.</em>",
+      "Revelation 4:11 - <em>You are worthy, Jehovah our God, to receive the glory.</em>",
+      "Isaiah 46:10 - <em>My own purpose will stand, and I will do all that I please.</em>",
+      "Romans 9:17 - <em>My name might be declared in all the earth.</em>",
+      "Psalm 47:7 - <em>God is King of all the earth.</em>"
+    ],
+    D: [
+      "Sovereignty is Jehovah’s supreme authority (Psalm 103:19). Ancient inscriptions, like Persian royal decrees, pale compared to Jehovah’s rule (Daniel 4:35). Unlike pagan gods, like Babylonian Marduk, Jehovah’s kingship is universal (1 Chronicles 29:11). Isaiah 46:10 affirms His unstoppable purpose, and Revelation 4:11 honors His glory. False worship, like Greco-Roman emperor cults, challenges His authority, but Romans 9:17 declares His name. Sovereignty requires no forgiveness, being God’s right (Psalm 47:7). The lesson is to submit to Jehovah, reject false rulers, and ensure pure worship. This truth encourages us to honor His kingship, proclaim His rule, and align with His purpose, free from pagan influences, securing loyalty to His throne."
+    ]
+  },
+  {
+    T: "Translations",
+    S: [
+      "John 17:17 - <em>Sanctify them by means of the truth; your word is truth.</em>",
+      "2 Timothy 3:16 - <em>All Scripture is inspired of God and beneficial.</em>",
+      "Psalm 119:160 - <em>The very essence of your word is truth.</em>",
+      "Isaiah 40:8 - <em>The word of our God endures forever.</em>",
+      "Revelation 22:18 - <em>If anyone makes an addition to them, God will add to him the plagues.</em>",
+      "Nehemiah 8:8 - <em>They continued reading from the book... clearly, giving the meaning.</em>",
+      "Proverbs 30:5 - <em>Every saying of God is refined.</em>"
+    ],
+    D: [
+      "Bible translations, like the New World Translation, aim to convey God’s word accurately (John 17:17). Dead Sea Scrolls and Septuagint studies confirm the need for precision, as seen in Nehemiah 8:8. Unlike pagan-influenced texts, like the Latin Vulgate’s errors, faithful translations preserve truth (2 Timothy 3:16). Revelation 22:18 warns against altering scripture, and Isaiah 40:8 ensures its endurance. False translations, like those with Trinitarian bias, distort God’s word, but Proverbs 30:5 affirms its purity. The lesson is to use accurate translations, reject corrupted versions, and ensure pure worship. This truth encourages us to study scripture diligently, proclaim truth, and align with Jehovah’s purpose, free from pagan influences, securing spiritual clarity (Psalm 119:160)."
+    ]
+  },
+  {
+    T: "1914",
+    S: [
+      "Daniel 4:17 - <em>The Most High is Ruler in the kingdom of mankind.</em>",
+      "Revelation 12:12 - <em>Woe for the earth... because the Devil has come down to you.</em>",
+      "Luke 21:24 - <em>Jerusalem will be trampled on by the nations until the appointed times of the nations are fulfilled.</em>",
+      "Matthew 24:7 - <em>Nation will rise against nation, and kingdom against kingdom.</em>",
+      "Revelation 11:15 - <em>The kingdom of the world has become the Kingdom of our Lord.</em>",
+      "Psalm 110:2 - <em>Jehovah will send out the scepter of your strength from Zion.</em>",
+      "Ezekiel 21:27 - <em>It will not belong to anyone until the one who has the legal right comes.</em>"
+    ],
+    D: [
+      "1914 marks the start of Jesus’ heavenly rule, fulfilling Daniel 4:17. Historical records, like World War I’s outbreak, align with Matthew 24:7’s signs. Unlike pagan end-time myths, like Mayan calendars, 1914 began the last days (Revelation 12:12), ending Gentile times (Luke 21:24). Jehovah’s kingdom, established in heaven (Revelation 11:15), contrasts with false worship’s earthly focus, like Babylonian omens. 1914 requires no forgiveness, being Jehovah’s timing (Psalm 110:2). The lesson is to recognize Jesus’ rule, reject false prophecies, and ensure pure worship. This truth encourages us to proclaim the kingdom, stay vigilant, and align with Jehovah’s purpose, free from pagan influences, awaiting His full victory (Ezekiel 21:27)."
+    ]
+  },
+  {
     T: "Aaron",
     S: [
       "Exodus 4:14 - <em>Jehovah said to Moses: There is your brother Aaron the Levite.</em>",
