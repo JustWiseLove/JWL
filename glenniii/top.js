@@ -1741,7 +1741,7 @@ const top = [
     ]
   },
   {
-    T: "Christmas",
+    T: "Christmas (Expanded)",
     S: [
       "Jeremiah 10:2 - <em>Do not learn the way of the nations.</em>",
       "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
