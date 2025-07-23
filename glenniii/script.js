@@ -2,14 +2,6 @@
 import top from './top.js';
 
 // Make functions globally available for onclick
-window.toggleTheme = function () {
-  const stylesheet = document.getElementById('theme-stylesheet');
-  const currentTheme = stylesheet.getAttribute('href');
-  const newTheme = currentTheme === 'black.css' ? 'white.css' : 'black.css';
-  stylesheet.setAttribute('href', newTheme);
-  localStorage.setItem('theme', newTheme);
-};
-
 window.searchItems = function () {
   const searchTerm = document.getElementById('search-bar').value.toLowerCase();
   const results = document.getElementById('results');
@@ -27,7 +19,7 @@ window.searchItems = function () {
   // Highlight filter buttons and collect matches
   const ranges = [
     { id: 'A-H', start: 'A', end: 'H' },
-    { id: 'I-Q', start: 'I', end: 'Q' },
+    { id: 'I-P', start: 'I', end: 'P' },
     { id: 'Q-Z', start: 'Q', end: 'Z' }
   ];
 
@@ -35,11 +27,9 @@ window.searchItems = function () {
   const contentMatches = [];
 
   if (searchTerm) {
-    // Disable filter and daily topic buttons during search
     document.querySelectorAll('.filter-buttons button').forEach(btn => btn.disabled = true);
     document.getElementById('daily-topic-btn').disabled = true;
 
-    // Collect matches and highlight buttons
     ranges.forEach(range => {
       const hasMatch = top.some(item => {
         const firstLetter = item.T[0].toUpperCase();
@@ -52,10 +42,8 @@ window.searchItems = function () {
       }
     });
 
-    // Sort alphabetically
     const sortedItems = [...top].sort((a, b) => a.T.localeCompare(b.T));
 
-    // Separate title and content matches
     sortedItems.forEach(item => {
       if (item.T.toLowerCase().includes(searchTerm)) {
         titleMatches.push(item);
@@ -64,11 +52,10 @@ window.searchItems = function () {
       }
     });
   } else {
-    // No search term: show filtered items or all if no filter
     const filteredItems = currentFilter === 'all' ? top :
       top.filter(item =>
         currentFilter === 'A-H' && item.T[0].toUpperCase() >= 'A' && item.T[0].toUpperCase() <= 'H' ||
-        currentFilter === 'I-Q' && item.T[0].toUpperCase() >= 'I' && item.T[0].toUpperCase() <= 'Q' ||
+        currentFilter === 'I-P' && item.T[0].toUpperCase() >= 'I' && item.T[0].toUpperCase() <= 'P' ||
         currentFilter === 'Q-Z' && item.T[0].toUpperCase() >= 'Q' && item.T[0].toUpperCase() <= 'Z'
       );
     filteredItems.sort((a, b) => a.T.localeCompare(b.T)).forEach(item => {
@@ -76,7 +63,6 @@ window.searchItems = function () {
     });
   }
 
-  // Combine all matches into a single list
   const filteredItems = [...titleMatches, ...contentMatches];
 
   if (filteredItems.length > 0) {
@@ -93,13 +79,13 @@ window.searchItems = function () {
       results.appendChild(div);
     });
   } else if (searchTerm) {
-    results.innerHTML = '<p style="text-align: center; color: #FFFFFF;">No matches found.</p>';
+    results.innerHTML = '<p class="no-results">No matches found.</p>';
   }
 };
 
 window.filterItems = function (filter) {
   const searchTerm = document.getElementById('search-bar').value;
-  if (searchTerm) return; // Ignore filter if search term exists
+  if (searchTerm) return;
   currentFilter = filter;
   document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
   const button = document.querySelector(`button[onclick="filterItems('${filter}')"]`);
@@ -110,7 +96,7 @@ window.filterItems = function (filter) {
 
 window.showDailyTopic = function () {
   const searchTerm = document.getElementById('search-bar').value;
-  if (searchTerm) return; // Ignore if search term exists
+  if (searchTerm) return;
   currentFilter = 'daily';
   document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
   document.getElementById('daily-topic-btn').classList.add('active');
@@ -139,13 +125,11 @@ window.toggleDropdown = function (header) {
   const content = header.nextElementSibling;
   const isActive = content.classList.contains('active');
 
-  // Close all other dropdowns and remove active class
   document.querySelectorAll('.result-content.active').forEach(activeContent => {
     activeContent.classList.remove('active');
     activeContent.parentElement.classList.remove('active');
   });
 
-  // Toggle the clicked dropdown
   if (!isActive) {
     content.classList.add('active');
     parent.classList.add('active');
@@ -161,7 +145,5 @@ window.highlightText = function (text, searchTerm) {
 // Initialize
 let currentFilter = 'daily';
 document.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('theme') || 'black.css';
-  document.getElementById('theme-stylesheet').setAttribute('href', savedTheme);
   showDailyTopic();
 });
