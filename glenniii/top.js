@@ -1,6 +1,531 @@
 // top.js
 const top = [
   {
+    T: "Abigail",
+    S: [
+      "1 Samuel 25:3 - <em>Abigail was a woman of good insight and beautiful.</em>",
+      "1 Samuel 25:32 - <em>David said to Abigail: Blessed be Jehovah... who sent you this day.</em>",
+      "1 Samuel 25:39 - <em>David sent word to Abigail to take her as his wife.</em>",
+      "1 Samuel 25:18 - <em>Abigail hurried and took two hundred loaves of bread.</em>",
+      "2 Samuel 2:2 - <em>David went up there, along with his two wives, Ahinoam and Abigail.</em>",
+      "Proverbs 31:10 - <em>Who can find a capable wife? Her value is far more than corals.</em>",
+      "1 Peter 3:5 - <em>The holy women who hoped in God adorned themselves, being submissive.</em>"
+    ],
+    D: [
+      "Abigail, a wise woman around 1000 BCE, saved her household by appeasing David (1 Samuel 25:18). Israelite household artifacts confirm her era’s context. Her insight and humility (1 Samuel 25:3) earned Jehovah’s approval, unlike Canaanite pride seen in goddess figurines. Her quick action (1 Samuel 25:32) prevented bloodshed, showing faith. Unlike pagan rituals, Abigail’s submission to God’s will (1 Peter 3:5) reflected pure worship. She needed no forgiveness, demonstrating loyalty. Her marriage to David (1 Samuel 25:39) blessed her further. Abigail’s life teaches us to act wisely, trust Jehovah, and reject false worship. Her example encourages us to show humility, resolve conflicts peacefully, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, as Proverbs 31:10 praises."
+    ]
+  },
+  {
+    T: "Apollos",
+    S: [
+      "Acts 18:24 - <em>Apollos, a Jew... an eloquent man, arrived in Ephesus.</em>",
+      "Acts 18:26 - <em>Priscilla and Aquila... explained the way of God more accurately.</em>",
+      "1 Corinthians 3:6 - <em>I planted, Apollos watered, but God kept making it grow.</em>",
+      "Titus 3:13 - <em>Do your utmost to send Zenas... and Apollos on their way.</em>",
+      "Acts 19:1 - <em>Paul found some disciples... while Apollos was in Corinth.</em>",
+      "1 Corinthians 16:12 - <em>Apollos... was not willing to come now.</em>",
+      "Hebrews 13:7 - <em>Remember those who are taking the lead... whose faith you should imitate.</em>"
+    ],
+    D: [
+      "Apollos, a 1st-century Jewish preacher, was eloquent and zealous (Acts 18:24). Ephesus’ archaeological ruins confirm his ministry’s setting. His humility in accepting correction from Priscilla and Aquila (Acts 18:26) earned Jehovah’s approval, unlike Greco-Roman orators’ pride in inscriptions. Apollos’ teaching strengthened believers (1 Corinthians 3:6), contrasting with pagan philosophy. He needed no forgiveness, showing openness to truth. His travels (Titus 3:13) spread the good news. Apollos’ life teaches us to accept correction, preach zealously, and reject false worship. His example encourages us to study God’s word, support the ministry, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, as Hebrews 13:7 urges imitating faithful leaders."
+    ]
+  },
+  {
+    T: "Asa",
+    S: [
+      "1 Kings 15:11 - <em>Asa did what was right in the eyes of Jehovah, like David.</em>",
+      "2 Chronicles 14:2 - <em>Asa did what was good and right in the eyes of Jehovah.</em>",
+      "2 Chronicles 15:17 - <em>Asa’s heart was complete with Jehovah all his days.</em>",
+      "1 Kings 15:14 - <em>The high places he did not remove.</em>",
+      "2 Chronicles 16:12 - <em>Asa became diseased in his feet... yet he did not seek Jehovah.</em>",
+      "2 Chronicles 14:11 - <em>Asa called to Jehovah... there is no one besides you to help.</em>",
+      "Psalm 26:11 - <em>I will walk in my integrity; redeem me and show me favor.</em>"
+    ],
+    D: [
+      "Asa, king of Judah around 911 BCE, removed idols, earning Jehovah’s approval (1 Kings 15:11). Lachish ostraca confirm Judah’s idolatrous context. His prayer for victory (2 Chronicles 14:11) showed faith, unlike Canaanite war gods in Ugaritic texts. Asa’s failure to remove high places (1 Kings 15:14) and later reliance on physicians (2 Chronicles 16:12) required repentance. His reforms contrasted with pagan worship, like Baal altars. Asa’s life teaches us to trust Jehovah, remove idolatry, and seek forgiveness. His example encourages us to pursue integrity (Psalm 26:11), correct errors, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan practices, ensuring His favor."
+    ]
+  },
+  {
+    T: "Balaam",
+    S: [
+      "Numbers 22:18 - <em>Balaam answered... I cannot go against the order of Jehovah.</em>",
+      "Numbers 23:19 - <em>God is not a man that he should lie.</em>",
+      "Numbers 24:13 - <em>I could not do anything... contrary to the order of Jehovah.</em>",
+      "2 Peter 2:15 - <em>Following the path of Balaam... who loved the reward of wrongdoing.</em>",
+      "Jude 11 - <em>They have rushed into the error of Balaam for reward.</em>",
+      "Revelation 2:14 - <em>You have some who hold to the teaching of Balaam.</em>",
+      "Deuteronomy 23:4 - <em>Balaam... they hired against you to curse you.</em>"
+    ],
+    D: [
+      "Balaam, a non-Israelite prophet around 1473 BCE, initially obeyed Jehovah (Numbers 22:18). Moabite artifacts confirm his era’s context. His greed led to enticing Israel into idolatry (2 Peter 2:15), contrasting with his earlier faithfulness (Numbers 24:13). Unlike Canaanite oracles, seen in Ugaritic texts, Balaam’s true prophecies glorified Jehovah (Numbers 23:19). His sin required repentance, but Revelation 2:14 suggests unfaithfulness. Balaam’s life warns us to reject greed, avoid false worship, and obey Jehovah. His example teaches us to remain loyal, resist temptation, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring we uphold truth (Deuteronomy 23:4)."
+    ]
+  },
+  {
+    T: "Boaz",
+    S: [
+      "Ruth 2:1 - <em>Boaz, a prominent man of Bethlehem.</em>",
+      "Ruth 2:11 - <em>All that you have done for your mother-in-law... has been fully reported to me.</em>",
+      "Ruth 4:9 - <em>Boaz said... I have bought all that belonged to Elimelech.</em>",
+      "Ruth 3:10 - <em>Blessed be you of Jehovah, my daughter.</em>",
+      "Matthew 1:5 - <em>Boaz became the father of Obed by Ruth.</em>",
+      "Ruth 4:13 - <em>Boaz took Ruth, and she became his wife.</em>",
+      "Psalm 112:5 - <em>It will turn out well for the man who is gracious and lends.</em>"
+    ],
+    D: [
+      "Boaz, a Bethlehemite around 1100 BCE, showed kindness to Ruth (Ruth 2:1). Judah’s archaeological ruins confirm his era. His generosity and adherence to Levirate law (Ruth 4:9) earned Jehovah’s approval, unlike Canaanite selfishness in reliefs. Boaz’s blessing of Ruth (Ruth 3:10) and role in Jesus’ lineage (Matthew 1:5) reflect pure worship. He needed no forgiveness, showing integrity. His actions contrasted with pagan neglect of widows. Boaz’s life teaches us to show kindness, honor Jehovah’s laws, and reject false worship. His example encourages us to care for others, act justly (Psalm 112:5), and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Compassion",
+    S: [
+      "Psalm 86:15 - <em>You, O Jehovah, are a God merciful and compassionate.</em>",
+      "Luke 7:13 - <em>When the Lord caught sight of her, he was moved with pity.</em>",
+      "Colossians 3:12 - <em>Clothe yourselves with the tender affections of compassion.</em>",
+      "James 5:11 - <em>Jehovah is very tender in affection and merciful.</em>",
+      "Matthew 9:36 - <em>He felt pity for them, because they were skinned and thrown about.</em>",
+      "Psalm 103:13 - <em>As a father shows mercy to his sons, Jehovah shows mercy.</em>",
+      "1 Peter 3:8 - <em>All of you be like-minded, showing fellow feeling.</em>"
+    ],
+    D: [
+      "Compassion is Jehovah’s tender mercy, reflected in His people (Psalm 86:15). Ancient Hebrew inscriptions, like those at Arad, seek divine pity, aligning with Psalm 103:13. Unlike pagan indifference, seen in Babylonian reliefs, Jesus showed compassion (Matthew 9:36), urging imitation (Colossians 3:12). James 5:11 highlights Jehovah’s mercy, and Luke 7:13 shows Jesus’ pity. False worship, like Canaanite rituals, lacks compassion, but 1 Peter 3:8 calls for fellow feeling. Compassion needs no forgiveness when genuine. The lesson is to show mercy, reject cold rituals, and ensure pure worship. This truth encourages us to care for others, reflect Jehovah’s love, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Dinah",
+    S: [
+      "Genesis 34:1 - <em>Dinah, the daughter of Leah... went out to see the daughters of the land.</em>",
+      "Genesis 34:5 - <em>Jacob heard that he had defiled his daughter Dinah.</em>",
+      "Genesis 30:21 - <em>Afterward she gave birth to a daughter and named her Dinah.</em>",
+      "Genesis 34:26 - <em>They killed Hamor and his son Shechem... and took Dinah.</em>",
+      "Genesis 46:15 - <em>These were the sons of Leah... along with his daughter Dinah.</em>",
+      "Leviticus 19:29 - <em>Do not profane your daughter by making her a prostitute.</em>",
+      "Psalm 51:5 - <em>In sin I was brought forth, and in error my mother conceived me.</em>"
+    ],
+    D: [
+      "Dinah, Jacob’s daughter around 1850 BCE, was violated by Shechem (Genesis 34:1). Canaanite city records confirm her era’s context. Her experience, though tragic, highlights Jehovah’s justice, as her brothers avenged her (Genesis 34:26). Unlike Canaanite fertility cults, seen in Asherah figurines, Dinah’s family upheld Jehovah’s standards (Leviticus 19:29). Her story implies no personal sin, requiring no forgiveness, but reflects human imperfection (Psalm 51:5). Dinah’s life teaches us to trust Jehovah’s justice, avoid compromising situations, and reject false worship. Her example encourages us to uphold purity, seek God’s protection, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring His care in trials."
+    ]
+  },
+  {
+    T: "Endurance",
+    S: [
+      "James 1:12 - <em>Happy is the man who keeps on enduring trial.</em>",
+      "Romans 5:3 - <em>We also boast in our tribulations, knowing that tribulation produces endurance.</em>",
+      "Hebrews 12:1 - <em>Let us run with endurance the race set before us.</em>",
+      "2 Timothy 2:3 - <em>As a fine soldier of Christ Jesus, take your part in suffering evil.</em>",
+      "Revelation 14:12 - <em>Here is where it calls for endurance on the part of the holy ones.</em>",
+      "Psalm 31:24 - <em>Be courageous, and may your heart be strong, all you who are hoping in Jehovah.</em>",
+      "Colossians 1:11 - <em>Being strengthened with all power... for all endurance.</em>"
+    ],
+    D: [
+      "Endurance is steadfastly facing trials for Jehovah’s sake (James 1:12). Ancient Hebrew inscriptions, like those at Lachish, praise perseverance, aligning with Psalm 31:24. Unlike pagan fatalism, seen in Babylonian omens, biblical endurance relies on Jehovah (Romans 5:3). Hebrews 12:1 likens it to a race, and Revelation 14:12 calls for it in the last days. False worship, like Greco-Roman stoicism, lacks divine hope, but 2 Timothy 2:3 strengthens believers. Endurance needs no forgiveness when faithful (Colossians 1:11). The lesson is to persevere, reject false hopes, and ensure pure worship. This truth encourages us to remain steadfast, trust Jehovah’s strength, and align with His purpose, free from pagan influences, securing His approval."
+    ]
+  },
+  {
+    T: "Gehazi",
+    S: [
+      "2 Kings 4:12 - <em>Elisha said to Gehazi his attendant: Call this Shunammite.</em>",
+      "2 Kings 5:20 - <em>Gehazi, the attendant of Elisha... said: I will run after Naaman.</em>",
+      "2 Kings 5:27 - <em>The leprosy of Naaman will stick to you and your descendants.</em>",
+      "2 Kings 8:4 - <em>The king was speaking to Gehazi... about all the great things Elisha had done.</em>",
+      "2 Kings 4:31 - <em>Gehazi went ahead of them and put the staff upon the boy’s face.</em>",
+      "Proverbs 15:27 - <em>The one making unjust profit brings trouble on his own household.</em>",
+      "1 Timothy 6:10 - <em>The love of money is a root of all sorts of injurious things.</em>"
+    ],
+    D: [
+      "Gehazi, Elisha’s attendant around 900 BCE, served faithfully but fell to greed (2 Kings 4:12). Syrian archaeological context confirms his era. His acceptance of Naaman’s gifts (2 Kings 5:20) led to leprosy as punishment (2 Kings 5:27), unlike his earlier service (2 Kings 8:4). Unlike Syrian idol worship, seen in Baal altars, Gehazi’s initial faith was pure. His sin required repentance, showing the danger of greed (1 Timothy 6:10). Gehazi’s life warns us to avoid materialism, seek forgiveness, and reject false worship. His example teaches us to serve humbly, trust Jehovah’s provision (Proverbs 15:27), and maintain pure worship, aligning with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Gratitude",
+    S: [
+      "1 Thessalonians 5:18 - <em>In connection with everything give thanks.</em>",
+      "Psalm 107:1 - <em>Give thanks to Jehovah, for he is good.</em>",
+      "Colossians 3:15 - <em>Let the peace of the Christ rule in your hearts... and be thankful.</em>",
+      "Psalm 100:4 - <em>Enter his gates with thanksgiving.</em>",
+      "Ephesians 5:20 - <em>Giving thanks always for everything to our God and Father.</em>",
+      "Luke 17:16 - <em>He fell upon his face at Jesus’ feet, thanking him.</em>",
+      "Hebrews 13:15 - <em>Let us always offer to God a sacrifice of praise.</em>"
+    ],
+    D: [
+      "Gratitude is heartfelt thanks to Jehovah for His blessings (Psalm 107:1). Ancient Hebrew inscriptions, like those at Arad, express thanks, aligning with Psalm 100:4. Unlike pagan rituals, like Babylonian offerings, biblical gratitude reflects love (1 Thessalonians 5:18). Ephesians 5:20 urges constant thanks, and Luke 17:16 shows Jesus valued it. False worship, like Greco-Roman sacrifices, lacks sincerity, but Hebrews 13:15 calls for praise. Gratitude needs no forgiveness when genuine (Colossians 3:15). The lesson is to thank Jehovah, reject insincere rituals, and ensure pure worship. This truth encourages us to express gratitude daily, reflect God’s love, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Habakkuk",
+    S: [
+      "Habakkuk 1:1 - <em>The pronouncement that Habakkuk the prophet received in a vision.</em>",
+      "Habakkuk 2:4 - <em>The righteous one will live by his faithfulness.</em>",
+      "Habakkuk 3:18 - <em>I will exult in Jehovah; I will be joyful in the God of my salvation.</em>",
+      "Habakkuk 2:20 - <em>Jehovah is in his holy temple. Be silent before him.</em>",
+      "Romans 1:17 - <em>The righteous one will live by faith.</em>",
+      "Habakkuk 3:2 - <em>O Jehovah, I have heard the report about you.</em>",
+      "Psalm 46:10 - <em>Be still and know that I am God.</em>"
+    ],
+    D: [
+      "Habakkuk, a prophet around 607 BCE, questioned Jehovah but trusted His justice (Habakkuk 1:1). Babylonian chronicles confirm Judah’s context. His faith (Habakkuk 2:4), quoted in Romans 1:17, earned Jehovah’s approval, unlike Babylonian star worship in tablets. Habakkuk’s prayer (Habakkuk 3:18) reflected pure worship, contrasting with pagan oracles. He needed no forgiveness, showing trust (Habakkuk 2:20). His joy in Jehovah (Psalm 46:10) teaches us to trust God’s timing, reject false worship, and remain faithful. Habakkuk’s example encourages us to pray confidently, rely on Jehovah’s salvation, and maintain pure worship, aligning with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Haggai",
+    S: [
+      "Haggai 1:1 - <em>The word of Jehovah came by the hand of Haggai the prophet.</em>",
+      "Haggai 1:12 - <em>Zerubbabel... and the people began to fear Jehovah.</em>",
+      "Haggai 2:4 - <em>Be strong... for I am with you, declares Jehovah.</em>",
+      "Ezra 5:1 - <em>Haggai the prophet... prophesied to the Jews.</em>",
+      "Haggai 2:7 - <em>I will shake all the nations, and the precious things will come in.</em>",
+      "Haggai 1:14 - <em>Jehovah stirred up the spirit of Zerubbabel.</em>",
+      "Zechariah 8:9 - <em>Let your hands be strong, you who are hearing these words.</em>"
+    ],
+    D: [
+      "Haggai, a prophet around 520 BCE, urged temple rebuilding (Haggai 1:1). Persian-era artifacts confirm his post-exilic context. His messages (Haggai 2:4) inspired obedience, earning Jehovah’s approval (Ezra 5:1). Unlike Babylonian temple cults, seen in tablets, Haggai’s worship was pure, foretelling blessings (Haggai 2:7). He needed no forgiveness, showing loyalty. His call to action (Haggai 1:14) contrasted with pagan apathy. Haggai’s life teaches us to prioritize Jehovah’s work, trust His presence, and reject false worship. His example encourages us to act boldly, support God’s purpose (Zechariah 8:9), and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Huldah",
+    S: [
+      "2 Kings 22:14 - <em>Hilkiah... went to Huldah the prophetess.</em>",
+      "2 Chronicles 34:22 - <em>Huldah... was living in Jerusalem in the Second Quarter.</em>",
+      "2 Kings 22:15 - <em>She said to them: This is what Jehovah the God of Israel says.</em>",
+      "2 Chronicles 34:23 - <em>Thus says Jehovah: I will bring calamity on this place.</em>",
+      "2 Kings 22:20 - <em>You will be gathered to your grave in peace.</em>",
+      "Deuteronomy 18:18 - <em>I will raise up a prophet... and I will put my words in his mouth.</em>",
+      "Psalm 119:89 - <em>Your word, O Jehovah, endures forever.</em>"
+    ],
+    D: [
+      "Huldah, a prophetess around 629 BCE, confirmed Jehovah’s judgment during Josiah’s reform (2 Kings 22:14). Jerusalem’s archaeological remains confirm her setting. Her prophecy (2 Kings 22:15) guided Judah’s return to pure worship, earning Jehovah’s approval, unlike Canaanite oracles in Ugaritic texts. Huldah needed no forgiveness, faithfully delivering God’s word (Deuteronomy 18:18). Her assurance to Josiah (2 Kings 22:20) contrasted with pagan fatalism. Huldah’s life teaches us to speak truth boldly, trust Jehovah’s word, and reject false worship. Her example encourages us to uphold scripture (Psalm 119:89), support reform, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Integrity",
+    S: [
+      "Job 2:3 - <em>Jehovah said to Satan: Have you taken note of my servant Job... holding fast to his integrity?</em>",
+      "Psalm 26:1 - <em>Judge me, O Jehovah, for I have walked in my integrity.</em>",
+      "Proverbs 11:3 - <em>The integrity of the upright will guide them.</em>",
+      "1 Chronicles 29:17 - <em>You take pleasure in uprightness.</em>",
+      "Psalm 101:2 - <em>I will walk with integrity of heart within my house.</em>",
+      "Titus 2:7 - <em>In all things show yourself an example of fine works.</em>",
+      "Micah 6:8 - <em>To do what is right and to love loyalty.</em>"
+    ],
+    D: [
+      "Integrity is unwavering loyalty to Jehovah’s standards (Job 2:3). Ancient Hebrew inscriptions, like those at Samaria, praise uprightness, aligning with Psalm 26:1. Unlike pagan duplicity, seen in Babylonian tablets, integrity guides the faithful (Proverbs 11:3). 1 Chronicles 29:17 shows Jehovah’s pleasure in it, and Psalm 101:2 ties it to daily life. False worship, like Greco-Roman hypocrisy, lacks integrity, but Titus 2:7 calls for exemplary conduct. Integrity needs no forgiveness when maintained (Micah 6:8). The lesson is to live uprightly, reject false standards, and ensure pure worship. This truth encourages us to remain steadfast, reflect Jehovah’s qualities, and align with His purpose, free from pagan influences, securing His approval."
+    ]
+  },
+  {
+    T: "Ishmael",
+    S: [
+      "Genesis 16:11 - <em>Jehovah’s angel said to her: You are pregnant, and you will give birth to a son... Ishmael.</em>",
+      "Genesis 17:20 - <em>As for Ishmael, I have heard you... I will bless him.</em>",
+      "Genesis 21:13 - <em>The son of the slave girl I will make into a nation.</em>",
+      "Genesis 25:17 - <em>Ishmael lived 137 years, and then he died.</em>",
+      "Genesis 21:20 - <em>God was with the boy, and he grew.</em>",
+      "Galatians 4:25 - <em>Hagar is... corresponding to the Jerusalem now existing.</em>",
+      "Psalm 83:6 - <em>The tents of Edom and the Ishmaelites.</em>"
+    ],
+    D: [
+      "Ishmael, Abraham’s son by Hagar around 1918 BCE, was blessed by Jehovah (Genesis 17:20). Canaanite tribal records confirm his nomadic context. God’s care (Genesis 21:20) ensured his survival, unlike Egyptian child sacrifices in artifacts. Ishmael needed no forgiveness, as his life fulfilled Jehovah’s promise (Genesis 21:13). His descendants, linked to Arab tribes (Psalm 83:6), contrasted with pagan idolatry. Ishmael’s life teaches us to trust Jehovah’s promises, endure trials, and reject false worship. His example encourages us to rely on God’s care, live faithfully, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, as Galatians 4:25 reflects his symbolic role."
+    ]
+  },
+  {
+    T: "Jehoiada",
+    S: [
+      "2 Kings 11:4 - <em>Jehoiada sent for the chiefs... and had them come to him.</em>",
+      "2 Chronicles 23:11 - <em>Jehoiada and his sons brought out the king’s son... and made him king.</em>",
+      "2 Kings 12:2 - <em>Joash did what was right... all the days that Jehoiada instructed him.</em>",
+      "2 Chronicles 24:16 - <em>They buried him in the City of David with the kings.</em>",
+      "2 Kings 11:17 - <em>Jehoiada concluded a covenant between Jehovah and the king.</em>",
+      "2 Chronicles 22:11 - <em>Jehosheba... hid him from Athaliah.</em>",
+      "Psalm 89:14 - <em>Righteousness and justice are the foundation of your throne.</em>"
+    ],
+    D: [
+      "Jehoiada, a priest around 877 BCE, restored true worship by crowning Joash (2 Kings 11:4). Judah’s archaeological records confirm his era. His covenant (2 Kings 11:17) and guidance (2 Kings 12:2) earned Jehovah’s approval, unlike Baal worship in Canaanite altars. Jehoiada needed no forgiveness, upholding righteousness (Psalm 89:14). His burial with kings (2 Chronicles 24:16) honored his loyalty. Jehoiada’s life teaches us to promote true worship, act courageously, and reject false gods. His example encourages us to guide others, uphold Jehovah’s standards, and maintain pure worship, aligning with His purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Jehu",
+    S: [
+      "2 Kings 9:6 - <em>He anointed him and said: Thus says Jehovah: I anoint you king.</em>",
+      "2 Kings 10:11 - <em>Jehu struck down all who remained of the house of Ahab.</em>",
+      "2 Kings 10:30 - <em>Jehovah said to Jehu: Because you have acted well... your sons will sit on the throne.</em>",
+      "2 Kings 10:31 - <em>Jehu did not walk in the law of Jehovah... with all his heart.</em>",
+      "Hosea 1:4 - <em>I will hold an accounting against the house of Jehu.</em>",
+      "2 Chronicles 22:7 - <em>From God came the downfall of Ahaziah.</em>",
+      "1 Kings 19:16 - <em>Jehu the son of Nimshi you should anoint as king.</em>"
+    ],
+    D: [
+      "Jehu, king of Israel around 842 BCE, eradicated Baal worship (2 Kings 10:11). Assyrian records confirm his era’s idolatry. His zeal (2 Kings 9:6) earned Jehovah’s approval (2 Kings 10:30), but incomplete devotion (2 Kings 10:31) led to judgment (Hosea 1:4). Unlike Canaanite rituals, seen in Ugaritic texts, Jehu’s initial actions honored Jehovah (1 Kings 19:16). His life teaches us to reject idolatry, pursue zeal, and seek forgiveness for halfheartedness. Jehu’s example encourages us to act decisively against false worship, remain fully devoted, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences (2 Chronicles 22:7)."
+    ]
+  },
+  {
+    T: "Joab",
+    S: [
+      "2 Samuel 2:18 - <em>Joab... was one of the three sons of Zeruiah.</em>",
+      "2 Samuel 11:1 - <em>Joab... and all Israel were camped against Rabbah.</em>",
+      "1 Kings 2:5 - <em>You know what Joab... did to me.</em>",
+      "2 Samuel 18:14 - <em>Joab... struck Absalom... and he died.</em>",
+      "2 Samuel 20:10 - <em>Joab struck Amasa in the abdomen.</em>",
+      "1 Chronicles 11:6 - <em>Joab... became head, so he became chief.</em>",
+      "Proverbs 28:13 - <em>He that is covering over his transgressions will not succeed.</em>"
+    ],
+    D: [
+      "Joab, David’s commander around 1000 BCE, was loyal but violent (2 Samuel 2:18). Philistine-era artifacts confirm his military context. His victories (1 Chronicles 11:6) served Jehovah’s purpose, but murders (2 Samuel 18:14, 20:10) defied God’s law, requiring repentance (1 Kings 2:5). Unlike Canaanite war cults, Joab’s early loyalty was pure, but his sins, unrepented, led to judgment (Proverbs 28:13). Joab’s life teaches us to serve faithfully, avoid vengeance, and reject false worship. His example warns us to seek forgiveness, act justly, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Joel",
+    S: [
+      "Joel 1:1 - <em>The word of Jehovah that came to Joel the son of Pethuel.</em>",
+      "Joel 2:28 - <em>I will pour out my spirit on every sort of flesh.</em>",
+      "Acts 2:16 - <em>This is what was said through the prophet Joel.</em>",
+      "Joel 2:13 - <em>Rip apart your hearts and not your garments, and return to Jehovah.</em>",
+      "Joel 3:14 - <em>Multitudes, multitudes in the valley of decision!</em>",
+      "Joel 2:1 - <em>Blow a horn in Zion; shout a war cry.</em>",
+      "Psalm 86:15 - <em>You, O Jehovah, are a God merciful and compassionate.</em>"
+    ],
+    D: [
+      "Joel, a prophet around 820 BCE, foretold Jehovah’s judgment and spirit (Joel 1:1). Judah’s archaeological context confirms his era. His prophecy of Pentecost (Joel 2:28), fulfilled in Acts 2:16, earned Jehovah’s approval, unlike Canaanite oracles in Ugaritic texts. Joel’s call for repentance (Joel 2:13) reflected pure worship, contrasting with pagan rituals. He needed no forgiveness, proclaiming truth (Joel 3:14). Joel’s life teaches us to warn others, seek Jehovah’s mercy (Psalm 86:15), and reject false worship. His example encourages us to proclaim God’s word, trust His spirit, and maintain pure worship, aligning with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Jonah (Prophet)",
+    S: [
+      "Jonah 1:1 - <em>The word of Jehovah came to Jonah the son of Amittai.</em>",
+      "Jonah 3:3 - <em>Jonah got up and went to Nineveh in harmony with the word of Jehovah.</em>",
+      "Jonah 4:11 - <em>Should I not feel sorry for Nineveh...?</em>",
+      "2 Kings 14:25 - <em>Jonah the son of Amittai, the prophet from Gath-hepher.</em>",
+      "Matthew 12:40 - <em>The Son of man will be in the heart of the earth three days and three nights.</em>",
+      "Jonah 2:1 - <em>Jonah prayed to Jehovah his God from the belly of the fish.</em>",
+      "Psalm 139:7 - <em>Where can I go from your spirit?</em>"
+    ],
+    D: [
+      "Jonah, a prophet around 790 BCE, preached to Nineveh after initial rebellion (Jonah 1:1). Assyrian records confirm Nineveh’s context. His repentance (Jonah 2:1) and obedience (Jonah 3:3) earned Jehovah’s mercy, unlike Assyrian idol worship in reliefs. Jonah’s experience prefigured Jesus (Matthew 12:40), contrasting with pagan sea myths. His lesson in compassion (Jonah 4:11) teaches us to obey Jehovah, seek forgiveness, and reject false worship. Jonah’s example encourages us to preach willingly, trust God’s mercy (Psalm 139:7), and maintain pure worship, aligning with His purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Kindness",
+    S: [
+      "Ephesians 4:32 - <em>Become kind to one another, tenderly compassionate.</em>",
+      "Proverbs 19:22 - <em>What is desirable in a man is his kindness.</em>",
+      "Colossians 3:12 - <em>Clothe yourselves with... kindness.</em>",
+      "Psalm 117:2 - <em>His loyal love toward us is great.</em>",
+      "Luke 6:35 - <em>Continue loving your enemies... and you will be sons of the Most High.</em>",
+      "Galatians 5:22 - <em>The fruitage of the spirit is... kindness.</em>",
+      "Micah 6:8 - <em>To love kindness and to be modest.</em>"
+    ],
+    D: [
+      "Kindness is a fruit of Jehovah’s spirit, reflecting His love (Galatians 5:22). Ancient Hebrew inscriptions, like those at Samaria, praise kindness, aligning with Psalm 117:2. Unlike pagan cruelty, seen in Assyrian reliefs, biblical kindness shows compassion (Ephesians 4:32). Proverbs 19:22 values it, and Luke 6:35 extends it to enemies. False worship, like Canaanite rituals, lacks kindness, but Micah 6:8 urges its practice. Kindness needs no forgiveness when genuine (Colossians 3:12). The lesson is to show kindness, reject harsh practices, and ensure pure worship. This truth encourages us to reflect Jehovah’s love, care for others, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Malachi",
+    S: [
+      "Malachi 1:1 - <em>A pronouncement: The word of Jehovah to Israel through Malachi.</em>",
+      "Malachi 3:1 - <em>I am sending my messenger, and he will clear up a way before me.</em>",
+      "Malachi 4:5 - <em>I will send you Elijah the prophet before the great and awe-inspiring day.</em>",
+      "Malachi 2:7 - <em>The lips of a priest should safeguard knowledge.</em>",
+      "Matthew 11:10 - <em>This is the one about whom it is written: I am sending my messenger.</em>",
+      "Malachi 3:10 - <em>Bring all the tithes... and test me.</em>",
+      "Psalm 119:89 - <em>Your word, O Jehovah, endures forever.</em>"
+    ],
+    D: [
+      "Malachi, a prophet around 450 BCE, urged faithfulness (Malachi 1:1). Persian-era records confirm his post-exilic context. His prophecy of John the Baptist (Malachi 3:1), fulfilled in Matthew 11:10, earned Jehovah’s approval, unlike Persian fire worship in artifacts. Malachi’s call to obedience (Malachi 3:10) and priesthood purity (Malachi 2:7) contrasted with pagan rituals. He needed no forgiveness, proclaiming truth (Psalm 119:89). Malachi’s life teaches us to remain faithful, prepare for Jehovah’s day, and reject false worship. His example encourages us to trust God’s promises, uphold truth, and maintain pure worship, aligning with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Meekness",
+    S: [
+      "Matthew 5:5 - <em>Happy are the mild-tempered, since they will inherit the earth.</em>",
+      "Psalm 37:11 - <em>The meek will possess the earth.</em>",
+      "Zephaniah 2:3 - <em>Seek Jehovah, all you meek ones of the earth.</em>",
+      "Galatians 5:23 - <em>The fruitage of the spirit is... mildness.</em>",
+      "1 Peter 3:4 - <em>The quiet and mild spirit, which is of great value in the eyes of God.</em>",
+      "Numbers 12:3 - <em>Moses was by far the meekest of all the men on the face of the earth.</em>",
+      "Colossians 3:12 - <em>Clothe yourselves with... mildness.</em>"
+    ],
+    D: [
+      "Meekness is gentle submission to Jehovah’s will (Matthew 5:5). Ancient Hebrew inscriptions, like those at Arad, praise humility, aligning with Psalm 37:11. Unlike pagan arrogance, seen in Babylonian boasts, meekness reflects faith (Galatians 5:23). Zephaniah 2:3 urges seeking Jehovah, and 1 Peter 3:4 values a mild spirit. False worship, like Greco-Roman hero cults, promotes pride, but Numbers 12:3 praises Moses’ meekness. Meekness needs no forgiveness when genuine (Colossians 3:12). The lesson is to be mild, reject arrogance, and ensure pure worship. This truth encourages us to submit to Jehovah, seek His guidance, and align with His purpose, free from pagan influences, securing His promise of the earth."
+    ]
+  },
+  {
+    T: "Nathanael",
+    S: [
+      "John 1:47 - <em>Jesus saw Nathanael coming... and said: Here is truly an Israelite in whom there is no deceit.</em>",
+      "John 21:2 - <em>Nathanael from Cana of Galilee... were together.</em>",
+      "John 1:49 - <em>Nathanael said to him: Rabbi, you are the Son of God.</em>",
+      "John 1:45 - <em>Philip found Nathanael and said to him: We have found the one.</em>",
+      "Psalm 32:2 - <em>Happy is the man... in whose spirit there is no deceit.</em>",
+      "John 20:29 - <em>Happy are those who have not seen and yet believe.</em>",
+      "Acts 17:11 - <em>They received the word with the greatest eagerness.</em>"
+    ],
+    D: [
+      "Nathanael, a 1st-century disciple from Cana, was praised by Jesus for sincerity (John 1:47). Galilean ruins confirm his setting. His faith in Jesus as God’s Son (John 1:49) earned Jehovah’s approval, unlike Pharisaic hypocrisy in inscriptions. Nathanael needed no forgiveness, showing honesty (Psalm 32:2). His openness to truth (John 1:45) contrasted with pagan skepticism, like Greco-Roman philosophy. Nathanael’s life teaches us to be sincere, accept truth eagerly (Acts 17:11), and reject false worship. His example encourages us to trust Jesus, study God’s word, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, securing faith’s reward (John 20:29)."
+    ]
+  },
+  {
+    T: "Obadiah",
+    S: [
+      "Obadiah 1:1 - <em>The vision of Obadiah... concerning Edom.</em>",
+      "Obadiah 1:15 - <em>The day of Jehovah is near against all the nations.</em>",
+      "Obadiah 1:21 - <em>Saviors will come to Mount Zion to judge the mountainous region of Esau.</em>",
+      "1 Kings 18:4 - <em>Obadiah... hid 100 prophets... and kept supplying them with bread.</em>",
+      "Obadiah 1:4 - <em>Though you soar high like the eagle... I will bring you down.</em>",
+      "Jeremiah 49:16 - <em>Your horror... the presumptuousness of your heart.</em>",
+      "Psalm 83:3 - <em>Against your people they devise cunning plans.</em>"
+    ],
+    D: [
+      "Obadiah, a prophet around 587 BCE, foretold Edom’s judgment (Obadiah 1:1). Edomite artifacts confirm his era’s context. His prophecy (Obadiah 1:15) and earlier protection of prophets (1 Kings 18:4) earned Jehovah’s approval, unlike Edomite idolatry in rock reliefs. Obadiah needed no forgiveness, proclaiming truth (Obadiah 1:21). His warning against pride (Obadiah 1:4) contrasted with pagan arrogance, like Babylonian boasts. Obadiah’s life teaches us to trust Jehovah’s justice, protect His servants, and reject false worship. His example encourages us to proclaim judgment, remain loyal (Psalm 83:3), and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Philemon",
+    S: [
+      "Philemon 1:1 - <em>Paul... to Philemon, our beloved fellow worker.</em>",
+      "Philemon 1:10 - <em>I am exhorting you concerning my child, Onesimus.</em>",
+      "Philemon 1:16 - <em>No longer as a slave, but as a beloved brother.</em>",
+      "Philemon 1:7 - <em>I received much joy and comfort on account of your love.</em>",
+      "Colossians 4:9 - <em>Onesimus, our faithful and beloved brother.</em>",
+      "Philemon 1:21 - <em>Trusting in your compliance, I am writing to you.</em>",
+      "Ephesians 4:32 - <em>Become kind to one another, tenderly compassionate.</em>"
+    ],
+    D: [
+      "Philemon, a 1st-century Christian, hosted a congregation (Philemon 1:1). Colossian artifacts confirm his era’s context. His love and faith (Philemon 1:7) earned Jehovah’s approval, accepting Onesimus as a brother (Philemon 1:16), unlike Roman slavery practices in inscriptions. Philemon needed no forgiveness, showing kindness (Ephesians 4:32). His forgiveness of Onesimus contrasted with pagan harshness, like Greco-Roman punishments. Philemon’s life teaches us to forgive, show love, and reject false worship. His example encourages us to treat others as brothers, support the congregation, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, as Paul’s trust shows (Philemon 1:21)."
+    ]
+  },
+  {
+    T: "Purity",
+    S: [
+      "1 Timothy 4:12 - <em>Become an example... in chasteness.</em>",
+      "Psalm 24:4 - <em>The one clean in hands and pure in heart.</em>",
+      "James 1:27 - <em>The form of worship that is clean and undefiled.</em>",
+      "1 John 3:3 - <em>Everyone who has this hope in him purifies himself.</em>",
+      "Philippians 4:8 - <em>Whatever things are chaste... continue considering these things.</em>",
+      "2 Corinthians 7:1 - <em>Let us cleanse ourselves of every defilement.</em>",
+      "Proverbs 22:11 - <em>He who loves purity of heart... the king is his friend.</em>"
+    ],
+    D: [
+      "Purity is moral and spiritual cleanness before Jehovah (Psalm 24:4). Ancient Hebrew purification rites, like those in Qumran texts, align with James 1:27. Unlike pagan rituals, like Babylonian cleansings, biblical purity requires a clean heart (1 John 3:3). 1 Timothy 4:12 urges chasteness, and Philippians 4:8 promotes pure thoughts. False worship, like Greco-Roman orgies, defiles, but 2 Corinthians 7:1 calls for cleansing. Purity needs no forgiveness when maintained (Proverbs 22:11). The lesson is to live cleanly, reject immoral practices, and ensure pure worship. This truth encourages us to purify ourselves, uphold Jehovah’s standards, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Rehoboam",
+    S: [
+      "1 Kings 12:8 - <em>Rehoboam rejected the advice of the older men.</em>",
+      "2 Chronicles 12:1 - <em>Rehoboam abandoned the law of Jehovah.</em>",
+      "1 Kings 14:22 - <em>Judah did what was bad in the eyes of Jehovah.</em>",
+      "2 Chronicles 12:14 - <em>He did what was bad, for he did not set his heart to search for Jehovah.</em>",
+      "2 Chronicles 12:5 - <em>You have abandoned me, so I have abandoned you.</em>",
+      "1 Kings 11:43 - <em>Rehoboam his son became king in his place.</em>",
+      "Proverbs 1:25 - <em>You kept neglecting all my advice.</em>"
+    ],
+    D: [
+      "Rehoboam, king of Judah around 930 BCE, rejected wise counsel, causing division (1 Kings 12:8). Judah’s archaeological records confirm his era. His idolatry (2 Chronicles 12:1) defied Jehovah, unlike David’s faithfulness, requiring repentance (2 Chronicles 12:5). His actions mirrored Canaanite worship in altars, contrasting with pure worship. Rehoboam’s partial reform after judgment (2 Chronicles 12:14) shows incomplete devotion. His life warns us to heed counsel, reject false worship, and seek forgiveness. Rehoboam’s example teaches us to obey Jehovah, avoid pride (Proverbs 1:25), and maintain pure worship, aligning with His purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Simeon",
+    S: [
+      "Luke 2:25 - <em>There was a man in Jerusalem named Simeon... righteous and devout.</em>",
+      "Luke 2:27 - <em>Moved by the spirit, he came into the temple.</em>",
+      "Luke 2:29 - <em>Now, Sovereign Lord, you are letting your slave go in peace.</em>",
+      "Luke 2:34 - <em>Simeon blessed them and said to Mary: This child is appointed.</em>",
+      "Acts 15:14 - <em>Simeon has related thoroughly how God... turned his attention to the nations.</em>",
+      "Luke 2:30 - <em>My eyes have seen your means of salvation.</em>",
+      "Psalm 119:111 - <em>Your reminders are my eternal possession.</em>"
+    ],
+    D: [
+      "Simeon, a 1st-century righteous man, awaited the Messiah (Luke 2:25). Jerusalem’s temple ruins confirm his setting. His spirit-led recognition of Jesus (Luke 2:27) earned Jehovah’s approval, unlike Pharisaic traditions in inscriptions. Simeon needed no forgiveness, showing faith (Luke 2:29). His prophecy about Jesus (Luke 2:34) contrasted with pagan oracles, like Greco-Roman sibyls. Simeon’s life teaches us to wait patiently, trust Jehovah’s promises, and reject false worship. His example encourages us to recognize God’s salvation (Psalm 119:111), proclaim truth, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, securing peace."
+    ]
+  },
+  {
+    T: "Theocracy",
+    S: [
+      "Isaiah 33:22 - <em>Jehovah is our Judge, Jehovah is our Lawgiver, Jehovah is our King.</em>",
+      "Psalm 47:8 - <em>God reigns over the nations; God sits on his holy throne.</em>",
+      "Revelation 11:15 - <em>The kingdom of the world has become the Kingdom of our Lord.</em>",
+      "Daniel 2:44 - <em>The God of heaven will set up a kingdom that will never be destroyed.</em>",
+      "1 Chronicles 29:11 - <em>Yours, O Jehovah, is the kingdom.</em>",
+      "Matthew 6:10 - <em>Let your Kingdom come.</em>",
+      "Psalm 93:1 - <em>Jehovah has become King!</em>"
+    ],
+    D: [
+      "Theocracy is Jehovah’s sovereign rule (Isaiah 33:22). Ancient Hebrew inscriptions, like those at Lachish, affirm God’s kingship, aligning with Psalm 47:8. Unlike pagan monarchies, like Babylonian dynasties in tablets, theocracy centers on Jehovah’s kingdom (Daniel 2:44). Revelation 11:15 heralds its triumph, and Matthew 6:10 prays for its coming. False worship, like Greco-Roman emperor cults, defies God’s rule, but 1 Chronicles 29:11 exalts Jehovah. Theocracy needs no forgiveness, being divine (Psalm 93:1). The lesson is to submit to Jehovah’s rule, reject false authorities, and ensure pure worship. This truth encourages us to pray for His kingdom, proclaim His sovereignty, and align with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Unity",
+    S: [
+      "Psalm 133:1 - <em>How good and how pleasant it is for brothers to dwell together in unity!</em>",
+      "Ephesians 4:3 - <em>Earnestly endeavor to observe the oneness of the spirit.</em>",
+      "John 17:21 - <em>That they may all be one, just as you, Father, are in union with me.</em>",
+      "1 Corinthians 1:10 - <em>Be completely united in the same mind and in the same line of thought.</em>",
+      "Colossians 3:14 - <em>Love, which is a perfect bond of union.</em>",
+      "Romans 15:6 - <em>With one voice you may glorify the God and Father.</em>",
+      "Philippians 2:2 - <em>Make my joy complete by being of the same mind.</em>"
+    ],
+    D: [
+      "Unity is harmonious oneness among Jehovah’s people (Psalm 133:1). Ancient Hebrew community records, like those at Qumran, emphasize unity, aligning with Ephesians 4:3. Unlike pagan factions, like Greco-Roman cults, biblical unity reflects love (Colossians 3:14). John 17:21 mirrors Jehovah’s oneness with Jesus, and 1 Corinthians 1:10 urges same-mindedness. False worship, like Babylonian sects, fosters division, but Romans 15:6 promotes unified worship. Unity needs no forgiveness when genuine (Philippians 2:2). The lesson is to pursue oneness, reject division, and ensure pure worship. This truth encourages us to strengthen brotherhood, glorify Jehovah, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Uzziah",
+    S: [
+      "2 Chronicles 26:3 - <em>Uzziah was 16 years old when he became king.</em>",
+      "2 Chronicles 26:5 - <em>He kept searching for God in the days of Zechariah.</em>",
+      "2 Chronicles 26:16 - <em>When he became strong, his heart became haughty.</em>",
+      "2 Kings 15:2 - <em>He did what was right in Jehovah’s eyes.</em>",
+      "2 Chronicles 26:21 - <em>Uzziah the king remained a leper until his death.</em>",
+      "Isaiah 6:1 - <em>In the year that King Uzziah died, I saw Jehovah.</em>",
+      "Proverbs 16:18 - <em>Pride is before a crash.</em>"
+    ],
+    D: [
+      "Uzziah, king of Judah around 829 BCE, initially sought Jehovah (2 Chronicles 26:5). Judah’s archaeological records confirm his era. His early righteousness (2 Kings 15:2) earned divine approval, but pride led to unlawful priestly acts, resulting in leprosy (2 Chronicles 26:16, 21). Unlike Canaanite rituals in altars, Uzziah’s early worship was pure. His sin required repentance, but pride brought judgment (Proverbs 16:18). Uzziah’s life teaches us to remain humble, obey Jehovah’s laws, and reject false worship. His example warns us to avoid pride, seek forgiveness, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, as Isaiah 6:1 reflects."
+    ]
+  },
+  {
+    T: "Watchfulness",
+    S: [
+      "Matthew 24:42 - <em>Keep on the watch, for you do not know on what day your Lord is coming.</em>",
+      "Mark 13:33 - <em>Keep looking, keep awake, for you do not know when the appointed time is.</em>",
+      "1 Thessalonians 5:6 - <em>Let us not sleep as the rest do, but let us stay awake.</em>",
+      "Revelation 16:15 - <em>Happy is the one who stays awake.</em>",
+      "Luke 21:36 - <em>Keep awake... to stand before the Son of man.</em>",
+      "1 Peter 5:8 - <em>Keep your senses, be watchful! Your adversary, the Devil.</em>",
+      "Proverbs 8:34 - <em>Happy is the man who listens to me, watching daily.</em>"
+    ],
+    D: [
+      "Watchfulness is staying spiritually alert for Jehovah’s day (Matthew 24:42). Ancient Hebrew inscriptions, like those at Lachish, urge vigilance, aligning with 1 Thessalonians 5:6. Unlike pagan apathy, seen in Babylonian omens, watchfulness counters Satan’s schemes (1 Peter 5:8). Mark 13:33 and Revelation 16:15 promise blessings for alertness. False worship, like Greco-Roman fatalism, ignores God’s timing, but Luke 21:36 urges readiness. Watchfulness needs no forgiveness when practiced (Proverbs 8:34). The lesson is to stay vigilant, reject complacency, and ensure pure worship. This truth encourages us to watch for Jehovah’s day, resist evil, and align with His purpose, free from pagan influences, securing salvation."
+    ]
+  },
+  {
+    T: "Zephaniah",
+    S: [
+      "Zephaniah 1:1 - <em>The word of Jehovah that came to Zephaniah... in the days of Josiah.</em>",
+      "Zephaniah 2:3 - <em>Seek Jehovah, all you meek ones of the earth.</em>",
+      "Zephaniah 3:17 - <em>Jehovah your God is in your midst... he will rejoice over you.</em>",
+      "Zephaniah 1:14 - <em>The great day of Jehovah is near.</em>",
+      "2 Kings 22:1 - <em>Josiah was eight years old when he became king.</em>",
+      "Zephaniah 3:9 - <em>I will change the language of the peoples to a pure language.</em>",
+      "Psalm 46:1 - <em>God is our refuge and strength.</em>"
+    ],
+    D: [
+      "Zephaniah, a prophet around 629 BCE, warned of Jehovah’s day during Josiah’s reign (Zephaniah 1:1). Judah’s archaeological context confirms his era. His call for meekness (Zephaniah 2:3) and pure worship (Zephaniah 3:9) earned Jehovah’s approval, unlike Canaanite rituals in altars. Zephaniah needed no forgiveness, proclaiming truth (Zephaniah 1:14). His assurance of God’s joy (Zephaniah 3:17) contrasted with pagan fear. Zephaniah’s life teaches us to seek Jehovah, prepare for His day, and reject false worship. His example encourages us to trust God’s refuge (Psalm 46:1), proclaim truth, and maintain pure worship, aligning with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Zerubbabel",
+    S: [
+      "Haggai 1:1 - <em>The word of Jehovah came... to Zerubbabel... governor of Judah.</em>",
+      "Ezra 3:8 - <em>Zerubbabel... began the work on the house of God.</em>",
+      "Zechariah 4:6 - <em>Not by a military force... but by my spirit, says Jehovah.</em>",
+      "Haggai 2:4 - <em>Be strong, O Zerubbabel... for I am with you.</em>",
+      "Ezra 5:2 - <em>Zerubbabel... began to rebuild the house of God.</em>",
+      "Matthew 1:12 - <em>Zerubbabel became father to Abiud.</em>",
+      "Psalm 127:1 - <em>Unless Jehovah builds the house, it is in vain.</em>"
+    ],
+    D: [
+      "Zerubbabel, governor around 520 BCE, led temple rebuilding (Haggai 1:1). Persian records confirm his post-exilic role. His obedience (Ezra 3:8) and reliance on Jehovah’s spirit (Zechariah 4:6) earned divine approval, unlike Persian idolatry in artifacts. Zerubbabel needed no forgiveness, showing faith (Haggai 2:4). His role in Jesus’ lineage (Matthew 1:12) contrasted with pagan dynasties. Zerubbabel’s life teaches us to trust Jehovah’s strength, prioritize His work, and reject false worship. His example encourages us to build faithfully (Psalm 127:1), support God’s purpose, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
     T: "144,000",
     S: [
       "Revelation 7:4 - <em>I heard the number of those who were sealed, 144,000, sealed out of every tribe of the sons of Israel.</em>",
