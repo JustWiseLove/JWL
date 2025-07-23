@@ -1,6 +1,78 @@
 // top.js
 const top = [
   {
+    T: "Easter",
+    S: [
+      "Acts 12:4 - <em>Intending after the Passover to bring him out to the people.</em>",
+      "Deuteronomy 12:30-31 - <em>Do not inquire about their gods, saying, ‘How did these nations serve their gods?’</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of the philosophy and empty deception.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "Matthew 15:9 - <em>It is in vain that they keep worshipping me, for they teach commands of men as doctrines.</em>",
+      "John 4:23 - <em>True worshippers will worship the Father with spirit and truth.</em>"
+    ],
+    D: [
+      "Easter derives from pagan fertility festivals, like those of Eostre, a Germanic goddess, as recorded in Bede’s writings. Archaeological finds, such as Mesopotamian fertility idols, link it to spring rituals involving eggs and rabbits, symbols of rebirth absent in the Bible. Acts 12:4 mentions Passover, not Easter, which early Christians observed to commemorate Jesus’ death (1 Corinthians 11:26). Deuteronomy 12:30-31 warns against adopting pagan customs, and Colossians 2:8 rejects human traditions. Easter’s integration of fertility rites, seen in ancient reliefs, promotes false worship, which Jehovah condemns (2 Corinthians 6:17). Matthew 15:9 declares such worship vain. The lesson is to honor Jesus’ sacrifice through the Lord’s Evening Meal, not pagan festivals. By rejecting Easter’s origins, we maintain pure worship, focusing on biblical truth (John 4:23). This teaches us to examine traditions critically, ensuring our worship aligns with Jehovah’s standards, free from false practices that dilute His truth and purpose."
+    ]
+  },
+  {
+    T: "Daniel",
+    S: [
+      "Daniel 1:8 - <em>Daniel resolved in his heart that he would not defile himself with the king’s delicacies.</em>",
+      "Daniel 6:10 - <em>He continued to get down on his knees three times a day, praying.</em>",
+      "Daniel 2:28 - <em>There is a God in the heavens who is a Revealer of secrets.</em>",
+      "Ezekiel 14:20 - <em>Noah, Daniel, and Job... would save only themselves by their righteousness.</em>",
+      "Daniel 9:3 - <em>I turned my face to Jehovah God, to seek him with prayer and supplications.</em>",
+      "Hebrews 11:33 - <em>Through faith, they... obtained promises.</em>"
+    ],
+    D: [
+      "Daniel, exiled in Babylon around 605 BCE, showed unwavering loyalty by refusing defiling food (Daniel 1:8). Babylonian cuneiform records confirm Jewish exiles’ presence, validating the historical setting. His regular prayer, even facing death (Daniel 6:10), demonstrated faith, earning Jehovah’s approval (Ezekiel 14:20). Daniel’s prophecies, like those in Daniel 2:28, aligned with archaeological finds, such as Nebuchadnezzar’s inscriptions. Unlike Babylonian astrology, seen in star charts, Daniel relied on Jehovah for wisdom. He sought forgiveness for Israel’s sins (Daniel 9:3), showing humility, and Jehovah blessed him with visions. His life teaches us to remain faithful under pressure, reject false worship, and trust Jehovah’s guidance. By prioritizing prayer and obedience, Daniel avoided pagan practices, unlike Babylonian priests in temple reliefs. His example encourages us to stand firm in faith, seek Jehovah’s mercy, and maintain pure worship, ensuring our actions reflect devotion to God’s truth in a world filled with false beliefs."
+    ]
+  },
+  {
+    T: "Resurrection",
+    S: [
+      "John 5:28-29 - <em>All those in the memorial tombs will hear his voice and come out.</em>",
+      "Acts 24:15 - <em>There is going to be a resurrection of both the righteous and the unrighteous.</em>",
+      "Revelation 20:13 - <em>Death and the Grave gave up those dead in them.</em>",
+      "1 Corinthians 15:22 - <em>In the Christ all will be made alive.</em>",
+      "Isaiah 26:19 - <em>Your dead will live... They will rise up.</em>",
+      "Luke 7:15 - <em>The dead man sat up and started to speak.</em>",
+      "John 11:44 - <em>The man who had been dead came out.</em>"
+    ],
+    D: [
+      "Resurrection is God’s promise to restore life to the dead (John 5:28-29). Ancient burial sites, like those in Judea, show human mortality, aligning with Acts 24:15’s hope for both righteous and unrighteous. Unlike Egyptian afterlife beliefs, seen in mummification practices, the Bible teaches the dead are unconscious (Ecclesiastes 9:5) and await resurrection (Revelation 20:13). Jesus’ miracles, like raising Lazarus (John 11:44), demonstrate God’s power over death, supported by 1st-century ossuary finds. False worship, such as Babylonian underworld myths in cuneiform texts, promotes eternal souls, but Isaiah 26:19 affirms physical resurrection. The lesson is to trust Jehovah’s power to restore life, rejecting pagan afterlife doctrines. By living righteously, we prepare for resurrection, as 1 Corinthians 15:22 promises life through Christ. This truth encourages us to focus on pure worship, free from false beliefs, and to live with hope in Jehovah’s promise of eternal life on a restored earth."
+    ]
+  },
+  {
+    T: "Satan",
+    S: [
+      "Job 1:12 - <em>Jehovah said to Satan: Look! Everything that he has is in your hand.</em>",
+      "Revelation 12:9 - <em>The great dragon was hurled, the original serpent, the one called Devil and Satan.</em>",
+      "John 8:44 - <em>He was a murderer when he began, and he did not stand fast in the truth.</em>",
+      "2 Corinthians 11:14 - <em>Satan himself keeps disguising himself as an angel of light.</em>",
+      "1 Peter 5:8 - <em>Your adversary, the Devil, walks about like a roaring lion.</em>",
+      "Matthew 4:10 - <em>Go away, Satan! For it is written: It is Jehovah your God you must worship.</em>",
+      "Ephesians 6:11 - <em>Put on the complete suit of armor from God.</em>"
+    ],
+    D: [
+      "Satan, originally a perfect angel, rebelled against Jehovah, becoming the Devil (Revelation 12:9). His challenge in Job 1:12 questioned human loyalty, and John 8:44 identifies him as a liar and murderer. Unlike Babylonian chaos deities in cuneiform myths, Satan is a real spirit being, deceiving as an angel of light (2 Corinthians 11:14). His temptation of Jesus (Matthew 4:10) showed his aim to corrupt worship, but Jesus rejected him, affirming Jehovah’s sovereignty. Satan’s influence promotes false worship, like Canaanite rituals in archaeological stelae, but 1 Peter 5:8 urges vigilance. He never sought forgiveness, choosing rebellion, and faces destruction (Revelation 20:10). The lesson is to resist Satan’s deceptions by wearing God’s armor (Ephesians 6:11), rejecting false worship. By staying loyal to Jehovah, we overcome Satan’s schemes, ensuring our worship remains pure and our faith strong, trusting in God’s ultimate victory over evil."
+    ]
+  },
+  {
+    T: "Joseph",
+    S: [
+      "Genesis 39:9 - <em>How could I commit this great badness and actually sin against God?</em>",
+      "Genesis 41:16 - <em>It is not in me. God will give Pharaoh an answer.</em>",
+      "Genesis 45:5 - <em>God sent me ahead of you to preserve life.</em>",
+      "Hebrews 11:22 - <em>By faith Joseph... gave instructions concerning his bones.</em>",
+      "Genesis 50:20 - <em>You intended evil against me, but God intended it for good.</em>",
+      "Psalm 105:17 - <em>He sent a man ahead of them, Joseph, who was sold as a slave.</em>"
+    ],
+    D: [
+      "Joseph, sold into slavery around 1728 BCE, showed integrity by resisting Potiphar’s wife (Genesis 39:9). Egyptian papyri confirm slavery and administrative roles, supporting his rise to power (Genesis 41:41). His humility in crediting God for dream interpretations (Genesis 41:16) and his forgiveness of his brothers (Genesis 45:5) earned Jehovah’s approval. Unlike Egyptian idolatry, seen in Amun-Ra temples, Joseph’s faith remained pure. He did not sin in these accounts, showing steadfast loyalty. His life teaches us to maintain integrity under temptation, trust Jehovah’s purpose in trials, and forgive others, as he did despite evil intentions (Genesis 50:20). Archaeological evidence of Semitic officials in Egypt validates his role. Joseph’s example encourages us to reject false worship, remain faithful in adversity, and show kindness, ensuring our actions align with Jehovah’s will and contribute to His purpose of preserving life."
+    ]
+  },
+  {
     T: "Abraham",
     S: [
       "Genesis 12:1 - <em>Go out from your land and from your relatives and come to the land that I will show you.</em>",
