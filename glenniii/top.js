@@ -1,6 +1,636 @@
 // top.js
 const top = [
   {
+    T: "Baptist",
+    S: [
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "Acts 17:24 - <em>The God who made the world... does not dwell in handmade temples.</em>",
+      "1 Timothy 2:5 - <em>There is one God, and one mediator between God and men, a man, Christ Jesus.</em>",
+      "Isaiah 42:8 - <em>I am Jehovah. That is my name; I give my glory to no one else.</em>",
+      "Deuteronomy 4:39 - <em>Jehovah is the true God; there is no other.</em>",
+      "Matthew 15:9 - <em>It is in vain that they keep worshipping me, for they teach commands of men as doctrines.</em>"
+    ],
+    D: [
+      "The Baptist denomination, emerging in the 17th century, emphasizes believer’s baptism by immersion. Historical records, like early Baptist confessions, show influence from Protestantism but deviate from Jehovah’s truth (John 4:24) by adopting human traditions (Matthew 15:9). Unlike pure worship, Baptist teachings often include the Trinity, refuted by Deuteronomy 4:39 and 1 Timothy 2:5. Their focus on personal salvation neglects Jehovah’s name (Isaiah 42:8), requiring repentance to align with true worship (Acts 17:24). Unlike biblical Christianity, Baptist practices blend man-made doctrines (Colossians 2:8). This teaches us to reject false teachings, honor Jehovah’s name, and maintain pure worship. Baptists must seek truth to gain Jehovah’s approval, ensuring alignment with His purpose, free from pagan influences, securing salvation."
+    ]
+  },
+  {
+    T: "Methodist",
+    S: [
+      "Jeremiah 10:3 - <em>The customs of the peoples are a delusion.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "1 Timothy 2:5 - <em>There is one God, and one mediator between God and men, a man, Christ Jesus.</em>",
+      "Psalm 83:18 - <em>You, whose name is Jehovah, you alone are the Most High.</em>",
+      "Matthew 15:6 - <em>You have made the word of God invalid because of your tradition.</em>",
+      "Acts 4:12 - <em>There is no salvation in anyone else.</em>"
+    ],
+    D: [
+      "Methodism, founded in the 18th century by John Wesley, emphasizes personal holiness and social reform. Methodist records show its Anglican roots, but its trinitarian doctrine and traditions, like those in Colossians 2:8, deviate from Jehovah’s truth (John 4:24). Unlike pure worship, it neglects Jehovah’s name (Psalm 83:18) and Jesus’ sole mediatorship (1 Timothy 2:5), requiring repentance (Acts 4:12). Methodist reliance on human creeds (Matthew 15:6) contrasts with biblical worship, akin to pagan philosophies in historical texts. This teaches us to reject false doctrines, honor Jehovah, and maintain pure worship (Jeremiah 10:3). Methodists must seek truth to gain Jehovah’s approval, aligning with His purpose, free from pagan influences, ensuring salvation."
+    ]
+  },
+  {
+    T: "Presbyterian",
+    S: [
+      "Isaiah 44:9 - <em>Those who make worthless idols... are all of them an unreality.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "Deuteronomy 4:39 - <em>Jehovah is the true God; there is no other.</em>",
+      "Psalm 83:18 - <em>You, whose name is Jehovah, you alone are the Most High.</em>",
+      "Matthew 15:9 - <em>It is in vain that they keep worshipping me, for they teach commands of men as doctrines.</em>",
+      "Acts 17:24 - <em>The God who made the world... does not dwell in handmade temples.</em>"
+    ],
+    D: [
+      "Presbyterianism, originating in the 16th century from Calvinist reforms, emphasizes predestination and church governance. Historical confessions, like Westminster, reveal trinitarian errors, contradicting Deuteronomy 4:39 and John 4:24. Unlike pure worship, it neglects Jehovah’s name (Psalm 83:18) and blends human traditions (Matthew 15:9), requiring repentance (Acts 17:24). Its philosophical roots, akin to Greco-Roman thought in Colossians 2:8, contrast with Jehovah’s truth. Presbyterianism teaches us to reject false doctrines, honor Jehovah, and maintain pure worship (Isaiah 44:9). Presbyterians must seek truth to gain Jehovah’s approval, aligning with His purpose, free from pagan influences, ensuring salvation through true worship."
+    ]
+  },
+  {
+    T: "Mormonism",
+    S: [
+      "2 Corinthians 11:14 - <em>Satan himself keeps disguising himself as an angel of light.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "John 17:3 - <em>This means everlasting life, their coming to know you, the only true God.</em>",
+      "Isaiah 43:10 - <em>You are my witnesses, declares Jehovah.</em>",
+      "1 Timothy 2:5 - <em>There is one God, and one mediator between God and men, a man, Christ Jesus.</em>",
+      "Deuteronomy 13:1 - <em>If a prophet... gives you a sign... you must not listen.</em>",
+      "Matthew 24:24 - <em>False christs and false prophets will arise.</em>"
+    ],
+    D: [
+      "Mormonism, founded in the 19th century by Joseph Smith, claims divine revelation but promotes polytheism and human exaltation, condemned in John 17:3. Historical records, like Smith’s writings, show influence from Masonic and occult practices, akin to 2 Corinthians 11:14. Unlike Jehovah’s worship (Isaiah 43:10), it denies Jesus’ mediatorship (1 Timothy 2:5), requiring repentance (Deuteronomy 13:1). Its doctrines, like those in Colossians 2:8, contrast with pure worship. Mormonism teaches us to reject false prophets, know the true God, and maintain pure worship (Matthew 24:24). Mormons must seek Jehovah’s truth to gain His approval, aligning with His purpose, free from pagan influences, ensuring salvation."
+    ]
+  },
+  {
+    T: "Catholicism",
+    S: [
+      "Matthew 15:9 - <em>It is in vain that they keep worshipping me, for they teach commands of men as doctrines.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Isaiah 42:8 - <em>I am Jehovah. That is my name; I give my glory to no one else.</em>",
+      "1 Timothy 2:5 - <em>There is one God, and one mediator between God and men, a man, Christ Jesus.</em>",
+      "Exodus 20:4 - <em>You must not make for yourself a carved image.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "Psalm 83:18 - <em>You, whose name is Jehovah, you alone are the Most High.</em>"
+    ],
+    D: [
+      "Catholicism, rooted in 4th-century Rome, blends Christianity with paganism, like idol worship, condemned in Exodus 20:4. Vatican records confirm its trinitarian and saint-veneration practices, opposing Jehovah’s truth (John 4:24). Unlike pure worship, it elevates human mediators (1 Timothy 2:5) and traditions (Matthew 15:9), requiring repentance (Isaiah 42:8). Its rituals, like those in Colossians 2:8, mirror Greco-Roman cults. Catholicism teaches us to reject idolatry, honor Jehovah’s name (Psalm 83:18), and maintain pure worship. Catholics must seek truth to gain Jehovah’s approval, aligning with His purpose, free from pagan influences, ensuring salvation through true worship."
+    ]
+  },
+  {
+    T: "Protestant",
+    S: [
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "Matthew 15:9 - <em>It is in vain that they keep worshipping me, for they teach commands of men as doctrines.</em>",
+      "Psalm 83:18 - <em>You, whose name is Jehovah, you alone are the Most High.</em>",
+      "1 Timothy 2:5 - <em>There is one God, and one mediator between God and men, a man, Christ Jesus.</em>",
+      "Isaiah 44:9 - <em>Those who make worthless idols... are all of them an unreality.</em>",
+      "Acts 17:24 - <em>The God who made the world... does not dwell in handmade temples.</em>"
+    ],
+    D: [
+      "Protestantism, emerging from the 16th-century Reformation, rejects Catholic authority but retains errors like the Trinity, contradicting John 4:24. Historical records, like Luther’s theses, show its push for scripture, yet it clings to human traditions (Matthew 15:9). Unlike pure worship, it often ignores Jehovah’s name (Psalm 83:18) and Jesus’ mediatorship (1 Timothy 2:5), requiring repentance (Acts 17:24). Its philosophies, akin to those in Colossians 2:8, contrast with Jehovah’s truth (Isaiah 44:9). Protestantism teaches us to reject false doctrines, honor Jehovah, and maintain pure worship. Protestants must seek truth to gain Jehovah’s approval, aligning with His purpose, free from pagan influences, ensuring salvation."
+    ]
+  },
+  {
+    T: "Non-Denominational",
+    S: [
+      "John 17:3 - <em>This means everlasting life, their coming to know you, the only true God.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "1 Timothy 2:5 - <em>There is one God, and one mediator between God and men, a man, Christ Jesus.</em>",
+      "Psalm 83:18 - <em>You, whose name is Jehovah, you alone are the Most High.</em>",
+      "Matthew 15:9 - <em>It is in vain that they keep worshipping me, for they teach commands of men as doctrines.</em>",
+      "Acts 4:12 - <em>There is no salvation in anyone else.</em>"
+    ],
+    D: [
+      "Non-Denominational Christianity, emphasizing independence from formal denominations, often adopts trinitarian and traditional beliefs, contradicting John 17:3. Modern church records show its varied doctrines, blending human philosophies (Colossians 2:8) with scripture, unlike Jehovah’s worship (John 4:24). It neglects Jehovah’s name (Psalm 83:18) and Jesus’ mediatorship (1 Timothy 2:5), requiring repentance (Acts 4:12). Its practices, like those in Matthew 15:9, mirror Protestant errors. Non-Denominationalism teaches us to reject false teachings, honor Jehovah, and maintain pure worship. Adherents must seek truth to gain Jehovah’s approval, aligning with His purpose, free from pagan influences, ensuring salvation through true worship."
+    ]
+  },
+  {
+    T: "Ananias and Sapphira",
+    S: [
+      "Acts 5:1 - <em>A man named Ananias, together with Sapphira his wife, sold a property.</em>",
+      "Acts 5:3 - <em>Peter said: Ananias, why has Satan emboldened you to lie to the holy spirit?</em>",
+      "Acts 5:5 - <em>Ananias... fell down and expired.</em>",
+      "Acts 5:9 - <em>Peter said to her: Why was it agreed upon between you two to test the spirit of Jehovah?</em>",
+      "Hebrews 10:26 - <em>If we practice sin willfully... there remains no sacrifice for sins.</em>",
+      "Proverbs 12:22 - <em>Lying lips are detestable to Jehovah.</em>",
+      "1 John 1:9 - <em>If we confess our sins, he is faithful and righteous so as to forgive us.</em>"
+    ],
+    D: [
+      "Ananias and Sapphira, 1st-century Christians, lied about their donation, dying for their deceit (Acts 5:1-5). Early church records confirm communal sharing, unlike their greed, akin to pagan dishonesty in Greco-Roman texts. Their sin, influenced by Satan (Acts 5:3), required repentance, which they rejected (Hebrews 10:26), losing Jehovah’s approval. Their judgment (Acts 5:9) contrasts with true Christian honesty (Proverbs 12:22). Their story teaches us to be truthful, reject greed, and maintain pure worship (1 John 1:9). Ananias and Sapphira warn us to confess sins, avoid deceit, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Apollos (Expanded)",
+    S: [
+      "Acts 18:24 - <em>A Jew named Apollos, a native of Alexandria, arrived in Ephesus.</em>",
+      "Acts 18:25 - <em>He was instructed in the way of Jehovah... teaching accurately.</em>",
+      "Acts 18:26 - <em>Priscilla and Aquila... explained the way of God more accurately to him.</em>",
+      "1 Corinthians 3:6 - <em>I planted, Apollos watered, but God kept making it grow.</em>",
+      "Titus 3:13 - <em>Do your utmost to send Zenas... and Apollos on their way.</em>",
+      "Psalm 25:4 - <em>Make me know your ways, O Jehovah.</em>",
+      "Proverbs 1:5 - <em>A wise person will listen and take in more instruction.</em>"
+    ],
+    D: [
+      "Apollos, a 1st-century Jew from Alexandria, preached eloquently about Jehovah (Acts 18:24). Egyptian papyri confirm Alexandria’s scholarly culture. Initially limited in knowledge, he humbly accepted correction from Priscilla and Aquila (Acts 18:26), earning Jehovah’s approval (Psalm 25:4). Unlike Greco-Roman orators, his teaching became accurate (1 Corinthians 3:6), needing no forgiveness (Proverbs 1:5). Apollos’ zeal contrasted with pagan rhetoric, teaching us to seek truth, accept correction, and maintain pure worship (Titus 3:13). His example encourages us to study diligently, preach accurately, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Baptism (Expanded)",
+    S: [
+      "Matthew 28:19 - <em>Go, therefore, and make disciples... baptizing them.</em>",
+      "Acts 2:38 - <em>Repent, and let each one of you be baptized in the name of Jesus Christ.</em>",
+      "Romans 6:3 - <em>All of us who were baptized into Christ Jesus were baptized into his death.</em>",
+      "1 Peter 3:21 - <em>Baptism... is now saving you... through the resurrection of Jesus Christ.</em>",
+      "Acts 8:36 - <em>Look! Here is water; what prevents me from getting baptized?</em>",
+      "Mark 1:4 - <em>John came baptizing in the wilderness.</em>",
+      "Colossians 2:12 - <em>You were buried with him in his baptism.</em>"
+    ],
+    D: [
+      "Baptism is a public dedication to Jehovah through Jesus (Matthew 28:19). Ancient mikvahs, like those in Qumran, confirm ritual cleansing, but Christian baptism signifies repentance and Christ’s death (Romans 6:3). Unlike pagan purifications in Greco-Roman texts, it earns Jehovah’s approval when heartfelt (1 Peter 3:21). No forgiveness is needed for proper baptism (Acts 2:38). The Ethiopian’s baptism (Acts 8:36) contrasts with ritualistic washings, teaching us to dedicate fully, reject false worship, and maintain pure worship (Colossians 2:12). Baptism encourages us to follow Jesus, live faithfully (Mark 1:4), and align with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Cornelius (Expanded)",
+    S: [
+      "Acts 10:2 - <em>He was a devout man and feared God together with all his household.</em>",
+      "Acts 10:22 - <em>Cornelius, an army officer, a righteous and God-fearing man.</em>",
+      "Acts 10:34 - <em>God is not partial, but in every nation the man who fears him is acceptable.</em>",
+      "Acts 10:44 - <em>The holy spirit fell upon all those hearing the word.</em>",
+      "Acts 10:48 - <em>He ordered them to be baptized in the name of Jesus Christ.</em>",
+      "Psalm 86:9 - <em>All the nations that you made will come and bow down before you.</em>",
+      "1 Peter 1:17 - <em>Conduct yourselves with fear during the time of your temporary residence.</em>"
+    ],
+    D: [
+      "Cornelius, a 1st-century Roman centurion, feared Jehovah and was baptized after receiving holy spirit (Acts 10:2, 44). Caesarea’s ruins confirm his setting. His faith (Acts 10:22) earned Jehovah’s approval, unlike pagan worship in Roman inscriptions (Psalm 86:9). His baptism (Acts 10:48) showed repentance, contrasting with Greco-Roman rituals (1 Peter 1:17). Cornelius’ acceptance (Acts 10:34) teaches us Jehovah’s impartiality, the need to reject false worship, and to maintain pure worship. His example encourages us to fear God, seek baptism, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor and salvation."
+    ]
+  },
+  {
+    T: "Endurance",
+    S: [
+      "James 1:12 - <em>Happy is the man who keeps on enduring trial.</em>",
+      "Hebrews 12:1 - <em>Let us run with endurance the race set before us.</em>",
+      "Romans 15:4 - <em>All the things that were written beforehand were written for our instruction.</em>",
+      "2 Timothy 2:3 - <em>As a fine soldier of Christ Jesus, take your part in suffering evil.</em>",
+      "Psalm 31:24 - <em>Be courageous, and may your heart be strong, all you who are hoping in Jehovah.</em>",
+      "Revelation 2:3 - <em>You have borne up for my name’s sake and have not grown weary.</em>",
+      "1 Corinthians 9:24 - <em>Run in such a way that you may win it.</em>"
+    ],
+    D: [
+      "Endurance is steadfast perseverance in serving Jehovah (James 1:12). Ancient Christian artifacts, like persecution records, confirm early believers’ trials, aligning with Hebrews 12:1. Unlike pagan resignation in Greco-Roman texts, endurance earns Jehovah’s approval (Revelation 2:3). It needs no forgiveness when faithful (Romans 15:4). Paul’s example (2 Timothy 2:3) contrasts with worldly despair, teaching us to remain steadfast, reject false worship, and maintain pure worship (Psalm 31:24). Endurance encourages us to face trials courageously, trust Jehovah (1 Corinthians 9:24), and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Fear of God",
+    S: [
+      "Proverbs 1:7 - <em>The fear of Jehovah is the beginning of knowledge.</em>",
+      "Psalm 111:10 - <em>The fear of Jehovah is the beginning of wisdom.</em>",
+      "Acts 10:35 - <em>In every nation the man who fears him and does what is right is acceptable to him.</em>",
+      "Ecclesiastes 12:13 - <em>Fear the true God and keep his commandments.</em>",
+      "Proverbs 8:13 - <em>The fear of Jehovah means the hating of bad.</em>",
+      "Psalm 34:11 - <em>Come, my sons, listen to me; I will teach you the fear of Jehovah.</em>",
+      "Hebrews 12:28 - <em>Let us continue to offer to God sacred service with godly fear.</em>"
+    ],
+    D: [
+      "Fear of God is reverential awe and obedience to Jehovah (Proverbs 1:7). Ancient Hebrew inscriptions, like those at Arad, urge fearing God, aligning with Psalm 111:10. Unlike pagan fear of idols in Babylonian tablets, it earns Jehovah’s approval (Acts 10:35). No forgiveness is needed when genuine (Ecclesiastes 12:13). It contrasts with Greco-Roman superstition, teaching us to hate evil, obey Jehovah, and maintain pure worship (Proverbs 8:13). Fear of God encourages us to serve reverently (Hebrews 12:28), seek wisdom (Psalm 34:11), and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Holy Ones",
+    S: [
+      "Psalm 16:3 - <em>As for the holy ones who are in the earth, they are the majestic ones.</em>",
+      "Daniel 7:18 - <em>The holy ones of the Supreme One will receive the kingdom.</em>",
+      "1 Corinthians 1:2 - <em>Those who are sanctified in Christ Jesus, called to be holy ones.</em>",
+      "Revelation 14:12 - <em>Here is where it calls for endurance on the part of the holy ones.</em>",
+      "Psalm 89:7 - <em>God is greatly feared in the assembly of the holy ones.</em>",
+      "Ephesians 1:18 - <em>The hope to which he called you... for his holy ones.</em>",
+      "Colossians 1:12 - <em>The inheritance of the holy ones in the light.</em>"
+    ],
+    D: [
+      "Holy ones are Jehovah’s faithful servants, sanctified for His purpose (1 Corinthians 1:2). Qumran texts mention God’s chosen, aligning with Daniel 7:18. Unlike pagan priests in Greco-Roman inscriptions, holy ones earn Jehovah’s approval through faith (Psalm 16:3). No forgiveness is needed when loyal (Colossians 1:12). Their endurance (Revelation 14:12) contrasts with worldly corruption, teaching us to remain sanctified, reject false worship, and maintain pure worship (Psalm 89:7). Holy ones encourage us to pursue holiness, hope in Jehovah’s kingdom (Ephesians 1:18), and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Matthias",
+    S: [
+      "Acts 1:26 - <em>They cast lots, and the lot fell to Matthias, and he was counted with the eleven apostles.</em>",
+      "Acts 1:20 - <em>Let another take his position of oversight.</em>",
+      "Acts 1:24 - <em>They prayed and said: You, O Jehovah, know the hearts of all.</em>",
+      "Psalm 109:8 - <em>May his days be few; may another take his position.</em>",
+      "1 Corinthians 4:2 - <em>It is required of stewards that they be found faithful.</em>",
+      "Proverbs 16:33 - <em>The lot is cast into the lap, but every decision by it is from Jehovah.</em>",
+      "John 15:16 - <em>You did not choose me, but I chose you.</em>"
+    ],
+    D: [
+      "Matthias, chosen as an apostle to replace Judas Iscariot (Acts 1:26), served faithfully in the 1st century. Early church records confirm apostolic roles. His selection by lot (Acts 1:24) reflected Jehovah’s guidance (Proverbs 16:33), earning His approval, unlike pagan oracles in Greco-Roman texts. Matthias needed no forgiveness, proving faithful (1 Corinthians 4:2). His role (Psalm 109:8) teaches us to trust Jehovah’s choices, serve diligently, and reject false worship (John 15:16). Matthias’ example encourages us to accept God’s appointments, remain loyal, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Tyndale Bible",
+    S: [
+      "Psalm 119:105 - <em>Your word is a lamp to my foot.</em>",
+      "2 Timothy 3:16 - <em>All Scripture is inspired of God and beneficial.</em>",
+      "John 17:17 - <em>Your word is truth.</em>",
+      "Isaiah 40:8 - <em>The word of our God endures forever.</em>",
+      "Matthew 5:18 - <em>Not one stroke of a letter will pass from the Law.</em>",
+      "2 Peter 1:21 - <em>Prophecy was at no time brought by man’s will.</em>",
+      "Psalm 12:6 - <em>The sayings of Jehovah are pure.</em>"
+    ],
+    D: [
+      "The Tyndale Bible, translated by William Tyndale in the 16th century, made Scripture accessible in English, aligning with Psalm 119:105. Historical manuscripts confirm its influence, though it retained trinitarian errors, unlike Jehovah’s truth (John 17:17). Its use spread God’s word (Isaiah 40:8), earning approval when studied with discernment (2 Timothy 3:16). Unlike pagan texts, it aimed for accuracy (Psalm 12:6), but users needed repentance for false doctrines (Matthew 5:18). The Tyndale Bible teaches us to value God’s word, reject errors, and maintain pure worship (2 Peter 1:21). This encourages us to study accurate translations, seek truth, and align with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Geneva Bible",
+    S: [
+      "John 17:17 - <em>Your word is truth.</em>",
+      "Psalm 119:89 - <em>Your word, O Jehovah, endures forever.</em>",
+      "2 Timothy 3:16 - <em>All Scripture is inspired of God and beneficial.</em>",
+      "Isaiah 40:8 - <em>The word of our God endures forever.</em>",
+      "Matthew 5:18 - <em>Not one stroke of a letter will pass from the Law.</em>",
+      "Psalm 12:6 - <em>The sayings of Jehovah are pure.</em>",
+      "2 Peter 1:21 - <em>Prophecy was at no time brought by man’s will.</em>"
+    ],
+    D: [
+      "The Geneva Bible, a 16th-century Protestant translation, emphasized scripture accessibility, aligning with John 17:17. Historical copies show its Calvinist notes, which introduced errors like predestination, unlike Jehovah’s truth (Psalm 119:89). It spread God’s word (Isaiah 40:8), earning approval when used with discernment (2 Timothy 3:16). Unlike pagan texts, it sought accuracy (Psalm 12:6), but users needed repentance for false doctrines (Matthew 5:18). The Geneva Bible teaches us to value scripture, reject human additions, and maintain pure worship (2 Peter 1:21). This encourages us to study accurate translations, seek truth, and align with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "NIV",
+    S: [
+      "2 Timothy 3:16 - <em>All Scripture is inspired of God and beneficial.</em>",
+      "John 17:17 - <em>Your word is truth.</em>",
+      "Psalm 119:105 - <em>Your word is a lamp to my foot.</em>",
+      "Isaiah 40:8 - <em>The word of our God endures forever.</em>",
+      "Revelation 22:18 - <em>If anyone makes an addition to them, God will add to him the plagues.</em>",
+      "Psalm 12:6 - <em>The sayings of Jehovah are pure.</em>",
+      "Matthew 5:18 - <em>Not one stroke of a letter will pass from the Law.</em>"
+    ],
+    D: [
+      "The New International Version (NIV), a modern Bible translation from the 20th century, aims for readability but often omits Jehovah’s name, unlike John 17:17. Publishing records confirm its evangelical bias, introducing trinitarian errors, contrasting with Psalm 119:105. It can spread God’s word (Isaiah 40:8) but requires discernment (2 Timothy 3:16) to avoid false teachings (Revelation 22:18). Unlike pagan texts, it seeks biblical truth (Psalm 12:6), but users need repentance for errors (Matthew 5:18). The NIV teaches us to prioritize accurate translations, reject distortions, and maintain pure worship. This encourages us to study God’s word carefully, seek truth, and align with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Buddhism",
+    S: [
+      "Isaiah 44:9 - <em>Those who make worthless idols... are all of them an unreality.</em>",
+      "Jeremiah 10:3 - <em>The customs of the peoples are a delusion.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Deuteronomy 4:39 - <em>Jehovah is the true God; there is no other.</em>",
+      "Psalm 115:4 - <em>Their idols are silver and gold, the work of human hands.</em>",
+      "1 Corinthians 8:5 - <em>Although there are so-called gods... for us there is one God.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>"
+    ],
+    D: [
+      "Buddhism, originating in 5th-century BCE India, promotes meditation and nirvana but worships idols, condemned in Isaiah 44:9. Ancient stupas and statues confirm its idolatry, unlike Jehovah’s worship (John 4:24). Its philosophy (Colossians 2:8) denies the true God (Deuteronomy 4:39), requiring repentance (1 Corinthians 8:5). Unlike pure worship, Buddhist rituals, seen in archaeological relics, mirror pagan practices (Jeremiah 10:3). Buddhism teaches us to reject false gods, honor Jehovah, and maintain pure worship (Psalm 115:4). Buddhists must seek truth to gain Jehovah’s approval, aligning with His purpose, free from pagan influences, ensuring salvation through true worship."
+    ]
+  },
+  {
+    T: "Mother’s Day",
+    S: [
+      "Jeremiah 10:2 - <em>Do not learn the way of the nations.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "Exodus 20:12 - <em>Honor your father and your mother.</em>",
+      "Deuteronomy 12:30 - <em>Do not inquire about their gods, saying, ‘How did these nations serve their gods?’</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Ephesians 6:2 - <em>Honor your father and mother.</em>"
+    ],
+    D: [
+      "Mother’s Day, rooted in ancient mother goddess worship, like Cybele festivals, is condemned in Jeremiah 10:2. Roman inscriptions confirm its pagan origins, unlike Jehovah’s command to honor parents biblically (Exodus 20:12). True Christians avoid it (2 Corinthians 6:17), needing no forgiveness when rejecting paganism (Deuteronomy 12:30). Unlike godly honor (Ephesians 6:2), its commercialism mirrors philosophies in Colossians 2:8, opposing pure worship (John 4:24). Mother’s Day teaches us to honor parents scripturally, reject pagan traditions, and maintain pure worship. This encourages us to show true respect daily, avoid false holidays, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Independence Day",
+    S: [
+      "Jeremiah 10:2 - <em>Do not learn the way of the nations.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "John 17:16 - <em>They are no part of the world, just as I am no part of the world.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "Deuteronomy 12:30 - <em>Do not inquire about their gods, saying, ‘How did these nations serve their gods?’</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Psalm 33:12 - <em>Happy is the nation whose God is Jehovah.</em>"
+    ],
+    D: [
+      "Independence Day, celebrating national freedom, often involves patriotic rituals with pagan roots, condemned in Jeremiah 10:2. Historical records show its ties to secular pride, unlike Jehovah’s worship (John 4:24). True Christians remain neutral (John 17:16), needing no forgiveness when avoiding it (2 Corinthians 6:17). Its nationalism, akin to philosophies in Colossians 2:8, contrasts with Jehovah’s kingdom (Psalm 33:12). Independence Day teaches us to reject worldly allegiance, prioritize God’s kingdom, and maintain pure worship (Deuteronomy 12:30). This encourages us to stay separate, worship Jehovah alone, and align with His purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Agrippa",
+    S: [
+      "Acts 26:2 - <em>I think myself happy, King Agrippa, because today I am to make my defense before you.</em>",
+      "Acts 26:28 - <em>Agrippa said to Paul: In a short time you would persuade me to become a Christian.</em>",
+      "Acts 25:13 - <em>King Agrippa and Bernice arrived in Caesarea.</em>",
+      "Acts 26:3 - <em>You are well-acquainted with all the Jewish customs and controversies.</em>",
+      "John 7:51 - <em>Our Law does not judge a man unless it first hears from him.</em>",
+      "Proverbs 18:13 - <em>When anyone replies to a matter before he hears it, that is foolishness.</em>",
+      "Acts 17:11 - <em>They carefully examined the Scriptures daily.</em>"
+    ],
+    D: [
+      "Agrippa, a 1st-century Jewish king, heard Paul’s defense (Acts 26:2). Caesarea’s ruins confirm his rule. His openness (Acts 26:28) showed fairness, unlike Roman bias in inscriptions, but he didn’t fully accept Christianity (John 7:51). Agrippa needed repentance to gain Jehovah’s approval (Acts 17:11). His knowledge of Jewish customs (Acts 26:3) contrasted with pagan rulers, teaching us to listen fairly, seek truth, and maintain pure worship (Proverbs 18:13). Agrippa’s example encourages us to examine scriptures, reject false worship, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor through faith."
+    ]
+  },
+  {
+    T: "Barak",
+    S: [
+      "Judges 4:6 - <em>Deborah sent for Barak... and she said to him: Has not Jehovah commanded?</em>",
+      "Judges 4:14 - <em>Deborah said to Barak: Get up, for this is the day that Jehovah will give Sisera into your hand.</em>",
+      "Judges 5:12 - <em>Awake, awake, Barak! Take your captives.</em>",
+      "Hebrews 11:32 - <em>Barak... through faith, they defeated kingdoms in battle.</em>",
+      "Psalm 68:8 - <em>The earth quaked... before God, the One of Sinai.</em>",
+      "Proverbs 28:1 - <em>The righteous are as bold as a lion.</em>",
+      "Judges 4:8 - <em>Barak said to her: If you go with me, I will go.</em>"
+    ],
+    D: [
+      "Barak, a judge around 1200 BCE, led Israel against Sisera (Judges 4:6). Canaanite artifacts confirm his era’s warfare. His faith, with Deborah’s guidance (Judges 4:14), earned Jehovah’s approval (Hebrews 11:32), unlike pagan warriors in Ugaritic texts. Barak’s reliance on Deborah (Judges 4:8) showed humility, needing no forgiveness (Proverbs 28:1). His victory (Judges 5:12) contrasted with Canaanite idolatry, teaching us to trust Jehovah, act boldly, and maintain pure worship (Psalm 68:8). Barak’s example encourages us to rely on God’s guidance, reject false worship, and align with His purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Barnabas (Expanded)",
+    S: [
+      "Acts 4:36 - <em>Joseph, who was surnamed Barnabas... a Levite, a native of Cyprus.</em>",
+      "Acts 11:24 - <em>He was a good man and full of holy spirit and faith.</em>",
+      "Acts 13:2 - <em>The holy spirit said: Set aside for me Barnabas and Saul.</em>",
+      "Acts 15:37 - <em>Barnabas was determined to take along John, who was called Mark.</em>",
+      "Galatians 2:9 - <em>James and Cephas and John... gave Barnabas and me the right hand of fellowship.</em>",
+      "Colossians 4:10 - <em>Mark the cousin of Barnabas.</em>",
+      "1 Corinthians 9:6 - <em>Do only Barnabas and I have to work for a living?</em>"
+    ],
+    D: [
+      "Barnabas, a 1st-century Levite, supported early Christians through generosity (Acts 4:36). Cypriot ruins confirm his era. His faith and encouragement (Acts 11:24) earned Jehovah’s approval, unlike Greco-Roman patrons in inscriptions. His support for Mark (Acts 15:37) showed love, needing no forgiveness (Galatians 2:9). Barnabas’ ministry with Paul (Acts 13:2) contrasted with pagan selfishness, teaching us to encourage others, reject false worship, and maintain pure worship (1 Corinthians 9:6). His example encourages us to support brothers, serve faithfully (Colossians 4:10), and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Bildad",
+    S: [
+      "Job 2:11 - <em>Three companions of Job... Bildad the Shuhite.</em>",
+      "Job 8:3 - <em>Does God pervert justice, or does the Almighty pervert righteousness?</em>",
+      "Job 8:6 - <em>If you are pure and upright, surely now he will rouse himself for you.</em>",
+      "Job 42:9 - <em>Eliphaz the Temanite, Bildad the Shuhite, and Zophar... did as Jehovah told them.</em>",
+      "Psalm 37:25 - <em>I have not seen the righteous abandoned.</em>",
+      "Proverbs 15:3 - <em>The eyes of Jehovah are everywhere.</em>",
+      "Job 42:7 - <em>You have not spoken what is true of me, as my servant Job has.</em>"
+    ],
+    D: [
+      "Bildad, a friend of Job around 1600 BCE, offered flawed counsel (Job 2:11). Ancient Near Eastern texts confirm his era’s wisdom traditions. His view that suffering meant sin (Job 8:3) was corrected by Jehovah (Job 42:7), requiring repentance. Unlike pagan philosophers in Babylonian tablets, Bildad obeyed Jehovah’s command (Job 42:9), earning partial approval (Psalm 37:25). His error teaches us to speak truth, seek Jehovah’s wisdom (Proverbs 15:3), and maintain pure worship. Bildad’s example encourages us to admit errors, align with Jehovah’s purpose, and reject false reasoning, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Caiaphas",
+    S: [
+      "John 11:50 - <em>It is to your advantage that one man should die for the people.</em>",
+      "Matthew 26:3 - <em>The chief priests and the elders... assembled in the courtyard of Caiaphas.</em>",
+      "John 18:14 - <em>Caiaphas was the one who had advised the Jews that it was to their advantage.</em>",
+      "Acts 4:6 - <em>Annas the chief priest and Caiaphas... were gathered together.</em>",
+      "Matthew 26:57 - <em>Those who took Jesus into custody led him away to Caiaphas.</em>",
+      "Psalm 94:21 - <em>They make unjust assaults against the righteous one.</em>",
+      "John 7:51 - <em>Our Law does not judge a man unless it first hears from him.</em>"
+    ],
+    D: [
+      "Caiaphas, a 1st-century high priest, plotted Jesus’ death (John 11:50). Jerusalem’s ossuaries confirm his role. His rejection of Jesus (Matthew 26:57) opposed Jehovah’s truth, akin to pagan injustice in Roman records (Psalm 94:21). Caiaphas needed repentance, lacking Jehovah’s approval (John 18:14). His actions (Acts 4:6) teach us to reject false authority, uphold justice (John 7:51), and maintain pure worship. Caiaphas’ example warns us to accept Jesus, avoid worldly power, and align with Jehovah’s purpose, free from pagan influences, ensuring salvation through faith."
+    ]
+  },
+  {
+    T: "Elihu",
+    S: [
+      "Job 32:2 - <em>Elihu the son of Barachel the Buzite... became angry at Job.</em>",
+      "Job 33:12 - <em>God is greater than mortal man.</em>",
+      "Job 36:26 - <em>God is greater than we can know.</em>",
+      "Job 37:23 - <em>The Almighty... is great in power, and he does not violate justice.</em>",
+      "Psalm 89:14 - <em>Righteousness and justice are the foundation of your throne.</em>",
+      "Proverbs 15:3 - <em>The eyes of Jehovah are everywhere.</em>",
+      "Job 42:7 - <em>You have not spoken what is true of me, as my servant Job has.</em>"
+    ],
+    D: [
+      "Elihu, a young man around 1600 BCE, counseled Job, defending Jehovah’s justice (Job 32:2). Ancient wisdom texts confirm his era’s debates. Unlike Bildad, Elihu’s words (Job 33:12) aligned closer to truth, earning partial approval (Psalm 89:14), though not fully endorsed (Job 42:7). Unlike pagan philosophers in Babylonian records, he upheld Jehovah’s greatness (Job 36:26). Elihu needed humility, teaching us to speak accurately, trust Jehovah’s justice (Proverbs 15:3), and maintain pure worship. His example encourages us to defend truth humbly, reject false reasoning, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Elisha (Expanded)",
+    S: [
+      "2 Kings 2:9 - <em>Elisha said: Please, let a double portion of your spirit come upon me.</em>",
+      "2 Kings 4:38 - <em>Elisha returned to Gilgal, and there was a famine in the land.</em>",
+      "2 Kings 5:10 - <em>Elisha sent a messenger to him, saying: Go, wash seven times in the Jordan.</em>",
+      "2 Kings 6:17 - <em>Jehovah opened the eyes of the attendant, and he saw.</em>",
+      "Luke 4:27 - <em>No one... was cleansed except Naaman the Syrian.</em>",
+      "Hebrews 11:35 - <em>Women received their dead by resurrection.</em>",
+      "Psalm 77:11 - <em>I will remember the deeds of Jah.</em>"
+    ],
+    D: [
+      "Elisha, a prophet succeeding Elijah around 860 BCE, performed miracles by Jehovah’s power (2 Kings 2:9). Samaria’s ruins confirm his era. His faith, seen in healing Naaman (2 Kings 5:10), earned Jehovah’s approval (Luke 4:27), unlike Canaanite sorcery in Ugaritic texts. Elisha needed no forgiveness, serving faithfully (Hebrews 11:35). His miracles (2 Kings 6:17) teach us to trust Jehovah’s power, reject false worship, and maintain pure worship (Psalm 77:11). Elisha’s example encourages us to rely on Jehovah, serve boldly, and align with His purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Felix",
+    S: [
+      "Acts 24:10 - <em>Paul... cheerfully made his defense before Felix.</em>",
+      "Acts 24:25 - <em>Felix became frightened and said: Go away for now.</em>",
+      "Acts 23:24 - <em>Present Paul to Felix the governor.</em>",
+      "Acts 24:27 - <em>Felix... left Paul in custody.</em>",
+      "John 7:51 - <em>Our Law does not judge a man unless it first hears from him.</em>",
+      "Proverbs 18:13 - <em>When anyone replies to a matter before he hears it, that is foolishness.</em>",
+      "Acts 17:11 - <em>They carefully examined the Scriptures daily.</em>"
+    ],
+    D: [
+      "Felix, a 1st-century Roman governor, heard Paul’s defense (Acts 24:10). Caesarea’s inscriptions confirm his rule. His fear of truth (Acts 24:25) and inaction (Acts 24:27) showed no repentance, unlike Agrippa’s fairness, missing Jehovah’s approval (John 7:51). His conduct, akin to Roman corruption in records, teaches us to accept truth, reject worldly fear (Proverbs 18:13), and maintain pure worship (Acts 17:11). Felix’s example warns us to act on truth, examine scriptures, and align with Jehovah’s purpose, free from pagan influences, ensuring salvation through faith."
+    ]
+  },
+  {
+    T: "Festus",
+    S: [
+      "Acts 25:1 - <em>Festus, having arrived in the province, went up to Jerusalem.</em>",
+      "Acts 25:12 - <em>Festus... said: To Caesar you have appealed; to Caesar you will go.</em>",
+      "Acts 25:24 - <em>Festus said: King Agrippa... here is the man about whom the whole multitude appealed.</em>",
+      "Acts 26:32 - <em>Agrippa said to Festus: This man could have been released.</em>",
+      "John 7:51 - <em>Our Law does not judge a man unless it first hears from him.</em>",
+      "Proverbs 18:13 - <em>When anyone replies to a matter before he hears it, that is foolishness.</em>",
+      "Acts 17:11 - <em>They carefully examined the Scriptures daily.</em>"
+    ],
+    D: [
+      "Festus, a 1st-century Roman governor, judged Paul’s case (Acts 25:1). Caesarea’s ruins confirm his role. His fairness (Acts 25:12) allowed Paul’s appeal, but he didn’t embrace truth (Acts 26:32), missing Jehovah’s approval, unlike Cornelius (John 7:51). His actions, akin to Roman legalism in inscriptions, teach us to seek truth, reject worldly justice (Proverbs 18:13), and maintain pure worship (Acts 17:11). Festus’ example encourages us to examine scriptures, act justly, and align with Jehovah’s purpose, free from pagan influences, ensuring salvation through faith."
+    ]
+  },
+  {
+    T: "Goliath",
+    S: [
+      "1 Samuel 17:4 - <em>A champion named Goliath, from Gath... his height was six cubits and a span.</em>",
+      "1 Samuel 17:45 - <em>David said to the Philistine: You come against me with sword... but I come against you in the name of Jehovah.</em>",
+      "1 Samuel 17:50 - <em>David prevailed over the Philistine with a sling and a stone.</em>",
+      "Psalm 18:29 - <em>With you I can charge against a marauder band.</em>",
+      "Hebrews 11:32 - <em>David... through faith, they defeated kingdoms in battle.</em>",
+      "Proverbs 21:31 - <em>Victory belongs to Jehovah.</em>",
+      "1 Chronicles 20:5 - <em>Elhanan... struck down Lahmi the brother of Goliath.</em>"
+    ],
+    D: [
+      "Goliath, a Philistine giant around 1000 BCE, was defeated by David (1 Samuel 17:4). Philistine artifacts confirm his era’s warfare. His defiance of Jehovah (1 Samuel 17:45) earned no approval, unlike David’s faith (Hebrews 11:32). Goliath’s defeat (1 Samuel 17:50) contrasted with pagan pride in Canaanite texts, teaching us to trust Jehovah’s power, reject arrogance (Proverbs 21:31), and maintain pure worship (Psalm 18:29). Goliath’s fall encourages us to rely on Jehovah, oppose His enemies, and align with His purpose, free from pagan influences, ensuring victory through faith."
+    ]
+  },
+  {
+    T: "Jezebel",
+    S: [
+      "1 Kings 16:31 - <em>Ahab... took as wife Jezebel the daughter of Ethbaal, king of the Sidonians.</em>",
+      "1 Kings 21:25 - <em>No one else acted as Jezebel incited Ahab to do what was bad.</em>",
+      "2 Kings 9:22 - <em>The acts of prostitution of Jezebel and her sorceries have become many.</em>",
+      "Revelation 2:20 - <em>You tolerate that woman Jezebel, who... misleads my slaves.</em>",
+      "Psalm 1:1 - <em>Happy is the man who does not walk according to the advice of the wicked.</em>",
+      "Proverbs 6:25 - <em>Do not let your heart turn aside to her ways.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>"
+    ],
+    D: [
+      "Jezebel, a 9th-century BCE Sidonian princess, promoted Baal worship, leading Ahab astray (1 Kings 16:31). Sidonian artifacts confirm her pagan influence. Her sorcery and idolatry (2 Kings 9:22) earned Jehovah’s judgment, requiring repentance (Revelation 2:20). Unlike faithful Israelites, she defied pure worship (Psalm 1:1), mirroring Canaanite cults. Jezebel teaches us to reject false worship, avoid evil influences (Proverbs 6:25), and maintain pure worship (2 Corinthians 6:17). Her example warns us to shun idolatry, remain loyal, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Judas (not Iscariot)",
+    S: [
+      "John 14:22 - <em>Judas, not Iscariot, said to him: Lord, what has happened that you intend to show yourself to us?</em>",
+      "Luke 6:16 - <em>Judas the son of James, and Judas Iscariot, who became a traitor.</em>",
+      "Acts 1:13 - <em>They went to the upper room, where... Judas the son of James were staying.</em>",
+      "John 15:8 - <em>My Father is glorified in this, that you keep bearing much fruit.</em>",
+      "1 Corinthians 4:2 - <em>It is required of stewards that they be found faithful.</em>",
+      "Psalm 119:143 - <em>I have not deviated from your regulations.</em>",
+      "Hebrews 3:1 - <em>Holy brothers, partakers of the heavenly calling.</em>"
+    ],
+    D: [
+      "Judas, son of James, a 1st-century apostle, remained faithful, unlike Judas Iscariot (Luke 6:16). Early church records confirm his role. His question to Jesus (John 14:22) showed zeal, earning Jehovah’s approval (Hebrews 3:1). Unlike Greco-Roman traitors in inscriptions, he stayed loyal (1 Corinthians 4:2), needing no forgiveness (Psalm 119:143). His service (Acts 1:13) teaches us to remain steadfast, bear fruit (John 15:8), and maintain pure worship. Judas’ example encourages us to stay faithful, serve diligently, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor and salvation."
+    ]
+  },
+  {
+    T: "Laban",
+    S: [
+      "Genesis 24:29 - <em>Rebekah had a brother whose name was Laban.</em>",
+      "Genesis 29:5 - <em>Do you know Laban the grandson of Nahor?</em>",
+      "Genesis 31:20 - <em>Jacob deceived Laban the Aramean by not telling him that he was about to flee.</em>",
+      "Genesis 31:47 - <em>Laban called it Jegar-sahadutha, but Jacob called it Galeed.</em>",
+      "Genesis 30:36 - <em>Laban put a distance of three days’ journey between himself and Jacob.</em>",
+      "Proverbs 12:22 - <em>Lying lips are detestable to Jehovah.</em>",
+      "Psalm 15:2 - <em>The one walking faultlessly... speaking truth in his heart.</em>"
+    ],
+    D: [
+      "Laban, a relative of Abraham around 1900 BCE, deceived Jacob over Rachel’s marriage (Genesis 29:5). Haran’s ruins confirm his era. His deceit (Genesis 31:20) contrasted with Jehovah’s truth (Psalm 15:2), requiring repentance, unlike Jacob’s faith (Proverbs 12:22). Laban’s pact with Jacob (Genesis 31:47) showed partial cooperation, but his greed mirrored pagan practices in Mesopotamian texts. Laban teaches us to reject deceit, uphold truth, and maintain pure worship. His example warns us to be honest, seek Jehovah’s favor, and align with His purpose, free from pagan influences, ensuring salvation."
+    ]
+  },
+  {
+    T: "Nebuchadnezzar",
+    S: [
+      "Daniel 4:1 - <em>Nebuchadnezzar the king to all the peoples... may your peace abound.</em>",
+      "Daniel 4:33 - <em>His hair grew long... and his nails became like birds’ claws.</em>",
+      "Daniel 4:37 - <em>I, Nebuchadnezzar, now praise and glorify and honor the King of the heavens.</em>",
+      "Jeremiah 25:9 - <em>I am sending for Nebuchadnezzar the king of Babylon, my servant.</em>",
+      "Daniel 2:47 - <em>Your God is a God of gods and a Lord of kings.</em>",
+      "Psalm 86:5 - <em>You, O Jehovah, are good and ready to forgive.</em>",
+      "Isaiah 45:1 - <em>This is what Jehovah says to his anointed one, to Cyrus.</em>"
+    ],
+    D: [
+      "Nebuchadnezzar, Babylonian king around 600 BCE, initially defied Jehovah but repented (Daniel 4:37). Babylonian chronicles confirm his reign. His pride led to humiliation (Daniel 4:33), but repentance earned Jehovah’s forgiveness (Psalm 86:5). Used as God’s servant (Jeremiah 25:9), he contrasted with pagan kings in cuneiform texts. His acknowledgment of Jehovah (Daniel 2:47) teaches us to humble ourselves, reject false worship, and maintain pure worship (Isaiah 45:1). Nebuchadnezzar’s example encourages us to repent, honor Jehovah, and align with His purpose, free from pagan influences, ensuring His favor and salvation."
+    ]
+  },
+  {
+    T: "Onesimus",
+    S: [
+      "Philemon 1:10 - <em>I am exhorting you concerning my child, Onesimus, whose father I have become.</em>",
+      "Philemon 1:16 - <em>No longer as a slave, but as more than a slave, as a beloved brother.</em>",
+      "Colossians 4:9 - <em>Onesimus, our faithful and beloved brother, who is one of you.</em>",
+      "Philemon 1:11 - <em>Formerly he was useless to you, but now he is useful to you and to me.</em>",
+      "Galatians 3:28 - <em>There is neither slave nor freeman... for you are all one in union with Christ.</em>",
+      "Ephesians 6:8 - <em>Whatever good each one does, he will receive this from Jehovah.</em>",
+      "1 Corinthians 7:22 - <em>The slave who was called in the Lord is a freedman of the Lord.</em>"
+    ],
+    D: [
+      "Onesimus, a 1st-century runaway slave, became a Christian under Paul (Philemon 1:10). Roman slave records confirm his era. His repentance and service (Colossians 4:9) earned Jehovah’s approval, unlike pagan servitude in inscriptions (Galatians 3:28). Onesimus’ transformation (Philemon 1:16) teaches us to seek forgiveness, serve faithfully, and maintain pure worship (Ephesians 6:8). His return to Philemon (Philemon 1:11) contrasted with Roman cruelty, encouraging us to value brotherhood, reject worldly status, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor (1 Corinthians 7:22)."
+    ]
+  },
+  {
+    T: "Potiphar",
+    S: [
+      "Genesis 39:1 - <em>Joseph was taken down to Egypt, and Potiphar, an Egyptian... bought him.</em>",
+      "Genesis 39:4 - <em>Joseph found favor in his eyes and became his personal attendant.</em>",
+      "Genesis 39:9 - <em>How could I commit this great badness and actually sin against God?</em>",
+      "Genesis 39:20 - <em>Joseph’s master took him and put him in prison.</em>",
+      "Psalm 105:18 - <em>They bound his feet with fetters; his neck was put in irons.</em>",
+      "Proverbs 6:25 - <em>Do not let your heart turn aside to her ways.</em>",
+      "Hebrews 11:25 - <em>Choosing to be mistreated with the people of God.</em>"
+    ],
+    D: [
+      "Potiphar, an Egyptian official around 1700 BCE, bought Joseph as a slave (Genesis 39:1). Egyptian records confirm his era’s slavery. His trust in Joseph (Genesis 39:4) was just, but his wife’s false accusation led to Joseph’s imprisonment (Genesis 39:20), unlike Jehovah’s justice (Psalm 105:18). Potiphar needed repentance for injustice, contrasting with Joseph’s faith (Hebrews 11:25). His story teaches us to act justly, reject false accusations (Proverbs 6:25), and maintain pure worship. Potiphar’s example warns us to seek truth, support the faithful, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Rehoboam (Expanded)",
+    S: [
+      "1 Kings 12:8 - <em>He rejected the advice of the older men.</em>",
+      "1 Kings 14:22 - <em>Judah did what was bad in Jehovah’s eyes.</em>",
+      "2 Chronicles 12:1 - <em>Rehoboam abandoned the law of Jehovah.</em>",
+      "2 Chronicles 12:14 - <em>He did not set his heart to search for Jehovah.</em>",
+      "2 Chronicles 12:5 - <em>Shemaiah the prophet... said: Because you abandoned me, I have abandoned you.</em>",
+      "Psalm 78:10 - <em>They did not keep the covenant of God.</em>",
+      "Proverbs 3:11 - <em>Do not reject the discipline of Jehovah.</em>"
+    ],
+    D: [
+      "Rehoboam, Judah’s king around 930 BCE, rejected wise counsel, leading to division (1 Kings 12:8). Lachish ostraca confirm his era. His idolatry (1 Kings 14:22) and abandonment of Jehovah (2 Chronicles 12:1) required repentance, unlike faithful kings (Psalm 78:10). His partial reform (2 Chronicles 12:5) gained temporary favor, contrasting with Canaanite cults in inscriptions. Rehoboam teaches us to heed Jehovah’s guidance, reject false worship (Proverbs 3:11), and maintain pure worship. His example warns us to stay loyal, accept discipline, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Simon of Cyrene",
+    S: [
+      "Mark 15:21 - <em>They compelled a passerby, Simon of Cyrene... to carry his torture stake.</em>",
+      "Matthew 27:32 - <em>They found a man of Cyrene, Simon by name, and they compelled him to carry the cross.</em>",
+      "Luke 23:26 - <em>They seized Simon, a certain man of Cyrene... to bear the torture stake.</em>",
+      "Romans 16:13 - <em>Greet Rufus, chosen in the Lord, and his mother.</em>",
+      "Acts 2:10 - <em>Parts of Libya adjoining Cyrene.</em>",
+      "Psalm 55:22 - <em>Throw your burden on Jehovah, and he will sustain you.</em>",
+      "Galatians 6:2 - <em>Keep bearing one another’s burdens.</em>"
+    ],
+    D: [
+      "Simon of Cyrene, a 1st-century passerby, carried Jesus’ torture stake (Mark 15:21). Cyrene’s ruins confirm his North African origin. His act, though compelled, supported Jesus (Luke 23:26), earning potential approval, unlike Roman cruelty in inscriptions (Psalm 55:22). Simon needed no forgiveness for helping, possibly becoming a believer (Romans 16:13). His service contrasts with pagan indifference, teaching us to bear burdens, reject selfishness (Galatians 6:2), and maintain pure worship. Simon’s example encourages us to help others, follow Jesus, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Tamar",
+    S: [
+      "Genesis 38:6 - <em>Judah took a wife for Er his firstborn, and her name was Tamar.</em>",
+      "Genesis 38:26 - <em>Judah recognized them and said: She is more righteous than I.</em>",
+      "Genesis 38:11 - <em>Tamar went to live in her father’s house.</em>",
+      "Matthew 1:3 - <em>Judah became father to Perez and to Zerah by Tamar.</em>",
+      "Psalm 37:3 - <em>Trust in Jehovah and do what is good.</em>",
+      "Proverbs 31:10 - <em>Who can find a capable wife? Her value is far more than corals.</em>",
+      "Hebrews 11:31 - <em>By faith Rahab... was preserved.</em>"
+    ],
+    D: [
+      "Tamar, Judah’s daughter-in-law around 1800 BCE, secured her family line through faith (Genesis 38:6). Canaanite records confirm her era’s customs. Her boldness (Genesis 38:26) earned Jehovah’s approval, unlike pagan immorality in Mesopotamian texts (Psalm 37:3). Tamar needed no forgiveness, acting righteously (Proverbs 31:10). Her inclusion in Jesus’ genealogy (Matthew 1:3) teaches us to trust Jehovah, act with integrity, and maintain pure worship, like Rahab (Hebrews 11:31). Tamar’s example encourages us to be faithful, pursue righteousness, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Titus",
+    S: [
+      "Titus 1:5 - <em>I left you in Crete to correct the things that were defective.</em>",
+      "2 Corinthians 8:6 - <em>We encouraged Titus... to complete this kind contribution.</em>",
+      "Galatians 2:3 - <em>Not even Titus, who was with me, was compelled to be circumcised.</em>",
+      "2 Timothy 4:10 - <em>Titus to Dalmatia.</em>",
+      "Titus 3:12 - <em>When I send Artemas or Tychicus to you, do your best to come to me.</em>",
+      "1 Corinthians 4:2 - <em>It is required of stewards that they be found faithful.</em>",
+      "Psalm 119:143 - <em>I have not deviated from your regulations.</em>"
+    ],
+    D: [
+      "Titus, a 1st-century Christian, served with Paul, overseeing Crete’s congregations (Titus 1:5). Roman-era artifacts confirm his ministry’s setting. His faithfulness (2 Corinthians 8:6) earned Jehovah’s approval, unlike Greco-Roman disloyalty in inscriptions (1 Corinthians 4:2). Titus needed no forgiveness, remaining steadfast (Psalm 119:143). His work (Galatians 2:3) teaches us to serve diligently, reject false traditions, and maintain pure worship (Titus 3:12). Titus’ example encourages us to be faithful stewards, support the congregation, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor and salvation."
+    ]
+  },
+  {
+    T: "Zephaniah (Expanded)",
+    S: [
+      "Zephaniah 1:1 - <em>The word of Jehovah that came to Zephaniah... in the days of Josiah.</em>",
+      "Zephaniah 1:14 - <em>The great day of Jehovah is near.</em>",
+      "Zephaniah 2:3 - <em>Seek Jehovah, all you meek ones of the earth.</em>",
+      "Zephaniah 3:17 - <em>Jehovah your God... will rejoice over you with happy song.</em>",
+      "Psalm 25:9 - <em>He will guide the meek in what is right.</em>",
+      "Amos 3:7 - <em>Jehovah will not do a thing unless he has revealed his confidential matter.</em>",
+      "Joel 2:32 - <em>Everyone who calls on the name of Jehovah will be saved.</em>"
+    ],
+    D: [
+      "Zephaniah, a prophet around 630 BCE, warned of Jehovah’s day (Zephaniah 1:1). Judah’s ruins confirm his era. His call to seek Jehovah (Zephaniah 2:3) earned divine approval, unlike Canaanite prophets in Ugaritic texts (Amos 3:7). Zephaniah needed no forgiveness, proclaiming truth (Zephaniah 3:17). His message (Zephaniah 1:14) teaches us to seek meekness, call on Jehovah (Joel 2:32), and maintain pure worship (Psalm 25:9). Zephaniah’s example encourages us to warn others, trust Jehovah, and align with His purpose, free from pagan influences, ensuring salvation."
+    ]
+  },
+  {
     T: "Abaddon",
     S: [
       "Revelation 9:11 - <em>They have as king over them the angel of the abyss, whose name in Hebrew is Abaddon.</em>",
