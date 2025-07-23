@@ -1,6 +1,456 @@
 // top.js
 const top = [
   {
+    T: "Aaron",
+    S: [
+      "Exodus 4:14 - <em>Jehovah said to Moses: There is your brother Aaron the Levite.</em>",
+      "Exodus 28:1 - <em>Have Aaron your brother... serve as priest to me.</em>",
+      "Numbers 12:1 - <em>Miriam and Aaron began to speak against Moses.</em>",
+      "Hebrews 5:4 - <em>A man does not take this honor of his own accord, but he receives it when called by God, just as Aaron was.</em>",
+      "Exodus 32:4 - <em>He made a golden calf... and they said: This is your God, O Israel.</em>",
+      "Leviticus 16:2 - <em>Jehovah said to Moses: Tell your brother Aaron not to come at just any time into the Holy.</em>",
+      "Psalm 115:10 - <em>O house of Aaron, trust in Jehovah.</em>"
+    ],
+    D: [
+      "Aaron, Moses’ brother around 1513 BCE, was Israel’s first high priest (Exodus 28:1). Egyptian records of priestly roles align with his era’s context. His role in the golden calf incident (Exodus 32:4) reflected weakness, adopting Egyptian idolatry seen in Apis bull statues, but repentance restored Jehovah’s favor (Numbers 12:11). Aaron’s priesthood, unlike Canaanite rituals in Ugaritic texts, served Jehovah (Hebrews 5:4). His rebellion with Miriam (Numbers 12:1) required correction, showing human imperfection. Leviticus 16:2 highlights his sacred duties. Aaron’s life teaches us to repent sincerely, reject false worship, and honor sacred responsibilities. His example encourages us to trust Jehovah (Psalm 115:10), avoid pagan practices, and maintain pure worship, ensuring our service aligns with God’s purpose, free from idolatry’s influence."
+    ]
+  },
+  {
+    T: "Apostasy",
+    S: [
+      "2 Timothy 2:18 - <em>These men have deviated from the truth.</em>",
+      "Hebrews 3:12 - <em>Beware, brothers, for fear there should ever develop in any one of you a wicked heart lacking faith by drawing away from the living God.</em>",
+      "2 Peter 2:1 - <em>There will also be false teachers among you.</em>",
+      "Deuteronomy 13:5 - <em>That prophet or dreamer must be put to death, because he spoke of apostasy against Jehovah.</em>",
+      "Jude 4 - <em>Certain men have slipped in... turning the undeserved kindness of our God into an excuse for loose conduct.</em>",
+      "Isaiah 65:11 - <em>You who abandon Jehovah... who set a table for the god of Good Luck.</em>",
+      "1 Timothy 4:1 - <em>Some will fall away from the faith.</em>"
+    ],
+    D: [
+      "Apostasy is deliberate abandonment of Jehovah’s worship for false teachings (2 Timothy 2:18). Early Christian writings, like those in Qumran, warn against straying, aligning with Hebrews 3:12. Unlike pagan cults, seen in Greco-Roman inscriptions, apostasy betrays truth for lies (2 Peter 2:1). Deuteronomy 13:5 condemns leading others astray, and Isaiah 65:11 links it to idolatry, like Babylonian luck gods. Repentance can restore favor (Acts 3:19), but unrepentant apostates face judgment (Jude 4). The lesson is to guard faith, reject false teachings, and remain loyal to Jehovah. Apostasy’s danger, seen in 1 Timothy 4:1, urges us to study God’s word, ensuring pure worship free from pagan influences. This truth encourages us to stay vigilant, support truth, and align with Jehovah’s purpose, avoiding spiritual ruin."
+    ]
+  },
+  {
+    T: "Barnabas",
+    S: [
+      "Acts 4:36 - <em>Joseph, who was surnamed Barnabas... a Levite, a native of Cyprus.</em>",
+      "Acts 11:24 - <em>He was a good man, full of holy spirit and faith.</em>",
+      "Acts 13:2 - <em>The holy spirit said: Set aside for me Barnabas and Saul.</em>",
+      "Acts 15:37 - <em>Barnabas was determined to take along John, who was called Mark.</em>",
+      "Galatians 2:13 - <em>Barnabas... was carried away with their hypocrisy.</em>",
+      "Colossians 4:10 - <em>Mark, the cousin of Barnabas.</em>",
+      "Acts 9:27 - <em>Barnabas... brought him to the apostles.</em>"
+    ],
+    D: [
+      "Barnabas, a 1st-century Christian, was a generous Levite who supported Paul (Acts 4:36). Roman-era Cyprus artifacts confirm his cultural context. His faith and spirit earned Jehovah’s approval (Acts 11:24), and he was chosen for missionary work (Acts 13:2). His error in favoring Jewish Christians (Galatians 2:13) required correction, showing repentance. Unlike Greco-Roman cults, seen in temple inscriptions, Barnabas’ worship was pure, aiding early Christians (Acts 9:27). His support for Mark (Acts 15:37) showed forgiveness. Barnabas’ life teaches us to encourage others, repent of errors, and reject false worship. His example encourages us to support the ministry, remain humble, and maintain pure worship, ensuring our faith aligns with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Covenant",
+    S: [
+      "Genesis 17:7 - <em>I will establish my covenant between me and you and your offspring.</em>",
+      "Hebrews 8:10 - <em>This is the covenant that I will make with the house of Israel.</em>",
+      "Jeremiah 31:33 - <em>I will put my law within them, and in their heart I will write it.</em>",
+      "Luke 22:20 - <em>This cup means the new covenant by virtue of my blood.</em>",
+      "Exodus 19:5 - <em>If you will strictly obey my voice... you will become my special property.</em>",
+      "Psalm 105:8 - <em>He has remembered his covenant forever.</em>",
+      "Galatians 3:17 - <em>The covenant previously validated by God.</em>"
+    ],
+    D: [
+      "A covenant is Jehovah’s binding agreement with His people (Genesis 17:7). Ancient Near Eastern treaties, like Hittite pacts, parallel biblical covenants, but only Jehovah’s are eternal (Psalm 105:8). The Abrahamic covenant promised blessings (Galatians 3:17), fulfilled through Jesus’ new covenant (Luke 22:20). Unlike pagan oaths, seen in Mesopotamian tablets, Jehovah’s covenants require obedience (Exodus 19:5). Jeremiah 31:33 promises a heart-written law, unlike ritualistic Canaanite pacts. Covenants reflect Jehovah’s loyalty, needing no forgiveness when honored. The lesson is to obey covenant terms, rejecting false worship. By embracing the new covenant, we ensure pure worship, free from pagan influences. This truth encourages us to value Jehovah’s promises, live faithfully, and align with His purpose, securing blessings through Jesus’ sacrifice."
+    ]
+  },
+  {
+    T: "Cornelius",
+    S: [
+      "Acts 10:2 - <em>A devout man and one who feared God together with all his household.</em>",
+      "Acts 10:31 - <em>Your prayers and gifts of mercy have ascended as a remembrance before God.</em>",
+      "Acts 10:44 - <em>The holy spirit fell upon all those hearing the word.</em>",
+      "Acts 10:34 - <em>God is not partial.</em>",
+      "Acts 10:48 - <em>He commanded them to be baptized in the name of Jesus Christ.</em>",
+      "Acts 10:22 - <em>A righteous and God-fearing man.</em>",
+      "John 12:26 - <em>If anyone would minister to me, the Father will honor him.</em>"
+    ],
+    D: [
+      "Cornelius, a 1st-century Roman centurion, was devout, fearing God (Acts 10:2). Caesarea’s Roman ruins confirm his military context. His prayers and charity pleased Jehovah (Acts 10:31), and he received holy spirit, proving God’s impartiality (Acts 10:34). His baptism (Acts 10:48) marked him as the first Gentile Christian, unlike Roman emperor worship in coin inscriptions. Cornelius needed no forgiveness in these accounts, showing pure faith. His life teaches us to fear Jehovah, act generously, and reject false worship. Cornelius’ example encourages us to embrace truth, support others, and maintain pure worship, ensuring our devotion aligns with Jehovah’s purpose, free from pagan practices, as his faith opened salvation to all nations (John 12:26)."
+    ]
+  },
+  {
+    T: "Dorcas",
+    S: [
+      "Acts 9:36 - <em>At Joppa there was a disciple named Tabitha, which means Dorcas.</em>",
+      "Acts 9:39 - <em>All the widows... weeping and showing the garments that Dorcas had made.</em>",
+      "Acts 9:40 - <em>Peter... prayed, and turning to the body, he said: Tabitha, get up!</em>",
+      "1 Timothy 2:10 - <em>With good works, as is proper for women who profess reverence for God.</em>",
+      "Proverbs 31:20 - <em>She extends her hands to the poor.</em>",
+      "James 2:17 - <em>Faith by itself, without works, is dead.</em>",
+      "Acts 9:41 - <em>He presented her alive.</em>"
+    ],
+    D: [
+      "Dorcas, a 1st-century Christian in Joppa, was known for charitable acts (Acts 9:36). Joppa’s archaeological port confirms her coastal setting. Her sewing for widows (Acts 9:39) reflected faith through works (James 2:17), earning Jehovah’s approval. Peter’s resurrection of her (Acts 9:40) glorified God, unlike Greco-Roman healing cults in temple inscriptions. Dorcas needed no forgiveness, showing pure worship (1 Timothy 2:10). Her life teaches us to serve others selflessly, reject false worship, and live faithfully. Dorcas’ example, like Proverbs 31:20, encourages us to perform good deeds, support the needy, and maintain pure worship, ensuring our faith aligns with Jehovah’s purpose, free from pagan influences, strengthening the Christian community."
+    ]
+  },
+  {
+    T: "Enoch",
+    S: [
+      "Genesis 5:24 - <em>Enoch kept walking with God. Then he was no more, for God took him.</em>",
+      "Hebrews 11:5 - <em>By faith Enoch was transferred so as not to see death.</em>",
+      "Jude 14 - <em>Enoch, the seventh one in line from Adam, prophesied.</em>",
+      "Genesis 5:22 - <em>Enoch continued to walk with God for 300 years.</em>",
+      "Hebrews 11:7 - <em>By faith Noah... received divine warning.</em>",
+      "Luke 3:37 - <em>The son of Enoch, the son of Jared.</em>",
+      "Psalm 89:37 - <em>Like the moon, it will be firmly established forever.</em>"
+    ],
+    D: [
+      "Enoch, living around 3400 BCE, walked faithfully with Jehovah (Genesis 5:24). Early Mesopotamian records of long-lived figures align with his era. His faith led to his transfer without seeing death (Hebrews 11:5), a unique divine favor. Enoch’s prophecy against wickedness (Jude 14) contrasted with Sumerian idol worship, seen in ziggurat artifacts. He needed no forgiveness, maintaining pure worship. Unlike pagan myths of immortality, Enoch’s life glorified Jehovah. His example teaches us to walk with God, proclaim truth boldly, and reject false worship. Enoch’s faith encourages us to remain loyal, trust Jehovah’s promises, and ensure pure worship, aligning with His purpose, free from pagan influences, as we await His salvation."
+    ]
+  },
+  {
+    T: "Ezekiel",
+    S: [
+      "Ezekiel 1:3 - <em>The word of Jehovah came to Ezekiel... the priest.</em>",
+      "Ezekiel 3:17 - <em>I have appointed you as a watchman.</em>",
+      "Ezekiel 18:4 - <em>The soul who sins is the one who will die.</em>",
+      "Ezekiel 33:11 - <em>I take no pleasure in the death of the wicked.</em>",
+      "Ezekiel 36:26 - <em>I will give you a new heart and put a new spirit within you.</em>",
+      "Ezekiel 37:14 - <em>I will put my spirit in you, and you will come to life.</em>",
+      "Hebrews 11:38 - <em>The world was not worthy of them.</em>"
+    ],
+    D: [
+      "Ezekiel, a priest exiled around 593 BCE, prophesied Jehovah’s judgments (Ezekiel 1:3). Babylonian exile records confirm his setting. His role as a watchman (Ezekiel 3:17) warned Israel, earning Jehovah’s approval. Unlike Babylonian star worship, seen in cuneiform tablets, Ezekiel’s visions, like the valley of bones (Ezekiel 37:14), glorified Jehovah. He needed no forgiveness in these accounts, maintaining pure worship (Ezekiel 18:4). His message of repentance (Ezekiel 33:11) offers hope. Ezekiel’s life teaches us to warn others, trust God’s promises, and reject false worship. His example encourages us to proclaim truth, seek spiritual renewal (Ezekiel 36:26), and ensure pure worship, aligning with Jehovah’s purpose, free from pagan influences, as noted in Hebrews 11:38."
+    ]
+  },
+  {
+    T: "Ezra",
+    S: [
+      "Ezra 7:10 - <em>Ezra prepared his heart to consult the Law of Jehovah.</em>",
+      "Ezra 7:6 - <em>This Ezra came up from Babylon... skilled in the Law of Moses.</em>",
+      "Nehemiah 8:1 - <em>The people gathered... and they told Ezra to bring the book of the Law.</em>",
+      "Ezra 10:11 - <em>Make confession to Jehovah... and do his will.</em>",
+      "1 Chronicles 4:17 - <em>The sons of Ezra were Jether.</em>",
+      "Ezra 7:25 - <em>Appoint judges... who know the laws of your God.</em>",
+      "Psalm 119:97 - <em>How I love your law! All day long it is my concern.</em>"
+    ],
+    D: [
+      "Ezra, a priest around 460 BCE, led Israel’s return from Babylon (Ezra 7:6). Persian records confirm the exile’s end, aligning with his era. His study of Jehovah’s Law (Ezra 7:10) and teaching (Nehemiah 8:1) earned divine approval. Unlike Babylonian priestly rituals, seen in tablets, Ezra’s worship was pure, urging reform (Ezra 10:11). He needed no forgiveness in these accounts, reflecting righteousness. His leadership countered Persian idolatry, like Zoroastrian fire worship. Ezra’s life teaches us to study God’s word, lead others to truth, and reject false worship. His example encourages us to live by Jehovah’s Law, promote righteousness, and ensure pure worship, aligning with His purpose, free from pagan influences, as Psalm 119:97 reflects."
+    ]
+  },
+  {
+    T: "Hope",
+    S: [
+      "Romans 15:13 - <em>May the God who gives hope fill you with all joy and peace.</em>",
+      "Hebrews 6:19 - <em>This hope we have as an anchor for the soul.</em>",
+      "Psalm 39:7 - <em>My hope is in you.</em>",
+      "Titus 1:2 - <em>In the hope of everlasting life, which God... promised long ago.</em>",
+      "1 Peter 1:3 - <em>He gave us a new birth to a living hope through the resurrection of Jesus.</em>",
+      "Romans 5:5 - <em>This hope does not lead to disappointment.</em>",
+      "Jeremiah 29:11 - <em>Thoughts of peace... to give you a future and a hope.</em>"
+    ],
+    D: [
+      "Hope is confident expectation in Jehovah’s promises (Romans 15:13). Ancient Hebrew inscriptions, like those at Lachish, express trust in divine deliverance, aligning with Psalm 39:7. Unlike pagan fatalism, seen in Babylonian omens, biblical hope is anchored in Jesus’ resurrection (1 Peter 1:3). Titus 1:2 ties it to everlasting life, and Romans 5:5 assures its reliability. False worship, like Canaanite afterlife myths, offers false hope, but Jeremiah 29:11 promises Jehovah’s peace. Hope requires no forgiveness, reflecting faith. The lesson is to trust God’s promises, reject false hopes, and ensure pure worship. This truth encourages us to endure trials, proclaim the kingdom, and align with Jehovah’s purpose, securing eternal life free from pagan influences."
+    ]
+  },
+  {
+    T: "Hosea",
+    S: [
+      "Hosea 1:2 - <em>Jehovah said to Hosea: Go, take a wife who is an adulteress.</em>",
+      "Hosea 3:1 - <em>Go once again, love a woman loved by another man.</em>",
+      "Hosea 6:6 - <em>I desire loyal love and not sacrifice.</em>",
+      "Hosea 14:4 - <em>I will heal their unfaithfulness; I will love them of my own free will.</em>",
+      "Hosea 11:1 - <em>When Israel was a boy, I loved him.</em>",
+      "Matthew 9:13 - <em>I want mercy, and not sacrifice.</em>",
+      "Hosea 4:1 - <em>There is no truth nor loyal love... in the land.</em>"
+    ],
+    D: [
+      "Hosea, a prophet around 755 BCE, symbolized Jehovah’s mercy through his marriage to Gomer (Hosea 1:2). Assyrian records confirm Israel’s idolatry, like Baal worship in Ugaritic tablets. Hosea’s obedience, loving an unfaithful wife (Hosea 3:1), mirrored Jehovah’s love for Israel (Hosea 11:1). His call for repentance (Hosea 14:4) earned divine approval, unlike Canaanite rituals. Hosea needed no forgiveness in these accounts, showing loyalty. His message of mercy (Hosea 6:6), quoted by Jesus (Matthew 9:13), teaches us to show love, repent, and reject false worship. Hosea’s example encourages us to reflect Jehovah’s mercy, remain faithful, and ensure pure worship, aligning with His purpose, free from pagan practices that dishonor God."
+    ]
+  },
+  {
+    T: "Isaiah",
+    S: [
+      "Isaiah 6:8 - <em>Here I am! Send me!</em>",
+      "Isaiah 40:31 - <em>Those hoping in Jehovah will regain power.</em>",
+      "Isaiah 53:5 - <em>By his wounds we are healed.</em>",
+      "2 Kings 20:5 - <em>I have heard your prayer; I have seen your tears.</em>",
+      "Isaiah 7:14 - <em>The virgin will become pregnant and will give birth to a son.</em>",
+      "Isaiah 1:18 - <em>Though your sins are like scarlet, they will be made as white as snow.</em>",
+      "Hebrews 11:37 - <em>They were... sawn asunder.</em>"
+    ],
+    D: [
+      "Isaiah, prophesying around 740 BCE, boldly declared Jehovah’s messages (Isaiah 6:8). Assyrian annals confirm Judah’s historical context. His prophecies of the Messiah (Isaiah 7:14, 53:5) and forgiveness (Isaiah 1:18) earned Jehovah’s approval. Unlike Babylonian oracles, seen in cuneiform texts, Isaiah’s worship was pure, urging repentance (2 Kings 20:5). Tradition in Hebrews 11:37 suggests his martyrdom, showing loyalty. His hope in Jehovah (Isaiah 40:31) contrasted with Canaanite idolatry. Isaiah’s life teaches us to proclaim truth, trust God’s promises, and reject false worship. His example encourages us to endure persecution, seek forgiveness, and maintain pure worship, ensuring our faith aligns with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Jehoshaphat",
+    S: [
+      "2 Chronicles 17:3 - <em>Jehovah was with Jehoshaphat because he walked in the former ways of his father David.</em>",
+      "2 Chronicles 20:3 - <em>Jehoshaphat became afraid and set his face to search for Jehovah.</em>",
+      "1 Kings 22:43 - <em>He walked in all the way of Asa his father.</em>",
+      "2 Chronicles 19:3 - <em>Good things have been found in you, for you removed the sacred poles.</em>",
+      "2 Chronicles 20:32 - <em>He kept walking in the way of his father Asa.</em>",
+      "2 Chronicles 18:1 - <em>Jehoshaphat... allied himself with Ahab by marriage.</em>",
+      "2 Chronicles 20:21 - <em>Give thanks to Jehovah, for his loyal love endures forever.</em>"
+    ],
+    D: [
+      "Jehoshaphat, king around 873 BCE, sought Jehovah’s guidance, removing idols (2 Chronicles 19:3). Lachish ostraca confirm Judah’s idolatrous context. His prayer during Moab’s invasion (2 Chronicles 20:3) earned divine victory, unlike Canaanite war gods in Ugaritic texts. His alliance with Ahab (2 Chronicles 18:1) required correction, showing repentance. Jehoshaphat’s reforms (2 Chronicles 17:3) reflected pure worship, contrasting with Baal worship. His life teaches us to trust Jehovah, repent of errors, and reject false worship. Jehoshaphat’s example encourages us to pray in crises, remove idolatry, and maintain pure worship, ensuring our devotion aligns with Jehovah’s purpose, free from pagan influences, as his thanks to God shows (2 Chronicles 20:21)."
+    ]
+  },
+  {
+    T: "Jethro",
+    S: [
+      "Exodus 3:1 - <em>Moses was tending the flock of Jethro his father-in-law.</em>",
+      "Exodus 18:10 - <em>Blessed be Jehovah, who has rescued you from the hand of Egypt.</em>",
+      "Exodus 18:12 - <em>Jethro... took a burnt offering and sacrifices for God.</em>",
+      "Numbers 10:29 - <em>Moses said to Hobab, the son of Reuel the Midianite.</em>",
+      "Exodus 4:18 - <em>Moses went back to Jethro his father-in-law.</em>",
+      "Exodus 18:1 - <em>Jethro, the priest of Midian, heard about all that God had done.</em>",
+      "Psalm 83:18 - <em>You, whose name is Jehovah, you alone are the Most High.</em>"
+    ],
+    D: [
+      "Jethro, a Midianite priest around 1513 BCE, supported Moses (Exodus 3:1). Midianite pottery confirms his nomadic context. His praise of Jehovah (Exodus 18:10) and offerings (Exodus 18:12) showed faith, unlike Midianite Baal worship, seen in archaeological altars. Jethro’s counsel to Moses (Exodus 18:1) earned divine approval, needing no forgiveness. His recognition of Jehovah as supreme (Psalm 83:18) contrasted with pagan gods. Jethro’s life teaches us to acknowledge Jehovah’s supremacy, support His servants, and reject false worship. His example encourages us to offer wise counsel, worship Jehovah alone, and maintain pure worship, ensuring our faith aligns with His purpose, free from pagan practices that dishonor God."
+    ]
+  },
+  {
+    T: "Jonathan",
+    S: [
+      "1 Samuel 18:1 - <em>The soul of Jonathan became bound up with the soul of David.</em>",
+      "1 Samuel 14:6 - <em>Nothing can hinder Jehovah from saving by many or by few.</em>",
+      "1 Samuel 20:42 - <em>Jehovah will be between me and you... forever.</em>",
+      "1 Samuel 19:1 - <em>Saul told Jonathan his son... to put David to death.</em>",
+      "2 Samuel 1:26 - <em>I am distressed over you, my brother Jonathan.</em>",
+      "1 Samuel 14:45 - <em>Jonathan... has brought about this great salvation in Israel.</em>",
+      "1 Chronicles 10:2 - <em>The Philistines kept in close pursuit of Saul and his sons.</em>"
+    ],
+    D: [
+      "Jonathan, Saul’s son around 1070 BCE, showed loyalty to David (1 Samuel 18:1). Tell es-Safi’s ruins confirm the Philistine era. His faith in Jehovah’s power (1 Samuel 14:6) earned divine approval, saving Israel (1 Samuel 14:45). Unlike Canaanite warrior cults, seen in artifacts, Jonathan’s worship was pure. He needed no forgiveness, remaining loyal despite Saul’s enmity (1 Samuel 19:1). His covenant with David (1 Samuel 20:42) reflected love. Jonathan’s life teaches us to be loyal, trust Jehovah’s strength, and reject false worship. His example encourages us to build strong friendships, support God’s servants, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, despite his tragic death (1 Chronicles 10:2)."
+    ]
+  },
+  {
+    T: "Joy",
+    S: [
+      "Philippians 4:4 - <em>Always rejoice in the Lord.</em>",
+      "Psalm 16:11 - <em>In your presence is abundant joy.</em>",
+      "Nehemiah 8:10 - <em>The joy of Jehovah is your stronghold.</em>",
+      "Galatians 5:22 - <em>The fruitage of the spirit is... joy.</em>",
+      "John 16:24 - <em>Ask and you will receive, so that your joy may be complete.</em>",
+      "Psalm 51:12 - <em>Restore to me the joy of your salvation.</em>",
+      "1 Peter 1:8 - <em>You rejoice with a glorious, inexpressible joy.</em>"
+    ],
+    D: [
+      "Joy is a fruit of Jehovah’s spirit, reflecting trust in Him (Galatians 5:22). Ancient Hebrew inscriptions, like those at Arad, express joy in worship, aligning with Psalm 16:11. Unlike pagan festivals, seen in Canaanite reliefs, biblical joy comes from serving Jehovah (Nehemiah 8:10). Philippians 4:4 urges constant rejoicing, and John 16:24 ties it to answered prayers. False worship, like Babylonian feasts, offers fleeting happiness, but Psalm 51:12 promises lasting joy through salvation. Joy requires no forgiveness when rooted in faith. The lesson is to seek Jehovah’s presence, reject false pleasures, and ensure pure worship. This truth encourages us to cultivate joy through service, align with God’s purpose, and avoid pagan practices, securing eternal joy (1 Peter 1:8)."
+    ]
+  },
+  {
+    T: "Justice",
+    S: [
+      "Psalm 89:14 - <em>Righteousness and justice are the foundation of your throne.</em>",
+      "Isaiah 61:8 - <em>I, Jehovah, love justice.</em>",
+      "Deuteronomy 16:20 - <em>Justice, and only justice, you must pursue.</em>",
+      "Micah 6:8 - <em>To exercise justice, to love kindness, and to be modest.</em>",
+      "Proverbs 21:3 - <em>To do what is right and just is more pleasing to Jehovah than a sacrifice.</em>",
+      "Amos 5:24 - <em>Let justice roll down like waters.</em>",
+      "Luke 11:42 - <em>You give a tenth... but you disregard justice and the love of God.</em>"
+    ],
+    D: [
+      "Justice is Jehovah’s perfect standard of fairness (Psalm 89:14). Ancient Near Eastern law codes, like Hammurabi’s, pale compared to Jehovah’s laws (Deuteronomy 16:20). Unlike pagan tribunals, seen in Babylonian tablets, biblical justice reflects love (Micah 6:8). Proverbs 21:3 prioritizes justice over ritual, and Amos 5:24 demands its flow. False worship, like Canaanite corrupt judges, defies Jehovah’s fairness (Luke 11:42). Justice requires no forgiveness when practiced, aligning with God’s throne (Isaiah 61:8). The lesson is to act justly, reject corruption, and ensure pure worship. This truth encourages us to uphold fairness, support the oppressed, and align with Jehovah’s purpose, free from pagan influences, ensuring His justice prevails."
+    ]
+  },
+  {
+    T: "Lazarus",
+    S: [
+      "John 11:25 - <em>I am the resurrection and the life.</em>",
+      "John 11:43 - <em>He cried out with a loud voice: Lazarus, come out!</em>",
+      "John 12:1 - <em>Jesus arrived at Bethany, where Lazarus was.</em>",
+      "John 11:5 - <em>Jesus loved Martha and her sister and Lazarus.</em>",
+      "Luke 16:20 - <em>A beggar named Lazarus, covered with ulcers.</em>",
+      "John 12:10 - <em>The chief priests... planned to kill Lazarus.</em>",
+      "John 11:14 - <em>Lazarus has died.</em>"
+    ],
+    D: [
+      "Lazarus, a 1st-century friend of Jesus, was raised from death (John 11:43). Bethany’s tombs confirm his historical setting. His resurrection (John 11:25) glorified Jehovah, earning divine favor (John 11:5). Unlike Greco-Roman afterlife myths, seen in tomb inscriptions, Lazarus’ miracle proved Jesus’ power. He needed no forgiveness, showing faith. The priests’ plot to kill him (John 12:10) highlights opposition to truth. Lazarus’ life teaches us to trust Jesus’ resurrection promise, reject false worship, and remain loyal. His example encourages us to value God’s power, proclaim hope, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan beliefs about death, ensuring faith in eternal life."
+    ]
+  },
+  {
+    T: "Leah",
+    S: [
+      "Genesis 29:17 - <em>Leah’s eyes were weak, but Rachel was beautiful.</em>",
+      "Genesis 29:32 - <em>Leah became pregnant and gave birth to a son... Reuben.</em>",
+      "Genesis 30:20 - <em>God has endowed me with a good gift.</em>",
+      "Genesis 49:31 - <em>There they buried... Leah.</em>",
+      "Ruth 4:11 - <em>May Jehovah make the woman... like Rachel and Leah.</em>",
+      "Genesis 29:25 - <em>Look, it is Leah!</em>",
+      "Psalm 113:9 - <em>He gives the barren woman a home, making her a joyful mother.</em>"
+    ],
+    D: [
+      "Leah, Jacob’s first wife around 1850 BCE, bore six sons, forming Israel’s tribes (Genesis 29:32). Canaanite family records align with her era. Despite being unloved (Genesis 29:17), her faith in Jehovah brought blessings (Genesis 30:20), earning divine approval (Psalm 113:9). Unlike Canaanite fertility cults, seen in Asherah figurines, Leah’s worship was pure. She needed no forgiveness in these accounts, showing trust in God. Her role in Israel’s lineage (Ruth 4:11) contrasts with pagan goddess worship. Leah’s life teaches us to trust Jehovah’s purpose, endure trials, and reject false worship. Her example encourages us to find joy in God’s blessings, support family faith, and maintain pure worship, aligning with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Loyalty",
+    S: [
+      "Psalm 18:25 - <em>With someone loyal you act in loyalty.</em>",
+      "Hosea 6:6 - <em>I desire loyal love and not sacrifice.</em>",
+      "Proverbs 3:3 - <em>Do not let loyal love and faithfulness leave you.</em>",
+      "Micah 6:8 - <em>To exercise justice, to love kindness, and to be modest.</em>",
+      "2 Samuel 22:26 - <em>With the loyal one you show yourself loyal.</em>",
+      "Psalm 31:23 - <em>Jehovah guards the faithful.</em>",
+      "Matthew 25:21 - <em>Well done, good and faithful slave!</em>"
+    ],
+    D: [
+      "Loyalty is steadfast devotion to Jehovah, reflecting His love (Psalm 18:25). Ancient Hebrew inscriptions, like those at Samaria, praise covenant loyalty, aligning with Proverbs 3:3. Unlike pagan oaths, seen in Mesopotamian tablets, biblical loyalty prioritizes God (Hosea 6:6). Micah 6:8 ties it to righteousness, and Psalm 31:23 promises Jehovah’s protection. False worship, like Canaanite alliances, betrays loyalty, but Matthew 25:21 rewards faithfulness. Loyalty requires no forgiveness when genuine. The lesson is to remain devoted, reject false alliances, and ensure pure worship. This truth encourages us to stay faithful in trials, support God’s purpose, and avoid pagan influences, securing Jehovah’s favor and eternal life through steadfast devotion."
+    ]
+  },
+  {
+    T: "Micah",
+    S: [
+      "Micah 5:2 - <em>From you will come out the one to be ruler in Israel.</em>",
+      "Micah 6:8 - <em>He has told you, O man, what is good... to exercise justice.</em>",
+      "Micah 7:18 - <em>Who is a God like you, pardoning error?</em>",
+      "Micah 4:5 - <em>We will walk in the name of Jehovah our God forever.</em>",
+      "Micah 1:1 - <em>The word of Jehovah that came to Micah of Moresheth.</em>",
+      "Jeremiah 26:18 - <em>Micah of Moresheth prophesied in the days of Hezekiah.</em>",
+      "Psalm 130:4 - <em>With you there is forgiveness, so that you may be feared.</em>"
+    ],
+    D: [
+      "Micah, prophesying around 735 BCE, foretold the Messiah’s birth (Micah 5:2). Judah’s archaeological ruins confirm his era’s idolatry. His call for justice and kindness (Micah 6:8) earned Jehovah’s approval, urging repentance (Micah 7:18). Unlike Canaanite oracles, seen in Ugaritic texts, Micah’s worship was pure, proclaiming Jehovah’s name (Micah 4:5). He needed no forgiveness, showing loyalty. His prophecies, noted in Jeremiah 26:18, contrasted with pagan gods. Micah’s life teaches us to live justly, seek forgiveness, and reject false worship. His example encourages us to proclaim truth, trust Jehovah’s mercy, and maintain pure worship, aligning with His purpose, free from pagan influences, ensuring hope in His forgiveness (Psalm 130:4)."
+    ]
+  },
+  {
+    T: "Miriam",
+    S: [
+      "Exodus 15:20 - <em>Miriam the prophetess... took a tambourine in her hand.</em>",
+      "Numbers 12:1 - <em>Miriam and Aaron began to speak against Moses.</em>",
+      "Micah 6:4 - <em>I brought you up out of Egypt... I sent Moses, Aaron, and Miriam.</em>",
+      "Exodus 2:7 - <em>His sister began to stand at a distance to find out what would happen to him.</em>",
+      "Numbers 12:15 - <em>Miriam was confined outside the camp for seven days.</em>",
+      "Deuteronomy 24:9 - <em>Remember what Jehovah your God did to Miriam.</em>",
+      "Exodus 15:21 - <em>Sing to Jehovah, for he has become highly exalted.</em>"
+    ],
+    D: [
+      "Miriam, Moses’ sister around 1513 BCE, was a prophetess who led worship (Exodus 15:20). Egyptian artifacts confirm her era’s context. Her song of praise (Exodus 15:21) and protection of Moses (Exodus 2:7) earned Jehovah’s approval. Her rebellion against Moses (Numbers 12:1) led to leprosy, but repentance brought forgiveness (Numbers 12:15). Unlike Egyptian goddess worship, seen in Isis statues, Miriam’s faith was pure (Micah 6:4). Her life teaches us to worship joyfully, repent humbly, and reject false worship. Miriam’s example encourages us to support God’s servants, seek forgiveness, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan practices, as her punishment reminds us (Deuteronomy 24:9)."
+    ]
+  },
+  {
+    T: "Nehemiah",
+    S: [
+      "Nehemiah 2:4 - <em>I prayed to the God of the heavens.</em>",
+      "Nehemiah 6:16 - <em>This work had been done by our God.</em>",
+      "Nehemiah 8:8 - <em>They continued reading from the book, from the Law of God.</em>",
+      "Nehemiah 1:5 - <em>O Jehovah... keeping the covenant and showing loyal love.</em>",
+      "Nehemiah 13:14 - <em>Remember me, O my God, concerning this.</em>",
+      "Ezra 7:28 - <em>The hand of Jehovah my God was upon me.</em>",
+      "Nehemiah 4:20 - <em>Our God will fight for us.</em>"
+    ],
+    D: [
+      "Nehemiah, governor around 445 BCE, rebuilt Jerusalem’s walls (Nehemiah 6:16). Persian records confirm his era’s restoration. His prayers (Nehemiah 2:4) and teaching of the Law (Nehemiah 8:8) earned Jehovah’s approval. Unlike Persian fire worship, seen in Zoroastrian artifacts, Nehemiah’s faith was pure (Nehemiah 1:5). He needed no forgiveness, showing loyalty. His reforms countered idolatry, like Canaanite practices. Nehemiah’s life teaches us to pray fervently, work for God’s purpose, and reject false worship. His example encourages us to rebuild faith, trust Jehovah’s strength (Nehemiah 4:20), and maintain pure worship, aligning with His purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Peace",
+    S: [
+      "John 16:33 - <em>In the world you will have tribulation, but take courage! I have conquered the world.</em>",
+      "Philippians 4:7 - <em>The peace of God that surpasses all understanding.</em>",
+      "Psalm 29:11 - <em>Jehovah will bless his people with peace.</em>",
+      "Isaiah 26:3 - <em>You will keep in perfect peace the one whose mind is steadfast.</em>",
+      "Galatians 5:22 - <em>The fruitage of the spirit is... peace.</em>",
+      "Romans 15:13 - <em>May the God who gives hope fill you with... peace.</em>",
+      "Numbers 6:26 - <em>May Jehovah... give you peace.</em>"
+    ],
+    D: [
+      "Peace is Jehovah’s gift, a fruit of His spirit (Galatians 5:22). Ancient Hebrew blessings, like those in Arad ostraca, seek peace, aligning with Numbers 6:26. Unlike pagan rituals, like Babylonian peace offerings, biblical peace comes from trusting Jehovah (Isaiah 26:3). Philippians 4:7 describes divine peace surpassing understanding, and John 16:33 offers peace through Jesus. False worship, seen in Canaanite altars, fails to provide true peace. Peace requires no forgiveness when rooted in faith (Romans 15:13). The lesson is to seek Jehovah’s peace, reject false hopes, and ensure pure worship. This truth encourages us to cultivate peace, trust God in trials, and align with His purpose, free from pagan influences, securing lasting peace (Psalm 29:11)."
+    ]
+  },
+  {
+    T: "Philip",
+    S: [
+      "Acts 6:5 - <em>They selected... Philip... a man full of faith and holy spirit.</em>",
+      "Acts 8:5 - <em>Philip went down to the city of Samaria and began to preach.</em>",
+      "Acts 8:26 - <em>Jehovah’s angel spoke to Philip, saying: Get up and go south.</em>",
+      "Acts 8:40 - <em>Philip... kept declaring the good news to all the cities.</em>",
+      "Acts 21:8 - <em>We entered the house of Philip the evangelizer.</em>",
+      "John 14:8 - <em>Philip said to him: Lord, show us the Father.</em>",
+      "Acts 8:12 - <em>They proceeded to be baptized, both men and women.</em>"
+    ],
+    D: [
+      "Philip, a 1st-century evangelizer, preached boldly (Acts 8:5). Caesarea’s ruins confirm his ministry’s setting. His faith and spirit (Acts 6:5) earned Jehovah’s approval, guiding him to baptize the Ethiopian (Acts 8:26). Unlike Greco-Roman mystery cults, seen in temple inscriptions, Philip’s worship was pure, proclaiming Jesus (Acts 8:12). He needed no forgiveness, showing loyalty. His question to Jesus (John 14:8) reflected a desire for truth. Philip’s life teaches us to preach zealously, follow divine guidance, and reject false worship. His example encourages us to share the good news, trust Jehovah’s direction, and maintain pure worship, aligning with His purpose, free from pagan practices, as his ministry shows (Acts 21:8)."
+    ]
+  },
+  {
+    T: "Prophecy",
+    S: [
+      "2 Peter 1:21 - <em>Prophecy was at no time brought by man’s will, but men spoke from God.</em>",
+      "Amos 3:7 - <em>Jehovah will not do a thing unless he has revealed his confidential matter to his servants the prophets.</em>",
+      "Revelation 19:10 - <em>The bearing witness to Jesus is what inspires prophecy.</em>",
+      "Isaiah 46:10 - <em>Declaring the end from the beginning.</em>",
+      "1 Corinthians 14:3 - <em>He who prophesies builds up, encourages, and consoles.</em>",
+      "Deuteronomy 18:22 - <em>If the prophet speaks in Jehovah’s name and the word does not come true, Jehovah did not speak it.</em>",
+      "Joel 2:28 - <em>I will pour out my spirit... and your sons and daughters will prophesy.</em>"
+    ],
+    D: [
+      "Prophecy is Jehovah’s inspired message through His servants (2 Peter 1:21). Ancient Hebrew inscriptions, like those at Lachish, confirm prophetic warnings, aligning with Amos 3:7. Unlike pagan oracles, seen in Babylonian tablets, biblical prophecy reveals God’s purpose (Isaiah 46:10). Revelation 19:10 ties it to Jesus, and 1 Corinthians 14:3 shows its encouragement. False prophets, condemned in Deuteronomy 18:22, contrast with true prophecy, like Joel 2:28’s fulfillment. Prophecy requires no forgiveness when from God. The lesson is to trust Jehovah’s word, reject false predictions, and ensure pure worship. This truth encourages us to study prophecy, proclaim truth, and align with Jehovah’s purpose, free from pagan influences, securing hope in His promises."
+    ]
+  },
+  {
+    T: "Sacrifice",
+    S: [
+      "Hebrews 13:15 - <em>Let us always offer to God a sacrifice of praise.</em>",
+      "Psalm 51:17 - <em>The sacrifices pleasing to God are a broken spirit.</em>",
+      "Romans 12:1 - <em>Present your bodies as a living sacrifice, holy, acceptable to God.</em>",
+      "1 Samuel 15:22 - <em>Does Jehovah take as much pleasure in burnt offerings as in obeying?</em>",
+      "Micah 6:7 - <em>Will Jehovah be pleased with thousands of rams?</em>",
+      "Mark 12:33 - <em>To love him... is worth far more than all the whole burnt offerings.</em>",
+      "Hebrews 10:10 - <em>We have been sanctified through the offering of the body of Jesus Christ.</em>"
+    ],
+    D: [
+      "Sacrifice, in biblical terms, is offering to Jehovah, fulfilled by Jesus’ death (Hebrews 10:10). Ancient altars, like those at Dan, confirm Israel’s sacrificial system, but Psalm 51:17 prioritizes a contrite heart. Unlike Canaanite blood sacrifices, seen in Ugaritic texts, biblical sacrifice requires obedience (1 Samuel 15:22). Romans 12:1 calls for living sacrifices, and Hebrews 13:15 emphasizes praise. False worship, like Babylonian offerings, focuses on ritual, not heart (Micah 6:7). Sacrifice through Jesus needs no forgiveness, securing salvation. The lesson is to offer our lives to God, reject false rituals, and ensure pure worship. This truth encourages us to live devotedly, love Jehovah, and align with His purpose, free from pagan practices, as Mark 12:33 affirms."
+    ]
+  },
+  {
+    T: "Stephen",
+    S: [
+      "Acts 6:8 - <em>Stephen, full of grace and power, was performing great wonders.</em>",
+      "Acts 7:55 - <em>Full of holy spirit, he gazed into heaven and saw God’s glory.</em>",
+      "Acts 6:5 - <em>They selected Stephen, a man full of faith and holy spirit.</em>",
+      "Acts 7:59 - <em>They went on stoning Stephen as he called out: Lord Jesus, receive my spirit.</em>",
+      "Acts 7:2 - <em>The God of glory appeared to our forefather Abraham.</em>",
+      "Acts 8:2 - <em>Devout men carried Stephen away to bury him.</em>",
+      "Luke 23:46 - <em>Jesus called out... Father, into your hands I entrust my spirit.</em>"
+    ],
+    D: [
+      "Stephen, a 1st-century Christian, was full of faith and spirit (Acts 6:5). Jerusalem’s archaeological context confirms his era. His bold preaching (Acts 7:2) and miracles (Acts 6:8) earned Jehovah’s approval, but his stoning (Acts 7:59) showed opposition to truth. Unlike Greco-Roman hero worship, seen in inscriptions, Stephen’s vision of Jesus (Acts 7:55) glorified Jehovah. He needed no forgiveness, showing loyalty. Stephen’s life teaches us to proclaim truth fearlessly, trust God in persecution, and reject false worship. His example, echoing Jesus (Luke 23:46), encourages us to remain faithful, share the good news, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, even unto death."
+    ]
+  },
+  {
+    T: "Truth",
+    S: [
+      "John 17:17 - <em>Sanctify them by means of the truth; your word is truth.</em>",
+      "Psalm 119:160 - <em>The very essence of your word is truth.</em>",
+      "John 8:32 - <em>You will know the truth, and the truth will set you free.</em>",
+      "2 Timothy 2:15 - <em>Do your utmost to present yourself approved to God... handling the word of the truth aright.</em>",
+      "Ephesians 4:25 - <em>Speak truth each one of you with his neighbor.</em>",
+      "1 Timothy 2:4 - <em>God desires all men to... come to an accurate knowledge of truth.</em>",
+      "Proverbs 23:23 - <em>Buy truth and do not sell it.</em>"
+    ],
+    D: [
+      "Truth is Jehovah’s word, the foundation of worship (John 17:17). Ancient Hebrew scrolls, like Qumran’s, affirm scripture’s reliability (Psalm 119:160). Unlike pagan myths, seen in Babylonian tablets, biblical truth frees from falsehood (John 8:32). Ephesians 4:25 urges speaking truth, and 2 Timothy 2:15 emphasizes studying it. False worship, like Greco-Roman oracles, distorts truth, but 1 Timothy 2:4 offers salvation through knowledge. Truth requires no forgiveness when embraced. The lesson is to study God’s word, reject lies, and ensure pure worship. This truth encourages us to live honestly, proclaim Jehovah’s word, and align with His purpose, free from pagan influences, securing freedom and salvation (Proverbs 23:23)."
+    ]
+  },
+  {
+    T: "Zechariah",
+    S: [
+      "Zechariah 1:3 - <em>Return to me, says Jehovah of armies, and I will return to you.</em>",
+      "Zechariah 8:3 - <em>I will return to Zion and reside in Jerusalem.</em>",
+      "Zechariah 9:9 - <em>Look! Your king is coming to you.</em>",
+      "Luke 1:6 - <em>They were righteous in the sight of God.</em>",
+      "Zechariah 7:9 - <em>Render true justice, show loyal love and mercy.</em>",
+      "Matthew 23:35 - <em>From the blood of righteous Abel to the blood of Zechariah.</em>",
+      "Zechariah 4:6 - <em>Not by a military force... but by my spirit.</em>"
+    ],
+    D: [
+      "Zechariah, a prophet around 520 BCE, urged Israel’s return to Jehovah (Zechariah 1:3). Persian-era artifacts confirm his post-exilic context. His visions of the Messiah (Zechariah 9:9) and justice (Zechariah 7:9) earned divine approval (Luke 1:6). Unlike Babylonian astrology, seen in tablets, Zechariah’s worship was pure, relying on Jehovah’s spirit (Zechariah 4:6). His possible martyrdom (Matthew 23:35) shows loyalty. Zechariah’s life teaches us to repent, proclaim God’s kingdom, and reject false worship. His example encourages us to trust Jehovah’s spirit, seek justice, and maintain pure worship, aligning with His purpose, free from pagan influences, ensuring hope in His promises (Zechariah 8:3)."
+    ]
+  },
+  {
     T: "Abel",
     S: [
       "Genesis 4:4 - <em>Abel brought some firstlings of his flock... and Jehovah looked with favor on Abel.</em>",
