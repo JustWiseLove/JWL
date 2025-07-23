@@ -1,6 +1,302 @@
 // top.js
 const top = [
   {
+    T: "Adam",
+    S: [
+      "Genesis 2:7 - <em>Jehovah God went on to form the man out of dust from the ground.</em>",
+      "Genesis 2:15 - <em>Jehovah God took the man and settled him in the garden of Eden.</em>",
+      "Genesis 3:17 - <em>Cursed is the ground on your account; in pain you will eat its produce.</em>",
+      "Romans 5:12 - <em>Through one man sin entered into the world, and death through sin.</em>",
+      "1 Corinthians 15:22 - <em>In Adam all are dying.</em>",
+      "Genesis 1:28 - <em>Be fruitful and become many, fill the earth.</em>",
+      "1 Timothy 2:14 - <em>Adam was not deceived, but the woman was.</em>"
+    ],
+    D: [
+      "Adam, created around 4026 BCE, was the first human, formed from dust and given life by Jehovah (Genesis 2:7). Fossil records show early human environments, supporting Eden’s lush setting. Tasked with cultivating the garden (Genesis 2:15), Adam lived in harmony until he chose to sin by eating the forbidden fruit (Genesis 3:17). Unlike pagan creation myths, like Babylonian Enuma Elish tablets, Adam’s creation was purposeful, reflecting Jehovah’s wisdom. His deliberate disobedience, unlike Eve’s deception (1 Timothy 2:14), brought sin and death to humanity (Romans 5:12). Adam did not seek forgiveness, facing death as a consequence. His failure contrasts with Canaanite fertility cults, seen in archaeological idols, which falsely promised life. The lesson is to obey Jehovah’s commands, avoiding self-reliance that leads to false worship. Adam’s sin teaches us the importance of loyalty and the consequences of rebellion, urging us to trust Jehovah’s guidance for life and reject worldly philosophies that oppose His truth."
+    ]
+  },
+  {
+    T: "Angels",
+    S: [
+      "Hebrews 1:14 - <em>Are they not all spirits for holy service?</em>",
+      "Psalm 103:20 - <em>Bless Jehovah, you his angels, mighty in power.</em>",
+      "Luke 1:19 - <em>I am Gabriel, who stands near before God.</em>",
+      "Revelation 12:7 - <em>Michael and his angels battled with the dragon.</em>",
+      "Genesis 19:1 - <em>The two angels arrived at Sodom by evening.</em>",
+      "Matthew 18:10 - <em>Their angels in the heavens always have access to my Father.</em>",
+      "2 Peter 2:11 - <em>Angels, although they are greater in strength and power.</em>"
+    ],
+    D: [
+      "Angels are spirit beings created by Jehovah to serve Him (Hebrews 1:14). Ancient Hebrew inscriptions mention divine messengers, aligning with biblical accounts. They delivered God’s messages, like Gabriel to Mary (Luke 1:19), and protected His servants, as in Sodom (Genesis 19:1). Unlike pagan deities in Mesopotamian reliefs, angels are subordinate to Jehovah, not objects of worship. Some angels rebelled, becoming demons (Revelation 12:7), promoting false worship, as seen in Canaanite angel cults in archaeological finds. Faithful angels, like Michael, remain loyal, executing Jehovah’s will (Psalm 103:20). They neither sin nor seek forgiveness, as their loyalty is unwavering. The lesson is to appreciate Jehovah’s organized creation, rejecting false worship of angels, common in ancient inscriptions. By focusing on Jehovah, we emulate angels’ obedience, ensuring pure worship. Their example encourages us to serve God faithfully, trust His protection, and avoid deceptive practices that mimic pagan veneration of spirit beings."
+    ]
+  },
+  {
+    T: "Baptism",
+    S: [
+      "Matthew 28:19 - <em>Go, therefore, and make disciples of people of all the nations, baptizing them.</em>",
+      "Acts 2:38 - <em>Repent, and let each one of you be baptized in the name of Jesus Christ.</em>",
+      "Romans 6:4 - <em>We were buried with him through our baptism into his death.</em>",
+      "1 Peter 3:21 - <em>Baptism, which corresponds to this, is now saving you.</em>",
+      "John 3:23 - <em>John was also baptizing in Aenon because there was much water there.</em>",
+      "Acts 8:38 - <em>Both of them went down into the water.</em>",
+      "Mark 1:4 - <em>John the Baptizer was in the wilderness proclaiming a baptism.</em>"
+    ],
+    D: [
+      "Baptism is a public dedication to Jehovah, symbolizing repentance and acceptance of Jesus’ sacrifice (Matthew 28:19). Archaeological evidence of 1st-century mikvahs in Judea confirms immersion practices, as seen in John’s baptisms (John 3:23). Unlike pagan purification rituals, like those in Egyptian texts, biblical baptism signifies a commitment to true worship (Acts 2:38). Romans 6:4 links it to dying to sin, and 1 Peter 3:21 emphasizes its role in salvation. False worship, such as Babylonian water rituals in cuneiform records, contrasts with baptism’s spiritual purpose. Early Christians, like the Ethiopian eunuch (Acts 8:38), were fully immersed, rejecting partial rites of pagan cults. Baptism requires no forgiveness, as it reflects righteousness. The lesson is to dedicate ourselves fully to Jehovah, rejecting worldly traditions. By following this biblical pattern, we ensure pure worship, publicly declaring our faith and commitment to God’s truth, free from false religious practices."
+    ]
+  },
+  {
+    T: "Creation",
+    S: [
+      "Genesis 1:1 - <em>In the beginning God created the heavens and the earth.</em>",
+      "Psalm 19:1 - <em>The heavens are declaring the glory of God.</em>",
+      "Isaiah 40:28 - <em>Jehovah is the Creator of the ends of the earth.</em>",
+      "Colossians 1:16 - <em>By means of him all other things were created.</em>",
+      "Revelation 4:11 - <em>You are worthy, Jehovah our God, to receive the glory.</em>",
+      "Psalm 104:24 - <em>How many your works are, O Jehovah! You made them all in wisdom.</em>",
+      "Job 38:4 - <em>Where were you when I founded the earth?</em>"
+    ],
+    D: [
+      "Creation reflects Jehovah’s wisdom and power, with the universe and earth formed by Him (Genesis 1:1). Scientific studies, like cosmic background radiation, suggest an orderly universe, aligning with Psalm 104:24. Jesus, as the firstborn, was used to create all else (Colossians 1:16). Unlike Babylonian creation myths, like Enuma Elish tablets, which depict chaotic gods, the Bible presents purposeful design (Isaiah 40:28). Pagan worship, seen in Canaanite nature idols, falsely attributes creation to deities, but Psalm 19:1 credits Jehovah alone. Creation requires no forgiveness, as it is God’s perfect work. The lesson is to honor Jehovah as Creator, rejecting false worship tied to nature cults. By appreciating creation’s complexity, from ecosystems to stars, we deepen our awe for Jehovah, ensuring worship free from pagan influences. This truth encourages us to study His works, live in harmony with His creation, and proclaim His glory, as Revelation 4:11 urges."
+    ]
+  },
+  {
+    T: "Demons",
+    S: [
+      "Revelation 12:9 - <em>The great dragon was hurled, the original serpent... with his angels.</em>",
+      "James 2:19 - <em>The demons believe and yet shudder.</em>",
+      "Matthew 8:31 - <em>The demons kept begging him: If you expel us, send us into the herd of swine.</em>",
+      "Luke 10:17 - <em>The 70 returned with joy, saying: Lord, even the demons are made subject to us.</em>",
+      "Ephesians 6:12 - <em>We have a struggle... against the wicked spirit forces.</em>",
+      "Deuteronomy 18:10-11 - <em>There should not be found in you anyone who consults a spirit medium.</em>",
+      "1 Timothy 4:1 - <em>Some will fall away from the faith, paying attention to misleading inspired statements.</em>"
+    ],
+    D: [
+      "Demons are angels who rebelled with Satan, opposing Jehovah (Revelation 12:9). Ancient Near Eastern amulets show belief in evil spirits, but the Bible clarifies their origin as fallen angels (James 2:19). They deceive through spiritism, as condemned in Deuteronomy 18:10-11, seen in Babylonian incantation texts. Demons possessed individuals, like those Jesus expelled (Matthew 8:31), showing their power but subordination to Christ (Luke 10:17). Unlike pagan worship of spirits, evidenced in Canaanite stelae, true worship rejects demonic influence (Ephesians 6:12). Demons never sought forgiveness, choosing rebellion, and face destruction (Revelation 20:10). The lesson is to avoid spiritism, like astrology or mediums, common in ancient cultures, and rely on Jehovah’s protection. By resisting demonic deception (1 Timothy 4:1), we maintain pure worship, ensuring our faith is grounded in truth, not false practices that lead away from Jehovah’s purpose and salvation."
+    ]
+  },
+  {
+    T: "Elijah",
+    S: [
+      "1 Kings 18:36 - <em>O Jehovah, show today that you are God in Israel.</em>",
+      "1 Kings 17:1 - <em>As surely as Jehovah lives... there will be no dew or rain.</em>",
+      "James 5:17 - <em>Elijah was a man with feelings like ours, and yet... he prayed for it not to rain.</em>",
+      "1 Kings 19:10 - <em>I have been absolutely loyal to Jehovah the God of armies.</em>",
+      "2 Kings 2:11 - <em>Elijah went up to the heavens in the windstorm.</em>",
+      "Malachi 4:5 - <em>I am sending to you Elijah the prophet.</em>",
+      "Luke 1:17 - <em>He will go before him with Elijah’s spirit and power.</em>"
+    ],
+    D: [
+      "Elijah, a prophet around 9th century BCE, boldly confronted Baal worship, proving Jehovah’s power on Mount Carmel (1 Kings 18:36). Phoenician inscriptions confirm Baal’s prevalence, validating the historical context. His faith stopped rain for three years (James 5:17), showing Jehovah’s control over nature. Despite feeling isolated (1 Kings 19:10), Elijah remained loyal, earning Jehovah’s approval. He did not sin in these accounts, needing no forgiveness, and was taken in a windstorm (2 Kings 2:11), symbolizing divine favor. Unlike Canaanite storm god worship, seen in Ugaritic tablets, Elijah’s miracles glorified Jehovah. His life teaches us to stand firm against false worship, trust Jehovah in trials, and proclaim His truth boldly. Elijah’s example, echoed in John the Baptist (Luke 1:17), encourages us to reject pagan practices and maintain pure worship, ensuring our loyalty strengthens others in devotion to Jehovah’s purpose."
+    ]
+  },
+  {
+    T: "Elisha",
+    S: [
+      "2 Kings 2:9 - <em>Please, let a double portion of your spirit come upon me.</em>",
+      "2 Kings 4:34 - <em>He stretched himself upon the child... and the child’s flesh grew warm.</em>",
+      "1 Kings 19:19 - <em>Elijah found Elisha... and he was plowing with 12 pairs of oxen.</em>",
+      "2 Kings 6:17 - <em>Jehovah opened the attendant’s eyes, and he saw the mountain full of horses and chariots.</em>",
+      "2 Kings 5:15 - <em>Now I know that there is no God anywhere in all the earth except in Israel.</em>",
+      "Luke 4:27 - <em>No one... was cleansed except Naaman the Syrian.</em>"
+    ],
+    D: [
+      "Elisha, succeeding Elijah around 9th century BCE, showed faith by requesting a double portion of Elijah’s spirit (2 Kings 2:9). Phoenician artifacts confirm the era’s idolatrous context, which Elisha opposed. His miracles, like raising a child (2 Kings 4:34) and cleansing Naaman (2 Kings 5:15), glorified Jehovah, not pagan gods like those in Ugaritic texts. Elisha’s humility shone in serving Elijah (1 Kings 19:19), and his trust in Jehovah’s protection was evident when surrounded by enemies (2 Kings 6:17). He did not sin in these accounts, earning Jehovah’s approval. Unlike Canaanite miracle cults, seen in archaeological altars, Elisha’s works directed worship to Jehovah. His life teaches us to serve humbly, trust God’s power, and reject false worship. Elisha’s example encourages us to perform acts of faith that honor Jehovah, ensuring pure worship free from pagan influences, and to support others in their devotion to God’s truth."
+    ]
+  },
+  {
+    T: "Eve",
+    S: [
+      "Genesis 2:18 - <em>I am going to make a helper for him, as a complement of him.</em>",
+      "Genesis 3:6 - <em>The woman saw that the tree was good for food... and she ate.</em>",
+      "1 Timothy 2:14 - <em>The woman was deceived and became a transgressor.</em>",
+      "Genesis 3:16 - <em>Your longing will be for your husband, and he will dominate you.</em>",
+      "2 Corinthians 11:3 - <em>I am afraid that... your minds might be corrupted from the sincerity that is due the Christ.</em>",
+      "Genesis 4:1 - <em>I have produced a man with the aid of Jehovah.</em>"
+    ],
+    D: [
+      "Eve, created around 4026 BCE as Adam’s complement (Genesis 2:18), lived in Eden’s lush environment, supported by fossil records. Deceived by Satan, she ate the forbidden fruit (Genesis 3:6), introducing sin (1 Timothy 2:14). Unlike Babylonian goddess myths in cuneiform texts, Eve was human, not divine. Her sin led to suffering (Genesis 3:16), and she did not explicitly seek forgiveness, though she acknowledged Jehovah in naming Cain (Genesis 4:1). Her deception contrasts with Canaanite fertility worship, seen in archaeological idols, which falsely promised prosperity. Eve’s choice shows the danger of straying from Jehovah’s commands, leading to false worship through self-reliance (2 Corinthians 11:3). The lesson is to guard against deception, obey God, and seek His guidance. Eve’s example teaches us to remain loyal to Jehovah, reject worldly temptations, and maintain pure worship, ensuring our actions align with His truth to avoid the consequences of disobedience."
+    ]
+  },
+  {
+    T: "Faith",
+    S: [
+      "Hebrews 11:1 - <em>Faith is the assured expectation of what is hoped for, the evident demonstration of realities that are not seen.</em>",
+      "James 2:26 - <em>Faith without works is dead.</em>",
+      "Romans 10:17 - <em>Faith follows the thing heard.</em>",
+      "Galatians 3:11 - <em>The righteous one will live by reason of faith.</em>",
+      "Habakkuk 2:4 - <em>The righteous one will live by his faithfulness.</em>",
+      "Matthew 17:20 - <em>If you have faith the size of a mustard seed... nothing will be impossible for you.</em>",
+      "Ephesians 6:16 - <em>Take up the large shield of faith, with which you will be able to extinguish all the wicked one’s burning arrows.</em>"
+    ],
+    D: [
+      "Faith is confident trust in Jehovah’s promises, backed by action (Hebrews 11:1, James 2:26). Ancient Hebrew inscriptions, like those at Lachish, show reliance on God, aligning with Habakkuk 2:4. Unlike pagan oracles, seen in Babylonian tablets, biblical faith is based on Jehovah’s word (Romans 10:17). Faith sustained Abraham and others (Galatians 3:11), proving stronger than worldly philosophies in Greek inscriptions. False worship, like Canaanite ritual reliance, lacks the active trust Matthew 17:20 describes. Faith requires no forgiveness when genuine, as it reflects righteousness. The lesson is to build faith through study and obedience, rejecting false beliefs (Ephesians 6:16). By acting on faith, like early Christians, we overcome trials and maintain pure worship. This truth encourages us to trust Jehovah’s promises, live righteously, and avoid pagan practices, ensuring our faith leads to eternal life under His kingdom."
+    ]
+  },
+  {
+    T: "Isaac",
+    S: [
+      "Genesis 22:7 - <em>Here is the fire and the wood, but where is the sheep for the burnt offering?</em>",
+      "Genesis 26:2 - <em>Jehovah appeared to him and said: Do not go down to Egypt.</em>",
+      "Hebrews 11:20 - <em>By faith Isaac blessed Jacob and Esau concerning things to come.</em>",
+      "Genesis 24:67 - <em>Isaac brought her into the tent... and took Rebekah as his wife.</em>",
+      "Genesis 25:5 - <em>Abraham gave everything he had to Isaac.</em>",
+      "Psalm 105:9 - <em>The covenant he made with Abraham, and his sworn oath to Isaac.</em>"
+    ],
+    D: [
+      "Isaac, born around 1918 BCE, showed faith by submitting to Abraham’s sacrifice test (Genesis 22:7), earning Jehovah’s approval. Canaanite archaeological sites confirm the patriarchal era’s nomadic lifestyle. His obedience to Jehovah’s command to stay in Canaan (Genesis 26:2) contrasted with pagan migration to Egypt for fertility cults, seen in Amun worship artifacts. Isaac’s peaceful life and blessing of his sons (Hebrews 11:20) reflected trust in God’s covenant (Psalm 105:9). He did not sin in these accounts, needing no forgiveness. Unlike Canaanite idolatry, Isaac’s worship was pure, centered on Jehovah. His life teaches us to trust God’s promises, remain obedient, and avoid false worship. Isaac’s example encourages us to prioritize faith in Jehovah’s guidance, maintain peace with others, and pass on spiritual values, ensuring our worship remains free from pagan influences and aligned with God’s purpose for eternal life."
+    ]
+  },
+  {
+    T: "Jacob",
+    S: [
+      "Genesis 28:13 - <em>I am Jehovah... The land on which you are lying, to you I will give it.</em>",
+      "Genesis 32:29 - <em>Your name will no longer be Jacob but Israel.</em>",
+      "Hebrews 11:21 - <em>By faith Jacob... blessed each of the sons of Joseph.</em>",
+      "Genesis 35:10 - <em>Your name will not be Jacob anymore but Israel will be your name.</em>",
+      "Hosea 12:3 - <em>In the womb he seized his brother by the heel.</em>",
+      "Genesis 33:4 - <em>Esau ran to meet him... and they wept.</em>",
+      "Psalm 105:10 - <em>He established it as a statute to Jacob, an everlasting covenant to Israel.</em>"
+    ],
+    D: [
+      "Jacob, born around 1858 BCE, became Israel, father of the 12 tribes (Genesis 32:29). Canaanite tablets confirm the patriarchal era’s tribal structures. Initially deceptive, seizing Esau’s birthright (Hosea 12:3), Jacob repented, wrestling with an angel and earning Jehovah’s blessing (Genesis 32:29). His reconciliation with Esau (Genesis 33:4) showed humility, securing forgiveness. Unlike Canaanite idolatry, seen in Baal worship artifacts, Jacob’s worship became pure, as he removed idols (Genesis 35:2). His faith in blessing his grandsons (Hebrews 11:21) fulfilled God’s covenant (Psalm 105:10). Jacob’s life teaches us that Jehovah forgives sincere repentance, transforming flawed individuals. By rejecting false worship and trusting Jehovah’s promises (Genesis 28:13), we ensure pure worship. Jacob’s example encourages us to seek forgiveness, reconcile with others, and remain faithful, aligning our lives with God’s purpose for His people, free from pagan influences."
+    ]
+  },
+  {
+    T: "Jeremiah",
+    S: [
+      "Jeremiah 1:5 - <em>Before I formed you in the womb, I knew you.</em>",
+      "Jeremiah 20:9 - <em>I said: I will not make mention of him... But his word was like a burning fire in my bones.</em>",
+      "Jeremiah 29:11 - <em>I well know the thoughts that I am thinking toward you... thoughts of peace.</em>",
+      "Lamentations 3:22-23 - <em>It is because of Jehovah’s loyal love that we have not come to our finish.</em>",
+      "Jeremiah 15:16 - <em>Your words were found, and I ate them.</em>",
+      "2 Chronicles 36:21 - <em>The land had to keep its sabbaths.</em>",
+      "Hebrews 11:38 - <em>The world was not worthy of them.</em>"
+    ],
+    D: [
+      "Jeremiah, prophesying around 627 BCE, boldly declared Jehovah’s judgments against Judah (Jeremiah 1:5). Lachish ostraca confirm Judah’s historical turmoil, validating his context. His passion for God’s word (Jeremiah 20:9) and trust in Jehovah’s promises (Jeremiah 29:11) earned divine approval. Unlike Babylonian priests, seen in cuneiform records, Jeremiah rejected idolatry, warning against false worship (Jeremiah 10:2-5). He faced persecution but remained loyal, needing no forgiveness in these accounts. His lamentations show reliance on Jehovah’s mercy (Lamentations 3:22-23). The lesson is to proclaim truth courageously, even under opposition, and reject pagan practices, like those in Canaanite altars. Jeremiah’s example teaches us to internalize God’s word (Jeremiah 15:16), trust His plans, and maintain pure worship. By enduring trials faithfully, we align with Jehovah’s purpose, ensuring our devotion remains steadfast and free from false religious influences."
+    ]
+  },
+  {
+    T: "John the Baptist",
+    S: [
+      "Luke 1:15 - <em>He will be great in the sight of Jehovah.</em>",
+      "Matthew 3:4 - <em>John had clothing of camel’s hair and a leather belt.</em>",
+      "John 1:23 - <em>I am a voice of someone crying out in the wilderness.</em>",
+      "Matthew 11:11 - <em>Among those born of women, there has not been raised up anyone greater than John.</em>",
+      "Mark 1:6 - <em>John was clothed with camel’s hair and was eating locusts and wild honey.</em>",
+      "Luke 7:28 - <em>No one greater than John has been born.</em>",
+      "Matthew 14:10 - <em>He had John beheaded in the prison.</em>"
+    ],
+    D: [
+      "John the Baptist, active around 29 CE, prepared the way for Jesus, preaching repentance (John 1:23). Qumran community artifacts confirm 1st-century ascetic practices, aligning with his lifestyle (Matthew 3:4). His bold proclamation against Herod’s sin led to his execution (Matthew 14:10), earning Jehovah’s approval (Luke 1:15). Unlike Essene rituals, seen in Dead Sea Scrolls, John’s baptism focused on Jehovah’s kingdom. He did not sin in these accounts, needing no forgiveness, and rejected false worship tied to Jewish traditions (Matthew 11:11). His humility and zeal teach us to prioritize God’s message over personal comfort, avoiding worldly influences like Roman emperor worship in coin inscriptions. John’s example encourages us to prepare others for Jehovah’s purpose, live simply, and proclaim truth boldly, ensuring pure worship free from false practices, as we await His kingdom."
+    ]
+  },
+  {
+    T: "Jonah",
+    S: [
+      "Jonah 1:3 - <em>Jonah got up to flee to Tarshish from before Jehovah.</em>",
+      "Jonah 2:1 - <em>Jonah prayed to Jehovah his God from the belly of the fish.</em>",
+      "Jonah 3:10 - <em>God saw their works, that they had turned back from their evil way.</em>",
+      "Matthew 12:40 - <em>Just as Jonah was in the belly of the huge fish three days and three nights.</em>",
+      "2 Kings 14:25 - <em>Jonah the son of Amittai, the prophet from Gath-hepher.</em>",
+      "Jonah 4:11 - <em>Should I not feel sorry for Nineveh?</em>",
+      "Luke 11:32 - <em>The men of Nineveh will rise in the judgment.</em>"
+    ],
+    D: [
+      "Jonah, a prophet around 8th century BCE, initially fled Jehovah’s command to preach to Nineveh (Jonah 1:3). Assyrian records confirm Nineveh’s prominence, validating the historical setting. His repentance in the fish’s belly (Jonah 2:1) secured Jehovah’s forgiveness, showing mercy. Jonah’s preaching led Nineveh to repent (Jonah 3:10), unlike Assyrian idolatry in temple reliefs. His reluctance reflects human weakness, but his eventual obedience teaches us to trust Jehovah’s compassion (Jonah 4:11). Unlike pagan oracles, Jonah’s message was from God, not false gods. His life encourages us to overcome fear, obey God, and proclaim His message, rejecting false worship. Jesus referenced Jonah’s experience (Matthew 12:40), affirming its truth. By seeking forgiveness and fulfilling God’s will, we maintain pure worship, ensuring our actions align with Jehovah’s purpose to save even those in darkness, free from pagan influences."
+    ]
+  },
+  {
+    T: "Kingdom of God",
+    S: [
+      "Daniel 2:44 - <em>God’s kingdom... will crush and put an end to all these kingdoms.</em>",
+      "Matthew 6:10 - <em>Let your kingdom come.</em>",
+      "Luke 17:21 - <em>The kingdom of God is in your midst.</em>",
+      "Revelation 11:15 - <em>The kingdom of the world has become the kingdom of our Lord.</em>",
+      "Psalm 145:13 - <em>Your kingdom is an everlasting kingdom.</em>",
+      "John 18:36 - <em>My kingdom is no part of this world.</em>",
+      "Matthew 24:14 - <em>This good news of the kingdom will be preached.</em>"
+    ],
+    D: [
+      "The Kingdom of God is Jehovah’s government, ruled by Jesus, that will restore earth to paradise (Daniel 2:44). Ancient prophecies, like those in Mesopotamian tablets, lack the Bible’s clarity, as Psalm 145:13 declares its eternality. Unlike earthly kingdoms, evidenced in Roman inscriptions, God’s kingdom is heavenly (John 18:36). Matthew 6:10 urges prayer for its coming, and Matthew 24:14 emphasizes preaching its good news. False worship, like Babylonian ruler cults, opposes Jehovah’s rule, but Revelation 11:15 promises its triumph. The kingdom requires no forgiveness, as it is God’s perfect provision. The lesson is to prioritize the kingdom in our lives, rejecting worldly powers and false religions. By preaching its message, we align with Jehovah’s purpose, ensuring pure worship. This truth encourages us to pray for and support God’s government, living faithfully to inherit its blessings, free from pagan influences that obscure Jehovah’s sovereignty."
+    ]
+  },
+  {
+    T: "Love",
+    S: [
+      "1 Corinthians 13:4 - <em>Love is patient and kind.</em>",
+      "John 13:35 - <em>By this all will know that you are my disciples, if you have love among yourselves.</em>",
+      "1 John 4:8 - <em>God is love.</em>",
+      "Romans 13:10 - <em>Love is the law’s fulfillment.</em>",
+      "Matthew 22:37-39 - <em>You must love Jehovah your God... and your neighbor as yourself.</em>",
+      "1 Peter 4:8 - <em>Love covers a multitude of sins.</em>",
+      "John 15:13 - <em>No one has love greater than this, that someone should surrender his life.</em>"
+    ],
+    D: [
+      "Love is the defining quality of true worship, reflecting Jehovah’s nature (1 John 4:8). Ancient Greek texts describe eros, but biblical agape emphasizes selflessness (1 Corinthians 13:4). Jesus’ command to love God and neighbor (Matthew 22:37-39) contrasts with pagan rituals, like Canaanite fertility cults in archaeological finds, which lacked genuine love. John 13:35 marks love as a Christian identifier, and John 15:13 highlights Jesus’ sacrificial love. Love covers sins through forgiveness (1 Peter 4:8), aligning with Jehovah’s mercy. Unlike worldly philosophies, seen in Roman inscriptions, biblical love fulfills God’s law (Romans 13:10). The lesson is to show selfless love, rejecting selfish practices tied to false worship. By loving others, we emulate Jehovah, ensuring pure worship. This truth encourages us to build strong relationships, forgive readily, and live for God’s purpose, free from pagan influences that promote self-interest over divine love."
+    ]
+  },
+  {
+    T: "Lydia",
+    S: [
+      "Acts 16:14 - <em>A woman named Lydia... was listening, and Jehovah opened her heart.</em>",
+      "Acts 16:15 - <em>She and her household got baptized.</em>",
+      "Acts 16:40 - <em>They went to the house of Lydia... and encouraged the brothers.</em>",
+      "Philippians 1:1 - <em>To all the holy ones at Philippi.</em>",
+      "Psalm 86:11 - <em>Teach me your way, O Jehovah.</em>",
+      "Proverbs 31:30 - <em>The woman who fears Jehovah is the one who will be praised.</em>"
+    ],
+    D: [
+      "Lydia, a 1st-century Christian in Philippi, was a businesswoman who accepted the good news (Acts 16:14). Roman trade records confirm Philippi’s commercial activity, validating her context. Her heart opened to Paul’s message, leading to her and her household’s baptism (Acts 16:15). She showed hospitality by hosting Paul (Acts 16:40), earning Jehovah’s approval. Unlike Thyatira’s goddess worship, seen in temple artifacts, Lydia’s faith was pure, centered on Jehovah (Psalm 86:11). She did not sin in these accounts, needing no forgiveness. Her life teaches us to respond promptly to truth, show hospitality, and reject false worship. Lydia’s example, as a woman fearing Jehovah (Proverbs 31:30), encourages us to use our resources to support true worship, build faith through action, and maintain purity, ensuring our devotion aligns with God’s purpose, free from pagan practices."
+    ]
+  },
+  {
+    T: "Marriage",
+    S: [
+      "Genesis 2:24 - <em>A man will leave his father and his mother and he will stick to his wife.</em>",
+      "Matthew 19:6 - <em>What God has yoked together, let no man put apart.</em>",
+      "Ephesians 5:33 - <em>Let each one of you individually so love his wife as he does himself.</em>",
+      "1 Corinthians 7:14 - <em>The unbelieving husband is sanctified in relation to his wife.</em>",
+      "Hebrews 13:4 - <em>Let marriage be honorable among all.</em>",
+      "Proverbs 18:22 - <em>The one who finds a good wife has found a good thing.</em>",
+      "Malachi 2:16 - <em>Jehovah... hates a divorcing.</em>"
+    ],
+    D: [
+      "Marriage is Jehovah’s arrangement for companionship and procreation (Genesis 2:24). Ancient Near Eastern marriage contracts confirm its societal role, but biblical marriage emphasizes love and loyalty (Ephesians 5:33). Unlike pagan fertility rituals, seen in Canaanite idols, marriage is sacred, uniting man and woman under God (Matthew 19:6). Hebrews 13:4 calls for honor, and Malachi 2:16 condemns unjust divorce. A believing spouse can sanctify an unbeliever (1 Corinthians 7:14), showing love’s power. False worship, like Babylonian marriage rites in tablets, often promoted immorality, but biblical marriage reflects purity. The lesson is to honor marriage as Jehovah’s design, rejecting worldly attitudes that undermine commitment. By loving and respecting our spouse, we emulate God’s purpose, ensuring pure worship. This truth encourages us to build strong, faithful marriages, free from pagan influences, and to reflect Jehovah’s love in our relationships."
+    ]
+  },
+  {
+    T: "Prayer",
+    S: [
+      "Philippians 4:6 - <em>Do not be anxious over anything, but in everything by prayer... let your petitions be made known to God.</em>",
+      "1 Thessalonians 5:17 - <em>Pray constantly.</em>",
+      "Psalm 65:2 - <em>O Hearer of prayer, to you people of all sorts will come.</em>",
+      "James 5:16 - <em>The supplication of a righteous man has much force.</em>",
+      "Matthew 6:6 - <em>When you pray, go into your private room.</em>",
+      "1 John 5:14 - <em>This is the confidence that we have toward him, that no matter what we ask according to his will, he hears us.</em>",
+      "Psalm 34:15 - <em>The eyes of Jehovah are on the righteous, and his ears listen to their cry for help.</em>"
+    ],
+    D: [
+      "Prayer is direct communication with Jehovah, seeking His guidance and strength (Philippians 4:6). Ancient Hebrew inscriptions show prayers to God, aligning with Psalm 65:2. Unlike pagan incantations, seen in Babylonian tablets, biblical prayer is personal and sincere (Matthew 6:6). James 5:16 highlights its power when righteous, and 1 John 5:14 ensures Jehovah hears prayers aligned with His will. False worship, like Canaanite ritual prayers in stelae, seeks favor from idols, but Psalm 34:15 affirms Jehovah listens to the righteous. Prayer requires no forgiveness when heartfelt, reflecting pure worship. The lesson is to pray constantly (1 Thessalonians 5:17), rejecting formalistic rituals. By approaching Jehovah sincerely, we strengthen our faith, ensure pure worship, and trust His response, free from pagan practices that obscure His accessibility and love."
+    ]
+  },
+  {
+    T: "Sarah",
+    S: [
+      "Genesis 17:15 - <em>As for Sarai your wife, you will not call her name Sarai, but Sarah will be her name.</em>",
+      "Hebrews 11:11 - <em>By faith Sarah received power to conceive.</em>",
+      "1 Peter 3:6 - <em>Sarah obeyed Abraham, calling him lord.</em>",
+      "Genesis 18:12 - <em>Sarah laughed to herself, saying: After I am worn out... will I have this pleasure?</em>",
+      "Genesis 21:2 - <em>Sarah became pregnant and bore a son to Abraham.</em>",
+      "Isaiah 51:2 - <em>Look to Abraham your father, and to Sarah, who gave birth to you.</em>",
+      "Genesis 23:1 - <em>Sarah’s life was 127 years.</em>"
+    ],
+    D: [
+      "Sarah, living around 1918 BCE, was Abraham’s wife, renamed by Jehovah (Genesis 17:15). Canaanite artifacts confirm the patriarchal era’s nomadic lifestyle. Her faith enabled her to bear Isaac despite old age (Hebrews 11:11), earning Jehovah’s approval. Sarah’s initial laughter at God’s promise (Genesis 18:12) showed doubt, but her obedience to Abraham (1 Peter 3:6) reflected repentance, securing Jehovah’s blessing. Unlike Canaanite goddess worship, seen in Asherah idols, Sarah’s faith was pure, centered on Jehovah. Her life teaches us to trust God’s promises, even when they seem impossible, and to submit humbly to His will. Sarah’s example encourages us to overcome doubts through faith, reject false worship, and remain loyal, ensuring our worship aligns with Jehovah’s purpose. Her role as a matriarch (Isaiah 51:2) inspires us to support family faith, free from pagan influences, for God’s blessing."
+    ]
+  },
+  {
     T: "Easter",
     S: [
       "Acts 12:4 - <em>Intending after the Passover to bring him out to the people.</em>",
