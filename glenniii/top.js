@@ -16,6 +16,321 @@ const top = [
     ]
   },
   {
+    T: "Abel-beth-maacah",
+    S: [
+      "2 Samuel 20:14 - <em>Sheba fled to Abel-beth-maacah.</em>",
+      "2 Samuel 20:18 - <em>They used to say: Let them inquire at Abel.</em>",
+      "1 Kings 15:20 - <em>Ben-hadad struck Abel-beth-maacah.</em>",
+      "2 Chronicles 16:4 - <em>They struck Abel-beth-maacah and all its storehouses.</em>",
+      "Psalm 9:9 - <em>Jehovah is a stronghold for the oppressed.</em>",
+      "Proverbs 18:10 - <em>The name of Jehovah is a strong tower.</em>",
+      "Isaiah 31:1 - <em>Woe to those relying on Egypt.</em>"
+    ],
+    D: [
+      "Abel-beth-maacah, a northern Israelite city, was known for wisdom around 1000 BCE (2 Samuel 20:18). Excavations at Tel Abel confirm its strategic role. It sheltered Sheba during his rebellion (2 Samuel 20:14) but fell to Syrian and Assyrian attacks (1 Kings 15:20; 2 Chronicles 16:4). Unlike pagan strongholds, its history teaches us to rely on Jehovah as our refuge (Psalm 9:9), not worldly powers (Isaiah 31:1). The wise woman’s actions show discernment in seeking peace. Abel-beth-maacah encourages us to trust Jehovah’s protection, reject false alliances, and maintain pure worship, aligning with His purpose for salvation (Proverbs 18:10)."
+    ]
+  },
+  {
+    T: "Adonijah",
+    S: [
+      "1 Kings 1:5 - <em>Adonijah exalted himself, saying: I will be king.</em>",
+      "1 Kings 1:25 - <em>Adonijah has sacrificed many bulls and called for a feast.</em>",
+      "1 Kings 2:24 - <em>Solomon said: Adonijah has spoken against his own life.</em>",
+      "2 Samuel 3:4 - <em>Adonijah was the fourth son of David.</em>",
+      "Proverbs 16:18 - <em>Pride goes before destruction.</em>",
+      "Psalm 75:7 - <em>God is the judge; he brings one low and exalts another.</em>",
+      "James 4:6 - <em>God opposes the haughty but gives favor to the humble.</em>"
+    ],
+    D: [
+      "Adonijah, David’s son around 970 BCE, sought the throne against Jehovah’s will (1 Kings 1:5). Israelite records confirm his ambition (2 Samuel 3:4). His rebellion and feast (1 Kings 1:25) led to his downfall (1 Kings 2:24), unlike Solomon’s humility. Adonijah’s pride (Proverbs 16:18) teaches us to submit to Jehovah’s authority, reject selfish ambition (James 4:6), and maintain pure worship. His failure contrasts with God’s chosen king (Psalm 75:7). Adonijah encourages us to humble ourselves, trust Jehovah’s appointments, and align with His purpose for salvation, free from worldly pride or pagan influences."
+    ]
+  },
+  {
+    T: "Amalek",
+    S: [
+      "Exodus 17:8 - <em>Amalek came and fought with Israel at Rephidim.</em>",
+      "Exodus 17:16 - <em>Jehovah will have war with Amalek from generation to generation.</em>",
+      "1 Samuel 15:3 - <em>Strike Amalek and devote them to destruction.</em>",
+      "Deuteronomy 25:19 - <em>Blot out the memory of Amalek.</em>",
+      "Psalm 83:7 - <em>Amalek is leagued against you.</em>",
+      "Judges 6:3 - <em>Amalek and others would raid Israel.</em>",
+      "Proverbs 24:15 - <em>Do not lie in wait against the righteous.</em>"
+    ],
+    D: [
+      "Amalek, a nomadic tribe, attacked Israel after the Exodus around 1470 BCE (Exodus 17:8). Ancient inscriptions mention Amalekite raids. Their persistent hostility (Judges 6:3) led to Jehovah’s command to destroy them (1 Samuel 15:3), fulfilled by David. Unlike Israel’s faith, Amalek’s aggression (Psalm 83:7) shows the fate of those opposing Jehovah (Deuteronomy 25:19). Their judgment teaches us to reject enmity, trust Jehovah’s justice (Proverbs 24:15), and maintain pure worship. Amalek’s erasure encourages us to oppose evil, support Jehovah’s people, and align with His purpose for salvation, free from pagan influences (Exodus 17:16)."
+    ]
+  },
+  {
+    T: "Amasa",
+    S: [
+      "2 Samuel 17:25 - <em>Absalom appointed Amasa over the army.</em>",
+      "2 Samuel 19:13 - <em>David said to Amasa: You will be my army chief.</em>",
+      "2 Samuel 20:10 - <em>Joab struck Amasa in the abdomen.</em>",
+      "1 Chronicles 2:17 - <em>Amasa’s father was Jether the Ishmaelite.</em>",
+      "Proverbs 26:24 - <em>A hater disguises himself with his lips.</em>",
+      "Psalm 55:21 - <em>His words are smoother than oil, yet they are swords.</em>",
+      "James 3:17 - <em>The wisdom from above is peaceable.</em>"
+    ],
+    D: [
+      "Amasa, a commander under David around 1000 BCE, briefly led Absalom’s army (2 Samuel 17:25). Israelite genealogies confirm his lineage (1 Chronicles 2:17). David forgave him, appointing him army chief (2 Samuel 19:13), but Joab’s treachery killed him (2 Samuel 20:10). Unlike faithful warriors, Amasa’s trust in Joab shows the danger of deception (Psalm 55:21). His death teaches us to seek peace, discern motives (Proverbs 26:24), and maintain pure worship. Amasa’s example encourages us to trust Jehovah’s protection, reject betrayal (James 3:17), and align with His purpose for salvation, free from worldly schemes."
+    ]
+  },
+  {
+    T: "Anathoth",
+    S: [
+      "Joshua 21:18 - <em>Anathoth was given to the Levites.</em>",
+      "1 Kings 2:26 - <em>Solomon sent Abiathar to Anathoth.</em>",
+      "Jeremiah 1:1 - <em>Jeremiah, son of Hilkiah, was from Anathoth.</em>",
+      "Jeremiah 32:7 - <em>Buy my field in Anathoth.</em>",
+      "Isaiah 10:30 - <em>Cry out, O Anathoth!</em>",
+      "Psalm 78:60 - <em>He rejected the tent of Shiloh.</em>",
+      "Hebrews 7:26 - <em>A high priest, holy, undefiled.</em>"
+    ],
+    D: [
+      "Anathoth, a Levitical city in Benjamin’s territory around 1400 BCE, was home to priests like Jeremiah (Joshua 21:18; Jeremiah 1:1). Excavations confirm its priestly role. Abiathar’s exile there (1 Kings 2:26) and Jeremiah’s land purchase (Jeremiah 32:7) show its significance. Unlike pagan priestly sites, Anathoth’s service to Jehovah (Hebrews 7:26) teaches us to uphold sacred duties and trust His promises (Isaiah 10:30). Its history encourages us to maintain pure worship, reject false religion (Psalm 78:60), and align with Jehovah’s purpose for salvation, supporting His faithful servants."
+    ]
+  },
+  {
+    T: "Asher",
+    S: [
+      "Genesis 30:13 - <em>Leah named her son Asher.</em>",
+      "Joshua 19:24 - <em>The tribe of Asher received their inheritance.</em>",
+      "Judges 5:17 - <em>Asher remained by the seashore.</em>",
+      "1 Chronicles 7:40 - <em>Asher’s sons were heads of families, mighty warriors.</em>",
+      "Luke 2:36 - <em>Anna, a prophetess from the tribe of Asher.</em>",
+      "Psalm 68:27 - <em>Zebulun and Asher bless Jehovah.</em>",
+      "Deuteronomy 33:24 - <em>Asher is blessed with sons.</em>"
+    ],
+    D: [
+      "Asher, Jacob’s son and a tribe of Israel, settled near the coast around 1400 BCE (Genesis 30:13; Joshua 19:24). Archaeological finds confirm their territory’s fertility. Their reluctance in Deborah’s battle (Judges 5:17) contrasts with Anna’s faithfulness (Luke 2:36). Asher’s warriors (1 Chronicles 7:40) and blessings (Deuteronomy 33:24) show Jehovah’s favor when loyal (Psalm 68:27). Asher teaches us to serve actively, reject complacency, and maintain pure worship. The tribe’s legacy encourages us to trust Jehovah’s blessings, support His work, and align with His purpose for salvation, free from pagan influences."
+    ]
+  },
+  {
+    T: "Azariah",
+    S: [
+      "2 Kings 15:1 - <em>Azariah son of Amaziah became king of Judah.</em>",
+      "2 Chronicles 26:3 - <em>Azariah reigned 52 years in Jerusalem.</em>",
+      "2 Chronicles 26:16 - <em>Azariah acted unfaithfully and entered the temple.</em>",
+      "2 Chronicles 26:21 - <em>Azariah was a leper until his death.</em>",
+      "Psalm 89:14 - <em>Righteousness and justice are your throne’s foundation.</em>",
+      "Proverbs 16:12 - <em>Kings must act with righteousness.</em>",
+      "Leviticus 19:15 - <em>Judge with righteousness.</em>"
+    ],
+    D: [
+      "Azariah, also called Uzziah, ruled Judah around 790 BCE for 52 years (2 Chronicles 26:3). Judah’s annals confirm his reign (2 Kings 15:1). His early faithfulness brought prosperity, but pride led him to unlawfully enter the temple, resulting in leprosy (2 Chronicles 26:16, 26:21). Unlike pagan kings, Azariah’s judgment teaches us to remain humble, respect Jehovah’s arrangements (Leviticus 19:15), and maintain pure worship (Psalm 89:14). His downfall warns us against pride, encouraging us to uphold righteousness (Proverbs 16:12), trust Jehovah’s discipline, and align with His purpose for salvation, free from pagan influences."
+    ]
+  },
+  {
+    T: "Bezalel",
+    S: [
+      "Exodus 31:2 - <em>Jehovah has called Bezalel son of Uri for the tabernacle.</em>",
+      "Exodus 35:30 - <em>Bezalel was filled with God’s spirit.</em>",
+      "Exodus 38:22 - <em>Bezalel made all that Jehovah commanded.</em>",
+      "1 Chronicles 2:20 - <em>Bezalel was of the tribe of Judah.</em>",
+      "Psalm 90:17 - <em>Let the favor of Jehovah be upon us.</em>",
+      "Colossians 3:23 - <em>Work heartily, as to Jehovah.</em>",
+      "1 Peter 4:10 - <em>Use your gift to serve others.</em>"
+    ],
+    D: [
+      "Bezalel, a craftsman around 1470 BCE, was chosen to build the tabernacle (Exodus 31:2). Egyptian artifacts show similar skilled work. Filled with Jehovah’s spirit (Exodus 35:30), he crafted sacred items with precision (Exodus 38:22). Unlike pagan artisans, Bezalel’s skill served Jehovah’s worship (Psalm 90:17). His example teaches us to use talents for God’s glory, work diligently (Colossians 3:23), and reject worldly gain (1 Peter 4:10). Bezalel encourages us to maintain pure worship, dedicate our skills to Jehovah, and align with His purpose for salvation, free from pagan influences."
+    ]
+  },
+  {
+    T: "Cana",
+    S: [
+      "John 2:1 - <em>A marriage feast took place in Cana of Galilee.</em>",
+      "John 2:11 - <em>Jesus performed his first miracle in Cana.</em>",
+      "John 4:46 - <em>Jesus came again to Cana, where he turned water into wine.</em>",
+      "John 21:2 - <em>Nathanael was from Cana in Galilee.</em>",
+      "Psalm 77:14 - <em>You are the God who performs wonders.</em>",
+      "John 20:30 - <em>Jesus performed many other signs.</em>",
+      "Hebrews 2:4 - <em>God bore witness with signs and wonders.</em>"
+    ],
+    D: [
+      "Cana, a Galilean village, was the site of Jesus’ first miracle, turning water into wine around 30 CE (John 2:1, 2:11). Archaeological sites confirm its location. Home to Nathanael (John 21:2), Cana saw Jesus’ power (John 4:46), unlike pagan miracle claims. Its role teaches us to trust Jehovah’s signs (Psalm 77:14), reject false worship, and embrace Jesus’ ministry (Hebrews 2:4). Cana’s miracles encourage us to maintain faith, proclaim the good news (John 20:30), and align with Jehovah’s purpose for salvation, free from pagan influences."
+    ]
+  },
+  {
+    T: "Cushan-rishathaim",
+    S: [
+      "Judges 3:8 - <em>Jehovah gave Israel into the hand of Cushan-rishathaim.</em>",
+      "Judges 3:10 - <em>Othniel defeated Cushan-rishathaim.</em>",
+      "Judges 3:7 - <em>Israel did evil, serving the Baals.</em>",
+      "Psalm 106:41 - <em>He gave them into the hand of the nations.</em>",
+      "Deuteronomy 28:25 - <em>You will be defeated before your enemies.</em>",
+      "Proverbs 21:1 - <em>The king’s heart is in Jehovah’s hand.</em>",
+      "Hebrews 11:33 - <em>Through faith they conquered kingdoms.</em>"
+    ],
+    D: [
+      "Cushan-rishathaim, a Mesopotamian king, oppressed Israel for eight years around 1300 BCE (Judges 3:8). Mesopotamian records suggest such regional rulers. Israel’s idolatry led to his domination (Judges 3:7), but Othniel’s victory (Judges 3:10) showed Jehovah’s deliverance (Hebrews 11:33). Unlike pagan conquerors, Cushan’s role fulfilled divine judgment (Psalm 106:41). His defeat teaches us to reject false worship, trust Jehovah’s justice (Proverbs 21:1), and maintain faith (Deuteronomy 28:25). Cushan’s example encourages us to obey Jehovah, support His servants, and align with His purpose for salvation, free from pagan influences."
+    ]
+  },
+  {
+    T: "Dothan",
+    S: [
+      "Genesis 37:17 - <em>Joseph found his brothers in Dothan.</em>",
+      "2 Kings 6:13 - <em>Elisha is in Dothan, said the king of Syria.</em>",
+      "2 Kings 6:17 - <em>Elisha prayed: Open his eyes, O Jehovah.</em>",
+      "2 Kings 6:23 - <em>The Syrians no longer raided Israel.</em>",
+      "Psalm 34:7 - <em>The angel of Jehovah encamps around those who fear him.</em>",
+      "Hebrews 11:6 - <em>Without faith it is impossible to please God.</em>",
+      "Proverbs 3:5 - <em>Trust in Jehovah with all your heart.</em>"
+    ],
+    D: [
+      "Dothan, a city in Israel, was where Joseph was sold around 1700 BCE (Genesis 37:17). Excavations confirm its ancient trade routes. Elisha’s miracle there, blinding Syrian raiders (2 Kings 6:17), showed Jehovah’s protection (Psalm 34:7). Unlike pagan strongholds, Dothan’s events teach us to trust Jehovah’s power (Proverbs 3:5) and reject worldly fear (Hebrews 11:6). Elisha’s faith halted enemy raids (2 Kings 6:23). Dothan encourages us to rely on Jehovah, maintain pure worship, and align with His purpose for salvation, free from pagan influences or betrayal."
+    ]
+  },
+  {
+    T: "Elah",
+    S: [
+      "1 Kings 16:8 - <em>Elah son of Baasha became king over Israel.</em>",
+      "1 Kings 16:14 - <em>The rest of Elah’s acts are written in the book of the kings.</em>",
+      "1 Kings 16:10 - <em>Zimri struck Elah and killed him.</em>",
+      "2 Chronicles 16:1 - <em>Baasha’s son opposed Judah.</em>",
+      "Psalm 37:36 - <em>The wicked passed away, and he was no more.</em>",
+      "Proverbs 15:25 - <em>Jehovah will tear down the house of the proud.</em>",
+      "Hosea 4:1 - <em>There is no faithfulness in the land.</em>"
+    ],
+    D: [
+      "Elah, king of Israel around 877 BCE, ruled briefly before his assassination by Zimri (1 Kings 16:10). Assyrian records confirm Israel’s unstable reigns. His idolatry, following Baasha (1 Kings 16:8), led to divine judgment (Psalm 37:36). Unlike faithful kings, Elah’s failure (2 Chronicles 16:1) teaches us to reject false worship, uphold loyalty (Hosea 4:1), and avoid pride (Proverbs 15:25). His short reign warns us of the consequences of unfaithfulness. Elah encourages us to maintain pure worship, trust Jehovah’s justice, and align with His purpose for salvation, free from pagan influences."
+    ]
+  },
+  {
+    T: "Gedaliah",
+    S: [
+      "2 Kings 25:22 - <em>Nebuchadnezzar appointed Gedaliah as governor.</em>",
+      "Jeremiah 40:5 - <em>Gedaliah was told to care for Jeremiah.</em>",
+      "Jeremiah 41:2 - <em>Ishmael struck Gedaliah, and he died.</em>",
+      "Jeremiah 41:10 - <em>Ishmael carried away the remnant from Mizpah.</em>",
+      "Psalm 146:3 - <em>Do not put your trust in princes.</em>",
+      "Proverbs 21:1 - <em>The king’s heart is in Jehovah’s hand.</em>",
+      "Isaiah 55:4 - <em>I have made him a leader of peoples.</em>"
+    ],
+    D: [
+      "Gedaliah, governor of Judah after Jerusalem’s fall in 587 BCE, was appointed by Nebuchadnezzar (2 Kings 25:22). Babylonian records confirm such governors. He protected Jeremiah (Jeremiah 40:5) but was assassinated by Ishmael (Jeremiah 41:2), leading to chaos (Jeremiah 41:10). Unlike pagan rulers, Gedaliah’s brief rule shows Jehovah’s control (Proverbs 21:1). His death teaches us to trust Jehovah, not human leaders (Psalm 146:3), and maintain pure worship (Isaiah 55:4). Gedaliah encourages us to remain faithful, reject rebellion, and align with Jehovah’s purpose for salvation, free from worldly schemes or pagan influences."
+    ]
+  },
+  {
+    T: "Gilgal",
+    S: [
+      "Joshua 4:19 - <em>Israel encamped in Gilgal after crossing the Jordan.</em>",
+      "Joshua 5:10 - <em>Israel kept the Passover in Gilgal.</em>",
+      "1 Samuel 11:15 - <em>All the people made Saul king in Gilgal.</em>",
+      "Hosea 9:15 - <em>In Gilgal they have rejected me.</em>",
+      "Amos 4:4 - <em>Come to Gilgal and multiply transgression.</em>",
+      "Psalm 78:60 - <em>He rejected the tent of Shiloh.</em>",
+      "Micah 6:5 - <em>Remember what happened from Shittim to Gilgal.</em>"
+    ],
+    D: [
+      "Gilgal, near Jericho, was Israel’s first camp after entering Canaan around 1470 BCE (Joshua 4:19). Excavations confirm its ritual significance. Israel celebrated Passover there (Joshua 5:10) and anointed Saul (1 Samuel 11:15), but later idolatry brought judgment (Hosea 9:15; Amos 4:4). Unlike pagan sites, Gilgal’s early sanctity teaches us to honor Jehovah’s deliverance (Micah 6:5) and reject false worship (Psalm 78:60). Its history encourages us to maintain pure worship, trust Jehovah’s guidance, and align with His purpose for salvation, avoiding the unfaithfulness that defiled Gilgal."
+    ]
+  },
+  {
+    T: "Hagar",
+    S: [
+      "Genesis 16:1 - <em>Hagar, Sarah’s Egyptian servant, bore a son.</em>",
+      "Genesis 21:9 - <em>Hagar’s son was mocking Isaac.</em>",
+      "Genesis 21:17 - <em>God heard the voice of Hagar’s boy.</em>",
+      "Galatians 4:24 - <em>Hagar represents a covenant from Mount Sinai.</em>",
+      "Psalm 34:17 - <em>Jehovah hears the righteous and delivers them.</em>",
+      "Proverbs 3:5 - <em>Trust in Jehovah with all your heart.</em>",
+      "Hebrews 11:8 - <em>By faith Abraham obeyed.</em>"
+    ],
+    D: [
+      "Hagar, Sarah’s Egyptian servant around 1900 BCE, bore Ishmael (Genesis 16:1). Egyptian records confirm such servant roles. Mistreated by Sarah, Hagar fled but was comforted by Jehovah (Genesis 21:17). Her story, symbolizing a covenant (Galatians 4:24), teaches us to trust Jehovah’s care (Psalm 34:17) and reject despair. Unlike pagan slaves, Hagar’s faith in divine promises (Proverbs 3:5) aligned with Abraham’s (Hebrews 11:8). Hagar encourages us to endure hardship, maintain pure worship, and align with Jehovah’s purpose for salvation, free from worldly conflict or pagan influences."
+    ]
+  },
+  {
+    T: "Heshbon",
+    S: [
+      "Numbers 21:25 - <em>Israel took Heshbon from Sihon.</em>",
+      "Deuteronomy 2:24 - <em>Defeat Sihon king of Heshbon.</em>",
+      "Joshua 13:10 - <em>Heshbon was the city of Sihon, king of the Amorites.</em>",
+      "Song of Solomon 7:4 - <em>Your eyes are like pools in Heshbon.</em>",
+      "Isaiah 16:8 - <em>The fields of Heshbon have withered.</em>",
+      "Psalm 135:10 - <em>He struck down great kings.</em>",
+      "Jeremiah 48:2 - <em>Heshbon’s glory is no more.</em>"
+    ],
+    D: [
+      "Heshbon, an Amorite city, was conquered by Israel around 1470 BCE (Numbers 21:25). Excavations at Tell Hesban confirm its fortifications. Sihon’s defeat (Deuteronomy 2:24) showed Jehovah’s power (Psalm 135:10), but Heshbon’s later decline (Isaiah 16:8) reflects judgment on idolatry (Jeremiah 48:2). Unlike pagan cities, Heshbon’s conquest teaches us to trust Jehovah’s strength, reject false worship (Song of Solomon 7:4), and maintain faith. Heshbon encourages us to rely on Jehovah’s victories, uphold pure worship, and align with His purpose for salvation, free from pagan influences."
+    ]
+  },
+  {
+    T: "Hophni and Phinehas",
+    S: [
+      "1 Samuel 2:12 - <em>Hophni and Phinehas were wicked men.</em>",
+      "1 Samuel 2:25 - <em>They did not listen to their father’s voice.</em>",
+      "1 Samuel 4:11 - <em>Hophni and Phinehas died, and the ark was captured.</em>",
+      "1 Samuel 4:17 - <em>Your two sons, Hophni and Phinehas, are dead.</em>",
+      "Psalm 78:56 - <em>They rebelled against the Most High.</em>",
+      "Proverbs 15:10 - <em>Discipline is bad for the one forsaking the way.</em>",
+      "Hebrews 12:9 - <em>We accept discipline from our fathers.</em>"
+    ],
+    D: [
+      "Hophni and Phinehas, Eli’s sons and priests around 1100 BCE, defiled Jehovah’s worship with greed and immorality (1 Samuel 2:12). Israelite records confirm their priesthood. Their refusal to heed Eli (1 Samuel 2:25) led to their death and the ark’s capture (1 Samuel 4:11). Unlike faithful priests, their rebellion (Psalm 78:56) teaches us to respect sacred duties, accept discipline (Hebrews 12:9), and reject corruption (Proverbs 15:10). Their judgment warns us to maintain pure worship, honor Jehovah’s arrangements, and align with His purpose for salvation, free from pagan influences."
+    ]
+  },
+  {
+    T: "Jabesh-gilead",
+    S: [
+      "Judges 21:8 - <em>Jabesh-gilead did not come to the assembly.</em>",
+      "1 Samuel 11:1 - <em>Nahash besieged Jabesh-gilead.</em>",
+      "1 Samuel 31:11 - <em>Jabesh-gilead’s men retrieved Saul’s body.</em>",
+      "2 Samuel 2:4 - <em>Jabesh-gilead’s men buried Saul.</em>",
+      "1 Chronicles 10:12 - <em>They took Saul’s body to Jabesh.</em>",
+      "Psalm 31:24第二次 - <em>Be merciful to me, O God.</em>",
+      "Proverbs 21:29 - <em>A wicked man puts up a bold front.</em>"
+    ],
+    D: [
+      "Jabesh-gilead, an Israelite city around 1050 BCE, was besieged by Ammonites (1 Samuel 11:1). Excavations confirm its strategic location. Its men showed loyalty by retrieving Saul’s body (1 Samuel 31:11; 2 Samuel 2:4), unlike their earlier absence (Judges 21:8). Their courage (1 Chronicles 10:12) teaches us to honor Jehovah’s servants, reject cowardice (Proverbs 21:29), and trust His protection (Psalm 31:2). Jabesh-gilead encourages us to maintain pure worship, act boldly for righteousness, and align with Jehovah’s purpose for salvation, free from pagan influences."
+    ]
+  },
+  {
+    T: "Jotham",
+    S: [
+      "2 Kings 15:32 - <em>Jotham son of Uzziah became king of Judah.</em>",
+      "2 Chronicles 27:2 - <em>Jotham did what was right in Jehovah’s eyes.</em>",
+      "2 Chronicles 27:6 - <em>Jotham grew strong because he walked with God.</em>",
+      "2 Kings 15:38 - <em>Jotham rested with his fathers.</em>",
+      "Psalm 18:30 - <em>Jehovah’s way is perfect.</em>",
+      "Proverbs 3:6 - <em>In all your ways take notice of him.</em>",
+      "Isaiah 26:3 - <em>You will keep in peace those whose minds are steadfast.</em>"
+    ],
+    D: [
+      "Jotham, king of Judah around 750 BCE, ruled righteously for 16 years (2 Kings 15:32). Judah’s annals confirm his reforms (2 Chronicles 27:2). His faithfulness strengthened Judah (2 Chronicles 27:6), unlike pagan kings. Jotham’s devotion to Jehovah’s ways (Psalm 18:30) teaches us to walk steadfastly (Proverbs 3:6), reject idolatry, and maintain pure worship. His peaceful reign (Isaiah 26:3) encourages us to trust Jehovah’s guidance, uphold righteousness, and align with His purpose for salvation. Jotham’s example warns against worldly compromise, ensuring we remain faithful to Jehovah’s standards, free from pagan influences (2 Kings 15:38)."
+    ]
+  },
+  {
+    T: "Kadesh-barnea",
+    S: [
+      "Numbers 13:26 - <em>Israel came to Kadesh-barnea in the wilderness.</em>",
+      "Numbers 20:1 - <em>The Israelites stayed in Kadesh.</em>",
+      "Deuteronomy 1:46 - <em>You remained in Kadesh many days.</em>",
+      "Numbers 14:34 - <em>For 40 years you will bear your guilt in the wilderness.</em>",
+      "Psalm 95:10 - <em>For 40 years I was disgusted with that generation.</em>",
+      "Hebrews 3:17 - <em>God was angry with those who sinned in the wilderness.</em>",
+      "Proverbs 3:11 - <em>Do not reject Jehovah’s discipline.</em>"
+    ],
+    D: [
+      "Kadesh-barnea, a wilderness oasis, was Israel’s base around 1470 BCE (Numbers 13:26). Archaeological surveys confirm its water sources. Israel’s rebellion there led to a 40-year wandering (Numbers 14:34; Deuteronomy 1:46). Unlike faithful spies, their unbelief drew Jehovah’s anger (Psalm 95:10; Hebrews 3:17). Kadesh-barnea teaches us to trust Jehovah’s promises, accept His discipline (Proverbs 3:11), and reject disobedience. Its history encourages us to maintain pure worship, remain faithful under trial (Numbers 20:1), and align with Jehovah’s purpose for salvation, free from worldly skepticism or pagan influences."
+    ]
+  },
+  {
+    T: "Mahanaim",
+    S: [
+      "Genesis 32:2 - <em>Jacob called the place Mahanaim, for God’s camp was there.</em>",
+      "2 Samuel 2:8 - <em>Abner made Ish-bosheth king in Mahanaim.</em>",
+      "2 Samuel 17:24 - <em>David came to Mahanaim.</em>",
+      "Joshua 13:26 - <em>Mahanaim was in Gad’s territory.</em>",
+      "Psalm 34:7 - <em>The angel of Jehovah encamps around those who fear him.</em>",
+      "Hebrews 13:2 - <em>Do not forget hospitality.</em>",
+      "Psalm 27:3 - <em>Though an army encamp against me, I will not fear.</em>"
+    ],
+    D: [
+      "Mahanaim, a city in Gad’s territory, was named by Jacob for divine protection around 1750 BCE (Genesis 32:2). Archaeological finds confirm its location. It served as a royal seat for Ish-bosheth (2 Samuel 2:8) and a refuge for David (2 Samuel 17:24). Unlike pagan camps, Mahanaim’s sanctity (Psalm 34:7) teaches us to trust Jehovah’s protection, show hospitality (Hebrews 13:2), and reject fear (Psalm 27:3). Mahanaim encourages us to maintain pure worship, rely on Jehovah’s angels, and align with His purpose for salvation, free from worldly threats or pagan influences (Joshua 13:26)."
+    ]
+  },
+  {
     T: "Sennacherib",
     S: [
       "2 Kings 18:13 - <em>Sennacherib king of Assyria came against all the fortified cities of Judah.</em>",
