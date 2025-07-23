@@ -1,6 +1,441 @@
 // top.js
 const top = [
   {
+    T: "Abaddon",
+    S: [
+      "Revelation 9:11 - <em>They have as king over them the angel of the abyss, whose name in Hebrew is Abaddon.</em>",
+      "Job 26:6 - <em>Sheol is naked before him, and Abaddon has no covering.</em>",
+      "Proverbs 15:11 - <em>Sheol and Abaddon lie open before Jehovah.</em>",
+      "Job 31:12 - <em>It is a fire that would burn all the way to Abaddon.</em>",
+      "Psalm 88:11 - <em>Will your loyal love be declared in the grave, your faithfulness in Abaddon?</em>",
+      "Revelation 20:1 - <em>I saw an angel coming down out of heaven with the key of the abyss.</em>",
+      "Luke 8:31 - <em>They kept entreating him not to order them to go away into the abyss.</em>"
+    ],
+    D: [
+      "Abaddon, meaning ‘destruction,’ is the angel of the abyss, identified as Jesus executing judgment (Revelation 9:11). Ancient Hebrew texts, like Job 26:6, link it to Sheol, contrasting with pagan underworld myths, like Babylonian Nergal worship. Abaddon’s role (Revelation 20:1) ensures Jehovah’s justice, unlike Greco-Roman Hades cults in inscriptions. No forgiveness is needed for this divine agent, as it serves Jehovah’s purpose (Proverbs 15:11). Abaddon’s actions (Luke 8:31) oppose demonic forces, teaching us to trust Jehovah’s judgment, reject false afterlife beliefs, and maintain pure worship (Psalm 88:11). This truth encourages us to fear Jehovah’s power, avoid paganism, and align with His purpose, free from false worship, securing His favor."
+    ]
+  },
+  {
+    T: "Amos",
+    S: [
+      "Amos 1:1 - <em>The words of Amos, who was among the sheep raisers of Tekoa.</em>",
+      "Amos 3:7 - <em>Jehovah will not do a thing unless he has revealed his confidential matter to his servants.</em>",
+      "Amos 5:4 - <em>Search for me, and keep living.</em>",
+      "Amos 7:14 - <em>I was not a prophet... but a herdsman and a nipper of figs.</em>",
+      "Amos 9:11 - <em>In that day I will raise up the booth of David.</em>",
+      "Acts 15:16 - <em>I will rebuild the booth of David that has fallen.</em>",
+      "Psalm 105:5 - <em>Remember the wonderful works he has performed.</em>"
+    ],
+    D: [
+      "Amos, a prophet around 755 BCE, warned Israel of judgment (Amos 1:1). Judah’s archaeological remains, like Tekoa’s ruins, confirm his setting. His humble origin (Amos 7:14) and bold message (Amos 3:7) earned Jehovah’s approval, unlike Canaanite oracles in Ugaritic texts. Amos needed no forgiveness, proclaiming truth (Amos 5:4). His prophecy of restoration (Amos 9:11), fulfilled in Acts 15:16, contrasted with pagan fatalism. Amos’ life teaches us to speak truth humbly, trust Jehovah’s purpose, and reject false worship. His example encourages us to proclaim God’s word, seek Him (Psalm 105:5), and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Angels (Expanded)",
+    S: [
+      "Hebrews 1:14 - <em>Are they not all spirits for holy service, sent out to minister?</em>",
+      "Psalm 34:7 - <em>The angel of Jehovah is camping all around those fearing him.</em>",
+      "Daniel 6:22 - <em>My God sent his angel and shut the mouth of the lions.</em>",
+      "Acts 12:11 - <em>Jehovah sent his angel and rescued me.</em>",
+      "Revelation 5:11 - <em>I heard the voice of many angels around the throne.</em>",
+      "Matthew 18:10 - <em>Their angels in heaven always look upon the face of my Father.</em>",
+      "Psalm 91:11 - <em>He will give his angels a command concerning you.</em>"
+    ],
+    D: [
+      "Angels are Jehovah’s spirit servants, aiding His people (Hebrews 1:14). Ancient Near Eastern art depicts winged beings, but biblical angels, unlike Babylonian cherub myths, serve Jehovah (Psalm 34:7). Their protection (Daniel 6:22) and worship (Revelation 5:11) earn divine approval, needing no forgiveness. Unlike pagan spirit worship, seen in Assyrian reliefs, angels deliver Jehovah’s messages (Acts 12:11). They teach us to trust Jehovah’s care, reject false spiritism, and maintain pure worship (Psalm 91:11). This truth encourages us to rely on Jehovah’s protection, avoid pagan practices, and align with His purpose, free from false worship, as Matthew 18:10 assures angelic oversight for the faithful."
+    ]
+  },
+  {
+    T: "Anointed",
+    S: [
+      "Psalm 2:2 - <em>The kings of the earth take their stand... against Jehovah and his anointed.</em>",
+      "1 Samuel 16:13 - <em>Samuel took the horn of oil and anointed him.</em>",
+      "Isaiah 61:1 - <em>The spirit of the Sovereign Lord Jehovah is upon me, because Jehovah has anointed me.</em>",
+      "Luke 4:18 - <em>The spirit of Jehovah is upon me... to preach good news.</em>",
+      "Acts 10:38 - <em>God anointed him with holy spirit and power.</em>",
+      "Hebrews 1:9 - <em>You loved righteousness... therefore God, your God, anointed you.</em>",
+      "1 John 2:27 - <em>The anointing that you received from him remains in you.</em>"
+    ],
+    D: [
+      "Anointed ones are chosen by Jehovah for special roles, like kings or Jesus (Psalm 2:2). Ancient anointing oils, found in Judah’s artifacts, confirm this practice. Jesus’ anointing (Luke 4:18) and that of Christians (1 John 2:27) earn Jehovah’s approval, unlike pagan priestly rites in Babylonian tablets. Anointed ones need no forgiveness when faithful (Hebrews 1:9). Their role, like David’s (1 Samuel 16:13), contrasts with false messiahs in Greco-Roman cults. The anointed teach us to serve Jehovah, reject false worship, and maintain pure worship (Acts 10:38). This truth encourages us to honor God’s chosen, stay faithful, and align with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Atonement",
+    S: [
+      "Leviticus 16:11 - <em>Aaron will present the bull of the sin offering... to make atonement.</em>",
+      "Hebrews 9:22 - <em>Unless blood is poured out, no forgiveness takes place.</em>",
+      "Romans 5:11 - <em>We enjoy reconciliation with God through our Lord Jesus Christ.</em>",
+      "1 John 2:2 - <em>He is a propitiatory sacrifice for our sins.</em>",
+      "Leviticus 17:11 - <em>The life of the flesh is in the blood... to make atonement.</em>",
+      "Colossians 1:20 - <em>Making peace through the blood he shed on the torture stake.</em>",
+      "Isaiah 53:5 - <em>By his wounds we were healed.</em>"
+    ],
+    D: [
+      "Atonement is Jehovah’s provision to reconcile sinners through blood (Leviticus 17:11). Ancient Israelite altars, like those at Shiloh, confirm sacrificial practices. Jesus’ sacrifice (1 John 2:2) fulfills this, earning Jehovah’s approval, unlike pagan blood rituals in Canaanite texts. Atonement requires faith, granting forgiveness (Hebrews 9:22). Unlike Babylonian appeasement rites, it restores peace (Colossians 1:20). Atonement teaches us to value Jesus’ sacrifice, reject false worship, and maintain pure worship (Romans 5:11). This truth encourages us to seek forgiveness, trust Jehovah’s provision (Isaiah 53:5), and align with His purpose, free from pagan influences, securing reconciliation."
+    ]
+  },
+  {
+    T: "Barabbas",
+    S: [
+      "Matthew 27:16 - <em>They had at that time a notorious prisoner called Barabbas.</em>",
+      "Mark 15:7 - <em>Barabbas was in bonds with the seditionists who had committed murder.</em>",
+      "Luke 23:18 - <em>Take this man away and release to us Barabbas.</em>",
+      "John 18:40 - <em>They shouted: Not this man, but Barabbas!</em>",
+      "Acts 3:14 - <em>You demanded the release of a murderer.</em>",
+      "Isaiah 53:12 - <em>He poured out his soul to the death... numbered with the transgressors.</em>",
+      "Romans 5:8 - <em>While we were yet sinners, Christ died for us.</em>"
+    ],
+    D: [
+      "Barabbas, a 1st-century criminal, was freed instead of Jesus (Matthew 27:16). Roman records confirm crucifixion practices. His release (Luke 23:18) fulfilled prophecy (Isaiah 53:12), highlighting Jesus’ sacrifice for sinners (Romans 5:8). Barabbas’ crimes, like murder (Mark 15:7), contrast with Jesus’ innocence, showing human rejection of truth, akin to pagan crowds in Roman inscriptions. His freedom implies no repentance, unlike forgiven sinners. Barabbas’ life teaches us to value Jesus’ sacrifice, reject worldly choices, and maintain pure worship (Acts 3:14). His example encourages us to choose righteousness, seek forgiveness, and align with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Birthdays",
+    S: [
+      "Ecclesiastes 7:1 - <em>Better is a good name than fine oil, and the day of death than the day of birth.</em>",
+      "Job 1:4 - <em>His sons would hold a banquet... each on his own day.</em>",
+      "Matthew 14:6 - <em>When Herod’s birthday was celebrated, the daughter of Herodias danced.</em>",
+      "Genesis 40:20 - <em>It was the third day, Pharaoh’s birthday.</em>",
+      "Jeremiah 10:2 - <em>Do not learn the way of the nations.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>"
+    ],
+    D: [
+      "Birthdays, celebrated in ancient Egypt and Rome (Genesis 40:20; Matthew 14:6), have pagan roots in astrological worship, condemned in Jeremiah 10:2. Egyptian inscriptions confirm birthday rituals, unlike Jehovah’s worship (John 4:24). True Christians avoid them (2 Corinthians 6:17), needing no forgiveness when rejecting paganism. Unlike Job’s sons’ feasts (Job 1:4), which led to sin, pure worship honors Jehovah, not self (Ecclesiastes 7:1). Birthdays teach us to shun pagan traditions, value a good name, and maintain pure worship. This truth encourages us to reject worldly celebrations, worship in truth, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Dead Sea Scrolls",
+    S: [
+      "Isaiah 40:8 - <em>The word of our God endures forever.</em>",
+      "Psalm 119:89 - <em>Your word, O Jehovah, endures forever.</em>",
+      "2 Timothy 3:16 - <em>All Scripture is inspired of God and beneficial.</em>",
+      "John 17:17 - <em>Your word is truth.</em>",
+      "Deuteronomy 31:26 - <em>Take this book of the Law... as a witness against you.</em>",
+      "Psalm 12:6 - <em>The sayings of Jehovah are pure.</em>",
+      "Matthew 5:18 - <em>Not one stroke of a letter will pass from the Law.</em>"
+    ],
+    D: [
+      "The Dead Sea Scrolls, from the 2nd century BCE, preserved Hebrew Scriptures, confirming their accuracy (Isaiah 40:8). Qumran artifacts validate their authenticity. Unlike pagan texts, like Gnostic gospels, they uphold Jehovah’s truth (John 17:17), earning divine approval for study (2 Timothy 3:16). No forgiveness is needed for using them faithfully (Psalm 12:6). Their preservation contrasts with Greco-Roman corruptions. The Scrolls teach us to value God’s word, reject false texts, and maintain pure worship (Deuteronomy 31:26). This truth encourages us to study accurate scriptures, trust Jehovah’s word (Matthew 5:18), and align with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Demons (Expanded)",
+    S: [
+      "James 2:19 - <em>The demons believe and shudder.</em>",
+      "Matthew 8:31 - <em>The demons kept begging him, saying: If you expel us, send us into the herd of swine.</em>",
+      "Revelation 12:9 - <em>The great dragon was hurled, the original serpent, called Devil and Satan.</em>",
+      "Luke 11:15 - <em>Some of them said: He expels demons by means of Beelzebub.</em>",
+      "1 Timothy 4:1 - <em>Some will fall away from the faith, paying attention to misleading inspired statements.</em>",
+      "Ephesians 6:12 - <em>We have a struggle... against the wicked spirit forces.</em>",
+      "Deuteronomy 18:11 - <em>There should not be found in you anyone who consults a spirit medium.</em>"
+    ],
+    D: [
+      "Demons, fallen angels, oppose Jehovah (Revelation 12:9). Ancient Near Eastern amulets show belief in spirits, but biblical demons, unlike Babylonian myths, are real and evil (James 2:19). Their influence (1 Timothy 4:1) requires rejection (Deuteronomy 18:11), earning Jehovah’s approval when resisted (Ephesians 6:12). No forgiveness awaits unrepentant demon worshippers. Jesus’ authority over them (Matthew 8:31) contrasts with pagan spiritism in Assyrian texts. Demons teach us to resist evil, avoid spiritism, and maintain pure worship (Luke 11:15). This truth encourages us to rely on Jehovah’s protection, reject false worship, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Eutychus",
+    S: [
+      "Acts 20:9 - <em>A young man named Eutychus... fell into a deep sleep.</em>",
+      "Acts 20:10 - <em>Paul went downstairs, threw himself upon him... and said: Stop making a clamor, for he is alive.</em>",
+      "Acts 20:12 - <em>They took the boy away alive and were comforted.</em>",
+      "1 Corinthians 15:22 - <em>In the Christ all will be made alive.</em>",
+      "John 11:25 - <em>I am the resurrection and the life.</em>",
+      "Psalm 30:3 - <em>You brought me up from the Grave, O Jehovah.</em>",
+      "Acts 9:40 - <em>Peter... said: Tabitha, get up!</em>"
+    ],
+    D: [
+      "Eutychus, a 1st-century Christian, was raised by Paul after falling from a window (Acts 20:9). Troas’ archaeological ruins confirm the setting. His restoration (Acts 20:10) reflected Jehovah’s power, unlike Greco-Roman magic in inscriptions (Psalm 30:3). Eutychus needed no forgiveness, being faithful (Acts 20:12). His revival prefigures resurrection hope (1 Corinthians 15:22), contrasting with pagan afterlife myths. Eutychus’ life teaches us to trust Jehovah’s power, stay attentive to truth, and reject false worship (John 11:25). His example encourages us to value resurrection hope, remain vigilant, and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Faithfulness",
+    S: [
+      "Psalm 36:5 - <em>Your faithfulness reaches to the clouds.</em>",
+      "Lamentations 3:23 - <em>They are new every morning; great is your faithfulness.</em>",
+      "Galatians 5:22 - <em>The fruitage of the spirit is... faithfulness.</em>",
+      "1 Corinthians 4:2 - <em>It is required of stewards that they be found faithful.</em>",
+      "Hebrews 3:5 - <em>Moses was faithful as an attendant in all the house.</em>",
+      "Revelation 2:10 - <em>Prove yourself faithful even to death.</em>",
+      "Proverbs 13:17 - <em>A faithful envoy brings healing.</em>"
+    ],
+    D: [
+      "Faithfulness is steadfast loyalty to Jehovah (Psalm 36:5). Ancient Hebrew inscriptions, like those at Lachish, praise loyalty, aligning with Lamentations 3:23. Unlike pagan infidelity, seen in Babylonian oaths, faithfulness earns Jehovah’s approval (Galatians 5:22). Moses’ example (Hebrews 3:5) contrasts with Greco-Roman betrayal myths. Faithfulness needs no forgiveness when genuine (1 Corinthians 4:2). It teaches us to remain loyal, reject false worship, and maintain pure worship (Revelation 2:10). This truth encourages us to be steadfast, serve Jehovah faithfully (Proverbs 13:17), and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "God’s Name",
+    S: [
+      "Exodus 3:15 - <em>Jehovah... this is my name forever.</em>",
+      "Psalm 83:18 - <em>That people may know that you, whose name is Jehovah, you alone are the Most High.</em>",
+      "Isaiah 42:8 - <em>I am Jehovah. That is my name.</em>",
+      "John 17:6 - <em>I have made your name manifest to the men you gave me.</em>",
+      "Acts 15:14 - <em>God turned his attention to the nations to take out of them a people for his name.</em>",
+      "Psalm 135:13 - <em>Your name, O Jehovah, endures forever.</em>",
+      "Matthew 6:9 - <em>Let your name be sanctified.</em>"
+    ],
+    D: [
+      "God’s name, Jehovah, is central to true worship (Exodus 3:15). Ancient Hebrew inscriptions, like the Mesha Stele, confirm its use, unlike pagan gods’ names in Babylonian tablets. Jesus made it known (John 17:6), earning Jehovah’s approval (Psalm 83:18). Using God’s name needs no forgiveness when done reverently (Isaiah 42:8). Unlike Greco-Roman anonymity of gods, Jehovah’s name unites His people (Acts 15:14). It teaches us to honor Jehovah, reject false worship, and maintain pure worship (Psalm 135:13). This truth encourages us to sanctify His name (Matthew 6:9), proclaim it, and align with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Gnosticism",
+    S: [
+      "1 Timothy 6:20 - <em>Guard what has been entrusted to you, turning away from empty speeches.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "1 John 4:3 - <em>Every spirit that does not confess Jesus is not from God.</em>",
+      "2 Timothy 2:18 - <em>They have deviated from the truth, saying that the resurrection has already occurred.</em>",
+      "John 1:14 - <em>The Word became flesh and resided among us.</em>",
+      "1 Corinthians 1:20 - <em>Has not God made the wisdom of the world foolish?</em>",
+      "2 John 7 - <em>Many deceivers have gone out into the world.</em>"
+    ],
+    D: [
+      "Gnosticism, a 1st-2nd century heresy, taught secret knowledge and denied Jesus’ humanity, condemned in 1 John 4:3. Nag Hammadi texts confirm its pagan roots, blending Greek philosophy with Christianity (Colossians 2:8). Unlike Jehovah’s truth (John 1:14), it promoted false resurrection ideas (2 Timothy 2:18), requiring repentance (1 Timothy 6:20). Gnosticism’s mysticism, like Greco-Roman cults, contrasts with pure worship (1 Corinthians 1:20). It teaches us to reject false teachings, test doctrines, and maintain pure worship (2 John 7). This truth encourages us to confess Jesus, avoid philosophical deception, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Hinduism",
+    S: [
+      "Isaiah 44:9 - <em>Those who make worthless idols... are all of them an unreality.</em>",
+      "Jeremiah 10:3 - <em>The customs of the peoples are a delusion.</em>",
+      "Acts 17:24 - <em>The God who made the world... does not dwell in handmade temples.</em>",
+      "1 Corinthians 8:5 - <em>Although there are so-called gods... for us there is one God.</em>",
+      "Deuteronomy 4:39 - <em>Jehovah is the true God; there is no other.</em>",
+      "Psalm 115:4 - <em>Their idols are silver and gold, the work of human hands.</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>"
+    ],
+    D: [
+      "Hinduism, with its pantheon and idol worship, began in ancient India, seen in Harappan seals. Its practices, like those condemned in Isaiah 44:9, contrast with Jehovah’s oneness (Deuteronomy 4:39). Unlike pure worship (John 4:24), Hinduism’s temples (Acts 17:24) and rituals promote polytheism, requiring repentance (Jeremiah 10:3). Ancient Vedic texts confirm its idolatry, unlike Jehovah’s truth (1 Corinthians 8:5). Hinduism teaches us to reject false gods, worship the true God, and maintain pure worship (Psalm 115:4). This truth encourages us to honor Jehovah alone, avoid idolatry, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Islam",
+    S: [
+      "Deuteronomy 4:39 - <em>Jehovah is the true God; there is no other.</em>",
+      "Isaiah 42:8 - <em>I am Jehovah. That is my name; I give my glory to no one else.</em>",
+      "John 17:3 - <em>This means everlasting life, their coming to know you, the only true God.</em>",
+      "1 Timothy 2:5 - <em>There is one God, and one mediator between God and men, a man, Christ Jesus.</em>",
+      "Acts 4:12 - <em>There is no salvation in anyone else.</em>",
+      "Psalm 83:18 - <em>You, whose name is Jehovah, you alone are the Most High.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>"
+    ],
+    D: [
+      "Islam, founded in the 7th century CE, teaches one God but denies Jesus as mediator (1 Timothy 2:5). Arabian inscriptions confirm its monotheistic roots, yet it rejects Jehovah’s name (Psalm 83:18), unlike pure worship (John 17:3). Its traditions, like those in Colossians 2:8, require repentance to align with Jehovah (Isaiah 42:8). Unlike biblical truth, Islam’s rejection of Jesus’ role (Acts 4:12) contrasts with Jehovah’s purpose (Deuteronomy 4:39). Islam teaches us to know the true God, reject false mediators, and maintain pure worship. This truth encourages us to honor Jehovah, trust Jesus, and align with His purpose, free from false teachings, ensuring salvation."
+    ]
+  },
+  {
+    T: "Jairus",
+    S: [
+      "Mark 5:22 - <em>One of the presiding officers of the synagogue, named Jairus, came.</em>",
+      "Luke 8:41 - <em>A man named Jairus, who was a presiding officer of the synagogue.</em>",
+      "Mark 5:36 - <em>Jesus... said to the presiding officer of the synagogue: Have no fear, only exercise faith.</em>",
+      "Luke 8:50 - <em>Jesus... said: Have no fear, only have faith, and she will be saved.</em>",
+      "Matthew 9:25 - <em>He went in and took her by the hand, and the little girl got up.</em>",
+      "Hebrews 11:6 - <em>Without faith it is impossible to please God well.</em>",
+      "Psalm 30:2 - <em>I called to you for help, O Jehovah, and you healed me.</em>"
+    ],
+    D: [
+      "Jairus, a 1st-century synagogue officer, sought Jesus to heal his daughter (Mark 5:22). Galilean synagogue ruins confirm his setting. His faith (Luke 8:50) earned Jehovah’s approval, unlike Pharisaic skepticism in inscriptions (Hebrews 11:6). Jairus needed no forgiveness, trusting Jesus (Mark 5:36). His daughter’s resurrection (Matthew 9:25) contrasted with pagan healing myths, like those of Asclepius. Jairus’ life teaches us to exercise faith, seek Jehovah’s help (Psalm 30:2), and reject false worship. His example encourages us to trust Jesus, rely on Jehovah, and maintain pure worship, aligning with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Judas Iscariot",
+    S: [
+      "Matthew 26:14 - <em>One of the Twelve, the one called Judas Iscariot, went to the chief priests.</em>",
+      "John 13:27 - <em>After the morsel, then Satan entered into him.</em>",
+      "Acts 1:18 - <em>This very man purchased a field with the wages for unrighteousness.</em>",
+      "Matthew 27:5 - <em>He threw the silver pieces into the temple and hanged himself.</em>",
+      "Luke 22:3 - <em>Satan entered into Judas, the one called Iscariot.</em>",
+      "Psalm 41:9 - <em>My trusted companion... has raised his heel against me.</em>",
+      "John 17:12 - <em>Not one of them was lost except the son of destruction.</em>"
+    ],
+    D: [
+      "Judas Iscariot, a 1st-century apostle, betrayed Jesus (Matthew 26:14). Roman-era coins confirm the silver he took. His greed and Satan’s influence (John 13:27) led to his downfall, unlike faithful disciples (John 17:12). Judas’ suicide (Matthew 27:5) showed no repentance, contrasting with biblical forgiveness (Psalm 41:9). His betrayal, akin to pagan treachery in Roman texts, teaches us to reject greed, resist Satan, and maintain pure worship (Luke 22:3). Judas’ example warns us to remain loyal, seek forgiveness, and align with Jehovah’s purpose, free from pagan influences, avoiding destruction (Acts 1:18)."
+    ]
+  },
+  {
+    T: "Long-Suffering",
+    S: [
+      "Galatians 5:22 - <em>The fruitage of the spirit is... long-suffering.</em>",
+      "2 Peter 3:9 - <em>Jehovah is not slow concerning his promise... but is patient.</em>",
+      "Exodus 34:6 - <em>Jehovah, a God merciful and compassionate, slow to anger.</em>",
+      "Psalm 86:15 - <em>You, O Jehovah, are a God... slow to anger.</em>",
+      "Romans 2:4 - <em>Do you not know that the kindness of God is trying to lead you to repentance?</em>",
+      "1 Timothy 1:16 - <em>I was shown mercy so that... Christ might demonstrate his long-suffering.</em>",
+      "Colossians 3:12 - <em>Clothe yourselves with... long-suffering.</em>"
+    ],
+    D: [
+      "Long-suffering is patient endurance reflecting Jehovah’s mercy (Exodus 34:6). Ancient Hebrew inscriptions, like those at Arad, praise God’s patience, aligning with Psalm 86:15. Unlike pagan gods’ wrath, seen in Babylonian tablets, long-suffering earns Jehovah’s approval (Galatians 5:22). It needs no forgiveness when practiced (Colossians 3:12). Jehovah’s patience (2 Peter 3:9) contrasts with Greco-Roman vengeance myths. Long-suffering teaches us to be patient, reject impatience, and maintain pure worship (Romans 2:4). This truth encourages us to imitate Jehovah’s mercy, endure trials (1 Timothy 1:16), and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Loyalty",
+    S: [
+      "Psalm 18:25 - <em>With someone loyal you act in loyalty.</em>",
+      "Proverbs 3:3 - <em>Do not let loyal love and faithfulness leave you.</em>",
+      "Hosea 6:6 - <em>I take delight in loyal love, and not in sacrifice.</em>",
+      "Ruth 1:16 - <em>Where you go, I will go... your God will be my God.</em>",
+      "Micah 6:8 - <em>To love loyalty and to be modest in walking with your God.</em>",
+      "Psalm 31:23 - <em>Love Jehovah, all you who are loyal to him!</em>",
+      "Hebrews 13:1 - <em>Let your brotherly love continue.</em>"
+    ],
+    D: [
+      "Loyalty is steadfast devotion to Jehovah and His people (Psalm 18:25). Ancient Hebrew inscriptions, like those at Samaria, praise loyalty, aligning with Proverbs 3:3. Unlike pagan betrayal, seen in Assyrian texts, loyalty earns Jehovah’s approval (Hosea 6:6). Ruth’s example (Ruth 1:16) contrasts with Greco-Roman disloyalty. Loyalty needs no forgiveness when genuine (Micah 6:8). It teaches us to remain faithful, reject disloyalty, and maintain pure worship (Psalm 31:23). This truth encourages us to show brotherly love (Hebrews 13:1), stay devoted to Jehovah, and align with His purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Mark",
+    S: [
+      "Acts 12:12 - <em>He went to the house of Mary, the mother of John who was also called Mark.</em>",
+      "Acts 15:37 - <em>Barnabas was determined to take along John, who was called Mark.</em>",
+      "Colossians 4:10 - <em>Aristarchus... and Mark the cousin of Barnabas... send you greetings.</em>",
+      "2 Timothy 4:11 - <em>Take Mark and bring him with you, for he is useful to me.</em>",
+      "1 Peter 5:13 - <em>She who is in Babylon... and so does Mark, my son.</em>",
+      "Acts 13:5 - <em>They had John as an attendant.</em>",
+      "Philemon 1:24 - <em>Mark, Aristarchus, Demas, and Luke, my fellow workers.</em>"
+    ],
+    D: [
+      "Mark, a 1st-century Christian, served with Paul and Barnabas (Acts 12:12). Roman-era artifacts confirm his ministry’s setting. His early desertion (Acts 15:37) required repentance, but later faithfulness (2 Timothy 4:11) earned Jehovah’s approval, unlike pagan fickleness in inscriptions. Mark’s gospel authorship contrasted with Greco-Roman myths. His life teaches us to seek forgiveness, serve faithfully, and reject false worship (Colossians 4:10). His example encourages us to persevere, support the ministry (1 Peter 5:13), and maintain pure worship, aligning with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Memorial",
+    S: [
+      "Luke 22:19 - <em>Keep doing this in remembrance of me.</em>",
+      "1 Corinthians 11:24 - <em>Keep doing this in remembrance of me.</em>",
+      "1 Corinthians 5:7 - <em>Christ our Passover lamb has been sacrificed.</em>",
+      "Exodus 12:14 - <em>This day will serve as a memorial for you.</em>",
+      "John 6:51 - <em>I am the living bread that came down from heaven.</em>",
+      "Hebrews 10:12 - <em>This man offered one sacrifice for sins for all time.</em>",
+      "Psalm 77:11 - <em>I will remember the deeds of Jah.</em>"
+    ],
+    D: [
+      "The Memorial commemorates Jesus’ sacrifice, instituted in 33 CE (Luke 22:19). Ancient Passover artifacts, like those in Egypt, prefigure it (Exodus 12:14). Unlike pagan festivals, like Roman Saturnalia, the Memorial honors Jehovah’s provision (1 Corinthians 5:7), earning His approval when observed faithfully (Hebrews 10:12). No forgiveness is needed for proper observance (John 6:51). It contrasts with Greco-Roman rituals, teaching us to remember Jesus’ sacrifice, reject false worship, and maintain pure worship (Psalm 77:11). This truth encourages us to attend the Memorial, honor Christ’s sacrifice, and align with Jehovah’s purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "New Year’s",
+    S: [
+      "Jeremiah 10:2 - <em>Do not learn the way of the nations.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "Ecclesiastes 3:1 - <em>There is an appointed time for everything.</em>",
+      "Deuteronomy 12:30 - <em>Do not inquire about their gods, saying, ‘How did these nations serve their gods?’</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Psalm 90:12 - <em>Teach us to number our days.</em>"
+    ],
+    D: [
+      "New Year’s celebrations, rooted in Babylonian and Roman festivals like Akitu, involve pagan rituals, condemned in Jeremiah 10:2. Ancient inscriptions confirm their idolatrous feasts, unlike Jehovah’s worship (John 4:24). True Christians avoid them (2 Corinthians 6:17), needing no forgiveness when rejecting paganism (Deuteronomy 12:30). Unlike biblical timekeeping (Ecclesiastes 3:1), New Year’s promotes excess, contrasting with pure worship (Psalm 90:12). It teaches us to reject pagan traditions, value Jehovah’s time, and maintain pure worship (Colossians 2:8). This truth encourages us to live purposefully, avoid false festivals, and align with Jehovah’s purpose, free from pagan influences, ensuring His favor."
+    ]
+  },
+  {
+    T: "Piety",
+    S: [
+      "1 Timothy 4:8 - <em>Godly devotion is beneficial for all things.</em>",
+      "Titus 2:12 - <em>Live with soundness of mind and righteousness and godly devotion.</em>",
+      "1 Timothy 6:6 - <em>Godly devotion along with contentment is great gain.</em>",
+      "2 Peter 1:6 - <em>Supplement your... knowledge with self-control, your self-control with godly devotion.</em>",
+      "Psalm 86:2 - <em>Guard my soul, for I am loyal.</em>",
+      "James 1:27 - <em>The form of worship that is clean and undefiled.</em>",
+      "Acts 10:2 - <em>He was a devout man and feared God.</em>"
+    ],
+    D: [
+      "Piety is heartfelt devotion to Jehovah (1 Timothy 4:8). Ancient Hebrew inscriptions, like those at Arad, praise loyalty, aligning with Psalm 86:2. Unlike pagan rituals, seen in Greco-Roman temples, piety earns Jehovah’s approval (James 1:27). Cornelius’ example (Acts 10:2) contrasts with Babylonian idol worship. Piety needs no forgiveness when genuine (Titus 2:12). It teaches us to live righteously, reject false worship, and maintain pure worship (1 Timothy 6:6). This truth encourages us to cultivate devotion, pursue godly living (2 Peter 1:6), and align with Jehovah’s purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Ransom",
+    S: [
+      "Matthew 20:28 - <em>The Son of man came... to give his life as a ransom for many.</em>",
+      "1 Timothy 2:6 - <em>Who gave himself a corresponding ransom for all.</em>",
+      "Hebrews 9:24 - <em>Christ entered... into heaven itself to appear before God for us.</em>",
+      "Romans 5:8 - <em>While we were yet sinners, Christ died for us.</em>",
+      "1 Peter 1:18 - <em>You were set free... with precious blood, that of Christ.</em>",
+      "Isaiah 53:5 - <em>By his wounds we were healed.</em>",
+      "John 3:16 - <em>God loved the world so much that he gave his only-begotten Son.</em>"
+    ],
+    D: [
+      "The ransom is Jesus’ sacrifice to redeem mankind from sin (Matthew 20:28). Ancient sacrificial altars, like those in Jerusalem, prefigure it, unlike pagan blood offerings in Canaanite texts. Jesus’ death (1 Timothy 2:6) earns Jehovah’s approval, granting forgiveness (Romans 5:8). The ransom contrasts with Greco-Roman redemption myths, teaching us to value Christ’s sacrifice, reject false worship, and maintain pure worship (1 Peter 1:18). This truth encourages us to trust Jehovah’s provision, seek forgiveness (Isaiah 53:5), and align with His purpose, free from pagan influences, securing eternal life through Jesus (John 3:16)."
+    ]
+  },
+  {
+    T: "Self-Control",
+    S: [
+      "Galatians 5:22 - <em>The fruitage of the spirit is... self-control.</em>",
+      "2 Peter 1:6 - <em>Supplement your... endurance with self-control.</em>",
+      "1 Corinthians 9:25 - <em>Every man who strives in the games exercises self-control in all things.</em>",
+      "Proverbs 25:28 - <em>Like a city broken through, without a wall, is a man without self-control.</em>",
+      "Titus 2:12 - <em>Live with soundness of mind and righteousness.</em>",
+      "1 Peter 4:7 - <em>Be sound in mind, therefore, and be vigilant.</em>",
+      "2 Timothy 1:7 - <em>God gave us... a spirit of power and of love and of soundness of mind.</em>"
+    ],
+    D: [
+      "Self-control is restraining desires to please Jehovah (Galatians 5:22). Ancient Hebrew wisdom texts, like Proverbs 25:28, emphasize restraint, unlike Greco-Roman excess in inscriptions. It earns Jehovah’s approval when practiced (Titus 2:12), needing no forgiveness (2 Peter 1:6). Paul’s example (1 Corinthians 9:25) contrasts with pagan indulgence, like Roman orgies. Self-control teaches us to resist temptation, reject false worship, and maintain pure worship (1 Peter 4:7). This truth encourages us to cultivate discipline, live soundly (2 Timothy 1:7), and align with Jehovah’s purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
+    T: "Tabitha",
+    S: [
+      "Acts 9:36 - <em>In Joppa there was a disciple named Tabitha, which means Dorcas.</em>",
+      "Acts 9:39 - <em>All the widows... showed the garments that Dorcas had made.</em>",
+      "Acts 9:40 - <em>Peter... said: Tabitha, get up! And she opened her eyes.</em>",
+      "1 Timothy 2:10 - <em>Women adorn themselves... with good works.</em>",
+      "James 2:17 - <em>Faith by itself, if it does not have works, is dead.</em>",
+      "Proverbs 31:31 - <em>Give her the fruit of her hands.</em>",
+      "Hebrews 13:16 - <em>Do not forget the doing of good and the sharing with others.</em>"
+    ],
+    D: [
+      "Tabitha, a 1st-century disciple in Joppa, was known for good works (Acts 9:36). Coastal ruins confirm her setting. Her kindness to widows (Acts 9:39) earned Jehovah’s approval, unlike Greco-Roman charity for status. Raised by Peter (Acts 9:40), she exemplified faith with works (James 2:17). Tabitha needed no forgiveness, reflecting pure worship (1 Timothy 2:10). Her life contrasts with pagan selfishness, teaching us to serve others, reject false worship, and maintain pure worship (Proverbs 31:31). Her example encourages us to do good, share generously (Hebrews 13:16), and align with Jehovah’s purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Thanksgiving (Quality)",
+    S: [
+      "Psalm 107:1 - <em>Give thanks to Jehovah, for he is good.</em>",
+      "1 Thessalonians 5:18 - <em>In connection with everything give thanks.</em>",
+      "Colossians 3:15 - <em>Let the peace of the Christ rule in your hearts... and be thankful.</em>",
+      "Psalm 100:4 - <em>Enter his gates with thanksgiving.</em>",
+      "Ephesians 5:20 - <em>Giving thanks always for everything to our God.</em>",
+      "Hebrews 13:15 - <em>Let us always offer to God a sacrifice of praise.</em>",
+      "1 Chronicles 16:34 - <em>Give thanks to Jehovah, for his loyal love endures forever.</em>"
+    ],
+    D: [
+      "Thanksgiving, as a quality, is heartfelt gratitude to Jehovah (Psalm 107:1). Ancient Hebrew inscriptions, like those at Samaria, express thanks, aligning with 1 Thessalonians 5:18. Unlike pagan offerings, like Babylonian sacrifices, biblical thanksgiving reflects love (Colossians 3:15). It earns Jehovah’s approval when genuine (Hebrews 13:15), needing no forgiveness. Early Christians gave thanks always (Ephesians 5:20), contrasting with Greco-Roman ingratitude. Thanksgiving teaches us to praise Jehovah, reject insincere rituals, and maintain pure worship (1 Chronicles 16:34). This truth encourages us to express gratitude daily, reflect God’s love (Psalm 100:4), and align with His purpose, free from pagan influences."
+    ]
+  },
+  {
+    T: "Valentine’s Day",
+    S: [
+      "Jeremiah 10:2 - <em>Do not learn the way of the nations.</em>",
+      "2 Corinthians 6:17 - <em>Separate yourselves, says Jehovah, and quit touching the unclean thing.</em>",
+      "Colossians 2:8 - <em>Look out that no one takes you captive by means of philosophy.</em>",
+      "1 Corinthians 13:4 - <em>Love is patient and kind.</em>",
+      "Deuteronomy 12:30 - <em>Do not inquire about their gods, saying, ‘How did these nations serve their gods?’</em>",
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "1 John 4:8 - <em>God is love.</em>"
+    ],
+    D: [
+      "Valentine’s Day, rooted in Roman Lupercalia and saint myths, promotes romanticism with pagan origins, condemned in Jeremiah 10:2. Roman inscriptions confirm Lupercalia’s fertility rites, unlike Jehovah’s love (1 John 4:8). True Christians avoid it (2 Corinthians 6:17), needing no forgiveness when rejecting paganism (Deuteronomy 12:30). Biblical love (1 Corinthians 13:4) contrasts with Valentine’s commercialism, teaching us to show true love, reject false traditions, and maintain pure worship (John 4:24). This truth encourages us to express godly love, avoid pagan holidays (Colossians 2:8), and align with Jehovah’s purpose, free from false worship, ensuring His favor."
+    ]
+  },
+  {
+    T: "Worship",
+    S: [
+      "John 4:24 - <em>God is a Spirit, and those worshipping him must worship with spirit and truth.</em>",
+      "Psalm 95:6 - <em>Come, let us worship and bow down before Jehovah.</em>",
+      "Revelation 4:11 - <em>You are worthy, Jehovah our God, to receive the glory.</em>",
+      "Hebrews 12:28 - <em>Let us continue to offer to God sacred service with godly fear.</em>",
+      "Psalm 29:2 - <em>Ascribe to Jehovah the glory of his name.</em>",
+      "Matthew 4:10 - <em>It is Jehovah your God you must worship.</em>",
+      "Romans 12:1 - <em>Present your bodies as a living sacrifice, holy, acceptable to God.</em>"
+    ],
+    D: [
+      "Worship is reverent devotion to Jehovah in spirit and truth (John 4:24). Ancient Hebrew altars, like those at Shiloh, confirm true worship, unlike Canaanite idolatry in Ugaritic texts. It earns Jehovah’s approval when sincere (Revelation 4:11), needing no forgiveness (Hebrews 12:28). Unlike Greco-Roman rituals, biblical worship is pure (Psalm 29:2). Worship teaches us to honor Jehovah, reject false gods, and maintain pure service (Matthew 4:10). This truth encourages us to worship sincerely, live as a living sacrifice (Romans 12:1), and align with Jehovah’s purpose, free from pagan influences, securing His favor."
+    ]
+  },
+  {
     T: "Amram",
     S: [
       "Exodus 6:20 - <em>Amram took Jochebed... and she bore him Aaron and Moses.</em>",
