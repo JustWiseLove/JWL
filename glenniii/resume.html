@@ -50,9 +50,9 @@
         }
         .contact-info {
             text-align: center;
-            padding: 6px 6px 20px; /* Added significant padding-bottom for spacing */
+            padding: 6px 6px 20px; /* Significant padding-bottom for spacing */
             background: #f9f9f9;
-            font-size: 11px; /* Increased from 10px */
+            font-size: 11px;
             color: #666;
             width: 100;
         }
@@ -149,20 +149,6 @@
             background: #f9f9f6;
             border-top: 1px solid #eee;
         }
-        .footer button {
-            background-color: #00cc00;
-            color: #fff;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin: 0 4px;
-        }
-        .footer button:hover {
-            background-color: #009900;
-        }
         @media (min-width: 768px) {
             .container {
                 flex-direction: column;
@@ -201,9 +187,6 @@
                 width: 70px;
                 height: 70px;
             }
-            .footer button {
-                font-size: 12px;
-            }
         }
         @media print {
             body {
@@ -221,7 +204,7 @@
                 border-bottom: none;
                 page-break-after: avoid;
             }
-            .contact-info, .sidebar, .footer {
+            .contact-info, .sidebar {
                 background: #fff;
                 border: none;
             }
@@ -254,10 +237,10 @@
                 margin: 0.1in;
                 size: auto;
                 @bottom-left {
-                    content: none; /* Explicitly remove bottom left (webpage address) */
+                    content: none; /* Explicitly remove webpage address */
                 }
                 @bottom-right {
-                    content: none; /* Explicitly remove bottom right (page/date/time) */
+                    content: none; /* Explicitly remove date and time */
                 }
                 @top-center {
                     content: none; /* Explicitly remove header */
@@ -310,7 +293,7 @@
                     <li>Earned two FreeCodeCamp certifications in under a year, demonstrating dedication to rapid skill acquisition.</li>
                     <li>Successfully launched a personal portfolio website, receiving positive feedback for design and functionality.</li>
                 </ul>
-                <h3>Summary</h3>
+                <h3>Additional Information</h3>
                 <ul class="additional-info-list">
                     <li>Availability: Flexible, eager to work part-time or as an intern to gain hands-on experience.</li>
                     <li>Motivation: Passionate about learning new technologies and contributing to real-world projects, even in volunteer or low-pay roles.</li>
@@ -358,13 +341,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <button onclick="window.print()">PRINT</button>
-        </div>
     </div>
 
     <script>
-        // JavaScript functionality
+        // JavaScript functionality (print-related code removed)
         console.log("Resume website loaded successfully!");
     </script>
 </body>
