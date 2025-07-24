@@ -75,7 +75,7 @@
         .main-content {
             display: flex;
             flex-direction: row;
-            min-height: calc(100% - 90px);
+            height: calc(100% - 90px);
             align-items: stretch;
             width: 100%;
         }
@@ -85,6 +85,7 @@
             background: #f9f9f9;
             padding: 12px;
             border-right: 1px solid #eee;
+            flex-grow: 1;
         }
         .sidebar h3 {
             color: #00cc00;
@@ -106,6 +107,7 @@
         .content {
             width: 65%;
             padding: 12px;
+            flex-grow: 1;
         }
         .section {
             margin-bottom: 10px;
@@ -221,8 +223,7 @@
                 flex-direction: row;
                 page-break-inside: avoid;
                 width: 100%;
-                min-height: calc(100% - 90px);
-                height: calc(100% - 90px);
+                height: calc(10.5in - 90px);
                 align-items: stretch;
             }
             .sidebar {
@@ -230,10 +231,12 @@
                 min-width: 200px;
                 padding: 12px;
                 border-right: 1px solid #eee;
+                flex-grow: 1;
             }
             .content {
                 width: 65%;
                 padding: 12px;
+                flex-grow: 1;
             }
             .footer {
                 display: none;
@@ -307,7 +310,7 @@
                 </ul>
                 <h3>Character</h3>
                 <ul class="additional-info-list">
-                    <li>Availability: Flexible, eager to work part-time, full-time, or as an intern to gain hands-on experience.</li>
+                    <li>Availability: Flexible, eager to work part-time or as an intern to gain hands-on experience.</li>
                     <li>Motivation: Passionate about learning new technologies and contributing to real-world projects, even in volunteer or low-pay roles.</li>
                     <li>Work Ethic: Known for discipline, attention to detail, and a proactive approach to challenges.</li>
                 </ul>
@@ -328,7 +331,7 @@
                     <p><strong>Penn Foster High School</strong><br>High School Diploma, Honors (3.9 GPA)<br>Graduated: 2025</p>
                     <ul>
                         <li>Relevant Coursework: Introduction to Information Technology (Penn Foster)</li>
-                        <li>Responsive Web Design Certification, 2025 (FreeCodeCamp)</li>
+                        <li>Responsive Web Design Certification, 2025</li>
                         <li>JavaScript Algorithms and Data Structures Certification, 2025 (FreeCodeCamp)</li>
                         <li>Learn React Course, 2025 (Codecademy)</li>
                     </ul>
