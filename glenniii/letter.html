@@ -12,7 +12,7 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            background-color: #fff;
             color: #333;
             line-height: 1.35;
             padding: 5px;
@@ -24,9 +24,7 @@
         .container {
             width: 816px;
             min-height: 1008px;
-            background: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background: #fff;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -38,10 +36,9 @@
             text-align: center;
             padding: 10px;
             width: 100%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         .header h1 {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 2px;
             color: #000;
         }
@@ -53,15 +50,15 @@
             text-decoration: underline;
         }
         .header h2 {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 400;
             color: #000;
         }
         .contact-info {
             text-align: center;
             padding: 6px 6px 20px;
-            background: #f9f9f9;
-            font-size: 11px;
+            background: #fff;
+            font-size: 12px;
             color: #666;
             width: 100%;
         }
@@ -75,96 +72,36 @@
         .main-content {
             padding: 12px;
             width: 100%;
-            min-height: calc(100% - 90px);
+            height: calc(1008px - 90px);
         }
         .section {
             margin-bottom: 12px;
         }
         .section p {
             font-size: 12px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+        }
+        .section h3 {
+            font-size: 16px;
+            color: #00cc00;
+            margin: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .footer {
             text-align: center;
             padding: 8px;
-            background: #f9f9f6;
-            border-top: 1px solid #eee;
-            font-size: 11px;
-        }
-        @media (max-width: 816px) {
-            .container {
-                transform: scale(calc(100vw / 816));
-                width: 816px;
-                min-height: 1008px;
-            }
-        }
-        @media (max-width: 400px) {
-            .container {
-                transform: scale(0.7);
-                width: 816px;
-                min-height: 1008px;
-            }
+            background: #fff;
+            font-size: 12px;
         }
         @media print {
-            body {
-                padding: 0;
-                margin: 0;
-                background: #fff;
-            }
-            .container {
-                width: 8.5in;
-                min-height: 10.5in;
-                height: 10.5in;
-                box-shadow: none;
-                border-radius: 0;
-                margin: 0;
-                transform: scale(1);
-            }
-            .header {
-                padding: 10px;
-                border-bottom: none;
-                page-break-after: avoid;
-            }
-            .contact-info {
-                background: #fff;
-                font-size: 11px;
-                padding: 6px 6px 20px;
-            }
-            .main-content {
-                page-break-inside: avoid;
-                width: 100%;
-                min-height: calc(100% - 90px);
-                height: calc(100% - 90px);
-                padding: 12px;
-            }
             .footer {
                 display: none;
-            }
-            .section {
-                page-break-inside: avoid;
-                margin-bottom: 12px;
-            }
-            .header, .contact-info, .main-content {
-                page-break-before: avoid;
-                page-break-after: avoid;
-            }
-            .header h1 {
-                font-size: 24px;
-            }
-            .header h2 {
-                font-size: 14px;
-            }
-            .section p {
-                font-size: 12px;
-                margin-bottom: 8px;
             }
             @page {
                 size: letter portrait;
                 margin: 0.25in;
                 marks: none;
-            }
-            @page :footer, @page :header {
-                display: none;
             }
         }
     </style>
