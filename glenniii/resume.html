@@ -81,7 +81,7 @@
         }
         .sidebar {
             width: 35%;
-            min-width: 200px;
+            /*min-width: 200px;*/
             background: #f9f9f9;
             padding: 12px;
             border-right: 1px solid #eee;
@@ -92,9 +92,6 @@
             margin: 10px 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-        .sidebar p {
-            font-size: 11px;
         }
         .skills-list, .achievements-list, .additional-info-list {
             list-style-type: disc;
@@ -156,115 +153,6 @@
             border-top: 1px solid #eee;
             font-size: 11px;
         }
-        @media (max-width: 816px) {
-            .container {
-                transform: scale(calc(100vw / 816));
-                width: 816px;
-                min-height: 1008px;
-            }
-            .avatar {
-                width: 60px;
-                height: 60px;
-            }
-            .skills-list li, .achievements-list li, .additional-info-list li {
-            font-size: 11px;
-            margin-bottom: 2px;
-            color: #333;
-        }
-        }
-        @media (max-width: 400px) {
-            .container {
-                transform: scale(0.7);
-                width: 816px;
-                min-height: 1008px;
-            }
-            .avatar {
-                width: 50px;
-                height: 50px;
-            }
-        }
-        @media print {
-            body {
-                padding: 0;
-                margin: 0;
-                background: #fff;
-            }
-            .container {
-                width: 8.5in;
-                min-height: 10.5in;
-                height: 10.5in;
-                box-shadow: none;
-                border-radius: 0;
-                margin: 0;
-                transform: scale(1);
-            }
-            .header {
-                padding: 10px;
-                border-bottom: none;
-                page-break-after: avoid;
-            }
-            .contact-info, .sidebar {
-                background: #fff;
-                border: none;
-            }
-            .main-content {
-                flex-direction: row;
-                page-break-inside: avoid;
-                width: 100%;
-                min-height: calc(100% - 90px);
-                height: calc(100% - 90px);
-                align-items: stretch;
-            }
-            .sidebar {
-                width: 35%;
-                min-width: 200px;
-                padding: 12px;
-                border-right: 1px solid #eee;
-            }
-            .content {
-                width: 65%;
-                padding: 12px;
-            }
-            .footer {
-                display: none;
-            }
-            .section {
-                page-break-inside: avoid;
-                margin-bottom: 10px;
-            }
-            .header, .contact-info, .main-content {
-                page-break-before: avoid;
-                page-break-after: avoid;
-            }
-            .header h1 {
-                font-size: 24px;
-            }
-            .header h2 {
-                font-size: 14px;
-            }
-            .contact-info {
-                font-size: 11px;
-                padding: 6px 6px 20px;
-            }
-            .section h3, .sidebar h3 {
-                font-size: 14px;
-            }
-            .section p, .section ul, .skills-list li, .achievements-list li, .additional-info-list li {
-                font-size: 11px;
-            }
-            .avatar {
-                width: 70px;
-                height: 70px;
-            }
-            @page {
-                size: letter portrait;
-                margin: 0.25in;
-                marks: none;
-            }
-            @page :footer, @page :header {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
@@ -295,17 +183,17 @@
                     <li>Problem-Solving</li>
                     <li>Teamwork</li>
                 </ul>
-                <h3>Achievements</h3>
-                <ul class="achievements-list">
-                    <li>Graduated high school with a 3.9 GPA, earning honors recognition.</li>
-                    <li>Earned two FreeCodeCamp certifications in under a year, demonstrating dedication to rapid skill acquisition.</li>
-                    <li>Successfully launched a personal portfolio website, receiving positive feedback for design and functionality.</li>
-                </ul>
-                <h3>Summary</h3>
+                <h3>Personality</h3>
                 <ul class="additional-info-list">
                     <li>Availability: Flexible, eager to work part-time or as an intern to gain hands-on experience.</li>
                     <li>Motivation: Passionate about learning new technologies and contributing to real-world projects, even in volunteer or low-pay roles.</li>
                     <li>Work Ethic: Known for discipline, attention to detail, and a proactive approach to challenges.</li>
+                </ul>
+                              <h3>Summary</h3>
+                <ul class="achievements-list">
+                    <li>Graduated high school with a 3.9 GPA, earning honors recognition.</li>
+                    <li>Earned two FreeCodeCamp certifications in under a year, demonstrating dedication to rapid skill acquisition.</li>
+                    <li>Successfully launched a personal portfolio website, receiving positive feedback for design and functionality.</li>
                 </ul>
             </div>
             <div class="content">
