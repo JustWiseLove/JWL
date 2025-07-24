@@ -75,7 +75,7 @@
         .main-content {
             display: flex;
             flex-direction: row;
-            height: calc(100% - 90px);
+            height: calc(1008px - 90px);
             align-items: stretch;
             width: 100%;
         }
@@ -155,129 +155,6 @@
             border-top: 1px solid #eee;
             font-size: 11px;
         }
-        @media (max-width: 816px) {
-            .container {
-                transform: scale(calc(100vw / 816));
-                width: 816px;
-                min-height: 1008px;
-            }
-            .avatar {
-                width: 60px;
-                height: 60px;
-            }
-            .sidebar {
-                font-size: calc(11px / (100vw / 816));
-            }
-            .sidebar h3 {
-                font-size: calc(14px / (100vw / 816));
-            }
-            .skills-list li, .achievements-list li, .additional-info-list li {
-                font-size: calc(11px / (100vw / 816));
-            }
-        }
-        @media (max-width: 400px) {
-            .container {
-                transform: scale(0.7);
-                width: 816px;
-                min-height: 1008px;
-            }
-            .avatar {
-                width: 50px;
-                height: 50px;
-            }
-            .sidebar {
-                font-size: calc(11px / 0.7);
-            }
-            .sidebar h3 {
-                font-size: calc(14px / 0.7);
-            }
-            .skills-list li, .achievements-list li, .additional-info-list li {
-                font-size: calc(11px / 0.7);
-            }
-        }
-        @media print {
-            body {
-                padding: 0;
-                margin: 0;
-                background: #fff;
-            }
-            .container {
-                width: 8.5in;
-                min-height: 10.5in;
-                height: 10.5in;
-                box-shadow: none;
-                border-radius: 0;
-                margin: 0;
-                transform: scale(1);
-            }
-            .header {
-                padding: 10px;
-                border-bottom: none;
-                page-break-after: avoid;
-            }
-            .contact-info, .sidebar {
-                background: #fff;
-                border: none;
-            }
-            .main-content {
-                flex-direction: row;
-                page-break-inside: avoid;
-                width: 100%;
-                height: calc(10.5in - 90px);
-                align-items: stretch;
-            }
-            .sidebar {
-                width: 35%;
-                min-width: 200px;
-                padding: 12px;
-                border-right: 1px solid #eee;
-                flex-grow: 1;
-            }
-            .content {
-                width: 65%;
-                padding: 12px;
-                flex-grow: 1;
-            }
-            .footer {
-                display: none;
-            }
-            .section {
-                page-break-inside: avoid;
-                margin-bottom: 10px;
-            }
-            .header, .contact-info, .main-content {
-                page-break-before: avoid;
-                page-break-after: avoid;
-            }
-            .header h1 {
-                font-size: 24px;
-            }
-            .header h2 {
-                font-size: 14px;
-            }
-            .contact-info {
-                font-size: 11px;
-                padding: 6px 6px 20px;
-            }
-            .section h3, .sidebar h3 {
-                font-size: 14px;
-            }
-            .section p, .section ul, .skills-list li, .achievements-list li, .additional-info-list li {
-                font-size: 11px;
-            }
-            .avatar {
-                width: 70px;
-                height: 70px;
-            }
-            @page {
-                size: letter portrait;
-                margin: 0.25in;
-                marks: none;
-            }
-            @page :footer, @page :header {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
@@ -331,7 +208,7 @@
                     <p><strong>Penn Foster High School</strong><br>High School Diploma, Honors (3.9 GPA)<br>Graduated: 2025</p>
                     <ul>
                         <li>Relevant Coursework: Introduction to Information Technology (Penn Foster)</li>
-                        <li>Responsive Web Design Certification, 2025(FreeCodeCamp)</li>
+                        <li>Responsive Web Design Certification, 2025</li>
                         <li>JavaScript Algorithms and Data Structures Certification, 2025 (FreeCodeCamp)</li>
                         <li>Learn React Course, 2025 (Codecademy)</li>
                     </ul>
