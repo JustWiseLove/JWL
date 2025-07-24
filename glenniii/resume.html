@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glenn Hensley III - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            padding: 10px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background: linear-gradient(90deg, #ff9900, #00cc00);
+            color: #000;
+            text-align: center;
+            padding: 10px 5px;
+            width: 100%;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 3px;
+        }
+        .header h2 {
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .contact-info {
+            text-align: center;
+            padding: 10px;
+            background: #f9f9f9;
+            font-size: 12px;
+            color: #666;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        .contact-info a {
+            color: #00cc00;
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar {
+            width: 100%;
+            background: #f9f9f9;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .sidebar h3 {
+            color: #00cc00;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .skills-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .skills-list li {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .achievements-list, .additional-info-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .achievements-list li, .additional-info-list li {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .content {
+            width: 100%;
+            padding: 15px 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            color: #00cc00;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .section p, .section ul {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .section ul {
+            list-style: none;
+            padding-left: 15px;
+        }
+        .section ul li {
+            margin-bottom: 6px;
+            position: relative;
+        }
+        .section ul li:before {
+            content: "•";
+            color: #00cc00;
+            position: absolute;
+            left: -12px;
+        }
+        .avatar {
+            display: block;
+            margin: 15px auto;
+            width: 100px;
+            height: 100px;
+            background: url('https://via.placeholder.com/100') no-repeat center;
+            background-size: cover;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: #f9f9f6;
+            border-top: 1px solid #eee;
+        }
+        .footer button {
+            background-color: #00cc00;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .footer button:hover {
+            background-color: #009900;
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .main-content {
+                flex-direction: row;
+                width: 100%;
+            }
+            .sidebar {
+                width: 30%;
+                min-width: 250px;
+                border-bottom: none;
+                border-right: 1px solid #eee;
+                padding: 20px;
+            }
+            .content {
+                width: 70%;
+                padding: 20px;
+            }
+            .header h1 {
+                font-size: 32px;
+            }
+            .header h2 {
+                font-size: 18px;
+            }
+            .contact-info {
+                font-size: 14px;
+            }
+            .section h3 {
+                font-size: 22px;
+            }
+            .section p, .section ul, .skills-list li, .achievements-list li, .additional-info-list li {
+                font-size: 15px;
+            }
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+            .footer button {
+                font-size: 16px;
+            }
+        }
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+            }
+            .header {
+                padding: 10px; /* Reduced padding to fit on page */
+                border-bottom: none;
+                page-break-after: auto; /* Allow content to follow */
+            }
+            .contact-info, .sidebar, .footer {
+                background: #fff;
+                border: none;
+            }
+            .main-content {
+                flex-direction: row;
+                page-break-inside: avoid;
+                width: 100%;
+            }
+            .sidebar {
+                width: 30%;
+                min-width: 250px;
+                padding: 10px; /* Reduced padding for print */
+            }
+            .content {
+                width: 70%;
+                padding: 10px; /* Reduced padding for print */
+            }
+            .footer {
+                display: none;
+            }
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 10px; /* Reduced margin for print */
+            }
+            .header, .contact-info, .main-content {
+                page-break-before: auto;
+                page-break-after: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Glenn Hensley III</h1>
+            <h2>Front-End Developer</h2>
+        </div>
+        <div class="contact-info">
+            North East, MD | Phone: 443-877-8436 | Email: <a href="mailto:glenniii.dev@gmail.com">glenniii.dev@gmail.com</a><br>
+            Portfolio: <a href="http://glenniii.dev" target="_blank">glenniii.dev</a> | DOB: 2/11/2009
+        </div>
+        <div class="main-content">
+            <div class="sidebar">
+                <h3>Skills</h3>
+                <ul class="skills-list">
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript</li>
+                    <li>React.js</li>
+                    <li>Tailwind CSS</li>
+                    <li>Responsive Web Design</li>
+                    <li>UI Optimization</li>
+                    <li>Git</li>
+                    <li>GitHub</li>
+                    <li>Visual Studio Code</li>
+                    <li>Strong Work Ethic</li>
+                    <li>Problem-Solving</li>
+                    <li>Teamwork</li>
+                </ul></br>
+                <h3>Achievements</h3>
+                <ul class="achievements-list">
+                    <li>Graduated high school with a 3.9 GPA, earning honors recognition.</li>
+                    <li>Earned two FreeCodeCamp certifications in under a year, demonstrating dedication to rapid skill acquisition.</li>
+                    <li>Successfully launched a personal portfolio website, receiving positive feedback for design and functionality.</li>
+                </ul></br>
+                <h3>Additional Information</h3>
+                <ul class="additional-info-list">
+                    <li>Availability: Flexible, eager to work part-time or as an intern to gain hands-on experience.</li>
+                    <li>Motivation: Passionate about learning new technologies and contributing to real-world projects, even in volunteer or low-pay roles.</li>
+                    <li>Work Ethic: Known for discipline, attention to detail, and a proactive approach to challenges.</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="section">
+                    <h3>Objective</h3>
+                    <p>Ambitious and self-driven junior web developer with a strong foundation in HTML5, CSS3, and JavaScript, seeking entry-level opportunities to apply and expand coding skills. Passionate about creating responsive, user-friendly web applications and eager to contribute to innovative projects while learning from experienced professionals in a collaborative environment.</p>
+                </div>
+                <div class="section">
+                    <h3>Education</h3>
+                    <p><strong>Penn Foster High School</strong><br>High School Diploma, Honors (3.9 GPA)<br>Graduated: 2025</p>
+                    <ul>
+                        <li>Relevant Coursework: Introduction to Information Technology (Penn Foster)</li>
+                        <li>Responsive Web Design Certification, 2025 (FreeCodeCamp)</li>
+                        <li>JavaScript Algorithms and Data Structures Certification, 2025 (FreeCodeCamp)</li>
+                        <li>Learn React Course, 2025 (Codecademy)</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>Projects</h3>
+                    <p><strong>Personal Portfolio Website (glenniii.dev)</strong></p>
+                    <ul>
+                        <li>Designed and developed a fully responsive portfolio website using HTML5, CSS3, Tailwind CSS, and JavaScript to showcase coding projects and skills.</li>
+                        <li>Implemented modern UI/UX principles to ensure accessibility and cross-device compatibility.</li>
+                        <li>Hosted on GitHub Pages with version control using Git for iterative updates.</li>
+                    </ul>
+                    <p><strong>FreeCodeCamp Project Contributions</strong></p>
+                    <ul>
+                        <li>Completed multiple projects as part of certification coursework, including responsive landing pages, data visualization dashboards, and algorithmic challenges.</li>
+                        <li>Applied JavaScript for dynamic functionality and React.js for component-based UI development.</li>
+                        <li>Demonstrated problem-solving by debugging and optimizing code for performance.</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>Experience</h3>
+                    <p><strong>Self-Directed Learning & Project Development</strong><br>April 2025 – Present</p>
+                    <ul>
+                        <li>Independently pursued advanced coding education through FreeCodeCamp and Codecademy, mastering modern web development technologies.</li>
+                        <li>Built and maintained a portfolio of projects to demonstrate proficiency in frontend development and version control.</li>
+                        <li>Actively engaged with online developer communities to stay updated on industry trends and best practices.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button onclick="window.print()">PRINT</button>
+        </div>
+    </div>
+
+    <script>
+        // Add any JavaScript functionality here if needed
+        console.log("Resume website loaded successfully!");
+    </script>
+</body>
+</html>
