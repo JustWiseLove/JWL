@@ -14,8 +14,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f7f6;
             color: #333;
-            line-height: 1.6;
-            padding: 10px;
+            line-height: 1.35; /* Slightly increased for readability */
+            padding: 5px; /* Increased padding */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,36 +24,37 @@
             width: 100%;
             max-width: 1200px;
             background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
         .header {
             background: linear-gradient(90deg, #ff9900, #00cc00);
-            color: #000;
+            color: #000; /* Changed from #fff to #000 */
             text-align: center;
-            padding: 10px 5px;
+            padding: 10px; /* Increased padding */
             width: 100%;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         .header h1 {
-            font-size: 24px;
-            margin-bottom: 3px;
+            font-size: 20px; /* Kept as is */
+            margin-bottom: 2px;
+            color: #000; /* Changed from #fff to #000 */
         }
         .header h2 {
-            font-size: 16px;
+            font-size: 14px; /* Kept as is */
             font-weight: 400;
+            color: #000; /* Changed from #fff to #000 */
         }
         .contact-info {
             text-align: center;
-            padding: 10px;
+            padding: 6px; /* Increased padding */
             background: #f9f9f9;
-            font-size: 12px;
+            font-size: 10px; /* Increased from 9px */
             color: #666;
-            width: 100%;
-            margin-bottom: 5px;
+            width: 100;
         }
         .contact-info a {
             color: #00cc00;
@@ -69,82 +70,82 @@
         .sidebar {
             width: 100%;
             background: #f9f9f9;
-            padding: 15px;
+            padding: 8px; /* Increased padding */
             border-bottom: 1px solid #eee;
         }
         .sidebar h3 {
             color: #00cc00;
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 14px; /* Kept as is */
+            margin-bottom: 6px; /* Kept as is */
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px; /* Increased from 0.3px */
         }
         .skills-list {
             list-style-type: disc;
-            padding-left: 20px;
-            margin-top: 10px;
+            padding-left: 12px; /* Kept as is */
+            margin-top: 6px; /* Kept as is */
         }
         .skills-list li {
-            font-size: 14px;
-            margin-bottom: 5px;
+            font-size: 11px; /* Increased from 10px */
+            margin-bottom: 2px; /* Kept as is */
             color: #333;
         }
         .achievements-list, .additional-info-list {
             list-style-type: disc;
-            padding-left: 20px;
-            margin-top: 10px;
+            padding-left: 12px;
+            margin-top: 6px;
         }
         .achievements-list li, .additional-info-list li {
-            font-size: 14px;
-            margin-bottom: 5px;
+            font-size: 11px; /* Increased from 10px */
+            margin-bottom: 2px; /* Kept as is */
             color: #333;
         }
         .content {
             width: 100%;
-            padding: 15px 20px;
+            padding: 8px; /* Kept as is */
         }
         .section {
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Kept as is */
         }
         .section h3 {
             color: #00cc00;
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 14px; /* Kept as is */
+            margin-bottom: 6px; /* Kept as is */
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px; /* Increased from 0.3px */
         }
         .section p, .section ul {
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 11px; /* Increased from 10px */
+            margin-bottom: 4px; /* Increased from 2px */
         }
         .section ul {
             list-style: none;
-            padding-left: 15px;
+            padding-left: 10px; /* Kept as is */
         }
         .section ul li {
-            margin-bottom: 6px;
+            margin-bottom: 2px; /* Kept as is */
             position: relative;
         }
         .section ul li:before {
             content: "•";
             color: #00cc00;
             position: absolute;
-            left: -12px;
+            left: -8px; /* Kept as is */
         }
         .avatar {
             display: block;
-            margin: 15px auto;
-            width: 100px;
-            height: 100px;
-            background: url('https://via.placeholder.com/100') no-repeat center;
+            margin: 8px auto; /* Kept as is */
+            width: 60px; /* Kept as is */
+            height: 60px;
+            background: url('https://via.placeholder.com/60') no-repeat center;
             background-size: cover;
             border-radius: 50%;
-            border: 3px solid #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #fff; /* Kept as is */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Kept as is */
         }
         .footer {
             text-align: center;
-            padding: 15px;
+            padding: 8px; /* Kept as is */
             background: #f9f9f6;
             border-top: 1px solid #eee;
         }
@@ -152,11 +153,12 @@
             background-color: #00cc00;
             color: #fff;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 14px;
+            padding: 6px 12px; /* Kept as is */
+            border-radius: 4px; /* Kept as is */
+            font-size: 10px; /* Increased from 9px */
             cursor: pointer;
             transition: background-color 0.3s;
+            margin: 0 4px; /* Kept as is */
         }
         .footer button:hover {
             background-color: #009900;
@@ -171,36 +173,36 @@
             }
             .sidebar {
                 width: 30%;
-                min-width: 250px;
+                min-width: 200px; /* Kept as is */
                 border-bottom: none;
                 border-right: 1px solid #eee;
-                padding: 20px;
+                padding: 12px; /* Increased from 8px */
             }
             .content {
                 width: 70%;
-                padding: 20px;
+                padding: 12px; /* Increased from 8px */
             }
             .header h1 {
-                font-size: 32px;
+                font-size: 24px; /* Increased from 20px */
             }
             .header h2 {
-                font-size: 18px;
+                font-size: 14px; /* Kept as is */
             }
             .contact-info {
-                font-size: 14px;
+                font-size: 10px; /* Kept as is */
             }
             .section h3 {
-                font-size: 22px;
+                font-size: 14px; /* Kept as is */
             }
             .section p, .section ul, .skills-list li, .achievements-list li, .additional-info-list li {
-                font-size: 15px;
+                font-size: 11px; /* Kept as is */
             }
             .avatar {
-                width: 120px;
-                height: 120px;
+                width: 70px; /* Increased from 60px */
+                height: 70px; /* Increased from 60px */
             }
             .footer button {
-                font-size: 16px;
+                font-size: 12px; /* Increased from 10px */
             }
         }
         @media print {
@@ -215,9 +217,9 @@
                 margin: 0;
             }
             .header {
-                padding: 10px; /* Reduced padding to fit on page */
+                padding: 6px; /* Kept as is */
                 border-bottom: none;
-                page-break-after: auto; /* Allow content to follow */
+                page-break-after: avoid;
             }
             .contact-info, .sidebar, .footer {
                 background: #fff;
@@ -230,23 +232,40 @@
             }
             .sidebar {
                 width: 30%;
-                min-width: 250px;
-                padding: 10px; /* Reduced padding for print */
+                min-width: 200px;
+                padding: 6px; /* Kept as is */
             }
             .content {
                 width: 70%;
-                padding: 10px; /* Reduced padding for print */
+                padding: 6px; /* Kept as is */
             }
             .footer {
                 display: none;
             }
             .section {
                 page-break-inside: avoid;
-                margin-bottom: 10px; /* Reduced margin for print */
+                margin-bottom: 6px; /* Kept as is */
             }
             .header, .contact-info, .main-content {
-                page-break-before: auto;
-                page-break-after: auto;
+                page-break-before: avoid;
+                page-break-after: avoid;
+            }
+            @page {
+                margin: 0.1in; /* Kept as is */
+                size: auto;
+                @bottom-center {
+                    content: ""; /* Explicitly empty footer */
+                }
+                @top-center {
+                    content: ""; /* Explicitly empty header */
+                }
+                marks: none; /* Remove any crop marks */
+            }
+            @page :footer {
+                display: none;
+            }
+            @page :header {
+                display: none;
             }
         }
     </style>
@@ -278,13 +297,13 @@
                     <li>Strong Work Ethic</li>
                     <li>Problem-Solving</li>
                     <li>Teamwork</li>
-                </ul></br>
+                </ul>
                 <h3>Achievements</h3>
                 <ul class="achievements-list">
                     <li>Graduated high school with a 3.9 GPA, earning honors recognition.</li>
                     <li>Earned two FreeCodeCamp certifications in under a year, demonstrating dedication to rapid skill acquisition.</li>
                     <li>Successfully launched a personal portfolio website, receiving positive feedback for design and functionality.</li>
-                </ul></br>
+                </ul>
                 <h3>Additional Information</h3>
                 <ul class="additional-info-list">
                     <li>Availability: Flexible, eager to work part-time or as an intern to gain hands-on experience.</li>
@@ -295,14 +314,14 @@
             <div class="content">
                 <div class="section">
                     <h3>Objective</h3>
-                    <p>Ambitious and self-driven junior web developer with a strong foundation in HTML5, CSS3, and JavaScript, seeking entry-level opportunities to apply and expand coding skills. Passionate about creating responsive, user-friendly web applications and eager to contribute to innovative projects while learning from experienced professionals in a collaborative environment.</p>
+                    <p>Ambitious and self-driven junior web developer with a strong foundation in HTML5, CSS3, and JavaScript, seeking entry-level opportunities to apply and expand coding skills. Passionate about creating responsive, user-friendly web applications and eager to contribute to innovative projects while learning from experienced professionals.</p>
                 </div>
                 <div class="section">
                     <h3>Education</h3>
                     <p><strong>Penn Foster High School</strong><br>High School Diploma, Honors (3.9 GPA)<br>Graduated: 2025</p>
                     <ul>
                         <li>Relevant Coursework: Introduction to Information Technology (Penn Foster)</li>
-                        <li>Responsive Web Design Certification, 2025 (FreeCodeCamp)</li>
+                        <li>Responsive Web Design Certification, 2025</li>
                         <li>JavaScript Algorithms and Data Structures Certification, 2025 (FreeCodeCamp)</li>
                         <li>Learn React Course, 2025 (Codecademy)</li>
                     </ul>
@@ -311,35 +330,39 @@
                     <h3>Projects</h3>
                     <p><strong>Personal Portfolio Website (glenniii.dev)</strong></p>
                     <ul>
-                        <li>Designed and developed a fully responsive portfolio website using HTML5, CSS3, Tailwind CSS, and JavaScript to showcase coding projects and skills.</li>
-                        <li>Implemented modern UI/UX principles to ensure accessibility and cross-device compatibility.</li>
-                        <li>Hosted on GitHub Pages with version control using Git for iterative updates.</li>
+                        <li>Designed and developed a fully responsive portfolio website using HTML5, CSS3, Tailwind CSS, and JavaScript.</li>
+                        <li>Implemented modern UI/UX principles for accessibility and cross-device compatibility.</li>
+                        <li>Hosted on GitHub Pages with version control using Git.</li>
                     </ul>
                     <p><strong>FreeCodeCamp Project Contributions</strong></p>
                     <ul>
-                        <li>Completed multiple projects as part of certification coursework, including responsive landing pages, data visualization dashboards, and algorithmic challenges.</li>
-                        <li>Applied JavaScript for dynamic functionality and React.js for component-based UI development.</li>
-                        <li>Demonstrated problem-solving by debugging and optimizing code for performance.</li>
+                        <li>Completed projects including responsive landing pages, data visualization dashboards, and algorithmic challenges.</li>
+                        <li>Applied JavaScript and React.js for dynamic functionality and UI development.</li>
+                        <li>Debugged and optimized code for performance.</li>
                     </ul>
                 </div>
                 <div class="section">
                     <h3>Experience</h3>
                     <p><strong>Self-Directed Learning & Project Development</strong><br>April 2025 – Present</p>
                     <ul>
-                        <li>Independently pursued advanced coding education through FreeCodeCamp and Codecademy, mastering modern web development technologies.</li>
-                        <li>Built and maintained a portfolio of projects to demonstrate proficiency in frontend development and version control.</li>
-                        <li>Actively engaged with online developer communities to stay updated on industry trends and best practices.</li>
+                        <li>Pursued advanced coding education through FreeCodeCamp and Codecademy.</li>
+                        <li>Built and maintained a portfolio of frontend development projects.</li>
+                        <li>Engaged with online developer communities for industry trends.</li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer">
             <button onclick="window.print()">PRINT</button>
+            <button onclick="saveAsPDF()">SAVE</button>
         </div>
     </div>
 
     <script>
-        // Add any JavaScript functionality here if needed
+        // JavaScript functionality
+        function saveAsPDF() {
+            window.print(); // Opens print dialog with "Save as PDF" option
+        }
         console.log("Resume website loaded successfully!");
     </script>
 </body>
