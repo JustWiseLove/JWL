@@ -22,8 +22,8 @@
             align-items: flex-start;
         }
         .container {
-            width: 816px; /* 8.5in at 96dpi */
-            min-height: 1008px; /* 10.5in at 96dpi, after 0.25in margins */
+            width: 816px;
+            min-height: 1008px;
             background: #ffffff;
             border-radius: 5px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -75,7 +75,7 @@
         .main-content {
             display: flex;
             flex-direction: row;
-            min-height: calc(100% - 90px); /* Adjust for header + contact-info height */
+            min-height: calc(100% - 90px);
             align-items: stretch;
             width: 100%;
         }
@@ -153,10 +153,9 @@
             border-top: 1px solid #eee;
             font-size: 11px;
         }
-        /* Viewport-based scaling for all devices */
         @media (max-width: 816px) {
             .container {
-                transform: scale(calc(100vw / 816)); /* Scale based on viewport width */
+                transform: scale(calc(100vw / 816));
                 width: 816px;
                 min-height: 1008px;
             }
@@ -165,10 +164,9 @@
                 height: 60px;
             }
         }
-        /* Ensure legibility on very small screens */
         @media (max-width: 400px) {
             .container {
-                transform: scale(0.7); /* Minimum scale to maintain legibility */
+                transform: scale(0.7);
                 width: 816px;
                 min-height: 1008px;
             }
@@ -184,13 +182,13 @@
                 background: #fff;
             }
             .container {
-                width: 8.5in; /* Exact letter width */
-                min-height: 10.5in; /* Exact letter height after margins */
+                width: 8.5in;
+                min-height: 10.5in;
                 height: 10.5in;
                 box-shadow: none;
                 border-radius: 0;
                 margin: 0;
-                transform: scale(1); /* No scaling for print */
+                transform: scale(1);
             }
             .header {
                 padding: 10px;
