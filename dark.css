@@ -140,7 +140,7 @@ nav {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 128, 0, 0.3);
     transition: all 0.3s ease;
     flex: 1;
-    max-width: 150px;
+    max-width: 120px; /* Adjusted to accommodate 5 tabs */
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -556,12 +556,23 @@ footer {
     margin: 15px auto;
     max-width: 150px;
     text-align: center;
+    min-height: 44px; /* Ensure touch target size */
+    min-width: 120px; /* Ensure sufficient width */
 }
 
 .expand-button:hover {
     background-color: #008000;
     transform: scale(1.1);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+}
+
+/* Ensure lesson cards don’t overlap button */
+.family-worship-section .lesson.lesson-card {
+    z-index: 10;
+}
+
+.family-worship-section .lesson-header {
+    z-index: 15;
 }
 
 /* Responsive Design */
@@ -600,7 +611,7 @@ footer {
     .tab-button {
         font-size: 1em;
         padding: 8px 15px;
-        max-width: 120px;
+        max-width: 100px; /* Adjusted for 5 tabs */
     }
 
     .search-input {
@@ -713,7 +724,7 @@ footer {
     .tab-button {
         font-size: 0.9em;
         padding: 6px 12px;
-        max-width: 90px;
+        max-width: 80px; /* Adjusted for 5 tabs */
     }
 
     .search-input {
