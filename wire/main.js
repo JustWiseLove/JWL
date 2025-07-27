@@ -51,6 +51,7 @@ function displayFamilyWorship() {
     contentElement.style.display = 'block';
     expandButton.textContent = 'MORE';
     expandButton.style.pointerEvents = 'auto'; // Ensure button is clickable
+    expandButton.style.cursor = 'pointer'; // Visual feedback for clickability
 
     const nextFriday = getNextFriday();
     dateElement.textContent = nextFriday;
@@ -661,16 +662,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Enter') showTab(link.textContent.toLowerCase());
         });
     });
-    const expandButton = document.getElementById('family-expand-button');
-    if (expandButton) {
-        // Remove any existing listeners to prevent duplicates
-        expandButton.replaceWith(expandButton.cloneNode(true));
-        const newExpandButton = document.getElementById('family-expand-button');
-        newExpandButton.addEventListener('click', displayAllFamilyDates);
-        newExpandButton.style.pointerEvents = 'auto'; // Ensure button is clickable
-    } else {
-        console.error('Expand button not found');
+    function initializeExpandButton() {
+        const expandButton = document.getElementById('family-expand-button');
+        if (expandButton) {
+            // Clear any existing listeners by cloning
+            expandButton.replaceWith(expandButton.cloneNode(true));
+            const newExpandButton = document.getElementById('family-expand-button');
+            newExpandButton.style.pointerEvents = 'auto';
+            newExpandButton.style.cursor = 'pointer';
+            newExpandButton.addEventListener('click', () => {
+                console.log('Expand button clicked');
+                displayAllFamilyDates();
+            });
+            console.log('Expand button initialized');
+        } else {
+            console.error('Expand button not found in DOM');
+            // Retry after a short delay in case DOM is still loading
+            setTimeout(initializeExpandButton, 100);
+        }
     }
+    // Delay to ensure DOM is fully loaded
+    setTimeout(initializeExpandButton, 0);
     displayFamilyWorship();
 });
 
