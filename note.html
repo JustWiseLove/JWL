@@ -4,281 +4,391 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes - Just Wise Love</title>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@400;700&display=swap">
     <style>
-        :root {
-            --dark-green: #004800 !important;
-            --light-green: #008000 !important;
-            --gray: #d3d3d3 !important;
-            --white: #fff !important;
-            --black: #000 !important;
-            --gold: #d4af37 !important;
-        }
-
+        /* Reset and base styles */
         * {
-            box-sizing: border-box !important;
-            margin: 0 !important;
-            padding: 0 !important;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif !important;
-            background-color: var(--black) !important;
-            color: var(--white) !important;
-            line-height: 1.6 !important;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
         }
 
+        /* Highlight for search terms */
+        .highlight {
+            color: #008000;
+            font-weight: bold;
+        }
+
+        /* Header */
         header {
-            background: linear-gradient(90deg, var(--dark-green), var(--light-green), var(--dark-green)) !important;
-            padding: 20px !important;
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-            position: sticky !important;
-            top: 0 !important;
-            z-index: 100 !important;
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 128, 0, 0.2));
+            opacity: 0.3;
+            z-index: 0;
         }
 
         .logo h1 {
-            font-family: 'Audiowide', sans-serif !important;
-            color: var(--black) !important;
-            font-size: 48px !important;
-            margin: 0 !important;
+            font-family: 'Audiowide', cursive;
+            font-size: 2.5em;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px #008000;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+            display: inline-block;
+            border-bottom: 3px solid #008000;
+            padding-bottom: 5px;
+            margin: 0;
+        }
+
+        .logo h1:hover {
+            transform: scale(1.05);
         }
 
         .logo a {
-            text-decoration: none !important;
-            color: var(--black) !important;
+            text-decoration: none;
+            color: inherit;
         }
 
+        /* Input Section */
         .input-section {
-            max-width: 90% !important;
-            width: 100% !important;
-            margin: 2rem auto !important;
-            padding: 0 0.5rem !important;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 20px;
+            text-align: center;
         }
 
         input, textarea {
-            width: 100% !important;
-            margin: 10px 0 !important;
-            padding: 8px !important;
-            border: 1px solid var(--white) !important;
-            border-radius: 4px !important;
-            background-color: var(--black) !important;
-            color: var(--white) !important;
+            width: 100%;
+            padding: 12px 15px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1em;
+            color: #ffffff;
+            background-color: #000000;
+            border: 2px solid #008000;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 128, 0, 0.3);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            margin: 10px 0;
         }
 
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #00cc00;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+            transform: rotate(0deg);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #ffffff;
+            opacity: 0.7;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 200px;
+        }
+
+        /* Search Section */
         .search-section {
-            max-width: 90% !important;
-            width: 100% !important;
-            margin: 0 auto !important;
-            padding: 0 0.5rem !important;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 20px;
+            text-align: center;
         }
 
         #searchInput {
-            width: 100% !important;
+            width: 100%;
+            font-family: 'Audiowide', cursive;
+            text-align: center;
         }
 
-        .highlight {
-            background-color: var(--gray) !important;
-            padding: 2px 4px !important;
-            border-radius: 3px !important;
-        }
-
+        /* Note Cards */
         .note {
-            max-width: 90% !important;
-            width: 100% !important;
-            margin: 0 auto 2rem auto !important;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
-            padding: 1rem !important;
-            background: var(--black) !important;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #000000;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid #008000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .note:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px #008000;
         }
 
         .note h2 {
-            color: var(--dark-green) !important;
-            margin: 0 0 0.5rem 0 !important;
-            font-size: 1.5rem !important;
-            font-family: 'Audiowide', sans-serif !important;
-        }
-
-        .note .notes-preview {
-            color: var(--white) !important;
-            margin: 0 0 0.5rem 0 !important;
-        }
-
-        .note-footer {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            margin-top: 1rem !important;
-            flex-wrap: wrap !important;
-            gap: 0.5rem !important;
-        }
-
-        .edit-link, .open-link {
-            cursor: pointer !important;
-            color: var(--light-green) !important;
-            text-decoration: underline !important;
-        }
-
-        .edit-link:hover,
-        .open-link:hover {
-            color: var(--gold) !important;
+            font-family: 'Audiowide', cursive;
+            font-size: 1.6em;
+            color: #008000;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .notes-preview {
-            overflow: hidden !important;
-            white-space: pre-wrap !important;
-        }
-
-        .order-controls {
-            display: flex !important;
-            align-items: center !important;
-            gap: 8px !important;
-            flex-wrap: wrap !important;
-        }
-
-        .order-input {
-            width: 50px !important;
-            padding: 5px !important;
-        }
-
-        .btn-study#saveBtn, .btn-study#backupBtn, .btn-study#restoreBtn {
-            background: linear-gradient(90deg, var(--dark-green), var(--light-green)) !important;
-            color: var(--black) !important;
-            padding: 8px 16px !important;
-            border: none !important;
-            border-radius: 4px !important;
-            cursor: pointer !important;
-            width: 100% !important;
-            max-width: 200px !important;
-            margin: 10px auto !important;
-            display: block !important;
-            font-family: 'Audiowide', sans-serif !important;
-        }
-
-        .btn-study#saveBtn:hover, .btn-study#backupBtn:hover, .btn-study#restoreBtn:hover {
-            background: linear-gradient(90deg, var(--light-green)) !important;
-        }
-
-        .btn-study#deleteBtn {
-            background: linear-gradient(90deg, #ff4d4d, #cc0000, #ff4d4d) !important;
-            color: var(--black) !important;
-            padding: 8px 16px !important;
-            border: none !important;
-            border-radius: 4px !important;
-            cursor: pointer !important;
-            width: 100% !important;
-            max-width: 200px !important;
-            margin: 10px auto !important;
-            display: none;
-            font-family: 'Audiowide', sans-serif !important;
-        }
-
-        .btn-study#deleteBtn:hover {
-            background: linear-gradient(90deg, #cc0000) !important;
-        }
-
-        .btn-study#deleteBtn.confirm {
-            background: linear-gradient(90deg, #b30000, #990000) !important;
-        }
-
-        .btn-study#deleteBtn.confirm:hover {
-            background: linear-gradient(90deg, #990000) !important;
-        }
-
-        .backup-restore-buttons {
-            display: flex !important;
-            justify-content: center !important;
-            gap: 10px !important;
-            flex-wrap: wrap !important;
-            margin: 1rem auto !important;
-            max-width: 90% !important;
-            width: 100% !important;
-            padding: 0 0.5rem !important;
-        }
-
-        footer {
-            background: linear-gradient(90deg, var(--dark-green), var(--light-green)) !important;
-            text-align: center !important;
-            padding: 20px !important;
-            color: var(--white) !important;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1) !important;
-            width: 100% !important;
-        }
-
-        footer p {
-            margin: 10px 0 0 !important;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            color: #ffffff;
+            margin-bottom: 10px;
         }
 
         .notes-preview a {
-            color: var(--light-green) !important;
-            text-decoration: underline !important;
-            cursor: pointer !important;
+            color: #008000;
+            text-decoration: underline;
+            transition: color 0.3s ease;
         }
 
         .notes-preview a:hover {
-            color: var(--gold) !important;
-            text-decoration: none !important;
+            color: #00cc00;
+            text-decoration: none;
         }
 
+        .note-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .edit-link, .open-link {
+            font-family: 'Roboto', sans-serif;
+            color: #008000;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .edit-link:hover, .open-link:hover {
+            color: #00cc00;
+        }
+
+        .order-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .order-input {
+            width: 60px;
+            padding: 5px;
+            font-size: 0.9em;
+        }
+
+        /* Buttons */
+        .btn-study {
+            font-family: 'Audiowide', cursive;
+            font-size: 1.2em;
+            color: #ffffff;
+            background-color: #000000;
+            border: 2px solid #008000;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 128, 0, 0.3);
+            transition: all 0.3s ease;
+            display: block;
+            margin: 10px auto;
+            max-width: 200px;
+            text-align: center;
+            min-height: 44px;
+            min-width: 120px;
+        }
+
+        .btn-study:hover {
+            background-color: #008000;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+        }
+
+        .btn-study#deleteBtn {
+            background-color: #ff4d4d;
+            border: 2px solid #cc0000;
+            display: none;
+        }
+
+        .btn-study#deleteBtn:hover {
+            background-color: #cc0000;
+        }
+
+        .btn-study#deleteBtn.confirm {
+            background-color: #b30000;
+            border: 2px solid #990000;
+        }
+
+        .btn-study#deleteBtn.confirm:hover {
+            background-color: #990000;
+        }
+
+        .backup-restore-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        /* Formatting Toolbar */
         .formatting-toolbar {
-            display: flex !important;
-            justify-content: center !important;
-            gap: 5px !important;
-            margin: 10px 0 !important;
-            flex-wrap: wrap !important;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin: 10px 0;
+            flex-wrap: wrap;
         }
 
         .format-btn {
-            width: 40px !important;
-            height: 40px !important;
-            border: 1px solid var(--black) !important;
-            border-radius: 4px !important;
-            background: linear-gradient(90deg, var(--dark-green), var(--light-green)) !important;
-            color: var(--black) !important;
-            font-size: 16px !important;
-            cursor: pointer !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            transition: background 0.3s !important;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            color: #ffffff;
+            background-color: #000000;
+            border: 2px solid #008000;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
 
         .format-btn:hover {
-            background: linear-gradient(90deg, var(--light-green)) !important;
+            background-color: #008000;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
 
-        @media (max-width: 600px) {
+        /* Footer */
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+            border-top: 3px solid #008000;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 10px;
+            }
+
+            .logo h1 {
+                font-size: 2.2em;
+            }
+
             .input-section, .search-section, .note, .backup-restore-buttons {
-                max-width: 90% !important;
-                padding: 0 0.25rem !important;
+                max-width: 100%;
+                padding: 0 15px;
             }
 
             .note h2 {
-                font-size: 1.25rem !important;
+                font-size: 1.4em;
+            }
+
+            input, textarea, .btn-study, .format-btn {
+                font-size: 1em;
+                padding: 8px 12px;
             }
 
             .order-input {
-                width: 40px !important;
-            }
-
-            .edit-link, .open-link {
-                font-size: 0.9rem !important;
-            }
-
-            .btn-study#saveBtn, .btn-study#deleteBtn, .btn-study#backupBtn, .btn-study#restoreBtn {
-                padding: 6px 12px !important;
+                width: 50px;
             }
 
             .format-btn {
-                width: 35px !important;
-                height: 35px !important;
-                font-size: 14px !important;
+                width: 35px;
+                height: 35px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 2em;
+            }
+
+            .input-section, .search-section, .note, .backup-restore-buttons {
+                padding: 0 10px;
+            }
+
+            .note h2 {
+                font-size: 1.2em;
+            }
+
+            input, textarea, .btn-study, .format-btn {
+                font-size: 0.9em;
+                padding: 6px 10px;
+            }
+
+            .order-input {
+                width: 40px;
+            }
+
+            .format-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8em;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .input-section, .search-section, .note, .backup-restore-buttons {
+                max-width: 800px;
+            }
+
+            .logo h1 {
+                font-size: 2.8em;
+            }
+
+            .btn-study {
+                font-size: 1.3em;
+                padding: 12px 24px;
+            }
+
+            .note h2 {
+                font-size: 1.8em;
             }
         }
     </style>
@@ -316,7 +426,7 @@
     </div>
     
     <div class="search-section">
-        <input type="text" id="searchInput" placeholder="Search notes..." onkeyup="searchNotes()">
+        <input type="text" id="searchInput" placeholder="Search notes...">
     </div>
     
     <div id="notesContainer"></div>
@@ -337,31 +447,11 @@
          */
 
         // Global Variables
-        /**
-         * @type {Array<Object>} notes - Array of note objects loaded from localStorage or initialized as empty.
-         * Each note has properties: id (number), title (string), notes (string), order (number), date (string).
-         */
         let notes = JSON.parse(localStorage.getItem('notes')) || [];
-
-        /**
-         * @type {number|null} editingNoteId - ID of the note currently being edited, or null if not editing.
-         */
         let editingNoteId = null;
-
-        /**
-         * @type {Set<number>} openNotes - Set of note IDs whose notes are currently expanded.
-         */
         let openNotes = new Set();
-
-        /**
-         * @type {boolean} isDeleteConfirmed - Flag indicating if the user has confirmed deletion of a note.
-         */
         let isDeleteConfirmed = false;
 
-        /**
-         * Formats the selected text in the notes textarea based on the specified type.
-         * @param {string} type - The type of formatting ('bold', 'italic', 'underline', 'strike', 'hr', 'color', 'highlight', 'indent', 'unindent').
-         */
         function formatText(type) {
             const textarea = document.getElementById('notesInput');
             const start = textarea.selectionStart;
@@ -370,21 +460,16 @@
             let newText = '';
 
             if (type === 'hr') {
-                // Insert horizontal line marker
                 newText = '\n---\n';
                 if (start === end) {
-                    // No selection, insert at cursor
                     textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
                     textarea.selectionStart = textarea.selectionEnd = start + newText.length;
                 } else {
-                    // Replace selection with horizontal line
                     textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
                     textarea.selectionStart = textarea.selectionEnd = start + newText.length;
                 }
             } else if (type === 'indent' || type === 'unindent') {
-                // Handle indent and unindent
                 if (start === end) {
-                    // No selection, apply to the current line
                     const lineStart = textarea.value.lastIndexOf('\n', start - 1) + 1;
                     const lineEnd = textarea.value.indexOf('\n', start);
                     const endPos = lineEnd === -1 ? textarea.value.length : lineEnd;
@@ -395,14 +480,12 @@
                         textarea.value = textarea.value.substring(0, lineStart) + newText + textarea.value.substring(endPos);
                         textarea.selectionStart = textarea.selectionEnd = start + 2;
                     } else {
-                        // Unindent: remove up to 2 leading spaces
                         const spacesRemoved = line.startsWith('  ') ? 2 : line.startsWith(' ') ? 1 : 0;
                         newText = line.substring(spacesRemoved);
                         textarea.value = textarea.value.substring(0, lineStart) + newText + textarea.value.substring(endPos);
                         textarea.selectionStart = textarea.selectionEnd = start - spacesRemoved;
                     }
                 } else {
-                    // Selection spans multiple lines
                     const lines = selectedText.split('\n');
                     let cursorAdjustment = 0;
                     let newLines;
@@ -410,7 +493,6 @@
                         newLines = lines.map(line => '  ' + line);
                         cursorAdjustment = 2;
                     } else {
-                        // Unindent: remove up to 2 leading spaces from each line
                         newLines = lines.map(line => {
                             if (line.startsWith('  ')) {
                                 return line.substring(2);
@@ -428,9 +510,7 @@
                     textarea.selectionEnd = start + newText.length;
                 }
             } else {
-                // Handle text formatting
                 if (start === end && selectedText === '') {
-                    // No selection, do nothing
                     return;
                 }
 
@@ -457,7 +537,6 @@
                         return;
                 }
 
-                // Replace selected text with formatted text
                 textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
                 textarea.selectionStart = start;
                 textarea.selectionEnd = start + newText.length;
@@ -466,23 +545,15 @@
             textarea.focus();
         }
 
-        /**
-         * Saves a new note or updates an existing one based on the editing state.
-         * Retrieves title, notes, and order from input fields, validates them, and updates the notes array.
-         * Persists changes to localStorage and refreshes the display.
-         */
         function saveOrUpdateNote() {
-            // Get input values from the DOM
             const title = document.getElementById('titleInput').value;
             const notesContent = document.getElementById('notesInput').value;
             const order = parseInt(document.getElementById('orderInput').value) || 0;
             const saveBtn = document.getElementById('saveBtn');
             const deleteBtn = document.getElementById('deleteBtn');
             
-            // Validate that both title and notes are provided
             if (title && notesContent) {
                 if (editingNoteId) {
-                    // Update existing note
                     const noteIndex = notes.findIndex(n => n.id === editingNoteId);
                     notes[noteIndex] = {
                         ...notes[noteIndex],
@@ -491,7 +562,6 @@
                         order: order,
                         date: new Date().toLocaleString()
                     };
-                    // Reset editing state
                     editingNoteId = null;
                     saveBtn.textContent = 'Save Note';
                     deleteBtn.style.display = 'none';
@@ -499,7 +569,6 @@
                     deleteBtn.textContent = 'Delete';
                     deleteBtn.classList.remove('confirm');
                 } else {
-                    // Create new note
                     const note = {
                         id: Date.now(),
                         title: title,
@@ -510,7 +579,6 @@
                     notes.push(note);
                 }
                 
-                // Persist notes to localStorage and clear input fields
                 localStorage.setItem('notes', JSON.stringify(notes));
                 document.getElementById('titleInput').value = '';
                 document.getElementById('orderInput').value = '';
@@ -519,27 +587,21 @@
             }
         }
 
-        /**
-         * Prepares a note for editing by populating the input fields with its data.
-         * @param {number} id - The ID of the note to edit.
-         */
         function editNote(id) {
-            console.log('editNote called with id:', id); // Debug log
+            console.log('editNote called with id:', id);
             const note = notes.find(n => n.id === id);
             if (note) {
-                // Populate input fields with note data
                 document.getElementById('titleInput').value = note.title;
                 document.getElementById('orderInput').value = note.order;
                 document.getElementById('notesInput').value = note.notes;
                 editingNoteId = id;
-                // Update UI to reflect editing mode
                 const saveBtn = document.getElementById('saveBtn');
                 const deleteBtn = document.getElementById('deleteBtn');
                 if (!deleteBtn) {
                     console.error('deleteBtn not found in DOM');
                     return;
                 }
-                console.log('Setting deleteBtn display to block'); // Debug log
+                console.log('Setting deleteBtn display to block');
                 saveBtn.textContent = 'Update Note';
                 deleteBtn.style.display = 'block';
                 isDeleteConfirmed = false;
@@ -550,23 +612,16 @@
             }
         }
 
-        /**
-         * Deletes the currently edited note after user confirmation.
-         * Requires two clicks: first to confirm, second to delete.
-         */
         function deleteNote() {
             const deleteBtn = document.getElementById('deleteBtn');
             if (!isDeleteConfirmed) {
-                // First click: prompt for confirmation
                 isDeleteConfirmed = true;
                 deleteBtn.textContent = 'Confirm Delete';
                 deleteBtn.classList.add('confirm');
             } else {
-                // Second click: delete the note
                 if (editingNoteId) {
                     notes = notes.filter(n => n.id !== editingNoteId);
                     localStorage.setItem('notes', JSON.stringify(notes));
-                    // Reset editing state and UI
                     editingNoteId = null;
                     isDeleteConfirmed = false;
                     deleteBtn.textContent = 'Delete';
@@ -581,11 +636,6 @@
             }
         }
 
-        /**
-         * Updates the order of a note and persists the change.
-         * @param {number} id - The ID of the note to update.
-         * @param {string} newOrder - The new order value as a string.
-         */
         function updateOrder(id, newOrder) {
             const noteIndex = notes.findIndex(n => n.id === id);
             if (noteIndex !== -1) {
@@ -595,10 +645,6 @@
             }
         }
 
-        /**
-         * Toggles the expanded state of a note's notes.
-         * @param {number} id - The ID of the note to toggle.
-         */
         function toggleNote(id) {
             if (openNotes.has(id)) {
                 openNotes.delete(id);
@@ -608,62 +654,39 @@
             displayNotes(notes);
         }
 
-        /**
-         * Highlights occurrences of a search term in text by wrapping them in a span.
-         * @param {string} text - The text to search within.
-         * @param {string} searchTerm - The term to highlight.
-         * @returns {string} The text with highlighted search terms.
-         */
         function highlightText(text, searchTerm) {
             if (!searchTerm) return text;
             const regex = new RegExp(`(${searchTerm})`, 'gi');
             return text.replace(regex, '<span class="highlight">$1</span>');
         }
 
-        /**
-         * Formats notes by converting URLs to clickable links, newlines to <br> tags,
-         * preserving leading spaces, and applying Markdown-like syntax to HTML for rendering.
-         * @param {string} notesContent - The raw notes text.
-         * @returns {string} The formatted notes as HTML.
-         */
         function formatNotes(notesContent) {
             let formatted = notesContent;
 
-            // Preserve leading spaces by converting them to  
             formatted = formatted.replace(/(^|\n)([ ]+)/g, (match, prefix, spaces) => {
                 const nbspCount = spaces.length;
                 return prefix + ' '.repeat(nbspCount);
             });
 
-            // Convert URLs to clickable links
             const urlRegex = /(https?:\/\/[^\s<>"']+)/g;
             formatted = formatted.replace(urlRegex, function(url) {
                 const safeUrl = url.startsWith('http') ? url : `https://${url}`;
-                return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--light-green); text-decoration: underline;">${url}</a>`;
+                return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" style="color: #008000; text-decoration: underline;">${url}</a>`;
             });
 
-            // Convert Markdown-like syntax to HTML
-            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); // Bold
-            formatted = formatted.replace(/\*(.*?)\*/g, '<i>$1</i>'); // Italic
-            formatted = formatted.replace(/__(.*?)__/g, '<u>$1</u>'); // Underline
-            formatted = formatted.replace(/~~(.*?)~~/g, '<s>$1</s>'); // Strikethrough
-            formatted = formatted.replace(/##(.*?)##/g, '<span style="color: #2a6626">$1</span>'); // Text Color
-            formatted = formatted.replace(/\^\^(.*?)\^\^/g, '<span style="background-color: #6b9e31">$1</span>'); // Highlight
-            formatted = formatted.replace(/---/g, '<hr>'); // Horizontal line
+            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+            formatted = formatted.replace(/\*(.*?)\*/g, '<i>$1</i>');
+            formatted = formatted.replace(/__(.*?)__/g, '<u>$1</u>');
+            formatted = formatted.replace(/~~(.*?)~~/g, '<s>$1</s>');
+            formatted = formatted.replace(/##(.*?)##/g, '<span style="color: #2a6626">$1</span>');
+            formatted = formatted.replace(/\^\^(.*?)\^\^/g, '<span style="background-color: #6b9e31">$1</span>');
+            formatted = formatted.replace(/---/g, '<hr>');
 
-            // Replace newlines with HTML line breaks
             formatted = formatted.replace(/\n/g, '<br>');
 
             return formatted;
         }
 
-        /**
-         * Generates a preview of notes text, either truncated or expanded, with search term highlighting.
-         * @param {string} notesContent - The full notes text.
-         * @param {string} searchTerm - The term to highlight in the preview.
-         * @param {boolean} isOpen - Whether the notes are expanded.
-         * @returns {string} The formatted preview text.
-         */
         function getPreviewText(notesContent, searchTerm, isOpen) {
             const maxPreviewLength = 85;
             const contextLength = 30;
@@ -679,7 +702,6 @@
                 const lowerSearch = searchTerm.toLowerCase();
                 const index = lowerNotes.indexOf(lowerSearch);
                 if (index !== -1) {
-                    // Show context around the search term
                     const start = Math.max(0, index - contextLength);
                     const end = Math.min(notesContent.length, index + searchTerm.length + contextLength);
                     let preview = notesContent.substring(start, end);
@@ -689,22 +711,16 @@
                 }
             }
 
-            // Truncate notes if too long, adding ellipsis
             return notesContent.length > maxPreviewLength 
                 ? highlightText(formatNotes(notesContent.substring(0, maxPreviewLength)) + '...', searchTerm) 
                 : highlightText(formattedNotes, searchTerm);
         }
 
-        /**
-         * Displays a list of notes in the DOM, sorted by order and title, with search highlighting.
-         * @param {Array<Object>} notesToShow - The notes to display (filtered or full list).
-         */
         function displayNotes(notesToShow) {
             const container = document.getElementById('notesContainer');
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             container.innerHTML = '';
             
-            // Sort notes by order, then by title
             const sortedNotes = [...notesToShow].sort((a, b) => {
                 if (a.order === b.order) {
                     return a.title.localeCompare(b.title);
@@ -712,7 +728,6 @@
                 return a.order - b.order;
             });
             
-            // Render each note as a DOM element
             sortedNotes.forEach(note => {
                 const isOpen = openNotes.has(note.id);
                 const noteDiv = document.createElement('div');
@@ -738,9 +753,6 @@
             });
         }
 
-        /**
-         * Filters notes based on a search term and updates the display.
-         */
         function searchNotes() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const filteredNotes = notes.filter(note => 
@@ -750,16 +762,11 @@
             displayNotes(filteredNotes);
         }
 
-        /**
-         * Creates a backup file containing all notes and triggers a download.
-         * The file format includes a custom header followed by JSON data.
-         */
         function backupData() {
             const data = {
                 notes: JSON.parse(localStorage.getItem('notes')) || []
             };
             
-            // Format the backup content with a header and indented JSON
             const codexContent = `JUSTWISELOVE-BACKUP-v1\n${JSON.stringify(data, null, 2)}`;
             const blob = new Blob([codexContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
@@ -770,24 +777,14 @@
             URL.revokeObjectURL(url);
         }
 
-        /**
-         * Checks if an object is a plain JavaScript object (not an array or null).
-         * @param {any} obj - The object to check.
-         * @returns {boolean} True if the object is plain, false otherwise.
-         */
         function isPlainObject(obj) {
             return obj !== null && typeof obj === 'object' && Object.getPrototypeOf(obj) === Object.prototype;
         }
 
-        /**
-         * Restores notes from a backup file, validates the file, and updates localStorage.
-         * @param {Event} event - The file input change event containing the selected file.
-         */
         function restoreData(event) {
             const file = event.target.files[0];
             const restoreInput = document.getElementById('restoreInput');
             
-            // Validate file existence
             if (!file) {
                 alert('Error: No file selected');
                 console.error('No file selected');
@@ -796,7 +793,6 @@
             }
 
             try {
-                // Validate file extension
                 const validExtensions = ['.codex', '.json', '.txt'];
                 const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
                 if (!validExtensions.includes(fileExtension)) {
@@ -806,7 +802,6 @@
                     return;
                 }
 
-                // Check for empty file
                 if (file.size === 0) {
                     alert('Error: File is empty');
                     console.error('Empty file detected');
@@ -814,7 +809,6 @@
                     return;
                 }
 
-                // Enforce file size limit (25MB)
                 if (file.size > 25 * 1024 * 1024) {
                     alert('Error: File is too large (max 25MB)');
                     console.error('File size too large:', file.size);
@@ -828,12 +822,10 @@
                 return;
             }
 
-            // Read the file content
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
                     let content = e.target.result;
-                    // Remove BOM (Byte Order Mark) and trim whitespace
                     content = content.replace(/^\uFEFF/, '').trim();
                     if (!content) {
                         alert('Error: File is empty or contains only whitespace');
@@ -846,7 +838,6 @@
                     const isCodex = content.startsWith('JUSTWISELOVE-BACKUP-v1');
                     let jsonContent;
 
-                    // Parse content based on file format
                     if (isCodex) {
                         const lines = content.split('\n');
                         if (lines[0].trim() !== 'JUSTWISELOVE-BACKUP-v1') {
@@ -860,12 +851,10 @@
                         jsonContent = content;
                     }
 
-                    // Validate JSON structure
                     if (!jsonContent.startsWith('{') && !jsonContent.startsWith('[')) {
                         throw new Error('Invalid JSON: Content must start with an object or array');
                     }
 
-                    // Parse JSON content
                     try {
                         data = JSON.parse(jsonContent);
                     } catch (parseError) {
@@ -880,12 +869,10 @@
                         throw new Error(`Invalid JSON format: ${parseError.message}${errorContext}`);
                     }
 
-                    // Validate data structure
                     if (!isPlainObject(data)) {
                         throw new Error('Invalid data structure: Root must be an object');
                     }
 
-                    // Validate notes array and filter invalid entries
                     const notesData = Array.isArray(data.notes) ? data.notes : [];
                     const validNotes = notesData.filter(note => {
                         return isPlainObject(note) &&
@@ -900,7 +887,6 @@
                         console.warn('Some notes were invalid and filtered out:', notesData);
                     }
 
-                    // Update localStorage and refresh display
                     try {
                         localStorage.setItem('notes', JSON.stringify(validNotes));
                         notes.length = 0;
@@ -911,14 +897,12 @@
                         throw new Error(`Failed to apply notes: ${error.message}`);
                     }
 
-                    // Notify user of success, with a warning if some notes were ignored
                     if (validNotes.length !== notesData.length) {
                         alert('Data restored successfully, but some invalid notes were ignored.');
                     } else {
                         alert('Data restored successfully!');
                     }
                 } catch (error) {
-                    // Construct detailed error message based on failure reason
                     let errorMessage = 'Error restoring data: ';
                     if (error.message.includes('codex file header')) {
                         errorMessage += 'Invalid .codex file header. File must start with "JUSTWISELOVE-BACKUP-v1".';
@@ -946,14 +930,12 @@
             reader.readAsText(file);
         }
 
-        /**
-         * Initializes event listeners for the application when the DOM is fully loaded.
-         */
         document.addEventListener('DOMContentLoaded', () => {
             const backupBtn = document.getElementById('backupBtn');
             const restoreBtn = document.getElementById('restoreBtn');
             const restoreInput = document.getElementById('restoreInput');
             const deleteBtn = document.getElementById('deleteBtn');
+            const searchInput = document.getElementById('searchInput');
 
             if (!deleteBtn) {
                 console.error('deleteBtn not found on page load');
@@ -961,16 +943,12 @@
                 console.log('deleteBtn found on page load');
             }
 
-            // Attach event listeners for backup and restore functionality
             backupBtn.addEventListener('click', backupData);
             restoreBtn.addEventListener('click', () => restoreInput.click());
             restoreInput.addEventListener('change', restoreData);
+            searchInput.addEventListener('input', searchNotes);
         });
 
-        /**
-         * Ensures notes are displayed after all scripts are loaded.
-         * Uses the window.load event to delay rendering until all resources are ready.
-         */
         window.addEventListener('load', () => {
             displayNotes(notes);
         });
