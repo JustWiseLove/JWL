@@ -330,6 +330,11 @@ function updateProgress() {
 }
 
 function showTab(category) {
+    if (category === 'note') {
+        window.location.href = 'notes.html';
+        return;
+    }
+
     document.querySelectorAll('.list').forEach(list => list.style.display = 'none');
     const selectedList = document.getElementById(category);
     if (selectedList) selectedList.style.display = 'block';
