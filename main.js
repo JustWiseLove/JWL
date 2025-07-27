@@ -24,6 +24,153 @@ const categories = {
 
 let debounceTimeout;
 
+function getNextFriday() {
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
+    const hours = today.getHours();
+    const minutes = today.getMinutes();
+    const isPastSaturday9AM = dayOfWeek === 6 && (hours > 9 || (hours === 9 && minutes >= 0));
+    const daysUntilFriday = isPastSaturday9AM ? (5 + 7 - dayOfWeek) % 7 + 7 : (5 - dayOfWeek + 7) % 7;
+    const nextFriday = new Date(today);
+    nextFriday.setDate(today.getDate() + daysUntilFriday);
+    return nextFriday.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+function displayFamilyWorship() {
+    const dateElement = document.getElementById('family-worship-date');
+    const contentElement = document.getElementById('family-worship-content');
+    const datesElement = document.getElementById('family-worship-dates');
+    const expandButton = document.getElementById('family-expand-button');
+    if (!dateElement || !contentElement || !datesElement || !expandButton) {
+        console.error('Family worship elements not found:', { dateElement, contentElement, datesElement, expandButton });
+        return;
+    }
+
+    // Initialize DOM state
+    datesElement.style.display = 'none';
+    contentElement.style.display = 'block';
+    expandButton.textContent = 'MORE';
+    expandButton.style.pointerEvents = 'auto'; // Ensure button is clickable
+    expandButton.style.cursor = 'pointer'; // Visual feedback for clickability
+
+    const nextFriday = getNextFriday();
+    dateElement.textContent = nextFriday;
+
+    const familyItem = family.find(item => item.D === nextFriday);
+    contentElement.innerHTML = '';
+
+    if (!familyItem) {
+        contentElement.innerHTML = '<p>No content available for this week.</p>';
+        return;
+    }
+
+    const topics = [
+        { T: familyItem.T, R: familyItem.R },
+        familyItem.T1 && familyItem.R1 ? { T: familyItem.T1, R: familyItem.R1 } : null,
+        familyItem.T2 && familyItem.R2 ? { T: familyItem.T2, R: familyItem.R2 } : null,
+        familyItem.T3 && familyItem.R3 ? { T: familyItem.T3, R: familyItem.R3 } : null,
+        familyItem.T4 && familyItem.R4 ? { T: familyItem.T4, R: familyItem.R4 } : null
+    ].filter(topic => topic);
+
+    topics.forEach(topic => {
+        const topicCard = document.createElement('div');
+        topicCard.className = 'lesson lesson-card';
+        topicCard.innerHTML = `
+            <div class="lesson-header">
+                <h3>${topic.T || 'Untitled'}</h3>
+            </div>
+            <div class="lesson-content" style="display: none;">
+                <div class="description-section">${topic.R || ''}</div>
+            </div>
+        `;
+        contentElement.appendChild(topicCard);
+
+        const header = topicCard.querySelector('.lesson-header');
+        const content = topicCard.querySelector('.lesson-content');
+        header.addEventListener('click', () => {
+            const isExpanded = content.style.display === 'block';
+            content.style.display = isExpanded ? 'none' : 'block';
+            topicCard.dataset.expanded = !isExpanded;
+        });
+    });
+}
+
+function displayAllFamilyDates() {
+    const datesElement = document.getElementById('family-worship-dates');
+    const expandButton = document.getElementById('family-expand-button');
+    const contentElement = document.getElementById('family-worship-content');
+    if (!datesElement || !expandButton || !contentElement) {
+        console.error('Family worship elements not found:', { datesElement, expandButton, contentElement });
+        return;
+    }
+
+    // Check if family array is available
+    if (!family || !Array.isArray(family) || family.length === 0) {
+        console.error('Family data is missing or invalid');
+        datesElement.innerHTML = '<p>No family worship dates available.</p>';
+        datesElement.style.display = 'block';
+        contentElement.style.display = 'none';
+        expandButton.textContent = 'LESS';
+        return;
+    }
+
+    // Toggle visibility
+    const isExpanded = datesElement.style.display === 'block';
+    if (isExpanded) {
+        datesElement.style.display = 'none';
+        contentElement.style.display = 'block';
+        expandButton.textContent = 'MORE';
+        displayFamilyWorship(); // Refresh current week's content
+        return;
+    }
+
+    // Show all dates
+    datesElement.innerHTML = '';
+    family.forEach(item => {
+        if (!item.D) {
+            console.warn('Skipping item with missing date:', item);
+            return;
+        }
+
+        const dateCard = document.createElement('div');
+        dateCard.className = 'lesson lesson-card';
+        const topics = [
+            { T: item.T, R: item.R },
+            item.T1 && item.R1 ? { T: item.T1, R: item.R1 } : null,
+            item.T2 && item.R2 ? { T: item.T2, R: item.R2 } : null,
+            item.T3 && item.R3 ? { T: item.T3, R: item.R3 } : null,
+            item.T4 && item.R4 ? { T: item.T4, R: item.R4 } : null
+        ].filter(topic => topic && topic.T && topic.R);
+
+        dateCard.innerHTML = `
+            <div class="lesson-header">
+                <h3>${item.D}</h3>
+            </div>
+            <div class="lesson-content" style="display: none;">
+                ${topics.length > 0 ? topics.map(topic => `
+                    <div class="sub-lesson">
+                        <h4>${topic.T}</h4>
+                        <p>${topic.R}</p>
+                    </div>
+                `).join('') : '<p>No topics available for this date.</p>'}
+            </div>
+        `;
+        datesElement.appendChild(dateCard);
+
+        const header = dateCard.querySelector('.lesson-header');
+        const content = dateCard.querySelector('.lesson-content');
+        header.addEventListener('click', () => {
+            const isCardExpanded = content.style.display === 'block';
+            content.style.display = isCardExpanded ? 'none' : 'block';
+            dateCard.dataset.expanded = !isCardExpanded;
+        });
+    });
+
+    datesElement.style.display = 'block';
+    contentElement.style.display = 'none';
+    expandButton.textContent = 'LESS';
+}
+
 function highlightText(text, searchTerm) {
     if (!searchTerm || !text) return text || '';
     const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
@@ -178,6 +325,7 @@ function showTab(category) {
         populateList('love', 'love');
     } else if (category === 'home') {
         initializeTimelines();
+        displayFamilyWorship();
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -214,7 +362,7 @@ function searchItems() {
             if (a.isTitleMatch && !b.isTitleMatch) return -1;
             if (!a.isTitleMatch && b.isTitleMatch) return 1;
             const titleA = (a.item.T || a.item.title || '').toLowerCase();
-            const titleB = (b.item.T || b.item.title || '').toLowerCase();
+            const titleB = (b.item.T || b.title || '').toLowerCase();
             return titleA.localeCompare(titleB);
         });
 
@@ -514,6 +662,28 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Enter') showTab(link.textContent.toLowerCase());
         });
     });
+    function initializeExpandButton() {
+        const expandButton = document.getElementById('family-expand-button');
+        if (expandButton) {
+            // Clear any existing listeners by cloning
+            expandButton.replaceWith(expandButton.cloneNode(true));
+            const newExpandButton = document.getElementById('family-expand-button');
+            newExpandButton.style.pointerEvents = 'auto';
+            newExpandButton.style.cursor = 'pointer';
+            newExpandButton.addEventListener('click', () => {
+                console.log('Expand button clicked');
+                displayAllFamilyDates();
+            });
+            console.log('Expand button initialized');
+        } else {
+            console.error('Expand button not found in DOM');
+            // Retry after a short delay in case DOM is still loading
+            setTimeout(initializeExpandButton, 100);
+        }
+    }
+    // Delay to ensure DOM is fully loaded
+    setTimeout(initializeExpandButton, 0);
+    displayFamilyWorship();
 });
 
 // Make theme stay when the page is refreshed
