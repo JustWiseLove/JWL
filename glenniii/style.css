@@ -85,77 +85,7 @@ header {
   box-shadow: 0 0 12px rgba(0, 204, 0, 0.5);
 }
 
-nav {
-  text-align: center;
-  padding: 10px;
-}
-
-.filter-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-button {
-  background: #1a1a1a;
-  color: #e0e0e0;
-  border: 2px solid #008000;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Audiowide', sans-serif;
-  font-size: 1rem;
-  width: 120px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 128, 0, 0.2);
-}
-
-button:hover {
-  background: #008000;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.4);
-}
-
-button.active {
-  background: #006600;
-  color: #ffffff;
-  border-color: #00cc00;
-}
-
-button.active:hover {
-  background: #004d00;
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-#daily-topic-btn {
-  display: block;
-  margin: 10px auto;
-  width: 200px;
-  background: #1a1a1a;
-  color: #e0e0e0;
-  border: 2px solid #008000;
-  border-radius: 8px;
-  padding: 10px;
-  font-family: 'Audiowide', sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 128, 0, 0.2);
-}
-
-#daily-topic-btn:hover {
-  background: #008000;
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
-#current-topic {
+#current-topic, #family-worship {
   width: 800px;
   max-width: 100%;
   margin: 10px auto;
@@ -169,15 +99,15 @@ button:disabled {
   transition: transform 0.3s ease;
 }
 
-#current-topic:hover {
+#current-topic:hover, #family-worship:hover {
   transform: translateY(-2px);
 }
 
-#current-topic.hidden {
+#current-topic.hidden, #family-worship.hidden {
   display: none;
 }
 
-#current-topic p.date {
+#current-topic p.date, #family-worship p.date {
   background: #000000;
   color: #ffffff;
   padding: 8px 15px;
@@ -188,29 +118,109 @@ button:disabled {
   box-shadow: 0 2px 6px rgba(0, 128, 0, 0.2);
 }
 
-#current-topic h2 {
+#current-topic h2, #family-worship h2 {
   color: #00cc00;
   font-weight: 700;
   margin: 10px 0;
   font-size: 1.5rem;
-  width: 100%; /* Ensure full width */
-}
-
-#current-topic .result-content {
-  width: 100%; /* Match container width */
+  width: 100%;
+  cursor: pointer;
   padding: 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
-#current-topic .scripture,
-#current-topic .description {
+#current-topic h2:hover, #family-worship h2:hover,
+#current-topic h2.active, #family-worship h2.active {
+  background: #008000;
+  color: #ffffff;
+}
+
+#current-topic .result-content, #family-worship .result-content {
+  width: 100%;
+  padding: 10px;
+  display: none;
+}
+
+#current-topic .result-content.active, #family-worship .result-content.active {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+#current-topic .scripture, #family-worship .scripture,
+#current-topic .description, #family-worship .description {
   color: #e0e0e0;
   font-size: 1.1rem;
   margin: 10px 0;
   line-height: 1.6;
 }
 
-#current-topic .scripture {
+#current-topic .scripture, #family-worship .scripture {
   font-style: italic;
+}
+
+.expand-btn {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  border: 2px solid #008000;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 128, 0, 0.2);
+}
+
+.expand-btn:hover {
+  background: #008000;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.4);
+}
+
+.expanded-content {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+}
+
+.schedule-item {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #006600;
+  border-radius: 5px;
+}
+
+.schedule-item h2 {
+  color: #00cc00;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.schedule-item h2:hover,
+.schedule-item h2.active {
+  background: #008000;
+  color: #ffffff;
+}
+
+.schedule-item h4 {
+  color: #00cc00;
+  font-size: 1.1rem;
+  margin: 5px 0;
+}
+
+.schedule-item p {
+  color: #e0e0e0;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 #results {
@@ -250,7 +260,7 @@ button:disabled {
   font-size: 1.3rem;
   border-radius: 5px;
   transition: all 0.3s ease;
-  width: 100%; /* Match daily topic width */
+  width: 100%;
 }
 
 .result h2:hover,
@@ -261,7 +271,7 @@ button:disabled {
 
 .result-content {
   display: none;
-  width: 100%; /* Match daily topic width */
+  width: 100%;
   padding: 10px;
   animation: slideDown 0.3s ease;
 }
@@ -332,24 +342,9 @@ footer p {
   #mission-statement,
   #search-bar,
   #current-topic,
+  #family-worship,
   .result {
     width: calc(100% - 20px);
-  }
-
-  .filter-buttons {
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  button {
-    width: 100px;
-    padding: 8px 15px;
-    font-size: 0.9rem;
-  }
-
-  #daily-topic-btn {
-    width: 180px;
-    padding: 8px;
   }
 
   #logo {
