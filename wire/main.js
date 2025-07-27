@@ -46,10 +46,11 @@ function displayFamilyWorship() {
         return;
     }
 
-    // Initialize datesElement as hidden
+    // Initialize DOM state
     datesElement.style.display = 'none';
     contentElement.style.display = 'block';
     expandButton.textContent = 'MORE';
+    expandButton.style.pointerEvents = 'auto'; // Ensure button is clickable
 
     const nextFriday = getNextFriday();
     dateElement.textContent = nextFriday;
@@ -145,9 +146,9 @@ function displayAllFamilyDates() {
                 <h3>${item.D}</h3>
             </div>
             <div class="lesson-content" style="display: none;">
-                ${topics.length > 0 ? topics.map((topic, index) => `
+                ${topics.length > 0 ? topics.map(topic => `
                     <div class="sub-lesson">
-                        <h4>Topic ${index + 1}: ${topic.T}</h4>
+                        <h4>${topic.T}</h4>
                         <p>${topic.R}</p>
                     </div>
                 `).join('') : '<p>No topics available for this date.</p>'}
@@ -662,7 +663,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const expandButton = document.getElementById('family-expand-button');
     if (expandButton) {
-        expandButton.addEventListener('click', displayAllFamilyDates);
+        // Remove any existing listeners to prevent duplicates
+        expandButton.replaceWith(expandButton.cloneNode(true));
+        const newExpandButton = document.getElementById('family-expand-button');
+        newExpandButton.addEventListener('click', displayAllFamilyDates);
+        newExpandButton.style.pointerEvents = 'auto'; // Ensure button is clickable
     } else {
         console.error('Expand button not found');
     }
