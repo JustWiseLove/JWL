@@ -159,6 +159,10 @@
             font-size: 1em;
             color: #ffffff;
             margin-bottom: 10px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            overflow: hidden;
         }
 
         .notes-preview a {
@@ -688,7 +692,7 @@
         }
 
         function getPreviewText(notesContent, searchTerm, isOpen) {
-            const maxPreviewWords = 100;
+            const maxPreviewLength = 120;
             const contextLength = 30;
 
             let formattedNotes = formatNotes(notesContent);
@@ -702,30 +706,18 @@
                 const lowerSearch = searchTerm.toLowerCase();
                 const index = lowerNotes.indexOf(lowerSearch);
                 if (index !== -1) {
-                    const words = notesContent.split(/\s+/);
-                    let charIndex = 0;
-                    let wordIndex = 0;
-                    for (let i = 0; i < words.length; i++) {
-                        if (charIndex + words[i].length >= index) {
-                            wordIndex = i;
-                            break;
-                        }
-                        charIndex += words[i].length + 1;
-                    }
-                    const startWord = Math.max(0, wordIndex - contextLength);
-                    const endWord = Math.min(words.length, wordIndex + contextLength);
-                    let preview = words.slice(startWord, endWord).join(' ');
-                    if (startWord > 0) preview = '...' + preview;
-                    if (endWord < words.length) preview += '...';
+                    const start = Math.max(0, index - contextLength);
+                    const end = Math.min(notesContent.length, index + searchTerm.length + contextLength);
+                    let preview = notesContent.substring(start, end);
+                    if (start > 0) preview = '...' + preview;
+                    if (end < notesContent.length) preview += '...';
                     return highlightText(formatNotes(preview), searchTerm);
                 }
             }
 
-            const words = notesContent.split(/\s+/);
-            if (words.length > maxPreviewWords) {
-                return highlightText(formatNotes(words.slice(0, maxPreviewWords).join(' ') + '...'), searchTerm);
-            }
-            return highlightText(formattedNotes, searchTerm);
+            return notesContent.length > maxPreviewLength 
+                ? highlightText(formatNotes(notesContent.substring(0, maxPreviewLength)) + '...', searchTerm) 
+                : highlightText(formattedNotes, searchTerm);
         }
 
         function displayNotes(notesToShow) {
@@ -746,7 +738,7 @@
                 noteDiv.className = 'note';
                 const highlightedTitle = highlightText(note.title, searchTerm);
                 const previewNotes = getPreviewText(note.notes, searchTerm, isOpen);
-                const showOpenLink = note.notes.split(/\s+/).length > 100 || (searchTerm && !isOpen);
+                const showOpenLink = note.notes.length > 120 || (searchTerm && !isOpen);
 
                 noteDiv.innerHTML = `
                     <h2>${highlightedTitle}</h2>
