@@ -8,7 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="meta" name="apple-mobile-web-app-title" content="JWL" />
+    <meta name="apple-mobile-web-app-title" content="JWL" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="dark.css" id="theme-stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@400;700&display=swap">
@@ -25,31 +25,35 @@
         <button class="tab-button" onclick="showTab('love')">Love</button>
     </nav>
     <div class="container">
-        <div class="search-section">
-            <input type="text" id="search-input-text" class="search-input" placeholder="Search for people or topics..." oninput="searchItems()">
-        </div>
-        
-        <section class="weekly-family-worship">
-            <h2 id="worship-date" class="section-title"></h2>
-            <div id="worship-content"></div>
-            <button id="expand-collapse-btn">EXPAND</button>
-            <div id="all-dates" style="display: none;"></div>
+        <p class="family">
+            Welcome to JWL where we direct you to God’s word for discovering the truth found in the Bible. In a world where life’s end is certain, our mission is to guide you toward the hope of living forever by drawing closer to God. Click <span class="intro-link" role="link" tabindex="0">Just</span> to explore Bible lessons that deepen your understanding, <span class="intro-link" role="link" tabindex="0">Wise</span> to gain insight from people for worship that honors God, and <span class="intro-link" role="link" tabindex="0">Love</span> to find articles and topics that share accurate knowledge. Begin your journey learning truth that leads to everlasting life.
+        </p>
+
+        <section id="family-worship-section" class="family-worship">
+            <h2 class="family-worship-title">Weekly Family Worship</h2>
+            <div id="family-worship-date" class="family-worship-date"></div>
+            <div id="family-worship-content" class="family-worship-content"></div>
+            <button id="family-worship-toggle" class="family-worship-toggle">EXPAND</button>
         </section>
 
+        <div class="search-section">
+            <input type="text" id="search" class="search-input" placeholder="Search for people or topics..." oninput="searchItems()">
+        </div>
+        
         <div id="home" class="list">
             <main>
-                <section class="featured-section">
-                    <div class="article-card">
-                        <h2 class="section-title">JUST WISE LOVE</h2>
+                <section class="featured-article">
+                    <div class="article-preview">
+                        <h2 class="section-header">JUST WISE LOVE</h2>
                         <p class="preview-text">Discover the journey from creation to paradise while highlighting pivotal events and prophecies, knowing Jehovah does not change and his original purpose will be fulfilled.</p>
                     </div>
                 </section>
-                <section class="timeline" id="paradise-timeline-section">
+                <section class="timeline-section" id="paradise-section">
                     <div class="paradise-tabs">
-                        <div class="paradise-tab active" data-tab="creation-tab">Creation</div>
-                        <div class="paradise-tab" data-tab="prophecy-tab">Prophecy</div>
-                        <div class="paradise-tab" data-tab="sacrifice-tab">Sacrifice</div>
-                        <div class="paradise-tab" data-tab="paradise-tab">Paradise</div>
+                        <div class="paradise-tab active" data-tab="creation">Creation</div>
+                        <div class="paradise-tab" data-tab="prophecy">Prophecy</div>
+                        <div class="paradise-tab" data-tab="sacrifice">Sacrifice</div>
+                        <div class="paradise-tab" data-tab="paradise">Paradise</div>
                     </div>
                     <div class="timeline-line">
                         <span class="timeline-dot active" style="left: 0%;" data-index="0"></span>
@@ -61,18 +65,18 @@
                         <span class="timeline-dot" style="left: 85.7143%;" data-index="6"></span>
                         <span class="timeline-dot" style="left: 100%;" data-index="7"></span>
                     </div>
-                    <div class="timeline-description describe" id="paradise-timeline-content">
+                    <div class="timeline-description describe" id="paradise-description">
                         <h3 class="timeline-event-title">The Beginning of Creation</h3>
                         <p>Jehovah created Adam and Eve in his image, perfect and with free will, to live in the Garden of Eden forever. Genesis 1:27-28 states, “God created man in his image... and said to them: ‘Be fruitful and become many.’”</p>
                     </div>
                 </section>
-                <section class="segment">
-                    <div class="article-content">
-                        <h2 class="section-title">TRUST N TRUTH</h2>
+                <section class="featured-article">
+                    <div class="article-preview">
+                        <h2 class="section-header">TRUST N TRUTH</h2>
                         <p class="preview-text">Reflect on life’s big questions and make meaningful choices. This section invites deep self-examination through Scripture, helping bring these things to mind by using a visual guide.</p>
                     </div>
                 </section>
-                <section class="segment" id="segment-section">
+                <section class="timeline-section" id="featured-section">
                     <div class="timeline-line">
                         <span class="timeline-dot active" style="left: 0%;" data-index="0"></span>
                         <span class="timeline-dot" style="left: 14.2857%;" data-index="1"></span>
@@ -83,23 +87,23 @@
                         <span class="timeline-dot" style="left: 85.7143%;" data-index="6"></span>
                         <span class="timeline-dot" style="left: 100%;" data-index="7"></span>
                     </div>
-                    <div class="timeline-description describe" id="segment-description">
+                    <div class="timeline-description describe" id="featured-description">
                         <h3 class="timeline-event-title">God or Government?</h3>
                         <p>Human governments promise security but often lead to oppression and failure, as Psalm 146:3 warns, “Do not put your trust in princes, in whom there is no salvation.” Jehovah’s Kingdom offers eternal peace, fulfilling Daniel 2:44, “The God of heaven will set up a kingdom that will never be destroyed.” Choose Jehovah’s perfect rule over flawed human systems for lasting hope.</p>
                     </div>
                 </section>
-                <section class="segment">
-                    <div class="article-content">
-                        <h2 class="section-title">WALK WISE</h2>
+                <section class="featured-article">
+                    <div class="article-preview">
+                        <h2 class="section-header">WALK WISE</h2>
                         <p class="preview-text">Discover the undeniable evidence that the Scriptures are inspired by God, the New World Translation is a trustworthy guide, and Jehovah supports this organization leading his life saving work across 240 lands in over 1,100 languages.</p>
                     </div>
                 </section>
-                <section class="segment" id="spotlight-segment">
+                <section class="timeline-section" id="spotlight-section">
                     <div class="spotlight-tabs">
-                        <div class="spotlight-tab active" data-tab="inspired-tab">Inspire</div>
-                        <div class="spotlight-tab" data-tab="translated-tab">Translate</div>
-                        <div class="spotlight-tab" data-tab="organized-tab">Organize</div>
-                        <div class="spotlight-tab" data-tab="restored-tab">Restore</div>
+                        <div class="spotlight-tab active" data-tab="inspired">Inspire</div>
+                        <div class="spotlight-tab" data-tab="translated">Translate</div>
+                        <div class="spotlight-tab" data-tab="organized">Organize</div>
+                        <div class="spotlight-tab" data-tab="restored">Restore</div>
                     </div>
                     <div class="timeline-line">
                         <span class="timeline-dot active" style="left: 0%;" data-index="0"></span>
@@ -111,7 +115,7 @@
                         <span class="timeline-dot" style="left: 85.7143%;" data-index="6"></span>
                         <span class="timeline-dot" style="left: 100%;" data-index="7"></span>
                     </div>
-                    <div class="timeline-description describe" id="spotlight-content">
+                    <div class="timeline-description describe" id="spotlight-description">
                         <h3 class="timeline-event-title">Historical Support</h3>
                         <p>The Bible’s historical accuracy is confirmed by extensive archaeological evidence, such as the Tel Dan Stele, which corroborates 2 Samuel 8:13, “David made a name when he struck down the Edomites.” The Lachish Letters align with Jeremiah 34:7, detailing Judah’s defense against Babylon. These findings affirm the Bible’s reliability as a historical record, proving its accounts are not myths but grounded in reality, as Psalm 119:160 declares, “The very essence of your word is truth.” This precision reflects Jehovah’s oversight in preserving His Word, as Isaiah 46:10 states, “My purpose will take effect, and I will carry out all that I please.”</p>
                     </div>
@@ -120,7 +124,7 @@
         </div>
         <div id="just" class="list" style="display: none;">
             <div class="section"></div>
-            <div class="progress-tracker" id="progress-counter">0/60</div>
+            <div class="progress-tracker" id="progress">0/60</div>
         </div>
         <div id="wise" class="list" style="display: none;"></div>
         <div id="love" class="list" style="display: none;"></div>
@@ -136,8 +140,8 @@
     <script src="articles.js"></script>
     <script src="sections.js"></script>
     <script src="topics.js"></script>
-    <script src="featured.js"></script>
     <script src="family.js"></script>
+    <script src="featured.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
