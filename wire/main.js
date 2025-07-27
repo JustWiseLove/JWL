@@ -39,10 +39,17 @@ function getNextFriday() {
 function displayFamilyWorship() {
     const dateElement = document.getElementById('family-worship-date');
     const contentElement = document.getElementById('family-worship-content');
-    if (!dateElement || !contentElement) {
-        console.error('Family worship elements not found');
+    const datesElement = document.getElementById('family-worship-dates');
+    const expandButton = document.getElementById('family-expand-button');
+    if (!dateElement || !contentElement || !datesElement || !expandButton) {
+        console.error('Family worship elements not found:', { dateElement, contentElement, datesElement, expandButton });
         return;
     }
+
+    // Initialize datesElement as hidden
+    datesElement.style.display = 'none';
+    contentElement.style.display = 'block';
+    expandButton.textContent = 'MORE';
 
     const nextFriday = getNextFriday();
     dateElement.textContent = nextFriday;
@@ -89,35 +96,61 @@ function displayFamilyWorship() {
 function displayAllFamilyDates() {
     const datesElement = document.getElementById('family-worship-dates');
     const expandButton = document.getElementById('family-expand-button');
-    if (!datesElement || !expandButton) {
-        console.error('Family dates or expand button not found');
+    const contentElement = document.getElementById('family-worship-content');
+    if (!datesElement || !expandButton || !contentElement) {
+        console.error('Family worship elements not found:', { datesElement, expandButton, contentElement });
         return;
     }
 
-    if (datesElement.style.display === 'block') {
+    // Check if family array is available
+    if (!family || !Array.isArray(family) || family.length === 0) {
+        console.error('Family data is missing or invalid');
+        datesElement.innerHTML = '<p>No family worship dates available.</p>';
+        datesElement.style.display = 'block';
+        contentElement.style.display = 'none';
+        expandButton.textContent = 'LESS';
+        return;
+    }
+
+    // Toggle visibility
+    const isExpanded = datesElement.style.display === 'block';
+    if (isExpanded) {
         datesElement.style.display = 'none';
-        expandButton.textContent = 'EXPAND';
-        displayFamilyWorship();
+        contentElement.style.display = 'block';
+        expandButton.textContent = 'MORE';
+        displayFamilyWorship(); // Refresh current week's content
         return;
     }
 
+    // Show all dates
     datesElement.innerHTML = '';
     family.forEach(item => {
+        if (!item.D) {
+            console.warn('Skipping item with missing date:', item);
+            return;
+        }
+
         const dateCard = document.createElement('div');
         dateCard.className = 'lesson lesson-card';
+        const topics = [
+            { T: item.T, R: item.R },
+            item.T1 && item.R1 ? { T: item.T1, R: item.R1 } : null,
+            item.T2 && item.R2 ? { T: item.T2, R: item.R2 } : null,
+            item.T3 && item.R3 ? { T: item.T3, R: item.R3 } : null,
+            item.T4 && item.R4 ? { T: item.T4, R: item.R4 } : null
+        ].filter(topic => topic && topic.T && topic.R);
+
         dateCard.innerHTML = `
             <div class="lesson-header">
                 <h3>${item.D}</h3>
             </div>
             <div class="lesson-content" style="display: none;">
-                ${[item.T, item.T1, item.T2, item.T3, item.T4]
-                    .filter(t => t)
-                    .map((t, i) => `
-                        <div class="sub-lesson">
-                            <h4>${t}</h4>
-                            <p>${item[`R${i > 0 ? i : ''}`] || ''}</p>
-                        </div>
-                    `).join('')}
+                ${topics.length > 0 ? topics.map((topic, index) => `
+                    <div class="sub-lesson">
+                        <h4>Topic ${index + 1}: ${topic.T}</h4>
+                        <p>${topic.R}</p>
+                    </div>
+                `).join('') : '<p>No topics available for this date.</p>'}
             </div>
         `;
         datesElement.appendChild(dateCard);
@@ -125,14 +158,15 @@ function displayAllFamilyDates() {
         const header = dateCard.querySelector('.lesson-header');
         const content = dateCard.querySelector('.lesson-content');
         header.addEventListener('click', () => {
-            const isExpanded = content.style.display === 'block';
-            content.style.display = isExpanded ? 'none' : 'block';
-            dateCard.dataset.expanded = !isExpanded;
+            const isCardExpanded = content.style.display === 'block';
+            content.style.display = isCardExpanded ? 'none' : 'block';
+            dateCard.dataset.expanded = !isCardExpanded;
         });
     });
 
     datesElement.style.display = 'block';
-    expandButton.textContent = 'COLLAPSE';
+    contentElement.style.display = 'none';
+    expandButton.textContent = 'LESS';
 }
 
 function highlightText(text, searchTerm) {
@@ -629,6 +663,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const expandButton = document.getElementById('family-expand-button');
     if (expandButton) {
         expandButton.addEventListener('click', displayAllFamilyDates);
+    } else {
+        console.error('Expand button not found');
     }
     displayFamilyWorship();
 });
