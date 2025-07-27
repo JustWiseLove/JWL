@@ -331,7 +331,7 @@ function updateProgress() {
 
 function showTab(category) {
     if (category === 'note') {
-        window.location.href = 'notes.html';
+        window.location.href = 'note.html';
         return;
     }
 
