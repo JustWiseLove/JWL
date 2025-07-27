@@ -75,69 +75,41 @@ header p {
     color: #000000;
 }
 
-/* Family Worship Section */
-.family {
-    text-align: center;
-    margin: 20px 0;
-    padding: 20px;
-    background: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.family-header {
-    font-family: 'Audiowide', sans-serif;
-    font-size: 1.8em;
-    color: #000000;
-    margin-bottom: 10px;
-}
-
-.family-date {
+/* Introduction */
+.introduction {
+    font-family: 'Roboto', sans-serif;
     font-size: 1.2em;
-    color: #333333;
-    margin: 10px 0;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.family-date:hover {
-    color: #008000;
-}
-
-.family-item {
-    margin: 15px 0;
-}
-
-.family-item h3 {
-    font-size: 1.4em;
     color: #000000;
-    margin-bottom: 5px;
-}
-
-.family-item p {
-    font-size: 1em;
-    color: #333333;
-}
-
-.toggle-button {
-    background: #008000;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
+    max-width: 800px;
+    margin: 20px auto 30px;
+    text-align: center;
+    line-height: 1.8;
+    padding: 15px;
+    border-left: 3px solid #008000;
     border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 128, 0, 0.05);
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.introduction:hover {
+    transform: rotate(0deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.intro-link {
+    font-family: 'Audiowide', cursive;
+    color: #008000;
+    font-weight: 400;
     cursor: pointer;
-    font-family: 'Audiowide', sans-serif;
-    font-size: 1em;
-    margin-top: 10px;
-    transition: background 0.3s ease;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.toggle-button:hover {
-    background: #006600;
-}
-
-.family-content.collapsed .family-item:not(.upcoming) {
-    display: none;
+.intro-link:hover {
+    color: #006600;
+    text-shadow: 0 0 5px #008000;
 }
 
 /* Navigation */
@@ -539,6 +511,55 @@ footer {
     margin: 0;
 }
 
+/* Family Worship Section */
+.family-worship-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #008000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.family-worship-section:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 10px #008000;
+}
+
+.family-worship-date {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.5em;
+    color: #008000;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.expand-button {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.2em;
+    color: #000000;
+    background-color: #ffffff;
+    border: 2px solid #008000;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 0 5px rgba(0, 128, 0, 0.3);
+    transition: all 0.3s ease;
+    display: block;
+    margin: 15px auto;
+    max-width: 150px;
+    text-align: center;
+}
+
+.expand-button:hover {
+    background-color: #008000;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 15px #008000;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .header-container {
@@ -557,31 +578,14 @@ footer {
         font-size: 1em;
     }
 
-    .family {
+    .introduction {
         font-size: 1.1em;
         padding: 10px;
         margin: 15px auto 20px;
     }
 
-    .family-header {
-        font-size: 1.6em;
-    }
-
-    .family-date {
-        font-size: 1.1em;
-    }
-
-    .family-item h3 {
-        font-size: 1.2em;
-    }
-
-    .family-item p {
-        font-size: 0.95em;
-    }
-
-    .toggle-button {
-        font-size: 0.9em;
-        padding: 8px 16px;
+    .intro-link {
+        font-size: 1em;
     }
 
     nav {
@@ -657,6 +661,21 @@ footer {
     .describe p {
         font-size: 0.95em;
     }
+
+    .family-worship-section {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .family-worship-date {
+        font-size: 1.4em;
+    }
+
+    .expand-button {
+        font-size: 1em;
+        padding: 8px 15px;
+        max-width: 120px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -672,31 +691,14 @@ footer {
         font-size: 0.9em;
     }
 
-    .family {
+    .introduction {
         font-size: 1em;
         padding: 8px;
         margin: 10px auto 15px;
     }
 
-    .family-header {
-        font-size: 1.4em;
-    }
-
-    .family-date {
-        font-size: 1em;
-    }
-
-    .family-item h3 {
-        font-size: 1.1em;
-    }
-
-    .family-item p {
+    .intro-link {
         font-size: 0.9em;
-    }
-
-    .toggle-button {
-        font-size: 0.8em;
-        padding: 6px 12px;
     }
 
     nav {
@@ -767,12 +769,37 @@ footer {
     .describe p {
         font-size: 0.9em;
     }
+
+    .family-worship-section {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .family-worship-date {
+        font-size: 1.2em;
+    }
+
+    .expand-button {
+        font-size: 0.9em;
+        padding: 6px 12px;
+        max-width: 100px;
+    }
 }
 
 @media (min-width: 1200px) {
     .paradise-tab, .spotlight-tab {
         font-size: 1.4em;
         padding: 14px 28px;
+        max-width: 180px;
+    }
+
+    .family-worship-date {
+        font-size: 1.6em;
+    }
+
+    .expand-button {
+        font-size: 1.3em;
+        padding: 12px 24px;
         max-width: 180px;
     }
 }
