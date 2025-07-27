@@ -1,0 +1,720 @@
+/* dark.css */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Highlight for search terms */
+.highlight {
+    color: #008000;
+    font-weight: bold;
+}
+
+/* Header */
+.header-container {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 20px;
+    /*box-shadow: 0 4px 10px rgba(64, 64, 64, 0.5);*/
+    position: relative;
+    overflow: hidden;
+}
+
+.header-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background: linear-gradient(45deg, transparent, rgba(0, 128, 0, 0.2));
+    opacity: 0.3;*/
+    z-index: 0;
+}
+
+.logo {
+    font-family: 'Audiowide', cursive;
+    font-size: 2.5em;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px #008000;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    border-bottom: 3px solid #008000;
+    padding-bottom: 5px;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-family: 'Audiowide', cursive;
+    font-weight: 400;
+    font-size: 2.2em;
+    margin: 15px 0;
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+}
+
+header p {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+/* Introduction */
+.introduction {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    color: #ffffff;
+    max-width: 800px;
+    margin: 20px auto 30px;
+    text-align: center;
+    line-height: 1.8;
+    padding: 15px;
+    border-left: 3px solid #008000;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 128, 0, 0.1);
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.introduction:hover {
+    transform: rotate(0deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.intro-link {
+    font-family: 'Audiowide', cursive;
+    color: #008000;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.intro-link:hover {
+    color: #00cc00;
+    text-shadow: 0 0 5px #008000;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #000000;
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);*/
+    margin: 0 0 20px 0;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.2em;
+    color: #ffffff;
+    background-color: #000000;
+    border: 2px solid #008000;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 128, 0, 0.3);
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 150px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tab-button:hover {
+    background-color: #008000;
+    transform: rotate(0deg) scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+}
+
+.tab-button.active {
+    background-color: #008000;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+    transform: rotate(0deg);
+}
+
+/* Search Section */
+.search-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 3% 3%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-family: 'Audiowide', cursive;
+    font-size: 1.1em;
+    text-align: center;
+    color: #ffffff;
+    background-color: #000000;
+    border: 2px solid #008000;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 128, 0, 0.3);
+    transform: rotate(-1deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #00cc00;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+    transform: rotate(0deg);
+    text-align: center;
+}
+
+.search-input::placeholder {
+    color: #ffffff;
+    opacity: 0.7;
+    text-align: center;
+}
+
+/* Container and sections */
+.container {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(0, 128, 0, 0.2));
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Lesson cards */
+.lesson.lesson-card {
+    background-color: #000000;
+    padding: 0 5%;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #008000;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: rotate(0deg);
+}
+
+.lesson.lesson-card:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px #008000;
+}
+
+.lesson-card h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.6em;
+    color: #008000;
+    margin: 0 0 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.lesson-number {
+    font-family: 'Audiowide', cursive;
+    font-size: 2em;
+    color: #008000;
+    background-color: #ffffff;
+    border: 3px solid #008000;
+    border-radius: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.lesson-number:hover {
+    transform: scale(1.1);
+}
+
+.scripture-section ul {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+.scripture-section li {
+    font-size: 1em;
+    color: #ffffff;
+    margin: 5px 0;
+}
+
+.description-section {
+    font-size: 1em;
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+.description-section p {
+    margin-bottom: 10px;
+}
+
+.lesson-card p {
+    font-size: 1em;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.lesson-card p strong {
+    color: #008000;
+}
+
+.lesson-card textarea {
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    border: 2px solid #008000;
+    border-radius: 8px;
+    resize: vertical;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.lesson-card textarea:focus {
+    border-color: #00cc00;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Progress tracker */
+.progress-tracker {
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+    font-size: 1.3em;
+    color: #008000;
+    background-color: #000000;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    margin: 30px 0;
+}
+
+/* Footer */
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    border-top: 3px solid #008000;
+}
+
+/* Timeline and Featured Article Sections */
+.featured-article {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #008000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-article:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px #008000;
+}
+
+.article-preview {
+    text-align: center;
+}
+
+.section-header {
+    font-family: 'Audiowide', cursive;
+    font-size: 2em;
+    color: #008000;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.preview-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+.timeline-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #008000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: auto;
+    position: relative;
+    z-index: 5;
+}
+
+.timeline-section[data-glow="true"] {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+}
+
+.timeline-section:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px #008000;
+}
+
+.paradise-tabs, .spotlight-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.paradise-tab, .spotlight-tab {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.2em;
+    color: #ffffff;
+    background-color: #000000;
+    border: 2px solid #008000;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 128, 0, 0.3);
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    z-index: 10;
+    flex: 1;
+    max-width: 150px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.paradise-tab:hover, .spotlight-tab:hover {
+    background-color: #008000;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+}
+
+.paradise-tab.active, .spotlight-tab.active {
+    background-color: #008000;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+}
+
+.timeline-line {
+    position: relative;
+    height: 4px;
+    background-color: #666666;
+    margin: 20px 0;
+    width: 100%;
+    padding: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #cccccc;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.timeline-dot.active {
+    background-color: #008000;
+}
+
+.timeline-description {
+    transition: opacity 0.3s ease;
+    padding: 10px;
+    text-align: center;
+}
+
+.timeline-event-title {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.5em;
+    color: #008000;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.describe p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+/* Search Results */
+.search-result {
+    background-color: #000000;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #008000;
+}
+
+.search-result p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 10px 10px;
+    }
+
+    .logo {
+        font-size: 2.2em;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    .introduction {
+        font-size: 1.1em;
+        padding: 10px;
+        margin: 15px auto 20px;
+    }
+
+    .intro-link {
+        font-size: 1em;
+    }
+
+    nav {
+        gap: 8px;
+        padding: 8px 10px;
+    }
+
+    .tab-button {
+        font-size: 1em;
+        padding: 8px 15px;
+        max-width: 120px;
+    }
+
+    .search-input {
+        font-size: 1em;
+        padding: 10px 12px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    .lesson.lesson-card {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .lesson-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+
+    .lesson-card h3 {
+        font-size: 1.4em;
+    }
+
+    .scripture-section li,
+    .description-section,
+    .lesson-card p,
+    .lesson-card textarea {
+        font-size: 0.95em;
+    }
+
+    .featured-article, .timeline-section {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .section-header {
+        font-size: 1.8em;
+    }
+
+    .preview-text {
+        font-size: 1em;
+    }
+
+    .paradise-tabs, .spotlight-tabs {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .paradise-tab, .spotlight-tab {
+        font-size: 1em;
+        padding: 4px 8px;
+        max-width: 120px;
+    }
+
+    .timeline-event-title {
+        font-size: 1.4em;
+    }
+
+    .describe p {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 2em;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    header p {
+        font-size: 0.9em;
+    }
+
+    .introduction {
+        font-size: 1em;
+        padding: 8px;
+        margin: 10px auto 15px;
+    }
+
+    .intro-link {
+        font-size: 0.9em;
+    }
+
+    nav {
+        gap: 6px;
+        padding: 6px 8px;
+    }
+
+    .tab-button {
+        font-size: 0.9em;
+        padding: 6px 12px;
+        max-width: 90px;
+    }
+
+    .search-input {
+        font-size: 0.9em;
+        padding: 8px 10px;
+    }
+
+    .lesson.lesson-card {
+        padding: 15px;
+    }
+
+    .lesson-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+
+    .lesson-card h3 {
+        font-size: 1.2em;
+    }
+
+    .scripture-section li,
+    .description-section,
+    .lesson-card p,
+    .lesson-card textarea {
+        font-size: 0.9em;
+    }
+
+    .featured-article, .timeline-section {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .section-header {
+        font-size: 1.5em;
+    }
+
+    .preview-text {
+        font-size: 0.9em;
+    }
+
+    .paradise-tabs, .spotlight-tabs {
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .paradise-tab, .spotlight-tab {
+        font-size: 0.8em;
+        padding: 3px 6px;
+        max-width: 100px;
+    }
+
+    .timeline-event-title {
+        font-size: 1.2em;
+    }
+
+    .describe p {
+        font-size: 0.9em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .paradise-tab, .spotlight-tab {
+        font-size: 1.4em;
+        padding: 14px 28px;
+        max-width: 180px;
+    }
+}
