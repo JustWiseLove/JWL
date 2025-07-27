@@ -52,6 +52,8 @@ function displayFamilyWorship() {
     expandButton.textContent = 'MORE';
     expandButton.style.pointerEvents = 'auto'; // Ensure button is clickable
     expandButton.style.cursor = 'pointer'; // Visual feedback for clickability
+    expandButton.style.zIndex = '1000'; // Ensure button is above other elements
+    expandButton.style.touchAction = 'manipulation'; // Optimize for touch
 
     const nextFriday = getNextFriday();
     dateElement.textContent = nextFriday;
@@ -75,6 +77,8 @@ function displayFamilyWorship() {
     topics.forEach(topic => {
         const topicCard = document.createElement('div');
         topicCard.className = 'lesson lesson-card';
+        topicCard.style.position = 'relative';
+        topicCard.style.zIndex = '10'; // Ensure cards are below the button
         topicCard.innerHTML = `
             <div class="lesson-header">
                 <h3>${topic.T || 'Untitled'}</h3>
@@ -87,7 +91,9 @@ function displayFamilyWorship() {
 
         const header = topicCard.querySelector('.lesson-header');
         const content = topicCard.querySelector('.lesson-content');
-        header.addEventListener('click', () => {
+        header.style.zIndex = '15'; // Ensure headers are clickable but below button
+        header.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling to parent elements
             const isExpanded = content.style.display === 'block';
             content.style.display = isExpanded ? 'none' : 'block';
             topicCard.dataset.expanded = !isExpanded;
@@ -134,6 +140,8 @@ function displayAllFamilyDates() {
 
         const dateCard = document.createElement('div');
         dateCard.className = 'lesson lesson-card';
+        dateCard.style.position = 'relative';
+        dateCard.style.zIndex = '10'; // Ensure cards are below the button
         const topics = [
             { T: item.T, R: item.R },
             item.T1 && item.R1 ? { T: item.T1, R: item.R1 } : null,
@@ -159,7 +167,9 @@ function displayAllFamilyDates() {
 
         const header = dateCard.querySelector('.lesson-header');
         const content = dateCard.querySelector('.lesson-content');
-        header.addEventListener('click', () => {
+        header.style.zIndex = '15'; // Ensure headers are clickable but below button
+        header.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling to parent elements
             const isCardExpanded = content.style.display === 'block';
             content.style.display = isCardExpanded ? 'none' : 'block';
             dateCard.dataset.expanded = !isCardExpanded;
@@ -195,6 +205,8 @@ function populateList(category, containerId) {
             const lessonCard = document.createElement('div');
             lessonCard.className = 'lesson lesson-card';
             lessonCard.id = `lesson-${lessonNum}`;
+            lessonCard.style.position = 'relative';
+            lessonCard.style.zIndex = '10';
             lessonCard.innerHTML = `
                 <div class="lesson-header">
                     <div class="lesson-number">${lessonNum}</div>
@@ -212,13 +224,15 @@ function populateList(category, containerId) {
             const header = lessonCard.querySelector('.lesson-header');
             const content = lessonCard.querySelector('.lesson-content');
             const textarea = lessonCard.querySelector('textarea');
+            header.style.zIndex = '15';
             const savedAnswer = localStorage.getItem(`lesson-${lessonNum}`);
             if (savedAnswer) {
                 textarea.value = savedAnswer;
                 if (savedAnswer.trim()) lessonCard.dataset.clicked = true;
             }
 
-            header.addEventListener('click', () => {
+            header.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const isExpanded = content.style.display === 'block';
                 content.style.display = isExpanded ? 'none' : 'block';
                 lessonCard.dataset.expanded = !isExpanded;
@@ -246,6 +260,8 @@ function populateList(category, containerId) {
         sortedPeople.forEach(item => {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
+            itemWrapper.style.position = 'relative';
+            itemWrapper.style.zIndex = '10';
             itemWrapper.innerHTML = `
                 <div class="lesson-header">
                     <h3>${item.T || 'Untitled'}</h3>
@@ -259,7 +275,9 @@ function populateList(category, containerId) {
 
             const header = itemWrapper.querySelector('.lesson-header');
             const content = itemWrapper.querySelector('.lesson-content');
-            header.addEventListener('click', () => {
+            header.style.zIndex = '15';
+            header.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const isExpanded = content.style.display === 'block';
                 content.style.display = isExpanded ? 'none' : 'block';
                 itemWrapper.dataset.expanded = !isExpanded;
@@ -274,6 +292,8 @@ function populateList(category, containerId) {
         categories.love.forEach(item => {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
+            itemWrapper.style.position = 'relative';
+            itemWrapper.style.zIndex = '10';
             const title = item.T || item.title || 'Untitled';
             const scriptures = item.S ? item.S.map(s => `<li>${s}</li>`).join('') : '';
             const description = item.D || item.content || '';
@@ -290,7 +310,9 @@ function populateList(category, containerId) {
 
             const header = itemWrapper.querySelector('.lesson-header');
             const content = itemWrapper.querySelector('.lesson-content');
-            header.addEventListener('click', () => {
+            header.style.zIndex = '15';
+            header.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const isExpanded = content.style.display === 'block';
                 content.style.display = isExpanded ? 'none' : 'block';
                 itemWrapper.dataset.expanded = !isExpanded;
@@ -369,6 +391,8 @@ function searchItems() {
         matches.forEach(({ category, item }) => {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
+            itemWrapper.style.position = 'relative';
+            itemWrapper.style.zIndex = '10';
             const title = item.T || item.title || 'Untitled';
             const scriptures = item.S ? item.S.map(s => `<li>${highlightText(s, searchTerm)}</li>`).join('') : '';
             const description = item.D || item.content || item.description || '';
@@ -386,7 +410,9 @@ function searchItems() {
 
             const header = itemWrapper.querySelector('.lesson-header');
             const content = itemWrapper.querySelector('.lesson-content');
-            header.addEventListener('click', () => {
+            header.style.zIndex = '15';
+            header.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const isExpanded = content.style.display === 'block';
                 content.style.display = isExpanded ? 'none' : 'block';
                 itemWrapper.dataset.expanded = !isExpanded;
@@ -562,8 +588,9 @@ function initializeTimelines() {
 
     paradiseTabs.forEach(tab => {
         tab.style.pointerEvents = 'auto';
-        tab.style.zIndex = '10';
-        tab.addEventListener('click', () => {
+        tab.style.zIndex = '20';
+        tab.addEventListener('click', (e) => {
+            e.stopPropagation();
             paradiseTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             currentParadiseTab = tab.getAttribute('data-tab');
@@ -575,8 +602,9 @@ function initializeTimelines() {
 
     paradiseDots.forEach(dot => {
         dot.style.pointerEvents = 'auto';
-        dot.style.zIndex = '10';
-        dot.addEventListener('click', () => {
+        dot.style.zIndex = '20';
+        dot.addEventListener('click', (e) => {
+            e.stopPropagation();
             const index = parseInt(dot.getAttribute('data-index'));
             const events = window.paradiseEvents && window.paradiseEvents[currentParadiseTab] ? window.paradiseEvents[currentParadiseTab] : [];
             if (index < events.length) {
@@ -588,8 +616,9 @@ function initializeTimelines() {
 
     featuredDots.forEach(dot => {
         dot.style.pointerEvents = 'auto';
-        dot.style.zIndex = '10';
-        dot.addEventListener('click', () => {
+        dot.style.zIndex = '20';
+        dot.addEventListener('click', (e) => {
+            e.stopPropagation();
             const index = parseInt(dot.getAttribute('data-index'));
             const events = window.featuredEvents || [];
             if (index < events.length) {
@@ -601,8 +630,9 @@ function initializeTimelines() {
 
     spotlightTabs.forEach(tab => {
         tab.style.pointerEvents = 'auto';
-        tab.style.zIndex = '10';
-        tab.addEventListener('click', () => {
+        tab.style.zIndex = '20';
+        tab.addEventListener('click', (e) => {
+            e.stopPropagation();
             spotlightTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             currentSpotlightTab = tab.getAttribute('data-tab');
@@ -614,8 +644,9 @@ function initializeTimelines() {
 
     spotlightDots.forEach(dot => {
         dot.style.pointerEvents = 'auto';
-        dot.style.zIndex = '10';
-        dot.addEventListener('click', () => {
+        dot.style.zIndex = '20';
+        dot.addEventListener('click', (e) => {
+            e.stopPropagation();
             const index = parseInt(dot.getAttribute('data-index'));
             const events = window.spotlightEvents && window.spotlightEvents[currentSpotlightTab] ? window.spotlightEvents[currentSpotlightTab] : [];
             if (index < events.length) {
@@ -670,14 +701,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const newExpandButton = document.getElementById('family-expand-button');
             newExpandButton.style.pointerEvents = 'auto';
             newExpandButton.style.cursor = 'pointer';
-            newExpandButton.addEventListener('click', () => {
+            newExpandButton.style.zIndex = '1000';
+            newExpandButton.style.touchAction = 'manipulation';
+            newExpandButton.addEventListener('click', (e) => {
+                e.stopPropagation();
                 console.log('Expand button clicked');
+                displayAllFamilyDates();
+            });
+            newExpandButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                console.log('Expand button touched');
                 displayAllFamilyDates();
             });
             console.log('Expand button initialized');
         } else {
             console.error('Expand button not found in DOM');
-            // Retry after a short delay in case DOM is still loading
             setTimeout(initializeExpandButton, 100);
         }
     }
