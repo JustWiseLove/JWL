@@ -26,7 +26,6 @@ body {
     color: #ffffff;
     text-align: center;
     padding: 30px 20px;
-    /*box-shadow: 0 4px 10px rgba(64, 64, 64, 0.5);*/
     position: relative;
     overflow: hidden;
 }
@@ -38,8 +37,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /*background: linear-gradient(45deg, transparent, rgba(0, 128, 0, 0.2));
-    opacity: 0.3;*/
     z-index: 0;
 }
 
@@ -125,7 +122,6 @@ nav {
     top: 0;
     z-index: 1000;
     background-color: #000000;
-    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);*/
     margin: 0 0 20px 0;
     width: 100%;
     flex-wrap: wrap;
@@ -338,6 +334,66 @@ nav {
     border-radius: 8px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     margin: 30px 0;
+}
+
+/* Weekly Family Worship Section */
+.weekly-family-worship {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #008000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weekly-family-worship:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px #008000;
+}
+
+#worship-date {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.8em;
+    color: #008000;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#worship-content .lesson-card {
+    margin: 15px auto;
+    max-width: 800px;
+}
+
+#expand-collapse-btn {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.2em;
+    color: #ffffff;
+    background-color: #333333;
+    border: 2px solid #008000;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 128, 0, 0.2);
+    transition: all 0.3s ease;
+    margin: 15px auto;
+    display: block;
+}
+
+#expand-collapse-btn:hover {
+    background-color: #008000;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px #008000;
+}
+
+#all-dates .lesson {
+    margin: 15px auto;
+    max-width: 800px;
+}
+
+#all-dates .lesson-content .lesson {
+    margin-left: 15px;
 }
 
 /* Footer */
@@ -585,6 +641,20 @@ footer {
         font-size: 0.95em;
     }
 
+    .weekly-family-worship {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    #worship-date {
+        font-size: 1.6em;
+    }
+
+    #expand-collapse-btn {
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+
     .featured-article, .timeline-section {
         padding: 15px;
         margin: 15px 0;
@@ -676,6 +746,20 @@ footer {
     .lesson-card p,
     .lesson-card textarea {
         font-size: 0.9em;
+    }
+
+    .weekly-family-worship {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    #worship-date {
+        font-size: 1.4em;
+    }
+
+    #expand-collapse-btn {
+        font-size: 0.9em;
+        padding: 6px 12px;
     }
 
     .featured-article, .timeline-section {
