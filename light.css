@@ -26,7 +26,6 @@ body {
     color: #000000;
     text-align: center;
     padding: 30px 20px;
-    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);*/
     position: relative;
     overflow: hidden;
 }
@@ -38,8 +37,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /*background: linear-gradient(45deg, transparent, rgba(0, 128, 0, 0.2));
-    opacity: 0.3;*/
     z-index: 0;
 }
 
@@ -125,7 +122,6 @@ nav {
     top: 0;
     z-index: 1000;
     background-color: #ffffff;
-    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);*/
     margin: 0 0 20px 0;
     width: 100%;
     flex-wrap: wrap;
@@ -466,7 +462,7 @@ footer {
     background-color: #666666;
     border-radius: 50%;
     top: 50%;
-    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    transform: translate(-50%, -50%);
     cursor: pointer;
     transition: background-color 0.3s ease;
     pointer-events: auto;
@@ -513,6 +509,62 @@ footer {
     font-size: 1em;
     color: #000000;
     margin: 0;
+}
+
+/* Family Worship Section */
+.family-worship-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #008000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.family-worship-section h2 {
+    color: #000000;
+}
+
+.family-worship-section:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 10px #008000;
+}
+
+.family-worship-date {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.5em;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.expand-button {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.1em;
+    color: #000000;
+    background-color: #ffffff;
+    border: 2px solid #008000;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 0 5px rgba(0, 128, 0, 0.3);
+    transition: all 0.3s ease;
+    display: block;
+    margin: 15px auto;
+    max-width: 160px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.expand-button:hover {
+    background-color: #008000;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 15px #008000;
 }
 
 /* Responsive Design */
@@ -616,6 +668,21 @@ footer {
     .describe p {
         font-size: 0.95em;
     }
+
+    .family-worship-section {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .family-worship-date {
+        font-size: 1.4em;
+    }
+
+    .expand-button {
+        font-size: 0.95em;
+        padding: 6px 12px;
+        max-width: 130px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -709,12 +776,37 @@ footer {
     .describe p {
         font-size: 0.9em;
     }
+
+    .family-worship-section {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .family-worship-date {
+        font-size: 1.2em;
+    }
+
+    .expand-button {
+        font-size: 0.85em;
+        padding: 5px 10px;
+        max-width: 110px;
+    }
 }
 
 @media (min-width: 1200px) {
     .paradise-tab, .spotlight-tab {
         font-size: 1.4em;
         padding: 14px 28px;
+        max-width: 180px;
+    }
+
+    .family-worship-date {
+        font-size: 1.6em;
+    }
+
+    .expand-button {
+        font-size: 1.2em;
+        padding: 10px 20px;
         max-width: 180px;
     }
 }
