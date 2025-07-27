@@ -71,9 +71,16 @@ function populateFamilyWorship(isExpanded = false) {
     const toggleButton = document.getElementById('family-worship-toggle');
 
     if (!familySection || !dateDisplay || !contentDisplay || !toggleButton) {
-        console.error('Family worship elements not found');
+        console.error('Family worship elements not found:', {
+            familySection: !!familySection,
+            dateDisplay: !!dateDisplay,
+            contentDisplay: !!contentDisplay,
+            toggleButton: !!toggleButton
+        });
         return;
     }
+
+    console.log('Populating Family Worship, isExpanded:', isExpanded);
 
     const nextFriday = getNextFriday();
     dateDisplay.textContent = nextFriday;
@@ -81,7 +88,7 @@ function populateFamilyWorship(isExpanded = false) {
     contentDisplay.innerHTML = '';
 
     if (isExpanded) {
-        // Display all dates
+        // Display all dates, each expandable
         sortedFamily.forEach(item => {
             const dateWrapper = document.createElement('div');
             dateWrapper.className = 'lesson lesson-card';
@@ -105,6 +112,7 @@ function populateFamilyWorship(isExpanded = false) {
                 const isContentExpanded = content.style.display === 'block';
                 content.style.display = isContentExpanded ? 'none' : 'block';
                 dateWrapper.dataset.expanded = !isContentExpanded;
+                console.log('Toggled date:', item.D, 'Expanded:', !isContentExpanded);
             });
         });
         toggleButton.textContent = 'COLLAPSE';
@@ -126,9 +134,13 @@ function populateFamilyWorship(isExpanded = false) {
         toggleButton.textContent = 'EXPAND';
     }
 
-    toggleButton.onclick = () => {
+    // Use addEventListener to ensure robust event handling
+    toggleButton.removeEventListener('click', toggleButton._clickHandler); // Remove any existing listener
+    toggleButton._clickHandler = () => {
+        console.log('Toggle button clicked, current isExpanded:', isExpanded);
         populateFamilyWorship(!isExpanded);
     };
+    toggleButton.addEventListener('click', toggleButton._clickHandler);
 }
 
 function populateList(category, containerId) {
