@@ -1,5 +1,5 @@
-// fam.js
-export default [
+// family.js
+var family = [
   {
     D: "January 3, 2025",
     T: "Cain & Abel",
