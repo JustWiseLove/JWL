@@ -10,24 +10,28 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="JWL" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href=dark.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="dark.css" id="theme-stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@400;700&display=swap">
 </head>
 <body data-theme="dark">
-  <div class="header-container">
+    <div class="header-container">
         <h1 class="logo" id="theme-toggle">JWL</h1>
-  </div>
+    </div>
     
-        <nav>
-            <button class="tab-button active" onclick="showTab('home')">Home</button>
-            <button class="tab-button" onclick="showTab('just')">Just</button>
-            <button class="tab-button" onclick="showTab('wise')">Wise</button>
-            <button class="tab-button" onclick="showTab('love')">Love</button>
-        </nav>
-      <div class="container">
-        <p class="introduction">
-            Welcome to JWL where we direct you to God’s word for discovering the truth found in the Bible. In a world where life’s end is certain, our mission is to guide you toward the hope of living forever by drawing closer to God. Click <span class="intro-link" role="link" tabindex="0">Just</span> to explore Bible lessons that deepen your understanding, <span class="intro-link" role="link" tabindex="0">Wise</span> to gain insight from people for worship that honors God, and <span class="intro-link" role="link" tabindex="0">Love</span> to find articles and topics that share accurate knowledge. Begin your journey learning truth that leads to everlasting life.
-        </p>
+    <nav>
+        <button class="tab-button active" onclick="showTab('home')">Home</button>
+        <button class="tab-button" onclick="showTab('just')">Just</button>
+        <button class="tab-button" onclick="showTab('wise')">Wise</button>
+        <button class="tab-button" onclick="showTab('love')">Love</button>
+    </nav>
+    <div class="container">
+        <div class="family-worship-section">
+            <h2 class="section-header">Weekly Family Worship</h2>
+            <div id="family-worship-date" class="family-worship-date"></div>
+            <div id="family-worship-content" class="section"></div>
+            <button id="family-expand-button" class="expand-button">EXPAND</button>
+            <div id="family-worship-dates" class="section" style="display: none;"></div>
+        </div>
 
         <div class="search-section">
             <input type="text" id="search" class="search-input" placeholder="Search for people or topics..." oninput="searchItems()">
@@ -133,6 +137,7 @@
     <script src="articles.js"></script>
     <script src="sections.js"></script>
     <script src="topics.js"></script>
+    <script src="family.js"></script>
     <script src="featured.js"></script>
     <script src="main.js"></script>
 </body>
