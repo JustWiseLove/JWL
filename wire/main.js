@@ -1,5 +1,13 @@
 // main.js
 
+import lessons from './lessons.js';
+import people from './people.js';
+import articles from './articles.js';
+import sections from './sections.js';
+import topics from './topics.js';
+import family from './family.js';
+import featuredEvents from './featured.js';
+
 let sortedLessons = [];
 let sortedPeople = [];
 let sortedArticles = [];
@@ -32,115 +40,103 @@ function highlightText(text, searchTerm) {
     return text.replace(regex, '<span class="highlight">$1</span>');
 }
 
-// Function to get the next Friday's date
 function getNextFriday() {
-    const today = new Date();
-    const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
-    const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
-    const nextFriday = new Date(today);
-    nextFriday.setDate(today.getDate() + daysUntilFriday);
-    return nextFriday.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-}
-
-// Function to schedule Saturday 9 AM EST update
-function scheduleSaturdayUpdate() {
     const now = new Date();
-    const nextSaturday = new Date(now);
-    nextSaturday.setDate(now.getDate() + ((6 - now.getDay() + 7) % 7 || 7));
-    nextSaturday.setHours(9, 0, 0, 0); // Set to 9 AM EST
-    const timeUntilSaturday = nextSaturday - now;
+    const estOffset = -5 * 60; // EST is UTC-5
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const estNow = new Date(utc + (estOffset * 60000));
 
-    if (timeUntilSaturday <= 0) {
-        // If it's past 9 AM Saturday, schedule for next week
-        nextSaturday.setDate(nextSaturday.getDate() + 7);
+    // Check if it's Saturday after 9 AM EST
+    const isSaturdayAfter9AM = estNow.getDay() === 6 && estNow.getHours() >= 9;
+
+    // Find next Friday
+    let daysUntilFriday = (5 - estNow.getDay() + 7) % 7;
+    if (daysUntilFriday === 0) {
+        daysUntilFriday = isSaturdayAfter9AM ? 7 : 0; // If today is Friday after 9 AM, use next Friday
     }
+    const nextFriday = new Date(estNow);
+    nextFriday.setDate(estNow.getDate() + daysUntilFriday);
 
-    setTimeout(() => {
-        populateFamilyWorship(false); // Update to next Friday
-        setInterval(() => {
-            populateFamilyWorship(false); // Weekly update
-        }, 7 * 24 * 60 * 60 * 1000); // Every week
-    }, timeUntilSaturday);
+    // Format date as "Month Day, Year"
+    return nextFriday.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    });
 }
 
-// Function to populate Family Worship section
-function populateFamilyWorship(isExpanded = false) {
-    const familySection = document.getElementById('family-worship-section');
-    const dateDisplay = document.getElementById('family-worship-date');
-    const contentDisplay = document.getElementById('family-worship-content');
-    const toggleButton = document.getElementById('family-worship-toggle');
-
-    if (!familySection || !dateDisplay || !contentDisplay || !toggleButton) {
-        console.error('Family worship elements not found:', {
-            familySection: !!familySection,
-            dateDisplay: !!dateDisplay,
-            contentDisplay: !!contentDisplay,
-            toggleButton: !!toggleButton
-        });
+function populateFamilyWorship() {
+    const familyContent = document.getElementById('family-content');
+    const toggleButton = document.getElementById('family-toggle');
+    if (!familyContent || !toggleButton) {
+        console.error('Family content or toggle button not found');
         return;
     }
 
-    console.log('Populating Family Worship, isExpanded:', isExpanded);
-
     const nextFriday = getNextFriday();
-    dateDisplay.textContent = nextFriday;
+    familyContent.innerHTML = '';
 
-    contentDisplay.innerHTML = '';
+    // Find the entry for the next Friday
+    const upcomingEntry = sortedFamily.find(item => item.D === nextFriday) || { D: nextFriday, T: 'No Topic', R: 'No content available.' };
 
-    if (isExpanded) {
-        // Display all dates, each expandable
-        sortedFamily.forEach(item => {
-            const dateWrapper = document.createElement('div');
-            dateWrapper.className = 'lesson lesson-card';
-            dateWrapper.innerHTML = `
-                <div class="lesson-header">
-                    <h3>${item.D}</h3>
-                </div>
-                <div class="lesson-content" style="display: none;">
-                    ${item.T && item.R ? `<h4>${item.T}</h4><p>${item.R}</p>` : ''}
-                    ${item.T1 && item.R1 ? `<h4>${item.T1}</h4><p>${item.R1}</p>` : ''}
-                    ${item.T2 && item.R2 ? `<h4>${item.T2}</h4><p>${item.R2}</p>` : ''}
-                    ${item.T3 && item.R3 ? `<h4>${item.T3}</h4><p>${item.R3}</p>` : ''}
-                    ${item.T4 && item.R4 ? `<h4>${item.T4}</h4><p>${item.R4}</p>` : ''}
-                </div>
-            `;
-            contentDisplay.appendChild(dateWrapper);
+    // Populate upcoming Friday's content
+    const upcomingItem = document.createElement('div');
+    upcomingItem.className = 'family-item upcoming';
+    upcomingItem.innerHTML = `
+        <div class="family-date">${upcomingEntry.D}</div>
+        <h3>${upcomingEntry.T || 'No Topic'}</h3>
+        <p>${upcomingEntry.R || 'No content available.'}</p>
+        ${upcomingEntry.T1 ? `<h3>${upcomingEntry.T1}</h3><p>${upcomingEntry.R1}</p>` : ''}
+        ${upcomingEntry.T2 ? `<h3>${upcomingEntry.T2}</h3><p>${upcomingEntry.R2}</p>` : ''}
+        ${upcomingEntry.T3 ? `<h3>${upcomingEntry.T3}</h3><p>${upcomingEntry.R3}</p>` : ''}
+        ${upcomingEntry.T4 ? `<h3>${upcomingEntry.T4}</h3><p>${upcomingEntry.R4}</p>` : ''}
+    `;
+    familyContent.appendChild(upcomingItem);
 
-            const header = dateWrapper.querySelector('.lesson-header');
-            const content = dateWrapper.querySelector('.lesson-content');
-            header.addEventListener('click', () => {
-                const isContentExpanded = content.style.display === 'block';
-                content.style.display = isContentExpanded ? 'none' : 'block';
-                dateWrapper.dataset.expanded = !isContentExpanded;
-                console.log('Toggled date:', item.D, 'Expanded:', !isContentExpanded);
+    // Add event listener for toggle button
+    toggleButton.addEventListener('click', () => {
+        const isExpanded = familyContent.classList.contains('expanded');
+        familyContent.classList.toggle('expanded');
+        familyContent.classList.toggle('collapsed', !isExpanded);
+        toggleButton.textContent = isExpanded ? 'EXPAND' : 'COLLAPSE';
+
+        if (isExpanded) {
+            // Remove all but upcoming item
+            familyContent.innerHTML = '';
+            familyContent.appendChild(upcomingItem);
+        } else {
+            // Populate all dates
+            familyContent.innerHTML = '';
+            sortedFamily.forEach(item => {
+                const itemWrapper = document.createElement('div');
+                itemWrapper.className = `family-item ${item.D === nextFriday ? 'upcoming' : ''}`;
+                itemWrapper.innerHTML = `
+                    <div class="family-date">${item.D}</div>
+                    <div class="family-content-details" style="display: none;">
+                        <h3>${item.T || 'No Topic'}</h3>
+                        <p>${item.R || 'No content available.'}</p>
+                        ${item.T1 ? `<h3>${item.T1}</h3><p>${item.R1}</p>` : ''}
+                        ${item.T2 ? `<h3>${item.T2}</h3><p>${item.R2}</p>` : ''}
+                        ${item.T3 ? `<h3>${item.T3}</h3><p>${item.R3}</p>` : ''}
+                        ${item.T4 ? `<h3>${item.T4}</h3><p>${item.R4}</p>` : ''}
+                    </div>
+                `;
+                familyContent.appendChild(itemWrapper);
+
+                // Add click event to toggle details
+                const dateHeader = itemWrapper.querySelector('.family-date');
+                const contentDetails = itemWrapper.querySelector('.family-content-details');
+                dateHeader.addEventListener('click', () => {
+                    const isExpanded = contentDetails.style.display === 'block';
+                    contentDetails.style.display = isExpanded ? 'none' : 'block';
+                    itemWrapper.dataset.expanded = !isExpanded;
+                });
             });
-        });
-        toggleButton.textContent = 'COLLAPSE';
-    } else {
-        // Display only the upcoming Friday's content
-        const targetItem = sortedFamily.find(item => item.D === nextFriday) || sortedFamily[0];
-        const itemWrapper = document.createElement('div');
-        itemWrapper.className = 'lesson lesson-card';
-        itemWrapper.innerHTML = `
-            <div class="lesson-content" style="display: block;">
-                ${targetItem.T && targetItem.R ? `<h4>${targetItem.T}</h4><p>${targetItem.R}</p>` : ''}
-                ${targetItem.T1 && targetItem.R1 ? `<h4>${targetItem.T1}</h4><p>${targetItem.R1}</p>` : ''}
-                ${targetItem.T2 && targetItem.R2 ? `<h4>${targetItem.T2}</h4><p>${targetItem.R2}</p>` : ''}
-                ${targetItem.T3 && targetItem.R3 ? `<h4>${targetItem.T3}</h4><p>${targetItem.R3}</p>` : ''}
-                ${targetItem.T4 && targetItem.R4 ? `<h4>${targetItem.T4}</h4><p>${targetItem.R4}</p>` : ''}
-            </div>
-        `;
-        contentDisplay.appendChild(itemWrapper);
-        toggleButton.textContent = 'EXPAND';
-    }
+        }
+    });
 
-    // Use addEventListener to ensure robust event handling
-    toggleButton.removeEventListener('click', toggleButton._clickHandler); // Remove any existing listener
-    toggleButton._clickHandler = () => {
-        console.log('Toggle button clicked, current isExpanded:', isExpanded);
-        populateFamilyWorship(!isExpanded);
-    };
-    toggleButton.addEventListener('click', toggleButton._clickHandler);
+    // Initialize as collapsed
+    familyContent.classList.add('collapsed');
 }
 
 function populateList(category, containerId) {
@@ -152,19 +148,73 @@ function populateList(category, containerId) {
 
     container.innerHTML = '';
     if (category === 'just') {
-        categories[category].forEach((item, index) => {
+        const section = document.createElement('div');
+        section.className = 'section';
+        container.appendChild(section);
+
+        sortedLessons.forEach((lesson, index) => {
             const lessonNum = index + 1;
+            const lessonCard = document.createElement('div');
+            lessonCard.className = 'lesson lesson-card';
+            lessonCard.id = `lesson-${lessonNum}`;
+            lessonCard.innerHTML = `
+                <div class="lesson-header">
+                    <div class="lesson-number">${lessonNum}</div>
+                    <h3>${lesson.title || 'Untitled'}</h3>
+                </div>
+                <div class="lesson-content" style="display: none;">
+                    <div class="scripture-section"><ul>${(lesson.scriptures || []).map(s => `<li>${s}</li>`).join('')}</ul></div>
+                    <div class="description-section">${lesson.description || ''}</div>
+                    <p><strong>Question:</strong> ${lesson.question || ''}</p>
+                    <textarea placeholder="Write your answer here..."></textarea>
+                </div>
+            `;
+            section.appendChild(lessonCard);
+
+            const header = lessonCard.querySelector('.lesson-header');
+            const content = lessonCard.querySelector('.lesson-content');
+            const textarea = lessonCard.querySelector('textarea');
+            const savedAnswer = localStorage.getItem(`lesson-${lessonNum}`);
+            if (savedAnswer) {
+                textarea.value = savedAnswer;
+                if (savedAnswer.trim()) lessonCard.dataset.clicked = true;
+            }
+
+            header.addEventListener('click', () => {
+                const isExpanded = content.style.display === 'block';
+                content.style.display = isExpanded ? 'none' : 'block';
+                lessonCard.dataset.expanded = !isExpanded;
+            });
+
+            textarea.addEventListener('input', () => {
+                localStorage.setItem(`lesson-${lessonNum}`, textarea.value);
+                if (!lessonCard.dataset.clicked && textarea.value.trim()) {
+                    lessonCard.dataset.clicked = true;
+                    updateProgress();
+                } else if (lessonCard.dataset.clicked && !textarea.value.trim()) {
+                    delete lessonCard.dataset.clicked;
+                    updateProgress();
+                }
+            });
+        });
+
+        updateProgress();
+    } else if (category === 'wise') {
+        if (!sortedPeople.length) {
+            console.warn('No data available for wise category');
+            container.innerHTML = '<p>No content available for Wise category.</p>';
+            return;
+        }
+        sortedPeople.forEach(item => {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
             itemWrapper.innerHTML = `
-                <div class="lesson-number">${lessonNum}</div>
                 <div class="lesson-header">
-                    <h3>${item.title || 'Untitled'}</h3>
+                    <h3>${item.T || 'Untitled'}</h3>
                 </div>
                 <div class="lesson-content" style="display: none;">
-                    ${item.S ? `<div class="scripture-section"><ul>${item.S.map(s => `<li>${s}</li>`).join('')}</ul></div>` : ''}
-                    <div class="description-section">${item.description || ''}</div>
-                    ${item.question ? `<p><strong>Question:</strong> ${item.question}</p><textarea placeholder="Write your answer here..."></textarea>` : ''}
+                    <div class="scripture-section"><ul>${(item.S || []).map(s => `<li>${s}</li>`).join('')}</ul></div>
+                    <div class="description-section">${item.D || ''}</div>
                 </div>
             `;
             container.appendChild(itemWrapper);
@@ -176,33 +226,19 @@ function populateList(category, containerId) {
                 content.style.display = isExpanded ? 'none' : 'block';
                 itemWrapper.dataset.expanded = !isExpanded;
             });
-
-            const textarea = itemWrapper.querySelector('textarea');
-            if (textarea) {
-                const savedAnswer = localStorage.getItem(`lesson-${lessonNum}`);
-                if (savedAnswer) {
-                    textarea.value = savedAnswer;
-                    if (savedAnswer.trim()) itemWrapper.dataset.clicked = true;
-                }
-                textarea.addEventListener('input', () => {
-                    localStorage.setItem(`lesson-${lessonNum}`, textarea.value);
-                    if (!itemWrapper.dataset.clicked && textarea.value.trim()) {
-                        itemWrapper.dataset.clicked = true;
-                        updateProgress();
-                    } else if (itemWrapper.dataset.clicked && !textarea.value.trim()) {
-                        delete itemWrapper.dataset.clicked;
-                        updateProgress();
-                    }
-                });
-            }
         });
-    } else if (category === 'wise' || category === 'love') {
-        categories[category].forEach(item => {
+    } else if (category === 'love') {
+        if (!categories.love.length) {
+            console.warn('No data available for love category');
+            container.innerHTML = '<p>No content available for Love category.</p>';
+            return;
+        }
+        categories.love.forEach(item => {
             const itemWrapper = document.createElement('div');
             itemWrapper.className = 'lesson lesson-card';
             const title = item.T || item.title || 'Untitled';
             const scriptures = item.S ? item.S.map(s => `<li>${s}</li>`).join('') : '';
-            const description = item.D || item.content || item.description || '';
+            const description = item.D || item.content || '';
             itemWrapper.innerHTML = `
                 <div class="lesson-header">
                     <h3>${title}</h3>
@@ -226,11 +262,10 @@ function populateList(category, containerId) {
 }
 
 function updateProgress() {
-    const totalLessons = sortedLessons.length;
-    const completedLessons = document.querySelectorAll('.lesson-card[data-clicked]').length;
+    const completedLessons = document.querySelectorAll('.lesson[data-clicked]').length;
     const progressElement = document.getElementById('progress');
     if (progressElement) {
-        progressElement.textContent = `${completedLessons}/${totalLessons}`;
+        progressElement.textContent = `${completedLessons}/60`;
     }
 }
 
@@ -252,7 +287,7 @@ function showTab(category) {
         populateList('love', 'love');
     } else if (category === 'home') {
         initializeTimelines();
-        populateFamilyWorship(false); // Initialize family worship on home tab
+        populateFamilyWorship();
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -271,15 +306,18 @@ function searchItems() {
         }
 
         const matches = [];
-        ['just', 'wise', 'love'].forEach(category => {
-            categories[category].forEach(item => {
+        ['just', 'wise', 'love', 'family'].forEach(category => {
+            const items = category === 'family' ? sortedFamily : categories[category];
+            items.forEach(item => {
                 const title = (item.T || item.title || '').toLowerCase();
                 const scriptures = (item.S || []).join(' ').toLowerCase();
-                const description = (item.D || item.content || item.description || '').toLowerCase();
+                const description = (item.D || item.content || item.description || item.R || '').toLowerCase();
+                const additionalTitles = [item.T1, item.T2, item.T3, item.T4].filter(t => t).join(' ').toLowerCase();
+                const additionalResearch = [item.R1, item.R2, item.R3, item.R4].filter(r => r).join(' ').toLowerCase();
 
-                if (title.includes(searchTerm)) {
+                if (title.includes(searchTerm) || additionalTitles.includes(searchTerm)) {
                     matches.push({ category, item, isTitleMatch: true });
-                } else if (scriptures.includes(searchTerm) || description.includes(searchTerm)) {
+                } else if (scriptures.includes(searchTerm) || description.includes(searchTerm) || additionalResearch.includes(searchTerm)) {
                     matches.push({ category, item, isTitleMatch: false });
                 }
             });
@@ -298,14 +336,19 @@ function searchItems() {
             itemWrapper.className = 'lesson lesson-card';
             const title = item.T || item.title || 'Untitled';
             const scriptures = item.S ? item.S.map(s => `<li>${highlightText(s, searchTerm)}</li>`).join('') : '';
-            const description = item.D || item.content || item.description || '';
+            const description = item.D || item.content || item.description || item.R || '';
             itemWrapper.innerHTML = `
                 <div class="lesson-header">
                     <h3>${highlightText(title, searchTerm)}</h3>
+                    ${category === 'family' ? `<div class="family-date">${item.D}</div>` : ''}
                 </div>
                 <div class="lesson-content" style="display: none;">
                     ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
                     <div class="description-section">${highlightText(description, searchTerm)}</div>
+                    ${category === 'family' && item.T1 ? `<h3>${highlightText(item.T1, searchTerm)}</h3><p>${highlightText(item.R1, searchTerm)}</p>` : ''}
+                    ${category === 'family' && item.T2 ? `<h3>${highlightText(item.T2, searchTerm)}</h3><p>${highlightText(item.R2, searchTerm)}</p>` : ''}
+                    ${category === 'family' && item.T3 ? `<h3>${highlightText(item.T3, searchTerm)}</h3><p>${highlightText(item.R3, searchTerm)}</p>` : ''}
+                    ${category === 'family' && item.T4 ? `<h3>${highlightText(item.T4, searchTerm)}</h3><p>${highlightText(item.R4, searchTerm)}</p>` : ''}
                     ${category === 'just' && item.question ? `<p><strong>Question:</strong> ${highlightText(item.question, searchTerm)}</p><textarea placeholder="Write your answer here..."></textarea>` : ''}
                 </div>
             `;
@@ -350,161 +393,249 @@ function toggleTheme() {
     const body = document.body;
     const themeStylesheet = document.getElementById('theme-stylesheet');
     const currentTheme = body.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    body.setAttribute('data-theme', newTheme);
-    themeStylesheet.setAttribute('href', `${newTheme}.css`);
-    localStorage.setItem('theme', newTheme);
+
+    if (currentTheme === 'light') {
+        themeStylesheet.setAttribute('href', 'dark.css');
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        themeStylesheet.setAttribute('href', 'light.css');
+        body.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
 }
 
 function initializeTimelines() {
-    const paradiseTabs = document.querySelectorAll('#paradise-section .paradise-tab');
-    const paradiseDots = document.querySelectorAll('#paradise-section .timeline-dot');
+    const paradiseSection = document.getElementById('paradise-section');
+    const featuredSection = document.getElementById('featured-section');
+    const spotlightSection = document.getElementById('spotlight-section');
+
+    if (!paradiseSection || !featuredSection || !spotlightSection) {
+        console.error('One or more timeline sections not found');
+        return;
+    }
+
+    const paradiseTabs = paradiseSection.querySelectorAll('.paradise-tab');
+    const paradiseDots = paradiseSection.querySelectorAll('.timeline-dot');
     const paradiseDescription = document.getElementById('paradise-description');
+    let currentParadiseTab = 'creation';
+    let currentParadiseIndex = 0;
 
-    const featuredDots = document.querySelectorAll('#featured-section .timeline-dot');
+    const featuredDots = featuredSection.querySelectorAll('.timeline-dot');
     const featuredDescription = document.getElementById('featured-description');
+    let currentFeaturedIndex = 0;
 
-    const spotlightTabs = document.querySelectorAll('#spotlight-section .spotlight-tab');
-    const spotlightDots = document.querySelectorAll('#spotlight-section .timeline-dot');
+    const spotlightTabs = spotlightSection.querySelectorAll('.spotlight-tab');
+    const spotlightDots = spotlightSection.querySelectorAll('.timeline-dot');
     const spotlightDescription = document.getElementById('spotlight-description');
+    let currentSpotlightTab = 'inspired';
+    let currentSpotlightIndex = 0;
 
-    const paradiseContent = {
-        creation: {
-            title: "The Beginning of Creation",
-            description: "Jehovah created Adam and Eve in his image, perfect and with free will, to live in the Garden of Eden forever. Genesis 1:27-28 states, “God created man in his image... and said to them: ‘Be fruitful and become many.’”"
-        },
-        prophecy: {
-            title: "Prophecy of Hope",
-            description: "Genesis 3:15 foretells a seed to crush Satan, promising restoration. Jehovah’s purpose unfolds through prophecies like Isaiah 9:6-7, ensuring a Messiah to bring peace, guiding us toward paradise."
-        },
-        sacrifice: {
-            title: "Sacrifice for Salvation",
-            description: "Jesus’ ransom sacrifice, foretold in Isaiah 53:5, fulfills Jehovah’s purpose. John 3:16 shows His love, offering eternal life through faith in Christ’s sacrifice, redeeming mankind."
-        },
-        paradise: {
-            title: "Paradise Restored",
-            description: "Revelation 21:1-4 promises a new earth with no pain or death. Jehovah will restore paradise, fulfilling His original purpose for a perfect human family living forever."
+    function updateParadiseTimeline() {
+        if (!window.paradiseEvents || !window.paradiseEvents[currentParadiseTab]) {
+            console.error(`Invalid or missing paradiseEvents for tab: ${currentParadiseTab}`, window.paradiseEvents);
+            paradiseDescription.innerHTML = `
+                <h3 class="timeline-event-title">No Content</h3>
+                <p>No content available for this selection.</p>
+            `;
+            paradiseDots.forEach(dot => dot.classList.remove('active'));
+            if (paradiseDots[0]) paradiseDots[0].classList.add('active');
+            return;
         }
-    };
+        const events = window.paradiseEvents[currentParadiseTab];
+        if (!events[currentParadiseIndex]) {
+            console.warn(`No event at index ${currentParadiseIndex} for tab ${currentParadiseTab}`);
+            currentParadiseIndex = 0; // Reset to first event
+        }
+        paradiseDots.forEach(dot => dot.classList.remove('active'));
+        if (paradiseDots[currentParadiseIndex]) {
+            paradiseDots[currentParadiseIndex].classList.add('active');
+        }
+        const event = events[currentParadiseIndex] || { title: 'No Content', text: 'No content available.' };
+        paradiseDescription.style.opacity = '0';
+        setTimeout(() => {
+            paradiseDescription.innerHTML = `
+                <h3 class="timeline-event-title">${event.title || 'No Title'}</h3>
+                <p>${event.text || event.description || 'No description available.'}</p>
+            `;
+            paradiseDescription.style.opacity = '1';
+        }, 300);
+    }
 
-    const featuredContent = [
-        {
-            title: "God or Government?",
-            description: "Human governments promise security but often lead to oppression and failure, as Psalm 146:3 warns, “Do not put your trust in princes, in whom there is no salvation.” Jehovah’s Kingdom offers eternal peace, fulfilling Daniel 2:44."
-        },
-        {
-            title: "Free Will or Fate?",
-            description: "Deuteronomy 30:19 urges choosing life through obedience to Jehovah. Unlike fatalistic beliefs, free will allows us to align with His purpose, securing eternal blessings in paradise."
-        },
-        {
-            title: "Science or Scripture?",
-            description: "Romans 1:20 reveals Jehovah’s qualities through creation, harmonizing with true science. Scripture, inspired by God (2 Timothy 3:16), guides us to truth and eternal life."
-        },
-        {
-            title: "Fear or Faith?",
-            description: "Psalm 23:4 assures Jehovah’s comfort, overcoming fear. Faith, as Hebrews 11:6 states, trusts His promises, guiding us through trials toward a paradise of peace."
-        },
-        {
-            title: "Money or Meaning?",
-            description: "Ecclesiastes 5:10 warns money never satisfies. Matthew 6:33 prioritizes seeking Jehovah’s Kingdom, offering true meaning and eternal life in a restored paradise."
-        },
-        {
-            title: "Death or Deliverance?",
-            description: "John 5:28-29 promises resurrection. Jehovah’s deliverance through Christ defeats death, ensuring faithful ones inherit eternal life in a world free of sorrow."
-        },
-        {
-            title: "Hate or Hope?",
-            description: "1 John 4:8 teaches God is love, inspiring hope. Unlike worldly hate, Jehovah’s Kingdom brings unity and peace, fulfilling Psalm 37:11 for the meek."
-        },
-        {
-            title: "Chaos or Christ?",
-            description: "Colossians 1:16-17 shows Christ’s role in creation and salvation. His rulership brings order, leading to paradise where Jehovah’s purpose triumphs over chaos."
+    function updateFeaturedTimeline() {
+        if (!window.featuredEvents || !window.featuredEvents.length) {
+            console.error('Invalid or missing featuredEvents', window.featuredEvents);
+            featuredDescription.innerHTML = `
+                <h3 class="timeline-event-title">No Content</h3>
+                <p>No content available for this selection.</p>
+            `;
+            featuredDots.forEach(dot => dot.classList.remove('active'));
+            if (featuredDots[0]) featuredDots[0].classList.add('active');
+            return;
         }
-    ];
+        const events = window.featuredEvents;
+        if (!events[currentFeaturedIndex]) {
+            console.warn(`No event at index ${currentFeaturedIndex} for featuredEvents`);
+            currentFeaturedIndex = 0; // Reset to first event
+        }
+        featuredDots.forEach(dot => dot.classList.remove('active'));
+        if (featuredDots[currentFeaturedIndex]) {
+            featuredDots[currentFeaturedIndex].classList.add('active');
+        }
+        const event = events[currentFeaturedIndex] || { title: 'No Content', text: 'No content available.' };
+        featuredDescription.style.opacity = '0';
+        setTimeout(() => {
+            featuredDescription.innerHTML = `
+                <h3 class="timeline-event-title">${event.title || 'No Title'}</h3>
+                <p>${event.text || event.description || 'No description available.'}</p>
+            `;
+            featuredDescription.style.opacity = '1';
+        }, 300);
+    }
 
-    const spotlightContent = {
-        inspired: {
-            title: "Historical Support",
-            description: "The Bible’s historical accuracy is confirmed by archaeological evidence like the Tel Dan Stele (2 Samuel 8:13) and Lachish Letters (Jeremiah 34:7), proving its reliability as Jehovah’s Word."
-        },
-        translated: {
-            title: "Accurate Translation",
-            description: "The New World Translation restores Jehovah’s name (Psalm 83:18) and reflects original texts, ensuring clarity and truth for millions across 1,100+ languages."
-        },
-        organized: {
-            title: "Global Organization",
-            description: "Jehovah’s Witnesses, active in 240 lands, fulfill Matthew 24:14 by preaching the Kingdom. Their unity and love reflect Jehovah’s guidance (John 13:35)."
-        },
-        restored: {
-            title: "Restored Truth",
-            description: "Acts 3:21 speaks of restoring truth. Jehovah’s people reject false doctrines, embracing pure worship to prepare for eternal life in paradise."
+    function updateSpotlightTimeline() {
+        if (!window.spotlightEvents || !window.spotlightEvents[currentSpotlightTab]) {
+            console.error(`Invalid or missing spotlightEvents for tab: ${currentSpotlightTab}`, window.spotlightEvents);
+            spotlightDescription.innerHTML = `
+                <h3 class="timeline-event-title">No Content</h3>
+                <p>No content available for this selection.</p>
+            `;
+            spotlightDots.forEach(dot => dot.classList.remove('active'));
+            if (spotlightDots[0]) spotlightDots[0].classList.add('active');
+            return;
         }
-    };
+        const events = window.spotlightEvents[currentSpotlightTab];
+        if (!events[currentSpotlightIndex]) {
+            console.warn(`No event at index ${currentSpotlightIndex} for tab ${currentSpotlightTab}`);
+            currentSpotlightIndex = 0; // Reset to first event
+        }
+        spotlightDots.forEach(dot => dot.classList.remove('active'));
+        if (spotlightDots[currentSpotlightIndex]) {
+            spotlightDots[currentSpotlightIndex].classList.add('active');
+        }
+        const event = events[currentSpotlightIndex] || { title: 'No Content', text: 'No content available.' };
+        spotlightDescription.style.opacity = '0';
+        setTimeout(() => {
+            spotlightDescription.innerHTML = `
+                <h3 class="timeline-event-title">${event.title || 'No Title'}</h3>
+                <p>${event.text || event.description || 'No description available.'}</p>
+            `;
+            spotlightDescription.style.opacity = '1';
+        }, 300);
+    }
+
+    function toggleGlow(section) {
+        [paradiseSection, featuredSection, spotlightSection].forEach(s => s.removeAttribute('data-glow'));
+        section.setAttribute('data-glow', 'true');
+        setTimeout(() => section.removeAttribute('data-glow'), 300);
+    }
 
     paradiseTabs.forEach(tab => {
+        tab.style.pointerEvents = 'auto';
+        tab.style.zIndex = '10';
         tab.addEventListener('click', () => {
             paradiseTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            const tabType = tab.getAttribute('data-tab');
-            const content = paradiseContent[tabType];
-            paradiseDescription.innerHTML = `
-                <h3 class="timeline-event-title">${content.title}</h3>
-                <p>${content.description}</p>
-            `;
-            paradiseDots.forEach(dot => dot.classList.remove('active'));
-            const dotIndex = Array.from(paradiseTabs).indexOf(tab);
-            paradiseDots[dotIndex].classList.add('active');
+            currentParadiseTab = tab.getAttribute('data-tab');
+            currentParadiseIndex = 0;
+            updateParadiseTimeline();
+            toggleGlow(paradiseSection);
         });
     });
 
     paradiseDots.forEach(dot => {
+        dot.style.pointerEvents = 'auto';
+        dot.style.zIndex = '10';
         dot.addEventListener('click', () => {
             const index = parseInt(dot.getAttribute('data-index'));
-            paradiseDots.forEach(d => d.classList.remove('active'));
-            dot.classList.add('active');
-            const tab = paradiseTabs[index];
-            tab.click();
+            const events = window.paradiseEvents && window.paradiseEvents[currentParadiseTab] ? window.paradiseEvents[currentParadiseTab] : [];
+            if (index < events.length) {
+                currentParadiseIndex = index;
+                updateParadiseTimeline();
+            }
         });
     });
 
     featuredDots.forEach(dot => {
+        dot.style.pointerEvents = 'auto';
+        dot.style.zIndex = '10';
         dot.addEventListener('click', () => {
             const index = parseInt(dot.getAttribute('data-index'));
-            featuredDots.forEach(d => d.classList.remove('active'));
-            dot.classList.add('active');
-            const content = featuredContent[index];
-            featuredDescription.innerHTML = `
-                <h3 class="timeline-event-title">${content.title}</h3>
-                <p>${content.description}</p>
-            `;
+            const events = window.featuredEvents || [];
+            if (index < events.length) {
+                currentFeaturedIndex = index;
+                updateFeaturedTimeline();
+            }
         });
     });
 
     spotlightTabs.forEach(tab => {
+        tab.style.pointerEvents = 'auto';
+        tab.style.zIndex = '10';
         tab.addEventListener('click', () => {
             spotlightTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            const tabType = tab.getAttribute('data-tab');
-            const content = spotlightContent[tabType];
-            spotlightDescription.innerHTML = `
-                <h3 class="timeline-event-title">${content.title}</h3>
-                <p>${content.description}</p>
-            `;
-            spotlightDots.forEach(dot => dot.classList.remove('active'));
-            const dotIndex = Array.from(spotlightTabs).indexOf(tab);
-            spotlightDots[dotIndex].classList.add('active');
+            currentSpotlightTab = tab.getAttribute('data-tab');
+            currentSpotlightIndex = 0;
+            updateSpotlightTimeline();
+            toggleGlow(spotlightSection);
         });
     });
 
     spotlightDots.forEach(dot => {
+        dot.style.pointerEvents = 'auto';
+        dot.style.zIndex = '10';
         dot.addEventListener('click', () => {
             const index = parseInt(dot.getAttribute('data-index'));
-            spotlightDots.forEach(d => d.classList.remove('active'));
-            dot.classList.add('active');
-            const tab = spotlightTabs[index];
-            tab.click();
+            const events = window.spotlightEvents && window.spotlightEvents[currentSpotlightTab] ? window.spotlightEvents[currentSpotlightTab] : [];
+            if (index < events.length) {
+                currentSpotlightIndex = index;
+                updateSpotlightTimeline();
+            }
         });
     });
+
+    // Initialize timelines with first tabs active
+    if (paradiseTabs[0]) paradiseTabs[0].classList.add('active');
+    if (spotlightTabs[0]) spotlightTabs[0].classList.add('active');
+    updateParadiseTimeline();
+    updateFeaturedTimeline();
+    updateSpotlightTimeline();
+
+    // Ensure sections are interactive
+    paradiseSection.style.pointerEvents = 'auto';
+    paradiseSection.style.zIndex = '5';
+    featuredSection.style.pointerEvents = 'auto';
+    featuredSection.style.zIndex = '5';
+    spotlightSection.style.pointerEvents = 'auto';
+    spotlightSection.style.zIndex = '5';
+}
+
+function scheduleFamilyWorshipUpdate() {
+    const now = new Date();
+    const estOffset = -5 * 60; // EST is UTC-5
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const estNow = new Date(utc + (estOffset * 60000));
+
+    // Calculate time until next Saturday 9 AM EST
+    const targetDay = 6; // Saturday
+    let daysUntilSaturday = (targetDay - estNow.getDay() + 7) % 7;
+    if (daysUntilSaturday === 0 && estNow.getHours() >= 9) {
+        daysUntilSaturday = 7; // If today is Saturday after 9 AM, schedule for next week
+    }
+    const nextSaturday = new Date(estNow);
+    nextSaturday.setDate(estNow.getDate() + daysUntilSaturday);
+    nextSaturday.setHours(9, 0, 0, 0);
+
+    const msUntilUpdate = nextSaturday.getTime() - estNow.getTime();
+
+    setTimeout(() => {
+        populateFamilyWorship();
+        // Schedule the next update (weekly)
+        setInterval(() => {
+            populateFamilyWorship();
+        }, 7 * 24 * 60 * 60 * 1000); // Every week
+    }, msUntilUpdate);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -512,6 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
         populateList('just', 'just');
     }
     showTab('home');
+    scheduleFamilyWorshipUpdate();
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
     document.getElementById('copyright').addEventListener('click', () => {
         const year = new Date().getFullYear();
@@ -528,12 +660,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Enter') showTab(link.textContent.toLowerCase());
         });
     });
-    scheduleSaturdayUpdate(); // Start the Saturday update schedule
 });
 
 // Make theme stay when the page is refreshed
 window.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark if no theme is saved
     const themeStylesheet = document.getElementById('theme-stylesheet');
     document.body.setAttribute('data-theme', savedTheme);
     themeStylesheet.setAttribute('href', `${savedTheme}.css`);
