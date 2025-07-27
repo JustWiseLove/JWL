@@ -1,19 +1,10 @@
 // main.js
 
-import lessons from './lessons.js';
-import people from './people.js';
-import articles from './articles.js';
-import sections from './sections.js';
-import topics from './topics.js';
-import family from './family.js';
-import featuredEvents from './featured.js';
-
 let sortedLessons = [];
 let sortedPeople = [];
 let sortedArticles = [];
 let sortedSections = [];
 let sortedTopics = [];
-let sortedFamily = [];
 
 try {
     sortedLessons = (lessons || []).slice().sort((a, b) => (a.title || '').localeCompare(b.title || ''));
@@ -21,7 +12,6 @@ try {
     sortedArticles = (articles || []).slice().sort((a, b) => (a.title || '').localeCompare(b.title || ''));
     sortedSections = (sections || []).slice().sort((a, b) => (a.T || '').localeCompare(b.T || ''));
     sortedTopics = (topics || []).slice().sort((a, b) => (a.T || '').localeCompare(b.T || ''));
-    sortedFamily = (family || []).slice().sort((a, b) => new Date(a.D) - new Date(b.D));
 } catch (e) {
     console.error('Error initializing sorted arrays:', e);
 }
@@ -34,109 +24,121 @@ const categories = {
 
 let debounceTimeout;
 
-function highlightText(text, searchTerm) {
-    if (!searchTerm || !text) return text || '';
-    const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-    return text.replace(regex, '<span class="highlight">$1</span>');
-}
-
 function getNextFriday() {
-    const now = new Date();
-    const estOffset = -5 * 60; // EST is UTC-5
-    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-    const estNow = new Date(utc + (estOffset * 60000));
-
-    // Check if it's Saturday after 9 AM EST
-    const isSaturdayAfter9AM = estNow.getDay() === 6 && estNow.getHours() >= 9;
-
-    // Find next Friday
-    let daysUntilFriday = (5 - estNow.getDay() + 7) % 7;
-    if (daysUntilFriday === 0) {
-        daysUntilFriday = isSaturdayAfter9AM ? 7 : 0; // If today is Friday after 9 AM, use next Friday
-    }
-    const nextFriday = new Date(estNow);
-    nextFriday.setDate(estNow.getDate() + daysUntilFriday);
-
-    // Format date as "Month Day, Year"
-    return nextFriday.toLocaleDateString('en-US', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric'
-    });
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
+    const hours = today.getHours();
+    const minutes = today.getMinutes();
+    const isPastSaturday9AM = dayOfWeek === 6 && (hours > 9 || (hours === 9 && minutes >= 0));
+    const daysUntilFriday = isPastSaturday9AM ? (5 + 7 - dayOfWeek) % 7 + 7 : (5 - dayOfWeek + 7) % 7;
+    const nextFriday = new Date(today);
+    nextFriday.setDate(today.getDate() + daysUntilFriday);
+    return nextFriday.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 }
 
-function populateFamilyWorship() {
-    const familyContent = document.getElementById('family-content');
-    const toggleButton = document.getElementById('family-toggle');
-    if (!familyContent || !toggleButton) {
-        console.error('Family content or toggle button not found');
+function displayFamilyWorship() {
+    const dateElement = document.getElementById('family-worship-date');
+    const contentElement = document.getElementById('family-worship-content');
+    if (!dateElement || !contentElement) {
+        console.error('Family worship elements not found');
         return;
     }
 
     const nextFriday = getNextFriday();
-    familyContent.innerHTML = '';
+    dateElement.textContent = nextFriday;
 
-    // Find the entry for the next Friday
-    const upcomingEntry = sortedFamily.find(item => item.D === nextFriday) || { D: nextFriday, T: 'No Topic', R: 'No content available.' };
+    const familyItem = family.find(item => item.D === nextFriday);
+    contentElement.innerHTML = '';
 
-    // Populate upcoming Friday's content
-    const upcomingItem = document.createElement('div');
-    upcomingItem.className = 'family-item upcoming';
-    upcomingItem.innerHTML = `
-        <div class="family-date">${upcomingEntry.D}</div>
-        <h3>${upcomingEntry.T || 'No Topic'}</h3>
-        <p>${upcomingEntry.R || 'No content available.'}</p>
-        ${upcomingEntry.T1 ? `<h3>${upcomingEntry.T1}</h3><p>${upcomingEntry.R1}</p>` : ''}
-        ${upcomingEntry.T2 ? `<h3>${upcomingEntry.T2}</h3><p>${upcomingEntry.R2}</p>` : ''}
-        ${upcomingEntry.T3 ? `<h3>${upcomingEntry.T3}</h3><p>${upcomingEntry.R3}</p>` : ''}
-        ${upcomingEntry.T4 ? `<h3>${upcomingEntry.T4}</h3><p>${upcomingEntry.R4}</p>` : ''}
-    `;
-    familyContent.appendChild(upcomingItem);
+    if (!familyItem) {
+        contentElement.innerHTML = '<p>No content available for this week.</p>';
+        return;
+    }
 
-    // Add event listener for toggle button
-    toggleButton.addEventListener('click', () => {
-        const isExpanded = familyContent.classList.contains('expanded');
-        familyContent.classList.toggle('expanded');
-        familyContent.classList.toggle('collapsed', !isExpanded);
-        toggleButton.textContent = isExpanded ? 'EXPAND' : 'COLLAPSE';
+    const topics = [
+        { T: familyItem.T, R: familyItem.R },
+        familyItem.T1 && familyItem.R1 ? { T: familyItem.T1, R: familyItem.R1 } : null,
+        familyItem.T2 && familyItem.R2 ? { T: familyItem.T2, R: familyItem.R2 } : null,
+        familyItem.T3 && familyItem.R3 ? { T: familyItem.T3, R: familyItem.R3 } : null,
+        familyItem.T4 && familyItem.R4 ? { T: familyItem.T4, R: familyItem.R4 } : null
+    ].filter(topic => topic);
 
-        if (isExpanded) {
-            // Remove all but upcoming item
-            familyContent.innerHTML = '';
-            familyContent.appendChild(upcomingItem);
-        } else {
-            // Populate all dates
-            familyContent.innerHTML = '';
-            sortedFamily.forEach(item => {
-                const itemWrapper = document.createElement('div');
-                itemWrapper.className = `family-item ${item.D === nextFriday ? 'upcoming' : ''}`;
-                itemWrapper.innerHTML = `
-                    <div class="family-date">${item.D}</div>
-                    <div class="family-content-details" style="display: none;">
-                        <h3>${item.T || 'No Topic'}</h3>
-                        <p>${item.R || 'No content available.'}</p>
-                        ${item.T1 ? `<h3>${item.T1}</h3><p>${item.R1}</p>` : ''}
-                        ${item.T2 ? `<h3>${item.T2}</h3><p>${item.R2}</p>` : ''}
-                        ${item.T3 ? `<h3>${item.T3}</h3><p>${item.R3}</p>` : ''}
-                        ${item.T4 ? `<h3>${item.T4}</h3><p>${item.R4}</p>` : ''}
-                    </div>
-                `;
-                familyContent.appendChild(itemWrapper);
+    topics.forEach(topic => {
+        const topicCard = document.createElement('div');
+        topicCard.className = 'lesson lesson-card';
+        topicCard.innerHTML = `
+            <div class="lesson-header">
+                <h3>${topic.T || 'Untitled'}</h3>
+            </div>
+            <div class="lesson-content" style="display: none;">
+                <div class="description-section">${topic.R || ''}</div>
+            </div>
+        `;
+        contentElement.appendChild(topicCard);
 
-                // Add click event to toggle details
-                const dateHeader = itemWrapper.querySelector('.family-date');
-                const contentDetails = itemWrapper.querySelector('.family-content-details');
-                dateHeader.addEventListener('click', () => {
-                    const isExpanded = contentDetails.style.display === 'block';
-                    contentDetails.style.display = isExpanded ? 'none' : 'block';
-                    itemWrapper.dataset.expanded = !isExpanded;
-                });
-            });
-        }
+        const header = topicCard.querySelector('.lesson-header');
+        const content = topicCard.querySelector('.lesson-content');
+        header.addEventListener('click', () => {
+            const isExpanded = content.style.display === 'block';
+            content.style.display = isExpanded ? 'none' : 'block';
+            topicCard.dataset.expanded = !isExpanded;
+        });
+    });
+}
+
+function displayAllFamilyDates() {
+    const datesElement = document.getElementById('family-worship-dates');
+    const expandButton = document.getElementById('family-expand-button');
+    if (!datesElement || !expandButton) {
+        console.error('Family dates or expand button not found');
+        return;
+    }
+
+    if (datesElement.style.display === 'block') {
+        datesElement.style.display = 'none';
+        expandButton.textContent = 'EXPAND';
+        displayFamilyWorship();
+        return;
+    }
+
+    datesElement.innerHTML = '';
+    family.forEach(item => {
+        const dateCard = document.createElement('div');
+        dateCard.className = 'lesson lesson-card';
+        dateCard.innerHTML = `
+            <div class="lesson-header">
+                <h3>${item.D}</h3>
+            </div>
+            <div class="lesson-content" style="display: none;">
+                ${[item.T, item.T1, item.T2, item.T3, item.T4]
+                    .filter(t => t)
+                    .map((t, i) => `
+                        <div class="sub-lesson">
+                            <h4>${t}</h4>
+                            <p>${item[`R${i > 0 ? i : ''}`] || ''}</p>
+                        </div>
+                    `).join('')}
+            </div>
+        `;
+        datesElement.appendChild(dateCard);
+
+        const header = dateCard.querySelector('.lesson-header');
+        const content = dateCard.querySelector('.lesson-content');
+        header.addEventListener('click', () => {
+            const isExpanded = content.style.display === 'block';
+            content.style.display = isExpanded ? 'none' : 'block';
+            dateCard.dataset.expanded = !isExpanded;
+        });
     });
 
-    // Initialize as collapsed
-    familyContent.classList.add('collapsed');
+    datesElement.style.display = 'block';
+    expandButton.textContent = 'COLLAPSE';
+}
+
+function highlightText(text, searchTerm) {
+    if (!searchTerm || !text) return text || '';
+    const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(regex, '<span class="highlight">$1</span>');
 }
 
 function populateList(category, containerId) {
@@ -287,7 +289,7 @@ function showTab(category) {
         populateList('love', 'love');
     } else if (category === 'home') {
         initializeTimelines();
-        populateFamilyWorship();
+        displayFamilyWorship();
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -306,18 +308,15 @@ function searchItems() {
         }
 
         const matches = [];
-        ['just', 'wise', 'love', 'family'].forEach(category => {
-            const items = category === 'family' ? sortedFamily : categories[category];
-            items.forEach(item => {
+        ['just', 'wise', 'love'].forEach(category => {
+            categories[category].forEach(item => {
                 const title = (item.T || item.title || '').toLowerCase();
                 const scriptures = (item.S || []).join(' ').toLowerCase();
-                const description = (item.D || item.content || item.description || item.R || '').toLowerCase();
-                const additionalTitles = [item.T1, item.T2, item.T3, item.T4].filter(t => t).join(' ').toLowerCase();
-                const additionalResearch = [item.R1, item.R2, item.R3, item.R4].filter(r => r).join(' ').toLowerCase();
+                const description = (item.D || item.content || item.description || '').toLowerCase();
 
-                if (title.includes(searchTerm) || additionalTitles.includes(searchTerm)) {
+                if (title.includes(searchTerm)) {
                     matches.push({ category, item, isTitleMatch: true });
-                } else if (scriptures.includes(searchTerm) || description.includes(searchTerm) || additionalResearch.includes(searchTerm)) {
+                } else if (scriptures.includes(searchTerm) || description.includes(searchTerm)) {
                     matches.push({ category, item, isTitleMatch: false });
                 }
             });
@@ -327,7 +326,7 @@ function searchItems() {
             if (a.isTitleMatch && !b.isTitleMatch) return -1;
             if (!a.isTitleMatch && b.isTitleMatch) return 1;
             const titleA = (a.item.T || a.item.title || '').toLowerCase();
-            const titleB = (b.item.T || b.item.title || '').toLowerCase();
+            const titleB = (b.item.T || b.title || '').toLowerCase();
             return titleA.localeCompare(titleB);
         });
 
@@ -336,19 +335,14 @@ function searchItems() {
             itemWrapper.className = 'lesson lesson-card';
             const title = item.T || item.title || 'Untitled';
             const scriptures = item.S ? item.S.map(s => `<li>${highlightText(s, searchTerm)}</li>`).join('') : '';
-            const description = item.D || item.content || item.description || item.R || '';
+            const description = item.D || item.content || item.description || '';
             itemWrapper.innerHTML = `
                 <div class="lesson-header">
                     <h3>${highlightText(title, searchTerm)}</h3>
-                    ${category === 'family' ? `<div class="family-date">${item.D}</div>` : ''}
                 </div>
                 <div class="lesson-content" style="display: none;">
                     ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
                     <div class="description-section">${highlightText(description, searchTerm)}</div>
-                    ${category === 'family' && item.T1 ? `<h3>${highlightText(item.T1, searchTerm)}</h3><p>${highlightText(item.R1, searchTerm)}</p>` : ''}
-                    ${category === 'family' && item.T2 ? `<h3>${highlightText(item.T2, searchTerm)}</h3><p>${highlightText(item.R2, searchTerm)}</p>` : ''}
-                    ${category === 'family' && item.T3 ? `<h3>${highlightText(item.T3, searchTerm)}</h3><p>${highlightText(item.R3, searchTerm)}</p>` : ''}
-                    ${category === 'family' && item.T4 ? `<h3>${highlightText(item.T4, searchTerm)}</h3><p>${highlightText(item.R4, searchTerm)}</p>` : ''}
                     ${category === 'just' && item.question ? `<p><strong>Question:</strong> ${highlightText(item.question, searchTerm)}</p><textarea placeholder="Write your answer here..."></textarea>` : ''}
                 </div>
             `;
@@ -611,39 +605,11 @@ function initializeTimelines() {
     spotlightSection.style.zIndex = '5';
 }
 
-function scheduleFamilyWorshipUpdate() {
-    const now = new Date();
-    const estOffset = -5 * 60; // EST is UTC-5
-    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-    const estNow = new Date(utc + (estOffset * 60000));
-
-    // Calculate time until next Saturday 9 AM EST
-    const targetDay = 6; // Saturday
-    let daysUntilSaturday = (targetDay - estNow.getDay() + 7) % 7;
-    if (daysUntilSaturday === 0 && estNow.getHours() >= 9) {
-        daysUntilSaturday = 7; // If today is Saturday after 9 AM, schedule for next week
-    }
-    const nextSaturday = new Date(estNow);
-    nextSaturday.setDate(estNow.getDate() + daysUntilSaturday);
-    nextSaturday.setHours(9, 0, 0, 0);
-
-    const msUntilUpdate = nextSaturday.getTime() - estNow.getTime();
-
-    setTimeout(() => {
-        populateFamilyWorship();
-        // Schedule the next update (weekly)
-        setInterval(() => {
-            populateFamilyWorship();
-        }, 7 * 24 * 60 * 60 * 1000); // Every week
-    }, msUntilUpdate);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     if (sortedLessons.length) {
         populateList('just', 'just');
     }
     showTab('home');
-    scheduleFamilyWorshipUpdate();
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
     document.getElementById('copyright').addEventListener('click', () => {
         const year = new Date().getFullYear();
@@ -660,6 +626,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Enter') showTab(link.textContent.toLowerCase());
         });
     });
+    const expandButton = document.getElementById('family-expand-button');
+    if (expandButton) {
+        expandButton.addEventListener('click', displayAllFamilyDates);
+    }
+    displayFamilyWorship();
 });
 
 // Make theme stay when the page is refreshed
