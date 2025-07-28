@@ -1,738 +1,441 @@
 // main.js
 
-let sortedLessons = [];
+// Global variables and initialization
+let sortedTopics = [];
 let sortedPeople = [];
 let sortedArticles = [];
 let sortedSections = [];
-let sortedTopics = [];
 
 try {
-    sortedLessons = (lessons || []).slice().sort((a, b) => (a.title || '').localeCompare(b.title || ''));
-    sortedPeople = (people || []).slice().sort((a, b) => (a.T || '').localeCompare(b.T || ''));
-    sortedArticles = (articles || []).slice().sort((a, b) => (a.title || '').localeCompare(b.title || ''));
-    sortedSections = (sections || []).slice().sort((a, b) => (a.T || '').localeCompare(b.T || ''));
-    sortedTopics = (topics || []).slice().sort((a, b) => (a.T || '').localeCompare(b.T || ''));
+    sortedTopics = topics.slice().sort((a, b) => a.T.localeCompare(b.T));
+    sortedPeople = people.slice().sort((a, b) => a.T.localeCompare(b.T));
+    sortedArticles = articles.slice().sort((a, b) => a.title.localeCompare(b.title));
+    sortedSections = sections.slice().sort((a, b) => a.T.localeCompare(b.T));
 } catch (e) {
     console.error('Error initializing sorted arrays:', e);
 }
 
+// Category mapping for easy access
 const categories = {
-    just: sortedLessons,
-    wise: sortedPeople,
-    love: [...sortedTopics, ...sortedArticles, ...sortedSections].sort((a, b) => (a.T || a.title || '').localeCompare(b.T || b.title || ''))
+    'topics': sortedTopics,
+    'people': sortedPeople,
+    'articles': sortedArticles,
+    'sections': sortedSections
 };
 
+// Debounce timeout for search input
 let debounceTimeout;
 
-function getNextFriday() {
-    const today = new Date();
-    const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
-    const hours = today.getHours();
-    const minutes = today.getMinutes();
-    const isPastSaturday9AM = dayOfWeek === 6 && (hours > 9 || (hours === 9 && minutes >= 0));
-    const daysUntilFriday = isPastSaturday9AM ? (5 + 7 - dayOfWeek) % 7 + 7 : (5 - dayOfWeek + 7) % 7;
-    const nextFriday = new Date(today);
-    nextFriday.setDate(today.getDate() + daysUntilFriday);
-    return nextFriday.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+// Hamburger Menu Functions
+function toggleMenu(menuId) {
+    const menu = document.getElementById(menuId);
+    const hamburger = menuId === 'nav-menu-left' ? document.querySelector('.hamburger-left') : document.querySelector('.hamburger-right');
+    if (menu && hamburger) {
+        const isActive = menu.classList.contains('active');
+        menu.classList.toggle('active', !isActive);
+        hamburger.classList.toggle('active', !isActive);
+        hamburger.setAttribute('aria-expanded', !isActive);
+    }
 }
 
-function displayFamilyWorship() {
-    const dateElement = document.getElementById('family-worship-date');
-    const contentElement = document.getElementById('family-worship-content');
-    const datesElement = document.getElementById('family-worship-dates');
-    const expandButton = document.getElementById('family-expand-button');
-    if (!dateElement || !contentElement || !datesElement || !expandButton) {
-        console.error('Family worship elements not found:', { dateElement, contentElement, datesElement, expandButton });
-        return;
-    }
-
-    // Initialize DOM state
-    datesElement.style.display = 'none';
-    contentElement.style.display = 'block';
-    expandButton.textContent = 'MORE';
-    expandButton.style.pointerEvents = 'auto'; // Ensure button is clickable
-    expandButton.style.cursor = 'pointer'; // Visual feedback for clickability
-    expandButton.style.zIndex = '1000'; // Ensure button is above other elements
-    expandButton.style.touchAction = 'manipulation'; // Optimize for touch
-
-    const nextFriday = getNextFriday();
-    dateElement.textContent = nextFriday;
-
-    const familyItem = family.find(item => item.D === nextFriday);
-    contentElement.innerHTML = '';
-
-    if (!familyItem) {
-        contentElement.innerHTML = '<p>No content available for this week.</p>';
-        return;
-    }
-
-    const topics = [
-        { T: familyItem.T, R: familyItem.R },
-        familyItem.T1 && familyItem.R1 ? { T: familyItem.T1, R: familyItem.R1 } : null,
-        familyItem.T2 && familyItem.R2 ? { T: familyItem.T2, R: familyItem.R2 } : null,
-        familyItem.T3 && familyItem.R3 ? { T: familyItem.T3, R: familyItem.R3 } : null,
-        familyItem.T4 && familyItem.R4 ? { T: familyItem.T4, R: familyItem.R4 } : null
-    ].filter(topic => topic);
-
-    topics.forEach(topic => {
-        const topicCard = document.createElement('div');
-        topicCard.className = 'lesson lesson-card';
-        topicCard.style.position = 'relative';
-        topicCard.style.zIndex = '10'; // Ensure cards are below the button
-        topicCard.innerHTML = `
-            <div class="lesson-header">
-                <h3>${topic.T || 'Untitled'}</h3>
-            </div>
-            <div class="lesson-content" style="display: none;">
-                <div class="description-section">${topic.R || ''}</div>
-            </div>
-        `;
-        contentElement.appendChild(topicCard);
-
-        const header = topicCard.querySelector('.lesson-header');
-        const content = topicCard.querySelector('.lesson-content');
-        header.style.zIndex = '15'; // Ensure headers are clickable but below button
-        header.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent event bubbling to parent elements
-            const isExpanded = content.style.display === 'block';
-            content.style.display = isExpanded ? 'none' : 'block';
-            topicCard.dataset.expanded = !isExpanded;
-        });
+// Closes hamburger menus when clicking outside
+function closeMenusOnOutsideClick(event) {
+    const menus = document.querySelectorAll('.nav-menu-left, .nav-menu-right');
+    const hamburgers = document.querySelectorAll('.hamburger-left, .hamburger-right');
+    let clickInside = false;
+    hamburgers.forEach(hamburger => {
+        if (hamburger.contains(event.target)) clickInside = true;
     });
-}
-
-function displayAllFamilyDates() {
-    const datesElement = document.getElementById('family-worship-dates');
-    const expandButton = document.getElementById('family-expand-button');
-    const contentElement = document.getElementById('family-worship-content');
-    if (!datesElement || !expandButton || !contentElement) {
-        console.error('Family worship elements not found:', { datesElement, expandButton, contentElement });
-        return;
-    }
-
-    // Check if family array is available
-    if (!family || !Array.isArray(family) || family.length === 0) {
-        console.error('Family data is missing or invalid');
-        datesElement.innerHTML = '<p>No family worship dates available.</p>';
-        datesElement.style.display = 'block';
-        contentElement.style.display = 'none';
-        expandButton.textContent = 'LESS';
-        return;
-    }
-
-    // Toggle visibility
-    const isExpanded = datesElement.style.display === 'block';
-    if (isExpanded) {
-        datesElement.style.display = 'none';
-        contentElement.style.display = 'block';
-        expandButton.textContent = 'MORE';
-        displayFamilyWorship(); // Refresh current week's content
-        return;
-    }
-
-    // Show all dates
-    datesElement.innerHTML = '';
-    family.forEach(item => {
-        if (!item.D) {
-            console.warn('Skipping item with missing date:', item);
-            return;
-        }
-
-        const dateCard = document.createElement('div');
-        dateCard.className = 'lesson lesson-card';
-        dateCard.style.position = 'relative';
-        dateCard.style.zIndex = '10'; // Ensure cards are below the button
-        const topics = [
-            { T: item.T, R: item.R },
-            item.T1 && item.R1 ? { T: item.T1, R: item.R1 } : null,
-            item.T2 && item.R2 ? { T: item.T2, R: item.R2 } : null,
-            item.T3 && item.R3 ? { T: item.T3, R: item.R3 } : null,
-            item.T4 && item.R4 ? { T: item.T4, R: item.R4 } : null
-        ].filter(topic => topic && topic.T && topic.R);
-
-        dateCard.innerHTML = `
-            <div class="lesson-header">
-                <h3>${item.D}</h3>
-            </div>
-            <div class="lesson-content" style="display: none;">
-                ${topics.length > 0 ? topics.map(topic => `
-                    <div class="sub-lesson">
-                        <h4>${topic.T}</h4>
-                        <p>${topic.R}</p>
-                    </div>
-                `).join('') : '<p>No topics available for this date.</p>'}
-            </div>
-        `;
-        datesElement.appendChild(dateCard);
-
-        const header = dateCard.querySelector('.lesson-header');
-        const content = dateCard.querySelector('.lesson-content');
-        header.style.zIndex = '15'; // Ensure headers are clickable but below button
-        header.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent event bubbling to parent elements
-            const isCardExpanded = content.style.display === 'block';
-            content.style.display = isCardExpanded ? 'none' : 'block';
-            dateCard.dataset.expanded = !isCardExpanded;
-        });
-    });
-
-    datesElement.style.display = 'block';
-    contentElement.style.display = 'none';
-    expandButton.textContent = 'LESS';
-}
-
-function highlightText(text, searchTerm) {
-    if (!searchTerm || !text) return text || '';
-    const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-    return text.replace(regex, '<span class="highlight">$1</span>');
-}
-
-function populateList(category, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) {
-        console.error(`Container with ID ${containerId} not found`);
-        return;
-    }
-
-    container.innerHTML = '';
-    if (category === 'just') {
-        const section = document.createElement('div');
-        section.className = 'section';
-        container.appendChild(section);
-
-        sortedLessons.forEach((lesson, index) => {
-            const lessonNum = index + 1;
-            const lessonCard = document.createElement('div');
-            lessonCard.className = 'lesson lesson-card';
-            lessonCard.id = `lesson-${lessonNum}`;
-            lessonCard.style.position = 'relative';
-            lessonCard.style.zIndex = '10';
-            lessonCard.innerHTML = `
-                <div class="lesson-header">
-                    <div class="lesson-number">${lessonNum}</div>
-                    <h3>${lesson.title || 'Untitled'}</h3>
-                </div>
-                <div class="lesson-content" style="display: none;">
-                    <div class="scripture-section"><ul>${(lesson.scriptures || []).map(s => `<li>${s}</li>`).join('')}</ul></div>
-                    <div class="description-section">${lesson.description || ''}</div>
-                    <p><strong>Question:</strong> ${lesson.question || ''}</p>
-                    <textarea placeholder="Write your answer here..."></textarea>
-                </div>
-            `;
-            section.appendChild(lessonCard);
-
-            const header = lessonCard.querySelector('.lesson-header');
-            const content = lessonCard.querySelector('.lesson-content');
-            const textarea = lessonCard.querySelector('textarea');
-            header.style.zIndex = '15';
-            const savedAnswer = localStorage.getItem(`lesson-${lessonNum}`);
-            if (savedAnswer) {
-                textarea.value = savedAnswer;
-                if (savedAnswer.trim()) lessonCard.dataset.clicked = true;
+    menus.forEach(menu => {
+        if (!clickInside && !menu.contains(event.target)) {
+            menu.classList.remove('active');
+            const hamburger = menu.id === 'nav-menu-left' ? document.querySelector('.hamburger-left') : document.querySelector('.hamburger-right');
+            if (hamburger) {
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             }
+        }
+    });
+}
 
-            header.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isExpanded = content.style.display === 'block';
-                content.style.display = isExpanded ? 'none' : 'block';
-                lessonCard.dataset.expanded = !isExpanded;
-            });
+// Navigation Functions
+function goToHome() {
+    window.location.href = 'index.html';
+}
 
-            textarea.addEventListener('input', () => {
-                localStorage.setItem(`lesson-${lessonNum}`, textarea.value);
-                if (!lessonCard.dataset.clicked && textarea.value.trim()) {
-                    lessonCard.dataset.clicked = true;
-                    updateProgress();
-                } else if (lessonCard.dataset.clicked && !textarea.value.trim()) {
-                    delete lessonCard.dataset.clicked;
-                    updateProgress();
+// Populate article list
+function populateArticleList() {
+    const container = document.getElementById('articles');
+    if (!container) return;
+    container.innerHTML = '';
+    sortedArticles.forEach((article, index) => {
+        const itemWrapper = document.createElement('div');
+        itemWrapper.className = 'item';
+
+        const itemButton = document.createElement('button');
+        itemButton.className = 'item-button';
+        itemButton.textContent = article.title;
+
+        const content = document.createElement('div');
+        content.className = 'content';
+        content.innerHTML = article.content || '';
+        content.style.display = 'none';
+
+        itemWrapper.appendChild(itemButton);
+        itemWrapper.appendChild(content);
+        container.appendChild(itemWrapper);
+
+        itemButton.addEventListener('click', () => {
+            console.log(`Clicked ${article.title}, isOpen: ${content.style.display === 'block'}`);
+            const isOpen = content.style.display === 'block';
+            document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
+            content.style.display = isOpen ? 'none' : 'block';
+        });
+    });
+}
+
+// Tab Management Functions
+function resetView() {
+    console.log('Resetting view');
+    const searchResults = document.getElementById('search-results');
+    if (searchResults) searchResults.remove();
+    const searchTerm = document.getElementById('search')?.value.toLowerCase() || '';
+
+    Object.keys(categories).forEach(category => {
+        const itemList = document.getElementById(category);
+        if (!itemList) return;
+        itemList.innerHTML = '';
+        categories[category].forEach(item => {
+            if (!item || (!item.T && !item.title)) return;
+            const itemWrapper = document.createElement('div');
+            itemWrapper.className = 'item';
+
+            const itemButton = document.createElement('button');
+            itemButton.className = 'item-button';
+            const title = item.T || item.title;
+            itemButton.innerHTML = searchTerm ? 
+                title.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
+                title;
+
+            const content = document.createElement('div');
+            content.className = 'content';
+            let contentHTML = '';
+            if (category === 'articles') {
+                contentHTML = item.content || '';
+            } else {
+                const scriptures = (item.S || []).map(scripture => 
+                    searchTerm ? 
+                        scripture.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
+                        scripture
+                );
+                const description = searchTerm && item.D ? 
+                    item.D.replace(new RegExp(`(${searchTerm})`, 'gi'), '<span class="highlight">$1</span>') : 
+                    item.D || '';
+                contentHTML = `
+                    <div class="scripture-section"><ul>${scriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
+                    <div class="description-section">${description}</div>
+                `;
+            }
+            content.innerHTML = contentHTML;
+            content.style.display = 'none';
+
+            itemWrapper.appendChild(itemButton);
+            itemWrapper.appendChild(content);
+            itemList.appendChild(itemWrapper);
+
+            itemButton.addEventListener('click', () => {
+                console.log(`Clicked ${title}, isOpen: ${content.style.display === 'block'}`);
+                const isOpen = content.style.display === 'block';
+                document.querySelectorAll('.content').forEach(c => {
+                    c.style.display = 'none';
+                });
+                if (!isOpen) {
+                    content.style.display = 'block';
                 }
             });
         });
+    });
 
-        updateProgress();
-    } else if (category === 'wise') {
-        if (!sortedPeople.length) {
-            console.warn('No data available for wise category');
-            container.innerHTML = '<p>No content available for Wise category.</p>';
-            return;
-        }
-        sortedPeople.forEach(item => {
-            const itemWrapper = document.createElement('div');
-            itemWrapper.className = 'lesson lesson-card';
-            itemWrapper.style.position = 'relative';
-            itemWrapper.style.zIndex = '10';
-            itemWrapper.innerHTML = `
-                <div class="lesson-header">
-                    <h3>${item.T || 'Untitled'}</h3>
-                </div>
-                <div class="lesson-content" style="display: none;">
-                    <div class="scripture-section"><ul>${(item.S || []).map(s => `<li>${s}</li>`).join('')}</ul></div>
-                    <div class="description-section">${item.D || ''}</div>
-                </div>
-            `;
-            container.appendChild(itemWrapper);
-
-            const header = itemWrapper.querySelector('.lesson-header');
-            const content = itemWrapper.querySelector('.lesson-content');
-            header.style.zIndex = '15';
-            header.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isExpanded = content.style.display === 'block';
-                content.style.display = isExpanded ? 'none' : 'block';
-                itemWrapper.dataset.expanded = !isExpanded;
-            });
-        });
-    } else if (category === 'love') {
-        if (!categories.love.length) {
-            console.warn('No data available for love category');
-            container.innerHTML = '<p>No content available for Love category.</p>';
-            return;
-        }
-        categories.love.forEach(item => {
-            const itemWrapper = document.createElement('div');
-            itemWrapper.className = 'lesson lesson-card';
-            itemWrapper.style.position = 'relative';
-            itemWrapper.style.zIndex = '10';
-            const title = item.T || item.title || 'Untitled';
-            const scriptures = item.S ? item.S.map(s => `<li>${s}</li>`).join('') : '';
-            const description = item.D || item.content || '';
-            itemWrapper.innerHTML = `
-                <div class="lesson-header">
-                    <h3>${title}</h3>
-                </div>
-                <div class="lesson-content" style="display: none;">
-                    ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
-                    <div class="description-section">${description}</div>
-                </div>
-            `;
-            container.appendChild(itemWrapper);
-
-            const header = itemWrapper.querySelector('.lesson-header');
-            const content = itemWrapper.querySelector('.lesson-content');
-            header.style.zIndex = '15';
-            header.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isExpanded = content.style.display === 'block';
-                content.style.display = isExpanded ? 'none' : 'block';
-                itemWrapper.dataset.expanded = !isExpanded;
-            });
-        });
-    }
-}
-
-function updateProgress() {
-    const completedLessons = document.querySelectorAll('.lesson[data-clicked]').length;
-    const progressElement = document.getElementById('progress');
-    if (progressElement) {
-        progressElement.textContent = `${completedLessons}/60`;
-    }
+    document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
 }
 
 function showTab(category) {
-    if (category === 'note') {
-        window.location.href = 'note.html';
+    console.log(`Switching to tab: ${category}`);
+    const searchTerm = document.getElementById('search')?.value.toLowerCase() || '';
+    const searchResults = document.getElementById('search-results');
+
+    if (searchTerm && searchResults) {
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
+        const tabButton = document.querySelector(`[onclick="showTab('${category}')"]`);
+        if (tabButton) tabButton.classList.add('active');
+        highlightMatchingTabs(searchTerm);
         return;
     }
 
-    document.querySelectorAll('.list').forEach(list => list.style.display = 'none');
-    const selectedList = document.getElementById(category);
-    if (selectedList) selectedList.style.display = 'block';
+    document.querySelectorAll('.content').forEach(c => {
+        c.style.display = 'none';
+    });
+    if (searchResults) searchResults.remove();
 
-    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-    const activeButton = document.querySelector(`[onclick="showTab('${category}')"]`);
-    if (activeButton) activeButton.classList.add('active');
-
-    if (category === 'just') {
-        populateList('just', 'just');
-        updateProgress();
-    } else if (category === 'wise') {
-        populateList('wise', 'wise');
-    } else if (category === 'love') {
-        populateList('love', 'love');
-    } else if (category === 'home') {
-        initializeTimelines();
-        displayFamilyWorship();
+    // Toggle logic for people, topics, articles, and sections
+    if (category === 'people' || category === 'topics' || category === 'articles' || category === 'sections') {
+        const selectedTab = document.getElementById(category);
+        const otherTabs = ['people', 'topics', 'articles', 'sections'].filter(c => c !== category).map(c => document.getElementById(c));
+        if (selectedTab) {
+            const isVisible = selectedTab.style.display === 'flex';
+            selectedTab.style.display = isVisible ? 'none' : 'flex';
+            if (!isVisible) {
+                otherTabs.forEach(tab => tab.style.display = 'none'); // Close other tabs
+            }
+        }
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelectorAll('.list').forEach(section => {
+        if (section.id !== category) {
+            section.style.display = 'none'; // Ensure only the selected tab is visible
+        }
+    });
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active', 'match-highlight'));
+    const tabButton = document.querySelector(`[onclick="showTab('${category}')"]`);
+    if (tabButton) tabButton.classList.add('active');
+
+    if (searchTerm) {
+        highlightMatchingTabs(searchTerm);
+    }
+}
+
+function highlightMatchingTabs(searchTerm) {
+    const categoriesWithMatches = new Set();
+    Object.keys(categories).forEach(cat => {
+        const items = categories[cat];
+        items.forEach(item => {
+            if (!item || (!item.T && !item.title)) return;
+            const title = item.T || item.title;
+            const titleMatch = title.toLowerCase().includes(searchTerm);
+            let contentMatch = false;
+            if (cat === 'articles') {
+                contentMatch = (item.content || '').toLowerCase().includes(searchTerm);
+            } else {
+                const scripturesText = (item.S || []).join(' ').toLowerCase();
+                const descriptionText = (item.D || '').toLowerCase();
+                contentMatch = scripturesText.includes(searchTerm) || descriptionText.includes(searchTerm);
+            }
+            if (titleMatch || contentMatch) {
+                categoriesWithMatches.add(cat);
+            }
+        });
+    });
+    categoriesWithMatches.forEach(cat => {
+        const tabButton = document.querySelector(`[onclick="showTab('${cat}')"]`);
+        if (tabButton) tabButton.classList.add('match-highlight');
+    });
+}
+
+// Search Functions
+function createSearchResults(input) {
+    const allList = document.createElement('div');
+    allList.className = 'list';
+    allList.id = 'search-results';
+    const main = document.querySelector('.main-content');
+    const existingResults = document.getElementById('search-results');
+    if (existingResults) existingResults.remove();
+    
+    const bearImage = main?.querySelector('.bear-image');
+    if (bearImage && main) {
+        main.insertBefore(allList, bearImage);
+    } else {
+        main?.appendChild(allList);
+    }
+    return allList;
+}
+
+function filterAndSortItems(input) {
+    const categoriesWithMatches = new Set();
+    const matchingItems = [];
+    Object.keys(categories).forEach(category => {
+        const items = categories[category];
+        items.forEach(item => {
+            if (!item || (!item.T && !item.title)) return;
+            const title = item.T || item.title;
+            const titleMatch = title.toLowerCase().includes(input);
+            let contentMatch = false;
+            let matchingScriptures = [];
+            let matchingDescription = '';
+            let matchingContent = '';
+
+            if (category === 'articles') {
+                contentMatch = (item.content || '').toLowerCase().includes(input);
+                if (!titleMatch && contentMatch) {
+                    const paragraphs = (item.content || '').split(/<\/p>\s*<p>/).filter(p => p.trim() !== '');
+                    matchingContent = paragraphs
+                        .filter(p => p.toLowerCase().includes(input))
+                        .map(p => p.replace(/^<p>|<\/p>$/g, '')) // Remove <p> tags
+                        .join('</p><p>');
+                }
+            } else {
+                const scripturesText = (item.S || []).join(' ').toLowerCase();
+                const descriptionText = (item.D || '').toLowerCase();
+                contentMatch = scripturesText.includes(input) || descriptionText.includes(input);
+                if (!titleMatch && contentMatch) {
+                    matchingScriptures = (item.S || []).filter(s => s.toLowerCase().includes(input));
+                    const paragraphs = (item.D || '').split('\n').filter(p => p.trim() !== '');
+                    matchingDescription = paragraphs.filter(p => p.toLowerCase().includes(input)).join('\n');
+                }
+            }
+
+            if (titleMatch || contentMatch) {
+                categoriesWithMatches.add(category);
+                matchingItems.push({ 
+                    item, 
+                    category, 
+                    titleMatch, 
+                    matchingScriptures, 
+                    matchingDescription, 
+                    matchingContent 
+                });
+            }
+        });
+        const itemList = document.getElementById(category);
+        if (itemList) {
+            itemList.querySelectorAll('.item').forEach(itemDiv => {
+                const itemTitle = itemDiv.querySelector('.item-button')?.textContent;
+                const item = categories[category].find(i => (i.T || i.title) === itemTitle);
+                if (!item) return;
+                const title = item.T || item.title;
+                const titleMatch = title.toLowerCase().includes(input);
+                let contentMatch = false;
+                if (category === 'articles') {
+                    contentMatch = (item.content || '').toLowerCase().includes(input);
+                } else {
+                    const scripturesText = (item.S || []).join(' ').toLowerCase();
+                    const descriptionText = (item.D || '').toLowerCase();
+                    contentMatch = scripturesText.includes(input) || descriptionText.includes(input);
+                }
+                itemDiv.style.display = (titleMatch || contentMatch) ? '' : 'none';
+            });
+        }
+    });
+
+    matchingItems.sort((a, b) => {
+        const aTitle = a.item.T || a.item.title;
+        const aText = a.item.content || `${a.item.T} ${(a.item.S || []).join(' ')} ${a.item.D || ''}`;
+        const bTitle = b.item.T || b.item.title;
+        const bText = b.item.content || `${b.item.T} ${(b.item.S || []).join(' ')} ${b.item.D || ''}`;
+        const aIsExact = aText.toLowerCase() === input || aTitle.toLowerCase() === input || 
+            (a.item.S || []).some(s => s.toLowerCase() === input) || (a.item.D || '').toLowerCase() === input || 
+            (a.item.content || '').toLowerCase() === input;
+        const bIsExact = bText.toLowerCase() === input || bTitle.toLowerCase() === input || 
+            (b.item.S || []).some(s => s.toLowerCase() === input) || (b.item.D || '').toLowerCase() === input || 
+            (b.item.content || '').toLowerCase() === input;
+        if (aIsExact && !bIsExact) return -1;
+        if (!aIsExact && bIsExact) return 1;
+        return aTitle.localeCompare(bTitle);
+    });
+
+    return { matchingItems, categoriesWithMatches };
+}
+
+function populateSearchResults(allList, matchingItems, input) {
+    if (!allList) return;
+    matchingItems.forEach(({ item, category, titleMatch, matchingScriptures, matchingDescription, matchingContent }) => {
+        if (!item || (!item.T && !item.title)) return;
+        const itemWrapper = document.createElement('div');
+        itemWrapper.className = 'item';
+
+        const itemButton = document.createElement('button');
+        itemButton.className = 'item-button';
+        const title = item.T || item.title;
+        itemButton.innerHTML = title.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
+
+        const content = document.createElement('div');
+        content.className = 'content';
+        let contentHTML = '';
+
+        if (category === 'articles') {
+            if (titleMatch) {
+                contentHTML = (item.content || '').replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
+            } else {
+                contentHTML = `<p>${matchingContent.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')}</p>`;
+            }
+        } else {
+            if (titleMatch) {
+                const highlightedScriptures = (item.S || []).map(scripture =>
+                    scripture.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
+                );
+                const highlightedDescription = (item.D || '').replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>');
+                contentHTML = `
+                    <div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>
+                    <div class="description-section">${highlightedDescription}</div>
+                `;
+            } else {
+                const highlightedScriptures = matchingScriptures.map(scripture =>
+                    scripture.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
+                );
+                const paragraphs = matchingDescription.split('\n').filter(p => p.trim() !== '');
+                const highlightedDescription = paragraphs.map(p =>
+                    p.replace(new RegExp(`(${input})`, 'gi'), '<span class="highlight">$1</span>')
+                ).map(p => `<p>${p}</p>`).join('');
+                contentHTML = `
+                    ${highlightedScriptures.length ? `<div class="scripture-section"><ul>${highlightedScriptures.map(s => `<li>${s}</li>`).join('')}</ul></div>` : ''}
+                    ${highlightedDescription ? `<div class="description-section">${highlightedDescription}</div>` : ''}
+                `;
+            }
+        }
+
+        content.innerHTML = contentHTML;
+        content.style.display = 'block';
+        itemWrapper.appendChild(itemButton);
+        itemWrapper.appendChild(content);
+        allList.appendChild(itemWrapper);
+
+        itemButton.addEventListener('click', () => {
+            console.log(`Clicked ${title}, isOpen: ${content.style.display === 'block'}`);
+            const isOpen = content.style.display === 'block';
+            document.querySelectorAll('.content').forEach(c => {
+                c.style.display = 'none';
+            });
+            if (!isOpen) {
+                content.style.display = 'block';
+            }
+        });
+    });
 }
 
 function searchItems() {
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
-        const searchTerm = document.getElementById('search').value.trim().toLowerCase();
-        const searchResults = document.getElementById('search-results');
-        searchResults.innerHTML = '';
-
-        if (!searchTerm) {
-            showTab('home');
+        const input = document.getElementById('search')?.value.toLowerCase() || '';
+        console.log(`Searching for: ${input}`);
+        if (!input) {
+            resetView();
             return;
         }
 
-        const matches = [];
-        ['just', 'wise', 'love'].forEach(category => {
-            categories[category].forEach(item => {
-                const title = (item.T || item.title || '').toLowerCase();
-                const scriptures = (item.S || []).join(' ').toLowerCase();
-                const description = (item.D || item.content || item.description || '').toLowerCase();
+        const allList = createSearchResults(input);
+        const { matchingItems, categoriesWithMatches } = filterAndSortItems(input);
+        populateSearchResults(allList, matchingItems, input);
 
-                if (title.includes(searchTerm)) {
-                    matches.push({ category, item, isTitleMatch: true });
-                } else if (scriptures.includes(searchTerm) || description.includes(searchTerm)) {
-                    matches.push({ category, item, isTitleMatch: false });
-                }
-            });
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('match-highlight'));
+        categoriesWithMatches.forEach(category => {
+            const tabButton = document.querySelector(`[onclick="showTab('${category}')"]`);
+            if (tabButton) tabButton.classList.add('match-highlight');
         });
 
-        matches.sort((a, b) => {
-            if (a.isTitleMatch && !b.isTitleMatch) return -1;
-            if (!a.isTitleMatch && b.isTitleMatch) return 1;
-            const titleA = (a.item.T || a.item.title || '').toLowerCase();
-            const titleB = (b.item.T || b.title || '').toLowerCase();
-            return titleA.localeCompare(titleB);
-        });
-
-        matches.forEach(({ category, item }) => {
-            const itemWrapper = document.createElement('div');
-            itemWrapper.className = 'lesson lesson-card';
-            itemWrapper.style.position = 'relative';
-            itemWrapper.style.zIndex = '10';
-            const title = item.T || item.title || 'Untitled';
-            const scriptures = item.S ? item.S.map(s => `<li>${highlightText(s, searchTerm)}</li>`).join('') : '';
-            const description = item.D || item.content || item.description || '';
-            itemWrapper.innerHTML = `
-                <div class="lesson-header">
-                    <h3>${highlightText(title, searchTerm)}</h3>
-                </div>
-                <div class="lesson-content" style="display: none;">
-                    ${scriptures ? `<div class="scripture-section"><ul>${scriptures}</ul></div>` : ''}
-                    <div class="description-section">${highlightText(description, searchTerm)}</div>
-                    ${category === 'just' && item.question ? `<p><strong>Question:</strong> ${highlightText(item.question, searchTerm)}</p><textarea placeholder="Write your answer here..."></textarea>` : ''}
-                </div>
-            `;
-            searchResults.appendChild(itemWrapper);
-
-            const header = itemWrapper.querySelector('.lesson-header');
-            const content = itemWrapper.querySelector('.lesson-content');
-            header.style.zIndex = '15';
-            header.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isExpanded = content.style.display === 'block';
-                content.style.display = isExpanded ? 'none' : 'block';
-                itemWrapper.dataset.expanded = !isExpanded;
-            });
-
-            if (category === 'just') {
-                const textarea = itemWrapper.querySelector('textarea');
-                if (textarea) {
-                    const lessonNum = sortedLessons.indexOf(item) + 1;
-                    const savedAnswer = localStorage.getItem(`lesson-${lessonNum}`);
-                    if (savedAnswer) {
-                        textarea.value = savedAnswer;
-                        if (savedAnswer.trim()) itemWrapper.dataset.clicked = true;
-                    }
-                    textarea.addEventListener('input', () => {
-                        localStorage.setItem(`lesson-${lessonNum}`, textarea.value);
-                        if (!itemWrapper.dataset.clicked && textarea.value.trim()) {
-                            itemWrapper.dataset.clicked = true;
-                            updateProgress();
-                        } else if (itemWrapper.dataset.clicked && !textarea.value.trim()) {
-                            delete itemWrapper.dataset.clicked;
-                            updateProgress();
-                        }
-                    });
-                }
-            }
-        });
-
-        document.querySelectorAll('.list').forEach(list => list.style.display = list.id === 'search-results' ? 'block' : 'none');
+        document.querySelectorAll('.list').forEach(section => section.style.display = 'none');
+        if (allList) allList.style.display = 'flex';
+        if (!matchingItems.length) resetView();
     }, 300);
 }
 
-function toggleTheme() {
-    const body = document.body;
-    const themeStylesheet = document.getElementById('theme-stylesheet');
-    const currentTheme = body.getAttribute('data-theme');
+// Event Listeners
+document.getElementById('search')?.addEventListener('input', searchItems);
+document.addEventListener('click', closeMenusOnOutsideClick);
+document.querySelector('.hamburger-left')?.addEventListener('click', () => toggleMenu('nav-menu-left'));
+document.querySelector('.hamburger-right')?.addEventListener('click', () => toggleMenu('nav-menu-right'));
 
-    if (currentTheme === 'light') {
-        themeStylesheet.setAttribute('href', 'dark.css');
-        body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        themeStylesheet.setAttribute('href', 'light.css');
-        body.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-    }
-}
-
-function initializeTimelines() {
-    const paradiseSection = document.getElementById('paradise-section');
-    const featuredSection = document.getElementById('featured-section');
-    const spotlightSection = document.getElementById('spotlight-section');
-
-    if (!paradiseSection || !featuredSection || !spotlightSection) {
-        console.error('One or more timeline sections not found');
-        return;
-    }
-
-    const paradiseTabs = paradiseSection.querySelectorAll('.paradise-tab');
-    const paradiseDots = paradiseSection.querySelectorAll('.timeline-dot');
-    const paradiseDescription = document.getElementById('paradise-description');
-    let currentParadiseTab = 'creation';
-    let currentParadiseIndex = 0;
-
-    const featuredDots = featuredSection.querySelectorAll('.timeline-dot');
-    const featuredDescription = document.getElementById('featured-description');
-    let currentFeaturedIndex = 0;
-
-    const spotlightTabs = spotlightSection.querySelectorAll('.spotlight-tab');
-    const spotlightDots = spotlightSection.querySelectorAll('.timeline-dot');
-    const spotlightDescription = document.getElementById('spotlight-description');
-    let currentSpotlightTab = 'inspired';
-    let currentSpotlightIndex = 0;
-
-    function updateParadiseTimeline() {
-        if (!window.paradiseEvents || !window.paradiseEvents[currentParadiseTab]) {
-            console.error(`Invalid or missing paradiseEvents for tab: ${currentParadiseTab}`, window.paradiseEvents);
-            paradiseDescription.innerHTML = `
-                <h3 class="timeline-event-title">No Content</h3>
-                <p>No content available for this selection.</p>
-            `;
-            paradiseDots.forEach(dot => dot.classList.remove('active'));
-            if (paradiseDots[0]) paradiseDots[0].classList.add('active');
-            return;
-        }
-        const events = window.paradiseEvents[currentParadiseTab];
-        if (!events[currentParadiseIndex]) {
-            console.warn(`No event at index ${currentParadiseIndex} for tab ${currentParadiseTab}`);
-            currentParadiseIndex = 0; // Reset to first event
-        }
-        paradiseDots.forEach(dot => dot.classList.remove('active'));
-        if (paradiseDots[currentParadiseIndex]) {
-            paradiseDots[currentParadiseIndex].classList.add('active');
-        }
-        const event = events[currentParadiseIndex] || { title: 'No Content', text: 'No content available.' };
-        paradiseDescription.style.opacity = '0';
-        setTimeout(() => {
-            paradiseDescription.innerHTML = `
-                <h3 class="timeline-event-title">${event.title || 'No Title'}</h3>
-                <p>${event.text || event.description || 'No description available.'}</p>
-            `;
-            paradiseDescription.style.opacity = '1';
-        }, 300);
-    }
-
-    function updateFeaturedTimeline() {
-        if (!window.featuredEvents || !window.featuredEvents.length) {
-            console.error('Invalid or missing featuredEvents', window.featuredEvents);
-            featuredDescription.innerHTML = `
-                <h3 class="timeline-event-title">No Content</h3>
-                <p>No content available for this selection.</p>
-            `;
-            featuredDots.forEach(dot => dot.classList.remove('active'));
-            if (featuredDots[0]) featuredDots[0].classList.add('active');
-            return;
-        }
-        const events = window.featuredEvents;
-        if (!events[currentFeaturedIndex]) {
-            console.warn(`No event at index ${currentFeaturedIndex} for featuredEvents`);
-            currentFeaturedIndex = 0; // Reset to first event
-        }
-        featuredDots.forEach(dot => dot.classList.remove('active'));
-        if (featuredDots[currentFeaturedIndex]) {
-            featuredDots[currentFeaturedIndex].classList.add('active');
-        }
-        const event = events[currentFeaturedIndex] || { title: 'No Content', text: 'No content available.' };
-        featuredDescription.style.opacity = '0';
-        setTimeout(() => {
-            featuredDescription.innerHTML = `
-                <h3 class="timeline-event-title">${event.title || 'No Title'}</h3>
-                <p>${event.text || event.description || 'No description available.'}</p>
-            `;
-            featuredDescription.style.opacity = '1';
-        }, 300);
-    }
-
-    function updateSpotlightTimeline() {
-        if (!window.spotlightEvents || !window.spotlightEvents[currentSpotlightTab]) {
-            console.error(`Invalid or missing spotlightEvents for tab: ${currentSpotlightTab}`, window.spotlightEvents);
-            spotlightDescription.innerHTML = `
-                <h3 class="timeline-event-title">No Content</h3>
-                <p>No content available for this selection.</p>
-            `;
-            spotlightDots.forEach(dot => dot.classList.remove('active'));
-            if (spotlightDots[0]) spotlightDots[0].classList.add('active');
-            return;
-        }
-        const events = window.spotlightEvents[currentSpotlightTab];
-        if (!events[currentSpotlightIndex]) {
-            console.warn(`No event at index ${currentSpotlightIndex} for tab ${currentSpotlightTab}`);
-            currentSpotlightIndex = 0; // Reset to first event
-        }
-        spotlightDots.forEach(dot => dot.classList.remove('active'));
-        if (spotlightDots[currentSpotlightIndex]) {
-            spotlightDots[currentSpotlightIndex].classList.add('active');
-        }
-        const event = events[currentSpotlightIndex] || { title: 'No Content', text: 'No content available.' };
-        spotlightDescription.style.opacity = '0';
-        setTimeout(() => {
-            spotlightDescription.innerHTML = `
-                <h3 class="timeline-event-title">${event.title || 'No Title'}</h3>
-                <p>${event.text || event.description || 'No description available.'}</p>
-            `;
-            spotlightDescription.style.opacity = '1';
-        }, 300);
-    }
-
-    function toggleGlow(section) {
-        [paradiseSection, featuredSection, spotlightSection].forEach(s => s.removeAttribute('data-glow'));
-        section.setAttribute('data-glow', 'true');
-        setTimeout(() => section.removeAttribute('data-glow'), 300);
-    }
-
-    paradiseTabs.forEach(tab => {
-        tab.style.pointerEvents = 'auto';
-        tab.style.zIndex = '20';
-        tab.addEventListener('click', (e) => {
-            e.stopPropagation();
-            paradiseTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            currentParadiseTab = tab.getAttribute('data-tab');
-            currentParadiseIndex = 0;
-            updateParadiseTimeline();
-            toggleGlow(paradiseSection);
-        });
-    });
-
-    paradiseDots.forEach(dot => {
-        dot.style.pointerEvents = 'auto';
-        dot.style.zIndex = '20';
-        dot.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const index = parseInt(dot.getAttribute('data-index'));
-            const events = window.paradiseEvents && window.paradiseEvents[currentParadiseTab] ? window.paradiseEvents[currentParadiseTab] : [];
-            if (index < events.length) {
-                currentParadiseIndex = index;
-                updateParadiseTimeline();
-            }
-        });
-    });
-
-    featuredDots.forEach(dot => {
-        dot.style.pointerEvents = 'auto';
-        dot.style.zIndex = '20';
-        dot.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const index = parseInt(dot.getAttribute('data-index'));
-            const events = window.featuredEvents || [];
-            if (index < events.length) {
-                currentFeaturedIndex = index;
-                updateFeaturedTimeline();
-            }
-        });
-    });
-
-    spotlightTabs.forEach(tab => {
-        tab.style.pointerEvents = 'auto';
-        tab.style.zIndex = '20';
-        tab.addEventListener('click', (e) => {
-            e.stopPropagation();
-            spotlightTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            currentSpotlightTab = tab.getAttribute('data-tab');
-            currentSpotlightIndex = 0;
-            updateSpotlightTimeline();
-            toggleGlow(spotlightSection);
-        });
-    });
-
-    spotlightDots.forEach(dot => {
-        dot.style.pointerEvents = 'auto';
-        dot.style.zIndex = '20';
-        dot.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const index = parseInt(dot.getAttribute('data-index'));
-            const events = window.spotlightEvents && window.spotlightEvents[currentSpotlightTab] ? window.spotlightEvents[currentSpotlightTab] : [];
-            if (index < events.length) {
-                currentSpotlightIndex = index;
-                updateSpotlightTimeline();
-            }
-        });
-    });
-
-    // Initialize timelines with first tabs active
-    if (paradiseTabs[0]) paradiseTabs[0].classList.add('active');
-    if (spotlightTabs[0]) spotlightTabs[0].classList.add('active');
-    updateParadiseTimeline();
-    updateFeaturedTimeline();
-    updateSpotlightTimeline();
-
-    // Ensure sections are interactive
-    paradiseSection.style.pointerEvents = 'auto';
-    paradiseSection.style.zIndex = '5';
-    featuredSection.style.pointerEvents = 'auto';
-    featuredSection.style.zIndex = '5';
-    spotlightSection.style.pointerEvents = 'auto';
-    spotlightSection.style.zIndex = '5';
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    if (sortedLessons.length) {
-        populateList('just', 'just');
-    }
-    showTab('home');
-    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-    document.getElementById('copyright').addEventListener('click', () => {
-        const year = new Date().getFullYear();
-        const copyright = document.getElementById('copyright');
-        if (copyright.textContent.includes('All rights reserved')) {
-            copyright.textContent = `© ${year} Just Wise Love`;
-        } else {
-            copyright.textContent = `© ${year} Just Wise Love. All rights reserved.`;
-        }
-    });
-    document.querySelectorAll('.intro-link').forEach(link => {
-        link.addEventListener('click', () => showTab(link.textContent.toLowerCase()));
-        link.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') showTab(link.textContent.toLowerCase());
-        });
-    });
-    function initializeExpandButton() {
-        const expandButton = document.getElementById('family-expand-button');
-        if (expandButton) {
-            // Clear any existing listeners by cloning
-            expandButton.replaceWith(expandButton.cloneNode(true));
-            const newExpandButton = document.getElementById('family-expand-button');
-            newExpandButton.style.pointerEvents = 'auto';
-            newExpandButton.style.cursor = 'pointer';
-            newExpandButton.style.zIndex = '1000';
-            newExpandButton.style.touchAction = 'manipulation';
-            newExpandButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                console.log('Expand button clicked');
-                displayAllFamilyDates();
-            });
-            newExpandButton.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                console.log('Expand button touched');
-                displayAllFamilyDates();
-            });
-            console.log('Expand button initialized');
-        } else {
-            console.error('Expand button not found in DOM');
-            setTimeout(initializeExpandButton, 100);
-        }
-    }
-    // Delay to ensure DOM is fully loaded
-    setTimeout(initializeExpandButton, 0);
-    displayFamilyWorship();
-});
-
-// Make theme stay when the page is refreshed
-window.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark if no theme is saved
-    const themeStylesheet = document.getElementById('theme-stylesheet');
-    document.body.setAttribute('data-theme', savedTheme);
-    themeStylesheet.setAttribute('href', `${savedTheme}.css`);
-});
+// Initialize the view on page load
+window.onload = () => {
+    resetView();
+    populateArticleList();
+};
