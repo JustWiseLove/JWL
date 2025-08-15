@@ -1,1 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+    color: #333;
+    line-height: 1.35;
+    padding: 5px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.container {
+    width: 816px;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform-origin: top left;
+}
+
+.header {
+    background: #fff; /* Changed to solid color for PDF compatibility */
+    border-bottom: 2px solid #00cc00; /* Mimic gradient effect with border */
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.header h1 {
+    font-size: 26px;
+    margin-bottom: 2px;
+    color: #000;
+}
+
+.header h1 a {
+    color: #000;
+    text-decoration: none;
+}
+
+.header h1 a:hover {
+    text-decoration: underline;
+}
+
+.header h2 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+}
+
+.contact-info {
+    text-align: center;
+    padding: 6px 6px 20px;
+    background: #fff;
+    font-size: 12px;
+    color: #666;
+    width: 100%;
+}
+
+.contact-info a {
+    color: #00cc00;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: stretch;
+    width: 100%;
+}
+
+.sidebar {
+    width: 35%;
+    min-width: 200px;
+    background: #fff;
+    padding: 12px;
+    flex-grow: 1;
+}
+
+.sidebar h3 {
+    color: #00cc00;
+    font-size: 16px;
+    margin: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.skills-list, .achievements-list, .additional-info-list {
+    list-style-type: disc;
+    padding-left: 12px;
+    margin-top: 6px;
+}
+
+.skills-list li, .achievements-list li, .additional-info-list li {
+    font-size: 12px;
+    margin-bottom: 2px;
+    color: #333;
+}
+
+.content {
+    width: 65%;
+    padding: 12px;
+    flex-grow: 1;
+}
+
+.section {
+    margin-bottom: 10px;
+}
+
+.section h3 {
+    color: #00cc00;
+    font-size: 16px;
+    margin: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section p, .section ul {
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.section ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.section ul li {
+    margin-bottom: 2px;
+    position: relative;
+}
+
+.section ul li:before {
+    content: "•";
+    color: #00cc00;
+    position: absolute;
+    left: -8px;
+}
+
+.avatar {
+    display: block;
+    margin: 8px auto;
+    width: 70px;
+    height: 70px;
+    background: url('https://via.placeholder.com/70') no-repeat center;
+    background-size: cover;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+
+.footer {
+    text-align: center;
+    padding: 8px;
+    background: #fff;
+    font-size: 12px;
+}
+
+@media print {
+    .footer {
+        display: none;
+    }
+
+    @page {
+        size: letter portrait;
+        margin: 0.5in;
+    }
+
+    /* Ensure container fits page */
+    .container {
+        width: 100%;
+        min-height: auto;
+    }
+
+    /* Remove background gradient for PDF compatibility */
+    .header {
+        background: #fff;
+        border-bottom: 2px solid #00cc00;
+    }
+
+    /* Force page break before Experience section */
+    .section:nth-child(3) {
+        page-break-before: always;
+    }
+
+    /* Add header for second page */
+    .content::before {
+        content: "Glenn Hensley III - Page 2";
+        display: none;
+        font-size: 12px;
+        color: #333;
+        text-align: right;
+        margin-bottom: 10px;
+        position: running(header);
+    }
+
+    @page :not(:first) {
+        @top-right {
+            content: element(header);
+        }
+    }
+
+    /* Prevent widows and orphans */
+    .section p, .section ul {
+        page-break-inside: avoid;
+    }
+
+    .section h3 {
+        page-break-after: avoid;
+    }
+
+    .section ul li {
+        page-break-inside: avoid;
+    }
+
+    /* Ensure text and links are black for PDF clarity */
+    .contact-info a, .header h1 a {
+        color: #000;
+        text-decoration: none;
+    }
+}
