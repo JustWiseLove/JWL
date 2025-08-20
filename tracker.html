@@ -58,6 +58,28 @@
     .orange { background: #FF9800; }
     .tsp { background: #795548; }
     .half { width: 15px; }
+
+    /* Meal log styles */
+    #meals {
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: left;
+    }
+    #meals label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+    #meals textarea {
+      width: 100%;
+      min-height: 60px;
+      resize: vertical;
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
@@ -77,16 +99,34 @@
 
   <div id="tracker"></div>
 
+  <!-- Meal logging section -->
+  <div id="meals">
+    <label for="breakfast">Breakfast</label>
+    <textarea id="breakfast"></textarea>
+
+    <label for="lunch">Lunch</label>
+    <textarea id="lunch"></textarea>
+
+    <label for="snack">Snack</label>
+    <textarea id="snack"></textarea>
+
+    <label for="dinner">Dinner</label>
+    <textarea id="dinner"></textarea>
+
+    <label for="water">Water (oz)</label>
+    <textarea id="water"></textarea>
+  </div>
+
   <script>
     const data = {
       1: { // Month 1
         "Week1": {days:[1,2,3,4,5,6,7], plan:{green:7,purple:1,redA:3,redB:1,yellow:1.5,blue:2,orange:1,tsp:6}},
-        "Week2_3_A": {days:[8,9,11,12,14,15,17,18,20,21], plan:{green:7,purple:0,redA:6,redB:0,yellow:1,blue:1,orange:0,tsp:6}},
+        "Week2_3_A": {days:[8,9,11,12,14,15,17,18,20,21], plan:{green:7,purple:0,redA:6,redB:0,yellow:1,blue:1,orange:1,tsp:6}}, // fixed orange=1
         "Week2_3_B": {days:[10,13,16,19], plan:{green:5,purple:2,redA:4,redB:1,yellow:1,blue:2,orange:2,tsp:7}},
         "Days22_23": {days:[22,23], plan:{green:5,purple:2,redA:4,redB:1,yellow:1,blue:2,orange:2,tsp:7}},
         "Days24_28": {days:[24,25,26,27,28], plan:{green:7,purple:0,redA:6,redB:0,yellow:1,blue:1,orange:1,tsp:6}}
       },
-      2: { // Month 2 (all weeks same)
+      2: { // Month 2
         "All": {days:[...Array(28).keys()].map(i=>i+1), plan:{green:5,purple:2,redA:4,redB:1,yellow:1,blue:2,orange:2,tsp:7}}
       },
       3: { // Month 3
@@ -145,7 +185,7 @@
           if (isChecked(phase,day,key,i)) sq.classList.add("checked");
           squaresDiv.appendChild(sq);
         }
-        if (amt % 1 !== 0) { // handle half
+        if (amt % 1 !== 0) {
           let sq = document.createElement("div");
           sq.className = "square half " + key;
           sq.dataset.key = key;
@@ -157,6 +197,7 @@
         div.appendChild(squaresDiv);
         trackerDiv.appendChild(div);
       }
+      loadMeals(phase, day);
     }
 
     function toggleSquare(e) {
@@ -177,6 +218,28 @@
     function isChecked(phase,day,key,idx) {
       let storeKey = `p${phase}d${day}${key}${idx}`;
       return localStorage.getItem(storeKey)==="1";
+    }
+
+    // ===== Meals section =====
+    const mealFields = ["breakfast","lunch","snack","dinner","water"];
+    mealFields.forEach(id=>{
+      document.getElementById(id).addEventListener("input", saveMeals);
+    });
+
+    function saveMeals() {
+      let phase = phaseSel.value;
+      let day = daySel.value;
+      mealFields.forEach(id=>{
+        let val = document.getElementById(id).value;
+        localStorage.setItem(`p${phase}d${day}${id}`, val);
+      });
+    }
+
+    function loadMeals(phase,day) {
+      mealFields.forEach(id=>{
+        let val = localStorage.getItem(`p${phase}d${day}${id}`) || "";
+        document.getElementById(id).value = val;
+      });
     }
 
     phaseSel.addEventListener("change", loadDays);
