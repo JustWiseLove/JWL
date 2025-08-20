@@ -3,41 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <title>Belle Vitale Container Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: #f9fafb;
       margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
-    h1 {
+      padding: 0;
       color: #333;
     }
+
+    header {
+      background: #008000;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
     select {
-      padding: 6px;
-      margin: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
       font-size: 16px;
+      background: white;
+      color: #333;
+      appearance: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+
+    #tracker {
+      padding: 15px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
     .container {
-      margin: 15px auto;
-      max-width: 600px;
-      text-align: left;
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
+
     .label {
       font-weight: bold;
-      margin: 5px 0;
+      margin-bottom: 8px;
+      font-size: 15px;
     }
+
     .squares {
       display: flex;
       flex-wrap: wrap;
-      margin-bottom: 10px;
+      gap: 5px;
     }
+
     .square {
-      width: 30px;
-      height: 30px;
-      margin: 3px;
-      border-radius: 4px;
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -45,10 +85,14 @@
       color: white;
       cursor: pointer;
       user-select: none;
+      transition: 0.2s;
     }
+    .square:hover { opacity: 0.85; }
     .square.checked {
       background: #444 !important;
     }
+
+    /* Colors */
     .green { background: #4CAF50; }
     .purple { background: #9C27B0; }
     .redA { background: #f44336; }
@@ -56,46 +100,65 @@
     .yellow { background: #FFEB3B; color:#000; }
     .blue { background: #2196F3; }
     .orange { background: #FF9800; }
-    .tsp { background: #795548; }
-    .half { width: 15px; }
+    .tsp { background: #d6d6d6; color:#333; }
+
+    .half { width: 20px; }
 
     /* Meal log styles */
     #meals {
-      max-width: 600px;
+      max-width: 700px;
       margin: 20px auto;
-      text-align: left;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
+
     #meals label {
       font-weight: bold;
       display: block;
-      margin: 10px 0 5px;
+      margin: 15px 0 5px;
     }
+
     #meals textarea {
       width: 100%;
-      min-height: 60px;
+      min-height: 70px;
       resize: vertical;
-      padding: 8px;
+      padding: 10px;
       font-size: 14px;
-      border-radius: 4px;
+      border-radius: 6px;
       border: 1px solid #ccc;
       box-sizing: border-box;
+      transition: border 0.2s;
+    }
+    #meals textarea:focus {
+      border-color: #008000;
+      outline: none;
+    }
+
+    @media (max-width: 600px) {
+      .square { width: 32px; height: 32px; font-size: 16px; }
+      h1 { font-size: 20px; }
+      select { font-size: 14px; padding: 8px; }
     }
   </style>
 </head>
 <body>
-  <h1>Belle Vitale Container Tracker</h1>
-
-  <div>
-    <label for="phase">Phase/Month:</label>
-    <select id="phase">
-      <option value="1">Month 1</option>
-      <option value="2">Month 2</option>
-      <option value="3">Month 3</option>
-    </select>
-
-    <label for="day">Day:</label>
-    <select id="day"></select>
-  </div>
+  <header>
+    <h1>Belle Vitale Container Tracker</h1>
+    <div class="controls">
+      <label>
+        <select id="phase">
+          <option value="1">Month 1</option>
+          <option value="2">Month 2</option>
+          <option value="3">Month 3</option>
+        </select>
+      </label>
+      <label>
+        <select id="day"></select>
+      </label>
+    </div>
+  </header>
 
   <div id="tracker"></div>
 
@@ -121,15 +184,15 @@
     const data = {
       1: { // Month 1
         "Week1": {days:[1,2,3,4,5,6,7], plan:{green:7,purple:1,redA:3,redB:1,yellow:1.5,blue:2,orange:1,tsp:6}},
-        "Week2_3_A": {days:[8,9,11,12,14,15,17,18,20,21], plan:{green:7,purple:0,redA:6,redB:0,yellow:1,blue:1,orange:1,tsp:6}}, // fixed orange=1
+        "Week2_3_A": {days:[8,9,11,12,14,15,17,18,20,21], plan:{green:7,purple:0,redA:6,redB:0,yellow:1,blue:1,orange:1,tsp:6}}, 
         "Week2_3_B": {days:[10,13,16,19], plan:{green:5,purple:2,redA:4,redB:1,yellow:1,blue:2,orange:2,tsp:7}},
         "Days22_23": {days:[22,23], plan:{green:5,purple:2,redA:4,redB:1,yellow:1,blue:2,orange:2,tsp:7}},
         "Days24_28": {days:[24,25,26,27,28], plan:{green:7,purple:0,redA:6,redB:0,yellow:1,blue:1,orange:1,tsp:6}}
       },
-      2: { // Month 2
+      2: { 
         "All": {days:[...Array(28).keys()].map(i=>i+1), plan:{green:5,purple:2,redA:4,redB:1,yellow:1,blue:2,orange:2,tsp:7}}
       },
-      3: { // Month 3
+      3: { 
         "All": {days:[...Array(28).keys()].map(i=>i+1), plan:{green:7,purple:1,redA:3,redB:1,yellow:1.5,blue:2,orange:1,tsp:6}}
       }
     };
