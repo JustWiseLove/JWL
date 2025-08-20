@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Belle Vitale Container Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    select {
+      padding: 6px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    .container {
+      margin: 15px auto;
+      max-width: 600px;
+      text-align: left;
+    }
+    .label {
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    .squares {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .square {
+      width: 30px;
+      height: 30px;
+      margin: 3px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+    .square.checked {
+      background: #444 !important;
+    }
+    .green { background: #4CAF50; }
+    .purple { background: #9C27B0; }
+    .redA { background: #f44336; }
+    .redB { background: #b71c1c; }
+    .yellow { background: #FFEB3B; color:#000; }
+    .blue { background: #2196F3; }
+    .orange { background: #FF9800; }
+    .tsp { background: #795548; }
+    .half { width: 15px; }
+  </style>
+</head>
+<body>
+  <h1>Belle Vitale Container Tracker</h1>
+
+  <div>
+    <label for="phase">Phase/Month:</label>
+    <select id="phase">
+      <option value="1">Month 1</option>
+      <option value="2">Month 2</option>
+      <option value="3">Month 3</option>
+    </select>
+
+    <label for="day">Day:</label>
+    <select id="day"></select>
+  </div>
+
+  <div id="tracker"></div>
+
+  <script>
+    const data = {
+      1: { // Month 1
+        "Week1": {days:[1,2,3,4,5,6,7], plan:{green:7,purple:1,redA:3,redB:1,yellow:1.5,blue:2,orange:1,tsp:6}},
+        "Week2_3_A": {days:[8,9,11,12,14,15,17,18,20,21], plan:{green:7,purple:0,redA:6,redB:0,yellow:1,blue:1,orange:0,tsp:6}},
+        "Week2_3_B": {days:[10,13,16,19], plan:{green:5,purple:2,redA:4,redB:1,yellow:1,blue:2,orange:2,tsp:7}},
+        "Days22_23": {days:[22,23], plan:{green:5,purple:2,redA:4,redB:1,yellow:1,blue:2,orange:2,tsp:7}},
+        "Days24_28": {days:[24,25,26,27,28], plan:{green:7,purple:0,redA:6,redB:0,yellow:1,blue:1,orange:1,tsp:6}}
+      },
+      2: { // Month 2 (all weeks same)
+        "All": {days:[...Array(28).keys()].map(i=>i+1), plan:{green:5,purple:2,redA:4,redB:1,yellow:1,blue:2,orange:2,tsp:7}}
+      },
+      3: { // Month 3
+        "All": {days:[...Array(28).keys()].map(i=>i+1), plan:{green:7,purple:1,redA:3,redB:1,yellow:1.5,blue:2,orange:1,tsp:6}}
+      }
+    };
+
+    const colors = {
+      green:"Green", purple:"Purple", redA:"Red A", redB:"Red B",
+      yellow:"Yellow", blue:"Blue", orange:"Orange", tsp:"Spoons"
+    };
+
+    const trackerDiv = document.getElementById("tracker");
+    const phaseSel = document.getElementById("phase");
+    const daySel = document.getElementById("day");
+
+    function loadDays() {
+      daySel.innerHTML = "";
+      let phase = phaseSel.value;
+      let allDays = [];
+      Object.values(data[phase]).forEach(group=>allDays.push(...group.days));
+      allDays = [...new Set(allDays)].sort((a,b)=>a-b);
+      allDays.forEach(d=>{
+        let opt = document.createElement("option");
+        opt.value = d;
+        opt.textContent = "Day " + d;
+        daySel.appendChild(opt);
+      });
+      render();
+    }
+
+    function render() {
+      trackerDiv.innerHTML = "";
+      let phase = phaseSel.value;
+      let day = parseInt(daySel.value);
+      let plan;
+      for (let group of Object.values(data[phase])) {
+        if (group.days.includes(day)) { plan = group.plan; break; }
+      }
+      for (let key in plan) {
+        let amt = plan[key];
+        let div = document.createElement("div");
+        div.className = "container";
+        let label = document.createElement("div");
+        label.className = "label";
+        label.textContent = colors[key] + " (" + amt + "):";
+        div.appendChild(label);
+        let squaresDiv = document.createElement("div");
+        squaresDiv.className = "squares";
+        for (let i=0;i<Math.floor(amt);i++) {
+          let sq = document.createElement("div");
+          sq.className = "square " + key;
+          sq.dataset.key = key;
+          sq.dataset.idx = i;
+          sq.addEventListener("click", toggleSquare);
+          if (isChecked(phase,day,key,i)) sq.classList.add("checked");
+          squaresDiv.appendChild(sq);
+        }
+        if (amt % 1 !== 0) { // handle half
+          let sq = document.createElement("div");
+          sq.className = "square half " + key;
+          sq.dataset.key = key;
+          sq.dataset.idx = "half";
+          sq.addEventListener("click", toggleSquare);
+          if (isChecked(phase,day,key,"half")) sq.classList.add("checked");
+          squaresDiv.appendChild(sq);
+        }
+        div.appendChild(squaresDiv);
+        trackerDiv.appendChild(div);
+      }
+    }
+
+    function toggleSquare(e) {
+      let phase = phaseSel.value;
+      let day = daySel.value;
+      let key = e.target.dataset.key;
+      let idx = e.target.dataset.idx;
+      let storeKey = `p${phase}d${day}${key}${idx}`;
+      if (e.target.classList.contains("checked")) {
+        e.target.classList.remove("checked");
+        localStorage.removeItem(storeKey);
+      } else {
+        e.target.classList.add("checked");
+        localStorage.setItem(storeKey,"1");
+      }
+    }
+
+    function isChecked(phase,day,key,idx) {
+      let storeKey = `p${phase}d${day}${key}${idx}`;
+      return localStorage.getItem(storeKey)==="1";
+    }
+
+    phaseSel.addEventListener("change", loadDays);
+    daySel.addEventListener("change", render);
+
+    loadDays();
+  </script>
+</body>
+</html>
