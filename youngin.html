@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: #008000;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      background: white;
+      color: #333;
+      appearance: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    #tracker {
+      padding: 15px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .container {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .squares {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .square {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.2s;
+    }
+    .square:hover { opacity: 0.85; }
+    .square.checked {
+      background: #444 !important;
+    }
+
+    /* Colors */
+    .green { background: #4CAF50; }
+    .purple { background: #9C27B0; }
+    .red { background: #f44336; }
+    .yellow { background: #FFEB3B; color: #000; }
+    .blue { background: #2196F3; }
+    .orange { background: #FF9800; }
+    .tsp { background: #d6d6d6; color: #333; }
+    .medicine { background: #e91e63; }
+
+    .half {
+      width: 20px !important;
+      height: 40px;
+    }
+
+    #meals {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    #meals label {
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+    }
+
+    #meals textarea {
+      width: 100%;
+      min-height: 70px;
+      resize: vertical;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      transition: border 0.2s;
+    }
+    #meals textarea:focus {
+      border-color: #008000;
+      outline: none;
+    }
+
+    @media (max-width: 600px) {
+      .square { width: 32px; height: 32px; font-size: 16px; }
+      .square.half { width: 16px !important; height: 32px; }
+      h1 { font-size: 20px; }
+      select { font-size: 14px; padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Daily Tracker</h1>
+    <div class="controls">
+      <label>
+        <select id="phase">
+          <option value="1">Month 1</option>
+          <option value="2">Month 2</option>
+          <option value="3">Month 3</option>
+        </select>
+      </label>
+      <label>
+        <select id="day"></select>
+      </label>
+    </div>
+  </header>
+
+  <div id="tracker"></div>
+
+  <div id="meals">
+    <label for="breakfast">Breakfast</label>
+    <textarea id="breakfast"></textarea>
+
+    <label for="lunch">Lunch</label>
+    <textarea id="lunch"></textarea>
+
+    <label for="snack">Snack</label>
+    <textarea id="snack"></textarea>
+
+    <label for="dinner">Dinner</label>
+    <textarea id="dinner"></textarea>
+
+    <label for="water">Water (oz)</label>
+    <textarea id="water"></textarea>
+
+    <label for="notes">Notes</label>
+    <textarea id="notes"></textarea>
+  </div>
+
+  <script>
+    const data = {
+      1: {
+        "All": {
+          days: [...Array(28).keys()].map(i => i + 1),
+          plan: {
+            medicine: 1,
+            green: 4,
+            purple: 2,
+            red: 4,
+            yellow: 3,
+            blue: 1,
+            orange: 1,
+            tsp: 4
+          }
+        }
+      },
+      2: {
+        "All": {
+          days: [...Array(28).keys()].map(i => i + 1),
+          plan: {
+            medicine: 1,
+            green: 4,
+            purple: 2,
+            red: 4,
+            yellow: 3,
+            blue: 1,
+            orange: 1,
+            tsp: 4
+          }
+        }
+      },
+      3: {
+        "All": {
+          days: [...Array(28).keys()].map(i => i + 1),
+          plan: {
+            medicine: 1,
+            green: 4,
+            purple: 2,
+            red: 4,
+            yellow: 3,
+            blue: 1,
+            orange: 1,
+            tsp: 4
+          }
+        }
+      }
+    };
+
+    const colors = {
+      medicine: "Medicine",
+      green: "Green",
+      purple: "Fruit",
+      red: "Red",
+      yellow: "Yellow",
+      blue: "Blue",
+      orange: "Orange",
+      tsp: "Spoons"
+    };
+
+    const trackerDiv = document.getElementById("tracker");
+    const phaseSel = document.getElementById("phase");
+    const daySel = document.getElementById("day");
+
+    function loadDays() {
+      daySel.innerHTML = "";
+      let phase = phaseSel.value;
+      let allDays = [];
+      Object.values(data[phase]).forEach(group => allDays.push(...group.days));
+      allDays = [...new Set(allDays)].sort((a, b) => a - b);
+      allDays.forEach(d => {
+        let opt = document.createElement("option");
+        opt.value = d;
+        opt.textContent = "Day " + d;
+        daySel.appendChild(opt);
+      });
+      render();
+    }
+
+    function render() {
+      trackerDiv.innerHTML = "";
+      let phase = phaseSel.value;
+      let day = parseInt(daySel.value);
+      let plan;
+      for (let group of Object.values(data[phase])) {
+        if (group.days.includes(day)) { plan = group.plan; break; }
+      }
+      for (let key in plan) {
+        let amt = plan[key];
+        let div = document.createElement("div");
+        div.className = "container";
+        let label = document.createElement("div");
+        label.className = "label";
+        label.textContent = colors[key] + " (" + amt + "):";
+        div.appendChild(label);
+
+        let squaresDiv = document.createElement("div");
+        squaresDiv.className = "squares";
+
+        for (let i = 0; i < Math.floor(amt); i++) {
+          let sq = document.createElement("div");
+          sq.className = "square " + key;
+          sq.dataset.key = key;
+          sq.dataset.idx = i;
+          sq.addEventListener("click", toggleSquare);
+          if (isChecked(phase, day, key, i)) sq.classList.add("checked");
+          squaresDiv.appendChild(sq);
+        }
+
+        if (amt % 1 !== 0) {
+          let sq = document.createElement("div");
+          sq.className = "square half " + key;
+          sq.dataset.key = key;
+          sq.dataset.idx = "half";
+          sq.addEventListener("click", toggleSquare);
+          if (isChecked(phase, day, key, "half")) sq.classList.add("checked");
+          squaresDiv.appendChild(sq);
+        }
+
+        div.appendChild(squaresDiv);
+        trackerDiv.appendChild(div);
+      }
+      loadMeals(phase, day);
+    }
+
+    function toggleSquare(e) {
+      let phase = phaseSel.value;
+      let day = daySel.value;
+      let key = e.target.dataset.key;
+      let idx = e.target.dataset.idx;
+      let storeKey = `p${phase}d${day}${key}${idx}`;
+      if (e.target.classList.contains("checked")) {
+        e.target.classList.remove("checked");
+        localStorage.removeItem(storeKey);
+      } else {
+        e.target.classList.add("checked");
+        localStorage.setItem(storeKey, "1");
+      }
+    }
+
+    function isChecked(phase, day, key, idx) {
+      let storeKey = `p${phase}d${day}${key}${idx}`;
+      return localStorage.getItem(storeKey) === "1";
+    }
+
+    const mealFields = ["breakfast", "lunch", "snack", "dinner", "water", "notes"];
+    mealFields.forEach(id => {
+      document.getElementById(id).addEventListener("input", saveMeals);
+    });
+
+    function saveMeals() {
+      let phase = phaseSel.value;
+      let day = daySel.value;
+      mealFields.forEach(id => {
+        let val = document.getElementById(id).value;
+        localStorage.setItem(`p${phase}d${day}${id}`, val);
+      });
+    }
+
+    function loadMeals(phase, day) {
+      mealFields.forEach(id => {
+        let val = localStorage.getItem(`p${phase}d${day}${id}`) || "";
+        document.getElementById(id).value = val;
+      });
+    }
+
+    phaseSel.addEventListener("change", loadDays);
+    daySel.addEventListener("change", render);
+
+    loadDays();
+  </script>
+</body>
+</html>
