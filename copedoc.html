@@ -8,10 +8,15 @@
         :root {
             --bg-gradient: linear-gradient(135deg, #FFD700 0%, #8B4513 100%);
             --card-bg: #F5F5F5;
-            --gold: #DAA520;
+            --gold: #FFD700;
             --brown: #5C4033;
             --gray: #333333;
             --shadow: 0 4px 12px rgba(0,0,0,0.15);
+            --orange: #FF8C00;
+            --dark-orange: #FF4500;
+            --dark-gold: #DAA520;
+            --saddle-brown: #8B4513;
+            --light-gold: #FFE4B5;
         }
 
         * {
@@ -107,9 +112,9 @@
 
         .section-title {
             font-size: 1.4rem;
-            margin-bottom: 16px;
             color: var(--brown);
             font-weight: 600;
+            cursor: pointer;
         }
 
         .profile-section, .score-section, .intro-section, .search-section {
@@ -120,40 +125,41 @@
             display: block;
         }
 
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-        }
-
-        .profile-icon {
-            font-size: 2rem;
-        }
-
-        .profile-details {
-            flex-grow: 1;
-        }
-
-        .profile-edit {
+        .mission-content, .profile-edit, .about-content, .contact-form {
             display: none;
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid #D3D3D3;
         }
 
-        .profile-edit.show {
+        .mission-content.show, .profile-edit.show, .about-content.show, .contact-form.show {
             display: block;
         }
 
-        .profile-edit label {
+        .mission-content h3, .about-content h3 {
+            font-size: 1.2rem;
+            color: var(--brown);
+            margin-bottom: 12px;
+        }
+
+        .mission-content ul, .about-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        .mission-content li, .about-content li {
+            margin-bottom: 8px;
+        }
+
+        .profile-edit label, .contact-form label {
             display: block;
             margin-bottom: 5px;
             font-weight: 600;
             color: var(--brown);
         }
 
-        .profile-edit input, .profile-edit textarea {
+        .profile-edit input, .profile-edit textarea, .contact-form input, .contact-form textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -162,7 +168,7 @@
             font-size: 1rem;
         }
 
-        .profile-edit button {
+        .profile-edit button, .contact-form button {
             padding: 10px 20px;
             background: var(--brown);
             color: #E0E0E0;
@@ -171,7 +177,7 @@
             cursor: pointer;
         }
 
-        .profile-edit button:hover {
+        .profile-edit button:hover, .contact-form button:hover {
             background: var(--gold);
             color: var(--gray);
         }
@@ -195,15 +201,36 @@
             margin-bottom: 8px;
         }
 
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
         .badge {
-            display: inline-block;
-            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
             background: var(--gold);
             color: var(--gray);
             border-radius: 12px;
             font-size: 0.9rem;
-            margin-right: 5px;
+            margin: 8px;
+            text-align: center;
+            min-height: 60px;
         }
+
+        .badge.username { background: var(--gold); }
+        .badge.motto { background: var(--dark-gold); }
+        .badge.daily { background: var(--orange); }
+        .badge.weekly { background: var(--dark-orange); }
+        .badge.longEntry { background: var(--saddle-brown); }
+        .badge.tagMaster { background: var(--light-gold); }
+        .badge.searcher { background: var(--gold); }
+        .badge.profileComplete { background: var(--dark-orange); }
+        .badge.consistent { background: var(--dark-gold); }
+        .badge.reflective { background: var(--orange); }
 
         .checklist-item {
             display: flex;
@@ -471,8 +498,12 @@
             border-left: 3px solid var(--brown);
         }
 
+        .spacer {
+            height: 24px;
+        }
+
         @media (max-width: 600px) {
-            .emoji-grid {
+            .emoji-grid, .badge-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
             h1 {
@@ -518,20 +549,31 @@
         </div>
 
         <div class="intro-section section" id="intro-section">
-            <h2 class="section-title">Mission</h2>
-            <p class="intro-text">Using a proven method to help you process emotions through daily journaling, fostering reflection and personal growth.</p>
+            <h2 class="section-title" id="mission-title">Mission Statement</h2>
+            <div class="mission-content" id="mission-content">
+                <h3>Emotional Wellness</h3>
+                <p>Our mission is to inspire and empower individuals to navigate their emotional journeys through the transformative power of therapeutic journaling. We believe that documenting thoughts and feelings is a vital tool for fostering mental clarity, emotional resilience, and personal growth. By inviting users to write daily, reflect on their emotions, and explore the reasons behind their feelings, we provide a safe, structured space to cultivate inner peace and self-understanding.</p>
+                <h3>Why Journaling Matters</h3>
+                <p>Documenting emotions through writing is more than a creative outlet—it’s a scientifically supported practice that enhances well-being.</p>
+                <p>Here are the key ways journaling benefits your mental and emotional health:</p>
+                <ul>
+                    <li>Clarity and Emotional Regulation: Writing about feelings helps individuals identify and process emotions, reducing overwhelm and promoting balance. Studies show that expressive writing enhances emotional clarity, enabling people to better understand and manage their moods.</li>
+                    <li>Stress and Anxiety Reduction: Putting thoughts on paper acts as a release, lowering stress levels. Research indicates that regular journaling reduces cortisol, the stress hormone, helping individuals feel calmer and more in control.</li>
+                    <li>Enhanced Self-Awareness: Journaling fosters a deeper connection to oneself. By reflecting on why emotions arise, individuals gain insights into their triggers and patterns, paving the way for personal growth and better decision-making.</li>
+                    <li>Improved Mental Health: Consistent writing has been shown to alleviate symptoms of depression and anxiety. Studies demonstrate that expressive writing supports emotional healing, particularly for those processing trauma or challenges.</li>
+                    <li>Physical Health Benefits: Documenting emotions can positively impact physical well-being. Research links journaling to strengthened immune function and reduced symptoms of stress-related conditions, contributing to overall health.</li>
+                </ul>
+                <p>Our platform encourages daily journaling to build a habit of self-reflection. By choosing how you feel, explaining why, and expanding on your thoughts through written entries, you take an active step toward emotional empowerment. Copedoc is here to guide you in documenting your journey, helping you find clarity, resilience, and peace—one entry at a time.</p>
+                <p>Join us in embracing the therapeutic power of journaling to transform your emotional well-being.</p>
+            </div>
         </div>
 
         <div class="profile-section section" id="profile-section">
-            <h2 class="section-title">Your Profile</h2>
-            <div class="profile-header" id="profile-header">
-                <span class="profile-icon" id="profile-icon">🔥</span>
-                <div class="profile-details">
-                    <div id="profile-username">User</div>
-                    <div id="profile-motto" style="font-style: italic;">Personal Writing Resource</div>
-                </div>
-            </div>
+            <h2 class="section-title" id="profile-title">Your Profile</h2>
             <div class="profile-edit" id="profile-edit">
+                <div class="profile-icon" id="profile-icon">🔥</div>
+                <div id="profile-username">User</div>
+                <div id="profile-motto" style="font-style: italic;">Personal Writing Resource</div>
                 <label for="edit-icon">Profile Icon</label>
                 <input type="text" id="edit-icon" placeholder="Enter emoji or icon" maxlength="2">
                 <label for="edit-username">Username</label>
@@ -543,6 +585,33 @@
                 <label for="edit-goals">Personal Goals</label>
                 <textarea id="edit-goals" placeholder="Personal Goals"></textarea>
                 <button id="save-profile">Save Profile</button>
+            </div>
+            <div class="spacer"></div>
+            <h2 class="section-title" id="about-title">About Us</h2>
+            <div class="about-content" id="about-content">
+                <h3>About Us Page</h3>
+                <h3>Your Partner in Emotional and Spiritual Growth</h3>
+                <p>Welcome to Copedoc, a platform dedicated to helping individuals find emotional clarity and spiritual strength through the practice of therapeutic journaling. Our name, blending “cope” and “document,” reflects our core belief: writing down your thoughts and feelings is a powerful way to navigate life’s challenges and grow closer to your true self. We invite you to write daily, reflect on your emotions, and explore their causes, creating a path to healing and resilience.</p>
+                <p>At Copedoc, we see journaling as more than a habit—it’s a journey of self-discovery and emotional honesty. Our platform provides a simple, supportive space where you can choose how you feel, explain why, and express your thoughts through meaningful entries. This process not only fosters mental well-being but also aligns with timeless spiritual principles that encourage reflection, peace, and endurance.</p>
+                <h3>Our Spiritual Foundation</h3>
+                <p>We draw inspiration from biblical wisdom, which underscores the value of honest self-reflection and emotional expression. Scripture encourages us to examine our hearts and find peace through thoughtful contemplation:</p>
+                <ul>
+                    <li>“Be agitated, but do not sin. Have your say in your heart, upon your bed, and keep silent.” This guidance highlights the importance of privately processing emotions, a practice journaling supports by giving you a space to express and understand your feelings.</li>
+                    <li>“Do not be anxious over anything, but in everything by prayer and supplication along with thanksgiving, let your petitions be made known to God; and the peace of God that surpasses all understanding will guard your hearts and your mental powers.” Journaling allows you to lay your worries down, fostering peace and protecting your heart and mind.</li>
+                    <li>“Consider it all joy, my brothers, when you meet with various trials, knowing as you do that this tested quality of your faith produces endurance.” Writing about challenges helps you find meaning in difficulties, building resilience and spiritual strength.</li>
+                    <li>“Let us consider one another so as to incite to love and fine works.” Daily journaling cultivates a habit of self-care, empowering you to support others with love and compassion.</li>
+                </ul>
+                <p>At Copedoc, we believe that documenting your emotions is a step toward emotional and spiritual growth. Our platform is designed to be your trusted companion, offering a space to reflect, heal, and grow. Whether you’re seeking to manage stress, gain self-awareness, or find peace, we’re here to support you every day.</p>
+                <p>Join the Copedoc community and start your journaling journey today. Together, let’s write the path to a stronger, more peaceful you.</p>
+            </div>
+            <div class="spacer"></div>
+            <h2 class="section-title" id="contact-title">Contact Us</h2>
+            <div class="contact-form" id="contact-form">
+                <label for="contact-subject">Subject</label>
+                <input type="text" id="contact-subject" placeholder="Enter subject">
+                <label for="contact-message">Tell Us More</label>
+                <textarea id="contact-message" placeholder="Your message"></textarea>
+                <button id="send-contact">Send</button>
             </div>
         </div>
 
@@ -556,7 +625,7 @@
                 </div>
                 <div class="badges-earned">
                     <h3>Badges Earned</h3>
-                    <div id="badges">None</div>
+                    <div class="badge-grid" id="badges">None</div>
                 </div>
                 <div class="badge-checklist">
                     <h3>Badge Checklist</h3>
@@ -564,6 +633,13 @@
                         <div class="checklist-item" id="check-username">Change Username</div>
                         <div class="checklist-item" id="check-motto">Change Motto</div>
                         <div class="checklist-item" id="check-daily">Post Daily</div>
+                        <div class="checklist-item" id="check-weekly">Post 7 Days in a Row</div>
+                        <div class="checklist-item" id="check-longEntry">Write 500+ Character Entry</div>
+                        <div class="checklist-item" id="check-tagMaster">Use 10 Unique Tags</div>
+                        <div class="checklist-item" id="check-searcher">Perform 5 Searches</div>
+                        <div class="checklist-item" id="check-profileComplete">Complete All Profile Fields</div>
+                        <div class="checklist-item" id="check-consistent">Post 30 Days in a Row</div>
+                        <div class="checklist-item" id="check-reflective">Write 10 Entries with AI Responses</div>
                     </div>
                 </div>
                 <div class="score-guide">
@@ -572,6 +648,10 @@
                         <li>Post daily: +50 points per day</li>
                         <li>Write longer journal entries: +1 point per 10 characters (min. 10)</li>
                         <li>Complete profile fields: +100 points per unique field (username, motto)</li>
+                        <li>Use new tags: +20 points per unique tag (up to 10 tags)</li>
+                        <li>Perform a search: +10 points per search (up to 5 searches)</li>
+                        <li>Write an entry over 500 characters: +200 points</li>
+                        <li>Post 7 days in a row: +500 points</li>
                     </ul>
                 </div>
             </div>
@@ -704,8 +784,14 @@
         const scoreSection = document.getElementById('score-section');
         const searchSection = document.getElementById('search-section');
         const postsSection = document.getElementById('posts-section');
-        const profileHeader = document.getElementById('profile-header');
+        const missionTitle = document.getElementById('mission-title');
+        const missionContent = document.getElementById('mission-content');
+        const profileTitle = document.getElementById('profile-title');
         const profileEdit = document.getElementById('profile-edit');
+        const aboutTitle = document.getElementById('about-title');
+        const aboutContent = document.getElementById('about-content');
+        const contactTitle = document.getElementById('contact-title');
+        const contactForm = document.getElementById('contact-form');
         const profileIcon = document.getElementById('profile-icon');
         const profileUsername = document.getElementById('profile-username');
         const profileMotto = document.getElementById('profile-motto');
@@ -715,6 +801,9 @@
         const editReminder = document.getElementById('edit-reminder');
         const editGoals = document.getElementById('edit-goals');
         const saveProfile = document.getElementById('save-profile');
+        const contactSubject = document.getElementById('contact-subject');
+        const contactMessage = document.getElementById('contact-message');
+        const sendContact = document.getElementById('send-contact');
         const totalPointsEl = document.getElementById('total-points');
         const streakEl = document.getElementById('streak');
         const badgesEl = document.getElementById('badges');
@@ -757,7 +846,7 @@
             profileUsername.textContent = profile.username;
             profileMotto.textContent = profile.motto;
 
-            // Award badges
+            // Award badges and points
             const pointsData = JSON.parse(localStorage.getItem('copedocPointsData') || '{}');
             if (!pointsData.badges) pointsData.badges = [];
             if (profile.username !== 'User' && !pointsData.badges.includes('username')) {
@@ -766,6 +855,10 @@
             }
             if (profile.motto !== 'Personal Writing Resource' && !pointsData.badges.includes('motto')) {
                 pointsData.badges.push('motto');
+                pointsData.points = (pointsData.points || 0) + 100;
+            }
+            if (profile.icon !== '🔥' && profile.username !== 'User' && profile.motto !== 'Personal Writing Resource' && profile.reminder && profile.goals && !pointsData.badges.includes('profileComplete')) {
+                pointsData.badges.push('profileComplete');
                 pointsData.points = (pointsData.points || 0) + 100;
             }
             localStorage.setItem('copedocPointsData', JSON.stringify(pointsData));
@@ -806,16 +899,30 @@
             const badgeIcons = {
                 'username': '👑 Username Crown',
                 'motto': '🥇 Motto Medal',
-                'daily': '🏆 Daily Renewal Award'
+                'daily': '🏆 Daily Renewal Award',
+                'weekly': '🏅 Weekly Streak Star',
+                'longEntry': '🌟 Epic Entry Spark',
+                'tagMaster': '☀️ Tag Sun',
+                'searcher': '⭐️ Search Star',
+                'profileComplete': '💫 Profile Glow',
+                'consistent': '🌝 Moonlight Marathon',
+                'reflective': '💛 Reflective Heart'
             };
             badgesEl.innerHTML = badges.length > 0
-                ? badges.map(b => `<span class="badge">${badgeIcons[b]}</span>`).join(' ')
+                ? badges.map(b => `<div class="badge ${b}">${badgeIcons[b]}</div>`).join('')
                 : 'None';
 
             // Update checklist
             checklist.querySelector('#check-username').classList.toggle('completed', badges.includes('username'));
             checklist.querySelector('#check-motto').classList.toggle('completed', badges.includes('motto'));
             checklist.querySelector('#check-daily').classList.toggle('completed', badges.includes('daily'));
+            checklist.querySelector('#check-weekly').classList.toggle('completed', badges.includes('weekly'));
+            checklist.querySelector('#check-longEntry').classList.toggle('completed', badges.includes('longEntry'));
+            checklist.querySelector('#check-tagMaster').classList.toggle('completed', badges.includes('tagMaster'));
+            checklist.querySelector('#check-searcher').classList.toggle('completed', badges.includes('searcher'));
+            checklist.querySelector('#check-profileComplete').classList.toggle('completed', badges.includes('profileComplete'));
+            checklist.querySelector('#check-consistent').classList.toggle('completed', badges.includes('consistent'));
+            checklist.querySelector('#check-reflective').classList.toggle('completed', badges.includes('reflective'));
         }
 
         // Search Functionality
@@ -867,6 +974,18 @@
 
                 searchResults.appendChild(card);
             });
+
+            // Award search points and badge
+            const pointsData = JSON.parse(localStorage.getItem('copedocPointsData') || '{}');
+            pointsData.searchCount = (pointsData.searchCount || 0) + 1;
+            if (pointsData.searchCount <= 5) {
+                pointsData.points = (pointsData.points || 0) + 10;
+            }
+            if (pointsData.searchCount >= 5 && !pointsData.badges.includes('searcher')) {
+                pointsData.badges.push('searcher');
+            }
+            localStorage.setItem('copedocPointsData', JSON.stringify(pointsData));
+            updatePointsDisplay();
         });
 
         // Navigation
@@ -920,10 +1039,25 @@
             searchResults.innerHTML = '<div class="no-results">Enter a keyword to search your posts.</div>';
         });
 
-        // Profile Expand/Collapse
-        profileHeader.addEventListener('click', () => {
+        // Collapsible Sections
+        missionTitle.addEventListener('click', () => {
+            missionContent.classList.toggle('show');
+        });
+
+        profileTitle.addEventListener('click', () => {
             profileEdit.classList.toggle('show');
         });
+
+        aboutTitle.addEventListener('click', () => {
+            aboutContent.classList.toggle('show');
+        });
+
+        contactTitle.addEventListener('click', () => {
+            contactForm.classList.toggle('show');
+        });
+
+        // Contact Form Submission
+        sendContact.addEventListener.
 
         // Emoji selection
         emojiBtns.forEach(btn => {
@@ -1023,9 +1157,30 @@
             entries.unshift(entry);
             localStorage.setItem('copedocEntries', JSON.stringify(entries));
 
-            // Update points and streak
+            // Update points, streak, and badges
             const pointsData = JSON.parse(localStorage.getItem('copedocPointsData') || '{}');
             pointsData.points = (pointsData.points || 0) + Math.max(10, Math.floor(plainText.length / 10));
+            if (!pointsData.badges) pointsData.badges = [];
+            if (!pointsData.uniqueTags) pointsData.uniqueTags = [];
+
+            // Tag points and badge
+            selectedTags.forEach(tag => {
+                if (!pointsData.uniqueTags.includes(tag) && pointsData.uniqueTags.length < 10) {
+                    pointsData.uniqueTags.push(tag);
+                    pointsData.points += 20;
+                }
+            });
+            if (pointsData.uniqueTags.length >= 10 && !pointsData.badges.includes('tagMaster')) {
+                pointsData.badges.push('tagMaster');
+            }
+
+            // Long entry badge
+            if (plainText.length >= 500 && !pointsData.badges.includes('longEntry')) {
+                pointsData.badges.push('longEntry');
+                pointsData.points += 200;
+            }
+
+            // Streak and badges
             const today = new Date().toISOString().split('T')[0];
             const lastEntryDate = entries[1]?.timestamp?.split('T')[0] || '';
             const yesterday = new Date();
@@ -1038,10 +1193,23 @@
                 pointsData.streak = 1;
             }
             pointsData.points += 50; // Daily bonus
-            if (!pointsData.badges) pointsData.badges = [];
             if (!pointsData.badges.includes('daily')) {
                 pointsData.badges.push('daily');
             }
+            if (pointsData.streak >= 7 && !pointsData.badges.includes('weekly')) {
+                pointsData.badges.push('weekly');
+                pointsData.points += 500;
+            }
+            if (pointsData.streak >= 30 && !pointsData.badges.includes('consistent')) {
+                pointsData.badges.push('consistent');
+            }
+
+            // Reflective badge
+            const aiResponseCount = entries.filter(e => e.aiResponse).length;
+            if (aiResponseCount >= 10 && !pointsData.badges.includes('reflective')) {
+                pointsData.badges.push('reflective');
+            }
+
             localStorage.setItem('copedocPointsData', JSON.stringify(pointsData));
             updatePointsDisplay();
 
