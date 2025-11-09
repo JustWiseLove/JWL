@@ -587,7 +587,7 @@
             <div class="section">
                 <h2 class="section-title">How Do You Feel?</h2>
                 <div class="emoji-grid">
-                    <div class="emoji-btn" data-mood="Happy">😊</div>
+                    <div class="emoji-btn" data-mood="Happy">😁</div>
                     <div class="emoji-btn" data-mood="Neutral">😐</div>
                     <div class="emoji-btn" data-mood="Sad">😢</div>
                     <div class="emoji-btn" data-mood="Suprised">🤯</div>
@@ -595,7 +595,7 @@
                     <div class="emoji-btn" data-mood="Cool">😎</div>
                     <div class="emoji-btn" data-mood="Tired">😴</div>
                     <div class="emoji-btn" data-mood="Thinking">🤔</div>
-                    <div class="emoji-btn" data-mood="Loved">😍</div>
+                    <div class="emoji-btn" data-mood="Loved">🥰</div>
                     <div class="emoji-btn" data-mood="Calm">😊</div>
                     <div class="emoji-btn" data-mood="Confused">😕</div>
                     <div class="emoji-btn" data-mood="Silly">🤪</div>
@@ -938,7 +938,7 @@
 
         // Tag selection
         tagBtns.forEach(tag => {
-            btn.addEventListener('click', () => {
+            tag.addEventListener('click', () => {
                 tag.classList.toggle('selected');
                 const tagText = tag.dataset.tag;
                 if (tag.classList.contains('selected')) {
@@ -946,6 +946,7 @@
                 } else {
                     selectedTags = selectedTags.filter(t => t !== tagText);
                 }
+                checkSubmit();
             });
         });
 
