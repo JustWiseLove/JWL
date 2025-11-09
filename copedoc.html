@@ -320,6 +320,7 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
+            color: var(--gold);
             transition: 0.2s;
         }
 
@@ -472,7 +473,7 @@
 
         @media (max-width: 600px) {
             .emoji-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
             h1 {
                 font-size: 2.8rem;
@@ -517,8 +518,8 @@
         </div>
 
         <div class="intro-section section" id="intro-section">
-            <h2 class="section-title">What Is copedoc?</h2>
-            <p class="intro-text">copedoc combines "cope" and "document" to help you process emotions through daily journaling, fostering reflection and personal growth.</p>
+            <h2 class="section-title">Mission</h2>
+            <p class="intro-text">Using a proven method to help you process emotions through daily journaling, fostering reflection and personal growth.</p>
         </div>
 
         <div class="profile-section section" id="profile-section">
@@ -548,14 +549,6 @@
         <div class="score-section section" id="score-section">
             <h2 class="section-title">Your Score & Badges</h2>
             <div class="score-content">
-                <div class="score-guide">
-                    <h3>How to Gain More Score</h3>
-                    <ul>
-                        <li>Post daily: +50 points per day</li>
-                        <li>Write longer journal entries: +1 point per 10 characters (min. 10)</li>
-                        <li>Complete profile fields: +100 points per unique field (username, motto)</li>
-                    </ul>
-                </div>
                 <div class="score-counter">
                     <h3>Your Score</h3>
                     <div>Total Points: <span id="total-points">0</span></div>
@@ -563,7 +556,7 @@
                 </div>
                 <div class="badges-earned">
                     <h3>Badges Earned</h3>
-                    <div>Badges: <span id="badges">None</span></div>
+                    <div id="badges">None</div>
                 </div>
                 <div class="badge-checklist">
                     <h3>Badge Checklist</h3>
@@ -572,6 +565,14 @@
                         <div class="checklist-item" id="check-motto">Change Motto</div>
                         <div class="checklist-item" id="check-daily">Post Daily</div>
                     </div>
+                </div>
+                <div class="score-guide">
+                    <h3>Personal Quests</h3>
+                    <ul>
+                        <li>Post daily: +50 points per day</li>
+                        <li>Write longer journal entries: +1 point per 10 characters (min. 10)</li>
+                        <li>Complete profile fields: +100 points per unique field (username, motto)</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -594,6 +595,10 @@
                     <div class="emoji-btn" data-mood="Anxious">😰</div>
                     <div class="emoji-btn" data-mood="Tired">😴</div>
                     <div class="emoji-btn" data-mood="Numb">😶</div>
+                    <div class="emoji-btn" data-mood="Excited">🤩</div>
+                    <div class="emoji-btn" data-mood="Calm">😊🧘</div>
+                    <div class="emoji-btn" data-mood="Confused">😕</div>
+                    <div class="emoji-btn" data-mood="Hopeful">🌟</div>
                 </div>
             </div>
 
@@ -618,7 +623,7 @@
                     <div class="tag" data-tag="Future">Future</div>
                     <div class="tag" data-tag="AI Job Loss">AI Job Loss</div>
                     <div class="tag" data-tag="Career">Career</div>
-                    <div class="tag" data-tag="School病例: School</div>
+                    <div class="tag" data-tag="School">School</div>
                     <div class="tag" data-tag="Exams">Exams</div>
                     <div class="tag" data-tag="News">News</div>
                     <div class="tag" data-tag="Social Media">Social Media</div>
@@ -630,6 +635,17 @@
                     <div class="tag" data-tag="Noise">Noise</div>
                     <div class="tag" data-tag="Memories">Memories</div>
                     <div class="tag" data-tag="Change">Change</div>
+                    <div class="tag" data-tag="Routine">Routine</div>
+                    <div class="tag" data-tag="Hobbies">Hobbies</div>
+                    <div class="tag" data-tag="Relationships">Relationships</div>
+                    <div class="tag" data-tag="Pets">Pets</div>
+                    <div class="tag" data-tag="Travel">Travel</div>
+                    <div class="tag" data-tag="Technology">Technology</div>
+                    <div class="tag" data-tag="Creativity">Creativity</div>
+                    <div class="tag" data-tag="Finances">Finances</div>
+                    <div class="tag" data-tag="Self-Esteem">Self-Esteem</div>
+                    <div class="tag" data-tag="Time Management">Time Management</div>
+                    <div class="tag" data-tag="Other">Other</div>
                 </div>
             </div>
 
@@ -660,14 +676,18 @@
 
     <script>
         const emojis = {
-            '😊': 'Happy',
+            '😁': 'Happy',
             '😐': 'Neutral',
             '😢': 'Sad',
-            '😓': 'Stressed',
-            '😣': 'Angry',
-            '😰': 'Anxious',
+            '🤯': 'Suprised',
+            '😡': 'Angry',
+            '😎': 'Cool',
             '😴': 'Tired',
-            '😶': 'Numb'
+            '🤔': 'Thinking',
+            '🥰': 'Loved',
+            '😊': 'Calm',
+            '😕': 'Confused',
+            '🤪': 'Silly'
         };
 
         let selectedMood = null;
@@ -918,7 +938,7 @@
 
         // Tag selection
         tagBtns.forEach(tag => {
-            tag.addEventListener('click', () => {
+            btn.addEventListener('click', () => {
                 tag.classList.toggle('selected');
                 const tagText = tag.dataset.tag;
                 if (tag.classList.contains('selected')) {
