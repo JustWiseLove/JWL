@@ -152,6 +152,13 @@
             margin-bottom: 8px;
         }
 
+        .profile-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
         .profile-edit label, .contact-form label {
             display: block;
             margin-bottom: 5px;
@@ -182,14 +189,16 @@
             color: var(--gray);
         }
 
-        .profile-details {
-            margin-bottom: 10px;
-        }
-
         .profile-icon {
             font-size: 2rem;
-            display: inline-block;
-            margin-right: 10px;
+        }
+
+        .profile-username {
+            font-weight: 600;
+        }
+
+        .profile-motto {
+            font-style: italic;
         }
 
         .score-content {
@@ -335,10 +344,10 @@
         }
 
         .tag:hover {
-            background harmless: #B0B0B0;
+            background: #B0B0B0;
         }
 
-        .tag.selected wednesday: .selected {
+        .tag.selected {
             background: var(--brown);
             color: #E0E0E0;
         }
@@ -541,10 +550,10 @@
 <body>
     <div class="container">
         <header>
-            <h1>copedoc</h1>
             <a href="rocks.PNG"><img src="rocks.PNG" alt="Sunset Rocks" class="header-img"></a>
-            <p class="tagline">Feel. Reflect. Grow.</p>
-            <div class="motto">Personal Writing Resource</div>
+            <h1>copedoc</h1>
+            <p class="tagline">“Ponder your feelings, explore their roots, and detail your journey.”</p>
+            <div class="motto">Ponder. Express. Detail.</div>
         </header>
 
         <div class="nav-bar">
@@ -577,12 +586,12 @@
         <div class="profile-section" id="profile-section">
             <div class="section">
                 <h2 class="section-title" id="profile-title">Your Profile</h2>
+                <div class="profile-display">
+                    <span class="profile-icon" id="profile-icon">🔥</span>
+                    <div class="profile-username" id="profile-username">User</div>
+                    <div class="profile-motto" id="profile-motto">Personal Writing Resource</div>
+                </div>
                 <div class="profile-edit" id="profile-edit">
-                    <div class="profile-details">
-                        <span class="profile-icon" id="profile-icon">🔥</span>
-                        <div id="profile-username">User</div>
-                        <div id="profile-motto" style="font-style: italic;">Personal Writing Resource</div>
-                    </div>
                     <label for="edit-icon">Profile Icon</label>
                     <input type="text" id="edit-icon" placeholder="Enter emoji or icon" maxlength="2">
                     <label for="edit-username">Username</label>
@@ -599,7 +608,8 @@
             <div class="section">
                 <h2 class="section-title" id="about-title">About Us</h2>
                 <div class="about-content" id="about-content">
-                    <h3>Emotional and Spiritual Growth</h3>
+                    <h3>About Us Page</h3>
+                    <h3>Your Partner in Emotional and Spiritual Growth</h3>
                     <p>Welcome to Copedoc, a platform dedicated to helping individuals find emotional clarity and spiritual strength through the practice of therapeutic journaling. Our name, blending “cope” and “document,” reflects our core belief: writing down your thoughts and feelings is a powerful way to navigate life’s challenges and grow closer to your true self. We invite you to write daily, reflect on your emotions, and explore their causes, creating a path to healing and resilience.</p>
                     <p>At Copedoc, we see journaling as more than a habit—it’s a journey of self-discovery and emotional honesty. Our platform provides a simple, supportive space where you can choose how you feel, explain why, and express your thoughts through meaningful entries. This process not only fosters mental well-being but also aligns with timeless spiritual principles that encourage reflection, peace, and endurance.</p>
                     <h3>Our Spiritual Foundation</h3>
@@ -633,6 +643,7 @@
                     <h3>Your Score</h3>
                     <div>Total Points: <span id="total-points">0</span></div>
                     <div>Streak: <span id="streak">0</span> day(s)</div>
+                    <div>Time Left to Post: <span id="streak-timer">Calculating...</span></div>
                 </div>
                 <div class="badges-earned">
                     <h3>Badges Earned</h3>
@@ -817,6 +828,7 @@
         const sendContact = document.getElementById('send-contact');
         const totalPointsEl = document.getElementById('total-points');
         const streakEl = document.getElementById('streak');
+        const streakTimerEl = document.getElementById('streak-timer');
         const badgesEl = document.getElementById('badges');
         const checklist = document.getElementById('checklist');
         const searchInput = document.getElementById('search-input');
@@ -877,6 +889,21 @@
             profileEdit.classList.remove('show');
         });
 
+        // Streak Timer
+        function updateStreakTimer() {
+            const now = new Date();
+            const nextMidnight = new Date();
+            nextMidnight.setHours(24, 0, 0, 0); // Next 12 AM ET
+            nextMidnight.setTime(nextMidnight.getTime() + (nextMidnight.getTimezoneOffset() * 60000) - (5 * 3600000)); // Adjust to ET
+            if (now > nextMidnight) {
+                nextMidnight.setDate(nextMidnight.getDate() + 1);
+            }
+            const timeLeftMs = nextMidnight - now;
+            const hours = Math.floor(timeLeftMs / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeftMs % (1000 * 60 * 60)) / (1000 * 60));
+            streakTimerEl.textContent = `${hours}HRS ${minutes}Mins`;
+        }
+
         // Load Points and Streak
         function loadPoints() {
             const pointsData = JSON.parse(localStorage.getItem('copedocPointsData') || '{}');
@@ -885,21 +912,25 @@
             const lastEntryDate = entries[0]?.timestamp?.split('T')[0] || '';
             let streak = pointsData.streak || 0;
 
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            const yesterdayStr = yesterday.toISOString().split('T')[0];
+            const now = new Date();
+            const midnightToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+            midnightToday.setTime(midnightToday.getTime() + (midnightToday.getTimezoneOffset() * 60000) - (5 * 3600000)); // 12 AM ET
+            const lastMidnight = new Date(midnightToday);
+            lastMidnight.setDate(lastMidnight.getDate() - 1);
 
             if (lastEntryDate === today) {
-                // Already posted today
-            } else if (lastEntryDate === yesterdayStr) {
-                // Posted yesterday
+                // Posted today, streak maintained
+            } else if (lastEntryDate && new Date(lastEntryDate) >= lastMidnight) {
+                // Posted since last midnight, streak maintained
             } else {
-                streak = 0;
+                streak = 0; // No post since last midnight, reset streak
             }
 
             pointsData.streak = streak;
             localStorage.setItem('copedocPointsData', JSON.stringify(pointsData));
             updatePointsDisplay();
+            updateStreakTimer();
+            setInterval(updateStreakTimer, 60000); // Update timer every minute
         }
 
         function updatePointsDisplay() {
@@ -1205,16 +1236,7 @@
 
             // Streak and badges
             const today = new Date().toISOString().split('T')[0];
-            const lastEntryDate = entries[1]?.timestamp?.split('T')[0] || '';
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            const yesterdayStr = yesterday.toISOString().split('T')[0];
-
-            if (lastEntryDate === yesterdayStr || !lastEntryDate) {
-                pointsData.streak = (pointsData.streak || 0) + 1;
-            } else if (lastEntryDate !== today) {
-                pointsData.streak = 1;
-            }
+            pointsData.streak = (pointsData.streak || 0) + 1;
             pointsData.points += 50; // Daily bonus
             if (!pointsData.badges.includes('daily')) {
                 pointsData.badges.push('daily');
@@ -1235,6 +1257,7 @@
 
             localStorage.setItem('copedocPointsData', JSON.stringify(pointsData));
             updatePointsDisplay();
+            updateStreakTimer();
 
             loadHistory();
             resetForm();
